@@ -8,8 +8,8 @@ class SolicitudesController < ApplicationController
 
   def create
     case params[:marca][:tipo]
-      when 'sm' then @errors = SolicitudMarca.importar( params[:marca][:archivo] )
-      when 'lp' then @errors = ListaPublicacion.importar( params[:marca][:archivo] )
+      when 'sm' then @tot, @errors = SolicitudMarca.importar( params[:marca][:archivo] )
+      when 'lp' then @tot, @errors = ListaPublicacion.importar( params[:marca][:archivo] )
       when 'lr' then
         # @errors = ListaRegistro.importar( params[:marca][:archivo] )
       when 'sr' then
@@ -17,6 +17,5 @@ class SolicitudesController < ApplicationController
       when 'rc' then
         # @errors = ListaPublicacion.importar( params[:marca][:archivo] )
     end
-
   end
 end
