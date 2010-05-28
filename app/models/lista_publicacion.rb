@@ -1,0 +1,3 @@
+class ListaPublicacion < Marca
+
+end

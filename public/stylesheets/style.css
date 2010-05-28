@@ -282,3 +282,9 @@ a.delete {
   padding-right: 18px;
   background-position: right 50%;
 }
+.half li { width: 49%; }
+.half div { width: 49%; }
+.half p { width: 49%; }
+.third li { width: 33%; }
+.third div { width: 33%; }
+.third p { width: 33%; }

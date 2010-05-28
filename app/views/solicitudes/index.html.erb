@@ -1,0 +1,15 @@
+<h1>Solicitudes</h1>
+
+
+
+<% semantic_form_for( @marca, :url => solicitudes_path, :html => { :multipart => true } ) do |f| %>
+  <%= f.input :tipo, :as => :radio, :collection => Marca::TIPOS, :input_html => { :class => "half" } %>
+  <%= f.input :archivo, :as => :file, :label => "Archivo" %>
+
+  <%= f.submit "Importar" %>
+<% end %>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+  });
+</script>

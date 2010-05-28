@@ -1,5 +1,18 @@
 class SolicitudMarcasController < ApplicationController
-  def index
+
+  def new
+
+  end
+
+  def create
+
+  end
+
+  def edit
+
+  end
+
+  def udpate
 
   end
 end
