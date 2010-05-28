@@ -1,0 +1,3 @@
+class SolicitudMarca < Marca
+
+end

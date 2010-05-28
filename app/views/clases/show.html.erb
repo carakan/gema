@@ -1,0 +1,18 @@
+<p>
+  <b>Nombre:</b>
+  <%=h @clase.nombre %>
+</p>
+
+<p>
+  <b>Código:</b>
+  <%=h @clase.codigo %>
+</p>
+
+<p>
+  <b>Descripcion:</b>
+  <%=h @clase.descripcion %>
+</p>
+
+
+<%= link_to 'Editar', edit_clase_path(@clase), :class => 'edit' %> |
+<%= link_to 'Lista', clases_path, :class => 'list' %>

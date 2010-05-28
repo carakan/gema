@@ -1,0 +1,24 @@
+<h1>Clases</h1>
+
+<%= link_to 'Nueva clase', new_clase_path, :class => 'new' %>
+
+<table>
+  <tr>
+    <th>Nombre</th>
+    <th>Código</th>
+    <th>Descripción</th>
+  </tr>
+
+<% @clases.each do |clase| %>
+  <tr>
+    <td><%=h clase.nombre %></td>
+    <td><%=h clase.codigo %></td>
+    <td><%=h clase.descripcion %></td>
+    <td><%= link_to 'Show', clase %></td>
+    <td><%= link_to 'Edit', edit_clase_path(clase) %></td>
+    <td><%= link_to 'Destroy', clase, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+

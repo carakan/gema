@@ -1,0 +1,17 @@
+*.kpf
+*.swp
+*.swo
+*.log
+*.sqlite3
+*~
+nbproject
+!pub.txt
+.~lock*
+ç
+*.vim
+public/javascripts/plugins.js
+public/javascripts/scripts.js
+doc/wireframes/images/*.*
+*.pid
+rerun.txt
+db/test.sqlite3-journal
