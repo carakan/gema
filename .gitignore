@@ -4,6 +4,7 @@
 *.log
 *.sqlite3
 *~
+*.bak
 nbproject
 !pub.txt
 .~lock*
@@ -15,3 +16,4 @@ doc/wireframes/images/*.*
 *.pid
 rerun.txt
 db/test.sqlite3-journal
+archivos/*
