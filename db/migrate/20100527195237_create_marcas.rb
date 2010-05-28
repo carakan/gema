@@ -12,12 +12,13 @@ class CreateMarcas < ActiveRecord::Migration
       t.string :numero_registro
       t.string :numero_renovacion
       t.string :productos
-      t.boolean :activo
       t.string :estado
       t.date :estado_fecha
       t.string :estado_serial
       t.string :publicacion
       t.string :gaceta
+      t.boolean :activo
+      t.boolean :valido # Para indicar si la importación fue válida
 
       t.timestamps
     end

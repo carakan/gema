@@ -1,9 +1,7 @@
-# encoding:utf-8
 class Marca < ActiveRecord::Base
   belongs_to :clase
   
-  validates_presence_of :nombre
-
+  validates_presence_of :nombre, :estado_fecha, :estado, :tipo_marca_id
 
   TIPOS = { "Solicitud de Marca" => "sm",
     "Lista de publicación" => "lp",

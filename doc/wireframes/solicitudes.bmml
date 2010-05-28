@@ -7,8 +7,8 @@
     </control>
     <control controlID="1" controlTypeID="com.balsamiq.mockups::Canvas" x="245" y="0" w="743" h="119" measuredW="100" measuredH="70" zOrder="1" locked="true" isInGroup="-1">
       <controlProperties>
-        <borderStyle>none</borderStyle>
         <borderColor>8355711</borderColor>
+        <borderStyle>none</borderStyle>
         <color>11776947</color>
       </controlProperties>
     </control>
@@ -23,8 +23,9 @@
         <color>16777062</color>
       </controlProperties>
     </control>
-    <control controlID="4" controlTypeID="com.balsamiq.mockups::Title" x="290" y="141" w="-1" h="-1" measuredW="272" measuredH="62" zOrder="4" locked="false" isInGroup="-1">
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::Title" x="290" y="141" w="-1" h="-1" measuredW="218" measuredH="51" zOrder="4" locked="false" isInGroup="-1">
       <controlProperties>
+        <size>32</size>
         <text>Ingresar%20lista</text>
       </controlProperties>
     </control>
@@ -45,9 +46,9 @@
     </control>
     <control controlID="8" controlTypeID="com.balsamiq.mockups::PointyButton" x="561" y="470" w="-1" h="-1" measuredW="55" measuredH="28" zOrder="8" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Subir</text>
-        <direction>center</direction>
         <color>2848996</color>
+        <direction>center</direction>
+        <text>Subir</text>
       </controlProperties>
     </control>
     <control controlID="9" controlTypeID="com.balsamiq.mockups::FieldSet" x="289" y="208" w="475" h="126" measuredW="200" measuredH="170" zOrder="9" locked="false" isInGroup="-1">
@@ -57,37 +58,37 @@
     </control>
     <control controlID="11" controlTypeID="com.balsamiq.mockups::RadioButton" x="318" y="237" w="-1" h="-1" measuredW="140" measuredH="22" zOrder="10" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Solicitud%20de%20Marca</text>
         <href>solicitud_marca_ini%26bm%3Bsolicitud_marca_ini.bmml%26bm%3Bsolicitud_marca_ini.bmml%26bm%3Bsolicitud_marca_ini.bmml</href>
         <map>%3Carea%20shape%3D%22rect%22%20coords%3D%2273%2C237%2C213%2C259%22%20href%3D%22solicitud_marca_ini.bmml%22%20alt%3D%22solicitud_marca_ini%22%20id%3D%2211%22/%3E</map>
+        <text>Solicitud%20de%20Marca</text>
       </controlProperties>
     </control>
     <control controlID="12" controlTypeID="com.balsamiq.mockups::RadioButton" x="318" y="260" w="-1" h="-1" measuredW="142" measuredH="22" zOrder="11" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Lista%20de%20Publicaci%F3n</text>
         <href>lista_publicacion1%26bm%3Blista_publicacion1.bmml%26bm%3Blista_publicacion1.bmml%26bm%3Blista_publicacion1.bmml</href>
         <map>%3Carea%20shape%3D%22rect%22%20coords%3D%2273%2C260%2C215%2C282%22%20href%3D%22lista_publicacion1.bmml%22%20alt%3D%22lista_publicacion1%22%20id%3D%2212%22/%3E</map>
+        <text>Lista%20de%20Publicaci%F3n</text>
       </controlProperties>
     </control>
     <control controlID="13" controlTypeID="com.balsamiq.mockups::RadioButton" x="317" y="286" w="-1" h="-1" measuredW="127" measuredH="22" zOrder="12" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Lista%20de%20Registro</text>
         <href>lista_registro1%26bm%3Blista_registro1.bmml%26bm%3Blista_registro1.bmml%26bm%3Blista_registro1.bmml</href>
         <map>%3Carea%20shape%3D%22rect%22%20coords%3D%2272%2C286%2C199%2C308%22%20href%3D%22lista_registro1.bmml%22%20alt%3D%22lista_registro1%22%20id%3D%2213%22/%3E</map>
+        <text>Lista%20de%20Registro</text>
       </controlProperties>
     </control>
     <control controlID="14" controlTypeID="com.balsamiq.mockups::RadioButton" x="532" y="237" w="-1" h="-1" measuredW="157" measuredH="22" zOrder="13" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Soliciud%20de%20renovaci%F3n</text>
         <href>solicitud_renovacion1%26bm%3Bsolicitud_renovacion1.bmml%26bm%3Bsolicitud_renovacion1.bmml%26bm%3Bsolicitud_renovacion1.bmml</href>
         <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22287%2C237%2C444%2C259%22%20href%3D%22solicitud_renovacion1.bmml%22%20alt%3D%22solicitud_renovacion1%22%20id%3D%2214%22/%3E</map>
+        <text>Soliciud%20de%20renovaci%F3n</text>
       </controlProperties>
     </control>
     <control controlID="15" controlTypeID="com.balsamiq.mockups::RadioButton" x="532" y="260" w="-1" h="-1" measuredW="171" measuredH="22" zOrder="14" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Renovaciones%20concedidas</text>
         <href>renovaciones_concedidas1%26bm%3Brenovaciones_concedidas1.bmml%26bm%3Brenovaciones_concedidas1.bmml%26bm%3Brenovaciones_concedidas1.bmml</href>
         <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22287%2C260%2C458%2C282%22%20href%3D%22renovaciones_concedidas1.bmml%22%20alt%3D%22renovaciones_concedidas1%22%20id%3D%2215%22/%3E</map>
+        <text>Renovaciones%20concedidas</text>
       </controlProperties>
     </control>
   </controls>

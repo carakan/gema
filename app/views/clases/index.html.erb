@@ -14,9 +14,9 @@
     <td><%=h clase.nombre %></td>
     <td><%=h clase.codigo %></td>
     <td><%=h clase.descripcion %></td>
-    <td><%= link_to 'Show', clase %></td>
-    <td><%= link_to 'Edit', edit_clase_path(clase) %></td>
-    <td><%= link_to 'Destroy', clase, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Ver', clase %></td>
+    <td><%= link_to 'Editar', edit_clase_path(clase) %></td>
+    <td><%= link_to 'Borrar', clase, :confirm => 'Esta seguro?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

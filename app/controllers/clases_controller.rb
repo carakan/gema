@@ -1,3 +1,4 @@
+# encoding: utf-8
 class ClasesController < ApplicationController
   # GET /clases
   # GET /clases.xml

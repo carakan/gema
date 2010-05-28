@@ -1,10 +1,12 @@
-<h1>Importados <%= @tot %> filas</h1>
+<h1>Importado <%= @tot %> filas</h1>
 
 <% unless @errors.blank? %>
   <h3 class="error">Existen errores en las siguientes filas</h3>
 
-  <table>
-    <th></th>
-
-  </table>
+  <% @errors.each do |marca| %>
+  <ul class="list">
+    <%= render :partial => "marca", :locals => { :marca => marca } %>
+  </ul>
+  <% end %>
 <% end %>
+

@@ -1,0 +1,29 @@
+<li>
+  
+  <div class="error">Existe un error en la fila <strong><%= marca.fila %></strong></div>
+
+  <h4><%= marca.nombre %></h4>
+  <a href="javascript:" class="more">Ver mas</a>
+
+  <div class="hidden">
+    <div class="half fl">
+      <label for="">SM</label>
+      <p><%= marca.sm %></p>
+    </div>
+
+    <div class="half fl">
+      <label for="">Fecha</label>
+      <p><%= marca.estado_fecha %></p>
+
+      <label for="">Estado</label>
+      <p><%= marca.estado %></p>
+    </div>
+
+    <%= link_to "editar", edit_solicitud_path(marca), :class => 'edit' %>
+    <%= link_to "borrar", marca, :class => 'delete' %>
+  </div>
+
+
+  <div style="clear:both"></div>
+    
+</li>

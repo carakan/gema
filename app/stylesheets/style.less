@@ -14,7 +14,7 @@
 @red: #FF0000;
 @dark: #484848;
 @grey:#676767; 
-@light-grey: #EFEFEF;
+@light-grey: #B9B9B9;
 
 body{
   padding: 0px;
@@ -124,8 +124,7 @@ form ol{
   }
 }
 
-span.error{
-  display: block;
+.error{
   color: @red;
 }
 
@@ -156,7 +155,7 @@ span.error{
 }
 .fieldWithErrors {
   padding: 2px;
-  background-color: red;
+  background-color: @red;
   display: table;
 }
 td .fieldWithErrors {
@@ -346,16 +345,11 @@ a.delete{
 /* Clases especiales*/
 
 .half{
-  li{
-    width: 49%;
-  }
-  div{
-    width:49%;
-  }
-  p{
-    width: 49%
-  }
+  width: 49%;
 }
+
+.fl{ float: left; }
+
 
 .third{
   li{
@@ -369,4 +363,17 @@ a.delete{
   }
 }
 
+.hidden{
+  display: none;
+}
 
+ul.list{
+  margin: 0px;  
+  padding: 0px;
+  li{
+    list-style:none;
+    margin: 0px;  
+    padding: 0px;
+    border-bottom: 1px solid @light-grey;
+  }
+}
