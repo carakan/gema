@@ -12,7 +12,7 @@
 <% @clases.each do |clase| %>
   <tr>
     <td><%=h clase.nombre %></td>
-    <td><%=h clase.codigo %></td>
+    <td><%=h clase.id %></td>
     <td><%=h clase.descripcion %></td>
     <td><%= link_to 'Ver', clase %></td>
     <td><%= link_to 'Editar', edit_clase_path(clase) %></td>

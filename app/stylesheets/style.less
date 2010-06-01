@@ -10,30 +10,39 @@
 @tr_selected: #61B5DF;
 @table_border_color: #8f8f8f;
 
-
+@black: #000;
+@white: #FFF;
+@white_tan: #DCDCDC;
 @red: #FF0000;
 @dark: #484848;
 @grey:#676767; 
-@light-grey: #B9B9B9;
+@light_grey: #B9B9B9;
+@blue: #2167CB;
 
 body{
   padding: 0px;
   margin: 0px;
-  background: @background; color: @color;
+  background: @light_grey; 
+  color: @black;
 }
 
-body, p, ol, ul, td {
+body, p, ol, ul{
   font-family: verdana, arial, helvetica, sans-serif;
   font-size:   13px;
   line-height: 18px;
 }
 a { color: @a_color; text-decoration: underline; cursor: pointer; }
 a:hover { color: @a_hover; text-decoration: none; }
-table{
+
+table.decorated{
   border-collapse: collapse;
-}
-tr{
-  border-top: 1px solid @table_border_color;
+  tr{
+    border-top: 1px solid @table_border_color;
+  }
+  th, td{
+  /*  border: 1px solid @border_color_table;*/
+    padding: 3px 8px;
+  }
 }
 .over{
   background-color: @tr_background !important;
@@ -45,10 +54,6 @@ tr{
 .even{
   background-color: #EFEFEF;
 }
-th, td{
-/*  border: 1px solid @border_color_table;*/
-  padding: 3px 8px;
-}
 
 /*Forms*/
 form p{
@@ -57,18 +62,18 @@ form p{
   margin-bottom: 1em;
 }
 
-input, select, textarea{
+input:text, select, textarea{
   padding: 2px 3px;
   background: @background2;
   border: 1px solid @border_color;
   color: @color;
 }
-input[type="submit"] {
-  margin:10px 200px;
+input[type=submit] {
   font-weight:bold;
   font-size: 1.3em;
+  color:@blue;
 }
-input[type="file"] {
+input[type='file'] {
   color: @color;
   background-color: @background2;
   border: 1px solid @border_color;
@@ -99,13 +104,13 @@ label{
 }
 
 div#cont{ 
-  padding: 10px;
+  padding: 10px 25px;
   text-align:left;
   margin:auto;
 }
 
 /* Formtastic */
-form ol{
+form ol, form{
   padding: 0px;
   margin: 0px;
   li{
@@ -137,7 +142,7 @@ form ol{
     font-weight: bold;
     font-size: 1.2em;
     padding: 10px;
-    background-color: @light-grey;
+    background-color: @light_grey;
     border-bottom: 2px solid @red;
     margin: 0px;
   }
@@ -163,25 +168,35 @@ td .fieldWithErrors {
 }
 
 
+/* Contenidos */
+#wrapper{
+  width: 900px;
+  margin: auto;
+  border:1px solid @dark;
+  background-color: @white;
+}
 
-/*Menu*/
+
+/* Menu */
 @a_menu_color: #5f5f5f;
 ul#navigation{
   height: 28px;
   list-style: none;
   padding: 0px; margin: 0px;
-  background: @background2;
+  background: @white_tan;
   li{display: inline; float: left;}
   li a{
-   display: block;
+    display: block;
     text-decoration: none;
     font-weight: bold;
     font-size: 1em;
     padding: 5px 7px;
-    border-right: 1px solid @border_color;
+    border-right: 1px solid @dark;
+    color: @blue;
   }
   li a:hover{
-    background: @a_menu_color !important;
+    background: @blue !important;
+    color: @white;
   }
 }
 .buscar{
@@ -348,6 +363,13 @@ a.delete{
   width: 49%;
 }
 
+.in_half{
+  ol li, ul li{
+    width: 49%;
+    float: left;
+  }
+}
+
 .fl{ float: left; }
 
 
@@ -374,6 +396,7 @@ ul.list{
     list-style:none;
     margin: 0px;  
     padding: 0px;
-    border-bottom: 1px solid @light-grey;
+    border-bottom: 1px solid @light_grey;
   }
 }
+

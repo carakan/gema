@@ -1,10 +1,13 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :testes
+
   map.resources :clases
 
   map.resources :solicitud_marcas
 
   map.resources :solicitudes
 
+  map.resources :marcas
 
   # The priority is based upon order of creation: first created -> highest priority.
 

@@ -6,12 +6,9 @@ class Clase < ActiveRecord::Base
   validates_numericality_of :codigo
   validates_uniqueness_of :codigo
 
-  def to_param
-    %(#{codigo} - #{nombre})
-  end
 
   def to_s
-    to_param
+    %(#{codigo} - #{nombre})
   end
 
 end

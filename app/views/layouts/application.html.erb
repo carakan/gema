@@ -4,31 +4,28 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" >
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <meta name="csrf-token" content="<%= form_authenticity_token() %>" />
 
   <title>ORPAN - GEMA</title>
-  <%= stylesheet_link_tag "style", "style", :cache => 'styles' %>
+  <%= stylesheet_link_tag 'style', 'style', 'jquery-ui-1.8.1.custom.css', :cache => 'styles' %>
 
-  <script type="text/javascript" language="javascript" charset="utf-8">
-    //<![CDATA[
-    var token = '<%= form_authenticity_token() %>';
-    //]]>
-  </script>
-  <%= javascript_include_tag "jquery-1.4.2.min", "application", :cache => 'js' %>
+  <%= javascript_include_tag 'jquery-1.4.2.min', 'jquery-ui-1.8.1.custom.min', 'jquery.ui.datepicker-es', 'application', :cache => 'js' %>
 
 </head>
 <body>
   
 <div id="debug-error" style="display:none; width: 640px; height: 480px; overflow: auto; z-index: 10000"></div> 
 
-<div id="cont">
-  <ul>
-    <li><a href="/grupos">Clases</a></li>
-    <li><a href="/usuarios">Usuarios</a></li>
+<div id="wrapper">
+  <ul id="navigation">
+    <li><a href="/clases">Clases</a></li>
+    <li><a href="/solicitudes">Solicitudes</a></li>
   </ul>
 
-  <div id="flashNotice"><%= flash[:notice] %></div>
-
-  <%= yield %>
+  <div id="cont">
+    <div id="flashNotice"><%= flash[:notice] %></div>
+    <%= yield %>
+  </div>
 </div>
 
 </body>

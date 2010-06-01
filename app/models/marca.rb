@@ -11,14 +11,14 @@ class Marca < ActiveRecord::Base
 
   # Columnas en archivo excel
   EXCEL_COLS = {
-    :estado_fecha => 'A',
+    #:estado_fecha => 'A', # No es necesario dado que se ingresa la fecha
     :sm => 'B',
     :nombre => 'E',
     :tipo_marca_id => 'G'
   }
 
   # Extra para poder importar
-  attr_accessor :tipo, :archivo
+  attr_accessor :tipo, :archivo, :fecha_gen
 
   def to_s
     nombre

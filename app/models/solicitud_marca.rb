@@ -6,7 +6,7 @@ class SolicitudMarca < Marca
   # Realiza la importación desde un archivo excel
   # @param RackFile
   # @return array
-  def self.importar(archivo)
+  def self.importar(archivo, fecha)
     excel_path = File.join(Rails.root, 'archivos/temp/', File.basename( archivo.path ) + '.xls' )
     FileUtils.mv( archivo.path, excel_path )
     @errors = []

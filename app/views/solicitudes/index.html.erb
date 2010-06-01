@@ -1,10 +1,23 @@
 <h1>Solicitudes</h1>
 
 
-
 <% semantic_form_for( @marca, :url => solicitudes_path, :html => { :multipart => true } ) do |f| %>
-  <%= f.input :tipo, :as => :radio, :collection => Marca::TIPOS, :input_html => { :class => "half" } %>
-  <%= f.input :archivo, :as => :file, :label => "Archivo" %>
+  <div class="in_half">
+    <%= f.input :tipo, :as => :radio, :collection => Marca::TIPOS %>
+  </div>
+
+  <div class="half fl">
+    <li class="date">
+      <%= f.label :fecha_gen, "Fecha" %>
+      <%= f.date_select :fecha_gen %>
+    </li>
+  </div>
+
+  <div class="half fl"> 
+    <%= f.input :archivo, :as => :file, :label => "Archivo" %>
+  </div>
+
+  <div style="clear:both"></div>
 
   <%= f.submit "Importar" %>
 <% end %>

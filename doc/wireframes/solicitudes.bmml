@@ -29,22 +29,22 @@
         <text>Ingresar%20lista</text>
       </controlProperties>
     </control>
-    <control controlID="5" controlTypeID="com.balsamiq.mockups::TextInput" x="290" y="384" w="227" h="-1" measuredW="79" measuredH="29" zOrder="5" locked="false" isInGroup="-1">
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::TextInput" x="292" y="434" w="227" h="-1" measuredW="79" measuredH="29" zOrder="5" locked="false" isInGroup="-1">
       <controlProperties>
         <text/>
       </controlProperties>
     </control>
-    <control controlID="6" controlTypeID="com.balsamiq.mockups::Label" x="290" y="361" w="-1" h="-1" measuredW="50" measuredH="25" zOrder="6" locked="false" isInGroup="-1">
+    <control controlID="6" controlTypeID="com.balsamiq.mockups::Label" x="292" y="414" w="-1" h="-1" measuredW="50" measuredH="25" zOrder="6" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Archivo</text>
       </controlProperties>
     </control>
-    <control controlID="7" controlTypeID="com.balsamiq.mockups::Button" x="517" y="384" w="-1" h="-1" measuredW="77" measuredH="28" zOrder="7" locked="false" isInGroup="-1">
+    <control controlID="7" controlTypeID="com.balsamiq.mockups::Button" x="517" y="436" w="-1" h="-1" measuredW="77" measuredH="28" zOrder="7" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Bucar...</text>
       </controlProperties>
     </control>
-    <control controlID="8" controlTypeID="com.balsamiq.mockups::PointyButton" x="561" y="470" w="-1" h="-1" measuredW="55" measuredH="28" zOrder="8" locked="false" isInGroup="-1">
+    <control controlID="8" controlTypeID="com.balsamiq.mockups::PointyButton" x="561" y="487" w="-1" h="-1" measuredW="55" measuredH="28" zOrder="8" locked="false" isInGroup="-1">
       <controlProperties>
         <color>2848996</color>
         <direction>center</direction>
@@ -89,6 +89,16 @@
         <href>renovaciones_concedidas1%26bm%3Brenovaciones_concedidas1.bmml%26bm%3Brenovaciones_concedidas1.bmml%26bm%3Brenovaciones_concedidas1.bmml</href>
         <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22287%2C260%2C458%2C282%22%20href%3D%22renovaciones_concedidas1.bmml%22%20alt%3D%22renovaciones_concedidas1%22%20id%3D%2215%22/%3E</map>
         <text>Renovaciones%20concedidas</text>
+      </controlProperties>
+    </control>
+    <control controlID="16" controlTypeID="com.balsamiq.mockups::DateChooser" x="290" y="366" w="201" h="-1" measuredW="121" measuredH="29" zOrder="15" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>2%20Jun%202009</text>
+      </controlProperties>
+    </control>
+    <control controlID="17" controlTypeID="com.balsamiq.mockups::Label" x="290" y="345" w="-1" h="-1" measuredW="42" measuredH="25" zOrder="16" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Fecha</text>
       </controlProperties>
     </control>
   </controls>
