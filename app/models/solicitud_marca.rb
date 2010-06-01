@@ -16,17 +16,23 @@ class SolicitudMarca < Marca
     for i in ( 3..(excel.last_row) )
       # valida de que no este vacio
       break if excel.cell(i, 1).blank? && excel.cell(i, 2).blank?
-      klass = self.new( :activo => true )
+      klass = self.new( :activo => true, :valido => true )
       EXCEL_COLS.each{ |k, v| klass.send("#{k}=", excel.cell(i, v) ) }
-      klass.estado = "sm"
-      unless klass.save
-        # Salva todas las clases con error
-        klass.activo = false
-        klass.fila = i
-        klass.save( false )
-        @errors.push( klass )
-      else
-        tot += 1
+      # Validacion en caso de que haya fallado en medio de la importacion
+      # Si se encuentra el sm realizar acciones sino continuar
+      unless self.find_by_sm( klass.sm )
+
+        klass.estado = "sm"
+        unless klass.save
+          # Salva todas las clases con error
+          klass.activo = false
+          klass.valido = false
+          klass.fila = i
+          klass.save( false )
+          @errors.push( klass )
+        else
+          tot += 1
+        end
       end
     end
     File.delete(excel_path)

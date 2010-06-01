@@ -2,6 +2,7 @@ class Marca < ActiveRecord::Base
   belongs_to :clase
   
   validates_presence_of :nombre, :estado_fecha, :estado, :tipo_marca_id
+  validates_format_of :sm, :with => /\d+\s-\s\d{4}/
 
   TIPOS = { "Solicitud de Marca" => "sm",
     "Lista de publicación" => "lp",
