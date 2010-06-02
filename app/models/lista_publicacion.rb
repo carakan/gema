@@ -1,10 +1,12 @@
 # eoncoding: utf-8
 class ListaPublicacion < Marca
   
-  def self.importar(archivo)
+  def self.importar(archivo, gaceta = '')
     case File.extname(archivo.original_filename.downcase)
-      when ".pdf" importar_pdf(archivo)
-      when ".xls" importar_excel(archivarchivoo)
+      when ".pdf" 
+        importar_pdf(archivo)
+      when ".xls" 
+        importar_excel(archivarchivoo)
     end
   end
 
@@ -15,6 +17,7 @@ class ListaPublicacion < Marca
     pdf_path = "#{ dir }/#{ File.basename( archivo.path ) }"
     FileUtils.mv( archivo.path, pdf_path )
 
+    # Ejecutar comando
     %x[pdftohtml -c #{ pdf_path }]
     raise "Existio un error al importar intente de nuevo" unless $?.success?
 
@@ -42,34 +45,33 @@ protected
     numero = 0
     regexp = /[^\w\sÑñáéíóú]/i
     regmarca = /[^\w\sÑñáéíóú()]/i
+    regblank = /\302\240/
     datos = []
     dato = {}
     
     n.css("div>div").each do |div|
-      text = div.text.gsub(regexp, '')
+      text = div.text.gsub(regexp, '').strip
 
       if text == 'NUMERO DE PUBLICACION'
         unless dato.empty?
           datos.push( dato )
           dato = {}
         end
-        dato[:sm] = div.next_element.text.gsub(regexp, '')
+        dato[:numero_solicitud] = div.next_element.text.gsub(regexp, '').gsub(regblank, '')
       end
 
       if text == 'NOMBRE DE LA MARCA'
-        t = div.previous_element.text
-        t["\302\240"] = "" # Limpieza del &nbsp; generado en el HTML
-        dato[:nombre] = t
+        dato[:nombre] = div.previous_element.text.gsub( /\302\240/, '' )
       end
 
       if text == 'NUMERO DE SOLICITUD'
         i+= 1
-        dato[:sm] = div.next_element.text.gsub(regexp, '') 
+        dato[:sm] = div.next_element.text.gsub(regexp, '').gsub(regblank, '')
       end
 
       if text == 'CLASE INTERNACIONAL'
         i+= 1
-        dato[:clase_int] = div.next_element.text.gsub(regexp, '') 
+        dato[:clase_int] = div.next_element.text.gsub(regexp, '').gsub(regblank, '') 
       end
 
       #if text == 'DIRECCION DEL TITULAR'
@@ -84,8 +86,8 @@ protected
       i += 1
     end
 
-    datos.push(dato)
-
+    datos << dato
+debugger
     datos
 
   end
