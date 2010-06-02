@@ -17,3 +17,5 @@ doc/wireframes/images/*.*
 rerun.txt
 db/test.sqlite3-journal
 archivos/*
+*.autosave
+

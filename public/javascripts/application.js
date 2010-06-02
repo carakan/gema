@@ -19,6 +19,35 @@ jQuery(function($) {
     // Date select, progressive enhancement
     $.datepicker._defaults.dateFormat = 'dd M yy';
 
+
+    // Ocultar y crear a partir de un input text
+    $('input.date').each(function(i, el) {
+      var input = document.createElement('input');
+      $(input).attr({'type': 'text', 'class': 'ui-date-text'});
+      $(el).hide().after(input);
+      var d = $.datepicker.parseDate('yy-mm-dd', $(el).val() );
+      d = $.datepicker.formatDate($.datepicker._defaults.dateFormat, d);
+      var id = '#' + el.id;
+
+      $(input).datepicker({
+        'altFormat': 'yy-mm-dd',
+        'altField': id,
+        'showOtherMonths': true, 
+        'selectOtherMonths': true, 
+        'buttonImage': '/images/icons/calendar.gif',
+        'showOn': 'button',
+        'buttonImageOnly': true
+      });
+      $(input).datepicker('setDate', d);
+    });
+
+      
+
+    $('input.text-date').live('change', function() {
+      var d = $.datepicker.parseDate($.datepicker._defaults.dateFormat, $(this).val() );
+      $(this).prev('input').val( [ d.getFullYear(), (d.getMonth() + 1), d.getDate() ].join("-") );
+    });
+
     /**
      * Sets the date for each select with the date selected with datepicker
      */
@@ -48,7 +77,6 @@ jQuery(function($) {
                 values.push(val);
         });
         if( values.length > 1) {
-        console.log(values);
             d = new Date(values[2], parseInt(values[1]) - 1, values[0] );
             $(input).val( $.datepicker.formatDate($.datepicker._defaults.dateFormat, d) );
         }

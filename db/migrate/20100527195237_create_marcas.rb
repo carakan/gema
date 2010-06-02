@@ -1,11 +1,11 @@
 class CreateMarcas < ActiveRecord::Migration
   def self.up
     create_table :marcas do |t|
-      t.integer :agente_id
+      t.integer :usuario_id
       t.integer :titular_id
+      t.integer :agente_id
       t.integer :tipo_marca_id
       t.integer :clase_id
-      t.integer :usuario_id
       t.integer :marca_id
       t.string :sm, :limit => 40
       t.string :nombre
@@ -17,6 +17,8 @@ class CreateMarcas < ActiveRecord::Migration
       t.string :estado_serial
       t.string :publicacion
       t.string :gaceta
+      t.integer :fila # Fila en la cual se produjo el error al importar
+      t.integer :fecha_importacion
       t.boolean :activo
       t.boolean :valido # Para indicar si la importación fue válida
 

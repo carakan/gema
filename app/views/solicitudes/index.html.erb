@@ -7,10 +7,7 @@
   </div>
 
   <div class="half fl">
-    <li class="date">
-      <%= f.label :fecha_gen, "Fecha" %>
-      <%= f.date_select :fecha_gen %>
-    </li>
+    <%= f.input :fecha_gen, :label => 'Fecha', :input_html => { :class => 'date' } %>
   </div>
 
   <div class="half fl"> 

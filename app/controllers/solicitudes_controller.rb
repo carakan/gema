@@ -4,13 +4,13 @@ class SolicitudesController < ApplicationController
   end
 
   def new
+    @marca = Marca.new( :fecha_gen => Date.today )
   end
 
   def create
-    fecha =(1..3).inject([]){ |a, v| a << params[:marca]["fecha_gen(#{v}i)"] }.join("-") 
     case params[:marca][:tipo]
       when 'sm'
-        @errors, @tot = SolicitudMarca.importar( params[:marca][:archivo], fecha )
+        @errors, @tot = SolicitudMarca.importar( params[:marca][:archivo], params[:marca][:fecha_gen] )
       when 'lp'
         @tot, @errors = ListaPublicacion.importar( params[:marca][:archivo], fecha )
       when 'lr'
@@ -20,5 +20,12 @@ class SolicitudesController < ApplicationController
       when 'rc'
         # @errors = ListaPublicacion.importar( params[:marca][:archivo] )
     end
+
+    #if @tot == false
+    #  flash[:error] = @errors
+    #  render :action => 'new'
+    #else
+    #  redirect_to solicitud_path(1)
+    #end
   end
 end

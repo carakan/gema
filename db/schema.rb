@@ -20,11 +20,11 @@ ActiveRecord::Schema.define(:version => 20100527195237) do
   end
 
   create_table "marcas", :force => true do |t|
-    t.integer  "agente_id"
+    t.integer  "usuario_id"
     t.integer  "titular_id"
+    t.integer  "agente_id"
     t.integer  "tipo_marca_id"
     t.integer  "clase_id"
-    t.integer  "usuario_id"
     t.integer  "marca_id"
     t.string   "sm",                :limit => 40
     t.string   "nombre"
@@ -36,6 +36,8 @@ ActiveRecord::Schema.define(:version => 20100527195237) do
     t.string   "estado_serial"
     t.string   "publicacion"
     t.string   "gaceta"
+    t.integer  "fila"
+    t.integer  "fecha_importacion"
     t.boolean  "activo"
     t.boolean  "valido"
     t.datetime "created_at"
