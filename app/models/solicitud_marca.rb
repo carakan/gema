@@ -22,10 +22,11 @@ class SolicitudMarca < Marca
       break if excel.cell(i, 1).blank? && excel.cell(i, 2).blank?
       klass = self.new( :activo => true, :valido => true, :estado_fecha => fecha, :fecha_importacion => fecha_imp )
       EXCEL_COLS.each{ |k, v| klass.send("#{k}=", excel.cell(i, v) ) }
-      klass.sm.gsub!(/\s/, '').gsub!(/–/, '-') # Para que se pueda tener un formato definido
+      # Para que se pueda tener un formato definido
+      klass.numero_solicitud = klass.numero_solicitud.gsub(/\s/, '').gsub(/–/, '-') unless klass.numero_solicitud.nil? 
       # Validacion en caso de que haya fallado en medio de la importacion
-      # Si se encuentra el sm realizar acciones sino continuar
-      unless self.find_by_sm( klass.sm )
+      # Si se encuentra el numero_solicitud realizar acciones sino continuar
+      unless self.find_by_numero_solicitud( klass.numero_solicitud )
 
         klass.estado = "sm"
         unless klass.save
