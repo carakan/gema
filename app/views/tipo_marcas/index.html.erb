@@ -1,0 +1,22 @@
+<h1>Listing tipo_marcas</h1>
+
+<table>
+  <tr>
+    <th>Sigla</th>
+    <th>Nombre</th>
+  </tr>
+
+<% @tipo_marcas.each do |tipo_marca| %>
+  <tr>
+    <td><%=h tipo_marca.sigla %></td>
+    <td><%=h tipo_marca.nombre %></td>
+    <td><%= link_to 'Show', tipo_marca %></td>
+    <td><%= link_to 'Edit', edit_tipo_marca_path(tipo_marca) %></td>
+    <td><%= link_to 'Destroy', tipo_marca, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New tipo_marca', new_tipo_marca_path %>

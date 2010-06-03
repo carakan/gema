@@ -13,6 +13,7 @@ class SolicitudesController < ApplicationController
         @errors, @tot = SolicitudMarca.importar( params[:marca][:archivo], params[:marca][:fecha_gen] )
       when 'lp'
         @tot, @errors = ListaPublicacion.importar( params[:marca][:archivo] )
+        redirect_to("/lista")
       when 'lr'
         # @errors = ListaRegistro.importar( params[:marca][:archivo] )
       when 'sr'
