@@ -6,6 +6,8 @@ class Clase < ActiveRecord::Base
   validates_numericality_of :codigo
   validates_uniqueness_of :codigo
 
+  validates_format_of :uno, :with => /abc/
+
 
   def to_s
     %(#{codigo} - #{nombre})
