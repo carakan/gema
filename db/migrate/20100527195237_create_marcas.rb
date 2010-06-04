@@ -22,7 +22,7 @@ class CreateMarcas < ActiveRecord::Migration
       t.date  :fecha_publicacion
       t.string  :type
       t.integer :fila # Fila en la cual se produjo el error al importar
-      t.integer :fecha_importacion
+      t.datetime :fecha_importacion
       t.boolean :activo
       t.boolean :valido # Para indicar si la importación fue válida
 

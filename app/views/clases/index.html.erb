@@ -2,23 +2,24 @@
 
 <%= link_to 'Nueva clase', new_clase_path, :class => 'new' %>
 
-<table>
+<%= will_paginate @clases %>
+
+<table class="decorated">
   <tr>
     <th>Nombre</th>
     <th>Código</th>
     <th>Descripción</th>
+    <th></th>
   </tr>
 
 <% @clases.each do |clase| %>
   <tr>
-    <td><%=h clase.nombre %></td>
+    <td><%=h link_to clase.nombre, clase %></td>
     <td><%=h clase.id %></td>
     <td><%=h clase.descripcion %></td>
-    <td><%= link_to 'Ver', clase %></td>
-    <td><%= link_to 'Editar', edit_clase_path(clase) %></td>
-    <td><%= link_to 'Borrar', clase, :confirm => 'Esta seguro?', :method => :delete %></td>
+    <td><%= links(clase) %></td>
   </tr>
 <% end %>
 </table>
 
-
+<%= will_paginate @clases %>

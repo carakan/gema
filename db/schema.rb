@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(:version => 20100602235111) do
     t.date     "fecha_publicacion"
     t.string   "type"
     t.integer  "fila"
-    t.integer  "fecha_importacion"
+    t.datetime "fecha_importacion"
     t.boolean  "activo"
     t.boolean  "valido"
     t.datetime "created_at"

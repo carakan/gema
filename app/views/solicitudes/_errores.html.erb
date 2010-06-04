@@ -1,0 +1,7 @@
+<h2 class="error">Marcas con errores</h2>
+
+
+<% @errors.each do |marca| %>
+<ul class="list">
+  <%= render :partial => "marca", :locals => { :marca => marca } %>
+</ul>

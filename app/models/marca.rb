@@ -12,7 +12,7 @@ class Marca < ActiveRecord::Base
 
   # Columnas en archivo excel
   EXCEL_COLS = {
-    #:estado_fecha => 'A', # No es necesario dado que se ingresa la fecha
+    :estado_fecha => 'A', # No es necesario dado que se ingresa la fecha
     :numero_solicitud => 'B',
     :nombre => 'E',
     # :tipo_marca_id => 'F',

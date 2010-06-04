@@ -30,6 +30,10 @@ a:hover {
 }
 table.decorated { border-collapse: collapse; }
 table.decorated tr { border-top: 1px solid #8f8f8f; }
+table.decorated th {
+  background-color: #484848;
+  color: #ffffff;
+}
 table.decorated th { padding: 3px 8px; }
 table.decorated td { padding: 3px 8px; }
 .over { background-color: #c2e0ef !important; }
@@ -290,22 +294,29 @@ a.l-add {
 a.new {
   text-decoration: none;
   background: url(../images/icons/add.png) no-repeat scroll 6px 50%;
+  font-weight: bold;
   padding: 5px 8px 5px 26px;
   margin: 10px 5px;
   display: table;
   border: 1px solid #cfcfcf;
 }
 a.new:hover { color: #5bbf3b; }
+a.show {
+  background: url(../images/icons/zoom.png);
+  background-position: middle left;
+  padding-left: 18px;
+  background-repeat: no-repeat;
+}
 a.edit {
   background: url(../images/icons/pencil.png);
-  background-position: top right;
-  padding-right: 18px;
+  background-position: middle left;
+  padding-left: 18px;
   background-repeat: no-repeat;
 }
 a.delete {
   background: url(../images/icons/delete.png);
-  background-position: top right;
-  padding-right: 18px;
+  background-position: middle left;
+  padding-left: 18px;
   background-repeat: no-repeat;
 }
 .info {
@@ -338,3 +349,15 @@ ul.list li {
   padding: 0px;
   border-bottom: 1px solid #b9b9b9;
 }
+.pagination .prev_page {
+  font-weight: bold;
+  font-size: 0.8em;
+}
+.pagination .next_page {
+  font-weight: bold;
+  font-size: 0.8em;
+}
+.pagination a.prev_page { text-decoration: none; }
+.pagination a.next_page { text-decoration: none; }
+.pagination a.prev_page:hover { text-decoration: underline; }
+.pagination a.next_page:hover { text-decoration: underline; }

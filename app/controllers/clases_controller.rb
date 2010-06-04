@@ -3,7 +3,7 @@ class ClasesController < ApplicationController
   # GET /clases
   # GET /clases.xml
   def index
-    @clases = Clase.all
+    @clases = Clase.paginate(:page => @page)
 
     respond_to do |format|
       format.html # index.html.erb
