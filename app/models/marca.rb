@@ -2,7 +2,7 @@ class Marca < ActiveRecord::Base
   belongs_to :clase
   
   validates_presence_of :nombre, :estado_fecha, :estado, :tipo_marca_id
-  validates_format_of :sm, :with => /^\d+-\d{4}$/
+  validates_format_of :numero_solicitud, :with => /^\d+-\d{4}$/
 
   TIPOS = { "Solicitud de Marca" => "sm",
     "Lista de publicación" => "lp",
@@ -12,10 +12,11 @@ class Marca < ActiveRecord::Base
 
   # Columnas en archivo excel
   EXCEL_COLS = {
-    #:estado_fecha => 'A', # No es necesario dado que se ingresa la fecha
-    :sm => 'B',
+    :estado_fecha => 'A', # No es necesario dado que se ingresa la fecha
+    :numero_solicitud => 'B',
     :nombre => 'E',
-    :tipo_marca_id => 'G'
+    # :tipo_marca_id => 'F',
+    :clase_id => 'G'
   }
 
   # Extra para poder importar

@@ -1,0 +1,20 @@
+<h1>Editing tipo_marca</h1>
+
+<% form_for(@tipo_marca) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :sigla %><br />
+    <%= f.text_field :sigla %>
+  </p>
+  <p>
+    <%= f.label :nombre %><br />
+    <%= f.text_field :nombre %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @tipo_marca %> |
+<%= link_to 'Back', tipo_marcas_path %>

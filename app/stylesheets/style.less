@@ -39,6 +39,10 @@ table.decorated{
   tr{
     border-top: 1px solid @table_border_color;
   }
+  th{
+    background-color: @dark;
+    color:@white;
+  }
   th, td{
   /*  border: 1px solid @border_color_table;*/
     padding: 3px 8px;
@@ -332,6 +336,7 @@ a.l-add{
 a.new{
   text-decoration: none;
   background: url(../images/icons/add.png) no-repeat scroll 6px 50%;
+  font-weight: bold;
   padding: 5px 8px 5px 26px;
   margin: 10px 5px;
   display: table;
@@ -339,16 +344,22 @@ a.new{
 }
 a.new:hover{ color:#5BBF3B }
 
+a.show{
+  .icon-show;
+  background-position: middle left;
+  padding-left: @icon_pad;
+  background-repeat: no-repeat;
+}
 a.edit{
   .icon-edit;
-  .icon-top-right;
-  padding-right: @icon_pad;
+  background-position: middle left;
+  padding-left: @icon_pad;
   background-repeat: no-repeat;
 }
 a.delete{
   .icon-delete;
-  .icon-top-right;
-  padding-right: @icon_pad;
+  background-position: middle left;
+  padding-left: @icon_pad;
   background-repeat: no-repeat;
 }
 .info{
@@ -401,3 +412,15 @@ ul.list{
   }
 }
 
+.pagination{
+  .prev_page, .next_page{
+    font-weight: bold;
+    font-size:0.8em;
+  }
+  a.prev_page, a.next_page{
+    text-decoration: none;
+  }
+  a.prev_page:hover, a.next_page:hover{
+    text-decoration: underline;
+  }
+}

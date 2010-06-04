@@ -1,0 +1,13 @@
+<p>
+  <b>Sigla:</b>
+  <%=h @tipo_marca.sigla %>
+</p>
+
+<p>
+  <b>Nombre:</b>
+  <%=h @tipo_marca.nombre %>
+</p>
+
+
+<%= link_to 'Edit', edit_tipo_marca_path(@tipo_marca) %> |
+<%= link_to 'Back', tipo_marcas_path %>

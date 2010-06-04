@@ -1,0 +1,27 @@
+<h1>Importado <%= @total %> filas</h1>
+
+Mostrar
+<ul>
+	<li>
+  <%= link_to 'Todas', importado_solicitud_path(params[:id], :mostrar => 'all')  %>
+	</li>
+	<li>
+  <%= link_to "Errores", importado_solicitud_path(params[:id], :mostrar => 'error') %>
+	</li>
+	<li>
+  <%= link_to "Validas", importado_solicitud_path(params[:id], :mostrar => 'valid')%>
+	</li>
+</ul>
+
+
+<% if @mostrar == 'error' %>
+  <%= render :partial => "errores" %>
+<% end %>
+
+
+<% if @mostrar == 'valid' %>
+<% end %>
+
+
+<% if @mostrar == 'all' %>
+<% end %>

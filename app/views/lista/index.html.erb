@@ -1,0 +1,21 @@
+<h1>Listado de Marcas</h1>
+
+<table>
+	<tr>
+		<th>Nombre</th>
+    <th>Numero<br />Publicación</th>
+		<th>Clase</th>
+    <th>Numero<br />Solicitud</th>
+  </tr>
+
+  <% @marcas.each do |marca| %>
+    <tr>
+    	<td><%= marca.nombre %></td>
+      <td><%= marca.numero_publicacion %></td>
+    	<td><%= marca.clase_id %></td>
+    	<td><%= marca.numero_solicitud %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= will_paginate(@marcas) %>

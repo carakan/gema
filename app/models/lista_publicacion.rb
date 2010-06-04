@@ -6,7 +6,7 @@ class ListaPublicacion < Marca
       when ".pdf" 
         importar_pdf(archivo)
       when ".xls" 
-        importar_excel(archivarchivoo)
+        importar_excel(archivo)
     end
   end
 
@@ -24,10 +24,15 @@ class ListaPublicacion < Marca
     # Iterar todos los archivos html
     Dir.glob("#{ File.dirname(pdf_path) }/*.html").each do |html|
       datos = extraer_datos_html(html)
-      datos.each{ |dato| 
-        if m.save
-        else
-        end
+
+      datos.each{ |dato|
+        # Deberia buscar
+        # Marca.find_by_numero_solicitud( dato[:numero_solicitud])
+        m = Marca.new(dato)
+        #if m.create(dato)
+        #else
+        #end
+        m.save( false )
       }
     end
 
@@ -50,14 +55,14 @@ protected
     dato = {}
     
     n.css("div>div").each do |div|
-      text = div.text.gsub(regexp, '').strip
+      text = div.text.gsub(regexp, '').strip.gsub(regblank, '')
 
       if text == 'NUMERO DE PUBLICACION'
         unless dato.empty?
           datos.push( dato )
           dato = {}
         end
-        dato[:numero_solicitud] = div.next_element.text.gsub(regexp, '').gsub(regblank, '')
+        dato[:numero_publicacion] = div.next_element.text.gsub(regexp, '').gsub(regblank, '')
       end
 
       if text == 'NOMBRE DE LA MARCA'
@@ -66,12 +71,12 @@ protected
 
       if text == 'NUMERO DE SOLICITUD'
         i+= 1
-        dato[:sm] = div.next_element.text.gsub(regexp, '').gsub(regblank, '')
+        dato[:numero_solicitud] = div.next_element.text.gsub(regexp, '').gsub(regblank, '')
       end
 
       if text == 'CLASE INTERNACIONAL'
         i+= 1
-        dato[:clase_int] = div.next_element.text.gsub(regexp, '').gsub(regblank, '') 
+        dato[:clase_id] = div.next_element.text.gsub(regexp, '').gsub(regblank, '') 
       end
 
       #if text == 'DIRECCION DEL TITULAR'
@@ -87,7 +92,7 @@ protected
     end
 
     datos << dato
-debugger
+
     datos
 
   end

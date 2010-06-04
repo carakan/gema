@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100527195237) do
+ActiveRecord::Schema.define(:version => 20100602235111) do
 
   create_table "clases", :force => true do |t|
     t.string   "nombre"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(:version => 20100527195237) do
     t.date     "fecha_publicacion"
     t.string   "type"
     t.integer  "fila"
-    t.integer  "fecha_importacion"
+    t.datetime "fecha_importacion"
     t.boolean  "activo"
     t.boolean  "valido"
     t.datetime "created_at"
@@ -54,5 +54,12 @@ ActiveRecord::Schema.define(:version => 20100527195237) do
   add_index "marcas", ["tipo_marca_id"], :name => "index_marcas_on_tipo_marca_id"
   add_index "marcas", ["titular_id"], :name => "index_marcas_on_titular_id"
   add_index "marcas", ["usuario_id"], :name => "index_marcas_on_usuario_id"
+
+  create_table "tipo_marcas", :force => true do |t|
+    t.string   "sigla",      :limit => 10
+    t.string   "nombre",     :limit => 50
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
