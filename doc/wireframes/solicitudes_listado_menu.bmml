@@ -29,7 +29,7 @@
         <text>Importaciones%20realizadas</text>
       </controlProperties>
     </control>
-    <control controlID="20" controlTypeID="com.balsamiq.mockups::DataGrid" x="296" y="242" w="584" h="91" measuredW="380" measuredH="88" zOrder="5" locked="false" isInGroup="-1">
+    <control controlID="20" controlTypeID="com.balsamiq.mockups::DataGrid" x="296" y="242" w="584" h="91" measuredW="381" measuredH="88" zOrder="5" locked="false" isInGroup="-1">
       <controlProperties>
         <borderStyle>none</borderStyle>
         <selectedIndex>-1</selectedIndex>
@@ -44,12 +44,12 @@
         <text>20</text>
       </controlProperties>
     </control>
-    <control controlID="22" controlTypeID="com.balsamiq.mockups::Label" x="784" y="376" w="-1" h="-1" measuredW="84" measuredH="25" zOrder="7" locked="false" isInGroup="-1">
+    <control controlID="22" controlTypeID="com.balsamiq.mockups::Label" x="784" y="376" w="-1" h="-1" measuredW="83" measuredH="25" zOrder="7" locked="false" isInGroup="-1">
       <controlProperties>
         <text>%3C%3C%201%20%5B2%5D%20%5B3%5D%20%5B%3E%3E%5D</text>
       </controlProperties>
     </control>
-    <control controlID="24" controlTypeID="com.balsamiq.mockups::Label" x="671" y="271" w="-1" h="-1" measuredW="30" measuredH="25" zOrder="8" locked="false" isInGroup="-1">
+    <control controlID="24" controlTypeID="com.balsamiq.mockups::Label" x="671" y="271" w="-1" h="-1" measuredW="29" measuredH="25" zOrder="8" locked="false" isInGroup="-1">
       <controlProperties>
         <color>13576743</color>
         <text>500</text>
@@ -88,6 +88,8 @@
     <control controlID="36" controlTypeID="com.balsamiq.mockups::Label" x="296" y="219" w="-1" h="-1" measuredW="124" measuredH="25" zOrder="14" locked="false" isInGroup="-1">
       <controlProperties>
         <color>40463</color>
+        <href>solicitudes_nuevalista%26bm%3Bsolicitudes_nuevalista.bmml%26bm%3Bsolicitudes_nuevalista.bmml%26bm%3Bsolicitudes_nuevalista.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%2251%2C219%2C175%2C244%22%20href%3D%22solicitudes_importado_errores.bmml%22%20alt%3D%22solicitudes_importado_errores%22%20id%3D%2236%22/%3E</map>
         <text>Solicitud%20de%20Marca</text>
         <underline>true</underline>
       </controlProperties>
@@ -102,6 +104,7 @@
     <control controlID="39" controlTypeID="com.balsamiq.mockups::Label" x="296" y="249" w="-1" h="-1" measuredW="126" measuredH="25" zOrder="15" locked="false" isInGroup="-1">
       <controlProperties>
         <color>40463</color>
+        <href>publicacion_nuevalista%26bm%3Bpublicacion_nuevalista.bmml%26bm%3Bpublicacion_nuevalista.bmml%26bm%3Bpublicacion_nuevalista.bmml</href>
         <text>Lista%20de%20Publicaci%F3n</text>
         <underline>true</underline>
       </controlProperties>
@@ -109,6 +112,7 @@
     <control controlID="40" controlTypeID="com.balsamiq.mockups::Label" x="296" y="278" w="-1" h="-1" measuredW="111" measuredH="25" zOrder="16" locked="false" isInGroup="-1">
       <controlProperties>
         <color>40463</color>
+        <href>registro_nuevalista%26bm%3Bregistro_nuevalista.bmml%26bm%3Bregistro_nuevalista.bmml%26bm%3Bregistro_nuevalista.bmml</href>
         <text>Lista%20de%20Registro</text>
         <underline>true</underline>
       </controlProperties>

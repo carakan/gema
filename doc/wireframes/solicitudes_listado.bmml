@@ -34,11 +34,11 @@
         <text>Las%20filas%20con%20rojo%0Atienen%20errores</text>
       </controlProperties>
     </control>
-    <control controlID="20" controlTypeID="com.balsamiq.mockups::DataGrid" x="296" y="242" w="584" h="91" measuredW="380" measuredH="88" zOrder="6" locked="false" isInGroup="-1">
+    <control controlID="20" controlTypeID="com.balsamiq.mockups::DataGrid" x="296" y="242" w="584" h="91" measuredW="381" measuredH="88" zOrder="6" locked="false" isInGroup="-1">
       <controlProperties>
         <borderStyle>none</borderStyle>
         <selectedIndex>-1</selectedIndex>
-        <text>Tipo%2C%20Fecha%20importaci%F3n%2C%20Total%2C%20N%BA%20errores%0A%2C%20%2C%20%2C%0A%5BLista%20publicaci%F3n%5D%2C%201%20Jun%202009%2020%3A56%2C%20600%2C%20-</text>
+        <text>Tipo%20lista%2C%20Fecha%20importaci%F3n%2C%20Total%2C%20N%BA%20errores%0A%2C%20%2C%20%2C%0A%5BLista%20publicaci%F3n%5D%2C%201%20Jun%202009%2020%3A56%2C%20600%2C%20-</text>
         <verticalScrollbar>false</verticalScrollbar>
         <vLines>false</vLines>
       </controlProperties>
@@ -49,12 +49,12 @@
         <text>20</text>
       </controlProperties>
     </control>
-    <control controlID="22" controlTypeID="com.balsamiq.mockups::Label" x="784" y="376" w="-1" h="-1" measuredW="84" measuredH="25" zOrder="8" locked="false" isInGroup="-1">
+    <control controlID="22" controlTypeID="com.balsamiq.mockups::Label" x="784" y="376" w="-1" h="-1" measuredW="83" measuredH="25" zOrder="8" locked="false" isInGroup="-1">
       <controlProperties>
         <text>%3C%3C%201%20%5B2%5D%20%5B3%5D%20%5B%3E%3E%5D</text>
       </controlProperties>
     </control>
-    <control controlID="24" controlTypeID="com.balsamiq.mockups::Label" x="671" y="271" w="-1" h="-1" measuredW="30" measuredH="25" zOrder="9" locked="false" isInGroup="-1">
+    <control controlID="24" controlTypeID="com.balsamiq.mockups::Label" x="671" y="271" w="-1" h="-1" measuredW="29" measuredH="25" zOrder="9" locked="false" isInGroup="-1">
       <controlProperties>
         <color>13576743</color>
         <text>500</text>
@@ -76,19 +76,19 @@
         <underline>true</underline>
       </controlProperties>
     </control>
-    <control controlID="28" controlTypeID="com.balsamiq.mockups::IconLabel" x="296" y="190" w="110" h="-1" measuredW="70" measuredH="29" zOrder="12" locked="false" isInGroup="-1">
+    <control controlID="28" controlTypeID="com.balsamiq.mockups::IconLabel" x="290" y="196" w="110" h="-1" measuredW="70" measuredH="29" zOrder="12" locked="false" isInGroup="-1">
       <controlProperties>
         <borderStyle>none</borderStyle>
         <color>40463</color>
         <href>solicitudes_listado_menu%26bm%3Bsolicitudes_listado_menu.bmml%26bm%3Bsolicitudes_listado_menu.bmml%26bm%3Bsolicitudes_listado_menu.bmml</href>
         <icon>CircledPlusIcon%7Cxsmall</icon>
         <labelPosition>right</labelPosition>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22257%2C190%2C367%2C219%22%20href%3D%22solicitudes_listado_menu.bmml%22%20alt%3D%22solicitudes_listado_menu%22%20id%3D%2228%22/%3E</map>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22251%2C196%2C361%2C225%22%20href%3D%22solicitudes_listado_menu.bmml%22%20alt%3D%22solicitudes_listado_menu%22%20id%3D%2228%22/%3E</map>
         <size>16</size>
         <text>Nueva</text>
       </controlProperties>
     </control>
-    <control controlID="29" controlTypeID="com.balsamiq.mockups::Icon" x="374" y="196" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="13" locked="false" isInGroup="-1">
+    <control controlID="29" controlTypeID="com.balsamiq.mockups::Icon" x="364" y="204" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="13" locked="false" isInGroup="-1">
       <controlProperties>
         <color>40463</color>
         <icon>DownTriangleIcon%7Cxsmall</icon>
