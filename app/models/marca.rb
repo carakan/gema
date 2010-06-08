@@ -4,11 +4,13 @@ class Marca < ActiveRecord::Base
   validates_presence_of :nombre, :estado_fecha, :estado, :tipo_marca_id
   validates_format_of :numero_solicitud, :with => /^\d+-\d{4}$/
 
-  TIPOS = { "Solicitud de Marca" => "sm",
-    "Lista de publicación" => "lp",
-    "Lista de Registro" => "lr", 
-    "Solicitud de Renovación" => "sr", 
-    "Renovaciones Concedidas" => "rc" }
+  TIPOS = { 
+    'sm' => 'Solicitud de Marca',
+    'lp' => 'Lista de publicación',
+    'lr' => 'Lista de Registro',
+    'sr' => 'Solicitud de Renovación',
+    'rc' => 'Renovaciones Concedidas'
+  }
 
   # Columnas en archivo excel
   EXCEL_COLS = {
@@ -25,4 +27,9 @@ class Marca < ActiveRecord::Base
   def to_s
     nombre
   end
+
+  def ver_estado
+    TIPOS[estado]
+  end
+
 end

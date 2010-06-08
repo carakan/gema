@@ -20,14 +20,11 @@ body, p, ol, ul {
   line-height: 18px;
 }
 a {
-  color: #236b8f;
+  color: #2167cb;
   text-decoration: underline;
   cursor: pointer;
 }
-a:hover {
-  color: #0000ff;
-  text-decoration: none;
-}
+a:hover { text-decoration: none; }
 table.decorated { border-collapse: collapse; }
 table.decorated tr { border-top: 1px solid #8f8f8f; }
 table.decorated th {
@@ -144,7 +141,7 @@ form li p.inline-hints {
   font-weight: bold;
 }
 #flashNotice {
-  color: #236b8f;
+  color: #2167cb;
   font-size: 1.8em;
   font-weight: bold;
   margin: 10px;
@@ -238,11 +235,11 @@ ul {
   background: #efefef url(../images/icons/cross.png) no-repeat right;
 }
 .aprobar:hover {
-  background-color: #236b8f;
+  background-color: #2167cb;
   color: #ffffff;
 }
 a.rechazar:hover {
-  background-color: #236b8f;
+  background-color: #2167cb;
   color: #ffffff;
 }
 ul.inline {
@@ -263,7 +260,7 @@ ul.inline li a {
 .margin-side { margin: 0px 4px; }
 .resaltar {
   font-weight: bold;
-  color: #0000ff;
+  color: #5bbf3b;
 }
 .icon-l {
   background-position: left top !important;
@@ -319,6 +316,13 @@ a.delete {
   padding-left: 18px;
   background-repeat: no-repeat;
 }
+.more {
+  background: url(../images/icons/bullet_arrow_down.png) no-repeat;
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: middle;
+}
 .info {
   background: url(../images/icons/information.png);
   background-repeat: no-repeat;
@@ -361,3 +365,36 @@ ul.list li {
 .pagination a.next_page { text-decoration: none; }
 .pagination a.prev_page:hover { text-decoration: underline; }
 .pagination a.next_page:hover { text-decoration: underline; }
+ul.menu {
+  position: relative;
+  margin: 0px;
+  padding: 0px;
+}
+ul.menu a {
+  margin: 0px;
+  text-decoration: none;
+}
+ul.menu a:hover { color: #5bbf3b; }
+ul.menu li {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+  float: left;
+}
+ul.menu li ul {
+  display: none;
+  margin: 0px;
+  border: 1px solid #b9b9b9;
+  background-color: #ffffff;
+  margin-top: -1px;
+  font-weight: bold;
+}
+ul.menu li ul li { float: none; }
+ul.menu li ul li a {
+  padding: 4px 12px;
+  display: block;
+}
+ul.menu li:hover ul {
+  display: block;
+  position: absolute;
+}

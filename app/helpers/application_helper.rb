@@ -24,6 +24,26 @@ module ApplicationHelper
     #val == true ? t("yes") : t("no")
     val ? "Si" : "No"
   end
+
+  # localiza la fecha
+  def fecha(fec, format = :short)
+    if format == :short
+      format = ''
+    else
+      format = '%d %B de %Y a hrs. %H:%I'
+    end
+    l fec, :format => format
+  end
+
+  def fecha_hora(fec, format = :short)
+    if format == :short
+      format = '%d %b %Y  %H:%I'
+    else
+      format = '%d %B de %Y a hrs. %H:%I'
+    end
+    l fec, :format => format
+  end
+
 end
 WillPaginate::ViewHelpers.pagination_options[:previous_label] = '<<'
 WillPaginate::ViewHelpers.pagination_options[:next_label] = '>>'

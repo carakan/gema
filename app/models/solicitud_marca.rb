@@ -13,7 +13,7 @@ class SolicitudMarca < Marca
     excel_path = File.join(Rails.root, 'archivos/temp/', File.basename( archivo.path ) + '.xls' )
     FileUtils.mv( archivo.path, excel_path )
     excel = Excel.new(excel_path)
-    fecha_imp = DateTime.now
+    fecha_imp = DateTime.now.utc
 
     for i in ( 3..(excel.last_row) )
       # valida de que no este vacio
