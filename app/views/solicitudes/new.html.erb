@@ -5,7 +5,7 @@
   <%= hidden_field_tag('tipo', params[:tipo]) %>
 
   <div class="half fl"> 
-    <%= f.input :archivo, :as => :file, :label => "Archivo" %>
+    <%= f.input :archivo, :as => :file, :label => "Archivo", :input_html => { :size => 60 } %>
   </div>
 
   <div style="clear:both"></div>

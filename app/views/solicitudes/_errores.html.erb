@@ -1,7 +1,26 @@
-<h2 class="error">Marcas con errores</h2>
+<h2 class="error">Numero de errores <%= @marcas.size %></h2>
 
+<% @mostra_fila = @marcas.first.estado == 'lp' %>
 
-<% @errors.each do |marca| %>
-<ul class="list">
-  <%= render :partial => "marca", :locals => { :marca => marca } %>
-</ul>
+<table class="decorated">
+	<tr>
+    <%= '<th>Fila</th>' if @mostra_fila %>
+		<th>Marca</th>
+		<th>Numero Solicitud</th>
+		<th>Tipo Marca</th>
+    <th></th>
+    <% @marcas.each do |marca| %>
+      <tr>
+        <%= "<td>#{marca.fila}</td>" if @mostra_fila %>
+        <td><%= link_to marca.nombre, marca_path(marca), :class => 'ajax' %></td>
+        <td><%= marca.numero_solicitud %></td>
+        <td><%= marca.tipo_marca %></td>
+        <td>
+          <%= link_to "editar", @path_proc.call(marca), :class => 'edit ajax' %>
+          <%= link_to "borrar", marca, :class => 'delete' %>
+        </td>
+      </tr>
+    <% end %>
+
+	</tr>
+</table>

@@ -14,6 +14,9 @@ jQuery(function($) {
   });
 
   // Para presentar formulario AJAX
+  $('a.ajax').live("click", function() {
+    // Crear formulario  llenarlo
+  });
 
 
     // Date select, progressive enhancement

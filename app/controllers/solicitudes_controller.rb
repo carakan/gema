@@ -33,7 +33,8 @@ class SolicitudesController < ApplicationController
   # Presenta el listado de una importacion realizada
   def importado
     @mostrar = 'error'
-    conditions = { :fecha_importacion => params[:id].gsub(/T/, ' ')[0,19] } 
+    d = DateTime.parse(params[:id]) + (Time.zone.utc_offset * -1).seconds
+    conditions = { :fecha_importacion => d } 
 
     @mostrar = params[:mostrar] unless params[:mostrar].nil?
     case @mostrar
@@ -45,7 +46,17 @@ class SolicitudesController < ApplicationController
         @marcas = Marca.all( :conditions => conditions.merge( :valido => false ) )
     end
 
-    @total = Marca.all( :conditions =>  { :fecha_importacion => params[:id] }).size
+    @total = Marca.all( :conditions =>  { :fecha_importacion => d }).size
+    @path_proc = path_proc(@marcas.first)
 
   end
+
+private
+  def path_proc(marca)
+    case marca.estado
+      when 'sm' then lambda{ |m| edit_solicitud_marca_path(m) }
+      when 'lp' then lambda{ |m| edit_lista_publicacion_path(m) }
+    end
+  end
+
 end

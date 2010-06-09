@@ -1,8 +1,14 @@
 class Marca < ActiveRecord::Base
   belongs_to :clase
+  belongs_to :tipo_marca
+  #belongs_to :usuario
+  #belongs_to :agente
+  #belongs_to :titular
+
   
   validates_presence_of :nombre, :estado_fecha, :estado, :tipo_marca_id
   validates_format_of :numero_solicitud, :with => /^\d+-\d{4}$/
+  validates_uniqueness_of :numero_solicitud
 
   TIPOS = { 
     'sm' => 'Solicitud de Marca',
@@ -30,6 +36,10 @@ class Marca < ActiveRecord::Base
 
   def ver_estado
     TIPOS[estado]
+  end
+
+  def self.ver_estado(est)
+    TIPOS[est]
   end
 
 end

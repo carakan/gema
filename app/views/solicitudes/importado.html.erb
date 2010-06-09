@@ -1,4 +1,10 @@
 <h1>Importación <%= @marcas.first.ver_estado %></h1>
-<h2>Importado el <%= fecha_hora @marcas.first.fecha_importacion, :long  %></h2>
+<h2>Importados <%= @total %> el <%= fecha_hora @marcas.first.fecha_importacion, :long  %></h2>
 
-
+<% if @mostrar == 'error' %>
+  <%= render :partial => "errores" %>
+<% elsif @mostrar == 'valid' %>
+  <%= render :partial => "valid" %>
+<% else %>
+  <%= render :partial => "all" %>
+<% end %>
