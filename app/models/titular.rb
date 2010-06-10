@@ -1,0 +1,2 @@
+class Titular < Representante
+end

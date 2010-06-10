@@ -1,5 +1,5 @@
 <% semantic_form_for(@marca) do |f| -%>
   <%= f.input :nombre %>
-  <%= f.input :estado_fecha %>
+  <%= f.input :estado_fecha, :as => 'string', :input_html => { :class => 'date' } %>
   <%= f.input :clase %>
 <% end -%>

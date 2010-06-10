@@ -1,0 +1,6 @@
+<% semantic_form_for(@marca) do |f| -%>
+  <%= f.input :nombre %>
+  <%= f.input :estado_fecha, :label => 'Fecha de solicitud', :as => 'string', :input_html => { :class => 'date' } %>
+  <%= f.input :numero_solicitud, :label => 'Número de solicitud' %>
+  <%= f.input :clase %>
+<% end -%>

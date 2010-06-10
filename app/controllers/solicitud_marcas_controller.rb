@@ -9,7 +9,8 @@ class SolicitudMarcasController < ApplicationController
   end
 
   def edit
-
+    @marca = SolicitudMarca.find(params[:id])
+    @marca.valid?
   end
 
   def udpate

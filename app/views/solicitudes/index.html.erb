@@ -10,7 +10,21 @@
     </ul>
   </li>
 </ul>
-<br />
-<br />
-<br />
-<div style="clear:both"></div>
+
+
+<table class="decorated">
+	<tr>
+		<th>Fecha</th>
+		<th>Tipo</th>
+    <th>Total</th>
+    <th>Errores</th>
+	</tr>
+  <% @marcas.each do |marca| %>
+    <tr>
+    	<td><%= link_to fecha_hora(marca.fecha_importacion, 'long'), importado_solicitud_path(marca.fecha_importacion) %></td>
+      <td><%= marca.ver_estado %></td>
+      <td><%= marca.total %></td>
+      <td class="error b"><%= marca.errores %></td>
+    </tr>
+  <% end %>
+</table>

@@ -22,9 +22,9 @@ class Marca < ActiveRecord::Base
   EXCEL_COLS = {
     :estado_fecha => 'A', # No es necesario dado que se ingresa la fecha
     :numero_solicitud => 'B',
-    :nombre => 'E',
+    :nombre => 'E'
     # :tipo_marca_id => 'F',
-    :clase_id => 'G'
+    #:clase_id => 'G'
   }
 
   # Extra para poder importar
@@ -40,6 +40,23 @@ class Marca < ActiveRecord::Base
 
   def self.ver_estado(est)
     TIPOS[est]
+  end
+
+  # Presenta un listtado de importaciones
+  def self.importaciones(page = 1)
+    total = Marca.all(:select => 'COUNT(*) as total', :group => 'fecha_importacion').size
+
+    sql = 'SELECT fecha_importacion, SUM(total) AS total, SUM(errores) AS errores, estado FROM
+    (
+      SELECT fecha_importacion, COUNT(*) AS total, 0 as errores, estado FROM marcas 
+      UNION
+      SELECT fecha_importacion, 0 AS total, COUNT(*) as errores, estado FROM marcas WHERE valido = ?
+    ) AS importaciones GROUP BY fecha_importacion ORDER BY fecha_importacion'
+    if total > 0
+      self.find_by_sql( [sql, false] )
+    else
+      []
+    end
   end
 
 end

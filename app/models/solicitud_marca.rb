@@ -54,6 +54,8 @@ class SolicitudMarca < Marca
                      :fecha_importacion => fecha_imp, :estado => 'sm' )
 
     EXCEL_COLS.each{ |k, v| klass.send("#{k}=", excel.cell(fila, v) ) }
+    c = Clase.find_by_codigo(excel.cell(fila, 'G'))
+    klass.clase_id = c.id unless c.nil?
 
     # Para que se pueda tener un formato definido
     klass.numero_solicitud = klass.numero_solicitud.gsub(/\s/, '').gsub(/–/, '-') unless klass.numero_solicitud.nil? 

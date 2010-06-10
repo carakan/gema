@@ -1,4 +1,9 @@
 ActionController::Routing::Routes.draw do |map|
+  #map.resources :representantes
+  map.resources :titulares
+
+  map.resources :agentes
+
   map.resources :tipo_marcas
 
   map.resources :testes
@@ -7,7 +12,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :solicitud_marcas
 
-  map.resources :solicitudes, :collection => { :importaciones => :get }, :member => { :importado => :get }
+  map.resources :solicitudes, :member => { :importado => :get }
 
   map.resources :marcas
 

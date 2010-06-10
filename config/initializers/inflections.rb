@@ -13,6 +13,8 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.plural /^([a-z_]+)([^aeiou])$/i, '\1\2es'
   inflect.singular /^([a-z_]+)(es)$/, '\1'
   inflect.irregular 'clase', 'clases'
+  inflect.irregular 'representante', 'representantes'
+  inflect.irregular 'agente', 'agentes'
 #   inflect.plural /^(ox)$/i, '\1en'
 #   inflect.singular /^(ox)en/i, '\1'
 #  inflect.plural 'importar', 'importar' 

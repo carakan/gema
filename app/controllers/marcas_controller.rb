@@ -3,6 +3,7 @@ class MarcasController < ApplicationController
     @marca = Marca.find(params[:id])
   end
 
-  def update
+  def new
+
   end
 end

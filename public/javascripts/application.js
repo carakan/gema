@@ -45,6 +45,8 @@ jQuery(function($) {
     });
 
       
+    // Menu
+    //$('ul.menu li');
 
     $('input.text-date').live('change', function() {
       var d = $.datepicker.parseDate($.datepicker._defaults.dateFormat, $(this).val() );

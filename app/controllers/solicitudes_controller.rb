@@ -1,6 +1,7 @@
 class SolicitudesController < ApplicationController
+  # Presenta la lista de importaciones
   def index
-    @marca = Marca.new( :fecha_gen => Date.today )
+    @marcas = Marca.importaciones()
   end
 
   def new
@@ -25,10 +26,6 @@ class SolicitudesController < ApplicationController
     end
   end
 
-  # Presenta la lista de importaciones
-  def importaciones
-    @marcas = Marca.paginate( :select => "DISTINCT(fecha_importacion) as fecha_importacion, estado_tipo", :order => "fecha_imp DESC", :page => @page )
-  end
 
   # Presenta el listado de una importacion realizada
   def importado
