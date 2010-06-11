@@ -1,7 +1,7 @@
 # encoding: utf-8
 class SolicitudMarca < Marca
  
-  attr_accessor :fila
+  #attr_accessor :fila
 
   # Realiza la importación desde un archivo excel
   # @param RackFile
@@ -14,17 +14,16 @@ class SolicitudMarca < Marca
 
     fecha_imp = DateTime.now.strftime("%Y-%m-%d %H:%I:%S")
 
-    for i in ( 3..(excel.last_row) )
-      # valida de que no este vacio
-      break if excel.cell(i, 1).blank? && excel.cell(i, 2).blank?
+    self.transaction do |trans|
+      for i in ( 3..(excel.last_row) )
+        # valida de que no este vacio
+        break if excel.cell(i, 1).blank? && excel.cell(i, 2).blank?
 
-      # Validacion en caso de que haya fallado en medio de la importacion
-      # Si se encuentra el numero_solicitud realizar acciones sino continuar
-      self.transaction do |trans|
+        # Validacion en caso de que haya fallado en medio de la importacion
+        # Si se encuentra el numero_solicitud realizar acciones sino continuar
         klass = crear_nueva_solicitud(excel, i, fecha_imp)
         fecha_imp = klass.fecha_importacion
       end
-
     end
     File.delete(excel_path)
     
@@ -50,8 +49,13 @@ class SolicitudMarca < Marca
 
   # Crea nueva solicitud
   def self.crear_nueva_solicitud(excel, fila, fecha_imp)
-    klass = self.new( :activo => true, :valido => true, 
-                     :fecha_importacion => fecha_imp, :estado => 'sm' )
+    # Buscar agente y titular
+    agente = Agente.find_or_create_by_nombre(:nombre => excel.cell(fila, 'C').to_s.strip, :validar => false )
+    titular = Titular.find_or_create_by_nombre(:nombre => excel.cell(fila, 'D').to_s.strip, :validar => false )
+
+    klass = self.new( :activo => true, :valido => true, :fila => fila,
+                     :fecha_importacion => fecha_imp, :estado => 'sm',
+                   :agente_id => agente.id, :titular_id => titular.id )
 
     EXCEL_COLS.each{ |k, v| klass.send("#{k}=", excel.cell(fila, v) ) }
     c = Clase.find_by_codigo(excel.cell(fila, 'G'))
@@ -61,13 +65,12 @@ class SolicitudMarca < Marca
     klass.numero_solicitud = klass.numero_solicitud.gsub(/\s/, '').gsub(/–/, '-') unless klass.numero_solicitud.nil? 
     # Buscar id de la denominacion
     t = TipoMarca.find_by_nombre_or_sigla(excel.cell(fila, 'F'), excel.cell(fila, 'F') )
-    klass.tipo_marca_id = t.id
+    klass.tipo_marca_id = t.id unless t.nil?
 
     unless klass.save
       # Salva todas las clases con error
       klass.activo = false
       klass.valido = false
-      klass.fila = fila
       klass.save( false )
     end
 

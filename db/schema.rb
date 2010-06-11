@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(:version => 20100610231636) do
     t.string   "email"
     t.string   "direccion"
     t.string   "telefono"
+    t.string   "movil"
     t.string   "type"
     t.boolean  "valido"
     t.datetime "created_at"

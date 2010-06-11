@@ -66,6 +66,7 @@ input[type='file'] {
   background-color: #efefef;
   border: 1px solid #666666;
 }
+select { max-width: 400px; }
 .num { text-align: right; }
 input.num {
   width: 10em;

@@ -2,8 +2,8 @@ class Marca < ActiveRecord::Base
   belongs_to :clase
   belongs_to :tipo_marca
   #belongs_to :usuario
-  #belongs_to :agente
-  #belongs_to :titular
+  belongs_to :agente
+  belongs_to :titular
 
   
   validates_presence_of :nombre, :estado_fecha, :estado, :tipo_marca_id
@@ -36,6 +36,10 @@ class Marca < ActiveRecord::Base
 
   def ver_estado
     TIPOS[estado]
+  end
+
+  def ver_fila
+    "El error fue encontrado en la fila #{fila} del archivo importado" if fila and valido == false
   end
 
   def self.ver_estado(est)

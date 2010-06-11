@@ -1,6 +1,21 @@
 <% semantic_form_for(@marca) do |f| -%>
-  <%= f.input :nombre %>
-  <%= f.input :estado_fecha, :label => 'Fecha de solicitud', :as => 'string', :input_html => { :class => 'date' } %>
-  <%= f.input :numero_solicitud, :label => 'Número de solicitud' %>
-  <%= f.input :clase %>
+  
+<div class="error"><%= @marca.ver_fila %></div>
+
+
+  <div class="half fl">  
+    <%= f.input :nombre %>
+    <%= f.input :estado_fecha, :label => 'Fecha de solicitud', :as => 'string', :input_html => { :class => 'date' } %>
+    <%= f.input :numero_solicitud, :label => 'Número de solicitud' %>
+  </div>
+  <div class="half fl">
+    <%= f.input :clase %>
+    <%= f.input :tipo_marca %>
+    <%= f.input :agente %>
+    <%= f.input :titular %>
+  </div>
+  <div style="clear:both"></div>
+  <%= f.submit "Salvar" %>
 <% end -%>
+
+<div style="clear:both"></div>

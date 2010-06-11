@@ -5,6 +5,7 @@ class CreateRepresentantes < ActiveRecord::Migration
       t.string :email
       t.string :direccion
       t.string :telefono
+      t.string :movil
       t.string :type
       t.boolean :valido
 

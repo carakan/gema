@@ -10,7 +10,7 @@ class Clase < ActiveRecord::Base
 
 
   def to_s
-    %(#{codigo} - #{nombre})
+    nombre
   end
 
 end
