@@ -12,9 +12,10 @@
         <color>11776947</color>
       </controlProperties>
     </control>
-    <control controlID="2" controlTypeID="com.balsamiq.mockups::LinkBar" x="249" y="111" w="-1" h="-1" measuredW="200" measuredH="25" zOrder="3" locked="false" isInGroup="-1">
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::LinkBar" x="249" y="111" w="-1" h="-1" measuredW="461" measuredH="25" zOrder="3" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>%20%20Inicio%2C%20Cargas%2C%20Vigilancia</text>
+        <hrefs>%2Csolicitudes_listado%26bm%3Bsolicitudes_listado.bmml%26bm%3Bsolicitudes_listado.bmml%26bm%3Bsolicitudes_listado.bmml%2C%2C%2C%2C</hrefs>
+        <text>%20%20Inicio%2C%20Solicitudes%2C%20Vigilancia%2C%20Agentes%2C%20Titulares%2C%20Usuarios</text>
       </controlProperties>
     </control>
     <control controlID="3" controlTypeID="com.balsamiq.mockups::Canvas" x="245" y="110" w="743" h="26" measuredW="100" measuredH="70" zOrder="2" locked="false" isInGroup="-1">

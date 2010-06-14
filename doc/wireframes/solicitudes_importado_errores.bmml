@@ -12,41 +12,36 @@
         <color>11776947</color>
       </controlProperties>
     </control>
-    <control controlID="2" controlTypeID="com.balsamiq.mockups::LinkBar" x="249" y="111" w="-1" h="-1" measuredW="200" measuredH="25" zOrder="3" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>%20%20Inicio%2C%20Cargas%2C%20Vigilancia</text>
-      </controlProperties>
-    </control>
     <control controlID="3" controlTypeID="com.balsamiq.mockups::Canvas" x="245" y="110" w="743" h="26" measuredW="100" measuredH="70" zOrder="2" locked="false" isInGroup="-1">
       <controlProperties>
         <borderStyle>none</borderStyle>
         <color>16777062</color>
       </controlProperties>
     </control>
-    <control controlID="4" controlTypeID="com.balsamiq.mockups::Title" x="288" y="141" w="-1" h="-1" measuredW="663" measuredH="51" zOrder="4" locked="false" isInGroup="-1">
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::Title" x="288" y="141" w="-1" h="-1" measuredW="663" measuredH="51" zOrder="3" locked="false" isInGroup="-1">
       <controlProperties>
         <size>32</size>
         <text>Solicitud%20de%20Marca%202%20de%20Junio%202009%20%28500%29</text>
       </controlProperties>
     </control>
-    <control controlID="11" controlTypeID="com.balsamiq.mockups::Title" x="288" y="207" w="-1" h="-1" measuredW="209" measuredH="32" zOrder="5" locked="false" isInGroup="-1">
+    <control controlID="11" controlTypeID="com.balsamiq.mockups::Title" x="288" y="207" w="-1" h="-1" measuredW="209" measuredH="32" zOrder="4" locked="false" isInGroup="-1">
       <controlProperties>
         <color>13576743</color>
         <size>18</size>
         <text>Numero%20de%20errores%3A%2020</text>
       </controlProperties>
     </control>
-    <control controlID="14" controlTypeID="com.balsamiq.mockups::HRule" x="288" y="326" w="625" h="-1" measuredW="100" measuredH="5" zOrder="6" locked="false" isInGroup="-1">
+    <control controlID="14" controlTypeID="com.balsamiq.mockups::HRule" x="288" y="326" w="625" h="-1" measuredW="100" measuredH="5" zOrder="5" locked="false" isInGroup="-1">
       <controlProperties>
         <color>8554646</color>
       </controlProperties>
     </control>
-    <control controlID="17" controlTypeID="com.balsamiq.mockups::HRule" x="292" y="634" w="625" h="-1" measuredW="100" measuredH="5" zOrder="7" locked="false" isInGroup="-1">
+    <control controlID="17" controlTypeID="com.balsamiq.mockups::HRule" x="292" y="634" w="625" h="-1" measuredW="100" measuredH="5" zOrder="6" locked="false" isInGroup="-1">
       <controlProperties>
         <color>8554646</color>
       </controlProperties>
     </control>
-    <control controlID="29" controlTypeID="com.balsamiq.mockups::List" x="286" y="252" w="100" h="74" measuredW="100" measuredH="126" zOrder="8" locked="false" isInGroup="-1">
+    <control controlID="29" controlTypeID="com.balsamiq.mockups::List" x="286" y="252" w="100" h="74" measuredW="100" measuredH="126" zOrder="7" locked="false" isInGroup="-1">
       <controlProperties>
         <borderStyle>none</borderStyle>
         <hrefs>solicitudes_importado_errores%26bm%3Bsolicitudes_importado_errores.bmml%26bm%3Bsolicitudes_importado_errores.bmml%26bm%3Bsolicitudes_importado_errores.bmml%2Csolicitudes_importado_soloerrores%26bm%3Bsolicitudes_importado_soloerrores.bmml%26bm%3Bsolicitudes_importado_soloerrores.bmml%26bm%3Bsolicitudes_importado_soloerrores.bmml%2Csolicitudes_importado_solovalidas%26bm%3Bsolicitudes_importado_solovalidas.bmml%26bm%3Bsolicitudes_importado_solovalidas.bmml%26bm%3Bsolicitudes_importado_solovalidas.bmml</hrefs>
@@ -54,12 +49,12 @@
         <text>%5BVer%20todas%5D%0A%5BVer%20errores%5D%0A%5BVer%20validas%5D</text>
       </controlProperties>
     </control>
-    <control controlID="36" controlTypeID="com.balsamiq.mockups::Label" x="852" y="599" w="-1" h="-1" measuredW="83" measuredH="25" zOrder="9" locked="false" isInGroup="-1">
+    <control controlID="36" controlTypeID="com.balsamiq.mockups::Label" x="852" y="599" w="-1" h="-1" measuredW="83" measuredH="25" zOrder="8" locked="false" isInGroup="-1">
       <controlProperties>
         <text>%3C%3C%201%20%5B2%5D%20%5B3%5D%20%5B%3E%3E%5D</text>
       </controlProperties>
     </control>
-    <control controlID="37" controlTypeID="com.balsamiq.mockups::DataGrid" x="286" y="340" w="598" h="54" measuredW="347" measuredH="28" zOrder="10" locked="false" isInGroup="-1">
+    <control controlID="37" controlTypeID="com.balsamiq.mockups::DataGrid" x="286" y="340" w="598" h="54" measuredW="347" measuredH="28" zOrder="9" locked="false" isInGroup="-1">
       <controlProperties>
         <borderStyle>none</borderStyle>
         <hasHeader>true</hasHeader>
@@ -69,162 +64,168 @@
         <vLines>false</vLines>
       </controlProperties>
     </control>
-    <control controlID="39" controlTypeID="com.balsamiq.mockups::Label" x="289" y="367" w="78" h="20" measuredW="78" measuredH="25" zOrder="11" locked="false" isInGroup="-1">
+    <control controlID="39" controlTypeID="com.balsamiq.mockups::Label" x="289" y="367" w="78" h="20" measuredW="78" measuredH="25" zOrder="10" locked="false" isInGroup="-1">
       <controlProperties>
         <color>13576743</color>
         <text>PETRONAS</text>
       </controlProperties>
     </control>
-    <control controlID="40" controlTypeID="com.balsamiq.mockups::Label" x="394" y="366" w="78" h="20" measuredW="83" measuredH="25" zOrder="12" locked="false" isInGroup="-1">
+    <control controlID="40" controlTypeID="com.balsamiq.mockups::Label" x="394" y="366" w="78" h="20" measuredW="83" measuredH="25" zOrder="11" locked="false" isInGroup="-1">
       <controlProperties>
         <color>13576743</color>
         <text>3428-2009%20</text>
       </controlProperties>
     </control>
-    <control controlID="43" controlTypeID="com.balsamiq.mockups::Label" x="394" y="385" w="78" h="20" measuredW="83" measuredH="25" zOrder="13" locked="false" isInGroup="-1">
+    <control controlID="43" controlTypeID="com.balsamiq.mockups::Label" x="394" y="385" w="78" h="20" measuredW="83" measuredH="25" zOrder="12" locked="false" isInGroup="-1">
       <controlProperties>
         <color>13576743</color>
         <text>3442-2009%20</text>
       </controlProperties>
     </control>
-    <control controlID="45" controlTypeID="com.balsamiq.mockups::Paragraph" x="565" y="366" w="91" h="21" measuredW="200" measuredH="140" zOrder="14" locked="false" isInGroup="-1">
+    <control controlID="45" controlTypeID="com.balsamiq.mockups::Paragraph" x="565" y="366" w="91" h="21" measuredW="200" measuredH="140" zOrder="13" locked="false" isInGroup="-1">
       <controlProperties>
         <color>13576743</color>
         <text>Campo%20vacio</text>
       </controlProperties>
     </control>
-    <control controlID="46" controlTypeID="com.balsamiq.mockups::Paragraph" x="565" y="386" w="91" h="21" measuredW="200" measuredH="140" zOrder="15" locked="false" isInGroup="-1">
+    <control controlID="46" controlTypeID="com.balsamiq.mockups::Paragraph" x="565" y="386" w="91" h="21" measuredW="200" measuredH="140" zOrder="14" locked="false" isInGroup="-1">
       <controlProperties>
         <color>13576743</color>
         <text>Denominacion%20</text>
       </controlProperties>
     </control>
-    <control controlID="48" controlTypeID="com.balsamiq.mockups::Paragraph" x="705" y="385" w="220" h="21" measuredW="200" measuredH="140" zOrder="16" locked="false" isInGroup="-1">
+    <control controlID="48" controlTypeID="com.balsamiq.mockups::Paragraph" x="705" y="385" w="220" h="21" measuredW="200" measuredH="140" zOrder="15" locked="false" isInGroup="-1">
       <controlProperties>
         <color>13576743</color>
         <text>Campo%20vacio</text>
       </controlProperties>
     </control>
-    <control controlID="49" controlTypeID="com.balsamiq.mockups::Label" x="289" y="386" w="78" h="20" measuredW="62" measuredH="25" zOrder="17" locked="false" isInGroup="-1">
+    <control controlID="49" controlTypeID="com.balsamiq.mockups::Label" x="289" y="386" w="78" h="20" measuredW="62" measuredH="25" zOrder="16" locked="false" isInGroup="-1">
       <controlProperties>
         <color>13576743</color>
         <text>CARICIA</text>
       </controlProperties>
     </control>
-    <control controlID="56" controlTypeID="com.balsamiq.mockups::Label" x="910" y="364" w="56" h="25" measuredW="43" measuredH="25" zOrder="18" locked="false" isInGroup="-1">
+    <control controlID="56" controlTypeID="com.balsamiq.mockups::Label" x="910" y="364" w="56" h="25" measuredW="43" measuredH="25" zOrder="17" locked="false" isInGroup="-1">
       <controlProperties>
         <href>solicitud_marca1_editar%20%28copy%29%26bm%3Bsolicitud_marca1_editar%20%28copy%29.bmml%26bm%3Bsolicitud_marca1_editar%20%28copy%29.bmml%26bm%3Bsolicitud_marca1_editar%20%28copy%29.bmml</href>
         <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22665%2C364%2C721%2C389%22%20href%3D%22solicitud_marca1_editar%20%28copy%29.bmml%22%20alt%3D%22solicitud_marca1_editar%20%28copy%29%22%20id%3D%2256%22/%3E</map>
         <text>%5Beditar%5D</text>
       </controlProperties>
     </control>
-    <control controlID="57" controlTypeID="com.balsamiq.mockups::Label" x="910" y="384" w="56" h="25" measuredW="43" measuredH="25" zOrder="19" locked="false" isInGroup="-1">
+    <control controlID="57" controlTypeID="com.balsamiq.mockups::Label" x="910" y="384" w="56" h="25" measuredW="43" measuredH="25" zOrder="18" locked="false" isInGroup="-1">
       <controlProperties>
         <href>solicitud_marca1_editar%20%28copy%29%26bm%3Bsolicitud_marca1_editar%20%28copy%29.bmml%26bm%3Bsolicitud_marca1_editar%20%28copy%29.bmml%26bm%3Bsolicitud_marca1_editar%20%28copy%29.bmml</href>
         <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22665%2C384%2C721%2C409%22%20href%3D%22solicitud_marca1_editar%20%28copy%29.bmml%22%20alt%3D%22solicitud_marca1_editar%20%28copy%29%22%20id%3D%2257%22/%3E</map>
         <text>%5Beditar%5D</text>
       </controlProperties>
     </control>
-    <control controlID="58" controlTypeID="com.balsamiq.mockups::Label" x="288" y="405" w="-1" h="-1" measuredW="78" measuredH="25" zOrder="20" locked="false" isInGroup="-1">
+    <control controlID="58" controlTypeID="com.balsamiq.mockups::Label" x="288" y="405" w="-1" h="-1" measuredW="78" measuredH="25" zOrder="19" locked="false" isInGroup="-1">
       <controlProperties>
         <color>40463</color>
         <text>PETRONAS</text>
       </controlProperties>
     </control>
-    <control controlID="59" controlTypeID="com.balsamiq.mockups::Label" x="288" y="427" w="78" h="20" measuredW="78" measuredH="25" zOrder="21" locked="false" isInGroup="-1">
+    <control controlID="59" controlTypeID="com.balsamiq.mockups::Label" x="288" y="427" w="78" h="20" measuredW="78" measuredH="25" zOrder="20" locked="false" isInGroup="-1">
       <controlProperties>
         <color>40463</color>
         <text>PETRONAS</text>
       </controlProperties>
     </control>
-    <control controlID="60" controlTypeID="com.balsamiq.mockups::Label" x="393" y="426" w="78" h="20" measuredW="83" measuredH="25" zOrder="22" locked="false" isInGroup="-1">
+    <control controlID="60" controlTypeID="com.balsamiq.mockups::Label" x="393" y="426" w="78" h="20" measuredW="83" measuredH="25" zOrder="21" locked="false" isInGroup="-1">
       <controlProperties>
         <color>40463</color>
         <text>3428-2009%20</text>
       </controlProperties>
     </control>
-    <control controlID="61" controlTypeID="com.balsamiq.mockups::Paragraph" x="565" y="405" w="91" h="21" measuredW="200" measuredH="140" zOrder="23" locked="false" isInGroup="-1">
+    <control controlID="61" controlTypeID="com.balsamiq.mockups::Paragraph" x="565" y="405" w="91" h="21" measuredW="200" measuredH="140" zOrder="22" locked="false" isInGroup="-1">
       <controlProperties>
         <color>40463</color>
         <text>Denominacion%20</text>
       </controlProperties>
     </control>
-    <control controlID="62" controlTypeID="com.balsamiq.mockups::Paragraph" x="705" y="405" w="220" h="21" measuredW="200" measuredH="140" zOrder="24" locked="false" isInGroup="-1">
+    <control controlID="62" controlTypeID="com.balsamiq.mockups::Paragraph" x="705" y="405" w="220" h="21" measuredW="200" measuredH="140" zOrder="23" locked="false" isInGroup="-1">
       <controlProperties>
         <color>40463</color>
         <text>%28*18*%29%20Petroleos%20y%20aceites</text>
       </controlProperties>
     </control>
-    <control controlID="63" controlTypeID="com.balsamiq.mockups::Label" x="393" y="446" w="78" h="20" measuredW="83" measuredH="25" zOrder="25" locked="false" isInGroup="-1">
+    <control controlID="63" controlTypeID="com.balsamiq.mockups::Label" x="393" y="446" w="78" h="20" measuredW="83" measuredH="25" zOrder="24" locked="false" isInGroup="-1">
       <controlProperties>
         <color>40463</color>
         <text>3442-2009%20</text>
       </controlProperties>
     </control>
-    <control controlID="64" controlTypeID="com.balsamiq.mockups::Label" x="393" y="466" w="78" h="20" measuredW="83" measuredH="25" zOrder="26" locked="false" isInGroup="-1">
+    <control controlID="64" controlTypeID="com.balsamiq.mockups::Label" x="393" y="466" w="78" h="20" measuredW="83" measuredH="25" zOrder="25" locked="false" isInGroup="-1">
       <controlProperties>
         <color>40463</color>
         <text>3484-2009%20</text>
       </controlProperties>
     </control>
-    <control controlID="65" controlTypeID="com.balsamiq.mockups::Label" x="393" y="405" w="78" h="20" measuredW="83" measuredH="25" zOrder="27" locked="false" isInGroup="-1">
+    <control controlID="65" controlTypeID="com.balsamiq.mockups::Label" x="393" y="405" w="78" h="20" measuredW="83" measuredH="25" zOrder="26" locked="false" isInGroup="-1">
       <controlProperties>
         <color>40463</color>
         <text>3424-2009%20</text>
       </controlProperties>
     </control>
-    <control controlID="66" controlTypeID="com.balsamiq.mockups::Paragraph" x="565" y="425" w="91" h="21" measuredW="200" measuredH="140" zOrder="28" locked="false" isInGroup="-1">
+    <control controlID="66" controlTypeID="com.balsamiq.mockups::Paragraph" x="565" y="425" w="91" h="21" measuredW="200" measuredH="140" zOrder="27" locked="false" isInGroup="-1">
       <controlProperties>
         <color>40463</color>
         <text>Denominacion%20</text>
       </controlProperties>
     </control>
-    <control controlID="67" controlTypeID="com.balsamiq.mockups::Paragraph" x="565" y="445" w="91" h="21" measuredW="200" measuredH="140" zOrder="29" locked="false" isInGroup="-1">
+    <control controlID="67" controlTypeID="com.balsamiq.mockups::Paragraph" x="565" y="445" w="91" h="21" measuredW="200" measuredH="140" zOrder="28" locked="false" isInGroup="-1">
       <controlProperties>
         <color>40463</color>
         <text>Denominacion%20</text>
       </controlProperties>
     </control>
-    <control controlID="68" controlTypeID="com.balsamiq.mockups::Paragraph" x="565" y="465" w="91" h="21" measuredW="200" measuredH="140" zOrder="30" locked="false" isInGroup="-1">
+    <control controlID="68" controlTypeID="com.balsamiq.mockups::Paragraph" x="565" y="465" w="91" h="21" measuredW="200" measuredH="140" zOrder="29" locked="false" isInGroup="-1">
       <controlProperties>
         <color>40463</color>
         <text>Denominacion%20</text>
       </controlProperties>
     </control>
-    <control controlID="70" controlTypeID="com.balsamiq.mockups::Paragraph" x="705" y="445" w="220" h="21" measuredW="200" measuredH="140" zOrder="31" locked="false" isInGroup="-1">
+    <control controlID="70" controlTypeID="com.balsamiq.mockups::Paragraph" x="705" y="445" w="220" h="21" measuredW="200" measuredH="140" zOrder="30" locked="false" isInGroup="-1">
       <controlProperties>
         <color>40463</color>
         <text>%28*5*%29%20Productos%20limpieza</text>
       </controlProperties>
     </control>
-    <control controlID="71" controlTypeID="com.balsamiq.mockups::Paragraph" x="705" y="465" w="220" h="21" measuredW="200" measuredH="140" zOrder="32" locked="false" isInGroup="-1">
+    <control controlID="71" controlTypeID="com.balsamiq.mockups::Paragraph" x="705" y="465" w="220" h="21" measuredW="200" measuredH="140" zOrder="31" locked="false" isInGroup="-1">
       <controlProperties>
         <color>40463</color>
         <text>%28*39*%29%20Restaurants%20y%20locales</text>
       </controlProperties>
     </control>
-    <control controlID="72" controlTypeID="com.balsamiq.mockups::Label" x="288" y="446" w="78" h="20" measuredW="62" measuredH="25" zOrder="33" locked="false" isInGroup="-1">
+    <control controlID="72" controlTypeID="com.balsamiq.mockups::Label" x="288" y="446" w="78" h="20" measuredW="62" measuredH="25" zOrder="32" locked="false" isInGroup="-1">
       <controlProperties>
         <color>40463</color>
         <text>CARICIA</text>
       </controlProperties>
     </control>
-    <control controlID="73" controlTypeID="com.balsamiq.mockups::Label" x="288" y="465" w="93" h="20" measuredW="86" measuredH="25" zOrder="34" locked="false" isInGroup="-1">
+    <control controlID="73" controlTypeID="com.balsamiq.mockups::Label" x="288" y="465" w="93" h="20" measuredW="86" measuredH="25" zOrder="33" locked="false" isInGroup="-1">
       <controlProperties>
         <color>40463</color>
         <text>EL%20PARAISO</text>
       </controlProperties>
     </control>
-    <control controlID="74" controlTypeID="com.balsamiq.mockups::Paragraph" x="705" y="366" w="220" h="21" measuredW="200" measuredH="140" zOrder="35" locked="false" isInGroup="-1">
+    <control controlID="74" controlTypeID="com.balsamiq.mockups::Paragraph" x="705" y="366" w="220" h="21" measuredW="200" measuredH="140" zOrder="34" locked="false" isInGroup="-1">
       <controlProperties>
         <color>13576743</color>
         <text>%28*20*%29%20Otros%20liquidos</text>
       </controlProperties>
     </control>
-    <control controlID="75" controlTypeID="com.balsamiq.mockups::Paragraph" x="705" y="424" w="220" h="21" measuredW="200" measuredH="140" zOrder="36" locked="false" isInGroup="-1">
+    <control controlID="75" controlTypeID="com.balsamiq.mockups::Paragraph" x="705" y="424" w="220" h="21" measuredW="200" measuredH="140" zOrder="35" locked="false" isInGroup="-1">
       <controlProperties>
         <color>40463</color>
         <text>%28*19*%29%20Liquidos%20derivados</text>
+      </controlProperties>
+    </control>
+    <control controlID="76" controlTypeID="com.balsamiq.mockups::LinkBar" x="249" y="111" w="-1" h="-1" measuredW="461" measuredH="25" zOrder="36" locked="false" isInGroup="-1">
+      <controlProperties>
+        <hrefs>%2Csolicitudes_listado%26bm%3Bsolicitudes_listado.bmml%26bm%3Bsolicitudes_listado.bmml%26bm%3Bsolicitudes_listado.bmml%2C%2C%2C%2C</hrefs>
+        <text>%20%20Inicio%2C%20Solicitudes%2C%20Vigilancia%2C%20Agentes%2C%20Titulares%2C%20Usuarios</text>
       </controlProperties>
     </control>
   </controls>

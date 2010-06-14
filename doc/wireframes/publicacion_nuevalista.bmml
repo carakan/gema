@@ -12,72 +12,44 @@
         <color>11776947</color>
       </controlProperties>
     </control>
-    <control controlID="2" controlTypeID="com.balsamiq.mockups::LinkBar" x="249" y="111" w="-1" h="-1" measuredW="200" measuredH="25" zOrder="3" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>%20%20Inicio%2C%20Cargas%2C%20Vigilancia</text>
-      </controlProperties>
-    </control>
     <control controlID="3" controlTypeID="com.balsamiq.mockups::Canvas" x="245" y="110" w="743" h="26" measuredW="100" measuredH="70" zOrder="2" locked="false" isInGroup="-1">
       <controlProperties>
         <borderStyle>none</borderStyle>
         <color>16777062</color>
       </controlProperties>
     </control>
-    <control controlID="4" controlTypeID="com.balsamiq.mockups::Title" x="290" y="145" w="-1" h="-1" measuredW="570" measuredH="51" zOrder="4" locked="false" isInGroup="-1">
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::Title" x="263" y="151" w="-1" h="-1" measuredW="706" measuredH="51" zOrder="3" locked="false" isInGroup="-1">
       <controlProperties>
         <size>32</size>
-        <text>Cargar%20lista%20-%20Publicaci%F3n%20de%20marcas</text>
+        <text>Importar%20nueva%20lista%20-%20Publicaci%F3n%20de%20marcas</text>
       </controlProperties>
     </control>
-    <control controlID="28" controlTypeID="com.balsamiq.mockups::IconLabel" x="290" y="196" w="110" h="-1" measuredW="70" measuredH="29" zOrder="5" locked="false" isInGroup="-1">
-      <controlProperties>
-        <borderStyle>none</borderStyle>
-        <color>40463</color>
-        <href>solicitudes_listado_menu%26bm%3Bsolicitudes_listado_menu.bmml%26bm%3Bsolicitudes_listado_menu.bmml%26bm%3Bsolicitudes_listado_menu.bmml</href>
-        <icon>CircledPlusIcon%7Cxsmall</icon>
-        <labelPosition>right</labelPosition>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%2245%2C196%2C155%2C225%22%20href%3D%22solicitudes_listado_menu.bmml%22%20alt%3D%22solicitudes_listado_menu%22%20id%3D%2228%22/%3E</map>
-        <size>16</size>
-        <text>Nueva</text>
-      </controlProperties>
-    </control>
-    <control controlID="29" controlTypeID="com.balsamiq.mockups::Icon" x="364" y="204" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="6" locked="false" isInGroup="-1">
-      <controlProperties>
-        <color>40463</color>
-        <icon>DownTriangleIcon%7Cxsmall</icon>
-      </controlProperties>
-    </control>
-    <control controlID="36" controlTypeID="com.balsamiq.mockups::FieldSet" x="290" y="240" w="584" h="195" measuredW="200" measuredH="170" zOrder="7" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>Lista%20de%20publicaci%F3n</text>
-      </controlProperties>
-    </control>
-    <control controlID="37" controlTypeID="com.balsamiq.mockups::TextInput" x="457" y="334" w="313" h="-1" measuredW="79" measuredH="29" zOrder="8" locked="false" isInGroup="-1">
+    <control controlID="37" controlTypeID="com.balsamiq.mockups::TextInput" x="434" y="295" w="313" h="-1" measuredW="79" measuredH="29" zOrder="4" locked="false" isInGroup="-1">
       <controlProperties>
         <text/>
       </controlProperties>
     </control>
-    <control controlID="38" controlTypeID="com.balsamiq.mockups::Button" x="767" y="336" w="-1" h="-1" measuredW="79" measuredH="28" zOrder="9" locked="false" isInGroup="-1">
+    <control controlID="38" controlTypeID="com.balsamiq.mockups::Button" x="744" y="297" w="-1" h="-1" measuredW="79" measuredH="28" zOrder="5" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Examinar</text>
       </controlProperties>
     </control>
-    <control controlID="39" controlTypeID="com.balsamiq.mockups::Label" x="348" y="334" w="-1" h="-1" measuredW="50" measuredH="25" zOrder="10" locked="false" isInGroup="-1">
+    <control controlID="39" controlTypeID="com.balsamiq.mockups::Label" x="325" y="295" w="-1" h="-1" measuredW="50" measuredH="25" zOrder="6" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Archivo</text>
       </controlProperties>
     </control>
-    <control controlID="40" controlTypeID="com.balsamiq.mockups::TextInput" x="457" y="279" w="68" h="-1" measuredW="79" measuredH="29" zOrder="11" locked="false" isInGroup="-1">
+    <control controlID="40" controlTypeID="com.balsamiq.mockups::TextInput" x="434" y="240" w="68" h="-1" measuredW="79" measuredH="29" zOrder="7" locked="false" isInGroup="-1">
       <controlProperties>
         <text/>
       </controlProperties>
     </control>
-    <control controlID="41" controlTypeID="com.balsamiq.mockups::Label" x="313" y="279" w="-1" h="-1" measuredW="119" measuredH="25" zOrder="12" locked="false" isInGroup="-1">
+    <control controlID="41" controlTypeID="com.balsamiq.mockups::Label" x="290" y="240" w="-1" h="-1" measuredW="119" measuredH="25" zOrder="8" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Numero%20de%20gaceta</text>
       </controlProperties>
     </control>
-    <control controlID="42" controlTypeID="com.balsamiq.mockups::PointyButton" x="457" y="392" w="-1" h="-1" measuredW="115" measuredH="28" zOrder="13" locked="false" isInGroup="-1">
+    <control controlID="42" controlTypeID="com.balsamiq.mockups::PointyButton" x="434" y="353" w="-1" h="-1" measuredW="115" measuredH="28" zOrder="9" locked="false" isInGroup="-1">
       <controlProperties>
         <color>2848996</color>
         <direction>center</direction>
@@ -86,13 +58,19 @@
         <text>Importar%20datos</text>
       </controlProperties>
     </control>
-    <control controlID="43" controlTypeID="com.balsamiq.mockups::PointyButton" x="695" y="392" w="-1" h="-1" measuredW="75" measuredH="28" zOrder="14" locked="false" isInGroup="-1">
+    <control controlID="43" controlTypeID="com.balsamiq.mockups::PointyButton" x="672" y="353" w="-1" h="-1" measuredW="75" measuredH="28" zOrder="10" locked="false" isInGroup="-1">
       <controlProperties>
         <color>2848996</color>
         <direction>center</direction>
         <href>solicitudes_listado%26bm%3Bsolicitudes_listado.bmml%26bm%3Bsolicitudes_listado.bmml%26bm%3Bsolicitudes_listado.bmml</href>
         <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22450%2C392%2C525%2C420%22%20href%3D%22solicitudes_errores_guardarcambios.bmml%22%20alt%3D%22solicitudes_errores_guardarcambios%22%20id%3D%2243%22/%3E</map>
         <text>Cancelar</text>
+      </controlProperties>
+    </control>
+    <control controlID="44" controlTypeID="com.balsamiq.mockups::LinkBar" x="249" y="111" w="-1" h="-1" measuredW="461" measuredH="25" zOrder="11" locked="false" isInGroup="-1">
+      <controlProperties>
+        <hrefs>%2Csolicitudes_listado%26bm%3Bsolicitudes_listado.bmml%26bm%3Bsolicitudes_listado.bmml%26bm%3Bsolicitudes_listado.bmml%2C%2C%2C%2C</hrefs>
+        <text>%20%20Inicio%2C%20Solicitudes%2C%20Vigilancia%2C%20Agentes%2C%20Titulares%2C%20Usuarios</text>
       </controlProperties>
     </control>
   </controls>
