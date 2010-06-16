@@ -427,3 +427,4 @@ ul.menu li:hover ul {
   position: absolute;
 }
 .b { font-weight: bold; }
+.ajax-modal { background-color: #ffffff !important; }

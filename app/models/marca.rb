@@ -1,16 +1,21 @@
 class Marca < ActiveRecord::Base
+
+  before_save :actualizar_validez
+
   belongs_to :clase
   belongs_to :tipo_marca
   #belongs_to :usuario
   belongs_to :agente
   belongs_to :titular
 
+
+
   
   validates_presence_of :nombre, :estado_fecha, :estado, :tipo_marca_id
   validates_format_of :numero_solicitud, :with => /^\d+-\d{4}$/
   validates_uniqueness_of :numero_solicitud
 
-  TIPOS = { 
+  TIPOS = {
     'sm' => 'Solicitud de Marca',
     'lp' => 'Lista de publicación',
     'lr' => 'Lista de Registro',
@@ -57,7 +62,8 @@ class Marca < ActiveRecord::Base
   # Presenta un listtado de importaciones
   def self.importaciones(page = 1)
     Marca.table_name = 'view_importaciones'
-    Marca.paginate(:page => page)
+    marcas = Marca.paginate(:page => page)
+    marcas
     #total = Marca.all(:select => 'COUNT(*) as total', :group => 'fecha_importacion').size
 
         #if total > 0
@@ -65,6 +71,22 @@ class Marca < ActiveRecord::Base
     #else
     #  []
     #end
+  end
+
+  # indica si hay errores en un listado
+  # Debe ser un resultado de la tabla 'view_importaciones'
+  # Marca.table_name = 'view_importaciones'
+  def errores_listado
+    if self.errores.to_i > 0
+      "<span class=\"error b\">#{self.errores}</span>"
+    else
+      errores
+    end
+  end
+
+private
+  def actualizar_validez
+    self.valido = true if self.errors.blank?
   end
 
 end

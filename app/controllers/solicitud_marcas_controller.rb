@@ -1,11 +1,13 @@
 class SolicitudMarcasController < ApplicationController
 
+  before_filter :authenticate_user!
+
   def new
 
   end
 
   def create
-    @marca = SolicitudMarca.new(params[:marca])
+    @marca = SolicitudMarca.new(params[:solicitud_marca])
 
     respond_to do |format|
       if @marca.save
@@ -25,16 +27,19 @@ class SolicitudMarcasController < ApplicationController
 
   def update
     @marca = SolicitudMarca.find(params[:id])
-
     respond_to do |format|
-      if @marca.update_attributes(params[:marca])
+      if @marca.update_attributes(params[:solicitud_marca])
         format.html { redirect_to(@marca, :notice => 'La marca fue exitosamente actualizada.') }
         format.xml  { head :ok }
       else
-        format.html { render :action => "edit" }
+        format.html { render :action => "edit", :status => :unprocessable_entity  }
         format.xml  { render :xml => @marca.errors, :status => :unprocessable_entity }
         format.json { render :json => @marca.hashify_errors, :status => :unprocessable_entity }
       end
     end
+  end
+
+  def show
+    @marca = SolicitudMarca.find(params[:id])
   end
 end

@@ -36,6 +36,8 @@ class CreateMarcas < ActiveRecord::Migration
     add_index :marcas, :usuario_id
     add_index :marcas, :marca_id
 
+    add_index :marcas, :fecha_importacion
+
   end
 
   def self.down

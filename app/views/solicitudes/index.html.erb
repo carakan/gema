@@ -21,14 +21,14 @@
     <th>Total</th>
     <th>Errores</th>
 	</tr>
-  <% @marcas.each do |marca| %>
+  <%- @marcas.each do |marca| -%>
     <tr>
     	<td><%= link_to fecha_hora(marca.fecha_importacion, 'long'), importado_solicitud_path(marca.fecha_importacion) %></td>
       <td><strong><%= marca.ver_estado %></strong></td>
       <td><%= marca.total %></td>
-      <td class="error b"><%= marca.errores %></td>
+      <td><%= marca.errores_listado %></td>
     </tr>
-  <% end %>
+  <%- end -%>
 </table>
 
 <%= will_paginate @marcas %>

@@ -44,7 +44,9 @@ module ApplicationHelper
     l fec, :format => format
   end
 
+  # Indica si el usuario ha ingresado al sistema
   def user_signed_in?
+    return false if session[:usuario].nil?
     not session[:usuario][:id].nil?
   end
 

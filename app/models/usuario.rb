@@ -4,6 +4,9 @@ class Usuario < ActiveRecord::Base
   validates_presence_of :login, :password
   validates_format_of :login, :with => /^[a-z0-9_-]{4,16}$/i
   validates_uniqueness_of :login
+  validates_confirmation_of :password
+
+  #attr_accessor :password_confirmation
 
   # Metodo para buscar por login y password
   def self.find_login_password(l, p)
