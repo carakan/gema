@@ -44,6 +44,10 @@ module ApplicationHelper
     l fec, :format => format
   end
 
+  def user_signed_in?
+    not session[:usuario][:id].nil?
+  end
+
 end
 WillPaginate::ViewHelpers.pagination_options[:previous_label] = '<<'
 WillPaginate::ViewHelpers.pagination_options[:next_label] = '>>'

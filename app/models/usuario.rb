@@ -2,7 +2,7 @@ class Usuario < ActiveRecord::Base
   before_save :encriptar_password
 
   validates_presence_of :login, :password
-  validates_format_of :login, :with => /^[a-z_-0-9]{6,16}$/i
+  validates_format_of :login, :with => /^[a-z0-9_-]{4,16}$/i
   validates_uniqueness_of :login
 
   # Metodo para buscar por login y password

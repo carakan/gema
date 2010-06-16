@@ -1,0 +1,6 @@
+<% [:error, :notice, :warning].each do |notice| %>
+  <% if flash[notice] %>
+    <div id="flash<%= notice.to_s.capitalize %>"><%= flash[notice] %></div>
+  <% end %>
+<% end %>
+

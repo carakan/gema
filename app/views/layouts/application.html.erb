@@ -17,13 +17,11 @@
 <div id="debug-error" style="display:none; width: 640px; height: 480px; overflow: auto; z-index: 10000"></div> 
 
 <div id="wrapper">
-  <ul id="navigation">
-    <li><a href="/clases">Clases</a></li>
-    <li><a href="/solicitudes">Solicitudes</a></li>
-  </ul>
 
+  <%= render :partial => "layouts/menu" %>
   <div id="cont">
-    <div id="flashNotice"><%= flash[:notice] %></div>
+    <%= render :partial => "layouts/notice" %>
+
     <%= yield %>
   </div>
 </div>

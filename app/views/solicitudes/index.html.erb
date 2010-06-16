@@ -24,9 +24,11 @@
   <% @marcas.each do |marca| %>
     <tr>
     	<td><%= link_to fecha_hora(marca.fecha_importacion, 'long'), importado_solicitud_path(marca.fecha_importacion) %></td>
-      <td><%= marca.ver_estado %></td>
+      <td><strong><%= marca.ver_estado %></strong></td>
       <td><%= marca.total %></td>
       <td class="error b"><%= marca.errores %></td>
     </tr>
   <% end %>
 </table>
+
+<%= will_paginate @marcas %>

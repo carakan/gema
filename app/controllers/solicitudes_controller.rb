@@ -1,4 +1,7 @@
 class SolicitudesController < ApplicationController
+  # Verificacion si el usuario se ha logueado
+  before_filter :authenticate_user!
+
   # Presenta la lista de importaciones
   def index
     @marcas = Marca.importaciones()
