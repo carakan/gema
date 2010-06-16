@@ -13,49 +13,82 @@ jQuery(function($) {
     $(this).html('Ver mas').removeClass('less').addClass('more').next('.hidden').hide(speed);
   });
 
-  // Para presentar formulario AJAX
-  $('a.ajax').live("click", function() {
+
+  /**
+   * Para presentar formulario AJAX
+   */
+  $('a.ajax').live("click", function(e) {
+    var div = document.createElement('div');
+    $(div).attr( 'id', (new Date).getTime.toString() ).addClass('ajax-modal').css( { 'z-index': 1000 } );
+    $(div).load( $(this).attr("href") );
+    $(div).dialog({ 'width': 800, 'height' : 400, 'modal': true, 'resizable' : false });
+
+    e.stopPropagation();
+    return false;
     // Crear formulario  llenarlo
   });
 
+  /**
+   * Hace submit de un formulario
+   */
+  $('div.ajax-modal form').live('submit', function() {
 
-    // Date select, progressive enhancement
-    $.datepicker._defaults.dateFormat = 'dd M yy';
+    var data = serializeFormElements(this);
 
-
-    // Ocultar y crear a partir de un input text
-    $('input.date').each(function(i, el) {
-      var input = document.createElement('input');
-      $(input).attr({'type': 'text', 'class': 'ui-date-text'});
-      $(el).hide().after(input);
-      var d = $.datepicker.parseDate('yy-mm-dd', $(el).val() );
-      d = $.datepicker.formatDate($.datepicker._defaults.dateFormat, d);
-      var id = '#' + el.id;
-
-      $(input).datepicker({
-        'altFormat': 'yy-mm-dd',
-        'altField': id,
-        'showOtherMonths': true, 
-        'selectOtherMonths': true, 
-        'buttonImage': '/images/icons/calendar.gif',
-        'showOn': 'button',
-        'buttonImageOnly': true
-      });
-      $(input).datepicker('setDate', d);
+    $.ajax({
+      'url': $(this).attr('action'),
+      'context':this,
+      'data':data,
+      'type': data['_method'] || 'post',
+      'success': function(resp) {
+        var p = $(this).parents('div.ajax-modal');
+        $(p).dialog('destroy');
+        $(p).remove();
+        //
+        $('body').trigger('ajax:completed');
+      },
+      'error': function(resp) {
+        alert('Existen errores en su formulario por favor corrija los errores');
+      }
     });
 
-      
-    // Menu
-    //$('ul.menu li');
+    return false;
+  });
 
-    $('input.text-date').live('change', function() {
-      var d = $.datepicker.parseDate($.datepicker._defaults.dateFormat, $(this).val() );
-      $(this).prev('input').val( [ d.getFullYear(), (d.getMonth() + 1), d.getDate() ].join("-") );
-    });
+  /***************************/
 
+  // Date select, progressive enhancement
+  $.datepicker._defaults.dateFormat = 'dd M yy';
+
+  
+
+  $('input.text-date').live('change', function() {
+    var d = $.datepicker.parseDate($.datepicker._defaults.dateFormat, $(this).val() );
+    $(this).prev('input').val( [ d.getFullYear(), (d.getMonth() + 1), d.getDate() ].join("-") );
+  });
+
+  /*****************************/
+
+  /**
+   * Llama a todas las funciones que deben realizarse cuando se carga el DOM normalmente o AJAX
+   */
+  function callFunctions() {
+    addDatePicker();
+  }
+
+  callFunctions();
+
+  /* AJAX configuration*/
+
+  $('body').ajaxComplete(function() {
+    callFunctions();
+  });
+
+  /****************/
     /**
      * Sets the date for each select with the date selected with datepicker
      */
+    /*
     $('input.ui-date-text').live('change', function() {
         var sels = $(this).siblings("select:lt(3)");
         var d = $.datepicker.parseDate($.datepicker._defaults.dateFormat, $(this).val() );
@@ -64,10 +97,12 @@ jQuery(function($) {
         $(sels[1]).val(d.getMonth() + 1);
         $(sels[2]).val(d.getDate());
     });
+    */
     
     /**
      * Replaces the date or datetime field with jquey-ui datepicker
      */
+    /*
     $('.date, .datetime').each(function(i, el) {
         var input = document.createElement('input');
         $(input).attr({'type': 'text', 'class': 'ui-date-text'});
@@ -94,5 +129,52 @@ jQuery(function($) {
     			'buttonImageOnly': true
         }).attr('size', '14');
     });
-
+    */
 });
+
+/**
+ * Serializa los datos de un formulario para hacer submit mediante AJAX
+ */
+function serializeFormElements(elem) {
+  var params = {};
+
+  $(elem).find('input, select, textarea').each(function(i, el) {
+    params[ $(el).attr('name') ] = $(el).val();
+  });
+
+  return params;
+}
+
+
+/**
+ * Adiciona un datePicker a todos los elementos con clase date
+ */
+function addDatePicker() {
+  $('input.date').each(function(i, el) {
+    if(!$(el).hasClass('hasDate')) {
+
+      var input = document.createElement('input');
+
+      $(input).attr({'type': 'text', 'class': 'ui-date-text'});
+      $(el).addClass('hasDate').hide().after(input);
+
+      var id = '#' + el.id;
+
+      $(input).datepicker({
+        'altFormat': 'yy-mm-dd',
+        'altField': id,
+        'showOtherMonths': true, 
+        'selectOtherMonths': true, 
+        'buttonImage': '/images/icons/calendar.gif',
+        'showOn': 'button',
+        'buttonImageOnly': true
+      });
+      try{
+        var d = $.datepicker.parseDate('yy-mm-dd', $(el).val() );
+        d = $.datepicker.formatDate($.datepicker._defaults.dateFormat, d);
+        $(input).datepicker('setDate', d);
+      }catch(e) {}
+    }
+  });
+}
+

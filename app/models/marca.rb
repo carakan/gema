@@ -1,16 +1,21 @@
 class Marca < ActiveRecord::Base
+
+  before_save :actualizar_validez
+
   belongs_to :clase
   belongs_to :tipo_marca
   #belongs_to :usuario
   belongs_to :agente
   belongs_to :titular
 
+
+
   
   validates_presence_of :nombre, :estado_fecha, :estado, :tipo_marca_id
   validates_format_of :numero_solicitud, :with => /^\d+-\d{4}$/
   validates_uniqueness_of :numero_solicitud
 
-  TIPOS = { 
+  TIPOS = {
     'sm' => 'Solicitud de Marca',
     'lp' => 'Lista de publicación',
     'lr' => 'Lista de Registro',
@@ -42,25 +47,46 @@ class Marca < ActiveRecord::Base
     "El error fue encontrado en la fila #{fila} del archivo importado" if fila and valido == false
   end
 
+  # Transforma los errores en un Hash que puede ser utilizado para JSON
+  def hashify_errors
+    self.errors.map(&:first).uniq.inject({}) { |h, v| 
+      h[v] = (self.errors[v].is_a?(Array) ) ? self.errors[v].join(', ') : self.errors[v]
+      h 
+    }
+  end
+
   def self.ver_estado(est)
     TIPOS[est]
   end
 
   # Presenta un listtado de importaciones
   def self.importaciones(page = 1)
-    total = Marca.all(:select => 'COUNT(*) as total', :group => 'fecha_importacion').size
+    Marca.table_name = 'view_importaciones'
+    marcas = Marca.paginate(:page => page)
+    marcas
+    #total = Marca.all(:select => 'COUNT(*) as total', :group => 'fecha_importacion').size
 
-    sql = 'SELECT fecha_importacion, SUM(total) AS total, SUM(errores) AS errores, estado FROM
-    (
-      SELECT fecha_importacion, COUNT(*) AS total, 0 as errores, estado FROM marcas 
-      UNION
-      SELECT fecha_importacion, 0 AS total, COUNT(*) as errores, estado FROM marcas WHERE valido = ?
-    ) AS importaciones GROUP BY fecha_importacion ORDER BY fecha_importacion'
-    if total > 0
-      self.find_by_sql( [sql, false] )
+        #if total > 0
+    #  self.find_by_sql( [sql, false] )
+    #else
+    #  []
+    #end
+  end
+
+  # indica si hay errores en un listado
+  # Debe ser un resultado de la tabla 'view_importaciones'
+  # Marca.table_name = 'view_importaciones'
+  def errores_listado
+    if self.errores.to_i > 0
+      "<span class=\"error b\">#{self.errores}</span>"
     else
-      []
+      errores
     end
+  end
+
+private
+  def actualizar_validez
+    self.valido = true if self.errors.blank?
   end
 
 end

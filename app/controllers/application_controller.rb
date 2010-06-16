@@ -13,9 +13,17 @@ class ApplicationController < ActionController::Base
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
 
+protected
+  # Pregunta si el usuario esta logueado
+  def authenticate_user!
+    redirect_to new_login_url if session[:usuario][:id].nil?
+  end
+
+
 private
   def set_page
    @page = 1
    @page = params[:page] unless params[:page].nil?
   end
+
 end

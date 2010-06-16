@@ -26,6 +26,7 @@
     </control>
     <control controlID="31" controlTypeID="com.balsamiq.mockups::TextInput" x="292" y="221" w="295" h="-1" measuredW="77" measuredH="29" zOrder="4" locked="false" isInGroup="-1">
       <controlProperties>
+        <backgroundAlpha>1</backgroundAlpha>
         <bold>false</bold>
         <text>PETRONA</text>
       </controlProperties>
@@ -53,10 +54,17 @@
         <text>Seleccionados</text>
       </controlProperties>
     </control>
+<<<<<<< HEAD
     <control controlID="37" controlTypeID="com.balsamiq.mockups::DataGrid" x="290" y="455" w="404" h="118" measuredW="121" measuredH="118" zOrder="9" locked="false" isInGroup="-1">
+=======
+    <control controlID="37" controlTypeID="com.balsamiq.mockups::DataGrid" x="290" y="455" w="404" h="118" measuredW="120" measuredH="124" zOrder="10" locked="false" isInGroup="-1">
+>>>>>>> df3af66d5ce2e323ca4635dc76ff8f9579a87aa3
       <controlProperties>
+        <bold>false</bold>
         <borderStyle>none</borderStyle>
-        <text>%20%2C%20Nombre%0A%28x%29%2C%20PETTRONA%0A%28%29%2C%20PETRONAS%0A%28%29%2C%20PETRONAL</text>
+        <rowHeight>32</rowHeight>
+        <selectedIndex>-1</selectedIndex>
+        <text>%20%2C%20*Nombre*%0A%28x%29%2C%20PETRONA%0A%28%29%2C%20PETRONAS%0A%28%29%2C%20PETRONAL</text>
         <vLines>false</vLines>
       </controlProperties>
     </control>
@@ -68,7 +76,11 @@
         <text>Seleccione%20los%20agentes%20desea%20unir%20haciendo%20click%20sobre%20el%20agente</text>
       </controlProperties>
     </control>
+<<<<<<< HEAD
     <control controlID="39" controlTypeID="com.balsamiq.mockups::PointyButton" x="423" y="588" w="61" h="-1" measuredW="48" measuredH="28" zOrder="11" locked="false" isInGroup="-1">
+=======
+    <control controlID="39" controlTypeID="com.balsamiq.mockups::PointyButton" x="431" y="603" w="61" h="-1" measuredW="48" measuredH="28" zOrder="12" locked="false" isInGroup="-1">
+>>>>>>> df3af66d5ce2e323ca4635dc76ff8f9579a87aa3
       <controlProperties>
         <color>2848996</color>
         <direction>center</direction>

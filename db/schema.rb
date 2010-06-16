@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100610231636) do
+ActiveRecord::Schema.define(:version => 20100615170142) do
 
   create_table "clases", :force => true do |t|
     t.string   "nombre"
@@ -50,22 +50,11 @@ ActiveRecord::Schema.define(:version => 20100610231636) do
 
   add_index "marcas", ["agente_id"], :name => "index_marcas_on_agente_id"
   add_index "marcas", ["clase_id"], :name => "index_marcas_on_clase_id"
+  add_index "marcas", ["fecha_importacion"], :name => "index_marcas_on_fecha_importacion"
   add_index "marcas", ["marca_id"], :name => "index_marcas_on_marca_id"
   add_index "marcas", ["tipo_marca_id"], :name => "index_marcas_on_tipo_marca_id"
   add_index "marcas", ["titular_id"], :name => "index_marcas_on_titular_id"
   add_index "marcas", ["usuario_id"], :name => "index_marcas_on_usuario_id"
-
-  create_table "reprensentates", :force => true do |t|
-    t.string   "nombre",     :limit => 150
-    t.string   "email"
-    t.string   "direccion"
-    t.string   "telefono",   :limit => 20
-    t.string   "type",       :limit => 30
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "reprensentates", ["nombre"], :name => "index_reprensentates_on_nombre"
 
   create_table "representantes", :force => true do |t|
     t.string   "nombre"
@@ -84,6 +73,17 @@ ActiveRecord::Schema.define(:version => 20100610231636) do
   create_table "tipo_marcas", :force => true do |t|
     t.string   "sigla",      :limit => 10
     t.string   "nombre",     :limit => 50
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "usuarios", :force => true do |t|
+    t.string   "nombre"
+    t.string   "rol",           :limit => 20
+    t.string   "login",         :limit => 16
+    t.string   "email"
+    t.string   "password",      :limit => 40
+    t.string   "password_salt", :limit => 32
     t.datetime "created_at"
     t.datetime "updated_at"
   end

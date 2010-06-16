@@ -1,0 +1,8 @@
+<h1>Ingresar</h1>
+ 
+<% semantic_form_for @usuario, :url => login_index_path do |f| -%> 
+  <%= f.input :login, :label => 'Usuario', :input_html => { :size => 35 } %> 
+  <%= f.input :password, :label => 'Contraseña' %> 
+  <%= f.submit "Ingresar" %> 
+<% end -%> 
+
