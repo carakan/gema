@@ -3,8 +3,23 @@
 
 <% if @mostrar == 'error' %>
   <%= render :partial => "errores" %>
-<% elsif @mostrar == 'valid' %>
-  <%= render :partial => "valid" %>
 <% else %>
   <%= render :partial => "all" %>
 <% end %>
+
+
+<script type="text/javascript">
+jQuery(function($) {
+  $('body').live('ajax:completed', function(obj, id) {
+    $('a[data-ajax_id=' + id + ']').parents('tr:first').remove();
+    var errores = parseInt( $('h2.error span.errores').html() ) - 1;
+    $('h2.error span.errores').html(errores);
+  });
+
+  $('a.ajax').live('click', function() {
+    alert('si');
+    console.log( $(this).parents('tr:first') );//.addClass('marked');
+  });
+});
+
+</script>

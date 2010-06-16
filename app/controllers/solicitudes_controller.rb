@@ -4,7 +4,7 @@ class SolicitudesController < ApplicationController
 
   # Presenta la lista de importaciones
   def index
-    @marcas = Marca.importaciones()
+    @marcas = Marca.view_importaciones()
   end
 
   def new
@@ -34,24 +34,24 @@ class SolicitudesController < ApplicationController
   def importado
     @mostrar = 'error'
     d = DateTime.parse(params[:id]) + (Time.zone.utc_offset * -1).seconds
-    conditions = { :fecha_importacion => d } 
 
     @mostrar = params[:mostrar] unless params[:mostrar].nil?
-    case @mostrar
-      when 'all'
-        @marcas = Marca.paginate( :conditions => conditions, :page => @page )
-      when 'valid'
-        @marcas = Marca.paginate( :conditions => conditions.merge( :valido => true ), :page => @page )
-      else
-        @marcas = Marca.all( :conditions => conditions.merge( :valido => false ) )
+    @marcas = Marca.buscar_importados( d, false ) if @mostrar == 'error'
+
+    @total = @marcas.size
+    if @total == 0 or @mostrar == 'all'
+      @marcas = Marca.buscar_importados(d)
+      @mostrar = 'all'
+      @marcas = @marcas.paginate(:page => @page)
     end
 
-    @total = Marca.all( :conditions =>  { :fecha_importacion => d }).size
     @path_proc = path_proc(@marcas.first)
 
   end
 
 private
+  # Sirve para poder identificar el tipo de importacion (lista)
+  # realizado
   def path_proc(marca)
     case marca.estado
       when 'sm' then lambda{ |m| edit_solicitud_marca_path(m) }

@@ -14,7 +14,7 @@ class SolicitudMarcasController < ApplicationController
         format.html { redirect_to(@marca, :notice => 'La marca fue exitosamente creada.') }
         format.xml  { render :xml => @marca, :status => :created, :location => @marca }
       else
-        format.html { render :action => "new" }
+        format.html { render :action => "new", :status => :unprocessable_entity  }
         format.xml  { render :xml => @marca.errors, :status => :unprocessable_entity }
       end
     end

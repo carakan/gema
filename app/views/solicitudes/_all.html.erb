@@ -1,5 +1,3 @@
-<h2 class="error">Numero de errores <span class="errores"><%= @marcas.size %></span></h2>
-
 <% @mostra_fila = @marcas.first.estado == 'lp' %>
 
 <table class="decorated">
@@ -8,6 +6,8 @@
 		<th>Marca</th>
 		<th>Numero Solicitud</th>
 		<th>Tipo Marca</th>
+		<th>Clase</th>
+		<th>Agente</th>
     <th></th>
     <% @marcas.each do |marca| %>
       <tr>
@@ -15,6 +15,9 @@
         <td><%= link_to marca.nombre, marca_path(marca), :class => 'ajax' %></td>
         <td><%= marca.numero_solicitud %></td>
         <td><%= marca.tipo_marca %></td>
+        <td><%= marca.clase %></td>
+        <td><%= marca.agente %></td>
+
         <td>
           <%= link_to "editar", @path_proc.call(marca), :class => 'edit ajax' %>
           <%= link_to "borrar", marca, :class => 'delete' %>
@@ -24,3 +27,5 @@
 
 	</tr>
 </table>
+
+<%= will_paginate @marcas %>

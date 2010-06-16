@@ -4,16 +4,22 @@ class Marca < ActiveRecord::Base
 
   belongs_to :clase
   belongs_to :tipo_marca
-  #belongs_to :usuario
+  belongs_to :usuario
   belongs_to :agente
   belongs_to :titular
-
-
 
   
   validates_presence_of :nombre, :estado_fecha, :estado, :tipo_marca_id
   validates_format_of :numero_solicitud, :with => /^\d+-\d{4}$/
   validates_uniqueness_of :numero_solicitud
+
+  named_scope :importados, lambda{ |fecha| 
+    { :conditions => { :fecha_importacion => fecha} } 
+  }
+
+  named_scope :importados_error, lambda{ |fecha| 
+    { :conditions => { :fecha_importacion => fecha, :valido => false} } 
+  }
 
   TIPOS = {
     'sm' => 'Solicitud de Marca',
@@ -60,7 +66,8 @@ class Marca < ActiveRecord::Base
   end
 
   # Presenta un listtado de importaciones
-  def self.importaciones(page = 1)
+  # acumuladas, desde la vista
+  def self.view_importaciones(page = 1)
     Marca.table_name = 'view_importaciones'
     marcas = Marca.paginate(:page => page)
     marcas
@@ -72,6 +79,12 @@ class Marca < ActiveRecord::Base
     #  []
     #end
   end
+
+  # Devuelve los registros y el estado
+  def self.buscar_importados(fecha, valid = true)
+    Marca.all(:conditions => { :fecha_importacion => fecha, :valido => valid }, :include => :clase, :include => :agente )
+  end
+
 
   # indica si hay errores en un listado
   # Debe ser un resultado de la tabla 'view_importaciones'

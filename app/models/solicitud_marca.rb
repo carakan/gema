@@ -31,7 +31,6 @@ class SolicitudMarca < Marca
     
   end
 
-
   # Verifica de que el archivo sea valido
   def self.importacion_validar_archivo(archivo)
     raise "Debe seleccionar un archivo" if archivo.nil?
@@ -55,7 +54,7 @@ class SolicitudMarca < Marca
 
     klass = self.new( :activo => true, :valido => true, :fila => fila,
                      :fecha_importacion => fecha_imp, :estado => 'sm',
-                   :agente_id => agente.id, :titular_id => titular.id )
+                   :agente_id => agente.id, :titular_id => titular.id, :usuario_id => UsuarioSession.current_user[:id] )
 
     EXCEL_COLS.each{ |k, v| klass.send("#{k}=", excel.cell(fila, v) ) }
     c = Clase.find_by_codigo(excel.cell(fila, 'G'))

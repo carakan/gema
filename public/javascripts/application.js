@@ -18,8 +18,10 @@ jQuery(function($) {
    * Para presentar formulario AJAX
    */
   $('a.ajax').live("click", function(e) {
+    var id = (new Date).getTime().toString();
+    $(this).attr('data-ajax_id', id);
     var div = document.createElement('div');
-    $(div).attr( 'id', (new Date).getTime.toString() ).addClass('ajax-modal').css( { 'z-index': 1000 } );
+    $(div).attr( 'id', (new Date).getTime.toString() ).addClass('ajax-modal').css( { 'z-index': 1000 } ).attr('data-ajax_id', id);
     $(div).load( $(this).attr("href") );
     $(div).dialog({ 'width': 800, 'height' : 400, 'modal': true, 'resizable' : false });
 
@@ -35,17 +37,24 @@ jQuery(function($) {
 
     var data = serializeFormElements(this);
 
+    var el = this;
+
     $.ajax({
-      'url': $(this).attr('action'),
-      'context':this,
+      'url': $(el).attr('action'),
+      'cache': false,
+      //'context':this,
       'data':data,
-      'type': data['_method'] || 'post',
+      'type': (data['_method'] || 'post'),
       'success': function(resp) {
-        var p = $(this).parents('div.ajax-modal');
-        $(p).dialog('destroy');
-        $(p).remove();
-        //
-        $('body').trigger('ajax:completed');
+      },
+      'complete': function(resp) {
+        if(resp.status < 400) {
+          var p = $(el).parents('div.ajax-modal');
+          var id = $(p).attr('data-ajax_id');
+          $(p).dialog('destroy');
+          $(p).remove();
+          $('body').trigger('ajax:completed', [id]);
+        }
       },
       'error': function(resp) {
         alert('Existen errores en su formulario por favor corrija los errores');
@@ -82,6 +91,34 @@ jQuery(function($) {
 
   $('body').ajaxComplete(function() {
     callFunctions();
+  });
+
+
+  $('a.delete').live("click", function(e) {
+    $(this).parents("tr:first").addClass('marked');
+    if(confirm('Esta seguro de borrar el item seleccionado')) {
+      var url = $(this).attr('href');
+
+      $.ajax({
+        'url': url,
+        'type': 'delete',
+        'context': this,
+        'success': function() {
+          $(el).parents("tr:first").removeClass('marked');
+          $(el).removeClass('marked');
+
+          $('body').trigger('ajax:delete', url);
+        },
+        'error': function() {
+          alert('Existio un error al borrar');
+        }
+      });
+
+    }else{
+      $(this).parents("tr:first").removeClass('marked');
+      e.stopPropagation();
+      return false;
+    }
   });
 
   /****************/
@@ -131,6 +168,8 @@ jQuery(function($) {
     });
     */
 });
+/*jQuery*/
+/*****************************************************************/
 
 /**
  * Serializa los datos de un formulario para hacer submit mediante AJAX
@@ -178,3 +217,18 @@ function addDatePicker() {
   });
 }
 
+/**
+ * Mark
+ * @param String // jQuery selector
+ * @param Integer velocity
+ */
+function mark(selector, velocity, val) {
+  val = val || 0;
+  $(selector).css({'background': 'rgb(255,255,'+val+')'});
+  if(val >= 255)
+    return false;
+  setTimeout(function() {
+    val+=5;
+    mark(selector, velocity, val);
+  }, velocity);
+}

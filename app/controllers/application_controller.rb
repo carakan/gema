@@ -4,6 +4,7 @@
 class ApplicationController < ActionController::Base
 
   before_filter :set_page
+  before_filter :set_user_session, :if => :user_signed_in?
 
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
@@ -19,11 +20,23 @@ protected
     redirect_to new_login_url if session[:usuario][:id].nil?
   end
 
+  # Indica si el usuario ha ingresado al sistema
+  def user_signed_in?
+    return false if session[:usuario].nil?
+    not session[:usuario][:id].nil?
+  end
+  
+  helper_method :user_signed_in?
+
 
 private
   def set_page
    @page = 1
    @page = params[:page] unless params[:page].nil?
+  end
+
+  def set_user_session
+    UsuarioSession.current_user = session[:usuario]
   end
 
 end
