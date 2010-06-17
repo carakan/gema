@@ -5,6 +5,7 @@ class CreateMarcas < ActiveRecord::Migration
       t.integer :usuario_id
       t.integer :titular_id
       t.integer :agente_id
+      t.integer :tipo_signo_id
       t.integer :tipo_marca_id
       t.integer :clase_id
       t.string :numero_solicitud, :limit => 40
@@ -31,6 +32,7 @@ class CreateMarcas < ActiveRecord::Migration
 
     add_index :marcas, :agente_id
     add_index :marcas, :titular_id
+    add_index :marcas, :tipo_signo_id
     add_index :marcas, :tipo_marca_id
     add_index :marcas, :clase_id
     add_index :marcas, :usuario_id

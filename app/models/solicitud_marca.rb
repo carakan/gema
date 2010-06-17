@@ -54,7 +54,7 @@ class SolicitudMarca < Marca
 
     klass = self.new( :activo => true, :valido => true, :fila => fila,
                      :fecha_importacion => fecha_imp, :estado => 'sm',
-                   :agente_id => agente.id, :titular_id => titular.id, :usuario_id => UsuarioSession.current_user[:id] )
+                   :agente_id => agente.id, :titular_id => titular.id )
 
     EXCEL_COLS.each{ |k, v| klass.send("#{k}=", excel.cell(fila, v) ) }
     c = Clase.find_by_codigo(excel.cell(fila, 'G'))
@@ -63,8 +63,8 @@ class SolicitudMarca < Marca
     # Para que se pueda tener un formato definido
     klass.numero_solicitud = klass.numero_solicitud.gsub(/\s/, '').gsub(/–/, '-') unless klass.numero_solicitud.nil? 
     # Buscar id de la denominacion
-    t = TipoMarca.find_by_nombre_or_sigla(excel.cell(fila, 'F'), excel.cell(fila, 'F') )
-    klass.tipo_marca_id = t.id unless t.nil?
+    t = TipoSigno.find_by_nombre_or_sigla(excel.cell(fila, 'F'), excel.cell(fila, 'F') )
+    klass.tipo_signo_id = t.id unless t.nil?
 
     unless klass.save
       # Salva todas las clases con error

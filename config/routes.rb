@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :tipo_marcas
+
   map.resources :usuarios
 
   #map.resources :representantes
@@ -6,7 +8,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :agentes
 
-  map.resources :tipo_marcas
+  map.resources :tipo_signos
 
   map.resources :testes
 

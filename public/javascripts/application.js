@@ -98,14 +98,14 @@ jQuery(function($) {
     $(this).parents("tr:first").addClass('marked');
     if(confirm('Esta seguro de borrar el item seleccionado')) {
       var url = $(this).attr('href');
+      var el = this;
 
       $.ajax({
         'url': url,
         'type': 'delete',
-        'context': this,
+        'context': el,
         'success': function() {
-          $(el).parents("tr:first").removeClass('marked');
-          $(el).removeClass('marked');
+          $(el).parents("tr:first").remove();
 
           $('body').trigger('ajax:delete', url);
         },
@@ -117,8 +117,9 @@ jQuery(function($) {
     }else{
       $(this).parents("tr:first").removeClass('marked');
       e.stopPropagation();
-      return false;
     }
+
+    return false;
   });
 
   /****************/

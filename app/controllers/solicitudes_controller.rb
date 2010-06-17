@@ -38,24 +38,10 @@ class SolicitudesController < ApplicationController
     @mostrar = params[:mostrar] unless params[:mostrar].nil?
     @marcas = Marca.buscar_importados( d, false ) if @mostrar == 'error'
 
-    @total = @marcas.size
     if @total == 0 or @mostrar == 'all'
       @marcas = Marca.buscar_importados(d)
       @mostrar = 'all'
       @marcas = @marcas.paginate(:page => @page)
-    end
-
-    @path_proc = path_proc(@marcas.first)
-
-  end
-
-private
-  # Sirve para poder identificar el tipo de importacion (lista)
-  # realizado
-  def path_proc(marca)
-    case marca.estado
-      when 'sm' then lambda{ |m| edit_solicitud_marca_path(m) }
-      when 'lp' then lambda{ |m| edit_lista_publicacion_path(m) }
     end
   end
 

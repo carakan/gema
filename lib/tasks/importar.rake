@@ -17,4 +17,24 @@ namespace :importar do
       end
     end
   end
+
+  desc 'Descarga de http://www.senapi.gob.bo/ los archivos de publicacion'
+  task :descargar_publicaciones do
+    require 'mechanize'
+    require 'ruby-debug'
+    #require 'oper-uri'
+    dir = File.join( File.dirname(__FILE__), 'archivos', 'temp', 'senapi')
+    Dir.chdir(dir)
+
+    m = Mechanize.new
+    m.get('http://www.senapi.gob.bo/publicaciones.asp') do |page|
+
+      page.links.each do |link|
+        if link.text =~ /Signos D/
+          system("wget http://#{page.uri.host}/#{link.href}")
+        end
+      end
+    end
+  end
+
 end

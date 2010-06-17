@@ -1,6 +1,6 @@
-class CreateTipoMarcas < ActiveRecord::Migration
+class CreateTipoSignos < ActiveRecord::Migration
   def self.up
-    create_table :tipo_marcas do |t|
+    create_table :tipo_signos do |t|
       t.string :sigla, :limit => 10
       t.string :nombre, :limit => 50
 

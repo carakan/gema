@@ -7,9 +7,10 @@
 #   Major.create(:name => 'Daley', :city => cities.first)
 Usuario.create!(:nombre => 'Admin', :login => 'admin', :password => 'demo123' )
 
-TipoMarca.create!(:nombre => 'Denominación', :sigla => 'Den.' )
-TipoMarca.create!(:nombre => 'Figurativa', :sigla => 'Fig.' )
-TipoMarca.create!(:nombre => 'Mixta', :sigla => 'Mix.' )
-TipoMarca.create!(:nombre => 'Tridimensional', :sigla => 'Tri.' )
+TipoSigno.create!(:nombre => 'Denominación', :sigla => 'Den.' )
+TipoSigno.create!(:nombre => 'Figurativa', :sigla => 'Fig.' )
+TipoSigno.create!(:nombre => 'Mixta', :sigla => 'Mix.' )
+TipoSigno.create!(:nombre => 'Tridimensional', :sigla => 'Tri.' )
+TipoSigno.create!(:nombre => 'Auditiva', :sigla => 'Aud.' )
 
 Rake::Task["importar:clases"].execute

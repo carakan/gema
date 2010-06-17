@@ -1,15 +1,17 @@
 class Marca < ActiveRecord::Base
 
   before_save :actualizar_validez
+  before_save :adicionar_usuario
 
   belongs_to :clase
+  belongs_to :tipo_signo
   belongs_to :tipo_marca
   belongs_to :usuario
   belongs_to :agente
   belongs_to :titular
 
   
-  validates_presence_of :nombre, :estado_fecha, :estado, :tipo_marca_id
+  validates_presence_of :nombre, :estado_fecha, :estado, :tipo_signo_id, :clase_id
   validates_format_of :numero_solicitud, :with => /^\d+-\d{4}$/
   validates_uniqueness_of :numero_solicitud
 
@@ -34,7 +36,7 @@ class Marca < ActiveRecord::Base
     :estado_fecha => 'A', # No es necesario dado que se ingresa la fecha
     :numero_solicitud => 'B',
     :nombre => 'E'
-    # :tipo_marca_id => 'F',
+    # :tipo_signo_id => 'F',
     #:clase_id => 'G'
   }
 
@@ -82,7 +84,7 @@ class Marca < ActiveRecord::Base
 
   # Devuelve los registros y el estado
   def self.buscar_importados(fecha, valid = true)
-    Marca.all(:conditions => { :fecha_importacion => fecha, :valido => valid }, :include => :clase, :include => :agente )
+    Marca.all(:conditions => { :fecha_importacion => fecha, :valido => valid }, :include => [ :clase, :agente, :tipo_signo ] )
   end
 
 
@@ -100,6 +102,10 @@ class Marca < ActiveRecord::Base
 private
   def actualizar_validez
     self.valido = true if self.errors.blank?
+  end
+
+  def adicionar_usuario
+    self.usuario_id = UsuarioSession.current_user[:id]
   end
 
 end

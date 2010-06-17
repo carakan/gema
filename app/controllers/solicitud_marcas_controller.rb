@@ -42,4 +42,14 @@ class SolicitudMarcasController < ApplicationController
   def show
     @marca = SolicitudMarca.find(params[:id])
   end
+
+  def destroy
+    @marca = Marca.find(params[:id])
+    @marca.destroy
+
+    respond_to do |format|
+      format.html { redirect_to(solicitud_marcas_url) }
+      format.xml  { head :ok }
+    end
+  end
 end

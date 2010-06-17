@@ -1,5 +1,5 @@
 <h1>Importación <%= @marcas.first.ver_estado %></h1>
-<h2>Importados <%= @total %> el <%= fecha_hora @marcas.first.fecha_importacion, :long  %></h2>
+<h2>Importados el <%= fecha_hora @marcas.first.fecha_importacion, :long  %></h2>
 
 <% if @mostrar == 'error' %>
   <%= render :partial => "errores" %>
@@ -10,8 +10,14 @@
 
 <script type="text/javascript">
 jQuery(function($) {
-  $('body').live('ajax:completed', function(obj, id) {
-    $('a[data-ajax_id=' + id + ']').parents('tr:first').remove();
+  $('body').live('ajax:completed ajax:delete', function(obj, id) {
+
+    if(obj.type == 'ajax:delete') {
+      var css_exp = 'a[href=' + id + ']';
+    }else{
+      var css_exp = 'a[data-ajax_id=' + id + ']';
+    }
+    $(css_exp).parents('tr:first').remove();
     var errores = parseInt( $('h2.error span.errores').html() ) - 1;
     $('h2.error span.errores').html(errores);
   });
@@ -20,6 +26,8 @@ jQuery(function($) {
     alert('si');
     console.log( $(this).parents('tr:first') );//.addClass('marked');
   });
+
+
 });
 
 </script>

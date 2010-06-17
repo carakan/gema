@@ -1,5 +1,7 @@
 # eoncoding: utf-8
 class ListaPublicacion < Marca
+
+  validates_presence_of :tipo_marca_id
   
   def self.importar(archivo, gaceta = '')
     case File.extname(archivo.original_filename.downcase)
@@ -12,10 +14,10 @@ class ListaPublicacion < Marca
 
   # Realiza la importación de un PDF
   def self.importar_pdf(archivo)
-    dir = File.join( Rails.root, 'archivos/temp/pdf/', Time.now.to_i.to_s )
-    FileUtils.mkdir(dir)
-    pdf_path = "#{ dir }/#{ File.basename( archivo.path ) }"
-    FileUtils.mv( archivo.path, pdf_path )
+
+    pdf_path = preparar_pdf2html(archivo)
+
+    fecha_imp = DateTime.now.strftime("%Y-%m-%d %H:%I:%S")
 
     # Ejecutar comando
     %x[pdftohtml -c #{ pdf_path }]
@@ -25,22 +27,33 @@ class ListaPublicacion < Marca
     Dir.glob("#{ File.dirname(pdf_path) }/*.html").each do |html|
       datos = extraer_datos_html(html)
 
-      datos.each{ |dato|
+      datos.each{ |params|
+        actualizar_datos(params, fecha_imp)
         # Deberia buscar
         # Marca.find_by_numero_solicitud( dato[:numero_solicitud])
-        m = Marca.new(dato)
         #if m.create(dato)
         #else
         #end
-        m.save( false )
       }
     end
 
     FileUtils.remove_dir(dir)
   end
 
-
   def self.importar_excel(archivo)
+  end
+
+private
+  def preparar_pdf2html(archivo)
+    dir = File.join( Rails.root, 'archivos/temp/pdf/', Time.now.to_i.to_s )
+    FileUtils.mkdir(dir)
+    pdf_path = "#{ dir }/#{ File.basename( archivo.path ) }"
+    FileUtils.mv( archivo.path, pdf_path )
+    pdf_path
+  end
+
+  # Busca o actualiza los datos cargados a traves de la importacion
+  def self.actualizar_datos(params, fecha_imp)
   end
 
 protected
@@ -60,7 +73,7 @@ protected
       if text == 'NUMERO DE PUBLICACION'
         unless dato.empty?
           datos.push( dato )
-          dato = {}
+          dato = { :titular => {}, :agente => {} }
         end
         dato[:numero_publicacion] = div.next_element.text.gsub(regexp, '').gsub(regblank, '')
       end
@@ -79,14 +92,15 @@ protected
         dato[:clase_id] = div.next_element.text.gsub(regexp, '').gsub(regblank, '') 
       end
 
-      #if text == 'DIRECCION DEL TITULAR'
-      #end
-      #if text == 'NOMBRE DEL TITULAR'
-      #end
-      #if text == 'PAIS DEL TITULAR'
-      #end
-      #if text == 'NOMBRE DEL APODERADO'
-      #end
+      if text == 'DIRECCION DEL TITULAR'
+        data[:titular][:direccion] = ''
+      end
+      if text == 'NOMBRE DEL TITULAR'
+      end
+      if text == 'PAIS DEL TITULAR'
+      end
+      if text == 'NOMBRE DEL APODERADO'
+      end
 
       i += 1
     end

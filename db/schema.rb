@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(:version => 20100615170142) do
 
   add_index "representantes", ["nombre"], :name => "index_representantes_on_nombre"
 
-  create_table "tipo_marcas", :force => true do |t|
+  create_table "tipo_signos", :force => true do |t|
     t.string   "sigla",      :limit => 10
     t.string   "nombre",     :limit => 50
     t.datetime "created_at"

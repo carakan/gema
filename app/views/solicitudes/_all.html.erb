@@ -19,8 +19,7 @@
         <td><%= marca.agente %></td>
 
         <td>
-          <%= link_to "editar", @path_proc.call(marca), :class => 'edit ajax' %>
-          <%= link_to "borrar", marca, :class => 'delete' %>
+          <%= links_for_marca marca %>
         </td>
       </tr>
     <% end %>
