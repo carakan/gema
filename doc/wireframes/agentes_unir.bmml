@@ -12,53 +12,54 @@
         <color>11776947</color>
       </controlProperties>
     </control>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::LinkBar" x="249" y="111" w="-1" h="-1" measuredW="200" measuredH="25" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>%20%20Inicio%2C%20Cargas%2C%20Vigilancia</text>
+      </controlProperties>
+    </control>
     <control controlID="3" controlTypeID="com.balsamiq.mockups::Canvas" x="245" y="110" w="743" h="26" measuredW="100" measuredH="70" zOrder="2" locked="false" isInGroup="-1">
       <controlProperties>
         <borderStyle>none</borderStyle>
         <color>16777062</color>
       </controlProperties>
     </control>
-    <control controlID="4" controlTypeID="com.balsamiq.mockups::Title" x="290" y="145" w="-1" h="-1" measuredW="202" measuredH="51" zOrder="3" locked="false" isInGroup="-1">
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::Title" x="290" y="145" w="-1" h="-1" measuredW="202" measuredH="51" zOrder="4" locked="false" isInGroup="-1">
       <controlProperties>
         <size>32</size>
         <text>Unir%20agentes</text>
       </controlProperties>
     </control>
-    <control controlID="31" controlTypeID="com.balsamiq.mockups::TextInput" x="292" y="221" w="295" h="-1" measuredW="77" measuredH="29" zOrder="4" locked="false" isInGroup="-1">
+    <control controlID="31" controlTypeID="com.balsamiq.mockups::TextInput" x="292" y="221" w="295" h="-1" measuredW="77" measuredH="29" zOrder="5" locked="false" isInGroup="-1">
       <controlProperties>
         <backgroundAlpha>1</backgroundAlpha>
         <bold>false</bold>
         <text>PETRONA</text>
       </controlProperties>
     </control>
-    <control controlID="33" controlTypeID="com.balsamiq.mockups::List" x="290" y="304" w="404" h="100" measuredW="100" measuredH="126" zOrder="5" locked="false" isInGroup="-1">
+    <control controlID="33" controlTypeID="com.balsamiq.mockups::List" x="290" y="304" w="404" h="100" measuredW="100" measuredH="126" zOrder="6" locked="false" isInGroup="-1">
       <controlProperties>
         <bold>false</bold>
         <text>PETRONA%0APETRONAL%0APETRONAS</text>
         <verticalScrollbar>true</verticalScrollbar>
       </controlProperties>
     </control>
-    <control controlID="34" controlTypeID="com.balsamiq.mockups::Label" x="292" y="261" w="-1" h="-1" measuredW="124" measuredH="25" zOrder="6" locked="false" isInGroup="-1">
+    <control controlID="34" controlTypeID="com.balsamiq.mockups::Label" x="292" y="261" w="-1" h="-1" measuredW="124" measuredH="25" zOrder="7" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Lista%20de%20resultados</text>
       </controlProperties>
     </control>
-    <control controlID="35" controlTypeID="com.balsamiq.mockups::Label" x="292" y="196" w="-1" h="-1" measuredW="47" measuredH="25" zOrder="7" locked="false" isInGroup="-1">
+    <control controlID="35" controlTypeID="com.balsamiq.mockups::Label" x="292" y="196" w="-1" h="-1" measuredW="47" measuredH="25" zOrder="8" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Buscar</text>
       </controlProperties>
     </control>
-    <control controlID="36" controlTypeID="com.balsamiq.mockups::Title" x="290" y="415" w="-1" h="-1" measuredW="163" measuredH="40" zOrder="8" locked="false" isInGroup="-1">
+    <control controlID="36" controlTypeID="com.balsamiq.mockups::Title" x="290" y="415" w="-1" h="-1" measuredW="163" measuredH="40" zOrder="9" locked="false" isInGroup="-1">
       <controlProperties>
         <size>24</size>
         <text>Seleccionados</text>
       </controlProperties>
     </control>
-<<<<<<< HEAD
-    <control controlID="37" controlTypeID="com.balsamiq.mockups::DataGrid" x="290" y="455" w="404" h="118" measuredW="121" measuredH="118" zOrder="9" locked="false" isInGroup="-1">
-=======
     <control controlID="37" controlTypeID="com.balsamiq.mockups::DataGrid" x="290" y="455" w="404" h="118" measuredW="120" measuredH="124" zOrder="10" locked="false" isInGroup="-1">
->>>>>>> df3af66d5ce2e323ca4635dc76ff8f9579a87aa3
       <controlProperties>
         <bold>false</bold>
         <borderStyle>none</borderStyle>
@@ -68,7 +69,7 @@
         <vLines>false</vLines>
       </controlProperties>
     </control>
-    <control controlID="38" controlTypeID="com.balsamiq.mockups::Paragraph" x="290" y="280" w="413" h="30" measuredW="200" measuredH="140" zOrder="10" locked="false" isInGroup="-1">
+    <control controlID="38" controlTypeID="com.balsamiq.mockups::Paragraph" x="290" y="280" w="413" h="30" measuredW="200" measuredH="140" zOrder="11" locked="false" isInGroup="-1">
       <controlProperties>
         <bold>false</bold>
         <color>5263440</color>
@@ -76,21 +77,11 @@
         <text>Seleccione%20los%20agentes%20desea%20unir%20haciendo%20click%20sobre%20el%20agente</text>
       </controlProperties>
     </control>
-<<<<<<< HEAD
-    <control controlID="39" controlTypeID="com.balsamiq.mockups::PointyButton" x="423" y="588" w="61" h="-1" measuredW="48" measuredH="28" zOrder="11" locked="false" isInGroup="-1">
-=======
     <control controlID="39" controlTypeID="com.balsamiq.mockups::PointyButton" x="431" y="603" w="61" h="-1" measuredW="48" measuredH="28" zOrder="12" locked="false" isInGroup="-1">
->>>>>>> df3af66d5ce2e323ca4635dc76ff8f9579a87aa3
       <controlProperties>
         <color>2848996</color>
         <direction>center</direction>
         <text>Unir</text>
-      </controlProperties>
-    </control>
-    <control controlID="40" controlTypeID="com.balsamiq.mockups::LinkBar" x="249" y="111" w="-1" h="-1" measuredW="461" measuredH="25" zOrder="12" locked="false" isInGroup="-1">
-      <controlProperties>
-        <hrefs>%2Csolicitudes_listado%26bm%3Bsolicitudes_listado.bmml%26bm%3Bsolicitudes_listado.bmml%26bm%3Bsolicitudes_listado.bmml%2C%2C%2C%2C</hrefs>
-        <text>%20%20Inicio%2C%20Solicitudes%2C%20Vigilancia%2C%20Agentes%2C%20Titulares%2C%20Usuarios</text>
       </controlProperties>
     </control>
   </controls>
