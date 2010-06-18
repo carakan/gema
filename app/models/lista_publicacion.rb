@@ -29,11 +29,6 @@ class ListaPublicacion < Marca
 
       datos.each{ |params|
         actualizar_datos(params, fecha_imp)
-        # Deberia buscar
-        # Marca.find_by_numero_solicitud( dato[:numero_solicitud])
-        #if m.create(dato)
-        #else
-        #end
       }
     end
 
@@ -54,10 +49,11 @@ private
 
   # Busca o actualiza los datos cargados a traves de la importacion
   def self.actualizar_datos(params, fecha_imp)
+
   end
 
-protected
-  def self.extraer_datos_html(html)
+  # Busca los elementos de acuerod al formato
+  def self.extraer_datos_html(html, formato)
     n = Nokogiri::HTML( File.open(html) )
     i = 1
     numero = 0
@@ -109,6 +105,24 @@ protected
 
     datos
 
+  end
+
+  def self.coordenadas(elem, args)
+    text = ""
+    unless args.is_a? Array
+      arr = [args]
+    end
+
+    arr.each do |pos|
+      
+    end
+  end
+
+  def self.buscar_siguiente(pos, i)
+
+  end
+
+  def self.buscar_anterior(pos, i)
   end
 
 end
