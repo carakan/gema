@@ -4,7 +4,7 @@ class Representante < ActiveRecord::Base
 
   validates_presence_of :nombre, :if => :validar
   validates_presence_of :email, :if => :validar
-  validates_format_of :email, :with => EMAIL_REG, :if => :validar
+  validates_format_of :email, :with => Constants::EMAIL_REG, :if => :validar
 
   attr_accessor :validar
 
