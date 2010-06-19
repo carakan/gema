@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(:version => 20100617215723) do
   add_index "marcas", ["tipo_marca_id"], :name => "index_marcas_on_tipo_marca_id"
   add_index "marcas", ["tipo_signo_id"], :name => "index_marcas_on_tipo_signo_id"
   add_index "marcas", ["titular_id"], :name => "index_marcas_on_titular_id"
+  add_index "marcas", ["type"], :name => "index_marcas_on_type"
   add_index "marcas", ["usuario_id"], :name => "index_marcas_on_usuario_id"
 
   create_table "representantes", :force => true do |t|

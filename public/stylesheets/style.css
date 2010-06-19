@@ -86,6 +86,10 @@ div#cont {
   text-align: left;
   margin: auto;
 }
+div#header {
+  height: 90px;
+  background: transparent url(../images/logo-orpan.jpg) no-repeat 20px 0px;
+}
 form ol {
   padding: 0px;
   margin: 0px;
