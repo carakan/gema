@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20100617215723) do
   end
 
   create_table "marcas", :force => true do |t|
+    t.integer  "parent_id",                        :default => 0
     t.integer  "marca_id"
     t.integer  "usuario_id"
     t.integer  "titular_id"
@@ -45,6 +46,7 @@ ActiveRecord::Schema.define(:version => 20100617215723) do
     t.datetime "fecha_importacion"
     t.boolean  "activo"
     t.boolean  "valido"
+    t.string   "cambios"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

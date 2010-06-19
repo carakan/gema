@@ -429,3 +429,4 @@ ul.menu li:hover ul {
 .b { font-weight: bold; }
 .ajax-modal { background-color: #ffffff !important; }
 .marked { background-color: #d5e1f1; }
+.hide { display: none; }

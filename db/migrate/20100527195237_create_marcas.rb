@@ -1,6 +1,7 @@
 class CreateMarcas < ActiveRecord::Migration
   def self.up
     create_table :marcas do |t|
+      t.integer :parent_id, :default => 0
       t.integer :marca_id
       t.integer :usuario_id
       t.integer :titular_id
@@ -26,6 +27,7 @@ class CreateMarcas < ActiveRecord::Migration
       t.datetime :fecha_importacion
       t.boolean :activo
       t.boolean :valido # Para indicar si la importación fue válida
+      t.string :cambios # Indica que campos han sido modificados
 
       t.timestamps
     end
@@ -39,6 +41,7 @@ class CreateMarcas < ActiveRecord::Migration
     add_index :marcas, :marca_id
 
     add_index :marcas, :fecha_importacion
+    add_index :marcas, :type
 
   end
 

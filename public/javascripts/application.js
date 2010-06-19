@@ -36,13 +36,12 @@ jQuery(function($) {
   $('div.ajax-modal form').live('submit', function() {
 
     var data = serializeFormElements(this);
-
     var el = this;
 
     $.ajax({
       'url': $(el).attr('action'),
-      'cache': false,
-      //'context':this,
+//      'cache': false,
+      'context':el,
       'data':data,
       'type': (data['_method'] || 'post'),
       'success': function(resp) {
@@ -196,7 +195,8 @@ function addDatePicker() {
       var input = document.createElement('input');
 
       $(input).attr({'type': 'text', 'class': 'ui-date-text'});
-      $(el).addClass('hasDate').hide().after(input);
+      $(el).addClass('hasDate hide').after(input);
+ //     $(el).hide().attr({'type': 'hidden'});
 
       var id = '#' + el.id;
 
