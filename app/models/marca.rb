@@ -2,6 +2,7 @@ class Marca < ActiveRecord::Base
 
   before_save :actualizar_validez
   before_save :adicionar_usuario
+  before_update :crear_historico
 
   belongs_to :clase
   belongs_to :tipo_signo
@@ -14,6 +15,11 @@ class Marca < ActiveRecord::Base
   validates_presence_of :nombre, :estado_fecha, :estado, :tipo_signo_id, :clase_id
   validates_format_of :numero_solicitud, :with => /^\d+-\d{4}$/
   validates_uniqueness_of :numero_solicitud
+
+
+  serialize :cambios
+
+  default_scope :conditions => "marcas.parent_id = 0"
 
   named_scope :importados, lambda{ |fecha| 
     { :conditions => { :fecha_importacion => fecha} } 
@@ -67,19 +73,17 @@ class Marca < ActiveRecord::Base
     TIPOS[est]
   end
 
+  #def self.all(*args)
+  #  options = args.extract_options!
+  #  super options#, :conditions => "marcas.parent_id = 0"
+  #end
+
   # Presenta un listtado de importaciones
   # acumuladas, desde la vista
   def self.view_importaciones(page = 1)
     Marca.table_name = 'view_importaciones'
-    marcas = Marca.paginate(:page => page)
+    marcas = Marca.send(:with_exclusive_scope) { Marca.paginate(:page => page) }
     marcas
-    #total = Marca.all(:select => 'COUNT(*) as total', :group => 'fecha_importacion').size
-
-        #if total > 0
-    #  self.find_by_sql( [sql, false] )
-    #else
-    #  []
-    #end
   end
 
   # Devuelve los registros y el estado
@@ -99,6 +103,10 @@ class Marca < ActiveRecord::Base
     end
   end
 
+  def self.historial(id)
+    Marca.send(:with_exclusive_scope) { Marca.all(:conditions => ["marcas.parent_id = ?", id]) }
+  end
+
 private
   def actualizar_validez
     self.valido = true if self.errors.blank?
@@ -107,5 +115,14 @@ private
   def adicionar_usuario
     self.usuario_id = UsuarioSession.current_user[:id]
   end
+
+  def crear_historico
+    params = self.class.column_names.inject({}){ |hash, col| hash[col] = self.send(col); hash }.merge(:parent_id => self.id)
+    params.delete(:id)
+    m = self.class.new(params)
+    m.save(false)
+    self.cambios =  self.changes.keys.select{ |v| not [:valido, :fila].include?(v) }
+  end
+
 
 end
