@@ -1,0 +1,20 @@
+<h2>Listado de agentes</h2>
+<table class="decorated">
+    <tr>
+      <th>Nombre</th>
+      <th>Direccion</th>
+      <th>Telefono</th>
+      <th>Email</th>
+    </tr>
+
+<% @agentes.each do |agente| %>
+  <tr>
+   <td><%=h agente.nombre %></td>
+   <td><%=h agente.direccion %></td>
+   <td><%=h agente.telefono %></td>
+   <td><%=h agente.email %></td>
+   <td><%=h links(agente)  %></td>
+  </tr>
+
+<% end -%>
+</table>
