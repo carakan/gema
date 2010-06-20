@@ -11,12 +11,11 @@ module PDF
     REGMARCA = /[^\w\sÑñáéíóú()]/i
     REGBLANK = /\302\240/
 
-    def acts_as_pdftohtml(pdf, css, metodo, lista, primer_identificador)
+    def acts_as_pdftohtml(pdf, css, metodo, lista)
       @pdf_path = File.join(Rails.root, pdf)
       @css_selector = css
       @lista = lista
       @metodo = metodo
-      @primer_identificador = primer_identificador
       @posicion = 0 # Posicion en la lista de divs (elementos) que se encuentra
     end
 
@@ -41,33 +40,48 @@ module PDF
 
 
     # Busca los elementos de acuerod al formato
+    # Es necesario validar cual es el primer dato que se envia ya que
+    # debido a que los tags son una lista puede realizarse una busqueda
+    # en otro contexto, y sobrepasarse al primero de la lista 2 veces
     def extraer_datos_html(html)
       n = Nokogiri::HTML( File.open(html) )
       arr = []
       divs = n.css(@css_selector)
       @fin = false
 
-      while @fin == false
-        h = {}
-        @recorridos = []
+      divs.each_with_index do |div, i| 
+        hash = {}
         @lista.each do |v|
           k, pos = v
-          h[k] = buscar_por_nombre(divs, k, pos)
+          primero = @lista.first[0] == k
+          hash[k] = buscar_por_nombre(divs, k, pos, primero)
+          if hash[k] == false
+            hash.delete(k)
+            break
+          end
+        debugger
+        s=0
         end
-        arr << h
+        arr << hash
       end
+
+      arr
     end
 
     # Busca en la lista de tags
     # @param element
     # @param String nombre
-    # @param pos
-    def buscar_por_nombre(elements, nombre, desplazar)
-      (posicion..elements.size).each do |i|
+    # @param Integer pos
+    # @param [true, false] Ayuda a identificar si es el primero de la lista
+    def buscar_por_nombre(elements, nombre, desplazar, primero)
+      # Identifica si es el primer elemento
+      
+      (posicion..(elements.size - 1)).each do |i|
         text = elements[i].text.gsub(REGBLANK, '').strip
+        # Retorna false si es que ya esta buscando en otro contenido
+        return false if text == @lista.first[0] and !primero
 
         if text == nombre
-          @recorridos << nombre
           # Importante
           @posicion = i
           if desplazar > 0
@@ -76,6 +90,12 @@ module PDF
             return buscar_anterior(elements[i], desplazar).gsub(REGBLANK, '')
           end
         end
+
+        if (elements.size - 1) == i
+          @posicion = i
+          return false
+        end
+
       end
 
     end
