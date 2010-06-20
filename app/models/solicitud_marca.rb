@@ -76,9 +76,4 @@ class SolicitudMarca < Marca
     klass
   end
 
-  # Chapi test
-  #def self.er
-  #  raise "Error"
-  #end
-
 end

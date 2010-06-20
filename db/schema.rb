@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100617215723) do
+ActiveRecord::Schema.define(:version => 20100620185547) do
 
   create_table "clases", :force => true do |t|
     t.string   "nombre"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(:version => 20100617215723) do
     t.string   "cambios"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "anterior",                         :default => false
   end
 
   add_index "marcas", ["agente_id"], :name => "index_marcas_on_agente_id"

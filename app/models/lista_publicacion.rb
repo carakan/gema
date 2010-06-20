@@ -2,6 +2,7 @@
 class ListaPublicacion < Marca
 
   validates_presence_of :tipo_marca_id
+  validate :existencia_anterior
   
   #####################################
   # Importacion de excel
@@ -23,7 +24,7 @@ class ListaPublicacion < Marca
       ['PRODUCTOS' , 1],
       ['CLASE INTERNACIONAL' , 1]
   ]
-  acts_as_pdftohtml('archivos/temp/pdf/', 'div>div', :actualizar_datos_pdf , @lista_pub)
+  acts_as_pdftohtml('archivos/temp/pdf/', 'div>div', :preparar_datos_pdf , @lista_pub)
 
 
   def self.importar(archivo, gaceta = '')
@@ -43,8 +44,32 @@ class ListaPublicacion < Marca
     "#{fec[0, 4]}-#{fec[4, 2]}-#{fec[6, 2]}"
   end
 
+  # Debe indicarse de que no existio una marca anterior de la cual se
+  # actualizo sus datos
+  def.self.crear_con_datos_pdf(attributes)
+    l = ListaPublicacion.new(attributes)
+    l.valido = false
+    l.save(false)
+  end
+
+  # Metodo
+  def self.actualizar_con_datos_pdf(marca, attributes)
+    marca.atributes = attributes
+    marca.type = 'ListaPublicacion'
+
+    l = ListaPublicacion.new(marca.attributes)
+    l.numero_sosolicitudd = '0000-0000'
+    if l.valid?
+      m.save
+    else
+      m.valido = false
+      m.save(false)
+    end
+
+  end
+
   # Metodo que es invocado dentro de la iteracion de datos
-  def self.actualizar_datos_pdf(params)
+  def self.preparar_datos_pdf(params)
     marca = Marca.find_by_numero_solicitud(params['NUMERO DE SOLICITUD'])
     #Agente.buscar_por_nombre_y_actualizar()
 
@@ -52,11 +77,20 @@ class ListaPublicacion < Marca
       :nombre => params['NOMBRE DE LA MARCA'], 
       :estado => 'lp',
       :estado_fecha => parsear_fecha_pdf(params['FECHA DE SOLICITUD']),
-      :tipo_signo_id => '',
-      :tipo_marca_id => '',
-      :titular_id => '',
-      :agente_id => ''
+      :productos => params['PRODUCTOS'],
+      :clase_id => Clase.find_by_codigo(params['CLASE INTERNACIONAL']) || 0,
+      :valido => true
+      #:tipo_signo_id => '',
+      #:tipo_marca_id => '',
+      #:titular_id => '',
+      #:agente_id => ''
     }
+
+    unless marca
+      crear_solicitud_marca(params)
+    else
+      actualizar_solicitud_marca(marca, params)
+    end
       
   end
 
@@ -86,6 +120,14 @@ private
     #  case
     #  end
     #end
+  end
+
+  # Metodo que se usa para validar cuando se esta creando un registro que no existio
+  # en un estado anterior a "lp"
+  def existencia_anterior
+    unless anterior
+      self.errors.add(:anterior, 'No existe un registro previo')
+    end
   end
 
 end
