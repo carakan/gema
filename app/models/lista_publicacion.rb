@@ -46,11 +46,11 @@ class ListaPublicacion < Marca
   # Metodo que es invocado dentro de la iteracion de datos
   def self.actualizar_datos_pdf(params)
     marca = Marca.find_by_numero_solicitud(params['NUMERO DE SOLICITUD'])
-    Agente.buscar_por_nombre_y_actualizar()
+    #Agente.buscar_por_nombre_y_actualizar()
 
     attributes = {
       :nombre => params['NOMBRE DE LA MARCA'], 
-      :estado => 'lp'
+      :estado => 'lp',
       :estado_fecha => parsear_fecha_pdf(params['FECHA DE SOLICITUD']),
       :tipo_signo_id => '',
       :tipo_marca_id => '',
@@ -58,24 +58,6 @@ class ListaPublicacion < Marca
       :agente_id => ''
     }
       
-      'NUMERO DE SOLICITUD    #marca.update_attributes()
-      'FECHA DE SOLICITUD'
-      'TIPO DE SIGNO' , -1    #case
-      'TIPO DE MARCA', -3]    #when 'NUMERO DE PUBLICACION'
-    #  
-    #when 'NOMBRE DE LA MARCA' , -1],
-    #when 'NUMERO DE SOLICITUD' , 1],
-    #when 'FECHA DE SOLICITUD' , -1],
-    #when 'TIPO DE SIGNO' , -1],
-    #when 'TIPO DE MARCA', -3],
-    #when 'NOMBRE DEL TITULAR' , -1],
-    #when 'DIRECCION DEL TITULAR' , 1],
-    #when 'PAIS DEL TITULAR' , 2],
-    #when 'NOMBRE DEL APODERADO' , 1],
-    #when 'DIRECCION DEL APODERADO' , 1],
-    #when 'PRODUCTOS' , 1],
-    #when 'CLASE INTERNACIONAL' , 1]
-    #end
   end
 
 
