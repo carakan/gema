@@ -14,7 +14,7 @@ class Marca < ActiveRecord::Base
   
   validates_presence_of :nombre, :estado_fecha, :estado, :tipo_signo_id, :clase_id
   validates_format_of :numero_solicitud, :with => /^\d+-\d{4}$/
-  validates_uniqueness_of :numero_solicitud
+  validates_uniqueness_of :numero_solicitud, :scope => :parent_id
 
 
   serialize :cambios
@@ -120,9 +120,9 @@ private
     params = self.class.column_names.inject({}){ |hash, col| hash[col] = self.send(col); hash }.merge(:parent_id => self.id)
     params.delete(:id)
     m = self.class.new(params)
+    self.changes.each{ |k, vals| m.send("#{k}=", vals.first) }
     m.save(false)
-    self.cambios =  self.changes.keys.select{ |v| not [:valido, :fila].include?(v) }
+    self.cambios =  self.changes.keys.select{ |v| not [:valido, :fila, :type].include?(v) }
   end
-
 
 end

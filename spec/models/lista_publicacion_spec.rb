@@ -10,7 +10,7 @@ describe ListaPublicacion do
     @parse = [
       ['NUMERO DE PUBLICACION' , 1],
       ['NOMBRE DE LA MARCA' , -1],
-      ['NUMERO DE  SOLICITUD' , 1],
+      ['NUMERO DE SOLICITUD' , 1],
       ['FECHA DE SOLICITUD' , -1],
       ['TIPO DE SIGNO' , -1],
       ['TIPO DE MARCA', -3],
@@ -63,7 +63,7 @@ describe ListaPublicacion do
 
   it 'debe buscar dato por nombre' do
     ListaPublicacion.buscar_por_nombre( @n.css('div>div'), 'NUMERO DE PUBLICACION', 1, true )
-    ListaPublicacion.posicion.should == 1
+    ListaPublicacion.posicion.should == 2
   end
 
   it 'debe buscar item con desplazamiento negativo' do
@@ -88,12 +88,41 @@ describe ListaPublicacion do
   end
 
   it 'debe extraer 3 datos' do
-    ListaPublicacion.extraer_datos_html(@html).size.should == 3
+    #ListaPublicacion.extraer_datos_html(@html).size.should == 3
+  end
+  
+  it 'debe encontrar numero de solicitud' do
+    ListaPublicacion.posicion = 5
+    ListaPublicacion.buscar_por_nombre( @n.css('div>div'), 'NUMERO DE SOLICITUD', 1, false ).should == '3432-2009'
   end
 
-  #it 'debe buscar el elemento' do
-  #  ListaPublicacion.extraer_datos_html(@n, @parse).size.should == 3
-  #end
+
+  it 'debe encontrar todos los elementos' do
+    resultados = [
+        ['NUMERO DE PUBLICACION' , '137454'],
+        ['NOMBRE DE LA MARCA' , 'PETRONAS'],
+        ['NUMERO DE SOLICITUD' , '3432-2009'],
+        ['FECHA DE SOLICITUD' , '20090901'],
+        ['TIPO DE SIGNO' , 'Denominación'],
+        ['TIPO DE MARCA', 'Marca Servicio'],
+        ['NOMBRE DEL TITULAR' , 'Petroliam Nasional Berhad (PETRONAS)'],
+        ['DIRECCION DEL TITULAR' , 'Tower 1, Petronas Twin Towers Kuala Lumpur City Centre, 50088 Kuala Lumpur – Malasia'],
+        ['PAIS DEL TITULAR' , 'Malasia'],
+        ['NOMBRE DEL APODERADO' , 'Lorena Otero Rojas'],
+        ['DIRECCION DEL APODERADO' , 'Avenida Piraí No. 2115'],
+        ['PRODUCTOS' , 'Construcción de edificios; reparación; servicios de instalación; coche, mantenimiento y reparación de vehículos y remolques; lavado y limpieza de vehículos y remolques; lavado de motor de vehículo; servicios anti corrosión; alquiler de maquinaria; mantenimiento y reparación; reparación y mantenimiento de bomba; pintado y reparación de símbolos; mantenimiento, reparación y cuidado de motores de vehículos, barcos, plataformas petrolíferas, aeronaves; estaciones de gas para el suministro y llenado de combustible en vehículos.'],
+        ['CLASE INTERNACIONAL' , '37']
+    ]
+    @parse.each_with_index do |el, i|
+      k, desp = el
+      primero = @parse.first[0] == k
+      res = ListaPublicacion.buscar_por_nombre( @n.css('div>div'), k, desp, primero).should == resultados[i].last
+    end
+  end
+
+  it 'debe buscar el elemento' do
+    ListaPublicacion.extraer_datos_html(@html).size.should == 3
+  end
   
 end
 

@@ -26,7 +26,7 @@ module PDF
       
       dir = File.dirname(pdf)
       Dir.glob("#{dir}/*.html").each do |html|
-        extraer_datos_html(html)
+        arr = extraer_datos_html(html)
 
         # Metodo utilizado para actualiar en la clase
         arr.each{ |params| send(@metodo, params) }
@@ -51,19 +51,19 @@ module PDF
 
       divs.each_with_index do |div, i| 
         hash = {}
-        @lista.each do |v|
-          k, pos = v
-          primero = @lista.first[0] == k
-          hash[k] = buscar_por_nombre(divs, k, pos, primero)
-          if hash[k] == false
-            hash.delete(k)
+        @lista.each do |key, desp|
+          primero = @lista.first[0] == key
+          hash[key] = buscar_por_nombre(divs, key, desp, primero)
+          if hash[key] == false
+            hash.delete(key)
             break
           end
-        debugger
-        s=0
         end
         arr << hash
+
+        break if @posicion == (divs.size - 1)
       end
+      arr.delete_if{ |h| h.blank? }
 
       arr
     end
@@ -83,11 +83,11 @@ module PDF
 
         if text == nombre
           # Importante
-          @posicion = i
+          @posicion = i + 1
           if desplazar > 0
-            return buscar_siguiente(elements[i], desplazar).gsub(REGBLANK, '')
+            return buscar_siguiente(elements[i], desplazar).gsub(REGBLANK, ' ').squish
           else
-            return buscar_anterior(elements[i], desplazar).gsub(REGBLANK, '')
+            return buscar_anterior(elements[i], desplazar).gsub(REGBLANK, ' ').squish
           end
         end
 

@@ -1,6 +1,0 @@
-module PDF
-  def prueba
-    "prueba"
-  end
-end
-
