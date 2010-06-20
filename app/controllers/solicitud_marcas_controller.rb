@@ -11,7 +11,7 @@ class SolicitudMarcasController < ApplicationController
 
     respond_to do |format|
       if @marca.save
-        format.html { redirect_to(@marca, :notice => 'La marca fue exitosamente creada.') }
+        format.html { redirect_ajax(@marca, 'La marca fue exitosamente creada.') }
         format.xml  { render :xml => @marca, :status => :created, :location => @marca }
       else
         format.html { render :action => "new", :status => :unprocessable_entity  }
@@ -29,7 +29,7 @@ class SolicitudMarcasController < ApplicationController
     @marca = SolicitudMarca.find(params[:id])
     respond_to do |format|
       if @marca.update_attributes(params[:solicitud_marca])
-        format.html { redirect_to(@marca, :notice => 'La marca fue exitosamente actualizada.') }
+        format.html { redirect_ajax(@marca, 'La marca fue exitosamente actualizada.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit", :status => :unprocessable_entity  }

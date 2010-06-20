@@ -28,6 +28,14 @@ protected
   
   helper_method :user_signed_in?
 
+  # Si es AJAX presenta OK, sino redirecciona
+  def redirect_ajax(klass, notice)
+    if request.xhr?
+      render :text => 'Ok'
+    else
+      redirect_to(klass, :notice => notice)
+    end
+  end
 
 private
   def set_page
