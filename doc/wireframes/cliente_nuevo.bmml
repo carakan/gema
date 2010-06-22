@@ -1,0 +1,36 @@
+<mockup version="1.0" skin="sketch" measuredW="998" measuredH="719" mockupW="743" mockupH="709">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::Canvas" x="245" y="0" w="743" h="709" measuredW="100" measuredH="70" zOrder="0" locked="true" isInGroup="-1">
+      <controlProperties>
+        <borderStyle>square</borderStyle>
+      </controlProperties>
+    </control>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::Canvas" x="245" y="0" w="743" h="119" measuredW="100" measuredH="70" zOrder="1" locked="true" isInGroup="-1">
+      <controlProperties>
+        <borderColor>8355711</borderColor>
+        <borderStyle>none</borderStyle>
+        <color>11776947</color>
+      </controlProperties>
+    </control>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::Canvas" x="245" y="110" w="743" h="26" measuredW="100" measuredH="70" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <backgroundAlpha>1</backgroundAlpha>
+        <borderStyle>none</borderStyle>
+        <color>16776960</color>
+      </controlProperties>
+    </control>
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::Title" x="289" y="151" w="-1" h="-1" measuredW="132" measuredH="34" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>20</size>
+        <text>Nuevo%20Ciente</text>
+      </controlProperties>
+    </control>
+    <control controlID="6" controlTypeID="com.balsamiq.mockups::LinkBar" x="249" y="111" w="-1" h="-1" measuredW="313" measuredH="25" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <hrefs>cliente_menu%26bm%3Bcliente_menu.bmml%26bm%3Bcliente_menu.bmml%26bm%3Bcliente_menu.bmml%2Cmarcaorpan_menu%26bm%3Bmarcaorpan_menu.bmml%26bm%3Bmarcaorpan_menu.bmml%26bm%3Bmarcaorpan_menu.bmml%2Cbusquedas_menu%26bm%3Bbusquedas_menu.bmml%26bm%3Bbusquedas_menu.bmml%26bm%3Bbusquedas_menu.bmml%2Cmarcaanalisis_menu%26bm%3Bmarcaanalisis_menu.bmml%26bm%3Bmarcaanalisis_menu.bmml%26bm%3Bmarcaanalisis_menu.bmml</hrefs>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%224%2C111%2C123%2C136%22%20href%3D%22cliente_menu.bmml%22%20alt%3D%22cliente_menu%22%20id%3D%222_0%22/%3E%0A%3Carea%20shape%3D%22rect%22%20coords%3D%22143%2C111%2C257%2C136%22%20href%3D%22marcaorpan_menu.bmml%22%20alt%3D%22marcaorpan_menu%22%20id%3D%222_1%22/%3E%0A%3Carea%20shape%3D%22rect%22%20coords%3D%22277%2C111%2C358%2C136%22%20href%3D%22busquedas_menu.bmml%22%20alt%3D%22busquedas_menu%22%20id%3D%222_2%22/%3E%0A%3Carea%20shape%3D%22rect%22%20coords%3D%22378%2C111%2C430%2C136%22%20href%3D%22marcaanalisis_menu.bmml%22%20alt%3D%22marcaanalisis_menu%22%20id%3D%222_3%22/%3E%0A</map>
+        <text>Clientes%20%20%2C%20Marcas%20%2C%20Busquedas%20%20%2C%20Analisis</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
