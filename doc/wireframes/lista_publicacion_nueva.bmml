@@ -1,4 +1,4 @@
-<mockup version="1.0" skin="sketch" measuredW="1108" measuredH="737" mockupW="1038" mockupH="727">
+<mockup version="1.0" skin="sketch" measuredW="1108" measuredH="737" mockupW="956" mockupH="727">
   <controls>
     <control controlID="0" controlTypeID="com.balsamiq.mockups::Canvas" x="245" y="0" w="743" h="709" measuredW="100" measuredH="70" zOrder="1" locked="true" isInGroup="-1">
       <controlProperties>
@@ -30,12 +30,7 @@
         <color>13421772</color>
       </controlProperties>
     </control>
-    <control controlID="24" controlTypeID="com.balsamiq.mockups::StickyNote" x="60" y="10" w="135" h="148" measuredW="109" measuredH="123" zOrder="5" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>Preguntar%20sobre%20renovaciones%20concedidas.%20Es%20lista%3F</text>
-      </controlProperties>
-    </control>
-    <control controlID="34" controlTypeID="com.balsamiq.mockups::Label" x="253" y="110" w="-1" h="-1" measuredW="57" measuredH="26" zOrder="6" locked="false" isInGroup="-1">
+    <control controlID="34" controlTypeID="com.balsamiq.mockups::Label" x="253" y="110" w="-1" h="-1" measuredW="57" measuredH="26" zOrder="5" locked="false" isInGroup="-1">
       <controlProperties>
         <color>15658734</color>
         <href>cliente_menu%26bm%3Bcliente_menu.bmml%26bm%3Bcliente_menu.bmml%26bm%3Bcliente_menu.bmml</href>
@@ -44,7 +39,7 @@
         <text>Clientes</text>
       </controlProperties>
     </control>
-    <control controlID="35" controlTypeID="com.balsamiq.mockups::Label" x="322" y="110" w="-1" h="-1" measuredW="54" measuredH="26" zOrder="7" locked="false" isInGroup="-1">
+    <control controlID="35" controlTypeID="com.balsamiq.mockups::Label" x="322" y="110" w="-1" h="-1" measuredW="54" measuredH="26" zOrder="6" locked="false" isInGroup="-1">
       <controlProperties>
         <color>15658734</color>
         <href>marcas_menu%26bm%3Bmarcas_menu.bmml%26bm%3Bmarcas_menu.bmml%26bm%3Bmarcas_menu.bmml</href>
@@ -53,7 +48,7 @@
         <text>Marcas</text>
       </controlProperties>
     </control>
-    <control controlID="36" controlTypeID="com.balsamiq.mockups::Label" x="391" y="110" w="-1" h="-1" measuredW="102" measuredH="26" zOrder="8" locked="false" isInGroup="-1">
+    <control controlID="36" controlTypeID="com.balsamiq.mockups::Label" x="391" y="110" w="-1" h="-1" measuredW="102" measuredH="26" zOrder="7" locked="false" isInGroup="-1">
       <controlProperties>
         <color>15658734</color>
         <href>importaciones_menu%26bm%3Bimportaciones_menu.bmml%26bm%3Bimportaciones_menu.bmml%26bm%3Bimportaciones_menu.bmml</href>
@@ -62,7 +57,7 @@
         <text>Importaciones</text>
       </controlProperties>
     </control>
-    <control controlID="37" controlTypeID="com.balsamiq.mockups::Label" x="508" y="110" w="-1" h="-1" measuredW="73" measuredH="26" zOrder="9" locked="false" isInGroup="-1">
+    <control controlID="37" controlTypeID="com.balsamiq.mockups::Label" x="508" y="110" w="-1" h="-1" measuredW="73" measuredH="26" zOrder="8" locked="false" isInGroup="-1">
       <controlProperties>
         <color>15658734</color>
         <href>busquedas_menu%26bm%3Bbusquedas_menu.bmml%26bm%3Bbusquedas_menu.bmml%26bm%3Bbusquedas_menu.bmml</href>
@@ -71,7 +66,7 @@
         <text>Busquedas</text>
       </controlProperties>
     </control>
-    <control controlID="38" controlTypeID="com.balsamiq.mockups::Label" x="746" y="110" w="-1" h="-1" measuredW="65" measuredH="26" zOrder="10" locked="false" isInGroup="-1">
+    <control controlID="38" controlTypeID="com.balsamiq.mockups::Label" x="746" y="110" w="-1" h="-1" measuredW="65" measuredH="26" zOrder="9" locked="false" isInGroup="-1">
       <controlProperties>
         <color>15658734</color>
         <href>reportes_menu%26bm%3Breportes_menu.bmml%26bm%3Breportes_menu.bmml%26bm%3Breportes_menu.bmml</href>
@@ -80,7 +75,7 @@
         <text>Reportes</text>
       </controlProperties>
     </control>
-    <control controlID="39" controlTypeID="com.balsamiq.mockups::Label" x="601" y="110" w="-1" h="-1" measuredW="115" measuredH="26" zOrder="11" locked="false" isInGroup="-1">
+    <control controlID="39" controlTypeID="com.balsamiq.mockups::Label" x="601" y="110" w="-1" h="-1" measuredW="115" measuredH="26" zOrder="10" locked="false" isInGroup="-1">
       <controlProperties>
         <color>15658734</color>
         <href>datos_generales_menu%26bm%3Bdatos_generales_menu.bmml%26bm%3Bdatos_generales_menu.bmml%26bm%3Bdatos_generales_menu.bmml</href>
@@ -89,28 +84,28 @@
         <text>Datos%20Generales</text>
       </controlProperties>
     </control>
-    <control controlID="46" controlTypeID="com.balsamiq.mockups::Title" x="277" y="158" w="-1" h="-1" measuredW="551" measuredH="51" zOrder="12" locked="false" isInGroup="-1">
+    <control controlID="46" controlTypeID="com.balsamiq.mockups::Title" x="277" y="158" w="-1" h="-1" measuredW="551" measuredH="51" zOrder="11" locked="false" isInGroup="-1">
       <controlProperties>
         <size>32</size>
         <text>Importar%20nueva%20lista%20de%20publicacion</text>
       </controlProperties>
     </control>
-    <control controlID="49" controlTypeID="com.balsamiq.mockups::Label" x="282" y="287" w="-1" h="-1" measuredW="50" measuredH="25" zOrder="13" locked="false" isInGroup="-1">
+    <control controlID="49" controlTypeID="com.balsamiq.mockups::Label" x="282" y="287" w="-1" h="-1" measuredW="50" measuredH="25" zOrder="12" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Archivo</text>
       </controlProperties>
     </control>
-    <control controlID="50" controlTypeID="com.balsamiq.mockups::TextInput" x="284" y="313" w="522" h="-1" measuredW="124" measuredH="29" zOrder="14" locked="false" isInGroup="-1">
+    <control controlID="50" controlTypeID="com.balsamiq.mockups::TextInput" x="284" y="313" w="522" h="-1" measuredW="124" measuredH="29" zOrder="13" locked="false" isInGroup="-1">
       <controlProperties>
         <text>c%3A/Gaceta115.xls</text>
       </controlProperties>
     </control>
-    <control controlID="51" controlTypeID="com.balsamiq.mockups::Button" x="806" y="313" w="-1" h="-1" measuredW="89" measuredH="28" zOrder="15" locked="false" isInGroup="-1">
+    <control controlID="51" controlTypeID="com.balsamiq.mockups::Button" x="806" y="313" w="-1" h="-1" measuredW="89" measuredH="28" zOrder="14" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Buscar%20...</text>
       </controlProperties>
     </control>
-    <control controlID="53" controlTypeID="com.balsamiq.mockups::PointyButton" x="284" y="353" w="-1" h="-1" measuredW="76" measuredH="28" zOrder="16" locked="false" isInGroup="-1">
+    <control controlID="53" controlTypeID="com.balsamiq.mockups::PointyButton" x="284" y="353" w="-1" h="-1" measuredW="76" measuredH="28" zOrder="15" locked="false" isInGroup="-1">
       <controlProperties>
         <color>4555150</color>
         <direction>center</direction>
@@ -119,12 +114,12 @@
         <text>Importar</text>
       </controlProperties>
     </control>
-    <control controlID="54" controlTypeID="com.balsamiq.mockups::Label" x="284" y="222" w="-1" h="-1" measuredW="119" measuredH="25" zOrder="17" locked="false" isInGroup="-1">
+    <control controlID="54" controlTypeID="com.balsamiq.mockups::Label" x="284" y="222" w="-1" h="-1" measuredW="119" measuredH="25" zOrder="16" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Numero%20de%20gaceta</text>
       </controlProperties>
     </control>
-    <control controlID="55" controlTypeID="com.balsamiq.mockups::TextInput" x="284" y="249" w="100" h="-1" measuredW="38" measuredH="29" zOrder="18" locked="false" isInGroup="-1">
+    <control controlID="55" controlTypeID="com.balsamiq.mockups::TextInput" x="284" y="249" w="100" h="-1" measuredW="38" measuredH="29" zOrder="17" locked="false" isInGroup="-1">
       <controlProperties>
         <text>115</text>
       </controlProperties>
