@@ -8,19 +8,19 @@ describe ListaPublicacion do
     ListaPublicacion.posicion = 0
 
     @parse = [
-      ['NUMERO DE PUBLICACION' , 1],
-      ['NOMBRE DE LA MARCA' , -1],
-      ['NUMERO DE SOLICITUD' , 1],
-      ['FECHA DE SOLICITUD' , -1],
-      ['TIPO DE SIGNO' , -1],
-      ['TIPO DE MARCA', -3],
-      ['NOMBRE DEL TITULAR' , -1],
-      ['DIRECCION DEL TITULAR' , 1],
-      ['PAIS DEL TITULAR' , 2],
-      ['NOMBRE DEL APODERADO' , 1],
-      ['DIRECCION DEL APODERADO' , 1],
-      ['PRODUCTOS' , 1],
-      ['CLASE INTERNACIONAL' , 1]
+      ['NUMERO DE PUBLICACION',   1],
+      ['NOMBRE DE LA MARCA',     -1],
+      ['NUMERO DE SOLICITUD',     1],
+      ['FECHA DE SOLICITUD',     -1],
+      ['TIPO DE SIGNO',          -1],
+      ['TIPO DE MARCA',          -3],
+      ['NOMBRE DEL TITULAR',     -1],
+      ['DIRECCION DEL TITULAR',   1],
+      ['PAIS DEL TITULAR',        2],
+      ['NOMBRE DEL APODERADO',    1],
+      ['DIRECCION DEL APODERADO', 1],
+      ['PRODUCTOS',               1],
+      ['CLASE INTERNACIONAL',     1]
     ]
 
   end
@@ -122,6 +122,11 @@ describe ListaPublicacion do
 
   it 'debe buscar el elemento' do
     ListaPublicacion.extraer_datos_html(@html).size.should == 3
+  end
+
+  # No es test unitario
+  it 'debe importar correctamente' do
+    
   end
   
 end

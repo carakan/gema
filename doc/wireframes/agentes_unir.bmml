@@ -1,4 +1,4 @@
-<mockup version="1.0" skin="sketch" measuredW="998" measuredH="719" mockupW="743" mockupH="709">
+<mockup version="1.0" skin="sketch" measuredW="998" measuredH="719" mockupW="928" mockupH="709">
   <controls>
     <control controlID="0" controlTypeID="com.balsamiq.mockups::Canvas" x="245" y="0" w="743" h="709" measuredW="100" measuredH="70" zOrder="0" locked="true" isInGroup="-1">
       <controlProperties>
@@ -82,6 +82,11 @@
         <color>2848996</color>
         <direction>center</direction>
         <text>Unir</text>
+      </controlProperties>
+    </control>
+    <control controlID="40" controlTypeID="com.balsamiq.mockups::StickyNote" x="60" y="160" w="181" h="210" measuredW="109" measuredH="123" zOrder="13" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Al%20buscar%20se%20presenta%20los%20resultados%20en%20la%20lista%2C%20se%20hace%20click%20en%20los%20que%20se%20desea%20unir%20y%20aparecen%20en%20%22Seleccionados%22</text>
       </controlProperties>
     </control>
   </controls>

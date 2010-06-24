@@ -8,9 +8,25 @@
 Usuario.create!(:nombre => 'Admin', :login => 'admin', :password => 'demo123' )
 
 TipoSigno.create!(:nombre => 'Denominación', :sigla => 'Den.' )
+TipoSigno.create!(:nombre => 'Etiqueta', :sigla => 'Eti.' )
 TipoSigno.create!(:nombre => 'Figurativa', :sigla => 'Fig.' )
+TipoSigno.create!(:nombre => 'Logotipo', :sigla => 'Logo.' )
 TipoSigno.create!(:nombre => 'Mixta', :sigla => 'Mix.' )
+TipoSigno.create!(:nombre => 'Palabra', :sigla => 'Pal.' )
 TipoSigno.create!(:nombre => 'Tridimensional', :sigla => 'Tri.' )
 TipoSigno.create!(:nombre => 'Auditiva', :sigla => 'Aud.' )
+TipoSigno.create!(:nombre => 'Envase', :sigla => 'Env.' )
 
-Rake::Task["importar:clases"].execute
+# Rake::Task["importar:clases"].execute
+# No depende de Internet
+clases = YAML.load_file(File.join(Rails.root, 'db/clases.yml'))
+clases.each{ |attr| Clase.create!(attr) }
+
+
+TipoMarca.create!(:nombre => 'Denominación', :sigla => 'DN.')
+TipoMarca.create!(:nombre => 'Lema Comercial', :sigla => 'LC.')
+TipoMarca.create!(:nombre => 'Marca de Fábrica', :sigla => 'MF.')
+TipoMarca.create!(:nombre => 'Marca de Servicio', :sigla => 'MS.')
+TipoMarca.create!(:nombre => 'Nombre Comercial', :sigla => 'NC.')
+TipoMarca.create!(:nombre => 'Rótulo Comercial', :sigla => 'RC.')
+#TipoMarca.create!(:nombre => 'Solicitud Marca', :sigla => 'SM.')
