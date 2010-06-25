@@ -16,6 +16,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :solicitud_marcas
 
+  map.resources :lista_publicaciones
+
   map.resources :solicitudes, :member => { :importado => :get }
 
   map.resources :marcas

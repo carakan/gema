@@ -28,7 +28,6 @@ class CreateMarcas < ActiveRecord::Migration
       t.boolean :activo
       t.boolean :valido # Para indicar si la importación fue válida
       t.string :cambios # Indica que campos han sido modificados
-      t.boolean :anterior # Indica si existe un registro anterior para cambio de estado
 
       t.timestamps
     end

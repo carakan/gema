@@ -2,6 +2,7 @@ class CreateTipoMarcas < ActiveRecord::Migration
   def self.up
     create_table :tipo_marcas do |t|
       t.string :nombre, :limit => 100
+      t.string :sigla, :limit => 5
       t.string :descripcion, :limit => 255
 
       t.timestamps

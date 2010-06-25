@@ -18,11 +18,11 @@ module ApplicationHelper
       when "destroy" then link_to "borrar", klass, :method => :delete, :confirm => "Esta seguro?", :class => 'delete', :title => "Borrar", :remote => true
       else ""
     end
-  end
-  
-  def verdad?(val)
+  end  
+
+  def verdad(val)
     #val == true ? t("yes") : t("no")
-    val ? "Si" : "No"
+    val ? "Si" : "<span class='error'>No</span>"
   end
 
   # localiza la fecha
