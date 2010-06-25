@@ -1,7 +1,8 @@
 # eoncoding: utf-8
 class ListaPublicacion < Marca
 
-  validates_presence_of :tipo_marca_id
+  validates_presence_of :tipo_marca_id, :numero_publicacion
+  validates_numericality_of :numero_publicacion
   validate :existencia_anterior
   
   #####################################
@@ -9,30 +10,33 @@ class ListaPublicacion < Marca
   include PDF
   # Razon, usando un hash es desordenado
   # # Razon, usando un hash es desordenado
-  @lista_pub = [
-      ['NUMERO DE PUBLICACION' , 1],
-      ['NOMBRE DE LA MARCA' , -1],
-      ['NUMERO DE SOLICITUD' , 1],
-      ['FECHA DE SOLICITUD' , -1],
-      ['TIPO DE SIGNO' , -1],
-      ['TIPO DE MARCA', -3],
-      ['NOMBRE DEL TITULAR' , -1],
-      ['DIRECCION DEL TITULAR' , 1],
-      ['PAIS DEL TITULAR' , 2],
-      ['NOMBRE DEL APODERADO' , 1],
-      ['DIRECCION DEL APODERADO' , 1],
-      ['PRODUCTOS' , 1],
-      ['CLASE INTERNACIONAL' , 1]
+  @lista_pub_pdf = [
+      ['NUMERO DE PUBLICACION',   1],
+      ['NOMBRE DE LA MARCA',     -1],
+      ['NUMERO DE SOLICITUD',     1],
+      ['FECHA DE SOLICITUD',     -1],
+      ['TIPO DE SIGNO',          -1],
+      ['TIPO DE MARCA',          -3],
+      ['NOMBRE DEL TITULAR',     -1],
+      ['DIRECCION DEL TITULAR',   1],
+      ['PAIS DEL TITULAR',        2],
+      ['NOMBRE DEL APODERADO',    1],
+      ['DIRECCION DEL APODERADO', 1],
+      ['PRODUCTOS',               1],
+      ['CLASE INTERNACIONAL',     1]
   ]
-  acts_as_pdftohtml('archivos/temp/pdf/', 'div>div', :preparar_datos_pdf , @lista_pub)
+  acts_as_pdftohtml('archivos/temp/pdf/', 'div>div', :preparar_datos_pdf , @lista_pub_pdf)
 
 
+  # Realiza la importacion de un archivo excel o un pdf
   def self.importar(archivo, gaceta = '')
-    case File.extname(archivo.original_filename.downcase)
-      when ".pdf" 
-        importar_pdf(archivo)
-      when ".xls" 
-        importar_excel(archivo)
+    self.transaction do |trans|
+      case File.extname(archivo.original_filename.downcase)
+        when ".pdf" 
+          importar_pdf(archivo)
+        when ".xls" 
+          importar_excel(archivo)
+      end
     end
   end
 
@@ -46,18 +50,20 @@ class ListaPublicacion < Marca
 
   # Debe indicarse de que no existio una marca anterior de la cual se
   # actualizo sus datos
-  def.self.crear_con_datos_pdf(attributes)
+  def self.crear_lista_publicacion(params)
     l = ListaPublicacion.new(attributes)
     l.valido = false
     l.save(false)
   end
 
-  # Metodo
-  def self.actualizar_con_datos_pdf(marca, attributes)
+  # Actualiza los datos de marca y lo cambia a lista de publicacion
+  def self.actualizar_lista_publicacion(marca, attributes)
     marca.atributes = attributes
     marca.type = 'ListaPublicacion'
 
     l = ListaPublicacion.new(marca.attributes)
+    # Se le asigna un numero de solicitud falso para que no ejecute
+    # validates_uniqueness_of :numero_solicitud
     l.numero_sosolicitudd = '0000-0000'
     if l.valid?
       m.save
@@ -68,10 +74,14 @@ class ListaPublicacion < Marca
 
   end
 
+
   # Metodo que es invocado dentro de la iteracion de datos
+  # En caso de las tablas relacionadas lo que hace es 
+  # llamar a su metodo set_*** para poder asignar el id de 
+  # la tabla con la que se relaciona
+  # @param Hash params
   def self.preparar_datos_pdf(params)
     marca = Marca.find_by_numero_solicitud(params['NUMERO DE SOLICITUD'])
-    #Agente.buscar_por_nombre_y_actualizar()
 
     attributes = {
       :nombre => params['NOMBRE DE LA MARCA'], 
@@ -80,37 +90,76 @@ class ListaPublicacion < Marca
       :productos => params['PRODUCTOS'],
       :clase_id => Clase.find_by_codigo(params['CLASE INTERNACIONAL']) || 0,
       :valido => true
-      #:tipo_signo_id => '',
-      #:tipo_marca_id => '',
-      #:titular_id => '',
-      #:agente_id => ''
     }
 
+    [:tipo_signo_id, :tipo_marca_id, :agente_id, :titular_id].each do |m|
+      klass = send("set_#{m.to_s.gsub(/_id$/, '')}", params)
+      params[m] = klass.id if klass
+    end
+
     unless marca
-      crear_solicitud_marca(params)
+      crear_lista_publicacion(params)
     else
-      actualizar_solicitud_marca(marca, params)
+      actualizar_lista_publicacion(marca, params)
     end
       
   end
 
 
 
-    #@campos = {
-    #  'NUMERO DE PUBLICACION' => :numero_publicacion,
-    #  'NOMBRE DE LA MARCA' => :nombre,
-    #  'NUMERO DE  SOLICITUD' => :numero_solicitud,
-    #  'FECHA DE SOLICITUD' => :fecha_solicitud,
-    #  'TIPO DE SIGNO' => :tipo_signo_identidad,
-    #  'TIPO DE MARCA'=> :tipo_marca_identidad,
-    #  'NOMBRE DEL TITULAR' => :titular_nombre,
-    #  'DIRECCION DEL TITULAR' => :titular_direccion,
-    #  'PAIS DEL TITULAR' => :titular_pais,
-    #  'NOMBRE DEL APODERADO' => :agente_nombre,
-    #  'DIRECCION DEL APODERADO' => :agente_direccion,
-    #  'PRODUCTOS' => :productos,
-    #  'CLASE INTERNACIONAL' => :clase_codigo
-    #}
+  #################################################################
+  # Metodos especiales para poder buscar o crear datos relacionados a la marca
+
+  # Busca y actualiza o crea el titular
+  def self.set_titular(params)
+    return false if params['NOMBRE DEL TITULAR'].blank?
+
+    titular = Titular.find_by_nombre(params['NOMBRE DEL TITULAR'])
+    if titular
+      titular.attributes = { :direccion => params['DIRECCION DEL TITULAR'], :validar => false }
+    else
+      titular = Titular.new(:nombre => params['NOMBRE DEL TITULAR'], :direccion => params['DIRECCION DEL TITULAR'], :validar => false)
+    end
+    titular.save
+
+    titular
+  end
+
+  # Busca y actualiza o crea un agente
+  def self.set_agente(params)
+    return false if params['NOMBRE DEL APODERADO'].blank?
+
+    agente = Agente.find_by_nombre(params['NOMBRE DEL APODERADO'])
+    if agente
+      agente.attributes = { :direccion => params['DIRECCION DEL APODERADO'], :validar => false }
+    else
+      agente = Agente.new(:nombre => params['DIRECCION DEL APODERADO'], :direccion => params['DIRECCION DEL TITULAR'], :validar => false)
+    end
+    agente.save
+
+    agente
+  end
+
+  # Busca tipo_signo sino retorna falso
+  def self.set_tipo_signo(params)
+    if tipo_signo = TipoSigno.find_by_nombre(params['TIPO DE SIGNO'])
+      tipo_signo
+    else
+      false
+    end
+  end
+
+  # Busca tipo_marca sino retorna falso
+  def self.set_tipo_marca(params)
+    if tipo_marca = TipoMarca.find_by_nombre(params['TIPO DE MARCA'])
+      tipo_marca
+    else
+      false
+    end
+  end
+
+  # Fin de metodos relacionados a la amrca
+
 
 private
 

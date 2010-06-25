@@ -1,0 +1,136 @@
+--- 
+- nombre: Clase 1
+  descripcion: "Productos Qu\xC3\xADmicos destinados a la industria, la ciencia, la fotograf\xC3\xADa, la agricultura, la horticultura, la silvicultura, materias pl\xC3\xA1sticas en bruto ( polvo, liquido o pasta) abonos, productos qu\xC3\xADmicos para conservar los alimentos, materias curtientes, sustancias adhesivas para la industria"
+  codigo: 1
+- nombre: Clase 2
+  descripcion: "Colores, barnices, lacas, preservativos antioxidantes y contra el deterioro de las maderas, materias tint\xC3\xB3reas, mordientes, resinas naturales, metales en hoja o en polvo para pintores y decoradores"
+  codigo: 2
+- nombre: Clase 3
+  descripcion: "Preparaciones para blanquear y otras sustancias para la colada, preparaciones para limpiar, pulir, desengrasar y pulimentar, jabones, perfumer\xC3\xADa, asestes esenciales, cosm\xC3\xA9ticos, lociones capilares, dent\xC3\xADfricos"
+  codigo: 3
+- nombre: Clase 4
+  descripcion: "Aceites y grasas industriales ( que no sean aceites\xC2\xA0 o grasas comestibles o esenciales), lubricantes, compuestos combustibles incluidos las esencias para motores"
+  codigo: 4
+- nombre: Clase 5
+  descripcion: "Productos farmac\xC3\xA9uticos, veterinarios e higi\xC3\xA9nicos, productos diet\xC3\xA9ticos para ni\xC3\xB1os y enfermos, emplastros, material para vendajes, materiales para empastar dientes y para improntas dentales, desinfectantes, preparaciones para destruir las malas hierbas y los animales da\xC3\xB1inos"
+  codigo: 5
+- nombre: Clase 6
+  descripcion: "Metales comunes en bruto o semielaborados y sus aleaciones, anclas, yunques, campanas, materiales de construcciones laminados y fundidos, rieles y otros materiales para v\xC3\xADas f\xC3\xA9rreas, cadenas (con excepci\xC3\xB3n de las cadenas motrices para veh\xC3\xADculos) cables e hilos met\xC3\xA1licos no el\xC3\xA9ctricos, cerrajer\xC3\xADa tubos met\xC3\xA1licos, cajas de caudales grandes y port\xC3\xA1tiles, bolas de acero, herraduras, clavos, tornillos, otros productos de metal no precioso no incluido en otras clases"
+  codigo: 6
+- nombre: Clase 7
+  descripcion: "Maquinas y Maquinas herramientas, motores (excepto para veh\xC3\xADculos terrestres), grandes instrumentos para la agricultura, incubadoras"
+  codigo: 7
+- nombre: Clase 8
+  descripcion: "Herramientas e instrumentos de mano, cuchiller\xC3\xADa, tenedores y cucharas, armas blancas"
+  codigo: 8
+- nombre: Clase 9
+  descripcion: "Herramientas e instrumentos cient\xC3\xADficos, n\xC3\xA1uticos, geod\xC3\xA9sicos, el\xC3\xA9ctricos (incluso la radio), fotograf\xC3\xADa, cinematogr\xC3\xA1ficos, \xC3\xB3pticos , de pesar, de medir, de balizamiento, de control, de socorro y de ense\xC3\xB1anza, maquinas parlantes, cajas registradoras, maquinas de calcular, aparatos extintores."
+  codigo: 9
+- nombre: Clase 10
+  descripcion: "Instrumentos y aparatos quir\xC3\xBArgicos, m\xC3\xA9dicos, odontol\xC3\xB3gicos y veterinarios (incluidas las pr\xC3\xB3tesis)"
+  codigo: 10
+- nombre: Clase 11
+  descripcion: "Instrumentos de alumbrado, de calefacci\xC3\xB3n, de producci\xC3\xB3n de vapor, de cocci\xC3\xB3n, de refrigeraci\xC3\xB3n, de secado , de ventilaci\xC3\xB3n, de distribuci\xC3\xB3n de agua e instalaciones sanitarias"
+  codigo: 11
+- nombre: Clase 12
+  descripcion: "Veh\xC3\xADculos, aparatos de locomoci\xC3\xB3n terrestres, a\xC3\xA9reos y acu\xC3\xA1ticos."
+  codigo: 12
+- nombre: Clase 13
+  descripcion: Armas de fuego, municiones, proyectiles, sustancias explosivas, fuegos artificiales.
+  codigo: 13
+- nombre: Clase 14
+  descripcion: "Metales preciosos y sus aleaciones y objetos de estas materias o chapeados ( excepto cuchiller\xC3\xADa, tenedores y cucharas), joyer\xC3\xADa, piedras preciosas, relojer\xC3\xADa y otros instrumentos cronom\xC3\xA9tricos"
+  codigo: 14
+- nombre: Clase 15
+  descripcion: "Instrumentos de m\xC3\xBAsica (excepto maquinas parlantes y aparatos de radio)"
+  codigo: 15
+- nombre: Clase 16
+  descripcion: "Papel, cart\xC3\xB3n, art\xC3\xADculos de papel y cart\xC3\xB3n, no comprendidos en otras clases), impresos, diarios peri\xC3\xB3dicos, libros art\xC3\xADculos de encuadernaci\xC3\xB3n, fotograf\xC3\xADas, papeler\xC3\xADa, materiales adhesivos para papeler\xC3\xADa, materiales para artistas, pinceles, maquinas de escribir y de oficina (excepto muebles), caracteres de imprenta, clis\xC3\xA9s."
+  codigo: 16
+- nombre: Clase 17
+  descripcion: "Gutapercha, goma el\xC3\xA1stica, balta, suced\xC3\xA1neos, objetos que est\xC3\xA9n fabricados en estas materias, que no est\xC3\xA9n comprendidos en otras clases, hojas varillas, placas de materias pl\xC3\xA1sticas ( productos semielaborados), materias que sirven para calafatear, cerrar con estopa y aislar, amianto, mica, tubos flexibles no met\xC3\xA1licos"
+  codigo: 17
+- nombre: Clase 18
+  descripcion: "Cueros e imitaciones de cuero, art\xC3\xADculos de estas materias no incluidos en otras clases, pieles, ba\xC3\xBAles, maletas, paraguas, sombrillas y bastones, fustas, jaeces y guarnicioner\xC3\xADa"
+  codigo: 18
+- nombre: Clase 19
+  descripcion: "Materiales de construcci\xC3\xB3n, piedras naturales y artificiales, cemento, cal, mortero, yeso, grava, tuber\xC3\xADas de cemento, productos para la construcci\xC3\xB3n de carreteras, monumentos de piedra, chimeneas."
+  codigo: 19
+- nombre: "Clase 20 "
+  descripcion: "Muebles, espejos, marcos, art\xC3\xADculos de mimbre, junco, ca\xC3\xB1a."
+  codigo: 20
+- nombre: Clase 21
+  descripcion: "Utensilios peque\xC3\xB1os y recipientes port\xC3\xA1tiles para el menaje y la cocina, peines, esponjas, cepillos, instrumentos de limpieza, vidrio en bruto y semielaborado (excepto el vidrio para la construcci\xC3\xB3n, cristaler\xC3\xADa, porcelana y loza no incluidos en otras clases"
+  codigo: 21
+- nombre: Clase 22
+  descripcion: Cuerdas, bramentes, redes, tiendas, toldos, velas, materiales de relleno
+  codigo: 22
+- nombre: Clase 23
+  descripcion: Hilos
+  codigo: 23
+- nombre: Clase 24
+  descripcion: "Tejidos, colchas, tapetes, art\xC3\xADculos textiles no incluidos en otras clases"
+  codigo: 24
+- nombre: Clase 25
+  descripcion: Vestidos, botas, zapatos, zapatillas.
+  codigo: 25
+- nombre: Clase 26
+  descripcion: "Puntillas, y bordados, cintas y lazos, botones, autom\xC3\xA1ticos, corchetes, ojalillos, alfileres, agujas, flores artificiales"
+  codigo: 26
+- nombre: Clase 27
+  descripcion: "Alfombras, felpudos y otros productos para recubrir los suelos, tapicer\xC3\xADa (que no sea de tela)"
+  codigo: 27
+- nombre: Clase 28
+  descripcion: "Juegos y juguetes, art\xC3\xADculos de gimnasia y deporte (excepto vestidos), ornamentos y decoraci\xC3\xB3n para arboles de Navidad"
+  codigo: 28
+- nombre: Clase 29
+  descripcion: "Carne, pescados, pescados, aves y pesca, extracto de carne, frutas y legumbres en conserva, secas y cosidas, jaleas, mermeladas, huevo, leche y otros productos l\xC3\xA1cteos, aceites y grasas comestibles, conservas, encurtidos."
+  codigo: 29
+- nombre: Clase 30
+  descripcion: "Caf\xC3\xA9, te, cacao, az\xC3\xBAcar, tapioca, sag\xC3\xBA, suced\xC3\xA1neos dl caf\xC3\xA9, harinas y preparaciones hechas con cereales, pan bizcochos, tortas, pasteler\xC3\xADa, confiter\xC3\xADa, helados, miel. jarabe de melaza, levadura, polvos para esponjar, sal, mostaza, pimienta vinagre, salsas, especies, hielo"
+  codigo: 30
+- nombre: Clase 31
+  descripcion: "Productos agr\xC3\xADcolas, hort\xC3\xADcolas, forestales y granos no incluidos en otras clases, animales vivos, frutas y verduras frescas, semillas, plantas vivas, flores naturales, sustancias para la alimentaci\xC3\xB3n de animales, malta."
+  codigo: 31
+- nombre: Clase 32
+  descripcion: "Cerveza, Aguas minerales y gaseosas, otras bebidas no alcoh\xC3\xB3licas, jarabes y otras preparados para hacer bebidas"
+  codigo: 32
+- nombre: Clase 33
+  descripcion: Vinos espirituosos, y licores
+  codigo: 33
+- nombre: Clase 34
+  descripcion: "Tabaco en bruto o manufacturado, art\xC3\xADculos del fumador, f\xC3\xB3sforos"
+  codigo: 34
+- nombre: Clase 35
+  descripcion: Publicidad y Negocios
+  codigo: 35
+- nombre: Clase 36
+  descripcion: Seguros y Finanzas
+  codigo: 36
+- nombre: Clase 37
+  descripcion: "Construcci\xC3\xB3n y Reparaciones"
+  codigo: 37
+- nombre: Clase 38
+  descripcion: Comunicaciones
+  codigo: 38
+- nombre: Clase 39
+  descripcion: Transporte y Almacenaje
+  codigo: 39
+- nombre: Clase 40
+  descripcion: Tratamiento de Materiales
+  codigo: 40
+- nombre: Clase 41
+  descripcion: "Educaci\xC3\xB3n y Esparcimiento"
+  codigo: 41
+- nombre: Clase 42
+  descripcion: "Servicios Cient\xC3\xADficos y Tecnol\xC3\xB3gicos"
+  codigo: 42
+- nombre: Clase 43
+  descripcion: "Servicios de Restauraci\xC3\xB3n (alimentaci\xC3\xB3n), Hospedaje temporal"
+  codigo: 43
+- nombre: Clase 44
+  descripcion: "Servicios M\xC3\xA9dicos, veterinarios, Cuidados d higiene y Belleza para personas y animales, Servicios de Agricultura, Horticultura y Silvicultura"
+  codigo: 44
+- nombre: Clase 45
+  descripcion: Servicios Personales y Sociales prestados por terceros destinados a satisfacer las necesidades de individuos, Servicios de Seguridad
+  codigo: 45
