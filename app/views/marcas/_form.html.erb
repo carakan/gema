@@ -1,5 +1,24 @@
 <% semantic_form_for(@marca) do |f| -%>
-  <%= f.input :nombre %>
-  <%= f.input :estado_fecha, :as => 'string', :input_html => { :class => 'date' } %>
-  <%= f.input :clase %>
+  <div class="half fl">
+    <%= f.input :nombre %>
+    <%= f.input :numero_solicitud %>
+    <%= f.input :agente %>
+    <%= f.input :titular %>
+    <%= f.input :clase %>
+    <%= f.input :tipo_signo %>
+    <%= f.input :tipo_marca %>
+    <%= f.input :clase %>
+  </div>
+
+  <div class="half fl">
+    <%= f.input :estado, :collection => Marca.lista_estados %>
+    <%= f.input :estado_fecha, :as => 'string', :input_html => { :class => 'date' } %>
+
+    <%= f.input :productos, :as => :text %>
+  </div>
+  
+  <div style="clear:both"></div>
+  <%= f.submit "Salvar" %>
 <% end -%>
+
+<div style="clear:both"></div>

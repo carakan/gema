@@ -4,7 +4,7 @@ class SolicitudesController < ApplicationController
 
   # Presenta la lista de importaciones
   def index
-    @marcas = Marca.view_importaciones()
+    @marcas = Marca.view_importaciones( @page )
   end
 
   def new
