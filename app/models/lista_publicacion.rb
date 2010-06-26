@@ -45,12 +45,16 @@ class ListaPublicacion < Marca
   end
 
   def self.parsear_fecha_pdf(fec)
-    "#{fec[0, 4]}-#{fec[4, 2]}-#{fec[6, 2]}"
+    begin
+      "#{fec[0, 4]}-#{fec[4, 2]}-#{fec[6, 2]}"
+    rescue
+      nil
+    end
   end
 
   # Debe indicarse de que no existio una marca anterior de la cual se
   # actualizo sus datos
-  def self.crear_lista_publicacion(params)
+  def self.crear_lista_publicacion(attributes)
     l = ListaPublicacion.new(attributes)
     l.valido = false
     l.save(false)
@@ -64,7 +68,7 @@ class ListaPublicacion < Marca
     l = ListaPublicacion.new(marca.attributes)
     # Se le asigna un numero de solicitud falso para que no ejecute
     # validates_uniqueness_of :numero_solicitud
-    l.numero_sosolicitudd = '0000-0000'
+    l.numero_solicitud = '0000-0000'
     if l.valid?
       m.save
     else
@@ -94,13 +98,13 @@ class ListaPublicacion < Marca
 
     [:tipo_signo_id, :tipo_marca_id, :agente_id, :titular_id].each do |m|
       klass = send("set_#{m.to_s.gsub(/_id$/, '')}", params)
-      params[m] = klass.id if klass
+      attributes[m] = klass.id if klass
     end
 
     unless marca
-      crear_lista_publicacion(params)
+      crear_lista_publicacion(attributes)
     else
-      actualizar_lista_publicacion(marca, params)
+      actualizar_lista_publicacion(marca, attributes)
     end
       
   end
@@ -133,7 +137,7 @@ class ListaPublicacion < Marca
     if agente
       agente.attributes = { :direccion => params['DIRECCION DEL APODERADO'], :validar => false }
     else
-      agente = Agente.new(:nombre => params['DIRECCION DEL APODERADO'], :direccion => params['DIRECCION DEL TITULAR'], :validar => false)
+      agente = Agente.new(:nombre => params['NOMBRE DEL APODERADO'], :direccion => params['DIRECCION DEL TITULAR'], :validar => false)
     end
     agente.save
 
