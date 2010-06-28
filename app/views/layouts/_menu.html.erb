@@ -1,9 +1,106 @@
 <% if user_signed_in? %>
-<ul id="navigation">
-  <li><a href="/clases">Clases</a></li>
-  <li><a href="/solicitudes">Solicitudes</a></li>
-  <li><a href="/agentes">Agentes</a></li>
-  <li><a href="/titulares">Titulares</a></li>
-  <li><a href="/logout">Salir</a></li>
+<ul id="navigation" class="menu">
+  <li>
+  	<a href="#">Clientes</a>
+  	<ul>
+  		<li>
+  			<a href="#">Nuevo cliente</a>
+  		</li>
+  		<li>
+  			<a href="#">Marcas por cliente</a>
+  		</li>
+  	</ul>
+  </li>
+
+  <li>
+  	<a href="#">Marcas</a>
+  	<ul>
+  		<li>
+  			<a href="#">Marcas propias</a>
+  		</li>
+  		<li>
+  			<a href="#">Seguimiento de marcas propias</a>
+  		</li>
+  		<li>
+  			<a href="#">Marcas ajenas</a>
+  		</li>
+  		<li>
+  			<a href="#">Seguimiento de marcas ajenas</a>
+  		</li>
+  	</ul>
+  </li>
+
+  <li>
+    <a href="/solicitudes">Importaciones</a>
+    <!--
+  	<ul>
+  		<li>
+  			<a href="#">Lista de solicitud</a>
+  		</li>
+  		<li>
+  			<a href="/lista_publicaciones">Lista de publicación</a>
+  		</li>
+  		<li>
+  			<a href="#">Lista de registro</a>
+  		</li>
+  		<li>
+  			<a href="#">Lista de renovación</a>
+  		</li>
+  		<li>
+  			<a href="#">Renovaciones concedidas</a>
+  		</li>
+    </ul
+    -->
+  </li>
+  
+  <li>
+  	<a href="#">Busquedas</a>
+  </li>
+
+  <li>
+  	<a href="#">Datos generales</a>
+  	<ul>
+  		<li>
+  			<a href="/agentes">Agentes</a>
+  		</li>
+  		<li>
+  			<a href="/titulares">Tiulares</a>
+  		</li>
+  		<li>
+  			<a href="#">Tipos de marca</a>
+  		</li>
+  		<li>
+  			<a href="#">Tipos de signo</a>
+  		</li>
+  		<li>
+  			<a href="/clases">Clases</a>
+  		</li>
+  		<li>
+  			<a href="/usuarios">Usuarios</a>
+  		</li>
+  		<li>
+  			<a href="#">Paises</a>
+  		</li>
+  	</ul>
+  </li>
+
+  <li>
+  	<a href="#">Reportes</a>
+  	<ul>
+  		<li>
+  			<a href="#">Marcas por agente</a>
+  		</li>
+  		<li>
+  			<a href="#">Marcas por títular</a>
+  		</li>
+  		<li>
+  			<a href="#">Coincidencias</a>
+  		</li>
+  		<li>
+  			<a href="#">Renovaciones</a>
+  		</li>
+  	</ul>
+  </li>
+
 </ul>
 <% end %>

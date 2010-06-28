@@ -1,8 +1,8 @@
-<h1>Solicitudes</h1>
+<h1>Importaciones realizadas</h1>
 
 <ul class="menu">
   <li>
-  <a href="javascript:" class="new">Nueva&nbsp;<span class="more"></span></a>
+  <a href="javascript:" class="new">Importar&nbsp;<span class="more"></span></a>
     <ul>
     <% Marca::TIPOS.each do |tipo, nombre| %>
       <li><%= link_to nombre, new_solicitud_path(:tipo => tipo) %></li>

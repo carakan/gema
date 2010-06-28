@@ -195,6 +195,7 @@ ul#navigation {
   list-style: none;
   padding: 0px;
   margin: 0px;
+<<<<<<< HEAD
   background: #dcdcdc;
   float:left;
 }
@@ -202,6 +203,16 @@ ul#navigation li {
   display: block;
   float: left;
   /*position:relative;*/
+=======
+  background: #45818e;
+}
+ul#navigation li {
+  padding: 0px;
+  margin: 0px;
+  display: inline;
+  float: left;
+  background-color: #45818e !important;
+>>>>>>> f8830d624a61452f6f0f157845561c7cd27f41c5
 }
 ul#navigation li a {
   display: block;
@@ -210,13 +221,21 @@ ul#navigation li a {
   font-size: 1em;
   padding: 5px 7px;
   border-right: 1px solid #484848;
-  color: #2167cb;
-}
-ul#navigation li a:hover {
-  background: #2167cb !important;
   color: #ffffff;
 }
+<<<<<<< HEAD
 
+=======
+ul#navigation li a:hover { background: #2167cb !important; }
+ul#navigation li ul {
+  background-color: #45818e !important;
+  z-index: 200;
+}
+ul#navigation li ul li a {
+  border-right: none;
+  display: block;
+}
+>>>>>>> f8830d624a61452f6f0f157845561c7cd27f41c5
 .buscar {
   background: #595959;
   padding: 4px;
@@ -424,7 +443,7 @@ ul.menu li ul {
   margin-top: -1px;
   font-weight: bold;
 }
-ul.menu li ul li { float: none; }
+ul.menu li ul li { float: none !important; }
 ul.menu li ul li a {
   padding: 4px 12px;
   display: block;

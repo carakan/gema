@@ -1,0 +1,29 @@
+<h1>Listado de Marcas</h1>
+
+<%= link_to "Nueva Marca", new_marca_path, :class => 'new' %>
+
+<table class="decorated">
+	<tr>
+		<th>Nombre</th>
+		<th>Estado</th>
+		<th>Agente</th>
+		<th>Titular</th>
+		<th>Valido</th>
+    <th></th>
+	</tr>
+
+  <% @marcas.each do |marca| %>
+    <tr>
+    	<td><%= marca.nombre %></td>
+    	<td><%= marca.ver_estado %></td>
+    	<td><% marca.agente %></td>
+      <td><%= marca.titular %></td>
+      <td><%= verdad marca.valido %></td>
+      <td>
+        <%= links(marca) %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<%= will_paginate @marcas %>

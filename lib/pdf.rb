@@ -27,12 +27,25 @@ module PDF
       dir = File.dirname(pdf)
       Dir.glob("#{dir}/*.html").each do |html|
         arr = extraer_datos_html(html)
-
         # Metodo utilizado para actualiar en la clase
         arr.each{ |params| send(@metodo, params) }
       end
-      
+
+      borrar_directorio_pdf(pdf)
     end
+
+    # Elimina el directorio en el cual se creo el archivo
+    def borrar_directorio_pdf(pdf)
+      FileUtils.remove_dir( File.dirname(pdf) )
+    end
+
+    # Extraccion de imagen
+    # Para la extraccion de la imagen es necesario saber la posicion 
+    # del div con 'NOMBRE DE LA MARCA' y restarle 7
+    # x = 417
+    # y = div[:style].gsub(/.*(top:[0-9]+).*/, '\1').gsub(/top:/, '').to_i - 7
+    # system("convert #{img} -crop 130x130+417+#{y} prueba.png")
+    # system("convert #{img} -crop 130x130+417+#{y} prueba.png")
 
     def convertir_pdf(pdf)
       raise "Error al convertir #{pdf} de pdf a html" unless system("pdftohtml -c #{pdf}")
@@ -45,6 +58,7 @@ module PDF
     # en otro contexto, y sobrepasarse al primero de la lista 2 veces
     def extraer_datos_html(html)
       n = Nokogiri::HTML( File.open(html) )
+      @posicion = 0
       arr = []
       divs = n.css(@css_selector)
       @fin = false

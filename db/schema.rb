@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(:version => 20100620185547) do
 
   create_table "tipo_marcas", :force => true do |t|
     t.string   "nombre",      :limit => 100
+    t.string   "sigla",       :limit => 5
     t.string   "descripcion"
     t.datetime "created_at"
     t.datetime "updated_at"

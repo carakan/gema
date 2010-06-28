@@ -26,6 +26,9 @@
 @ligth_yellow:#FFFFC5;
 @dark_yellow:#D0D02A;
 
+@menu: #45818E;
+
+
 body{
   padding: 0px;
   margin: 0px;
@@ -224,20 +227,33 @@ ul#navigation{
   height: 28px;
   list-style: none;
   padding: 0px; margin: 0px;
-  background: @white_tan;
-  li{display: inline; float: left;}
-  li a{
-    display: block;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1em;
-    padding: 5px 7px;
-    border-right: 1px solid @dark;
-    color: @blue;
-  }
-  li a:hover{
-    background: @blue !important;
-    color: @white;
+  background: @menu;
+  li{
+    padding: 0px;
+    margin:0px;
+
+    a{
+      display: block;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1em;
+      padding: 5px 7px;
+      border-right: 1px solid @dark;
+      color: @white;
+    }
+    a:hover{
+      background: @blue !important;
+    }
+    display: inline; float: left;
+    background-color: @menu !important;
+    ul{
+      background-color: @menu !important;
+      z-index: 200;
+      li a{
+        border-right:none;
+        display: block;
+      }
+    }
   }
 }
 .buscar{
@@ -495,7 +511,7 @@ ul.menu{
       margin-top: -1px;
       font-weight: bold;
       li{
-        float: none;
+        float: none !important;
         a{
           padding: 4px 12px;
           display: block;

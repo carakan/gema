@@ -2,7 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe ListaPublicacion do
   before(:each) do
-    @pdf = File.join(SPEC_FILES, 'test_pdf_upload.pdf')
+    @pdf = File.join(SPEC_FILES, 'prueba_lista_publicacion.pdf')
     @html = File.join(SPEC_FILES, 'signos_sep_oct_09-12.html')
     @n = Nokogiri::HTML(File.open(@html) )
     ListaPublicacion.posicion = 0
@@ -87,10 +87,6 @@ describe ListaPublicacion do
     ListaPublicacion.posicion.should == 84
   end
 
-  it 'debe extraer 3 datos' do
-    #ListaPublicacion.extraer_datos_html(@html).size.should == 3
-  end
-  
   it 'debe encontrar numero de solicitud' do
     ListaPublicacion.posicion = 5
     ListaPublicacion.buscar_por_nombre( @n.css('div>div'), 'NUMERO DE SOLICITUD', 1, false ).should == '3432-2009'
@@ -126,7 +122,13 @@ describe ListaPublicacion do
 
   # No es test unitario
   it 'debe importar correctamente' do
-    
+    u = Usuario.create!(:nombre => 'Admin', :login => 'admin', :password => 'demo123' )
+
+    UsuarioSession.current_user = u
+    archivo = ActionController::TestUploadedFile.new(@pdf, 'application/pdf')
+    ListaPublicacion.importar_pdf(archivo)
+    debugger
+    Marca.all.size.should == 28
   end
   
 end
