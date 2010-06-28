@@ -18,7 +18,7 @@ class SolicitudesController < ApplicationController
         fecha_importacion = SolicitudMarca.importar( params[:marca][:archivo] )
         redirect_to(importado_solicitud_url( fecha_importacion ) )
       when 'lp'
-        @tot, @errors = ListaPublicacion.importar( params[:marca][:archivo] )
+        fecha_importacion = ListaPublicacion.importar( params[:marca][:archivo] )
         redirect_to(importado_solicitud_url( fecha_importacion ) )
       when 'lr'
         # @errors = ListaRegistro.importar( params[:marca][:archivo] )

@@ -115,7 +115,9 @@ class Marca < ActiveRecord::Base
 
 private
   def actualizar_validez
-    self.valido = true if self.errors.blank?
+    if self.valido.nil?
+      self.valido = true if self.errors.blank?
+    end
   end
 
   def adicionar_usuario

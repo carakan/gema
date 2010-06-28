@@ -2,7 +2,7 @@ class CreateMarcas < ActiveRecord::Migration
   def self.up
     create_table :marcas do |t|
       t.integer :parent_id, :default => 0
-      t.integer :marca_id
+#      t.integer :marca_id
       t.integer :usuario_id
       t.integer :titular_id
       t.integer :agente_id
@@ -38,7 +38,8 @@ class CreateMarcas < ActiveRecord::Migration
     add_index :marcas, :tipo_marca_id
     add_index :marcas, :clase_id
     add_index :marcas, :usuario_id
-    add_index :marcas, :marca_id
+    add_index :marcas, :parent_id
+#    add_index :marcas, :marca_id
 
     add_index :marcas, :fecha_importacion
     add_index :marcas, :type
