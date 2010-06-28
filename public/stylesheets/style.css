@@ -196,10 +196,12 @@ ul#navigation {
   padding: 0px;
   margin: 0px;
   background: #dcdcdc;
+  float:left;
 }
 ul#navigation li {
-  display: inline;
+  display: block;
   float: left;
+  /*position:relative;*/
 }
 ul#navigation li a {
   display: block;
@@ -214,6 +216,7 @@ ul#navigation li a:hover {
   background: #2167cb !important;
   color: #ffffff;
 }
+
 .buscar {
   background: #595959;
   padding: 4px;

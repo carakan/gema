@@ -25,9 +25,10 @@
         <color>4555150</color>
       </controlProperties>
     </control>
-    <control controlID="16" controlTypeID="com.balsamiq.mockups::Label" x="253" y="136" w="-1" h="-1" measuredW="83" measuredH="23" zOrder="5" locked="false" isInGroup="-1">
+    <control controlID="16" controlTypeID="com.balsamiq.mockups::Label" x="253" y="136" w="96" h="23" measuredW="83" measuredH="23" zOrder="5" locked="false" isInGroup="-1">
       <controlProperties>
         <color>15658734</color>
+        <href>cliente_nuevo%26bm%3Bcliente_nuevo.bmml%26bm%3Bcliente_nuevo.bmml%26bm%3Bcliente_nuevo.bmml</href>
         <size>12</size>
         <text>Nuevo%20cliente</text>
       </controlProperties>
