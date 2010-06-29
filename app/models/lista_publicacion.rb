@@ -25,6 +25,7 @@ class ListaPublicacion < Marca
       ['PRODUCTOS',               1],
       ['CLASE INTERNACIONAL',     1]
   ]
+
   acts_as_pdftohtml('archivos/temp/pdf/', 'div>div', :preparar_datos_pdf , @lista_pub_pdf)
 
 
@@ -69,7 +70,7 @@ class ListaPublicacion < Marca
     marca.attributes = attrs
     marca.type = 'ListaPublicacion'
 
-    lista = ListaPublicacion.new(marca.attrs)
+    lista = ListaPublicacion.new(marca.attributes)
     # Se le asigna un numero de solicitud falso para que no ejecute
     # validates_uniqueness_of :numero_solicitud
     lista.numero_solicitud = '0000-0000'

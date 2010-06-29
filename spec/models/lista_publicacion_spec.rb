@@ -127,7 +127,6 @@ describe ListaPublicacion do
     UsuarioSession.current_user = u
     archivo = ActionController::TestUploadedFile.new(@pdf, 'application/pdf')
     ListaPublicacion.importar_pdf(archivo)
-    debugger
     Marca.all.size.should == 28
   end
   
