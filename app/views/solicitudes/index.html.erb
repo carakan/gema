@@ -4,7 +4,7 @@
   <li>
   <a href="javascript:" class="new">Importar&nbsp;<span class="more"></span></a>
     <ul>
-    <% Marca::TIPOS.each do |tipo, nombre| %>
+    <% Marca.lista_estados.each do |nombre, tipo| %>
       <li><%= link_to nombre, new_solicitud_path(:tipo => tipo) %></li>
     <% end %>
     </ul>

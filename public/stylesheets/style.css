@@ -442,3 +442,6 @@ ul.menu li:hover ul {
 .ajax-modal { background-color: #ffffff !important; }
 .marked { background-color: #d5e1f1; }
 .hide { display: none; }
+.hide-field input { display: none; }
+.hide-field text-area { display: none; }
+.hide-field select { display: none; }
