@@ -1,27 +1,19 @@
-<h1>New usuario</h1>
+<h1>Nuevo usuario</h1>
 
-<% form_for(@usuario) do |f| %>
+<% semantic_form_for(@usuario) do |f| %>
+  
   <%= f.error_messages %>
 
-  <p>
-    <%= f.label :nombre %><br />
+  <% usuario.inputs do  %>
+    <%= f. :nombre %><br />
     <%= f.text_field :nombre %>
-  </p>
-  <p>
     <%= f.label :rol %><br />
     <%= f.text_field :rol %>
-  </p>
-  <p>
     <%= f.label :login %><br />
     <%= f.text_field :login %>
-  </p>
-  <p>
     <%= f.label :password %><br />
     <%= f.text_field :password %>
-  </p>
-  <p>
     <%= f.submit 'Create' %>
-  </p>
 <% end %>
 
 <%= link_to 'Back', usuarios_path %>

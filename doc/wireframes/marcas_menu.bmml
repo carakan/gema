@@ -25,9 +25,10 @@
         <color>4555150</color>
       </controlProperties>
     </control>
-    <control controlID="16" controlTypeID="com.balsamiq.mockups::Label" x="322" y="138" w="113" h="21" measuredW="92" measuredH="23" zOrder="5" locked="false" isInGroup="-1">
+    <control controlID="16" controlTypeID="com.balsamiq.mockups::Label" x="322" y="138" w="105" h="21" measuredW="92" measuredH="23" zOrder="5" locked="false" isInGroup="-1">
       <controlProperties>
         <color>15658734</color>
+        <href>marcas_nuevo%26bm%3Bmarcas_nuevo.bmml%26bm%3Bmarcas_nuevo.bmml%26bm%3Bmarcas_nuevo.bmml</href>
         <size>12</size>
         <text>Marcas%20propias</text>
       </controlProperties>

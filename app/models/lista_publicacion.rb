@@ -66,6 +66,9 @@ class ListaPublicacion < Marca
   end
 
   # Actualiza los datos de marca y lo cambia a lista de publicacion
+
+  def self.actualizar_lista_publicacion(marca, attributes)
+    marca.attributes = attributes
   def self.actualizar_lista_publicacion(marca, attrs)
     marca.attributes = attrs
     marca.type = 'ListaPublicacion'
@@ -73,6 +76,8 @@ class ListaPublicacion < Marca
     lista = ListaPublicacion.new(marca.attributes)
     # Se le asigna un numero de solicitud falso para que no ejecute
     # validates_uniqueness_of :numero_solicitud
+    l.numero_solicitud = '0000-0000'
+    if l.valid?
     lista.numero_solicitud = '0000-0000'
     if lista.valid?
       marca.save

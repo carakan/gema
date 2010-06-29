@@ -1,19 +1,5 @@
-<h1>New tipo_marca</h1>
+<h1>Nuevo tipo de signo</h1>
 
-<% form_for(@tipo_marca) do |f| %>
-  <%= f.error_messages %>
+<%= render :partial => "form" %>
 
-  <p>
-    <%= f.label :sigla %><br />
-    <%= f.text_field :sigla %>
-  </p>
-  <p>
-    <%= f.label :nombre %><br />
-    <%= f.text_field :nombre %>
-  </p>
-  <p>
-    <%= f.submit 'Create' %>
-  </p>
-<% end %>
-
-<%= link_to 'Back', tipo_marcas_path %>
+<%= link_to 'Lista tipos de signo', tipo_signos_path %>

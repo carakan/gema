@@ -1,20 +1,6 @@
-<h1>Editing tipo_marca</h1>
+<h1>Edicion tipo de signo</h1>
 
-<% form_for(@tipo_marca) do |f| %>
-  <%= f.error_messages %>
+<%= render :partial => "form" %>
 
-  <p>
-    <%= f.label :sigla %><br />
-    <%= f.text_field :sigla %>
-  </p>
-  <p>
-    <%= f.label :nombre %><br />
-    <%= f.text_field :nombre %>
-  </p>
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
-<% end %>
-
-<%= link_to 'Show', @tipo_marca %> |
-<%= link_to 'Back', tipo_marcas_path %>
+<%= link_to 'Ver', @tipo_signos %> |
+<%= link_to 'Lista', tipo_signos_path %>

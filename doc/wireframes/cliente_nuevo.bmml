@@ -1,4 +1,4 @@
-<mockup version="1.0" skin="sketch" measuredW="1108" measuredH="737" mockupW="1038" mockupH="727">
+<mockup version="1.0" skin="sketch" measuredW="1108" measuredH="737" mockupW="1074" mockupH="727">
   <controls>
     <control controlID="0" controlTypeID="com.balsamiq.mockups::Canvas" x="245" y="0" w="743" h="709" measuredW="100" measuredH="70" zOrder="1" locked="true" isInGroup="-1">
       <controlProperties>
@@ -165,7 +165,7 @@
         <text>4825</text>
       </controlProperties>
     </control>
-    <control controlID="49" controlTypeID="com.balsamiq.mockups::StickyNote" x="60" y="183" w="150" h="156" measuredW="109" measuredH="123" zOrder="27" locked="false" isInGroup="-1">
+    <control controlID="49" controlTypeID="com.balsamiq.mockups::StickyNote" x="24" y="183" w="200" h="194" measuredW="109" measuredH="123" zOrder="27" locked="false" isInGroup="-1">
       <controlProperties>
         <text>A%F1adir%20un%20campo%20en%20conmtactos%20que%20identifique%20si%20el%20cliente%20es%20local%20o%20externo%0A%20%0ASi%20localidad%20es%20%21%20de%20BO%20%3D%3E%20Externo</text>
       </controlProperties>
@@ -175,39 +175,21 @@
         <text>Anadir%20contacto%20se%20refiere%20a%20si%20se%20desea%20llenar%20datos%20de%20una%20persona%20con%20la%20que%20se%20contacten%20para%20realizar%20los%20tramites%20u%20otros.%0AEsta%20persona%20puede%20o%20no%20existir%3F</text>
       </controlProperties>
     </control>
-    <control controlID="51" controlTypeID="__group__" x="286" y="546" w="156" h="26" measuredW="156" measuredH="26" zOrder="29" locked="false" isInGroup="-1">
-      <controlProperties>
-        <href>cliente_contacto%26bm%3Bcliente_contacto.bmml%26bm%3Bcliente_contacto.bmml%26bm%3Bcliente_contacto.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22226%2C546%2C382%2C572%22%20href%3D%22cliente_contacto.bmml%22%20alt%3D%22cliente_contacto%22%20id%3D%2251%22/%3E</map>
-      </controlProperties>
-      <groupChildrenDescriptors>
-        <control controlID="39" controlTypeID="com.balsamiq.mockups::Label" x="0" y="0" w="156" h="26" measuredW="138" measuredH="25" zOrder="0" locked="false" isInGroup="51">
-          <controlProperties>
-            <color>40463</color>
-            <text>%20%20%20%20%20%20%5BA%F1adir%20contacto%5D</text>
-          </controlProperties>
-        </control>
-        <control controlID="40" controlTypeID="com.balsamiq.mockups::Image" x="10" y="0" w="24" h="26" measuredW="16" measuredH="16" zOrder="1" locked="false" isInGroup="51">
-          <controlProperties>
-            <src>./assets/add.png</src>
-          </controlProperties>
-        </control>
-      </groupChildrenDescriptors>
-    </control>
-    <control controlID="52" controlTypeID="com.balsamiq.mockups::TextArea" x="640" y="432" w="277" h="83" measuredW="200" measuredH="140" zOrder="30" locked="false" isInGroup="-1">
+    <control controlID="52" controlTypeID="com.balsamiq.mockups::TextArea" x="640" y="432" w="277" h="83" measuredW="200" measuredH="140" zOrder="29" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Calle%20Federico%20Suazo%20Nro%20400</text>
       </controlProperties>
     </control>
-    <control controlID="53" controlTypeID="com.balsamiq.mockups::ComboBox" x="290" y="362" w="282" h="-1" measuredW="71" measuredH="25" zOrder="31" locked="false" isInGroup="-1">
+    <control controlID="53" controlTypeID="com.balsamiq.mockups::ComboBox" x="290" y="362" w="282" h="-1" measuredW="71" measuredH="25" zOrder="30" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Bolivia</text>
       </controlProperties>
     </control>
-    <control controlID="55" controlTypeID="com.balsamiq.mockups::PointyButton" x="296" y="601" w="-1" h="-1" measuredW="60" measuredH="28" zOrder="32" locked="false" isInGroup="-1">
+    <control controlID="55" controlTypeID="com.balsamiq.mockups::PointyButton" x="573" y="554" w="-1" h="-1" measuredW="60" measuredH="28" zOrder="31" locked="false" isInGroup="-1">
       <controlProperties>
         <color>2848996</color>
         <direction>center</direction>
+        <href>cliente_show%26bm%3Bcliente_show.bmml%26bm%3Bcliente_show.bmml%26bm%3Bcliente_show.bmml</href>
         <text>Salvar</text>
       </controlProperties>
     </control>

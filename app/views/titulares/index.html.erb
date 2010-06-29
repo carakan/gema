@@ -1,7 +1,9 @@
 <h2>Listado de titulares</h2>
+
 <table class="decorated">
     <tr>
       <th>Nombre</th>
+      <th>Direccion</th>
       <th>Telefono</th>
       <th>Email</th>
       <th></th>
@@ -10,6 +12,7 @@
 <% @titulares.each do |titular| %>
   <tr>
    <td><%=h link_to titular.nombre, titular %></td>
+   <td><%=h titular.direccion %></td>
    <td><%=h titular.telefono %></td>
    <td><%=h titular.email %></td>
    <td>

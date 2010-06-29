@@ -5,7 +5,7 @@ class ListaPublicacionesController < ApplicationController
   end
 
   def new
-    @marca = ListaPublicacion.new( :fecha_gen => Date.today )
+    @marcas = ListaPublicacion.new( :fecha_gen => Date.today )
   end
 
   # Creacion o actualizacion de marcas por tipo

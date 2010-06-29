@@ -1,13 +1,13 @@
 <p>
   <b>Sigla:</b>
-  <%=h @tipo_marca.sigla %>
+  <%=h @tipo_signos.sigla %>
 </p>
 
 <p>
   <b>Nombre:</b>
-  <%=h @tipo_marca.nombre %>
+  <%=h @tipo_signos.nombre %>
 </p>
 
 
-<%= link_to 'Edit', edit_tipo_marca_path(@tipo_marca) %> |
-<%= link_to 'Back', tipo_marcas_path %>
+<%= link_to 'Editar', edit_tipo_signo_path(@tipo_signos), :class => 'edit' %> |
+<%= link_to 'Lista', tipo_signos_path, :class => 'list' %>
