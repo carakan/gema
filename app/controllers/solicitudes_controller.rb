@@ -8,24 +8,18 @@ class SolicitudesController < ApplicationController
   end
 
   def new
-    @marca = Marca.new( :fecha_gen => Date.today )
+    @marca = ImportacionVacia.new(:tipo => params[:tipo])
   end
 
   # Creacion o actualizacion de marcas por tipo
   def create
-    case params[:tipo]
-      when 'sm'
-        fecha_importacion = SolicitudMarca.importar( params[:marca][:archivo] )
-        redirect_to(importado_solicitud_url( fecha_importacion ) )
-      when 'lp'
-        fecha_importacion = ListaPublicacion.importar( params[:marca][:archivo] )
-        redirect_to(importado_solicitud_url( fecha_importacion ) )
-      when 'lr'
-        # @errors = ListaRegistro.importar( params[:marca][:archivo] )
-      when 'sr'
-        # @errors = SolicitudRenovacion.importar( params[:marca][:archivo] )
-      when 'rc'
-        # @errors = ListaPublicacion.importar( params[:marca][:archivo] )
+    @marca = ImportacionVacia.new( params[:importacion_vacia] )
+
+    if @marca.valid? == true
+      fecha_importacion = @marca.importar(params[:importacion_vacia])
+      redirect_to(importado_solicitud_url( fecha_importacion ) )
+    else
+      render :action => 'new'
     end
   end
 

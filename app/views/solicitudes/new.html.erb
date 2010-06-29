@@ -4,8 +4,14 @@
 <% semantic_form_for( @marca, :url => solicitudes_path, :html => { :multipart => true } ) do |f| %>
   <%= hidden_field_tag('tipo', params[:tipo]) %>
 
-  <div class="half fl"> 
+  <div> 
+    <div class="hide-field">
+      <%= f.input :tipo, :label => '&nbsp;' %>
+    </div>
+
+    <%= f.input :gaceta if params[:tipo] == 'lp' %>
     <%= f.input :archivo, :as => :file, :label => "Archivo", :input_html => { :size => 60 } %>
+
   </div>
 
   <div style="clear:both"></div>

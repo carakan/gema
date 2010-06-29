@@ -76,7 +76,8 @@ class Marca < ActiveRecord::Base
   # Presenta una lista que puede ser usada en
   # formularios de seleccion multiple
   def self.lista_estados
-    TIPOS.inject([]) { |arr, val| arr << [ val.last, val.first ] }
+    orden = ['sm' ,'lp', 'lr', 'sr', 'rc']
+    orden.inject([]) { |arr, val| arr << [TIPOS[val], val] }
   end
 
   #def self.all(*args)
