@@ -1,0 +1,13 @@
+<% semantic_form_for(@tipo_signos) do |ts| %>
+  <%= ts.error_messages %>
+ 
+  <% ts.inputs do %>
+    <%= ts.input :sigla, :label => 'Sigla' %>
+    <%= ts.input :nombre, :label => 'Nombre' %>
+  <% end %>
+  <p>
+    <%= ts.submit 'Salvar' %>
+  </p>
+<% end %>
+
+

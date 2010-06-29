@@ -1,22 +1,20 @@
-<h1>Listing tipo_marcas</h1>
+<h1>Tipos de marcas</h1>
 
-<table>
+<%= link_to 'Nuevo tipo de marca', new_tipo_marca_path, :class => 'new' %>
+
+<table class="decorated">
   <tr>
     <th>Nombre</th>
     <th>Descripcion</th>
+    <th></th>
   </tr>
 
 <% @tipo_marcas.each do |tipo_marca| %>
   <tr>
-    <td><%=h tipo_marca.nombre %></td>
+    <td><%=h link_to tipo_marca.nombre, tipo_marca %></td>
     <td><%=h tipo_marca.descripcion %></td>
-    <td><%= link_to 'Show', tipo_marca %></td>
-    <td><%= link_to 'Edit', edit_tipo_marca_path(tipo_marca) %></td>
-    <td><%= link_to 'Destroy', tipo_marca, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= links(tipo_marca) %></td>
   </tr>
 <% end %>
 </table>
 
-<br />
-
-<%= link_to 'New tipo_marca', new_tipo_marca_path %>

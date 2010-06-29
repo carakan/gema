@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(:version => 20100620185547) do
 
   create_table "marcas", :force => true do |t|
     t.integer  "parent_id",                        :default => 0
-    t.integer  "marca_id"
     t.integer  "usuario_id"
     t.integer  "titular_id"
     t.integer  "agente_id"
@@ -55,7 +54,7 @@ ActiveRecord::Schema.define(:version => 20100620185547) do
   add_index "marcas", ["agente_id"], :name => "index_marcas_on_agente_id"
   add_index "marcas", ["clase_id"], :name => "index_marcas_on_clase_id"
   add_index "marcas", ["fecha_importacion"], :name => "index_marcas_on_fecha_importacion"
-  add_index "marcas", ["marca_id"], :name => "index_marcas_on_marca_id"
+  add_index "marcas", ["parent_id"], :name => "index_marcas_on_parent_id"
   add_index "marcas", ["tipo_marca_id"], :name => "index_marcas_on_tipo_marca_id"
   add_index "marcas", ["tipo_signo_id"], :name => "index_marcas_on_tipo_signo_id"
   add_index "marcas", ["titular_id"], :name => "index_marcas_on_titular_id"

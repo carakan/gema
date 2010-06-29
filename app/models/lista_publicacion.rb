@@ -30,6 +30,8 @@ class ListaPublicacion < Marca
 
   # Realiza la importacion de un archivo excel o un pdf
   def self.importar(archivo, gaceta = '')
+    @fecha_importacion_global = DateTime.now.strftime("%Y-%m-%d %H:%I:%S")
+
     self.transaction do |trans|
       case File.extname(archivo.original_filename.downcase)
         when ".pdf" 
@@ -38,6 +40,8 @@ class ListaPublicacion < Marca
           importar_excel(archivo)
       end
     end
+
+    @fecha_importacion_global
   end
 
 
@@ -54,22 +58,27 @@ class ListaPublicacion < Marca
 
   # Debe indicarse de que no existio una marca anterior de la cual se
   # actualizo sus datos
-  def self.crear_lista_publicacion(attributes)
-    l = ListaPublicacion.new(attributes)
-    l.valido = false
-    l.save(false)
+  def self.crear_lista_publicacion(attrs)
+    lista = ListaPublicacion.new(attrs.merge(:valido => false))
+    # lista.valid?, en caso de que se quiera validar, pero :valido => false
+    lista.save(false)
   end
 
   # Actualiza los datos de marca y lo cambia a lista de publicacion
+
   def self.actualizar_lista_publicacion(marca, attributes)
     marca.attributes = attributes
+  def self.actualizar_lista_publicacion(marca, attrs)
+    marca.attributes = attrs
     marca.type = 'ListaPublicacion'
 
-    l = ListaPublicacion.new(marca.attributes)
+    lista = ListaPublicacion.new(marca.attrs)
     # Se le asigna un numero de solicitud falso para que no ejecute
     # validates_uniqueness_of :numero_solicitud
     l.numero_solicitud = '0000-0000'
     if l.valid?
+    lista.numero_solicitud = '0000-0000'
+    if lista.valid?
       marca.save
     else
       marca.valido = false
@@ -87,10 +96,11 @@ class ListaPublicacion < Marca
   def self.preparar_datos_pdf(params)
     marca = Marca.find_by_numero_solicitud(params['NUMERO DE SOLICITUD'])
 
-    attributes = {
+    attrs = {
       :nombre => params['NOMBRE DE LA MARCA'], 
       :estado => 'lp',
       :estado_fecha => parsear_fecha_pdf(params['FECHA DE SOLICITUD']),
+      :fecha_importacion => @fecha_importacion_global,
       :productos => params['PRODUCTOS'],
       :clase_id => Clase.find_by_codigo(params['CLASE INTERNACIONAL']) || 0,
       :valido => true
@@ -98,13 +108,13 @@ class ListaPublicacion < Marca
 
     [:tipo_signo_id, :tipo_marca_id, :agente_id, :titular_id].each do |m|
       klass = send("set_#{m.to_s.gsub(/_id$/, '')}", params)
-      attributes[m] = klass.id if klass
+      attrs[m] = klass.id if klass
     end
 
     unless marca
-      crear_lista_publicacion(attributes)
+      crear_lista_publicacion(attrs)
     else
-      actualizar_lista_publicacion(marca, attributes)
+      actualizar_lista_publicacion(marca, attrs)
     end
       
   end

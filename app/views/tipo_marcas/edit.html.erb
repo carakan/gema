@@ -1,20 +1,6 @@
-<h1>Editing tipo_marca</h1>
+<h1>Edicion tipo de marca</h1>
 
-<% form_for(@tipo_marca) do |f| %>
-  <%= f.error_messages %>
+<%= render :partial => "form" %>
 
-  <p>
-    <%= f.label :nombre %><br />
-    <%= f.text_field :nombre %>
-  </p>
-  <p>
-    <%= f.label :descripcion %><br />
-    <%= f.text_field :descripcion %>
-  </p>
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
-<% end %>
-
-<%= link_to 'Show', @tipo_marca %> |
-<%= link_to 'Back', tipo_marcas_path %>
+<%= link_to 'Ver', @tipo_marca %> |
+<%= link_to 'Lista', tipo_marcas_path %>

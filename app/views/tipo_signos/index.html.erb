@@ -1,19 +1,20 @@
-<h1>Tipos de marca</h1>
+<h1>Tipos de signos</h1>
 
 
-<%= link_to 'Nuevo tipo marca', new_tipo_marca_path, :class => 'new' %>
+<%= link_to 'Nuevo tipo de signo', new_tipo_signo_path, :class => 'new' %>
 
-<table>
+<table class="decorated">
   <tr>
     <th>Sigla</th>
     <th>Nombre</th>
+    <th></th>
   </tr>
 
-<% @tipo_marcas.each do |tipo_marca| %>
+<% @tipo_signos.each do |tipo_signo| %>
   <tr>
-    <td><%= link_to tipo_marca.nombre, tipo_marca %></td>
-    <td><%= tipo_marca.sigla %></td>
-    <td><%= links(tipo_marca) %></td>
+    <td><%=h tipo_signo.sigla %></td>
+    <td><%=h link_to tipo_signo.nombre, tipo_signo %></td>
+    <td><%= links(tipo_signo) %></td>
   </tr>
 <% end %>
 </table>
