@@ -44,7 +44,7 @@ class TipoSignosController < ApplicationController
 
     respond_to do |format|
       if @tipo_signos.save
-        format.html { redirect_to(@tipo_signos, :notice => 'TipoSigno was successfully created.') }
+        format.html { redirect_to(@tipo_signos, :notice => 'El tipo de signo fue creado de forma correcta.') }
         format.xml  { render :xml => @tipo_signos, :status => :created, :location => @tipo_signos }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class TipoSignosController < ApplicationController
 
     respond_to do |format|
       if @tipo_signos.update_attributes(params[:tipo_marca])
-        format.html { redirect_to(@tipo_signos, :notice => 'TipoSigno was successfully updated.') }
+        format.html { redirect_to(@tipo_signos, :notice => 'Los datos del tipo de signo fueron actualizados de forma correcta.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

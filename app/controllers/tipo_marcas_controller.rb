@@ -44,7 +44,7 @@ class TipoMarcasController < ApplicationController
 
     respond_to do |format|
       if @tipo_marca.save
-        format.html { redirect_to(@tipo_marca, :notice => 'TipoMarca was successfully created.') }
+        format.html { redirect_to(@tipo_marca, :notice => 'El tipo de marca fue creado con exito.') }
         format.xml  { render :xml => @tipo_marca, :status => :created, :location => @tipo_marca }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class TipoMarcasController < ApplicationController
 
     respond_to do |format|
       if @tipo_marca.update_attributes(params[:tipo_marca])
-        format.html { redirect_to(@tipo_marca, :notice => 'TipoMarca was successfully updated.') }
+        format.html { redirect_to(@tipo_marca, :notice => 'Los datos del tipo de marca fueron actualizados de manera correcta.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
