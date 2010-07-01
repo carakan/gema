@@ -7,11 +7,11 @@ class Usuario < ActiveRecord::Base
   validates_format_of :login, :with => /^[a-z0-9_-]{4,16}$/i
   validates_uniqueness_of :login
   validates_confirmation_of :password
+  validates_presence_of :password_confirmation, :if => :password_changed?
 
   def to_s
     nombre
   end
-
 
   # Metodo para buscar por login y password
   def self.find_login_password(l, p)
