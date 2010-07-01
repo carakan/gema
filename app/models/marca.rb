@@ -1,5 +1,6 @@
 class Marca < ActiveRecord::Base
 
+  #before_save :set_propia
   before_save :actualizar_validez
   before_save :adicionar_usuario
   before_update :crear_historico
@@ -12,7 +13,9 @@ class Marca < ActiveRecord::Base
   belongs_to :titular
 
   
-  validates_presence_of :nombre, :estado_fecha, :estado, :tipo_signo_id, :clase_id
+  validates_presence_of :nombre, :estado_fecha, 
+    :estado, :tipo_signo_id, :clase_id
+
   validates_format_of :numero_solicitud, :with => /^\d+-\d{4}$/
   validates_uniqueness_of :numero_solicitud, :scope => :parent_id
 
@@ -80,6 +83,19 @@ class Marca < ActiveRecord::Base
     orden.inject([]) { |arr, val| arr << [TIPOS[val], val] }
   end
 
+  def self.buscar(*args)
+    options = args.extract_options!
+    params = options.delete(:params)
+    
+    unless params['propia'].nil?
+      options = options.merge(:conditions => { :propia => convert_boolean(params['propia']) })
+    else
+      options[:conditions] = {}
+    end
+
+    paginate(options)
+  end
+
   #def self.all(*args)
   #  options = args.extract_options!
   #  super options#, :conditions => "marcas.parent_id = 0"
@@ -120,8 +136,12 @@ class Marca < ActiveRecord::Base
 
 
   # Crea una instancia de acuerdo al estado
-  def self.crear_instancia(params)
+  # @param Hash parmas
+  # @param Marca o modelo heredado Indica si se debe unir con los atributos de la clase
+  # @return Marca.new o clase heredada
+  def self.crear_instancia(params, klass = nil)
     params = extraer_params(params)
+    params = klass.attributes.merge(params) unless klass.nil?
     case params[:estado]
       when 'sm' then SolicitudMarca.new(params)
       when 'lp' then ListaPublicacion.new(params)
@@ -146,7 +166,7 @@ class Marca < ActiveRecord::Base
   # Metodo para poder realizar actualizaciones
   # que pueda cambiar la clse y el estado
   def update_marca(params)
-    klass = self.class.crear_instancia(params)
+    klass = self.class.crear_instancia(params, self)
     # Se asigna los atributos para no perder datos de los params
     self.attributes = klass.attributes
     # se asigna datos faltantes para klass
@@ -202,4 +222,8 @@ private
     self.cambios =  self.changes.keys.select{ |v| not [:valido, :fila, :type].include?(v) }
   end
 
+  # En caso de importación todas las marcas indica que no son propias a la empresa
+  def set_propia
+    self.propia = false if self.propia.nil?
+  end
 end
