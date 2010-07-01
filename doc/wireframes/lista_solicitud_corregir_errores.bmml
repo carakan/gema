@@ -99,44 +99,30 @@
       <controlProperties>
         <color>13576743</color>
         <size>18</size>
-        <text>Numero%20de%20errores%3A%202</text>
+        <text>Numero%20de%20errores%3A%201</text>
       </controlProperties>
     </control>
-    <control controlID="59" controlTypeID="com.balsamiq.mockups::Label" x="841" y="268" w="56" h="25" measuredW="43" measuredH="25" zOrder="16" locked="false" isInGroup="-1">
+    <control controlID="59" controlTypeID="com.balsamiq.mockups::Label" x="841" y="268" w="56" h="25" measuredW="43" measuredH="25" zOrder="15" locked="false" isInGroup="-1">
       <controlProperties>
         <href>lista_solicitud_editar%26bm%3Blista_solicitud_editar.bmml%26bm%3Blista_solicitud_editar.bmml%26bm%3Blista_solicitud_editar.bmml</href>
         <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22781%2C268%2C837%2C293%22%20href%3D%22lista_solicitud_editar.bmml%22%20alt%3D%22lista_solicitud_editar%22%20id%3D%2259%22/%3E</map>
         <text>%5Beditar%5D</text>
       </controlProperties>
     </control>
-    <control controlID="60" controlTypeID="com.balsamiq.mockups::Label" x="904" y="270" w="56" h="25" measuredW="44" measuredH="25" zOrder="17" locked="false" isInGroup="-1">
+    <control controlID="60" controlTypeID="com.balsamiq.mockups::Label" x="904" y="270" w="56" h="25" measuredW="44" measuredH="25" zOrder="16" locked="false" isInGroup="-1">
       <controlProperties>
         <href>lista_solicitud_borrar%26bm%3Blista_solicitud_borrar.bmml%26bm%3Blista_solicitud_borrar.bmml%26bm%3Blista_solicitud_borrar.bmml</href>
         <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22844%2C270%2C900%2C295%22%20href%3D%22lista_solicitud_borrar.bmml%22%20alt%3D%22lista_solicitud_borrar%22%20id%3D%2260%22/%3E</map>
         <text>%5Bborrar%5D</text>
       </controlProperties>
     </control>
-    <control controlID="64" controlTypeID="com.balsamiq.mockups::Label" x="841" y="300" w="56" h="25" measuredW="43" measuredH="25" zOrder="18" locked="false" isInGroup="-1">
-      <controlProperties>
-        <href>lista_solicitud_editar%26bm%3Blista_solicitud_editar.bmml%26bm%3Blista_solicitud_editar.bmml%26bm%3Blista_solicitud_editar.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22781%2C300%2C837%2C325%22%20href%3D%22lista_solicitud_editar.bmml%22%20alt%3D%22lista_solicitud_editar%22%20id%3D%2264%22/%3E</map>
-        <text>%5Beditar%5D</text>
-      </controlProperties>
-    </control>
-    <control controlID="65" controlTypeID="com.balsamiq.mockups::Label" x="904" y="302" w="56" h="25" measuredW="44" measuredH="25" zOrder="15" locked="false" isInGroup="-1">
-      <controlProperties>
-        <href>lista_solicitud_borrar%26bm%3Blista_solicitud_borrar.bmml%26bm%3Blista_solicitud_borrar.bmml%26bm%3Blista_solicitud_borrar.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22844%2C302%2C900%2C327%22%20href%3D%22lista_solicitud_borrar.bmml%22%20alt%3D%22lista_solicitud_borrar%22%20id%3D%2265%22/%3E</map>
-        <text>%5Bborrar%5D</text>
-      </controlProperties>
-    </control>
-    <control controlID="66" controlTypeID="com.balsamiq.mockups::DataGrid" x="277" y="246" w="687" h="234" measuredW="492" measuredH="88" zOrder="14" locked="false" isInGroup="-1">
+    <control controlID="66" controlTypeID="com.balsamiq.mockups::DataGrid" x="277" y="246" w="687" h="234" measuredW="492" measuredH="58" zOrder="14" locked="false" isInGroup="-1">
       <controlProperties>
         <borderStyle>none</borderStyle>
         <hasHeader>true</hasHeader>
         <hLines>false</hLines>
         <selectedIndex>-1</selectedIndex>
-        <text>Marca%2C%20%20Numero%20solicitud%2C%20Tipo%20Signo%2C%20Agente%2C%20%20%20%20%20%20%20%20%20%20%0ACaricia%2C%201223-2009%2C%20%20%20%20%20%2C%20Lorena%20Rojas%0ACOSMOS%20S.A.%2C%20%20%2C%20Figurativa%20%20%20%20%2C%20Lorena%20Rojas</text>
+        <text>Marca%2C%20%20Numero%20solicitud%2C%20Tipo%20Signo%2C%20Agente%2C%20%20%20%20%20%20%20%20%20%20%0ACOSMOS%20S.A.%2C%20%20%2C%20Figurativa%20%20%20%20%2C%20Lorena%20Rojas</text>
         <vLines>false</vLines>
       </controlProperties>
     </control>
