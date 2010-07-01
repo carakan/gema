@@ -34,6 +34,7 @@
       <controlProperties>
         <color>15658734</color>
         <href>cliente_menu%26bm%3Bcliente_menu.bmml%26bm%3Bcliente_menu.bmml%26bm%3Bcliente_menu.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22111%2C110%2C168%2C136%22%20href%3D%22cliente_menu.bmml%22%20alt%3D%22cliente_menu%22%20id%3D%2231%22/%3E</map>
         <size>14</size>
         <text>Clientes</text>
       </controlProperties>
@@ -42,6 +43,7 @@
       <controlProperties>
         <color>15658734</color>
         <href>marcas_menu%26bm%3Bmarcas_menu.bmml%26bm%3Bmarcas_menu.bmml%26bm%3Bmarcas_menu.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22180%2C110%2C234%2C136%22%20href%3D%22marcas_menu.bmml%22%20alt%3D%22marcas_menu%22%20id%3D%2232%22/%3E</map>
         <size>14</size>
         <text>Marcas</text>
       </controlProperties>
@@ -50,6 +52,7 @@
       <controlProperties>
         <color>15658734</color>
         <href>importaciones_menu%26bm%3Bimportaciones_menu.bmml%26bm%3Bimportaciones_menu.bmml%26bm%3Bimportaciones_menu.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22249%2C110%2C351%2C136%22%20href%3D%22importaciones_menu.bmml%22%20alt%3D%22importaciones_menu%22%20id%3D%2233%22/%3E</map>
         <size>14</size>
         <text>Importaciones</text>
       </controlProperties>
@@ -58,6 +61,7 @@
       <controlProperties>
         <color>15658734</color>
         <href>busquedas_menu%26bm%3Bbusquedas_menu.bmml%26bm%3Bbusquedas_menu.bmml%26bm%3Bbusquedas_menu.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22366%2C110%2C439%2C136%22%20href%3D%22busquedas_menu.bmml%22%20alt%3D%22busquedas_menu%22%20id%3D%2234%22/%3E</map>
         <size>14</size>
         <text>Busquedas</text>
       </controlProperties>
@@ -66,6 +70,7 @@
       <controlProperties>
         <color>15658734</color>
         <href>reportes_menu%26bm%3Breportes_menu.bmml%26bm%3Breportes_menu.bmml%26bm%3Breportes_menu.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22604%2C110%2C669%2C136%22%20href%3D%22reportes_menu.bmml%22%20alt%3D%22reportes_menu%22%20id%3D%2235%22/%3E</map>
         <size>14</size>
         <text>Reportes</text>
       </controlProperties>
@@ -74,8 +79,33 @@
       <controlProperties>
         <color>15658734</color>
         <href>datos_generales_menu%26bm%3Bdatos_generales_menu.bmml%26bm%3Bdatos_generales_menu.bmml%26bm%3Bdatos_generales_menu.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22459%2C110%2C574%2C136%22%20href%3D%22datos_generales_menu.bmml%22%20alt%3D%22datos_generales_menu%22%20id%3D%2236%22/%3E</map>
         <size>14</size>
         <text>Datos%20Generales</text>
+      </controlProperties>
+    </control>
+    <control controlID="37" controlTypeID="com.balsamiq.mockups::TextInput" x="310" y="196" w="248" h="-1" measuredW="58" measuredH="29" zOrder="11" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>NIVEA</text>
+      </controlProperties>
+    </control>
+    <control controlID="38" controlTypeID="com.balsamiq.mockups::Label" x="639" y="200" w="109" h="20" measuredW="95" measuredH="20" zOrder="12" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>1265500</color>
+        <href>busquedas_avanzadas%26bm%3Bbusquedas_avanzadas.bmml%26bm%3Bbusquedas_avanzadas.bmml%26bm%3Bbusquedas_avanzadas.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22497%2C200%2C606%2C220%22%20href%3D%22busquedas_avanzadas.bmml%22%20alt%3D%22busquedas_avanzadas%22%20id%3D%2238%22/%3E</map>
+        <size>10</size>
+        <text>Busqueda%20avanzada</text>
+        <underline>true</underline>
+      </controlProperties>
+    </control>
+    <control controlID="39" controlTypeID="com.balsamiq.mockups::PointyButton" x="566" y="196" w="68" h="-1" measuredW="63" measuredH="28" zOrder="13" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>4555150</color>
+        <direction>center</direction>
+        <href>busquedas_resultados%26bm%3Bbusquedas_resultados.bmml%26bm%3Bbusquedas_resultados.bmml%26bm%3Bbusquedas_resultados.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22424%2C196%2C492%2C224%22%20href%3D%22busquedas_resultados.bmml%22%20alt%3D%22busquedas_resultados%22%20id%3D%2239%22/%3E</map>
+        <text>Buscar</text>
       </controlProperties>
     </control>
   </controls>

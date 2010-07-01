@@ -84,37 +84,21 @@
         <text>Datos%20Generales</text>
       </controlProperties>
     </control>
-    <control controlID="89" controlTypeID="com.balsamiq.mockups::Title" x="269" y="149" w="-1" h="-1" measuredW="361" measuredH="46" zOrder="11" locked="false" isInGroup="-1">
+    <control controlID="89" controlTypeID="com.balsamiq.mockups::Title" x="269" y="149" w="-1" h="-1" measuredW="609" measuredH="46" zOrder="11" locked="false" isInGroup="-1">
       <controlProperties>
         <size>28</size>
-        <text>Resultados%20de%20la%20busqueda</text>
+        <text>Reporte%20de%20vigilancia%20marcas%20pre-publicacion</text>
       </controlProperties>
     </control>
-    <control controlID="97" controlTypeID="com.balsamiq.mockups::DataGrid" x="270" y="196" w="-1" h="-1" measuredW="664" measuredH="178" zOrder="12" locked="false" isInGroup="-1">
+    <control controlID="97" controlTypeID="com.balsamiq.mockups::DataGrid" x="270" y="202" w="-1" h="-1" measuredW="628" measuredH="118" zOrder="12" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>%2CMarca%20vigilada%2C%20Clase%2CN%BA%2CMarca%20encontrada%2C%20Clase%2C%20N%BA%20solicitud%2C%20Marca%20ORPAN%0A%5BX%5D%2C%5BNIVEA%5D%2C%2010%2C12345-C%2C%5BIDEA%5D%2C%2010%2C1224-2010%2CSI%0A%5B%5D%2C%5BNIVEA%5D%2C%2014%2C12695-C%2C%5BDIVEA%5D%2C%2010%2C1234-2010%2CNO%0A%5BX%5D%2C%5BNIVEA%5D%2C%2011%2C17536-C%2C%5BVINEA%5D%2C%2010%2C1238-2010%2CSI%0A%5B%5D%2C%5BNIVEA%5D%2C%2011%2C17536-C%2C%5BVIA%5D%2C%2010%2C1370-2010%2CNO%0A%5B%5D%2C%5BNIVEA%5D%2C%2011%2C17536-C%2C%5BPLANEA%5D%2C%2010%2C1384-2010%2CNO</text>
+        <borderStyle>square</borderStyle>
+        <text>Marca%20vigilada%2C%20Clase%2CN%BA%2CMarca%20encontrada%2C%20Clase%2C%20N%BA%20solicitud%2C%20Marca%20ORPAN%0A%5BNIVEA%5D%2C%2014%2C12695-C%2C%5BDIVEA%5D%2C%2010%2C1234-2010%2CNO%0A%5BNIVEA%5D%2C%2011%2C17536-C%2C%5BVIA%5D%2C%2010%2C1370-2010%2CNO%0A%5BNIVEA%5D%2C%2011%2C17536-C%2C%5BPLANEA%5D%2C%2010%2C1384-2010%2CNO</text>
       </controlProperties>
     </control>
-    <control controlID="100" controlTypeID="com.balsamiq.mockups::Label" x="298" y="405" w="121" h="25" measuredW="106" measuredH="25" zOrder="13" locked="false" isInGroup="-1">
-      <controlProperties>
-        <color>545684</color>
-        <href>busqueda_reporte_vigilancia_pre-publicacion%26bm%3Bbusqueda_reporte_vigilancia_pre-publicacion.bmml%26bm%3Bbusqueda_reporte_vigilancia_pre-publicacion.bmml%26bm%3Bbusqueda_reporte_vigilancia_pre-publicacion.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22240%2C405%2C361%2C430%22%20href%3D%22busqueda_reporte_vigilancia_pre-publicacion.bmml%22%20alt%3D%22busqueda_reporte_vigilancia_pre-publicacion%22%20id%3D%22100%22/%3E</map>
-        <text>Generar%20reporte</text>
-        <underline>true</underline>
-      </controlProperties>
-    </control>
-    <control controlID="101" controlTypeID="com.balsamiq.mockups::StickyNote" x="58" y="68" w="163" h="159" measuredW="109" measuredH="123" zOrder="14" locked="false" isInGroup="-1">
+    <control controlID="101" controlTypeID="com.balsamiq.mockups::StickyNote" x="58" y="68" w="163" h="159" measuredW="109" measuredH="123" zOrder="13" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Esto%20de%20Marca%20ORPAN%20por%20lo%20de%20propia%3Dtrue</text>
-      </controlProperties>
-    </control>
-    <control controlID="102" controlTypeID="com.balsamiq.mockups::Label" x="310" y="223" w="57" h="25" measuredW="50" measuredH="25" zOrder="15" locked="false" isInGroup="-1">
-      <controlProperties>
-        <color>545684</color>
-        <href>busquedas_pre-publicacion_resultados_datos_marca%26bm%3Bbusquedas_pre-publicacion_resultados_datos_marca.bmml%26bm%3Bbusquedas_pre-publicacion_resultados_datos_marca.bmml%26bm%3Bbusquedas_pre-publicacion_resultados_datos_marca.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22252%2C223%2C309%2C248%22%20href%3D%22busquedas_pre-publicacion_resultados_datos_marca.bmml%22%20alt%3D%22busquedas_pre-publicacion_resultados_datos_marca%22%20id%3D%22102%22/%3E</map>
-        <text>NIVEA</text>
       </controlProperties>
     </control>
   </controls>

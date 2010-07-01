@@ -84,7 +84,7 @@
         <text>Datos%20Generales</text>
       </controlProperties>
     </control>
-    <control controlID="41" controlTypeID="com.balsamiq.mockups::FieldSet" x="310" y="256" w="596" h="369" measuredW="200" measuredH="170" zOrder="2" locked="false" isInGroup="-1">
+    <control controlID="41" controlTypeID="com.balsamiq.mockups::FieldSet" x="310" y="256" w="596" h="369" measuredW="200" measuredH="170" zOrder="2" locked="true" isInGroup="-1">
       <controlProperties>
         <text/>
       </controlProperties>
@@ -159,32 +159,32 @@
         <text>Estado</text>
       </controlProperties>
     </control>
-    <control controlID="83" controlTypeID="com.balsamiq.mockups::CheckBox" x="365" y="460" w="87" h="22" measuredW="86" measuredH="22" zOrder="22" locked="false" isInGroup="-1">
+    <control controlID="83" controlTypeID="com.balsamiq.mockups::CheckBox" x="365" y="474" w="87" h="22" measuredW="86" measuredH="22" zOrder="22" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Solicitado</text>
       </controlProperties>
     </control>
-    <control controlID="84" controlTypeID="com.balsamiq.mockups::CheckBox" x="364" y="482" w="87" h="22" measuredW="83" measuredH="22" zOrder="23" locked="false" isInGroup="-1">
+    <control controlID="84" controlTypeID="com.balsamiq.mockups::CheckBox" x="364" y="496" w="87" h="22" measuredW="83" measuredH="22" zOrder="23" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Publicado</text>
       </controlProperties>
     </control>
-    <control controlID="85" controlTypeID="com.balsamiq.mockups::CheckBox" x="365" y="502" w="93" h="22" measuredW="92" measuredH="22" zOrder="24" locked="false" isInGroup="-1">
+    <control controlID="85" controlTypeID="com.balsamiq.mockups::CheckBox" x="365" y="516" w="93" h="22" measuredW="92" measuredH="22" zOrder="24" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Registrado</text>
       </controlProperties>
     </control>
-    <control controlID="86" controlTypeID="com.balsamiq.mockups::CheckBox" x="365" y="522" w="99" h="22" measuredW="99" measuredH="22" zOrder="25" locked="false" isInGroup="-1">
+    <control controlID="86" controlTypeID="com.balsamiq.mockups::CheckBox" x="365" y="536" w="99" h="22" measuredW="99" measuredH="22" zOrder="25" locked="false" isInGroup="-1">
       <controlProperties>
         <text>En%20oposicion</text>
       </controlProperties>
     </control>
-    <control controlID="87" controlTypeID="com.balsamiq.mockups::CheckBox" x="365" y="542" w="99" h="22" measuredW="87" measuredH="22" zOrder="26" locked="false" isInGroup="-1">
+    <control controlID="87" controlTypeID="com.balsamiq.mockups::CheckBox" x="365" y="556" w="99" h="22" measuredW="87" measuredH="22" zOrder="26" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Concedido</text>
       </controlProperties>
     </control>
-    <control controlID="88" controlTypeID="com.balsamiq.mockups::CheckBox" x="365" y="562" w="99" h="22" measuredW="84" measuredH="22" zOrder="27" locked="false" isInGroup="-1">
+    <control controlID="88" controlTypeID="com.balsamiq.mockups::CheckBox" x="365" y="576" w="99" h="22" measuredW="84" measuredH="22" zOrder="27" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Denegado</text>
       </controlProperties>
