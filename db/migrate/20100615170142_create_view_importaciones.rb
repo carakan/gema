@@ -1,17 +1,27 @@
 class CreateViewImportaciones < ActiveRecord::Migration
   def self.up
+    # Todos
+    sql = "CREATE VIEW view_importaciones_todos AS
+    SELECT fecha_importacion, COUNT(*) AS total, 0 as errores, estado FROM marcas WHERE parent_id = 0 
+    GROUP BY fecha_importacion"
+    execute(sql)
+    # Errores
+    sql2 = Marca.send(:construct_finder_sql, 
+                      :select => "fecha_importacion, 0 AS total, COUNT(*) AS errores, estado",
+                      :conditions => { :valido => false }, # No es necesario :parent_id => 0, por que hay un default scope
+                      :group => "marcas.fecha_importacion"
+                     )
+    sql = "CREATE VIEW view_importaciones_errores AS #{sql2}"
+    execute(sql)
+    # Vista final
     sql = "CREATE VIEW view_importaciones AS
-      SELECT fecha_importacion, COUNT(DISTINCT(total)) - 1 AS total, COUNT(DISTINCT(errores)) -1 AS errores, estado FROM
-        (
-          SELECT fecha_importacion, id AS total, 0 as errores, estado FROM marcas WHERE parent_id = 0
-          UNION
-          SELECT fecha_importacion, 0 AS total, id as errores, estado FROM marcas WHERE valido = 'f' AND parent_id = 0
-        ) AS importaciones GROUP BY fecha_importacion ORDER BY fecha_importacion"
-
+    SELECT * FROM view_importaciones_todos UNION SELECT * FROM view_importaciones_errores"
     execute(sql)
   end
 
   def self.down
     execute("DROP VIEW view_importaciones")
+    execute("DROP VIEW view_importaciones_todos")
+    execute("DROP VIEW view_importaciones_errores")
   end
 end

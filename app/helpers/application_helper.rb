@@ -15,14 +15,14 @@ module ApplicationHelper
       when "new" then link_to "Nuevo", send("new_#{k}_path", klass) 
       when "show" then link_to "ver", klass, :class => "show", :title => "Ver", :class => 'show'
       when "edit" then link_to "editar", send("edit_#{k}_path", klass), :class => "edit", :title => "Editar"
-      when "destroy" then link_to "borrar", klass, :method => :delete, :confirm => "Esta seguro?", :class => 'delete', :title => "Borrar", :remote => true
+      when "destroy" then link_to "borrar", klass, :class => 'delete', :title => "Borrar", 'data-remote' => true
       else ""
     end
   end  
 
   def verdad(val)
     #val == true ? t("yes") : t("no")
-    val ? "Si" : "<span class='error'>No</span>"
+    val ? "Sí" : "<span class='error'>No</span>"
   end
 
   # localiza la fecha

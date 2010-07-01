@@ -72,14 +72,21 @@ module PDF
             hash.delete(key)
             break
           end
+          hash['imagen'] = extraer_imagen
         end
         arr << hash
+        #debugger unless hash['']
 
         break if @posicion == (divs.size - 1)
       end
       arr.delete_if{ |h| h.blank? }
 
       arr
+    end
+
+    # Realiza el crop de imagenes para extraer el logo
+    def extraer_imagen
+
     end
 
     # Busca en la lista de tags
@@ -99,11 +106,13 @@ module PDF
           # Importante
           @posicion = i + 1
           if desplazar > 0
-            return buscar_siguiente(elements[i], desplazar).gsub(REGBLANK, ' ').squish
+            @current_elem = elem = buscar_siguiente(elements[i], desplazar)
           else
-            return buscar_anterior(elements[i], desplazar).gsub(REGBLANK, ' ').squish
+            @current_elem = elem = buscar_anterior(elements[i], desplazar)
           end
         end
+
+        return elem.text.gsub(REGBLANK, ' ').squish unless elem.nil?
 
         if (elements.size - 1) == i
           @posicion = i
@@ -116,7 +125,7 @@ module PDF
 
     def buscar_siguiente(element, pos)
       if pos == 0
-        element.text
+        element
       else
         buscar_siguiente(element.next_element, pos - 1)
       end
@@ -124,7 +133,7 @@ module PDF
 
     def buscar_anterior(element, pos)
       if pos == 0
-        element.text
+        element
       else
         buscar_anterior(element.previous_element, pos + 1)
       end

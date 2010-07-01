@@ -1,16 +1,36 @@
 class MarcasController < ApplicationController
 
   def index
-    @marcas = Marca.paginate(:page => @page, :include => [:agente, :titular])
+    @marcas = Marca.buscar(:page => @page, :include => [:agente, :titular], :params => params)
+  end
+
+  def new
+    @marca = Marca.new(:estado_fecha => Date.today)
   end
 
   def edit
     @marca = Marca.find(params[:id])
   end
 
-  def new
-    @marca = Marca.new
+
+  def create
+    @marca = Marca.crear_instancia(params)
+    
+    if @marca.save
+      redirect_to @marca, :notice => 'Se ha salvado correctamente'
+    else
+      render :action => 'new'
+    end
   end
 
+  def update
+    @marca = Marca.find(params[:id])
+
+    if @marca.update_marca(params)
+      redirect_to marca_url(@marca)
+    else
+      render :action => 'edit'
+    end
+  end
 
 end

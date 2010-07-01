@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100620185547) do
+ActiveRecord::Schema.define(:version => 20100630203649) do
 
   create_table "clases", :force => true do |t|
     t.string   "nombre"
@@ -49,12 +49,14 @@ ActiveRecord::Schema.define(:version => 20100620185547) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "anterior",                         :default => false
+    t.boolean  "propia"
   end
 
   add_index "marcas", ["agente_id"], :name => "index_marcas_on_agente_id"
   add_index "marcas", ["clase_id"], :name => "index_marcas_on_clase_id"
   add_index "marcas", ["fecha_importacion"], :name => "index_marcas_on_fecha_importacion"
   add_index "marcas", ["parent_id"], :name => "index_marcas_on_parent_id"
+  add_index "marcas", ["propia"], :name => "index_marcas_on_propia"
   add_index "marcas", ["tipo_marca_id"], :name => "index_marcas_on_tipo_marca_id"
   add_index "marcas", ["tipo_signo_id"], :name => "index_marcas_on_tipo_signo_id"
   add_index "marcas", ["titular_id"], :name => "index_marcas_on_titular_id"
@@ -99,6 +101,27 @@ ActiveRecord::Schema.define(:version => 20100620185547) do
     t.string   "password_salt", :limit => 32
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "view_importaciones", :id => false, :force => true do |t|
+    t.datetime "fecha_importacion"
+    t.integer  "total",             :limit => 8, :default => 0, :null => false
+    t.integer  "errores",           :limit => 8, :default => 0, :null => false
+    t.string   "estado"
+  end
+
+  create_table "view_importaciones_errores", :id => false, :force => true do |t|
+    t.datetime "fecha_importacion"
+    t.integer  "total",                          :default => 0, :null => false
+    t.integer  "errores",           :limit => 8, :default => 0, :null => false
+    t.string   "estado"
+  end
+
+  create_table "view_importaciones_todos", :id => false, :force => true do |t|
+    t.datetime "fecha_importacion"
+    t.integer  "total",             :limit => 8, :default => 0, :null => false
+    t.integer  "errores",                        :default => 0, :null => false
+    t.string   "estado"
   end
 
 end

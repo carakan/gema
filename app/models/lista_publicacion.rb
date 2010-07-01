@@ -3,7 +3,7 @@ class ListaPublicacion < Marca
 
   validates_presence_of :tipo_marca_id, :numero_publicacion
   validates_numericality_of :numero_publicacion
-  validate :existencia_anterior
+ # validate :existencia_anterior, :if => :importado
   
   #####################################
   # Importacion de excel
@@ -25,6 +25,7 @@ class ListaPublicacion < Marca
       ['PRODUCTOS',               1],
       ['CLASE INTERNACIONAL',     1]
   ]
+
   acts_as_pdftohtml('archivos/temp/pdf/', 'div>div', :preparar_datos_pdf , @lista_pub_pdf)
 
 
@@ -65,18 +66,13 @@ class ListaPublicacion < Marca
   end
 
   # Actualiza los datos de marca y lo cambia a lista de publicacion
-
-  def self.actualizar_lista_publicacion(marca, attributes)
-    marca.attributes = attributes
   def self.actualizar_lista_publicacion(marca, attrs)
     marca.attributes = attrs
     marca.type = 'ListaPublicacion'
 
-    lista = ListaPublicacion.new(marca.attrs)
+    lista = ListaPublicacion.new(marca.attributes)
     # Se le asigna un numero de solicitud falso para que no ejecute
     # validates_uniqueness_of :numero_solicitud
-    l.numero_solicitud = '0000-0000'
-    if l.valid?
     lista.numero_solicitud = '0000-0000'
     if lista.valid?
       marca.save
@@ -194,4 +190,5 @@ private
   end
 
 end
+
 

@@ -108,6 +108,14 @@ form ol li p.inline-hints {
   margin: 0px;
   font-style: italic;
 }
+form ol .in_half ol li {
+  width: 49%;
+  float: left;
+}
+form ol .in_half ul li {
+  width: 49%;
+  float: left;
+}
 form {
   padding: 0px;
   margin: 0px;
@@ -125,6 +133,19 @@ form li p.inline-hints {
   color: #676767;
   margin: 0px;
   font-style: italic;
+}
+form .in_half ol li {
+  width: 49%;
+  float: left;
+}
+form .in_half ul li {
+  width: 49%;
+  float: left;
+}
+form.in_half li {
+  float: left;
+  width: 49%;
+  margin-left: 3px;
 }
 .error { color: #ff0000; }
 .errorExplanation {
@@ -195,15 +216,6 @@ ul#navigation {
   list-style: none;
   padding: 0px;
   margin: 0px;
-<<<<<<< HEAD
-  background: #dcdcdc;
-  float:left;
-}
-ul#navigation li {
-  display: block;
-  float: left;
-  /*position:relative;*/
-=======
   background: #45818e;
 }
 ul#navigation li {
@@ -212,7 +224,6 @@ ul#navigation li {
   display: inline;
   float: left;
   background-color: #45818e !important;
->>>>>>> f8830d624a61452f6f0f157845561c7cd27f41c5
 }
 ul#navigation li a {
   display: block;
@@ -223,9 +234,6 @@ ul#navigation li a {
   border-right: 1px solid #484848;
   color: #ffffff;
 }
-<<<<<<< HEAD
-
-=======
 ul#navigation li a:hover { background: #2167cb !important; }
 ul#navigation li ul {
   background-color: #45818e !important;
@@ -235,7 +243,6 @@ ul#navigation li ul li a {
   border-right: none;
   display: block;
 }
->>>>>>> f8830d624a61452f6f0f157845561c7cd27f41c5
 .buscar {
   background: #595959;
   padding: 4px;
@@ -384,14 +391,6 @@ a.delete {
   background-position: right 50%;
 }
 .half { width: 49%; }
-.in_half ol li {
-  width: 49%;
-  float: left;
-}
-.in_half ul li {
-  width: 49%;
-  float: left;
-}
 .fl { float: left; }
 .third li { width: 33%; }
 .third div { width: 33%; }
