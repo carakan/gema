@@ -151,8 +151,20 @@ form ol, form{
       font-style: italic;
     }
   }
+
+  .in_half{
+    ol li, ul li{
+      width: 49%;
+      float: left;
+    }
+  }
 }
 
+form.in_half li{
+  float: left;
+  width: 49%;
+  margin-left: 3px;
+}
 .error{
   color: @red;
 }
@@ -437,12 +449,6 @@ a.delete{
   width: 49%;
 }
 
-.in_half{
-  ol li, ul li{
-    width: 49%;
-    float: left;
-  }
-}
 
 .fl{ float: left; }
 
@@ -545,3 +551,4 @@ ul.menu{
   }
 
 }
+

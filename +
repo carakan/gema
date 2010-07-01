@@ -1,28 +1,21 @@
-<% semantic_form_for(@marca, :url => @marca.url, :html => {:class => 'in_half'}) do |f| -%>
+<% debugger %>
+<% semantic_form_for(@marca, :url => "/marcas", :html => {:class => 'in_half'}) do |f| -%>
     <%= f.input :nombre %>
     <%= f.input :clase %>
-    
     <%= f.input :numero_solicitud %>
     <%= f.input :tipo_signo %>
-    
-    <%= f.input :propia, :label => 'Marca propia' %>
     <%= f.input :agente %>
     <%= f.input :titular %>
-    
     <%= f.input :tipo_marca %>
 
     <%= f.input :estado, :collection => Marca.lista_estados %>
-    <%= f.input :estado_fecha, :as => :string, :input_html => {:class => 'date'} %>
-
-    <%= f.input :numero_publicacion,:label => 'Número de publicación' %>
+    <%= f.input :estado_fecha, :as => 'string', :input_html => { :class => 'date' } %>
     <%= f.input :fecha_publicacion, :as => 'string', :input_html => { :class => 'date' } %>
 
-    <%= f.input :numero_gaceta, :label => 'Número de gaceta' %>
+
 
     <%= f.input :lema, :as => :text %>
     <%= f.input :productos, :as => :text %>
-
-
   
   <div style="clear:both"></div>
   <%= f.submit "Salvar" %>

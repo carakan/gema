@@ -118,6 +118,70 @@ class Marca < ActiveRecord::Base
     Marca.send(:with_exclusive_scope) { Marca.all(:conditions => ["marcas.parent_id = ?", id]) }
   end
 
+
+  # Crea una instancia de acuerdo al estado
+  def self.crear_instancia(params)
+    params = extraer_params(params)
+    case params[:estado]
+      when 'sm' then SolicitudMarca.new(params)
+      when 'lp' then ListaPublicacion.new(params)
+        # when'lr' then ListaRegistro.new(params)
+        # when'sr' then SolicitudRenovación.new(params)
+        # when 'rc' then RenovacionesConcedidas.new(params)
+      else
+        new(params)
+    end
+  end
+
+  # extrae los parametros correctos de acuerdo al estado
+  def self.extraer_params(params)
+    return params[:marca] unless params[:marca].nil?
+    return params[:solicitud_marca] unless params[:solicitud_marca].nil?
+    return params[:lista_publicacion] unless params[:lista_publicacion].nil?
+    return params[:lista_registro] unless params[:lista_registro].nil?
+    return params[:solicitud_renovacion] unless params[:solicitud_renovacion].nil?
+    return params[:renovacion_concedida] unless params[:renovacion_concedida].nil?
+  end
+
+  # Metodo para poder realizar actualizaciones
+  # que pueda cambiar la clse y el estado
+  def update_marca(params)
+    klass = self.class.crear_instancia(params)
+    # Se asigna los atributos para no perder datos de los params
+    self.attributes = klass.attributes
+    # se asigna datos faltantes para klass
+    klass.estado_fecha = Date.today
+    klass.numero_solicitud = '0000-0000'
+    # Se cambia el estado y la clase de Marca
+    self.estado = klass.estado
+    self.type = klass.type
+    # Cambiar fecha si es que se cambio el estado
+    # self.estado_fecha = Date.today unless self.changes['estado'].nil?
+
+    if klass.valid?
+      return self.save
+    else
+      adicionar_errores(klass)
+      return false
+    end
+  end
+
+
+  def adicionar_errores(klass)
+    klass.errors.each do |k, v|
+     self.errors.add(k, v)
+    end
+  end
+
+  # Retorna un url definido en marcas que solo sera para la misma
+  def url
+    if self.id.nil?
+      "/marcas"
+    else
+      "/marcas/#{self.id}"
+    end
+  end
+
 private
   def actualizar_validez
     if self.valido.nil?

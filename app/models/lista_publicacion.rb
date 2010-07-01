@@ -3,7 +3,7 @@ class ListaPublicacion < Marca
 
   validates_presence_of :tipo_marca_id, :numero_publicacion
   validates_numericality_of :numero_publicacion
-  validate :existencia_anterior
+ # validate :existencia_anterior, :if => :importado
   
   #####################################
   # Importacion de excel
