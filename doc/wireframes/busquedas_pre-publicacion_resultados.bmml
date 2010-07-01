@@ -1,4 +1,4 @@
-<mockup version="1.0" skin="sketch" measuredW="1108" measuredH="978" mockupW="1038" mockupH="968">
+<mockup version="1.0" skin="sketch" measuredW="1108" measuredH="978" mockupW="1040" mockupH="968">
   <controls>
     <control controlID="0" controlTypeID="com.balsamiq.mockups::Canvas" x="245" y="0" w="743" h="947" measuredW="100" measuredH="70" zOrder="1" locked="true" isInGroup="-1">
       <controlProperties>
@@ -34,7 +34,7 @@
       <controlProperties>
         <color>15658734</color>
         <href>cliente_menu%26bm%3Bcliente_menu.bmml%26bm%3Bcliente_menu.bmml%26bm%3Bcliente_menu.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22193%2C110%2C250%2C136%22%20href%3D%22cliente_menu.bmml%22%20alt%3D%22cliente_menu%22%20id%3D%2230%22/%3E</map>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22195%2C110%2C252%2C136%22%20href%3D%22cliente_menu.bmml%22%20alt%3D%22cliente_menu%22%20id%3D%2230%22/%3E</map>
         <size>14</size>
         <text>Clientes</text>
       </controlProperties>
@@ -43,7 +43,7 @@
       <controlProperties>
         <color>15658734</color>
         <href>marcas_menu%26bm%3Bmarcas_menu.bmml%26bm%3Bmarcas_menu.bmml%26bm%3Bmarcas_menu.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22262%2C110%2C316%2C136%22%20href%3D%22marcas_menu.bmml%22%20alt%3D%22marcas_menu%22%20id%3D%2231%22/%3E</map>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22264%2C110%2C318%2C136%22%20href%3D%22marcas_menu.bmml%22%20alt%3D%22marcas_menu%22%20id%3D%2231%22/%3E</map>
         <size>14</size>
         <text>Marcas</text>
       </controlProperties>
@@ -52,7 +52,7 @@
       <controlProperties>
         <color>15658734</color>
         <href>importaciones_menu%26bm%3Bimportaciones_menu.bmml%26bm%3Bimportaciones_menu.bmml%26bm%3Bimportaciones_menu.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22331%2C110%2C433%2C136%22%20href%3D%22importaciones_menu.bmml%22%20alt%3D%22importaciones_menu%22%20id%3D%2232%22/%3E</map>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22333%2C110%2C435%2C136%22%20href%3D%22importaciones_menu.bmml%22%20alt%3D%22importaciones_menu%22%20id%3D%2232%22/%3E</map>
         <size>14</size>
         <text>Importaciones</text>
       </controlProperties>
@@ -61,7 +61,7 @@
       <controlProperties>
         <color>15658734</color>
         <href>busquedas_menu%26bm%3Bbusquedas_menu.bmml%26bm%3Bbusquedas_menu.bmml%26bm%3Bbusquedas_menu.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22448%2C110%2C521%2C136%22%20href%3D%22busquedas_menu.bmml%22%20alt%3D%22busquedas_menu%22%20id%3D%2233%22/%3E</map>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22450%2C110%2C523%2C136%22%20href%3D%22busquedas_menu.bmml%22%20alt%3D%22busquedas_menu%22%20id%3D%2233%22/%3E</map>
         <size>14</size>
         <text>Busquedas</text>
       </controlProperties>
@@ -70,7 +70,7 @@
       <controlProperties>
         <color>15658734</color>
         <href>reportes_menu%26bm%3Breportes_menu.bmml%26bm%3Breportes_menu.bmml%26bm%3Breportes_menu.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22686%2C110%2C751%2C136%22%20href%3D%22reportes_menu.bmml%22%20alt%3D%22reportes_menu%22%20id%3D%2234%22/%3E</map>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22688%2C110%2C753%2C136%22%20href%3D%22reportes_menu.bmml%22%20alt%3D%22reportes_menu%22%20id%3D%2234%22/%3E</map>
         <size>14</size>
         <text>Reportes</text>
       </controlProperties>
@@ -79,7 +79,7 @@
       <controlProperties>
         <color>15658734</color>
         <href>datos_generales_menu%26bm%3Bdatos_generales_menu.bmml%26bm%3Bdatos_generales_menu.bmml%26bm%3Bdatos_generales_menu.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22541%2C110%2C656%2C136%22%20href%3D%22datos_generales_menu.bmml%22%20alt%3D%22datos_generales_menu%22%20id%3D%2235%22/%3E</map>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22543%2C110%2C658%2C136%22%20href%3D%22datos_generales_menu.bmml%22%20alt%3D%22datos_generales_menu%22%20id%3D%2235%22/%3E</map>
         <size>14</size>
         <text>Datos%20Generales</text>
       </controlProperties>
@@ -90,7 +90,7 @@
         <text>Resultados%20de%20la%20busqueda</text>
       </controlProperties>
     </control>
-    <control controlID="97" controlTypeID="com.balsamiq.mockups::DataGrid" x="270" y="196" w="-1" h="-1" measuredW="663" measuredH="178" zOrder="12" locked="false" isInGroup="-1">
+    <control controlID="97" controlTypeID="com.balsamiq.mockups::DataGrid" x="270" y="196" w="-1" h="-1" measuredW="664" measuredH="178" zOrder="12" locked="false" isInGroup="-1">
       <controlProperties>
         <text>%2CMarca%20vigilada%2C%20Clase%2CN%BA%2CMarca%20encontrada%2C%20Clase%2C%20N%BA%20solicitud%2C%20Marca%20ORPAN%0A%5BX%5D%2C%5BNIVEA%5D%2C%2010%2C12345-C%2C%5BIDEA%5D%2C%2010%2C1224-2010%2CSI%0A%5B%5D%2C%5BNIVEA%5D%2C%2014%2C12695-C%2C%5BDIVEA%5D%2C%2010%2C1234-2010%2CNO%0A%5BX%5D%2C%5BNIVEA%5D%2C%2011%2C17536-C%2C%5BVINEA%5D%2C%2010%2C1238-2010%2CSI%0A%5B%5D%2C%5BNIVEA%5D%2C%2011%2C17536-C%2C%5BVIA%5D%2C%2010%2C1370-2010%2CNO%0A%5B%5D%2C%5BNIVEA%5D%2C%2011%2C17536-C%2C%5BPLANEA%5D%2C%2010%2C1384-2010%2CNO</text>
       </controlProperties>
@@ -99,14 +99,22 @@
       <controlProperties>
         <color>545684</color>
         <href>busquedas_resultados_datos_marca%26bm%3Bbusquedas_resultados_datos_marca.bmml%26bm%3Bbusquedas_resultados_datos_marca.bmml%26bm%3Bbusquedas_resultados_datos_marca.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22238%2C405%2C359%2C430%22%20href%3D%22busquedas_resultados_datos_marca.bmml%22%20alt%3D%22busquedas_resultados_datos_marca%22%20id%3D%22100%22/%3E</map>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22240%2C405%2C361%2C430%22%20href%3D%22busquedas_resultados_datos_marca.bmml%22%20alt%3D%22busquedas_resultados_datos_marca%22%20id%3D%22100%22/%3E</map>
         <text>Generar%20reporte</text>
         <underline>true</underline>
       </controlProperties>
     </control>
-    <control controlID="101" controlTypeID="com.balsamiq.mockups::StickyNote" x="60" y="10" w="163" h="159" measuredW="109" measuredH="123" zOrder="14" locked="false" isInGroup="-1">
+    <control controlID="101" controlTypeID="com.balsamiq.mockups::StickyNote" x="58" y="68" w="163" h="159" measuredW="109" measuredH="123" zOrder="14" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Esto%20de%20Marca%20ORPAN%20por%20lo%20de%20propia%3Dtrue</text>
+      </controlProperties>
+    </control>
+    <control controlID="102" controlTypeID="com.balsamiq.mockups::Label" x="310" y="223" w="57" h="25" measuredW="50" measuredH="25" zOrder="15" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>545684</color>
+        <href>busquedas_pre-publicacion_resultados_datos_marca%26bm%3Bbusquedas_pre-publicacion_resultados_datos_marca.bmml%26bm%3Bbusquedas_pre-publicacion_resultados_datos_marca.bmml%26bm%3Bbusquedas_pre-publicacion_resultados_datos_marca.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22252%2C223%2C309%2C248%22%20href%3D%22busquedas_pre-publicacion_resultados_datos_marca.bmml%22%20alt%3D%22busquedas_pre-publicacion_resultados_datos_marca%22%20id%3D%22102%22/%3E</map>
+        <text>NIVEA</text>
       </controlProperties>
     </control>
   </controls>
