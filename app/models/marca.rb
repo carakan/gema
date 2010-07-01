@@ -1,9 +1,10 @@
 class Marca < ActiveRecord::Base
 
   #before_save :set_propia
-  before_save :actualizar_validez
+  before_save :set_minusculas
   before_save :adicionar_usuario
   before_update :crear_historico
+  before_save :actualizar_validez
 
   belongs_to :clase
   belongs_to :tipo_signo
@@ -40,14 +41,6 @@ class Marca < ActiveRecord::Base
     'rc' => 'Renovaciones Concedidas'
   }
 
-  # Columnas en archivo excel
-  EXCEL_COLS = {
-    :estado_fecha => 'A', # No es necesario dado que se ingresa la fecha
-    :numero_solicitud => 'B',
-    :nombre => 'E'
-    # :tipo_signo_id => 'F',
-    #:clase_id => 'G'
-  }
 
   # Extra para poder importar
   attr_accessor :tipo, :archivo, :fecha_gen
@@ -203,14 +196,13 @@ class Marca < ActiveRecord::Base
   end
 
 private
-  def actualizar_validez
-    if self.valido.nil?
-      self.valido = true if self.errors.blank?
-    end
-  end
 
   def adicionar_usuario
     self.usuario_id = UsuarioSession.current_user[:id]
+  end
+
+  def set_minusculas
+    self.nombre_minusculas = self.nombre.downcase
   end
 
   def crear_historico
@@ -226,4 +218,11 @@ private
   def set_propia
     self.propia = false if self.propia.nil?
   end
+
+  def actualizar_validez
+    if self.valido.nil?
+      self.valido = true if self.errors.blank?
+    end
+  end
+
 end

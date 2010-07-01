@@ -1,6 +1,17 @@
 # encoding: utf-8
 class SolicitudMarca < Marca
 
+  
+
+  # Columnas en archivo excel
+  EXCEL_COLS = {
+    :estado_fecha => 'A', # No es necesario dado que se ingresa la fecha
+    :numero_solicitud => 'B',
+    :nombre => 'E'
+    # :tipo_signo_id => 'F',
+    #:clase_id => 'G'
+  }
+
   # Realiza la importación desde un archivo excel
   # @param RackFile
   # @return array

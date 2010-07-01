@@ -25,12 +25,15 @@ class MarcasController < ApplicationController
 
   def update
     @marca = Marca.find(params[:id])
-
     if @marca.update_marca(params)
-      redirect_to marca_url(@marca)
+      redirect_to marca_url(@marca.id)
     else
       render :action => 'edit'
     end
+  end
+
+  def show
+    render :text => Marca.find(params[:id]).to_json
   end
 
 end
