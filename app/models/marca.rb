@@ -127,6 +127,10 @@ class Marca < ActiveRecord::Base
     Marca.send(:with_exclusive_scope) { Marca.all(:conditions => ["marcas.parent_id = ?", id]) }
   end
 
+  # Retorna todas las modificaciones realizadas a la marca
+  def historial
+    self.class.historial(self.id)
+  end
 
   # Crea una instancia de acuerdo al estado
   # @param Hash parmas
@@ -224,5 +228,6 @@ private
       self.valido = true if self.errors.blank?
     end
   end
+
 
 end

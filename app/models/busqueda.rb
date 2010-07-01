@@ -16,12 +16,12 @@ class Busqueda
     case 
     when busqueda.size <= 3
       include TresLetras
-    #when busqueda.size == 4
-    #  #include 
-    #when busqueda.size == 5
-    #  include 'cinco_letras'
-    #when busqueda.size == 6
-    #  include 'seis_letras'
+    when busqueda.size == 4
+      include CuatroLetras
+    when busqueda.size == 5
+      include CincoLetras
+    when busqueda.size == 6
+      include SeisLetras
     #when busqueda.size == 7
     #  include 'siete_letras'
     #when (8..9).include?( busqueda.size )

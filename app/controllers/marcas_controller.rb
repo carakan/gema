@@ -33,7 +33,7 @@ class MarcasController < ApplicationController
   end
 
   def show
-    render :text => Marca.find(params[:id]).to_json
+    @marca = Marca.find(params[:id])
   end
 
 end
