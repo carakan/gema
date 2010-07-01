@@ -1,5 +1,6 @@
 class Marca < ActiveRecord::Base
 
+  #before_save :set_propia
   before_save :actualizar_validez
   before_save :adicionar_usuario
   before_update :crear_historico
@@ -12,7 +13,9 @@ class Marca < ActiveRecord::Base
   belongs_to :titular
 
   
-  validates_presence_of :nombre, :estado_fecha, :estado, :tipo_signo_id, :clase_id
+  validates_presence_of :nombre, :estado_fecha, 
+    :estado, :tipo_signo_id, :clase_id
+
   validates_format_of :numero_solicitud, :with => /^\d+-\d{4}$/
   validates_uniqueness_of :numero_solicitud, :scope => :parent_id
 
@@ -80,6 +83,19 @@ class Marca < ActiveRecord::Base
     orden.inject([]) { |arr, val| arr << [TIPOS[val], val] }
   end
 
+  def self.buscar(*args)
+    options = args.extract_options!
+    params = options.delete(:params)
+    
+    unless params['propia'].nil?
+      options = options.merge(:conditions => { :propia => convert_boolean(params['propia']) })
+    else
+      options[:conditions] = {}
+    end
+
+    paginate(options)
+  end
+
   #def self.all(*args)
   #  options = args.extract_options!
   #  super options#, :conditions => "marcas.parent_id = 0"
@@ -118,6 +134,74 @@ class Marca < ActiveRecord::Base
     Marca.send(:with_exclusive_scope) { Marca.all(:conditions => ["marcas.parent_id = ?", id]) }
   end
 
+
+  # Crea una instancia de acuerdo al estado
+  # @param Hash parmas
+  # @param Marca o modelo heredado Indica si se debe unir con los atributos de la clase
+  # @return Marca.new o clase heredada
+  def self.crear_instancia(params, klass = nil)
+    params = extraer_params(params)
+    params = klass.attributes.merge(params) unless klass.nil?
+    case params[:estado]
+      when 'sm' then SolicitudMarca.new(params)
+      when 'lp' then ListaPublicacion.new(params)
+        # when'lr' then ListaRegistro.new(params)
+        # when'sr' then SolicitudRenovación.new(params)
+        # when 'rc' then RenovacionesConcedidas.new(params)
+      else
+        new(params)
+    end
+  end
+
+  # extrae los parametros correctos de acuerdo al estado
+  def self.extraer_params(params)
+    return params[:marca] unless params[:marca].nil?
+    return params[:solicitud_marca] unless params[:solicitud_marca].nil?
+    return params[:lista_publicacion] unless params[:lista_publicacion].nil?
+    return params[:lista_registro] unless params[:lista_registro].nil?
+    return params[:solicitud_renovacion] unless params[:solicitud_renovacion].nil?
+    return params[:renovacion_concedida] unless params[:renovacion_concedida].nil?
+  end
+
+  # Metodo para poder realizar actualizaciones
+  # que pueda cambiar la clse y el estado
+  def update_marca(params)
+    klass = self.class.crear_instancia(params, self)
+    # Se asigna los atributos para no perder datos de los params
+    self.attributes = klass.attributes
+    # se asigna datos faltantes para klass
+    klass.estado_fecha = Date.today
+    klass.numero_solicitud = '0000-0000'
+    # Se cambia el estado y la clase de Marca
+    self.estado = klass.estado
+    self.type = klass.type
+    # Cambiar fecha si es que se cambio el estado
+    # self.estado_fecha = Date.today unless self.changes['estado'].nil?
+
+    if klass.valid?
+      return self.save
+    else
+      adicionar_errores(klass)
+      return false
+    end
+  end
+
+
+  def adicionar_errores(klass)
+    klass.errors.each do |k, v|
+     self.errors.add(k, v)
+    end
+  end
+
+  # Retorna un url definido en marcas que solo sera para la misma
+  def url
+    if self.id.nil?
+      "/marcas"
+    else
+      "/marcas/#{self.id}"
+    end
+  end
+
 private
   def actualizar_validez
     if self.valido.nil?
@@ -138,4 +222,8 @@ private
     self.cambios =  self.changes.keys.select{ |v| not [:valido, :fila, :type].include?(v) }
   end
 
+  # En caso de importación todas las marcas indica que no son propias a la empresa
+  def set_propia
+    self.propia = false if self.propia.nil?
+  end
 end

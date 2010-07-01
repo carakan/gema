@@ -4,7 +4,8 @@
 
 <table class="decorated">
 	<tr>
-		<th>Nombre</th>
+    <th>Nombre</th>
+    <th>Marca<br />Propia</th>
 		<th>Estado</th>
 		<th>Agente</th>
 		<th>Titular</th>
@@ -13,14 +14,17 @@
 	</tr>
 
   <% @marcas.each do |marca| %>
-    <tr>
-    	<td><%= marca.nombre %></td>
+    <% @clase = marca.propia ? ' class="propia"': '' %>
+    <tr <%= @clase %>>
+      <td><%= marca.nombre %></td>
+      <td><%= verdad marca.propia %></td>
     	<td><%= marca.ver_estado %></td>
     	<td><% marca.agente %></td>
       <td><%= marca.titular %></td>
       <td><%= verdad marca.valido %></td>
       <td>
-        <%= links(marca) %>
+        <%= link_to "editar", edit_marca_path(marca), :class => 'edit' %>
+        <%= link_to "borrar", marca_path(marca), :class => 'delete' %>
       </td>
     </tr>
   <% end %>

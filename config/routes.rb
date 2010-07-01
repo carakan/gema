@@ -14,13 +14,14 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :clases
 
+  map.resources :marcas
+
   map.resources :solicitud_marcas
 
   map.resources :lista_publicaciones
 
   map.resources :solicitudes, :member => { :importado => :get }
 
-  map.resources :marcas
 
   # The priority is based upon order of creation: first created -> highest priority.
 
