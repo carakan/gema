@@ -1,6 +1,8 @@
 # encoding: utf-8
 class SolicitudMarca < Marca
 
+  validates_presence_of :fecha_publicacion
+
   # Realiza la importación desde un archivo excel
   # @param RackFile
   # @return array

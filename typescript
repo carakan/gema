@@ -448,4 +448,1212 @@ Processing SolicitudesController#index (for 127.0.0.1 at 2010-07-01 15:19:46) [G
 Rendering template within layouts/application
 Rendering solicitudes/index
 Rendered layouts/_menu (0.1ms)
-Rendered layouts/_notice (0.1m
+Rendered layouts/_notice (0.1ms)
+Completed in 25ms (View: 11, DB: 2) | 200 OK [http://localhost/solicitudes]
+
+
+Processing SolicitudesController#new (for 127.0.0.1 at 2010-07-01 15:19:51) [GET]
+  Parameters: {"tipo"=>"lp"}
+Rendering template within layouts/application
+Rendering solicitudes/new
+Rendered layouts/_menu (0.1ms)
+Rendered layouts/_notice (0.1ms)
+Completed in 107ms (View: 11, DB: 0) | 200 OK [http://localhost/solicitudes/new?tipo=lp]
+
+
+Processing SolicitudesController#create (for 127.0.0.1 at 2010-07-01 15:20:08) [POST]
+  Parameters: {"tipo"=>"lp", "importacion_vacia"=>{"tipo"=>"lp", "gaceta"=>"114", "archivo"=>#<File:/tmp/RackMultipart20100701-1866-az49f-0>}, "commit"=>"Importar", "authenticity_token"=>"unAr4gVDoctggMJt57H41yUtefLkL8tgHUzClOiiffw="}
+
+SyntaxError (/home/polux/dev/ruby/gema/app/models/lista_publicacion.rb:197: syntax error, unexpected $end, expecting kEND):
+  app/models/importacion_vacia.rb:24:in `importar'
+  app/controllers/solicitudes_controller.rb:19:in `create'
+
+Rendered rescues/_trace (51.2ms)
+Rendered rescues/_request_and_response (81.1ms)
+Rendering rescues/layout (internal_server_error)
+^CExiting
+[01;32mpolux@polux-desktop[01;34m ~/dev/ruby/gema $[00m git status
+# On branch dev
+# Changed but not updated:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#	modified:   "doc/wireframes/contacto_a\303\261adir_contacto.bmml"
+#	modified:   doc/wireframes/ingresar.bmml
+#	modified:   doc/wireframes/lista_solicitud_editar.bmml
+#	modified:   doc/wireframes/lista_solicitud_errores.bmml
+#	modified:   doc/wireframes/lista_solicitud_nueva.bmml
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#	doc/wireframes/lista_solicitud_corregir_errores.bmml
+#	typescript
+no changes added to commit (use "git add" and/or "git commit -a")
+[01;32mpolux@polux-desktop[01;34m ~/dev/ruby/gema $[00m git add .
+[01;32mpolux@polux-desktop[01;34m ~/dev/ruby/gema $[00m git commit -am ""w"i"r"e"f"r"a"m"e"s" "i"n"g"e"[1P"r"e"s"o" "l"i"s"t"a"s" [A[01;32mpolux@polux-desktop[01;34m ~/dev/ruby/gema $[00m [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P"
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P"[1P"[1P"[1P"[1P"e" "i"m"p"o" [A[01;32mpolux@polux-desktop[01;34m ~/dev/ruby/gema $[00m [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cr""t"a"c"i"o"n"e"s"
+[dev e428c36] wireframes ingreso e importaciones
+ 7 files changed, 702 insertions(+), 126 deletions(-)
+ create mode 100644 doc/wireframes/lista_solicitud_corregir_errores.bmml
+ create mode 100644 typescript
+[01;32mpolux@polux-desktop[01;34m ~/dev/ruby/gema $[00m git commit -am "wireframes ingreso e importtaciones"[A[01;32mpolux@polux-desktop[01;34m ~/dev/ruby/gema $[00m [C[C[C[Cadd .[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K[K[K[K[Kpull origin dev
+remote: Counting objects: 134, done.[K
+remote: Compressing objects:   1% (1/79)   [Kremote: Compressing objects:   2% (2/79)   [Kremote: Compressing objects:   3% (3/79)   [Kremote: Compressing objects:   5% (4/79)   [Kremote: Compressing objects:   6% (5/79)   [Kremote: Compressing objects:   7% (6/79)   [Kremote: Compressing objects:   8% (7/79)   [Kremote: Compressing objects:  10% (8/79)   [Kremote: Compressing objects:  11% (9/79)   [Kremote: Compressing objects:  12% (10/79)   [Kremote: Compressing objects:  13% (11/79)   [Kremote: Compressing objects:  15% (12/79)   [Kremote: Compressing objects:  16% (13/79)   [Kremote: Compressing objects:  17% (14/79)   [Kremote: Compressing objects:  18% (15/79)   [Kremote: Compressing objects:  20% (16/79)   [Kremote: Compressing objects:  21% (17/79)   [Kremote: Compressing objects:  22% (18/79)   [Kremote: Compressing objects:  24% (19/79)   [Kremote: Compressing objects:  25% (20/79)   [Kremote: Compressing objects:  26% (21/79)   [Kremote: Compressing objects:  27% (22/79)   [Kremote: Compressing objects:  29% (23/79)   [Kremote: Compressing objects:  30% (24/79)   [Kremote: Compressing objects:  31% (25/79)   [Kremote: Compressing objects:  32% (26/79)   [Kremote: Compressing objects:  34% (27/79)   [Kremote: Compressing objects:  35% (28/79)   [Kremote: Compressing objects:  36% (29/79)   [Kremote: Compressing objects:  37% (30/79)   [Kremote: Compressing objects:  39% (31/79)   [Kremote: Compressing objects:  40% (32/79)   [Kremote: Compressing objects:  41% (33/79)   [Kremote: Compressing objects:  43% (34/79)   [Kremote: Compressing objects:  44% (35/79)   [Kremote: Compressing objects:  45% (36/79)   [Kremote: Compressing objects:  46% (37/79)   [Kremote: Compressing objects:  48% (38/79)   [Kremote: Compressing objects:  49% (39/79)   [Kremote: Compressing objects:  50% (40/79)   [Kremote: Compressing objects:  51% (41/79)   [Kremote: Compressing objects:  53% (42/79)   [Kremote: Compressing objects:  54% (43/79)   [Kremote: Compressing objects:  55% (44/79)   [Kremote: Compressing objects:  56% (45/79)   [Kremote: Compressing objects:  58% (46/79)   [Kremote: Compressing objects:  59% (47/79)   [Kremote: Compressing objects:  60% (48/79)   [Kremote: Compressing objects:  62% (49/79)   [Kremote: Compressing objects:  63% (50/79)   [Kremote: Compressing objects:  64% (51/79)   [Kremote: Compressing objects:  65% (52/79)   [Kremote: Compressing objects:  67% (53/79)   [Kremote: Compressing objects:  68% (54/79)   [Kremote: Compressing objects:  69% (55/79)   [Kremote: Compressing objects:  70% (56/79)   [Kremote: Compressing objects:  72% (57/79)   [Kremote: Compressing objects:  73% (58/79)   [Kremote: Compressing objects:  74% (59/79)   [Kremote: Compressing objects:  75% (60/79)   [Kremote: Compressing objects:  77% (61/79)   [Kremote: Compressing objects:  78% (62/79)   [Kremote: Compressing objects:  79% (63/79)   [Kremote: Compressing objects:  81% (64/79)   [Kremote: Compressing objects:  82% (65/79)   [Kremote: Compressing objects:  83% (66/79)   [Kremote: Compressing objects:  84% (67/79)   [Kremote: Compressing objects:  86% (68/79)   [Kremote: Compressing objects:  87% (69/79)   [Kremote: Compressing objects:  88% (70/79)   [Kremote: Compressing objects:  89% (71/79)   [Kremote: Compressing objects:  91% (72/79)   [Kremote: Compressing objects:  92% (73/79)   [Kremote: Compressing objects:  93% (74/79)   [Kremote: Compressing objects:  94% (75/79)   [Kremote: Compressing objects:  96% (76/79)   [Kremote: Compressing objects:  97% (77/79)   [Kremote: Compressing objects:  98% (78/79)   [Kremote: Compressing objects: 100% (79/79)   [Kremote: Compressing objects: 100% (79/79), done.[K
+Unpacking objects:   1% (1/80)   Unpacking objects:   2% (2/80)   Unpacking objects:   3% (3/80)   Unpacking objects:   5% (4/80)   Unpacking objects:   6% (5/80)   Unpacking objects:   7% (6/80)   Unpacking objects:   8% (7/80)   Unpacking objects:  10% (8/80)   Unpacking objects:  11% (9/80)   Unpacking objects:  12% (10/80)   Unpacking objects:  13% (11/80)   Unpacking objects:  15% (12/80)   Unpacking objects:  16% (13/80)   Unpacking objects:  17% (14/80)   Unpacking objects:  18% (15/80)   Unpacking objects:  20% (16/80)   Unpacking objects:  21% (17/80)   Unpacking objects:  22% (18/80)   Unpacking objects:  23% (19/80)   Unpacking objects:  25% (20/80)   Unpacking objects:  26% (21/80)   Unpacking objects:  27% (22/80)   Unpacking objects:  28% (23/80)   Unpacking objects:  30% (24/80)   Unpacking objects:  31% (25/80)   Unpacking objects:  32% (26/80)   Unpacking objects:  33% (27/80)   Unpacking objects:  35% (28/80)   Unpacking objects:  36% (29/80)   Unpacking objects:  37% (30/80)   Unpacking objects:  38% (31/80)   Unpacking objects:  40% (32/80)   Unpacking objects:  41% (33/80)   Unpacking objects:  42% (34/80)   Unpacking objects:  43% (35/80)   Unpacking objects:  45% (36/80)   Unpacking objects:  46% (37/80)   Unpacking objects:  47% (38/80)   remote: Total 80 (delta 57), reused 0 (delta 0)[K
+Unpacking objects:  48% (39/80)   Unpacking objects:  50% (40/80)   Unpacking objects:  51% (41/80)   Unpacking objects:  52% (42/80)   Unpacking objects:  53% (43/80)   Unpacking objects:  55% (44/80)   Unpacking objects:  56% (45/80)   Unpacking objects:  57% (46/80)   Unpacking objects:  58% (47/80)   Unpacking objects:  60% (48/80)   Unpacking objects:  61% (49/80)   Unpacking objects:  62% (50/80)   Unpacking objects:  63% (51/80)   Unpacking objects:  65% (52/80)   Unpacking objects:  66% (53/80)   Unpacking objects:  67% (54/80)   Unpacking objects:  68% (55/80)   Unpacking objects:  70% (56/80)   Unpacking objects:  71% (57/80)   Unpacking objects:  72% (58/80)   Unpacking objects:  73% (59/80)   Unpacking objects:  75% (60/80)   Unpacking objects:  76% (61/80)   Unpacking objects:  77% (62/80)   Unpacking objects:  78% (63/80)   Unpacking objects:  80% (64/80)   Unpacking objects:  81% (65/80)   Unpacking objects:  82% (66/80)   Unpacking objects:  83% (67/80)   Unpacking objects:  85% (68/80)   Unpacking objects:  86% (69/80)   Unpacking objects:  87% (70/80)   Unpacking objects:  88% (71/80)   Unpacking objects:  90% (72/80)   Unpacking objects:  91% (73/80)   Unpacking objects:  92% (74/80)   Unpacking objects:  93% (75/80)   Unpacking objects:  95% (76/80)   Unpacking objects:  96% (77/80)   Unpacking objects:  97% (78/80)   Unpacking objects:  98% (79/80)   Unpacking objects: 100% (80/80)   Unpacking objects: 100% (80/80), done.
+From github.com:boriscy/gema
+ * branch            dev        -> FETCH_HEAD
+Merge made by recursive.
+ +                                                  |   24 +++++
+ app/controllers/marcas_controller.rb               |   26 +++++-
+ app/helpers/application_helper.rb                  |    4 +-
+ app/models/busqueda.rb                             |   51 +++++++++++
+ app/models/lista_publicacion.rb                    |   11 +--
+ app/models/marca.rb                                |   96 +++++++++++++++++++-
+ app/models/solicitud_marca.rb                      |   73 +++++++++------
+ app/stylesheets/style.less                         |   19 +++--
+ app/views/layouts/_menu.html.erb                   |    6 +-
+ app/views/layouts/application.html.erb             |    1 +
+ app/views/marcas/_form.html.erb                    |   25 ++++--
+ app/views/marcas/index.html.erb                    |   12 ++-
+ config/database.yml                                |    8 +-
+ config/routes.rb                                   |    3 +-
+ .../20100615170142_create_view_importaciones.rb    |   24 ++++--
+ db/migrate/20100630203649_add_marcas_propia.rb     |   10 ++
+ db/schema.rb                                       |   25 +++++-
+ "doc/global/b\303\272squedas.doc"                  |  Bin 0 -> 41984 bytes
+ "doc/global/nuevos criterios b\303\272squeda.doc"  |  Bin 0 -> 43520 bytes
+ lib/active_record_extensions.rb                    |   10 ++
+ lib/pdf.rb                                         |   17 +++-
+ lib/tres_letras.rb                                 |   34 +++++++
+ public/stylesheets/style.css                       |   43 +++++-----
+ spec/fixtures/busquedas.yml                        |   11 +++
+ spec/models/busqueda_spec.rb                       |   20 ++++
+ spec/models/lista_publicacion_spec.rb              |    1 -
+ test/fixtures/busquedas.yml                        |   11 +++
+ test/unit/busqueda_test.rb                         |    8 ++
+ 28 files changed, 469 insertions(+), 104 deletions(-)
+ create mode 100644 +
+ create mode 100644 app/models/busqueda.rb
+ create mode 100644 db/migrate/20100630203649_add_marcas_propia.rb
+ create mode 100644 "doc/global/b\303\272squedas.doc"
+ create mode 100644 "doc/global/nuevos criterios b\303\272squeda.doc"
+ create mode 100644 lib/active_record_extensions.rb
+ create mode 100644 lib/tres_letras.rb
+ create mode 100644 spec/fixtures/busquedas.yml
+ create mode 100644 spec/models/busqueda_spec.rb
+ create mode 100644 test/fixtures/busquedas.yml
+ create mode 100644 test/unit/busqueda_test.rb
+[01;32mpolux@polux-desktop[01;34m ~/dev/ruby/gema $[00m cd [K[K[Kscript/server[K[K[K[K[K[Kconsole 
+Loading development environment (Rails 2.3.8)
+ree-1.8.7-2010.01 > Marcas[K.all
+!!! The bundled mysql.rb driver has been removed from Rails 2.2. Please install the mysql gem and try again: gem install mysql.
+MissingSourceFile: no such file to load -- mysql
+	from /home/polux/.rvm/rubies/ree-1.8.7-2010.01/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+	from /home/polux/.rvm/rubies/ree-1.8.7-2010.01/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+	from /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activesupport-2.3.8/lib/active_support/dependencies.rb:156:in `require'
+	from /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activesupport-2.3.8/lib/active_support/dependencies.rb:521:in `new_constants_in'
+	from /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activesupport-2.3.8/lib/active_support/dependencies.rb:156:in `require'
+	from /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activesupport-2.3.8/lib/active_support/core_ext/kernel/requires.rb:7:in `require_library_or_gem'
+	from /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activesupport-2.3.8/lib/active_support/core_ext/kernel/reporting.rb:11:in `silence_warnings'
+	from /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activesupport-2.3.8/lib/active_support/core_ext/kernel/requires.rb:5:in `require_library_or_gem'
+	from /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/mysql_adapter.rb:61:in `mysql_connection'
+	from /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:223:in `send'
+	from /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:223:in `new_connection'
+	from /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:245:in `checkout_new_connection'
+	from /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:188:in `checkout'
+	from /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:184:in `loop'
+	from /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:184:in `checkout'
+	from /home/polux/.rvm/rubies/ree-1.8.7-2010.01/lib/ruby/1.8/monitor.rb:242:in `synchronize'
+	from /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:183:in `checkout'
+	from /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:98:in `connection'
+	from /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:326:in `retrieve_connection'
+	from /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_specification.rb:123:in `retrieve_connection'
+	from /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_specification.rb:115:in `connection'
+	from /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/base.rb:3154:in `quoted_table_name'
+	from /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/base.rb:1714:in `construct_finder_sql'
+	from /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/base.rb:1578:in `find_every'
+	from /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/base.rb:618:in `find'
+	from /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/base.rb:638:in `all'
+	from (irb):1ree-1.8.7-2010.01 > ^C
+[01;32mpolux@polux-desktop[01;34m ~/dev/ruby/gema $[00m rake dn[Kb:drop
+(in /home/polux/dev/ruby/gema)
+DEPRECATION WARNING: Rake tasks in vendor/plugins/more/tasks are deprecated. Use lib/tasks instead. (called from /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rails-2.3.8/lib/tasks/rails.rb:10)
+!!! The bundled mysql.rb driver has been removed from Rails 2.2. Please install the mysql gem and try again: gem install mysql.
+Couldn't drop gema_development : #<MissingSourceFile: no such file to load -- mysql>
+[01;32mpolux@polux-desktop[01;34m ~/dev/ruby/gema $[00m rake db:migrate
+(in /home/polux/dev/ruby/gema)
+DEPRECATION WARNING: Rake tasks in vendor/plugins/more/tasks are deprecated. Use lib/tasks instead. (called from /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rails-2.3.8/lib/tasks/rails.rb:10)
+!!! The bundled mysql.rb driver has been removed from Rails 2.2. Please install the mysql gem and try again: gem install mysql.
+rake aborted!
+no such file to load -- mysql
+
+(See full trace by running task with --trace)
+[01;32mpolux@polux-desktop[01;34m ~/dev/ruby/gema $[00m reks[K[K[Kake db:seed
+(in /home/polux/dev/ruby/gema)
+DEPRECATION WARNING: Rake tasks in vendor/plugins/more/tasks are deprecated. Use lib/tasks instead. (called from /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rails-2.3.8/lib/tasks/rails.rb:10)
+!!! The bundled mysql.rb driver has been removed from Rails 2.2. Please install the mysql gem and try again: gem install mysql.
+rake aborted!
+no such file to load -- mysql
+
+(See full trace by running task with --trace)
+[01;32mpolux@polux-desktop[01;34m ~/dev/ruby/gema $[00m rake db:seedmigrate[3Pdropscript/console git pull origin dev[4Pscript/console 
+Loading development environment (Rails 2.3.8)
+ree-1.8.7-2010.01 > [01;32mpolux@polux-desktop[01;34m ~/dev/ruby/gema $[00m script/console [3Prake db:seedmigrate[3Pdropscript/console git pull origin devcommit -am "wireframes ingreso e importtaciones"[A[01;32mpolux@polux-desktop[01;34m ~/dev/ruby/gema $[00m [C[C[C[Cadd .[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cstatusscript/server git commit -am "Cambios wireframes ingreso,, inicio, listas"[A[01;32mpolux@polux-desktop[01;34m ~/dev/ruby/gema $[00m [28Pscript/server 
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+=> Booting Mongrel
+=> Rails 2.3.8 application starting on http://0.0.0.0:3000
+=> Call with -d to detach
+=> Ctrl-C to shutdown server
+!!! The bundled mysql.rb driver has been removed from Rails 2.2. Please install the mysql gem and try again: gem install mysql.
+^CExiting
+[01;32mpolux@polux-desktop[01;34m ~/dev/ruby/gema $[00m gem install mysql
+Building native extensions.  This could take a while...
+Successfully installed mysql-2.8.1
+1 gem installed
+Installing ri documentation for mysql-2.8.1...
+Installing RDoc documentation for mysql-2.8.1...
+[01;32mpolux@polux-desktop[01;34m ~/dev/ruby/gema $[00m gem install mysql[3Pscript/server 
+=> Booting Mongrel
+=> Rails 2.3.8 application starting on http://0.0.0.0:3000
+=> Call with -d to detach
+=> Ctrl-C to shutdown server
+/!\ FAILSAFE /!\  Thu Jul 01 15:29:26 -0400 2010
+  Status: 500 Internal Server Error
+  Access denied for user 'root'@'localhost' (using password: YES)
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/mysql_adapter.rb:619:in `real_connect'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/mysql_adapter.rb:619:in `connect'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/mysql_adapter.rb:203:in `initialize'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/mysql_adapter.rb:75:in `new'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/mysql_adapter.rb:75:in `mysql_connection'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:223:in `send'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:223:in `new_connection'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:245:in `checkout_new_connection'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:188:in `checkout'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:184:in `loop'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:184:in `checkout'
+    /home/polux/.rvm/rubies/ree-1.8.7-2010.01/lib/ruby/1.8/monitor.rb:242:in `synchronize'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:183:in `checkout'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:98:in `connection'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:326:in `retrieve_connection'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_specification.rb:123:in `retrieve_connection'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_specification.rb:115:in `connection'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/query_cache.rb:9:in `cache'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/query_cache.rb:28:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:361:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/actionpack-2.3.8/lib/action_controller/string_coercion.rb:25:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/head.rb:9:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/methodoverride.rb:24:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/actionpack-2.3.8/lib/action_controller/params_parser.rb:15:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/actionpack-2.3.8/lib/action_controller/session/cookie_store.rb:99:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/actionpack-2.3.8/lib/action_controller/failsafe.rb:26:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/lock.rb:11:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/lock.rb:11:in `synchronize'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/lock.rb:11:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/actionpack-2.3.8/lib/action_controller/dispatcher.rb:114:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/actionpack-2.3.8/lib/action_controller/reloader.rb:34:in `run'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/actionpack-2.3.8/lib/action_controller/dispatcher.rb:108:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rails-2.3.8/lib/rails/rack/static.rb:31:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/urlmap.rb:47:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/urlmap.rb:41:in `each'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/urlmap.rb:41:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rails-2.3.8/lib/rails/rack/log_tailer.rb:17:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/content_length.rb:13:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/chunked.rb:15:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/handler/mongrel.rb:67:in `process'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/mongrel-1.1.5/lib/mongrel.rb:159:in `process_client'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `each'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `process_client'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `initialize'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `new'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `initialize'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `new'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `run'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/handler/mongrel.rb:38:in `run'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rails-2.3.8/lib/commands/server.rb:111
+    /home/polux/.rvm/rubies/ree-1.8.7-2010.01/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /home/polux/.rvm/rubies/ree-1.8.7-2010.01/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+/!\ FAILSAFE /!\  Thu Jul 01 15:30:24 -0400 2010
+  Status: 500 Internal Server Error
+  Access denied for user 'root'@'localhost' (using password: YES)
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/mysql_adapter.rb:619:in `real_connect'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/mysql_adapter.rb:619:in `connect'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/mysql_adapter.rb:203:in `initialize'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/mysql_adapter.rb:75:in `new'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/mysql_adapter.rb:75:in `mysql_connection'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:223:in `send'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:223:in `new_connection'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:245:in `checkout_new_connection'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:188:in `checkout'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:184:in `loop'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:184:in `checkout'
+    /home/polux/.rvm/rubies/ree-1.8.7-2010.01/lib/ruby/1.8/monitor.rb:242:in `synchronize'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:183:in `checkout'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:98:in `connection'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:326:in `retrieve_connection'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_specification.rb:123:in `retrieve_connection'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_specification.rb:115:in `connection'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/query_cache.rb:9:in `cache'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/query_cache.rb:28:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:361:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/actionpack-2.3.8/lib/action_controller/string_coercion.rb:25:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/head.rb:9:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/methodoverride.rb:24:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/actionpack-2.3.8/lib/action_controller/params_parser.rb:15:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/actionpack-2.3.8/lib/action_controller/session/cookie_store.rb:99:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/actionpack-2.3.8/lib/action_controller/failsafe.rb:26:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/lock.rb:11:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/lock.rb:11:in `synchronize'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/lock.rb:11:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/actionpack-2.3.8/lib/action_controller/dispatcher.rb:114:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/actionpack-2.3.8/lib/action_controller/reloader.rb:34:in `run'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/actionpack-2.3.8/lib/action_controller/dispatcher.rb:108:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rails-2.3.8/lib/rails/rack/static.rb:31:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/urlmap.rb:47:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/urlmap.rb:41:in `each'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/urlmap.rb:41:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rails-2.3.8/lib/rails/rack/log_tailer.rb:17:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/content_length.rb:13:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/chunked.rb:15:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/handler/mongrel.rb:67:in `process'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/mongrel-1.1.5/lib/mongrel.rb:159:in `process_client'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `each'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `process_client'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `initialize'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `new'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `initialize'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `new'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `run'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/handler/mongrel.rb:38:in `run'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rails-2.3.8/lib/commands/server.rb:111
+    /home/polux/.rvm/rubies/ree-1.8.7-2010.01/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /home/polux/.rvm/rubies/ree-1.8.7-2010.01/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+^CExiting
+[01;32mpolux@polux-desktop[01;34m ~/dev/ruby/gema $[00m script/server 
+=> Booting Mongrel
+=> Rails 2.3.8 application starting on http://0.0.0.0:3000
+=> Call with -d to detach
+=> Ctrl-C to shutdown server
+/!\ FAILSAFE /!\  Thu Jul 01 15:31:43 -0400 2010
+  Status: 500 Internal Server Error
+  Access denied for user 'root'@'localhost' (using password: YES)
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/mysql_adapter.rb:619:in `real_connect'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/mysql_adapter.rb:619:in `connect'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/mysql_adapter.rb:203:in `initialize'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/mysql_adapter.rb:75:in `new'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/mysql_adapter.rb:75:in `mysql_connection'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:223:in `send'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:223:in `new_connection'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:245:in `checkout_new_connection'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:188:in `checkout'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:184:in `loop'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:184:in `checkout'
+    /home/polux/.rvm/rubies/ree-1.8.7-2010.01/lib/ruby/1.8/monitor.rb:242:in `synchronize'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:183:in `checkout'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:98:in `connection'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:326:in `retrieve_connection'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_specification.rb:123:in `retrieve_connection'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_specification.rb:115:in `connection'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/query_cache.rb:9:in `cache'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/query_cache.rb:28:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:361:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/actionpack-2.3.8/lib/action_controller/string_coercion.rb:25:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/head.rb:9:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/methodoverride.rb:24:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/actionpack-2.3.8/lib/action_controller/params_parser.rb:15:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/actionpack-2.3.8/lib/action_controller/session/cookie_store.rb:99:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/actionpack-2.3.8/lib/action_controller/failsafe.rb:26:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/lock.rb:11:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/lock.rb:11:in `synchronize'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/lock.rb:11:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/actionpack-2.3.8/lib/action_controller/dispatcher.rb:114:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/actionpack-2.3.8/lib/action_controller/reloader.rb:34:in `run'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/actionpack-2.3.8/lib/action_controller/dispatcher.rb:108:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rails-2.3.8/lib/rails/rack/static.rb:31:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/urlmap.rb:47:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/urlmap.rb:41:in `each'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/urlmap.rb:41:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rails-2.3.8/lib/rails/rack/log_tailer.rb:17:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/content_length.rb:13:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/chunked.rb:15:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/handler/mongrel.rb:67:in `process'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/mongrel-1.1.5/lib/mongrel.rb:159:in `process_client'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `each'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `process_client'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `initialize'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `new'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `initialize'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `new'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `run'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/handler/mongrel.rb:38:in `run'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rails-2.3.8/lib/commands/server.rb:111
+    /home/polux/.rvm/rubies/ree-1.8.7-2010.01/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /home/polux/.rvm/rubies/ree-1.8.7-2010.01/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+/!\ FAILSAFE /!\  Thu Jul 01 15:31:44 -0400 2010
+  Status: 500 Internal Server Error
+  Access denied for user 'root'@'localhost' (using password: YES)
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/mysql_adapter.rb:619:in `real_connect'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/mysql_adapter.rb:619:in `connect'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/mysql_adapter.rb:203:in `initialize'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/mysql_adapter.rb:75:in `new'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/mysql_adapter.rb:75:in `mysql_connection'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:223:in `send'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:223:in `new_connection'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:245:in `checkout_new_connection'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:188:in `checkout'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:184:in `loop'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:184:in `checkout'
+    /home/polux/.rvm/rubies/ree-1.8.7-2010.01/lib/ruby/1.8/monitor.rb:242:in `synchronize'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:183:in `checkout'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:98:in `connection'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:326:in `retrieve_connection'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_specification.rb:123:in `retrieve_connection'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_specification.rb:115:in `connection'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/query_cache.rb:9:in `cache'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/query_cache.rb:28:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/connection_pool.rb:361:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/actionpack-2.3.8/lib/action_controller/string_coercion.rb:25:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/head.rb:9:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/methodoverride.rb:24:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/actionpack-2.3.8/lib/action_controller/params_parser.rb:15:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/actionpack-2.3.8/lib/action_controller/session/cookie_store.rb:99:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/actionpack-2.3.8/lib/action_controller/failsafe.rb:26:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/lock.rb:11:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/lock.rb:11:in `synchronize'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/lock.rb:11:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/actionpack-2.3.8/lib/action_controller/dispatcher.rb:114:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/actionpack-2.3.8/lib/action_controller/reloader.rb:34:in `run'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/actionpack-2.3.8/lib/action_controller/dispatcher.rb:108:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rails-2.3.8/lib/rails/rack/static.rb:31:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/urlmap.rb:47:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/urlmap.rb:41:in `each'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/urlmap.rb:41:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rails-2.3.8/lib/rails/rack/log_tailer.rb:17:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/content_length.rb:13:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/chunked.rb:15:in `call'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/handler/mongrel.rb:67:in `process'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/mongrel-1.1.5/lib/mongrel.rb:159:in `process_client'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `each'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/mongrel-1.1.5/lib/mongrel.rb:158:in `process_client'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `initialize'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `new'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/mongrel-1.1.5/lib/mongrel.rb:285:in `run'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `initialize'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `new'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/mongrel-1.1.5/lib/mongrel.rb:268:in `run'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rack-1.1.0/lib/rack/handler/mongrel.rb:38:in `run'
+    /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rails-2.3.8/lib/commands/server.rb:111
+    /home/polux/.rvm/rubies/ree-1.8.7-2010.01/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+    /home/polux/.rvm/rubies/ree-1.8.7-2010.01/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+    script/server:3
+^CExiting
+[01;32mpolux@polux-desktop[01;34m ~/dev/ruby/gema $[00m [H[2J[01;32mpolux@polux-desktop[01;34m ~/dev/ruby/gema $[00m rakedb[K[K db:create
+(in /home/polux/dev/ruby/gema)
+DEPRECATION WARNING: Rake tasks in vendor/plugins/more/tasks are deprecated. Use lib/tasks instead. (called from /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rails-2.3.8/lib/tasks/rails.rb:10)
+[01;32mpolux@polux-desktop[01;34m ~/dev/ruby/gema $[00m rakedb[K[K db:migrate
+(in /home/polux/dev/ruby/gema)
+DEPRECATION WARNING: Rake tasks in vendor/plugins/more/tasks are deprecated. Use lib/tasks instead. (called from /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rails-2.3.8/lib/tasks/rails.rb:10)
+==  CreateClases: migrating ===================================================
+-- create_table(:clases)
+   -> 0.0845s
+==  CreateClases: migrated (0.0847s) ==========================================
+
+==  CreateMarcas: migrating ===================================================
+-- create_table(:marcas)
+   -> 0.0837s
+-- add_index(:marcas, :agente_id)
+   -> 0.1773s
+-- add_index(:marcas, :titular_id)
+   -> 0.1771s
+-- add_index(:marcas, :tipo_signo_id)
+   -> 0.1786s
+-- add_index(:marcas, :tipo_marca_id)
+   -> 0.2022s
+-- add_index(:marcas, :clase_id)
+   -> 0.2189s
+-- add_index(:marcas, :usuario_id)
+   -> 0.1940s
+-- add_index(:marcas, :parent_id)
+   -> 0.4379s
+-- add_index(:marcas, :fecha_importacion)
+   -> 0.2102s
+-- add_index(:marcas, :type)
+   -> 0.2106s
+==  CreateMarcas: migrated (2.0920s) ==========================================
+
+==  CreateTipoSignos: migrating ===============================================
+-- create_table(:tipo_signos)
+   -> 0.1060s
+==  CreateTipoSignos: migrated (0.1062s) ======================================
+
+==  CreateRepresentantes: migrating ===========================================
+-- create_table(:representantes)
+   -> 0.1148s
+-- add_index(:representantes, :nombre)
+   -> 0.2107s
+==  CreateRepresentantes: migrated (0.3258s) ==================================
+
+==  CreateUsuarios: migrating =================================================
+-- create_table(:usuarios)
+   -> 0.1059s
+==  CreateUsuarios: migrated (0.1060s) ========================================
+
+==  CreateViewImportaciones: migrating ========================================
+-- execute("CREATE VIEW view_importaciones_todos AS\n    SELECT fecha_importacion, COUNT(*) AS total, 0 as errores, estado FROM marcas WHERE parent_id = 0 \n    GROUP BY fecha_importacion")
+   -> 0.0804s
+-- execute("CREATE VIEW view_importaciones_errores AS SELECT fecha_importacion, 0 AS total, COUNT(*) AS errores, estado FROM `marcas` WHERE (`marcas`.`valido` = 0) AND (marcas.parent_id = 0)  GROUP BY marcas.fecha_importacion")
+   -> 0.0576s
+-- execute("CREATE VIEW view_importaciones AS\n    SELECT * FROM view_importaciones_todos UNION SELECT * FROM view_importaciones_errores")
+   -> 0.0356s
+==  CreateViewImportaciones: migrated (0.1838s) ===============================
+
+==  CreateTipoMarcas: migrating ===============================================
+-- create_table(:tipo_marcas)
+   -> 0.1228s
+==  CreateTipoMarcas: migrated (0.1230s) ======================================
+
+==  AddMarcasAnterior: migrating ==============================================
+-- add_column(:marcas, :anterior, :boolean, {:default=>false})
+   -> 0.2147s
+==  AddMarcasAnterior: migrated (0.2149s) =====================================
+
+==  AddMarcasPropia: migrating ================================================
+-- add_column(:marcas, :propia, :boolean)
+   -> 0.2745s
+-- add_index(:marcas, :propia)
+   -> 0.2035s
+==  AddMarcasPropia: migrated (0.4783s) =======================================
+
+[01;32mpolux@polux-desktop[01;34m ~/dev/ruby/gema $[00m rake db:seed
+(in /home/polux/dev/ruby/gema)
+DEPRECATION WARNING: Rake tasks in vendor/plugins/more/tasks are deprecated. Use lib/tasks instead. (called from /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rails-2.3.8/lib/tasks/rails.rb:10)
+rake aborted!
+Validation failed: Password confirmation can't be blank
+
+(See full trace by running task with --trace)
+[01;32mpolux@polux-desktop[01;34m ~/dev/ruby/gema $[00m rake db:seed
+(in /home/polux/dev/ruby/gema)
+DEPRECATION WARNING: Rake tasks in vendor/plugins/more/tasks are deprecated. Use lib/tasks instead. (called from /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/rails-2.3.8/lib/tasks/rails.rb:10)
+[01;32mpolux@polux-desktop[01;34m ~/dev/ruby/gema $[00m [H[2J[01;32mpolux@polux-desktop[01;34m ~/dev/ruby/gema $[00m script/server --debugger
+=> Booting Mongrel
+=> Rails 2.3.8 application starting on http://0.0.0.0:3000
+You need to install ruby-debug to run the server in debugging mode. With gems, use 'gem install ruby-debug'
+[01;32mpolux@polux-desktop[01;34m ~/dev/ruby/gema $[00m sudoge[K[K gem install ruby-debug[1P[1P[1P[1P[1P
+Building native extensions.  This could take a while...
+Building native extensions.  This could take a while...
+Successfully installed columnize-0.3.1
+Successfully installed linecache-0.43
+Successfully installed ruby-debug-base-0.10.3
+Successfully installed ruby-debug-0.10.3
+4 gems installed
+Installing ri documentation for columnize-0.3.1...
+Installing ri documentation for linecache-0.43...
+Installing ri documentation for ruby-debug-base-0.10.3...
+Installing ri documentation for ruby-debug-0.10.3...
+Installing RDoc documentation for columnize-0.3.1...
+Installing RDoc documentation for linecache-0.43...
+Installing RDoc documentation for ruby-debug-base-0.10.3...
+Installing RDoc documentation for ruby-debug-0.10.3...
+[01;32mpolux@polux-desktop[01;34m ~/dev/ruby/gema $[00m gem install ruby-debugscript/server --debugger
+=> Booting Mongrel
+=> Rails 2.3.8 application starting on http://0.0.0.0:3000
+=> Debugger enabled
+=> Call with -d to detach
+=> Ctrl-C to shutdown server
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing LoginController#new (for 127.0.0.1 at 2010-07-01 15:42:13) [GET]
+  [4;35;1mUsuario Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `usuarios`[0m
+Rendering template within layouts/application
+Rendering login/new
+Rendered layouts/_menu (2.1ms)
+Rendered layouts/_notice (2.5ms)
+Completed in 1593ms (View: 56, DB: 1) | 200 OK [http://localhost/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing LoginController#create (for 127.0.0.1 at 2010-07-01 15:42:28) [POST]
+  Parameters: {"commit"=>"Ingresar", "authenticity_token"=>"unAr4gVDoctggMJt57H41yUtefLkL8tgHUzClOiiffw=", "usuario"=>{"password"=>"demo123", "login"=>"admin"}}
+  [4;35;1mUsuario Load (0.4ms)[0m   [0mSELECT * FROM `usuarios` WHERE (`usuarios`.`login` = 'admin') LIMIT 1[0m
+  [4;36;1mUsuario Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `usuarios`[0m
+Redirected to http://localhost:3000/solicitudes
+Completed in 17ms (DB: 2) | 302 Found [http://localhost/login]
+  [4;35;1mSQL (0.3ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SolicitudesController#index (for 127.0.0.1 at 2010-07-01 15:42:28) [GET]
+  [4;36;1mMarca Load (30.5ms)[0m   [0;1mSELECT fecha_importacion, SUM(total) AS total, SUM(errores) AS errores, estado FROM `view_importaciones` GROUP BY fecha_importacion LIMIT 0, 30[0m
+Rendering template within layouts/application
+Rendering solicitudes/index
+Rendered layouts/_menu (0.2ms)
+Rendered layouts/_notice (0.2ms)
+Completed in 75ms (View: 27, DB: 31) | 200 OK [http://localhost/solicitudes]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SolicitudesController#new (for 127.0.0.1 at 2010-07-01 15:42:34) [GET]
+  Parameters: {"tipo"=>"sm"}
+Rendering template within layouts/application
+Rendering solicitudes/new
+Rendered layouts/_menu (0.1ms)
+Rendered layouts/_notice (0.1ms)
+Completed in 109ms (View: 89, DB: 0) | 200 OK [http://localhost/solicitudes/new?tipo=sm]
+/home/polux/dev/ruby/gema/app/models/solicitud_marca.rb:15: warning: multiple values for a block parameter (0 for 1)
+	from /home/polux/.rvm/gems/ree-1.8.7-2010.01/gems/activerecord-2.3.8/lib/active_record/connection_adapters/abstract/database_statements.rb:136
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SolicitudesController#create (for 127.0.0.1 at 2010-07-01 15:42:46) [POST]
+  Parameters: {"tipo"=>"sm", "importacion_vacia"=>{"tipo"=>"sm", "archivo"=>#<File:/tmp/RackMultipart20100701-2816-1tg8f8k-0>}, "commit"=>"Importar", "authenticity_token"=>"unAr4gVDoctggMJt57H41yUtefLkL8tgHUzClOiiffw="}
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mAgente Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `representantes`[0m
+  [4;35;1mAgente Load (0.5ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Lorena Otero Rojas') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;36;1mAgente Create (0.3ms)[0m   [0;1mINSERT INTO `representantes` (`telefono`, `valido`, `created_at`, `nombre`, `movil`, `updated_at`, `type`, `direccion`, `email`) VALUES(NULL, NULL, '2010-07-01 19:42:46', 'Lorena Otero Rojas', NULL, '2010-07-01 19:42:46', 'Agente', NULL, NULL)[0m
+  [4;35;1mTitular Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `representantes`[0m
+  [4;36;1mTitular Load (0.4ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Petroliam Nasional Berhad (PETRONAS)') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;35;1mTitular Create (0.3ms)[0m   [0mINSERT INTO `representantes` (`telefono`, `valido`, `created_at`, `nombre`, `movil`, `updated_at`, `type`, `direccion`, `email`) VALUES(NULL, NULL, '2010-07-01 19:42:46', 'Petroliam Nasional Berhad (PETRONAS)', NULL, '2010-07-01 19:42:46', 'Titular', NULL, NULL)[0m
+  [4;36;1mSolicitudMarca Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `marcas`[0m
+  [4;35;1mClase Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `clases`[0m
+  [4;36;1mClase Load (8.5ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 4.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.5ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Den.' OR sigla = 'Den.') LIMIT 1[0m
+  [4;36;1mTipoSigno Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `tipo_signos`[0m
+  [4;35;1mMarca Columns (2.0ms)[0m   [0mSHOW FIELDS FROM `marcas`[0m
+  [4;36;1mMarca Load (0.5ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3413-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.4ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:46', 'PETRONAS', 1, NULL, '2010-07-01 19:42:46', '2009-09-01', NULL, 3, NULL, 0, '3413-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 1, 'sm', 4, NULL, 1, 2, 1, NULL)[0m
+  [4;36;1mAgente Load (0.5ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Lorena Otero Rojas') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mTitular Load (0.5ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Petroliam Nasional Berhad (PETRONAS)') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;36;1mClase Load (0.3ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 1.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (4.3ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Denominación' OR sigla = 'Denominación') LIMIT 1[0m
+  [4;36;1mMarca Load (0.4ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3414-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.4ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:46', 'PETRONAS', 1, NULL, '2010-07-01 19:42:46', '2009-09-01', NULL, 4, NULL, 0, '3414-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 1, 'sm', 1, NULL, 1, 2, 1, NULL)[0m
+  [4;36;1mAgente Load (0.4ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Lorena Otero Rojas') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mTitular Load (0.4ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Petroliam Nasional Berhad (PETRONAS)') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;36;1mClase Load (0.4ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 3.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.1ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Denominación' OR sigla = 'Denominación') LIMIT 1[0m
+  [4;36;1mMarca Load (0.4ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3415-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.4ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:46', 'PETRONAS', 1, NULL, '2010-07-01 19:42:46', '2009-09-01', NULL, 5, NULL, 0, '3415-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 1, 'sm', 3, NULL, 1, 2, 1, NULL)[0m
+  [4;36;1mAgente Load (0.5ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Lorena Otero Rojas') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mTitular Load (0.4ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Petroliam Nasional Berhad (PETRONAS)') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;36;1mClase Load (0.1ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 4.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.1ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Denominación' OR sigla = 'Denominación') LIMIT 1[0m
+  [4;36;1mMarca Load (0.4ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3416-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.4ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:46', 'PETRONAS', 1, NULL, '2010-07-01 19:42:46', '2009-09-01', NULL, 6, NULL, 0, '3416-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 1, 'sm', 4, NULL, 1, 2, 1, NULL)[0m
+  [4;36;1mAgente Load (0.4ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Lorena Otero Rojas') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mTitular Load (0.4ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Petroliam Nasional Berhad (PETRONAS)') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;36;1mClase Load (0.4ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 6.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.1ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Denominación' OR sigla = 'Denominación') LIMIT 1[0m
+  [4;36;1mMarca Load (0.4ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3417-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.4ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:46', 'PETRONAS', 1, NULL, '2010-07-01 19:42:46', '2009-09-01', NULL, 7, NULL, 0, '3417-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 1, 'sm', 6, NULL, 1, 2, 1, NULL)[0m
+  [4;36;1mAgente Load (0.4ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Lorena Otero Rojas') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mTitular Load (0.7ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Petroliam Nasional Berhad (PETRONAS)') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;36;1mClase Load (0.4ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 9.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.1ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Denominación' OR sigla = 'Denominación') LIMIT 1[0m
+  [4;36;1mMarca Load (0.4ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3418-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.4ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:46', 'PETRONAS', 1, NULL, '2010-07-01 19:42:46', '2009-09-01', NULL, 8, NULL, 0, '3418-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 1, 'sm', 9, NULL, 1, 2, 1, NULL)[0m
+  [4;36;1mAgente Load (0.4ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Lorena Otero Rojas') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mTitular Load (0.4ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Petroliam Nasional Berhad (PETRONAS)') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;36;1mClase Load (0.4ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 11.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.1ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Denominación' OR sigla = 'Denominación') LIMIT 1[0m
+  [4;36;1mMarca Load (0.4ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3419-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.4ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:46', 'PETRONAS', 1, NULL, '2010-07-01 19:42:46', '2009-09-01', NULL, 9, NULL, 0, '3419-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 1, 'sm', 11, NULL, 1, 2, 1, NULL)[0m
+  [4;36;1mAgente Load (0.4ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Lorena Otero Rojas') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mTitular Load (0.4ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Petroliam Nasional Berhad (PETRONAS)') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;36;1mClase Load (0.4ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 12.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.1ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Denominación' OR sigla = 'Denominación') LIMIT 1[0m
+  [4;36;1mMarca Load (0.4ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3420-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.4ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:46', 'PETRONAS', 1, NULL, '2010-07-01 19:42:46', '2009-09-01', NULL, 10, NULL, 0, '3420-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 1, 'sm', 12, NULL, 1, 2, 1, NULL)[0m
+  [4;36;1mAgente Load (0.4ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Lorena Otero Rojas') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mTitular Load (0.5ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Petroliam Nasional Berhad (PETRONAS)') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;36;1mClase Load (0.4ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 14.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.1ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Denominación' OR sigla = 'Denominación') LIMIT 1[0m
+  [4;36;1mMarca Load (0.4ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3421-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.4ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:46', 'PETRONAS', 1, NULL, '2010-07-01 19:42:46', '2009-09-01', NULL, 11, NULL, 0, '3421-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 1, 'sm', 14, NULL, 1, 2, 1, NULL)[0m
+  [4;36;1mAgente Load (1.2ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Lorena Otero Rojas') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mTitular Load (0.5ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Petroliam Nasional Berhad (PETRONAS)') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;36;1mClase Load (0.4ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 16.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.1ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Denominación' OR sigla = 'Denominación') LIMIT 1[0m
+  [4;36;1mMarca Load (0.4ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3422-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.4ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:46', 'PETRONAS', 1, NULL, '2010-07-01 19:42:46', '2009-09-01', NULL, 12, NULL, 0, '3422-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 1, 'sm', 16, NULL, 1, 2, 1, NULL)[0m
+  [4;36;1mAgente Load (0.4ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Lorena Otero Rojas') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mTitular Load (0.4ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Petroliam Nasional Berhad (PETRONAS)') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;36;1mClase Load (0.4ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 17.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.1ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Denominación' OR sigla = 'Denominación') LIMIT 1[0m
+  [4;36;1mMarca Load (0.4ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3423-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.5ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:46', 'PETRONAS', 1, NULL, '2010-07-01 19:42:46', '2009-09-01', NULL, 13, NULL, 0, '3423-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 1, 'sm', 17, NULL, 1, 2, 1, NULL)[0m
+  [4;36;1mAgente Load (0.5ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Lorena Otero Rojas') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mTitular Load (0.6ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Petroliam Nasional Berhad (PETRONAS)') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;36;1mClase Load (0.4ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 18.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.1ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Denominación' OR sigla = 'Denominación') LIMIT 1[0m
+  [4;36;1mMarca Load (0.5ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3424-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.4ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:47', 'PETRONAS', 1, NULL, '2010-07-01 19:42:47', '2009-09-01', NULL, 14, NULL, 0, '3424-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 1, 'sm', 18, NULL, 1, 2, 1, NULL)[0m
+  [4;36;1mAgente Load (0.5ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Lorena Otero Rojas') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mTitular Load (0.7ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Petroliam Nasional Berhad (PETRONAS)') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;36;1mClase Load (0.4ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 19.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.1ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Denominación' OR sigla = 'Denominación') LIMIT 1[0m
+  [4;36;1mMarca Load (0.5ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3425-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.4ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:47', 'PETRONAS', 1, NULL, '2010-07-01 19:42:47', '2009-09-01', NULL, 15, NULL, 0, '3425-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 1, 'sm', 19, NULL, 1, 2, 1, NULL)[0m
+  [4;36;1mAgente Load (0.4ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Lorena Otero Rojas') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mTitular Load (0.4ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Petroliam Nasional Berhad (PETRONAS)') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;36;1mClase Load (0.4ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 21.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.1ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Denominación' OR sigla = 'Denominación') LIMIT 1[0m
+  [4;36;1mMarca Load (0.4ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3426-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.4ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:47', 'PETRONAS', 1, NULL, '2010-07-01 19:42:47', '2009-09-01', NULL, 16, NULL, 0, '3426-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 1, 'sm', 21, NULL, 1, 2, 1, NULL)[0m
+  [4;36;1mAgente Load (0.4ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Lorena Otero Rojas') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mTitular Load (0.4ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Petroliam Nasional Berhad (PETRONAS)') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;36;1mClase Load (0.4ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 25.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.1ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Denominación' OR sigla = 'Denominación') LIMIT 1[0m
+  [4;36;1mMarca Load (0.4ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3427-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.4ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:47', 'PETRONAS', 1, NULL, '2010-07-01 19:42:47', '2009-09-01', NULL, 17, NULL, 0, '3427-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 1, 'sm', 25, NULL, 1, 2, 1, NULL)[0m
+  [4;36;1mAgente Load (0.4ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Lorena Otero Rojas') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mTitular Load (0.5ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Petroliam Nasional Berhad (PETRONAS)') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;36;1mClase Load (0.6ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 28.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.2ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Denominación' OR sigla = 'Denominación') LIMIT 1[0m
+  [4;36;1mMarca Load (0.5ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3428-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.4ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:47', 'PETRONAS', 1, NULL, '2010-07-01 19:42:47', '2009-09-01', NULL, 18, NULL, 0, '3428-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 1, 'sm', 28, NULL, 1, 2, 1, NULL)[0m
+  [4;36;1mAgente Load (0.4ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Lorena Otero Rojas') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mTitular Load (0.4ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Petroliam Nasional Berhad (PETRONAS)') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;36;1mClase Load (0.4ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 34.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.1ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Denominación' OR sigla = 'Denominación') LIMIT 1[0m
+  [4;36;1mMarca Load (0.4ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3429-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.4ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:47', 'PETRONAS', 1, NULL, '2010-07-01 19:42:47', '2009-09-01', NULL, 19, NULL, 0, '3429-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 1, 'sm', 34, NULL, 1, 2, 1, NULL)[0m
+  [4;36;1mAgente Load (0.4ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Lorena Otero Rojas') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mTitular Load (0.4ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Petroliam Nasional Berhad (PETRONAS)') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;36;1mClase Load (0.4ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 35.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.1ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Denominación' OR sigla = 'Denominación') LIMIT 1[0m
+  [4;36;1mMarca Load (0.7ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3430-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.4ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:47', 'PETRONAS', 1, NULL, '2010-07-01 19:42:47', '2009-09-01', NULL, 20, NULL, 0, '3430-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 1, 'sm', 35, NULL, 1, 2, 1, NULL)[0m
+  [4;36;1mAgente Load (0.4ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Lorena Otero Rojas') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mTitular Load (0.6ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Petroliam Nasional Berhad (PETRONAS)') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;36;1mClase Load (0.4ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 36.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.1ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Denominación' OR sigla = 'Denominación') LIMIT 1[0m
+  [4;36;1mMarca Load (0.4ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3431-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (1.1ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:47', 'PETRONAS', 1, NULL, '2010-07-01 19:42:47', '2009-09-01', NULL, 21, NULL, 0, '3431-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 1, 'sm', 36, NULL, 1, 2, 1, NULL)[0m
+  [4;36;1mAgente Load (0.5ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Lorena Otero Rojas') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mTitular Load (0.4ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Petroliam Nasional Berhad (PETRONAS)') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;36;1mClase Load (0.4ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 37.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.1ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Denominación' OR sigla = 'Denominación') LIMIT 1[0m
+  [4;36;1mMarca Load (0.5ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3432-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.4ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:47', 'PETRONAS', 1, NULL, '2010-07-01 19:42:47', '2009-09-01', NULL, 22, NULL, 0, '3432-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 1, 'sm', 37, NULL, 1, 2, 1, NULL)[0m
+  [4;36;1mAgente Load (0.5ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Lorena Otero Rojas') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mTitular Load (0.4ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Petroliam Nasional Berhad (PETRONAS)') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;36;1mClase Load (0.4ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 38.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.1ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Denominación' OR sigla = 'Denominación') LIMIT 1[0m
+  [4;36;1mMarca Load (0.5ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3433-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.4ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:47', 'PETRONAS', 1, NULL, '2010-07-01 19:42:47', '2009-09-01', NULL, 23, NULL, 0, '3433-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 1, 'sm', 38, NULL, 1, 2, 1, NULL)[0m
+  [4;36;1mAgente Load (0.4ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Lorena Otero Rojas') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mTitular Load (0.4ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Petroliam Nasional Berhad (PETRONAS)') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;36;1mClase Load (0.4ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 39.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.1ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Denominación' OR sigla = 'Denominación') LIMIT 1[0m
+  [4;36;1mMarca Load (0.4ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` IS NULL AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.6ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 0, '2010-07-01 19:42:47', 'PETRONAS', 1, NULL, '2010-07-01 19:42:47', '2009-09-01', NULL, 24, NULL, 0, NULL, NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 1, 'sm', 39, NULL, 0, 2, 1, NULL)[0m
+  [4;36;1mAgente Load (0.5ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Lorena Otero Rojas') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mTitular Load (0.6ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Petroliam Nasional Berhad (PETRONAS)') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;36;1mClase Load (0.4ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 40.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.1ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Denominación' OR sigla = 'Denominación') LIMIT 1[0m
+  [4;36;1mMarca Load (0.5ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3435-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.4ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:47', 'PETRONAS', 1, NULL, '2010-07-01 19:42:47', '2009-09-01', NULL, 25, NULL, 0, '3435-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 1, 'sm', 40, NULL, 1, 2, 1, NULL)[0m
+  [4;36;1mAgente Load (0.4ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Lorena Otero Rojas') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mTitular Load (0.4ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Petroliam Nasional Berhad (PETRONAS)') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;36;1mClase Load (0.4ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 41.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.1ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Denominación' OR sigla = 'Denominación') LIMIT 1[0m
+  [4;36;1mMarca Load (0.5ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3436-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.5ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:47', 'PETRONAS', 1, NULL, '2010-07-01 19:42:47', '2009-09-01', NULL, 26, NULL, 0, '3436-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 1, 'sm', 41, NULL, 1, 2, 1, NULL)[0m
+  [4;36;1mAgente Load (0.7ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Lorena Otero Rojas') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mTitular Load (0.5ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Petroliam Nasional Berhad (PETRONAS)') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;36;1mClase Load (0.4ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 42.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.2ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Denominación' OR sigla = 'Denominación') LIMIT 1[0m
+  [4;36;1mMarca Load (0.7ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3437-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.4ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:47', 'PETRONAS', 1, NULL, '2010-07-01 19:42:47', '2009-09-01', NULL, 27, NULL, 0, '3437-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 1, 'sm', 42, NULL, 1, 2, 1, NULL)[0m
+  [4;36;1mAgente Load (0.5ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Lorena Otero Rojas') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mTitular Load (0.4ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Petroliam Nasional Berhad (PETRONAS)') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;36;1mClase Load (0.4ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 43.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.1ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Denominación' OR sigla = 'Denominación') LIMIT 1[0m
+  [4;36;1mMarca Load (0.5ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3438-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.4ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:47', 'PETRONAS', 1, NULL, '2010-07-01 19:42:47', '2009-09-01', NULL, 28, NULL, 0, '3438-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 1, 'sm', 43, NULL, 1, 2, 1, NULL)[0m
+  [4;36;1mAgente Load (0.4ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Lorena Otero Rojas') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mTitular Load (0.6ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Petroliam Nasional Berhad (PETRONAS)') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;36;1mClase Load (0.5ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 45.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.1ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Denominación' OR sigla = 'Denominación') LIMIT 1[0m
+  [4;36;1mMarca Load (0.7ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3439-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.4ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:47', 'PETRONAS', 1, NULL, '2010-07-01 19:42:47', '2009-09-01', NULL, 29, NULL, 0, '3439-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 1, 'sm', 45, NULL, 1, 2, 1, NULL)[0m
+  [4;36;1mAgente Load (0.5ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Lorena Otero Rojas') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mTitular Load (0.5ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Petroliam Nasional Berhad (PETRONAS)') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;36;1mClase Load (0.1ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 1.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.3ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Figurativa' OR sigla = 'Figurativa') LIMIT 1[0m
+  [4;36;1mMarca Load (0.6ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3440-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.4ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:47', 'DISEÑO', 1, NULL, '2010-07-01 19:42:47', '2009-09-01', NULL, 30, NULL, 0, '3440-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 1, 'sm', 1, NULL, 1, 2, 3, NULL)[0m
+  [4;36;1mAgente Load (0.5ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Lorena Otero Rojas') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mTitular Load (0.4ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Petroliam Nasional Berhad (PETRONAS)') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;36;1mClase Load (0.2ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 3.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.1ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Figurativa' OR sigla = 'Figurativa') LIMIT 1[0m
+  [4;36;1mMarca Load (0.5ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3441-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.4ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 0, '2010-07-01 19:42:47', 'DISEÑO', 1, NULL, '2010-07-01 19:42:47', NULL, NULL, 31, NULL, 0, '3441-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 1, 'sm', 3, NULL, 0, 2, 3, NULL)[0m
+  [4;36;1mAgente Load (0.5ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Lorena Otero Rojas') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mTitular Load (0.4ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Petroliam Nasional Berhad (PETRONAS)') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;36;1mClase Load (0.2ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 4.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.2ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Figurativa' OR sigla = 'Figurativa') LIMIT 1[0m
+  [4;36;1mMarca Load (0.8ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3442-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.4ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:47', 'DISEÑO', 1, NULL, '2010-07-01 19:42:47', '2009-09-01', NULL, 32, NULL, 0, '3442-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 1, 'sm', 4, NULL, 1, 2, 3, NULL)[0m
+  [4;36;1mAgente Load (0.5ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Lorena Otero Rojas') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mTitular Load (0.6ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Petroliam Nasional Berhad (PETRONAS)') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;36;1mClase Load (0.1ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 6.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.2ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Figurativa' OR sigla = 'Figurativa') LIMIT 1[0m
+  [4;36;1mMarca Load (0.7ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3443-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.4ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:47', 'DISEÑO', 1, NULL, '2010-07-01 19:42:47', '2009-09-01', NULL, 33, NULL, 0, '3443-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 1, 'sm', 6, NULL, 1, 2, 3, NULL)[0m
+  [4;36;1mAgente Load (0.6ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Lorena Otero Rojas') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mTitular Load (0.5ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Petroliam Nasional Berhad (PETRONAS)') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;36;1mClase Load (0.2ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 9.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.1ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Figurativa' OR sigla = 'Figurativa') LIMIT 1[0m
+  [4;36;1mMarca Load (0.5ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3444-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.5ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:47', 'DISEÑO', 1, NULL, '2010-07-01 19:42:47', '2009-09-01', NULL, 34, NULL, 0, '3444-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 1, 'sm', 9, NULL, 1, 2, 3, NULL)[0m
+  [4;36;1mAgente Load (0.5ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Lorena Otero Rojas') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mTitular Load (0.4ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Petroliam Nasional Berhad (PETRONAS)') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;36;1mClase Load (0.1ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 11.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.1ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Figurativa' OR sigla = 'Figurativa') LIMIT 1[0m
+  [4;36;1mMarca Load (0.5ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3445-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.5ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:47', 'DISEÑO', 1, NULL, '2010-07-01 19:42:47', '2009-09-01', NULL, 35, NULL, 0, '3445-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 1, 'sm', 11, NULL, 1, 2, 3, NULL)[0m
+  [4;36;1mAgente Load (0.5ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Lorena Otero Rojas') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mTitular Load (0.4ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Petroliam Nasional Berhad (PETRONAS)') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;36;1mClase Load (0.2ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 12.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.1ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Figurativa' OR sigla = 'Figurativa') LIMIT 1[0m
+  [4;36;1mMarca Load (0.5ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3446-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.5ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:47', 'DISEÑO', 1, NULL, '2010-07-01 19:42:47', '2009-09-01', NULL, 36, NULL, 0, '3446-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 1, 'sm', 12, NULL, 1, 2, 3, NULL)[0m
+  [4;36;1mAgente Load (0.5ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Lorena Otero Rojas') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mTitular Load (0.5ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Petroliam Nasional Berhad (PETRONAS)') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;36;1mClase Load (0.1ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 14.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.1ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Figurativa' OR sigla = 'Figurativa') LIMIT 1[0m
+  [4;36;1mMarca Load (0.5ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3447-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.4ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:47', 'DISEÑO', 1, NULL, '2010-07-01 19:42:47', '2009-09-01', NULL, 37, NULL, 0, '3447-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 1, 'sm', 14, NULL, 1, 2, 3, NULL)[0m
+  [4;36;1mAgente Load (0.4ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Lorena Otero Rojas') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mTitular Load (0.4ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Petroliam Nasional Berhad (PETRONAS)') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;36;1mClase Load (0.2ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 16.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.2ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Figurativa' OR sigla = 'Figurativa') LIMIT 1[0m
+  [4;36;1mMarca Load (0.5ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3448-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.6ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:47', 'DISEÑO', 1, NULL, '2010-07-01 19:42:47', '2009-09-01', NULL, 38, NULL, 0, '3448-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 1, 'sm', 16, NULL, 1, 2, 3, NULL)[0m
+  [4;36;1mAgente Load (0.5ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Lorena Otero Rojas') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mTitular Load (0.4ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Petroliam Nasional Berhad (PETRONAS)') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;36;1mClase Load (0.1ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 17.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.2ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Figurativa' OR sigla = 'Figurativa') LIMIT 1[0m
+  [4;36;1mMarca Load (0.5ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3449-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.4ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:47', 'DISEÑO', 1, NULL, '2010-07-01 19:42:47', '2009-09-01', NULL, 39, NULL, 0, '3449-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 1, 'sm', 17, NULL, 1, 2, 3, NULL)[0m
+  [4;36;1mAgente Load (0.4ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Lorena Otero Rojas') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mTitular Load (0.4ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Petroliam Nasional Berhad (PETRONAS)') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;36;1mClase Load (0.1ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 18.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.1ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Figurativa' OR sigla = 'Figurativa') LIMIT 1[0m
+  [4;36;1mMarca Load (0.6ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3450-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.4ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:47', 'DISEÑO', 1, NULL, '2010-07-01 19:42:47', '2009-09-01', NULL, 40, NULL, 0, '3450-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 1, 'sm', 18, NULL, 1, 2, 3, NULL)[0m
+  [4;36;1mAgente Load (0.4ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Lorena Otero Rojas') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mTitular Load (0.7ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Petroliam Nasional Berhad (PETRONAS)') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;36;1mClase Load (0.3ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` IS NULL) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.1ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Figurativa' OR sigla = 'Figurativa') LIMIT 1[0m
+  [4;36;1mMarca Load (0.5ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3451-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (1.5ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 0, '2010-07-01 19:42:47', 'DISEÑO', 1, NULL, '2010-07-01 19:42:47', '2009-09-01', NULL, 41, NULL, 0, '3451-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 1, 'sm', NULL, NULL, 0, 2, 3, NULL)[0m
+  [4;36;1mAgente Load (0.4ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Lorena Otero Rojas') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mTitular Load (0.4ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Petroliam Nasional Berhad (PETRONAS)') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;36;1mClase Load (0.1ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 21.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.1ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Figurativa' OR sigla = 'Figurativa') LIMIT 1[0m
+  [4;36;1mMarca Load (0.5ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3452-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.5ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:47', 'DISEÑO', 1, NULL, '2010-07-01 19:42:47', '2009-09-01', NULL, 42, NULL, 0, '3452-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 1, 'sm', 21, NULL, 1, 2, 3, NULL)[0m
+  [4;36;1mAgente Load (0.4ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Lorena Otero Rojas') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mTitular Load (0.4ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Petroliam Nasional Berhad (PETRONAS)') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;36;1mClase Load (0.2ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 25.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.2ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Figurativa' OR sigla = 'Figurativa') LIMIT 1[0m
+  [4;36;1mMarca Load (0.6ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3453-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.4ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:47', 'DISEÑO', 1, NULL, '2010-07-01 19:42:47', '2009-09-01', NULL, 43, NULL, 0, '3453-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 1, 'sm', 25, NULL, 1, 2, 3, NULL)[0m
+  [4;36;1mAgente Load (0.6ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Lorena Otero Rojas') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mTitular Load (0.5ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Petroliam Nasional Berhad (PETRONAS)') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;36;1mClase Load (0.1ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 28.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.1ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Figurativa' OR sigla = 'Figurativa') LIMIT 1[0m
+  [4;36;1mMarca Load (0.5ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3454-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.4ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:47', 'DISEÑO', 1, NULL, '2010-07-01 19:42:47', '2009-09-01', NULL, 44, NULL, 0, '3454-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 1, 'sm', 28, NULL, 1, 2, 3, NULL)[0m
+  [4;36;1mAgente Load (0.4ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Lorena Otero Rojas') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mTitular Load (0.4ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Petroliam Nasional Berhad (PETRONAS)') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;36;1mClase Load (0.1ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 45.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.4ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Den.y Diseño' OR sigla = 'Den.y Diseño') LIMIT 1[0m
+  [4;36;1mMarca Load (0.6ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3491-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.4ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 0, '2010-07-01 19:42:47', 'PETRONAS', 1, NULL, '2010-07-01 19:42:47', '2009-09-01', NULL, 45, NULL, 0, '3491-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 1, 'sm', 45, NULL, 0, 2, NULL, NULL)[0m
+  [4;36;1mAgente Load (0.4ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Fabiana Cunioli Paz') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mAgente Create (0.3ms)[0m   [0mINSERT INTO `representantes` (`telefono`, `valido`, `created_at`, `nombre`, `movil`, `updated_at`, `type`, `direccion`, `email`) VALUES(NULL, NULL, '2010-07-01 19:42:47', 'Fabiana Cunioli Paz', NULL, '2010-07-01 19:42:47', 'Agente', NULL, NULL)[0m
+  [4;36;1mTitular Load (0.4ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'EMPRESA DE TELECOMUNICACIONES NUEVATEL PCS BOLIVIA S. A.') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;35;1mTitular Create (0.3ms)[0m   [0mINSERT INTO `representantes` (`telefono`, `valido`, `created_at`, `nombre`, `movil`, `updated_at`, `type`, `direccion`, `email`) VALUES(NULL, NULL, '2010-07-01 19:42:47', 'EMPRESA DE TELECOMUNICACIONES NUEVATEL PCS BOLIVIA S. A.', NULL, '2010-07-01 19:42:47', 'Titular', NULL, NULL)[0m
+  [4;36;1mClase Load (0.1ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 38.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.1ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Den.' OR sigla = 'Den.') LIMIT 1[0m
+  [4;36;1mMarca Load (0.6ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3492-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.4ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:47', 'VERDE VIVA', 1, NULL, '2010-07-01 19:42:47', '2009-09-01', NULL, 46, NULL, 0, '3492-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 3, 'sm', 38, NULL, 1, 4, 1, NULL)[0m
+  [4;36;1mAgente Load (0.4ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Marcos Mercado Delgadillo') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mAgente Create (0.3ms)[0m   [0mINSERT INTO `representantes` (`telefono`, `valido`, `created_at`, `nombre`, `movil`, `updated_at`, `type`, `direccion`, `email`) VALUES(NULL, NULL, '2010-07-01 19:42:47', 'Marcos Mercado Delgadillo', NULL, '2010-07-01 19:42:47', 'Agente', NULL, NULL)[0m
+  [4;36;1mTitular Load (0.6ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'PAN AMERICAN PROPERTIES CORP.') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;35;1mTitular Create (0.3ms)[0m   [0mINSERT INTO `representantes` (`telefono`, `valido`, `created_at`, `nombre`, `movil`, `updated_at`, `type`, `direccion`, `email`) VALUES(NULL, NULL, '2010-07-01 19:42:47', 'PAN AMERICAN PROPERTIES CORP.', NULL, '2010-07-01 19:42:47', 'Titular', NULL, NULL)[0m
+  [4;36;1mClase Load (0.4ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 33.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.1ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Figurativa' OR sigla = 'Figurativa') LIMIT 1[0m
+  [4;36;1mMarca Load (0.6ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3493-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.4ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:47', 'DISEÑO', 1, NULL, '2010-07-01 19:42:47', '2009-09-01', NULL, 47, NULL, 0, '3493-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 5, 'sm', 33, NULL, 1, 6, 3, NULL)[0m
+  [4;36;1mAgente Load (0.5ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Cesar Alfredo Burgoa') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mAgente Create (0.4ms)[0m   [0mINSERT INTO `representantes` (`telefono`, `valido`, `created_at`, `nombre`, `movil`, `updated_at`, `type`, `direccion`, `email`) VALUES(NULL, NULL, '2010-07-01 19:42:47', 'Cesar Alfredo Burgoa', NULL, '2010-07-01 19:42:47', 'Agente', NULL, NULL)[0m
+  [4;36;1mTitular Load (0.4ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'JULIO CESAR ARISTIZABAL PARRA') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;35;1mTitular Create (0.3ms)[0m   [0mINSERT INTO `representantes` (`telefono`, `valido`, `created_at`, `nombre`, `movil`, `updated_at`, `type`, `direccion`, `email`) VALUES(NULL, NULL, '2010-07-01 19:42:47', 'JULIO CESAR ARISTIZABAL PARRA', NULL, '2010-07-01 19:42:47', 'Titular', NULL, NULL)[0m
+  [4;36;1mClase Load (0.1ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 25.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.1ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Den.y Diseño' OR sigla = 'Den.y Diseño') LIMIT 1[0m
+  [4;36;1mMarca Load (0.6ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3494-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.4ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 0, '2010-07-01 19:42:47', 'LAURA LO QUE SIEMPRE SOÑE', 1, NULL, '2010-07-01 19:42:47', '2009-09-01', NULL, 48, NULL, 0, '3494-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 7, 'sm', 25, NULL, 0, 8, NULL, NULL)[0m
+  [4;36;1mAgente Load (0.5ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Pilar Soruco') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mAgente Create (0.7ms)[0m   [0mINSERT INTO `representantes` (`telefono`, `valido`, `created_at`, `nombre`, `movil`, `updated_at`, `type`, `direccion`, `email`) VALUES(NULL, NULL, '2010-07-01 19:42:47', 'Pilar Soruco', NULL, '2010-07-01 19:42:47', 'Agente', NULL, NULL)[0m
+  [4;36;1mTitular Load (1.3ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'RINTI S. A.') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;35;1mTitular Create (0.3ms)[0m   [0mINSERT INTO `representantes` (`telefono`, `valido`, `created_at`, `nombre`, `movil`, `updated_at`, `type`, `direccion`, `email`) VALUES(NULL, NULL, '2010-07-01 19:42:47', 'RINTI S. A.', NULL, '2010-07-01 19:42:47', 'Titular', NULL, NULL)[0m
+  [4;36;1mClase Load (0.4ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 31.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.1ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Den.' OR sigla = 'Den.') LIMIT 1[0m
+  [4;36;1mMarca Load (0.9ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3495-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.5ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:47', 'RICO-CRACK', 1, NULL, '2010-07-01 19:42:47', '2009-09-01', NULL, 49, NULL, 0, '3495-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 9, 'sm', 31, NULL, 1, 10, 1, NULL)[0m
+  [4;36;1mAgente Load (0.6ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'José Luís Mejía') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mAgente Create (0.3ms)[0m   [0mINSERT INTO `representantes` (`telefono`, `valido`, `created_at`, `nombre`, `movil`, `updated_at`, `type`, `direccion`, `email`) VALUES(NULL, NULL, '2010-07-01 19:42:47', 'José Luís Mejía', NULL, '2010-07-01 19:42:47', 'Agente', NULL, NULL)[0m
+  [4;36;1mTitular Load (0.5ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'BASF SE') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;35;1mTitular Create (0.3ms)[0m   [0mINSERT INTO `representantes` (`telefono`, `valido`, `created_at`, `nombre`, `movil`, `updated_at`, `type`, `direccion`, `email`) VALUES(NULL, NULL, '2010-07-01 19:42:47', 'BASF SE', NULL, '2010-07-01 19:42:47', 'Titular', NULL, NULL)[0m
+  [4;36;1mClase Load (0.1ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 1.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.2ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Den.' OR sigla = 'Den.') LIMIT 1[0m
+  [4;36;1mMarca Load (0.8ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3496-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.4ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:47', 'PALATAL', 1, NULL, '2010-07-01 19:42:47', '2009-09-01', NULL, 50, NULL, 0, '3496-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 11, 'sm', 1, NULL, 1, 12, 1, NULL)[0m
+  [4;36;1mAgente Load (0.5ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'José Luís Mejía') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mTitular Load (0.5ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'BASF SE') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;36;1mClase Load (0.2ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 17.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.1ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Den.' OR sigla = 'Den.') LIMIT 1[0m
+  [4;36;1mMarca Load (0.7ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3497-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.4ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:47', 'PALATAL', 1, NULL, '2010-07-01 19:42:47', '2009-09-01', NULL, 51, NULL, 0, '3497-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 11, 'sm', 17, NULL, 1, 12, 1, NULL)[0m
+  [4;36;1mAgente Load (0.6ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Lorena Otero Rojas') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mTitular Load (0.5ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Petroliam Nasional Berhad (PETRONAS)') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;36;1mClase Load (0.1ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 1.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.1ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Den.' OR sigla = 'Den.') LIMIT 1[0m
+  [4;36;1mMarca Load (0.8ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3498-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.4ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:47', 'SYNTIUM', 1, NULL, '2010-07-01 19:42:47', '2009-09-01', NULL, 52, NULL, 0, '3498-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 1, 'sm', 1, NULL, 1, 2, 1, NULL)[0m
+  [4;36;1mAgente Load (0.5ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Rodrigo Javier Garron Bozo') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mAgente Create (0.3ms)[0m   [0mINSERT INTO `representantes` (`telefono`, `valido`, `created_at`, `nombre`, `movil`, `updated_at`, `type`, `direccion`, `email`) VALUES(NULL, NULL, '2010-07-01 19:42:47', 'Rodrigo Javier Garron Bozo', NULL, '2010-07-01 19:42:47', 'Agente', NULL, NULL)[0m
+  [4;36;1mTitular Load (0.4ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'JOSE LUIS HANDAL FARAH - OLIVER LUIS DUERI SIADE') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;35;1mTitular Create (0.3ms)[0m   [0mINSERT INTO `representantes` (`telefono`, `valido`, `created_at`, `nombre`, `movil`, `updated_at`, `type`, `direccion`, `email`) VALUES(NULL, NULL, '2010-07-01 19:42:47', 'JOSE LUIS HANDAL FARAH - OLIVER LUIS DUERI SIADE', NULL, '2010-07-01 19:42:47', 'Titular', NULL, NULL)[0m
+  [4;36;1mClase Load (0.1ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 36.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.1ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Den.y Diseño' OR sigla = 'Den.y Diseño') LIMIT 1[0m
+  [4;36;1mMarca Load (0.8ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3499-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.4ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 0, '2010-07-01 19:42:47', 'TORRE DUO', 1, NULL, '2010-07-01 19:42:47', '2009-09-01', NULL, 53, NULL, 0, '3499-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 13, 'sm', 36, NULL, 0, 14, NULL, NULL)[0m
+  [4;36;1mAgente Load (0.6ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'R. Roque CH.') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mAgente Create (0.3ms)[0m   [0mINSERT INTO `representantes` (`telefono`, `valido`, `created_at`, `nombre`, `movil`, `updated_at`, `type`, `direccion`, `email`) VALUES(NULL, NULL, '2010-07-01 19:42:47', 'R. Roque CH.', NULL, '2010-07-01 19:42:47', 'Agente', NULL, NULL)[0m
+  [4;36;1mTitular Load (0.6ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'HOMER TLC, INC.') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;35;1mTitular Create (0.3ms)[0m   [0mINSERT INTO `representantes` (`telefono`, `valido`, `created_at`, `nombre`, `movil`, `updated_at`, `type`, `direccion`, `email`) VALUES(NULL, NULL, '2010-07-01 19:42:47', 'HOMER TLC, INC.', NULL, '2010-07-01 19:42:47', 'Titular', NULL, NULL)[0m
+  [4;36;1mClase Load (0.1ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 11.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.1ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Den.' OR sigla = 'Den.') LIMIT 1[0m
+  [4;36;1mMarca Load (0.7ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3500-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.4ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:47', 'ECO SMART', 1, NULL, '2010-07-01 19:42:47', '2009-09-01', NULL, 54, NULL, 0, '3500-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 15, 'sm', 11, NULL, 1, 16, 1, NULL)[0m
+  [4;36;1mAgente Load (0.6ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Alvaro Siles M.') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mAgente Create (0.3ms)[0m   [0mINSERT INTO `representantes` (`telefono`, `valido`, `created_at`, `nombre`, `movil`, `updated_at`, `type`, `direccion`, `email`) VALUES(NULL, NULL, '2010-07-01 19:42:47', 'Alvaro Siles M.', NULL, '2010-07-01 19:42:47', 'Agente', NULL, NULL)[0m
+  [4;36;1mTitular Load (0.7ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'COMPAÑIA NEDERAGRO S. A') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;35;1mTitular Create (0.3ms)[0m   [0mINSERT INTO `representantes` (`telefono`, `valido`, `created_at`, `nombre`, `movil`, `updated_at`, `type`, `direccion`, `email`) VALUES(NULL, NULL, '2010-07-01 19:42:47', 'COMPAÑIA NEDERAGRO S. A', NULL, '2010-07-01 19:42:47', 'Titular', NULL, NULL)[0m
+  [4;36;1mClase Load (0.1ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 1.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.1ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Den.' OR sigla = 'Den.') LIMIT 1[0m
+  [4;36;1mMarca Load (0.8ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3501-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.4ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:47', 'ECO HORMONAS', 1, NULL, '2010-07-01 19:42:47', '2009-09-01', NULL, 55, NULL, 0, '3501-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 17, 'sm', 1, NULL, 1, 18, 1, NULL)[0m
+  [4;36;1mAgente Load (0.5ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Alvaro Siles M.') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;35;1mTitular Load (0.4ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'COMPAÑIA NEDERAGRO S. A.') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;36;1mTitular Create (0.4ms)[0m   [0;1mINSERT INTO `representantes` (`telefono`, `valido`, `created_at`, `nombre`, `movil`, `updated_at`, `type`, `direccion`, `email`) VALUES(NULL, NULL, '2010-07-01 19:42:47', 'COMPAÑIA NEDERAGRO S. A.', NULL, '2010-07-01 19:42:47', 'Titular', NULL, NULL)[0m
+  [4;35;1mClase Load (0.2ms)[0m   [0mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 1.0) LIMIT 1[0m
+  [4;36;1mTipoSigno Load (0.2ms)[0m   [0;1mSELECT * FROM `tipo_signos` WHERE (nombre = 'Den.' OR sigla = 'Den.') LIMIT 1[0m
+  [4;35;1mMarca Load (0.6ms)[0m   [0mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3502-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;36;1mSolicitudMarca Create (0.5ms)[0m   [0;1mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:47', 'SUPER K 60', 1, NULL, '2010-07-01 19:42:47', '2009-09-01', NULL, 56, NULL, 0, '3502-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 17, 'sm', 1, NULL, 1, 19, 1, NULL)[0m
+  [4;35;1mAgente Load (0.6ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Alvaro Siles M.') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;36;1mTitular Load (0.4ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'COMPAÑIA NEDERAGRO S. A.') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;35;1mClase Load (0.1ms)[0m   [0mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 1.0) LIMIT 1[0m
+  [4;36;1mTipoSigno Load (0.1ms)[0m   [0;1mSELECT * FROM `tipo_signos` WHERE (nombre = 'Den.' OR sigla = 'Den.') LIMIT 1[0m
+  [4;35;1mMarca Load (0.6ms)[0m   [0mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3503-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;36;1mSolicitudMarca Create (0.4ms)[0m   [0;1mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:47', 'COMPLEFOL', 1, NULL, '2010-07-01 19:42:47', '2009-09-01', NULL, 57, NULL, 0, '3503-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 17, 'sm', 1, NULL, 1, 19, 1, NULL)[0m
+  [4;35;1mAgente Load (0.5ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'Alvaro Siles M.') AND ( (`representantes`.`type` = 'Agente' ) ) LIMIT 1[0m
+  [4;36;1mTitular Load (0.6ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`nombre` = 'COMAÑIA NEDERAGRO S. A.') AND ( (`representantes`.`type` = 'Titular' ) ) LIMIT 1[0m
+  [4;35;1mTitular Create (0.3ms)[0m   [0mINSERT INTO `representantes` (`telefono`, `valido`, `created_at`, `nombre`, `movil`, `updated_at`, `type`, `direccion`, `email`) VALUES(NULL, NULL, '2010-07-01 19:42:47', 'COMAÑIA NEDERAGRO S. A.', NULL, '2010-07-01 19:42:47', 'Titular', NULL, NULL)[0m
+  [4;36;1mClase Load (0.1ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`codigo` = 1.0) LIMIT 1[0m
+  [4;35;1mTipoSigno Load (0.2ms)[0m   [0mSELECT * FROM `tipo_signos` WHERE (nombre = 'Den.' OR sigla = 'Den.') LIMIT 1[0m
+  [4;36;1mMarca Load (0.8ms)[0m   [0;1mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '3504-2009' AND `marcas`.parent_id = 0) LIMIT 1[0m
+  [4;35;1mSolicitudMarca Create (0.6ms)[0m   [0mINSERT INTO `marcas` (`tipo_marca_id`, `numero_registro`, `fecha_importacion`, `imagen`, `valido`, `created_at`, `nombre`, `usuario_id`, `numero_gaceta`, `updated_at`, `estado_fecha`, `estado_serial`, `fila`, `cambios`, `anterior`, `numero_solicitud`, `numero_publicacion`, `lema`, `type`, `parent_id`, `fecha_publicacion`, `propia`, `agente_id`, `estado`, `clase_id`, `numero_renovacion`, `activo`, `titular_id`, `tipo_signo_id`, `productos`) VALUES(NULL, NULL, '2010-07-01 19:03:46', NULL, 1, '2010-07-01 19:42:47', 'NEW GIBERNED', 1, NULL, '2010-07-01 19:42:47', '2009-09-01', NULL, 58, NULL, 0, '3504-2009', NULL, NULL, 'SolicitudMarca', 0, NULL, 0, 17, 'sm', 1, NULL, 1, 20, 1, NULL)[0m
+  [4;36;1mSQL (29.1ms)[0m   [0;1mCOMMIT[0m
+Redirected to http://localhost:3000/solicitudes/2010-07-01%2015:03:46/importado
+Completed in 1479ms (DB: 191) | 302 Found [http://localhost/solicitudes]
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SolicitudesController#importado (for 127.0.0.1 at 2010-07-01 15:42:48) [GET]
+  Parameters: {"id"=>"2010-07-01 15:03:46"}
+  [4;36;1mMarca Load (1.6ms)[0m   [0;1mSELECT * FROM `marcas` WHERE (`marcas`.`valido` = 0 AND `marcas`.`fecha_importacion` = '2010-07-01 19:03:46') AND (marcas.parent_id = 0) [0m
+  [4;35;1mMarca Columns (1.9ms)[0m   [0mSHOW FIELDS FROM `marcas`[0m
+  [4;36;1mSolicitudMarca Columns (2.4ms)[0m   [0;1mSHOW FIELDS FROM `marcas`[0m
+  [4;35;1mClase Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `clases`[0m
+  [4;36;1mClase Load (0.6ms)[0m   [0;1mSELECT * FROM `clases` WHERE (`clases`.`id` IN (45,36,25,39,3)) [0m
+  [4;35;1mAgente Columns (1.7ms)[0m   [0mSHOW FIELDS FROM `representantes`[0m
+  [4;36;1mAgente Load (0.6ms)[0m   [0;1mSELECT * FROM `representantes` WHERE (`representantes`.`id` IN (7,13,1)) AND ( (`representantes`.`type` = 'Agente' ) ) [0m
+  [4;35;1mTipoSigno Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `tipo_signos`[0m
+  [4;36;1mTipoSigno Load (0.5ms)[0m   [0;1mSELECT * FROM `tipo_signos` WHERE (`tipo_signos`.`id` IN (1,3)) [0m
+Rendering template within layouts/application
+Rendering solicitudes/importado
+Rendered solicitudes/_errores (15.1ms)
+Rendered layouts/_menu (0.1ms)
+Rendered layouts/_notice (0.1ms)
+Completed in 112ms (View: 36, DB: 11) | 200 OK [http://localhost/solicitudes/2010-07-01%2015:03:46/importado]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SolicitudesController#index (for 127.0.0.1 at 2010-07-01 15:42:54) [GET]
+  [4;36;1mMarca Load (2.0ms)[0m   [0;1mSELECT fecha_importacion, SUM(total) AS total, SUM(errores) AS errores, estado FROM `view_importaciones` GROUP BY fecha_importacion LIMIT 0, 30[0m
+Rendering template within layouts/application
+Rendering solicitudes/index
+  [4;35;1mMarca Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `view_importaciones`[0m
+Rendered layouts/_menu (0.1ms)
+Rendered layouts/_notice (0.1ms)
+Completed in 32ms (View: 15, DB: 3) | 200 OK [http://localhost/solicitudes]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SolicitudesController#new (for 127.0.0.1 at 2010-07-01 15:42:56) [GET]
+  Parameters: {"tipo"=>"lp"}
+Rendering template within layouts/application
+Rendering solicitudes/new
+Rendered layouts/_menu (0.1ms)
+Rendered layouts/_notice (0.2ms)
+Completed in 40ms (View: 17, DB: 0) | 200 OK [http://localhost/solicitudes/new?tipo=lp]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SolicitudesController#create (for 127.0.0.1 at 2010-07-01 15:43:09) [POST]
+  Parameters: {"tipo"=>"lp", "importacion_vacia"=>{"tipo"=>"lp", "gaceta"=>""}, "commit"=>"Importar", "authenticity_token"=>"unAr4gVDoctggMJt57H41yUtefLkL8tgHUzClOiiffw="}
+Rendering template within layouts/application
+Rendering solicitudes/new
+Rendered layouts/_menu (0.1ms)
+Rendered layouts/_notice (0.2ms)
+Completed in 59ms (View: 39, DB: 0) | 200 OK [http://localhost/solicitudes]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing TipoMarcasController#index (for 127.0.0.1 at 2010-07-01 15:48:15) [GET]
+  [4;35;1mTipoMarca Load (0.4ms)[0m   [0mSELECT * FROM `tipo_marcas` [0m
+Rendering template within layouts/application
+Rendering tipo_marcas/index
+  [4;36;1mTipoMarca Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `tipo_marcas`[0m
+Rendered layouts/_menu (0.1ms)
+Rendered layouts/_notice (0.1ms)
+Completed in 40ms (View: 26, DB: 2) | 200 OK [http://localhost/tipo_marcas]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing TipoMarcasController#new (for 127.0.0.1 at 2010-07-01 15:48:25) [GET]
+  [4;36;1mTipoMarca Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `tipo_marcas`[0m
+Rendering template within layouts/application
+Rendering tipo_marcas/new
+Rendered tipo_marcas/_form (6.0ms)
+Rendered layouts/_menu (0.1ms)
+Rendered layouts/_notice (0.1ms)
+Completed in 32ms (View: 18, DB: 1) | 200 OK [http://localhost/tipo_marcas/new]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing TipoMarcasController#index (for 127.0.0.1 at 2010-07-01 15:48:28) [GET]
+  [4;36;1mTipoMarca Load (0.2ms)[0m   [0;1mSELECT * FROM `tipo_marcas` [0m
+Rendering template within layouts/application
+Rendering tipo_marcas/index
+  [4;35;1mTipoMarca Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `tipo_marcas`[0m
+Rendered layouts/_menu (0.1ms)
+Rendered layouts/_notice (0.1ms)
+Completed in 28ms (View: 15, DB: 1) | 200 OK [http://localhost/tipo_marcas]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing TipoMarcasController#destroy (for 127.0.0.1 at 2010-07-01 15:48:41) [DELETE]
+  Parameters: {"id"=>"6"}
+  [4;35;1mTipoMarca Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `tipo_marcas`[0m
+  [4;36;1mTipoMarca Load (0.6ms)[0m   [0;1mSELECT * FROM `tipo_marcas` WHERE (`tipo_marcas`.`id` = 6) [0m
+  [4;35;1mSQL (0.2ms)[0m   [0mBEGIN[0m
+  [4;36;1mTipoMarca Destroy (0.6ms)[0m   [0;1mDELETE FROM `tipo_marcas` WHERE `id` = 6[0m
+  [4;35;1mSQL (50.1ms)[0m   [0mCOMMIT[0m
+Redirected to http://localhost:3000/tipo_marcas
+Completed in 72ms (DB: 53) | 302 Found [http://localhost/tipo_marcas/6]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing TipoMarcasController#index (for 127.0.0.1 at 2010-07-01 15:48:42) [GET]
+  [4;35;1mTipoMarca Load (0.4ms)[0m   [0mSELECT * FROM `tipo_marcas` [0m
+Rendering template within layouts/application
+Rendering tipo_marcas/index
+  [4;36;1mTipoMarca Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `tipo_marcas`[0m
+Rendered layouts/_menu (0.1ms)
+Rendered layouts/_notice (0.1ms)
+Completed in 26ms (View: 13, DB: 1) | 200 OK [http://localhost/tipo_marcas]
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing TipoSignosController#index (for 127.0.0.1 at 2010-07-01 15:48:52) [GET]
+  [4;36;1mTipoSigno Load (0.4ms)[0m   [0;1mSELECT * FROM `tipo_signos` [0m
+Rendering template within layouts/application
+Rendering tipo_signos/index
+  [4;35;1mTipoSigno Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `tipo_signos`[0m
+Rendered layouts/_menu (0.1ms)
+Rendered layouts/_notice (0.1ms)
+Completed in 39ms (View: 25, DB: 1) | 200 OK [http://localhost/tipo_signos]
+^CExiting
+[01;32mpolux@polux-desktop[01;34m ~/dev/ruby/gema $[00m script/server --debugger[Kr
+=> Booting Mongrel
+=> Rails 2.3.8 application starting on http://0.0.0.0:3000
+=> Debugger enabled
+=> Call with -d to detach
+=> Ctrl-C to shutdown server
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing TipoSignosController#index (for 127.0.0.1 at 2010-07-01 16:20:16) [GET]
+  [4;35;1mTipoSigno Load (0.3ms)[0m   [0mSELECT * FROM `tipo_signos` [0m
+Rendering template within layouts/application
+Rendering tipo_signos/index
+  [4;36;1mTipoSigno Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `tipo_signos`[0m
+Rendered layouts/_menu (1.7ms)
+Rendered layouts/_notice (0.9ms)
+Completed in 1506ms (View: 64, DB: 2) | 200 OK [http://localhost/tipo_signos]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing SolicitudesController#index (for 127.0.0.1 at 2010-07-01 16:20:20) [GET]
+  [4;36;1mMarca Load (0.2ms)[0m   [0;1mSELECT fecha_importacion, SUM(total) AS total, SUM(errores) AS errores, estado FROM `view_importaciones` GROUP BY fecha_importacion LIMIT 0, 30[0m
+Rendering template within layouts/application
+Rendering solicitudes/index
+  [4;35;1mMarca Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `view_importaciones`[0m
+Rendered layouts/_menu (0.1ms)
+Rendered layouts/_notice (0.1ms)
+Completed in 41ms (View: 23, DB: 2) | 200 OK [http://localhost/solicitudes]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing MarcasController#index (for 127.0.0.1 at 2010-07-01 16:20:28) [GET]
+  Parameters: {"propia"=>"true"}
+  [4;35;1mMarca Load (0.6ms)[0m   [0mSELECT * FROM `marcas` WHERE (`marcas`.`propia` = 1) AND (marcas.parent_id = 0) LIMIT 0, 30[0m
+Rendering template within layouts/application
+Rendering marcas/index
+Rendered layouts/_menu (0.1ms)
+Rendered layouts/_notice (0.1ms)
+Completed in 24ms (View: 9, DB: 1) | 200 OK [http://localhost/marcas?propia=true]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing MarcasController#new (for 127.0.0.1 at 2010-07-01 16:20:30) [GET]
+  [4;35;1mMarca Columns (1.6ms)[0m   [0mSHOW FIELDS FROM `marcas`[0m
+Rendering template within layouts/application
+Rendering marcas/new
+  [4;36;1mClase Load (0.7ms)[0m   [0;1mSELECT * FROM `clases` [0m
+  [4;35;1mClase Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `clases`[0m
+  [4;36;1mTipoSigno Load (0.1ms)[0m   [0;1mSELECT * FROM `tipo_signos` [0m
+  [4;35;1mTipoSigno Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `tipo_signos`[0m
+  [4;36;1mAgente Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `representantes`[0m
+  [4;35;1mAgente Load (0.5ms)[0m   [0mSELECT * FROM `representantes` WHERE ( (`representantes`.`type` = 'Agente' ) ) [0m
+  [4;36;1mTitular Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `representantes`[0m
+  [4;35;1mTitular Load (0.7ms)[0m   [0mSELECT * FROM `representantes` WHERE ( (`representantes`.`type` = 'Titular' ) ) [0m
+  [4;36;1mTipoMarca Load (0.1ms)[0m   [0;1mSELECT * FROM `tipo_marcas` [0m
+  [4;35;1mTipoMarca Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `tipo_marcas`[0m
+Rendered marcas/_form (83.5ms)
+Rendered layouts/_menu (0.1ms)
+Rendered layouts/_notice (0.1ms)
+Completed in 129ms (View: 99, DB: 9) | 200 OK [http://localhost/marcas/new]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing MarcasController#index (for 127.0.0.1 at 2010-07-01 16:20:37) [GET]
+  Parameters: {"propia"=>"false"}
+  [4;35;1mMarca Load (1.1ms)[0m   [0mSELECT * FROM `marcas` WHERE (`marcas`.`propia` = 0) AND (marcas.parent_id = 0) LIMIT 0, 30[0m
+  [4;36;1mMarca Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `marcas`[0m
+  [4;35;1mSolicitudMarca Columns (1.8ms)[0m   [0mSHOW FIELDS FROM `marcas`[0m
+  [4;36;1mAgente Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `representantes`[0m
+  [4;35;1mAgente Load (0.5ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`id` = 1) AND ( (`representantes`.`type` = 'Agente' ) ) [0m
+  [4;36;1mTitular Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `representantes`[0m
+  [4;35;1mTitular Load (0.5ms)[0m   [0mSELECT * FROM `representantes` WHERE (`representantes`.`id` = 2) AND ( (`representantes`.`type` = 'Titular' ) ) [0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSELECT count(*) AS count_all FROM `marcas` WHERE (`marcas`.`propia` = 0) AND (marcas.parent_id = 0) [0m
+Rendering template within layouts/application
+Rendering marcas/index
+Rendered layouts/_menu (0.1ms)
+Rendered layouts/_notice (0.2ms)
+Completed in 170ms (View: 29, DB: 8) | 200 OK [http://localhost/marcas?propia=false]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing MarcasController#edit (for 127.0.0.1 at 2010-07-01 16:20:41) [GET]
+  Parameters: {"id"=>"1"}
+  [4;36;1mMarca Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `marcas`[0m
+  [4;35;1mMarca Load (0.5ms)[0m   [0mSELECT * FROM `marcas` WHERE (`marcas`.`id` = 1) AND (marcas.parent_id = 0) [0m
+Rendering template within layouts/application
+Rendering marcas/edit
+  [4;36;1mSolicitudMarca Columns (2.1ms)[0m   [0;1mSHOW FIELDS FROM `marcas`[0m
+  [4;35;1mClase Load (0.2ms)[0m   [0mSELECT * FROM `clases` [0m
+  [4;36;1mClase Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `clases`[0m
+  [4;35;1mTipoSigno Load (0.1ms)[0m   [0mSELECT * FROM `tipo_signos` [0m
+  [4;36;1mTipoSigno Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `tipo_signos`[0m
+  [4;35;1mAgente Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `representantes`[0m
+  [4;36;1mAgente Load (0.1ms)[0m   [0;1mSELECT * FROM `representantes` WHERE ( (`representantes`.`type` = 'Agente' ) ) [0m
+  [4;35;1mTitular Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `representantes`[0m
+  [4;36;1mTitular Load (0.2ms)[0m   [0;1mSELECT * FROM `representantes` WHERE ( (`representantes`.`type` = 'Titular' ) ) [0m
+  [4;35;1mTipoMarca Load (0.2ms)[0m   [0mSELECT * FROM `tipo_marcas` [0m
+  [4;36;1mTipoMarca Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `tipo_marcas`[0m
+Rendered marcas/_form (94.4ms)
+Rendered layouts/_menu (0.1ms)
+Rendered layouts/_notice (0.3ms)
+Completed in 126ms (View: 96, DB: 10) | 200 OK [http://localhost/marcas/1/edit]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing MarcasController#update (for 127.0.0.1 at 2010-07-01 16:22:02) [PUT]
+  Parameters: {"commit"=>"Salvar", "authenticity_token"=>"unAr4gVDoctggMJt57H41yUtefLkL8tgHUzClOiiffw=", "id"=>"1", "solicitud_marca"=>{"tipo_marca_id"=>"", "nombre"=>"PETRONAS", "numero_gaceta"=>"", "estado_fecha"=>"2009-09-01", "numero_solicitud"=>"3413-2009", "lema"=>"", "numero_publicacion"=>"", "fecha_publicacion"=>"", "propia"=>"0", "estado"=>"lp", "agente_id"=>"1", "clase_id"=>"4", "productos"=>"", "titular_id"=>"2", "tipo_signo_id"=>"1"}}
+  [4;36;1mMarca Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `marcas`[0m
+  [4;35;1mMarca Load (0.2ms)[0m   [0mSELECT * FROM `marcas` WHERE (`marcas`.`id` = 1) AND (marcas.parent_id = 0) [0m
+  [4;36;1mSolicitudMarca Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `marcas`[0m
+WARNING: Can't mass-assign these protected attributes: id, type
+WARNING: Can't mass-assign these protected attributes: type
+  [4;35;1mMarca Load (0.6ms)[0m   [0mSELECT `marcas`.id FROM `marcas` WHERE (`marcas`.`numero_solicitud` = BINARY '0000-0000' AND `marcas`.parent_id = 0) LIMIT 1[0m
+Rendering template within layouts/application
+Rendering marcas/edit
+  [4;36;1mClase Load (0.2ms)[0m   [0;1mSELECT * FROM `clases` [0m
+  [4;35;1mClase Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `clases`[0m
+  [4;36;1mTipoSigno Load (0.1ms)[0m   [0;1mSELECT * FROM `tipo_signos` [0m
+  [4;35;1mTipoSigno Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `tipo_signos`[0m
+  [4;36;1mAgente Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `representantes`[0m
+  [4;35;1mAgente Load (0.1ms)[0m   [0mSELECT * FROM `representantes` WHERE ( (`representantes`.`type` = 'Agente' ) ) [0m
+  [4;36;1mTitular Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `representantes`[0m
+  [4;35;1mTitular Load (0.2ms)[0m   [0mSELECT * FROM `representantes` WHERE ( (`representantes`.`type` = 'Titular' ) ) [0m
+  [4;36;1mTipoMarca Load (0.1ms)[0m   [0;1mSELECT * FROM `tipo_marcas` [0m
+  [4;35;1mTipoMarca Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `tipo_marcas`[0m
+Rendered marcas/_form (76.7ms)
+Rendered layouts/_menu (0.1ms)
+Rendered layouts/_notice (0.1ms)
+Completed in 127ms (View: 76, DB: 9) | 200 OK [http://localhost/marcas/1]
+^CExiting
+[01;32mpolux@polux-desktop[01;34m ~/dev/ruby/gema $[00m gitstatus status
+# On branch dev
+# Changed but not updated:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#	modified:   app/models/solicitud_marca.rb
+#	modified:   db/seeds.rb
+#	modified:   doc/global/Clases.dia
+#	modified:   doc/global/ListaRequisitosGEMA.xmind
+#	modified:   doc/wireframes/busquedas.bmml
+#	modified:   doc/wireframes/busquedas_avanzadas.bmml
+#	modified:   typescript
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#	doc/wireframes/busquedas_pre-publicacion.bmml
+#	doc/wireframes/busquedas_preventiva.bmml
+#	doc/wireframes/busquedas_preventiva_resultado.bmml
+no changes added to commit (use "git add" and/or "git commit -a")
+[01;32mpolux@polux-desktop[01;34m ~/dev/ruby/gema $[00m git status [K[K[K[K[K[K[Kadd. .
+[01;32mpolux@polux-desktop[01;34m ~/dev/ruby/gema $[00m giot commir[Kt -[1P[C[C[C[C[C[C[C[C[C[Cam ""W"i"r"e"f"r"a"m"e"s" "b"u"s"q"e"u"d"a"s"[1Pudas"[Cedas"[1@M[1@o[1@d[1@ifWireframes busquedas" [A[01;32mpolux@polux-desktop[01;34m ~/dev/ruby/gema $[00m [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CiWireframes busquedas""[A[01;32mpolux@polux-desktop[01;34m ~/dev/ruby/gema $[00m [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CcWireframes busquedas"[A[01;32mpolux@polux-desktop[01;34m ~/dev/ruby/gema $[00m [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CaWireframes busquedas"[A[01;32mpolux@polux-desktop[01;34m ~/dev/ruby/gema $[00m [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CcWireframes busquedas"[A[01;32mpolux@polux-desktop[01;34m ~/dev/ruby/gema $[00m [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CiWireframes busquedas"[A[01;32mpolux@polux-desktop[01;34m ~/dev/ruby/gema $[00m [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CoWireframes busquedas"[A[01;32mpolux@polux-desktop[01;34m ~/dev/ruby/gema $[00m [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CWireframes busque[1Pdas"[A[01;32mpolux@polux-desktop[01;34m ~/dev/ruby/gema $[00m [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CoWireframes busquedas"[A[01;32mpolux@polux-desktop[01;34m ~/dev/ruby/gema $[00m [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CnWireframes busquedas"[A[01;32mpolux@polux-desktop[01;34m ~/dev/ruby/gema $[00m [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C Wireframes busquedas"[A[01;32mpolux@polux-desktop[01;34m ~/dev/ruby/gema $[00m [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CcWireframes busquedas"[A[01;32mpolux@polux-desktop[01;34m ~/dev/ruby/gema $[00m [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CoWireframes busquedas"[A[01;32mpolux@polux-desktop[01;34m ~/dev/ruby/gema $[00m [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[CnWireframes busquedas"[A[01;32mpolux@polux-desktop[01;34m ~/dev/ruby/gema $[00m [C[C[C[C[C[C[C[C[C[C[C
