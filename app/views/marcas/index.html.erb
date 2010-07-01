@@ -16,7 +16,7 @@
   <% @marcas.each do |marca| %>
     <% @clase = marca.propia ? ' class="propia"': '' %>
     <tr <%= @clase %>>
-      <td><%= marca.nombre %></td>
+      <td><%= link_to marca.nombre, marca_path(marca) %></td>
       <td><%= verdad marca.propia %></td>
     	<td><%= marca.ver_estado %></td>
     	<td><% marca.agente %></td>

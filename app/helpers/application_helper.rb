@@ -44,6 +44,15 @@ module ApplicationHelper
     l fec, :format => format
   end
 
+  # Indica si hay cambio en el campo
+  def cambio(klass, attr)
+    if klass.cambios.include?(attr.to_s)
+      "<span class='cambio'>#{klass.send(attr)}</span>"
+    else
+      klass.send(attr)
+    end
+  end
+
 end
 WillPaginate::ViewHelpers.pagination_options[:previous_label] = '<<'
 WillPaginate::ViewHelpers.pagination_options[:next_label] = '>>'
