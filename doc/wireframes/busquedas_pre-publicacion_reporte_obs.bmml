@@ -1,4 +1,4 @@
-<mockup version="1.0" skin="sketch" measuredW="1318" measuredH="765" mockupW="1166" mockupH="755">
+<mockup version="1.0" skin="sketch" measuredW="1318" measuredH="737" mockupW="1166" mockupH="727">
   <controls>
     <control controlID="0" controlTypeID="com.balsamiq.mockups::Canvas" x="245" y="0" w="743" h="709" measuredW="100" measuredH="70" zOrder="1" locked="true" isInGroup="-1">
       <controlProperties>
@@ -115,65 +115,87 @@
         <text>Resultados%20de%20la%20busqueda%20*NIVEA*</text>
       </controlProperties>
     </control>
-    <control controlID="42" controlTypeID="com.balsamiq.mockups::DataGrid" x="279" y="507" w="678" h="248" measuredW="646" measuredH="198" zOrder="15" locked="false" isInGroup="-1">
-      <controlProperties>
-        <borderStyle>none</borderStyle>
-        <hasHeader>false</hasHeader>
-        <rowHeight>64</rowHeight>
-        <selectedIndex>-1</selectedIndex>
-        <text>%5B%5D%2CMarca%20vigilada%2C%20Clase%2CN%BA%2CMarca%20encontrada%2C%20Clase%2C%20N%BA%20solicitud%2C%20Observaciones%0A%5BX%5D%2C%5BNIVEA%5D%2C%2010%2C12345-C%2C%5BIDEA%5D%2C%2010%2C1224-2010%2C%0A%5BX%5D%2C%5BNIVEA%5D%2C%2011%2C1753-2010%2C%5BVINEA%5D%2C%2010%2C1238-2010%2C</text>
-        <vLines>false</vLines>
-      </controlProperties>
-    </control>
-    <control controlID="43" controlTypeID="com.balsamiq.mockups::Label" x="310" y="546" w="116" h="25" measuredW="106" measuredH="25" zOrder="16" locked="false" isInGroup="-1">
-      <controlProperties>
-        <color>545684</color>
-        <href>busqueda_reporte_vigilancia_pre-publicacion%26bm%3Bbusqueda_reporte_vigilancia_pre-publicacion.bmml%26bm%3Bbusqueda_reporte_vigilancia_pre-publicacion.bmml%26bm%3Bbusqueda_reporte_vigilancia_pre-publicacion.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22168%2C546%2C284%2C571%22%20href%3D%22busqueda_reporte_vigilancia_pre-publicacion.bmml%22%20alt%3D%22busqueda_reporte_vigilancia_pre-publicacion%22%20id%3D%2243%22/%3E</map>
-        <text>Generar%20reporte</text>
-        <underline>true</underline>
-      </controlProperties>
-    </control>
-    <control controlID="44" controlTypeID="com.balsamiq.mockups::Label" x="324" y="442" w="57" h="25" measuredW="50" measuredH="25" zOrder="17" locked="false" isInGroup="-1">
-      <controlProperties>
-        <color>545684</color>
-        <href>busquedas_pre-publicacion_datos_marca_obs%26bm%3Bbusquedas_pre-publicacion_datos_marca_obs.bmml%26bm%3Bbusquedas_pre-publicacion_datos_marca_obs.bmml%26bm%3Bbusquedas_pre-publicacion_datos_marca_obs.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22182%2C442%2C239%2C467%22%20href%3D%22busquedas_pre-publicacion_datos_marca_obs.bmml%22%20alt%3D%22busquedas_pre-publicacion_datos_marca_obs%22%20id%3D%2244%22/%3E</map>
-        <text>NIVEA</text>
-      </controlProperties>
-    </control>
-    <control controlID="45" controlTypeID="com.balsamiq.mockups::Label" x="283" y="323" w="663" h="25" measuredW="598" measuredH="25" zOrder="18" locked="false" isInGroup="-1">
+    <control controlID="45" controlTypeID="com.balsamiq.mockups::Label" x="283" y="323" w="663" h="25" measuredW="598" measuredH="25" zOrder="15" locked="false" isInGroup="-1">
       <controlProperties>
         <bold>false</bold>
         <text>*Busqueda%20pre-publicacion*%20%3E%20en%20%28*Productos*%29%20%3E%20clases%20%28*1%2C2%2C4*%29%20%3E%20del%20*11%20de%20Jun%202009*%20al%20*30%20Sep%202009*</text>
       </controlProperties>
     </control>
-    <control controlID="46" controlTypeID="com.balsamiq.mockups::StickyNote" x="988" y="96" w="320" h="192" measuredW="109" measuredH="123" zOrder="19" locked="false" isInGroup="-1">
+    <control controlID="46" controlTypeID="com.balsamiq.mockups::StickyNote" x="988" y="96" w="320" h="192" measuredW="109" measuredH="123" zOrder="16" locked="false" isInGroup="-1">
       <controlProperties>
         <text>En%20los%20resultados%20se%20muestra%20en%20numero%20del%20ultimo%20estado%0A%20%0AEj%3A%0Aestado%20%3D%20solicitada%20%20N%BA%3D%20numero_solicitud%0Aestado%20%3D%20publicada%20%20N%BA%3D%20numero_publicacion</text>
       </controlProperties>
     </control>
-    <control controlID="47" controlTypeID="com.balsamiq.mockups::Image" x="294" y="551" w="16" h="16" measuredW="16" measuredH="16" zOrder="20" locked="false" isInGroup="-1">
-      <controlProperties>
-        <src>./assets/table.png</src>
-      </controlProperties>
-    </control>
-    <control controlID="50" controlTypeID="com.balsamiq.mockups::Canvas" x="279" y="438" w="567" h="32" measuredW="100" measuredH="70" zOrder="21" locked="false" isInGroup="-1">
-      <controlProperties>
-        <backgroundAlpha>0.25</backgroundAlpha>
-        <borderStyle>none</borderStyle>
-        <color>7775663</color>
-      </controlProperties>
-    </control>
-    <control controlID="51" controlTypeID="com.balsamiq.mockups::Paragraph" x="846" y="438" w="115" h="44" measuredW="200" measuredH="140" zOrder="22" locked="false" isInGroup="-1">
+    <control controlID="51" controlTypeID="com.balsamiq.mockups::Paragraph" x="405" y="525" w="495" h="44" measuredW="200" measuredH="140" zOrder="17" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Pese%20a%20que%20la%20clase%20de%20cada%20marca%20es%20completamente%20distinta%20el%20la%20marca%20es%20identica%20por%20lo%20tanto%20se%20tiene%20un%2090%20%25%20de%20exito%20en%20una%20oposicion%20</text>
       </controlProperties>
     </control>
-    <control controlID="52" controlTypeID="com.balsamiq.mockups::Label" x="305" y="363" w="-1" h="-1" measuredW="96" measuredH="25" zOrder="23" locked="false" isInGroup="-1">
+    <control controlID="52" controlTypeID="com.balsamiq.mockups::Label" x="322" y="362" w="-1" h="-1" measuredW="96" measuredH="25" zOrder="18" locked="false" isInGroup="-1">
       <controlProperties>
+        <align>right</align>
         <text>Marca%20vigilada</text>
       </controlProperties>
     </control>
+    <control controlID="53" controlTypeID="com.balsamiq.mockups::Label" x="358" y="387" w="60" h="25" measuredW="37" measuredH="25" zOrder="19" locked="false" isInGroup="-1">
+      <controlProperties>
+        <align>right</align>
+        <text>Clase</text>
+      </controlProperties>
+    </control>
+    <control controlID="54" controlTypeID="com.balsamiq.mockups::Label" x="391" y="412" w="-1" h="-1" measuredW="24" measuredH="25" zOrder="20" locked="false" isInGroup="-1">
+      <controlProperties>
+        <align>right</align>
+        <text>N%BA</text>
+      </controlProperties>
+    </control>
+    <control controlID="55" controlTypeID="com.balsamiq.mockups::Label" x="300" y="452" w="-1" h="-1" measuredW="121" measuredH="25" zOrder="21" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Marca%20encontrada</text>
+      </controlProperties>
+    </control>
+    <control controlID="56" controlTypeID="com.balsamiq.mockups::Label" x="379" y="470" w="-1" h="-1" measuredW="37" measuredH="25" zOrder="22" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Clase</text>
+      </controlProperties>
+    </control>
+    <control controlID="57" controlTypeID="com.balsamiq.mockups::Label" x="391" y="495" w="-1" h="-1" measuredW="24" measuredH="25" zOrder="23" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>N%BA</text>
+      </controlProperties>
+    </control>
+    <control controlID="58" controlTypeID="com.balsamiq.mockups::Label" x="300" y="520" w="-1" h="-1" measuredW="94" measuredH="25" zOrder="24" locked="false" isInGroup="-1">
+      <controlProperties>
+        <align>right</align>
+        <text>Observaciones</text>
+      </controlProperties>
+    </control>
+    <control controlID="59" controlTypeID="com.balsamiq.mockups::Paragraph" x="402" y="657" w="495" h="44" measuredW="200" measuredH="140" zOrder="25" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Pese%20a%20que%20la%20clase%20de%20cada%20marca%20es%20completamente%20distinta%20el%20la%20marca%20es%20identica%20por%20lo%20tanto%20se%20tiene%20un%2090%20%25%20de%20exito%20en%20una%20oposicion%20</text>
+      </controlProperties>
+    </control>
+    <control controlID="60" controlTypeID="com.balsamiq.mockups::Label" x="297" y="584" w="-1" h="-1" measuredW="121" measuredH="25" zOrder="26" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Marca%20encontrada</text>
+      </controlProperties>
+    </control>
+    <control controlID="61" controlTypeID="com.balsamiq.mockups::Label" x="376" y="602" w="-1" h="-1" measuredW="37" measuredH="25" zOrder="27" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Clase</text>
+      </controlProperties>
+    </control>
+    <control controlID="62" controlTypeID="com.balsamiq.mockups::Label" x="388" y="627" w="-1" h="-1" measuredW="24" measuredH="25" zOrder="28" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>N%BA</text>
+      </controlProperties>
+    </control>
+    <control controlID="63" controlTypeID="com.balsamiq.mockups::Label" x="297" y="652" w="-1" h="-1" measuredW="94" measuredH="25" zOrder="29" locked="false" isInGroup="-1">
+      <controlProperties>
+        <align>right</align>
+        <text>Observaciones</text>
+      </controlProperties>
+    </control>
+    <control controlID="64" controlTypeID="com.balsamiq.mockups::HRule" x="303" y="438" w="597" h="-1" measuredW="100" measuredH="5" zOrder="30" locked="false" isInGroup="-1"/>
   </controls>
 </mockup>
