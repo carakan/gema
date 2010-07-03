@@ -7,7 +7,8 @@ class Busqueda
 
   def initialize(busq)
     @busqueda = busq.downcase
-    @expresiones = [ {1 => "#{busqueda}"} ]
+    @expresiones = {1 => [], 2 => [], 3 => [], 4 => []}
+    @expresiones[1] << busqueda
   end
 
   # @param String busq
@@ -18,22 +19,13 @@ class Busqueda
       include TresLetras
     when busqueda.size == 4
       include CuatroLetras
+      include BusquedaCambio
     when busqueda.size == 5
       include CincoLetras
-    when busqueda.size == 6
-      include SeisLetras
-    #when busqueda.size == 7
-    #  include 'siete_letras'
-    #when (8..9).include?( busqueda.size )
-    #  include 'ocho_letras'
-    #when (10..11).include?( busqueda.size )
-    #  include 'diez_letras'
-    #when (12..13).include?( busqueda.size)
-    #  include 'doce_letras'
-    #when (14..15).include?( busqueda.size )
-    #  include 'catorce_letras'
-    #when (16..20).include?( busqueda.size )
-    #  include 'dieciseis_letras'
+      include BusquedaCambio
+    when busqueda.size >= 6
+      include BuscarPorGrupo
+      include BusquedaCambio
     end
 
     new(busqueda)
@@ -43,9 +35,31 @@ class Busqueda
     
   end
 
+  def expresiones_pares_impares
+    par = ''
+    impar = ''
+    busqueda.chars.each_with_index do |chr, ind|
+      unless (ind % 2) == 0
+        par << chr
+        impar << Constants::LETRAS_REG
+      else
+        par << Constants::LETRAS_REG
+        impar << chr
+      end
+    end
+    @expresiones << {3 => impar}
+    @expresiones << {3 => par}
+  end
+
   def expresiones
     buscar_equivalencias
+    filtrar_vacios
     @expresiones
   end
+
+  def filtrar_vacios
+    @expresiones.each{ |k, val| @expresiones.delete(k) if val.blank? }
+  end
+
 
 end

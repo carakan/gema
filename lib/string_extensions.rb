@@ -13,5 +13,24 @@ String.class_eval do
       match[0].chr + (match[1] + 040).chr
     end.old_downcase
   end
+
+  # Cambia acentos y dierisis
+  def cambiar_acentos()
+    self.gsub(/[áéíóúäëöü]/) do |str|
+      case
+        when ["á", "ä"].include?(str)
+          str = 'a'
+        when ["é", "ë"].include?(str) 
+          str = 'e'
+        when str == "í" 
+         str = 'i' 
+        when ["ó", "ö"].include?(str)
+          str = 'o'
+        when ["ú", "ü"].include?(str)
+          str = "u"
+      end
+    end
+  end
+
 end
 

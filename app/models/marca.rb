@@ -206,7 +206,26 @@ private
   end
 
   def set_minusculas
-    self.nombre_minusculas = self.nombre.downcase
+    self.nombre_minusculas = cambiar_acentos(self.nombre.downcase)
+  end
+
+  def cambiar_acentos(palabra)
+    palabra = palabra.gsub(/[áéíóúäëöü]/) do |str|
+      case 
+        when ["á", "ä"].include?(str)
+          str = 'a'
+        when ["é", "ë"].include?(str) 
+          str = 'e'
+        when "í" 
+         str = 'i' 
+        when ["ó", "ö"].include?(str)
+          str = 'o'
+        when ["ú", "ü"].include?(str)
+          str = "u"
+      end
+    end
+
+    palabra
   end
 
   def crear_historico
@@ -215,7 +234,7 @@ private
     m = self.class.new(params)
     self.changes.each{ |k, vals| m.send("#{k}=", vals.first) }
     m.save(false)
-    self.cambios =  self.changes.keys.select{ |v| not [:valido, :fila, :type].include?(v) }
+    self.cambios =  self.changes.keys.select{ |v| not [:valido, :fila, :type, :nombre_minusculas].include?(v) }
   end
 
   # En caso de importación todas las marcas indica que no son propias a la empresa
