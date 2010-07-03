@@ -55,8 +55,8 @@
       <controlProperties>
         <color>4555150</color>
         <direction>center</direction>
-        <href>inicio%26bm%3Binicio.bmml%26bm%3Binicio.bmml%26bm%3Binicio.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22160%2C361%2C235%2C389%22%20href%3D%22inicio.bmml%22%20alt%3D%22inicio%22%20id%3D%2268%22/%3E</map>
+        <href>dashboard%26bm%3Bdashboard.bmml%26bm%3Bdashboard.bmml%26bm%3Bdashboard.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22160%2C361%2C235%2C389%22%20href%3D%22dashboard.bmml%22%20alt%3D%22dashboard%22%20id%3D%2268%22/%3E</map>
         <text>Ingresar</text>
       </controlProperties>
     </control>

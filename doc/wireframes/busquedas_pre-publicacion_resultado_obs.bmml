@@ -1,4 +1,4 @@
-<mockup version="1.0" skin="sketch" measuredW="1108" measuredH="737" mockupW="956" mockupH="727">
+<mockup version="1.0" skin="sketch" measuredW="1318" measuredH="737" mockupW="1166" mockupH="727">
   <controls>
     <control controlID="0" controlTypeID="com.balsamiq.mockups::Canvas" x="245" y="0" w="743" h="709" measuredW="100" measuredH="70" zOrder="1" locked="true" isInGroup="-1">
       <controlProperties>
@@ -84,52 +84,92 @@
         <text>Datos%20Generales</text>
       </controlProperties>
     </control>
-    <control controlID="36" controlTypeID="com.balsamiq.mockups::TextInput" x="310" y="206" w="248" h="-1" measuredW="58" measuredH="29" zOrder="11" locked="false" isInGroup="-1">
+    <control controlID="36" controlTypeID="com.balsamiq.mockups::TextInput" x="286" y="196" w="248" h="-1" measuredW="58" measuredH="29" zOrder="11" locked="false" isInGroup="-1">
       <controlProperties>
         <text>NIVEA</text>
       </controlProperties>
     </control>
-    <control controlID="39" controlTypeID="com.balsamiq.mockups::Label" x="310" y="241" w="109" h="20" measuredW="95" measuredH="20" zOrder="12" locked="false" isInGroup="-1">
+    <control controlID="39" controlTypeID="com.balsamiq.mockups::Label" x="286" y="232" w="109" h="20" measuredW="95" measuredH="20" zOrder="12" locked="false" isInGroup="-1">
       <controlProperties>
         <color>1265500</color>
+        <href>busquedas_avanzadas%26bm%3Bbusquedas_avanzadas.bmml%26bm%3Bbusquedas_avanzadas.bmml%26bm%3Bbusquedas_avanzadas.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22144%2C232%2C253%2C252%22%20href%3D%22busquedas_avanzadas.bmml%22%20alt%3D%22busquedas_avanzadas%22%20id%3D%2239%22/%3E</map>
         <size>10</size>
         <text>Busqueda%20avanzada</text>
         <underline>true</underline>
       </controlProperties>
     </control>
-    <control controlID="40" controlTypeID="com.balsamiq.mockups::PointyButton" x="566" y="206" w="68" h="-1" measuredW="63" measuredH="28" zOrder="13" locked="false" isInGroup="-1">
+    <control controlID="40" controlTypeID="com.balsamiq.mockups::PointyButton" x="542" y="196" w="68" h="-1" measuredW="63" measuredH="28" zOrder="13" locked="false" isInGroup="-1">
       <controlProperties>
         <color>4555150</color>
         <direction>center</direction>
+        <href>busquedas_resultados%26bm%3Bbusquedas_resultados.bmml%26bm%3Bbusquedas_resultados.bmml%26bm%3Bbusquedas_resultados.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22400%2C196%2C468%2C224%22%20href%3D%22busquedas_resultados.bmml%22%20alt%3D%22busquedas_resultados%22%20id%3D%2240%22/%3E</map>
         <text>Buscar</text>
       </controlProperties>
     </control>
-    <control controlID="41" controlTypeID="com.balsamiq.mockups::FieldSet" x="699" y="178" w="226" h="83" measuredW="200" measuredH="170" zOrder="14" locked="false" isInGroup="-1">
+    <control controlID="41" controlTypeID="com.balsamiq.mockups::Title" x="283" y="267" w="-1" h="-1" measuredW="449" measuredH="46" zOrder="14" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Tipo%20de%20busqueda</text>
-      </controlProperties>
-    </control>
-    <control controlID="42" controlTypeID="com.balsamiq.mockups::RadioButton" x="715" y="206" w="162" h="22" measuredW="137" measuredH="22" zOrder="15" locked="false" isInGroup="-1">
-      <controlProperties>
-        <href>busquedas_preventiva%26bm%3Bbusquedas_preventiva.bmml%26bm%3Bbusquedas_preventiva.bmml%26bm%3Bbusquedas_preventiva.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22573%2C206%2C735%2C228%22%20href%3D%22busquedas_preventiva.bmml%22%20alt%3D%22busquedas_preventiva%22%20id%3D%2242%22/%3E</map>
-        <size>12</size>
-        <state>up</state>
-        <text>Busqueda%20preventiva</text>
-      </controlProperties>
-    </control>
-    <control controlID="43" controlTypeID="com.balsamiq.mockups::RadioButton" x="715" y="228" w="194" h="22" measuredW="169" measuredH="22" zOrder="16" locked="false" isInGroup="-1">
-      <controlProperties>
-        <href>busquedas_pre-publicacion%26bm%3Bbusquedas_pre-publicacion.bmml%26bm%3Bbusquedas_pre-publicacion.bmml%26bm%3Bbusquedas_pre-publicacion.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22573%2C228%2C767%2C250%22%20href%3D%22busquedas_pre-publicacion.bmml%22%20alt%3D%22busquedas_pre-publicacion%22%20id%3D%2243%22/%3E</map>
-        <size>12</size>
-        <text>Vigilancia%20pre-publicacion</text>
-      </controlProperties>
-    </control>
-    <control controlID="44" controlTypeID="com.balsamiq.mockups::Title" x="310" y="160" w="-1" h="-1" measuredW="142" measuredH="46" zOrder="17" locked="false" isInGroup="-1">
-      <controlProperties>
+        <bold>false</bold>
         <size>28</size>
-        <text>Busquedas</text>
+        <text>Resultados%20de%20la%20busqueda%20*NIVEA*</text>
+      </controlProperties>
+    </control>
+    <control controlID="42" controlTypeID="com.balsamiq.mockups::DataGrid" x="283" y="356" w="-1" h="-1" measuredW="678" measuredH="88" zOrder="15" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>%5B%5D%2CMarca%20vigilada%2C%20Clase%2CN%BA%2CMarca%20encontrada%2C%20Clase%2C%20N%BA%20solicitud%2C%20Observaciones%0A%5BX%5D%2C%5BNIVEA%5D%2C%2010%2C12345-C%2C%5BIDEA%5D%2C%2010%2C1224-2010%2C%0A%5BX%5D%2C%5BNIVEA%5D%2C%2011%2C1753-2010%2C%5BVINEA%5D%2C%2010%2C1238-2010%2C</text>
+      </controlProperties>
+    </control>
+    <control controlID="43" controlTypeID="com.balsamiq.mockups::Label" x="304" y="458" w="116" h="25" measuredW="106" measuredH="25" zOrder="16" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>545684</color>
+        <href>busqueda_reporte_vigilancia_pre-publicacion%26bm%3Bbusqueda_reporte_vigilancia_pre-publicacion.bmml%26bm%3Bbusqueda_reporte_vigilancia_pre-publicacion.bmml%26bm%3Bbusqueda_reporte_vigilancia_pre-publicacion.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22162%2C458%2C278%2C483%22%20href%3D%22busqueda_reporte_vigilancia_pre-publicacion.bmml%22%20alt%3D%22busqueda_reporte_vigilancia_pre-publicacion%22%20id%3D%2243%22/%3E</map>
+        <text>Generar%20reporte</text>
+        <underline>true</underline>
+      </controlProperties>
+    </control>
+    <control controlID="44" controlTypeID="com.balsamiq.mockups::Label" x="326" y="384" w="57" h="25" measuredW="50" measuredH="25" zOrder="17" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>545684</color>
+        <href>busquedas_pre-publicacion_datos_marca_obs%26bm%3Bbusquedas_pre-publicacion_datos_marca_obs.bmml%26bm%3Bbusquedas_pre-publicacion_datos_marca_obs.bmml%26bm%3Bbusquedas_pre-publicacion_datos_marca_obs.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22184%2C384%2C241%2C409%22%20href%3D%22busquedas_pre-publicacion_datos_marca_obs.bmml%22%20alt%3D%22busquedas_pre-publicacion_datos_marca_obs%22%20id%3D%2244%22/%3E</map>
+        <text>NIVEA</text>
+      </controlProperties>
+    </control>
+    <control controlID="45" controlTypeID="com.balsamiq.mockups::Label" x="283" y="323" w="663" h="25" measuredW="598" measuredH="25" zOrder="18" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>false</bold>
+        <text>*Busqueda%20pre-publicacion*%20%3E%20en%20%28*Productos*%29%20%3E%20clases%20%28*1%2C2%2C4*%29%20%3E%20del%20*11%20de%20Jun%202009*%20al%20*30%20Sep%202009*</text>
+      </controlProperties>
+    </control>
+    <control controlID="46" controlTypeID="com.balsamiq.mockups::StickyNote" x="988" y="96" w="320" h="192" measuredW="109" measuredH="123" zOrder="19" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>En%20los%20resultados%20se%20muestra%20en%20numero%20del%20ultimo%20estado%0A%20%0AEj%3A%0Aestado%20%3D%20solicitada%20%20N%BA%3D%20numero_solicitud%0Aestado%20%3D%20publicada%20%20N%BA%3D%20numero_publicacion</text>
+      </controlProperties>
+    </control>
+    <control controlID="47" controlTypeID="com.balsamiq.mockups::Image" x="286" y="463" w="16" h="16" measuredW="16" measuredH="16" zOrder="20" locked="false" isInGroup="-1">
+      <controlProperties>
+        <src>./assets/table.png</src>
+      </controlProperties>
+    </control>
+    <control controlID="50" controlTypeID="com.balsamiq.mockups::Canvas" x="284" y="379" w="567" h="32" measuredW="100" measuredH="70" zOrder="21" locked="false" isInGroup="-1">
+      <controlProperties>
+        <backgroundAlpha>0.25</backgroundAlpha>
+        <borderStyle>none</borderStyle>
+        <color>7775663</color>
+      </controlProperties>
+    </control>
+    <control controlID="54" controlTypeID="com.balsamiq.mockups::TextArea" x="853" y="378" w="100" h="33" measuredW="200" measuredH="140" zOrder="22" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Pese%20a%20que%20la%20clase%20de%20cada%20marca%20es%20completamente%20distinta%20el%20la%20marca%20es%20identica%20por%20lo%20tanto%20se%20tiene%20un%2090%20%25%20de%20exito%20en%20una%20oposicion%20</text>
+        <verticalScrollbar>true</verticalScrollbar>
+      </controlProperties>
+    </control>
+    <control controlID="55" controlTypeID="com.balsamiq.mockups::TextArea" x="853" y="411" w="100" h="33" measuredW="200" measuredH="140" zOrder="23" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Los%20nombre%20no%20son%20identicos%20pero%20existe%20alguna%20relacion%20de%20acuerdo%20a%20la%20clase%20se%20da%20un%2060%20%25%20de%20posivilidad</text>
+        <verticalScrollbar>true</verticalScrollbar>
       </controlProperties>
     </control>
   </controls>
