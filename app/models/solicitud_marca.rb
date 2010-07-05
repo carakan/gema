@@ -1,9 +1,5 @@
 # encoding: utf-8
 class SolicitudMarca < Marca
-
-<<<<<<< HEAD
-  validates_presence_of :fecha_publicacion
-=======
   
 
   # Columnas en archivo excel
@@ -14,7 +10,6 @@ class SolicitudMarca < Marca
     # :tipo_signo_id => 'F',
     #:clase_id => 'G'
   }
->>>>>>> 4a1ebde548cd3f02c381d655896014e869363b1a
 
   # Realiza la importación desde un archivo excel
   # @param RackFile

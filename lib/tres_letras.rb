@@ -6,8 +6,7 @@ module TresLetras
     if !!( busqueda =~ /[eiou]/ )
       busqueda.chars.each_with_index do |v, ind|
         if !!( v =~ /[eiou]/ )
-          temp = { 2 => reemplazar_letra(v, ind) }
-          @expresiones << temp
+          @expresiones[2] << reemplazar_letra(v, ind)
         end
       end
     end

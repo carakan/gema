@@ -5,13 +5,16 @@ class Busqueda
 
   attr_reader :busqueda
 
+
   def initialize(busq)
-    @busqueda = busq.downcase
-    @expresiones = [ {1 => "#{busqueda}"} ]
+    @busqueda = busq.downcase.cambiar_acentos
+    @expresiones = {1 => [], 2 => [], 3 => [], 4 => []}
+    @expresiones[1] << busqueda
   end
 
   # @param String busq
   def self.buscar(busqueda)
+    include BusquedaCambio
 
     case 
     when busqueda.size <= 3
@@ -20,32 +23,40 @@ class Busqueda
       include CuatroLetras
     when busqueda.size == 5
       include CincoLetras
-    when busqueda.size == 6
-      include SeisLetras
-    #when busqueda.size == 7
-    #  include 'siete_letras'
-    #when (8..9).include?( busqueda.size )
-    #  include 'ocho_letras'
-    #when (10..11).include?( busqueda.size )
-    #  include 'diez_letras'
-    #when (12..13).include?( busqueda.size)
-    #  include 'doce_letras'
-    #when (14..15).include?( busqueda.size )
-    #  include 'catorce_letras'
-    #when (16..20).include?( busqueda.size )
-    #  include 'dieciseis_letras'
+    when busqueda.size >= 6
+      include BuscarPorGrupo
     end
 
     new(busqueda)
   end
 
-  def dividir_partes
-    
+
+  def expresiones_pares_impares
+    par = ''
+    impar = ''
+    busqueda.chars.each_with_index do |chr, ind|
+      unless (ind % 2) == 0
+        par << chr
+        impar << Constants::LETRAS_REG
+      else
+        par << Constants::LETRAS_REG
+        impar << chr
+      end
+    end
+    @expresiones[3] << impar
+    @expresiones[3] << par
   end
 
   def expresiones
     buscar_equivalencias
+    cambios_silabas
+    filtrar_vacios
     @expresiones
   end
+
+  def filtrar_vacios
+    @expresiones.each{ |k, val| @expresiones.delete(k) if val.blank? }
+  end
+
 
 end
