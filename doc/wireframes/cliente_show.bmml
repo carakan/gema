@@ -95,19 +95,19 @@
         <text>Preguntar%20si%20un%20cliente%20es%20un%20titular%20o%20un%20agente%0A%20%0AR.%20Es%20un%20agente</text>
       </controlProperties>
     </control>
-    <control controlID="32" controlTypeID="com.balsamiq.mockups::Label" x="310" y="386" w="133" h="25" measuredW="61" measuredH="25" zOrder="13" locked="false" isInGroup="-1">
+    <control controlID="32" controlTypeID="com.balsamiq.mockups::Label" x="310" y="386" w="133" h="25" measuredW="62" measuredH="25" zOrder="13" locked="false" isInGroup="-1">
       <controlProperties>
         <align>right</align>
         <text>Direccion</text>
       </controlProperties>
     </control>
-    <control controlID="33" controlTypeID="com.balsamiq.mockups::Label" x="310" y="312" w="133" h="25" measuredW="59" measuredH="25" zOrder="14" locked="false" isInGroup="-1">
+    <control controlID="33" controlTypeID="com.balsamiq.mockups::Label" x="310" y="312" w="133" h="25" measuredW="60" measuredH="25" zOrder="14" locked="false" isInGroup="-1">
       <controlProperties>
         <align>right</align>
         <text>Telefono</text>
       </controlProperties>
     </control>
-    <control controlID="34" controlTypeID="com.balsamiq.mockups::Label" x="310" y="256" w="133" h="25" measuredW="30" measuredH="25" zOrder="15" locked="false" isInGroup="-1">
+    <control controlID="34" controlTypeID="com.balsamiq.mockups::Label" x="310" y="256" w="133" h="25" measuredW="29" measuredH="25" zOrder="15" locked="false" isInGroup="-1">
       <controlProperties>
         <align>right</align>
         <text>Pais</text>
@@ -125,13 +125,13 @@
         <text>E-mail</text>
       </controlProperties>
     </control>
-    <control controlID="37" controlTypeID="com.balsamiq.mockups::Label" x="310" y="362" w="133" h="25" measuredW="110" measuredH="25" zOrder="18" locked="false" isInGroup="-1">
+    <control controlID="37" controlTypeID="com.balsamiq.mockups::Label" x="310" y="362" w="133" h="25" measuredW="111" measuredH="25" zOrder="18" locked="false" isInGroup="-1">
       <controlProperties>
         <align>right</align>
         <text>Casilla%20de%20correo</text>
       </controlProperties>
     </control>
-    <control controlID="38" controlTypeID="com.balsamiq.mockups::Label" x="286" y="228" w="156" h="25" measuredW="141" measuredH="25" zOrder="19" locked="false" isInGroup="-1">
+    <control controlID="38" controlTypeID="com.balsamiq.mockups::Label" x="286" y="228" w="156" h="25" measuredW="144" measuredH="25" zOrder="19" locked="false" isInGroup="-1">
       <controlProperties>
         <align>right</align>
         <text>Numero%20contribuyente</text>
@@ -142,14 +142,7 @@
         <text>Identificar%20cliente%20es%20local%20o%20externo%0A%20%0ASi%20localidad%20es%20%21%20de%20BO%20%3D%3E%20Externo</text>
       </controlProperties>
     </control>
-    <control controlID="55" controlTypeID="com.balsamiq.mockups::PointyButton" x="563" y="866" w="-1" h="-1" measuredW="60" measuredH="28" zOrder="21" locked="false" isInGroup="-1">
-      <controlProperties>
-        <color>2848996</color>
-        <direction>center</direction>
-        <text>Salvar</text>
-      </controlProperties>
-    </control>
-    <control controlID="56" controlTypeID="__group__" x="282" y="432" w="156" h="26" measuredW="156" measuredH="26" zOrder="22" locked="false" isInGroup="-1">
+    <control controlID="56" controlTypeID="__group__" x="282" y="432" w="156" h="26" measuredW="156" measuredH="26" zOrder="21" locked="false" isInGroup="-1">
       <controlProperties>
         <href>cliente_contacto_nuevo%26bm%3Bcliente_contacto_nuevo.bmml%26bm%3Bcliente_contacto_nuevo.bmml%26bm%3Bcliente_contacto_nuevo.bmml</href>
         <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22272%2C432%2C428%2C458%22%20href%3D%22cliente_contacto_nuevo.bmml%22%20alt%3D%22cliente_contacto_nuevo%22%20id%3D%2256%22/%3E</map>
@@ -168,48 +161,48 @@
         </control>
       </groupChildrenDescriptors>
     </control>
-    <control controlID="57" controlTypeID="com.balsamiq.mockups::Label" x="453" y="203" w="185" h="25" measuredW="183" measuredH="25" zOrder="23" locked="false" isInGroup="-1">
+    <control controlID="57" controlTypeID="com.balsamiq.mockups::Label" x="453" y="203" w="185" h="25" measuredW="183" measuredH="25" zOrder="22" locked="false" isInGroup="-1">
       <controlProperties>
         <text>GONZALES%20Y%20ASOCIADOS</text>
       </controlProperties>
     </control>
-    <control controlID="58" controlTypeID="com.balsamiq.mockups::Label" x="286" y="205" w="156" h="25" measuredW="146" measuredH="25" zOrder="24" locked="false" isInGroup="-1">
+    <control controlID="58" controlTypeID="com.balsamiq.mockups::Label" x="286" y="205" w="156" h="25" measuredW="150" measuredH="25" zOrder="23" locked="false" isInGroup="-1">
       <controlProperties>
         <align>right</align>
         <text>Nombre%20o%20Razon%20Social</text>
       </controlProperties>
     </control>
-    <control controlID="59" controlTypeID="com.balsamiq.mockups::Label" x="453" y="229" w="156" h="25" measuredW="85" measuredH="25" zOrder="25" locked="false" isInGroup="-1">
+    <control controlID="59" controlTypeID="com.balsamiq.mockups::Label" x="453" y="229" w="156" h="25" measuredW="85" measuredH="25" zOrder="24" locked="false" isInGroup="-1">
       <controlProperties>
         <text>4911547015</text>
       </controlProperties>
     </control>
-    <control controlID="60" controlTypeID="com.balsamiq.mockups::Label" x="453" y="257" w="156" h="25" measuredW="82" measuredH="25" zOrder="26" locked="false" isInGroup="-1">
+    <control controlID="60" controlTypeID="com.balsamiq.mockups::Label" x="453" y="257" w="156" h="25" measuredW="82" measuredH="25" zOrder="25" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Bolivia%20-%20BO</text>
       </controlProperties>
     </control>
-    <control controlID="61" controlTypeID="com.balsamiq.mockups::Label" x="453" y="283" w="200" h="25" measuredW="192" measuredH="25" zOrder="27" locked="false" isInGroup="-1">
+    <control controlID="61" controlTypeID="com.balsamiq.mockups::Label" x="453" y="283" w="200" h="25" measuredW="192" measuredH="25" zOrder="26" locked="false" isInGroup="-1">
       <controlProperties>
         <text>gonzalesyasociados@gmail.com</text>
       </controlProperties>
     </control>
-    <control controlID="62" controlTypeID="com.balsamiq.mockups::Label" x="453" y="312" w="156" h="25" measuredW="61" measuredH="25" zOrder="28" locked="false" isInGroup="-1">
+    <control controlID="62" controlTypeID="com.balsamiq.mockups::Label" x="453" y="312" w="156" h="25" measuredW="61" measuredH="25" zOrder="27" locked="false" isInGroup="-1">
       <controlProperties>
         <text>2402532</text>
       </controlProperties>
     </control>
-    <control controlID="63" controlTypeID="com.balsamiq.mockups::Label" x="453" y="337" w="156" h="25" measuredW="61" measuredH="25" zOrder="29" locked="false" isInGroup="-1">
+    <control controlID="63" controlTypeID="com.balsamiq.mockups::Label" x="453" y="337" w="156" h="25" measuredW="61" measuredH="25" zOrder="28" locked="false" isInGroup="-1">
       <controlProperties>
         <text>2405623</text>
       </controlProperties>
     </control>
-    <control controlID="64" controlTypeID="com.balsamiq.mockups::Label" x="453" y="362" w="156" h="25" measuredW="37" measuredH="25" zOrder="30" locked="false" isInGroup="-1">
+    <control controlID="64" controlTypeID="com.balsamiq.mockups::Label" x="453" y="362" w="156" h="25" measuredW="37" measuredH="25" zOrder="29" locked="false" isInGroup="-1">
       <controlProperties>
         <text>4825</text>
       </controlProperties>
     </control>
-    <control controlID="65" controlTypeID="com.balsamiq.mockups::Label" x="453" y="386" w="156" h="25" measuredW="193" measuredH="25" zOrder="31" locked="false" isInGroup="-1">
+    <control controlID="65" controlTypeID="com.balsamiq.mockups::Label" x="453" y="386" w="156" h="25" measuredW="193" measuredH="25" zOrder="30" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Calle%20Federico%20Suazo%20Nro%20400</text>
       </controlProperties>

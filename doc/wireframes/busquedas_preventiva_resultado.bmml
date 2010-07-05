@@ -84,9 +84,9 @@
         <text>Datos%20Generales</text>
       </controlProperties>
     </control>
-    <control controlID="36" controlTypeID="com.balsamiq.mockups::TextInput" x="286" y="196" w="248" h="-1" measuredW="58" measuredH="29" zOrder="11" locked="false" isInGroup="-1">
+    <control controlID="36" controlTypeID="com.balsamiq.mockups::TextInput" x="286" y="196" w="248" h="-1" measuredW="70" measuredH="29" zOrder="11" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>NIVEA</text>
+        <text>TROYAN</text>
       </controlProperties>
     </control>
     <control controlID="39" controlTypeID="com.balsamiq.mockups::Label" x="286" y="232" w="109" h="20" measuredW="95" measuredH="20" zOrder="12" locked="false" isInGroup="-1">
@@ -108,60 +108,74 @@
         <text>Buscar</text>
       </controlProperties>
     </control>
-    <control controlID="41" controlTypeID="com.balsamiq.mockups::Title" x="283" y="267" w="-1" h="-1" measuredW="449" measuredH="46" zOrder="14" locked="false" isInGroup="-1">
+    <control controlID="41" controlTypeID="com.balsamiq.mockups::Title" x="283" y="267" w="-1" h="-1" measuredW="475" measuredH="46" zOrder="14" locked="false" isInGroup="-1">
       <controlProperties>
         <bold>false</bold>
         <size>28</size>
-        <text>Resultados%20de%20la%20busqueda%20*NIVEA*</text>
+        <text>Resultados%20de%20la%20busqueda%20*TROYAN*</text>
       </controlProperties>
     </control>
-    <control controlID="43" controlTypeID="com.balsamiq.mockups::Label" x="286" y="538" w="121" h="25" measuredW="106" measuredH="25" zOrder="15" locked="false" isInGroup="-1">
+    <control controlID="43" controlTypeID="com.balsamiq.mockups::Label" x="286" y="544" w="121" h="25" measuredW="106" measuredH="25" zOrder="15" locked="false" isInGroup="-1">
       <controlProperties>
         <color>545684</color>
-        <href>busqueda_reporte_vigilancia_pre-publicacion%26bm%3Bbusqueda_reporte_vigilancia_pre-publicacion.bmml%26bm%3Bbusqueda_reporte_vigilancia_pre-publicacion.bmml%26bm%3Bbusqueda_reporte_vigilancia_pre-publicacion.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22144%2C538%2C265%2C563%22%20href%3D%22busqueda_reporte_vigilancia_pre-publicacion.bmml%22%20alt%3D%22busqueda_reporte_vigilancia_pre-publicacion%22%20id%3D%2243%22/%3E</map>
+        <href>busquedas_preventiva_datos_marca_obs%26bm%3Bbusquedas_preventiva_datos_marca_obs.bmml%26bm%3Bbusquedas_preventiva_datos_marca_obs.bmml%26bm%3Bbusquedas_preventiva_datos_marca_obs.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22144%2C544%2C265%2C569%22%20href%3D%22busquedas_preventiva_datos_marca_obs.bmml%22%20alt%3D%22busquedas_preventiva_datos_marca_obs%22%20id%3D%2243%22/%3E</map>
         <text>Generar%20reporte</text>
         <underline>true</underline>
       </controlProperties>
     </control>
-    <control controlID="45" controlTypeID="com.balsamiq.mockups::Label" x="283" y="323" w="-1" h="-1" measuredW="569" measuredH="25" zOrder="16" locked="false" isInGroup="-1">
+    <control controlID="45" controlTypeID="com.balsamiq.mockups::Label" x="283" y="323" w="-1" h="-1" measuredW="538" measuredH="25" zOrder="16" locked="false" isInGroup="-1">
       <controlProperties>
         <bold>false</bold>
-        <text>*Busqueda%20preventiva*%20%3E%20en%20%28*Productos*%29%20%3E%20clases%20%28*1%2C2%2C4*%29%20%3E%20del%20*11%20de%20Jun%202009*%20al%20*30%20Sep%202009*</text>
+        <text>*Busqueda%20preventiva*%20%3E%20en%20%28*Productos*%29%20%3E%20en%20Clase%20%28*3%2C5%2C10*%29%20%3E%20con%20Titular%20%28*GRANIER%20S.A.*%29</text>
       </controlProperties>
     </control>
-    <control controlID="46" controlTypeID="com.balsamiq.mockups::Label" x="288" y="363" w="-1" h="-1" measuredW="89" measuredH="25" zOrder="17" locked="false" isInGroup="-1">
+    <control controlID="46" controlTypeID="com.balsamiq.mockups::Label" x="286" y="372" w="-1" h="-1" measuredW="89" measuredH="25" zOrder="17" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Denominacion%3A</text>
       </controlProperties>
     </control>
-    <control controlID="47" controlTypeID="com.balsamiq.mockups::Label" x="599" y="366" w="-1" h="-1" measuredW="43" measuredH="25" zOrder="18" locked="false" isInGroup="-1">
+    <control controlID="48" controlTypeID="com.balsamiq.mockups::DataGrid" x="286" y="411" w="-1" h="-1" measuredW="592" measuredH="118" zOrder="18" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Marca%20vigilada%2C%20Clase%2C%20Numero%2CAgente%2C%20Titular%0A%5BBODAN%5D%2C%205%2C104566%2C%20GRANIER%20S.A.%2CGRANIER%20S.A.%0A%5BTROJAN%5D%2C%2010%2C78677-C%2C%20TROJAN%20CORPORATION%2C%20Estudio%20Milati%20VElez%0A%5BVAIRAN%5D%2C%203%2C58699-C%2C%20JAMESON%20COSMETICS%20A.G.%2C%20Front%20%26%20Adel%20L.L.P.</text>
+      </controlProperties>
+    </control>
+    <control controlID="49" controlTypeID="com.balsamiq.mockups::Label" x="375" y="371" w="-1" h="-1" measuredW="63" measuredH="25" zOrder="19" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>false</bold>
+        <text>TROJAN</text>
+      </controlProperties>
+    </control>
+    <control controlID="51" controlTypeID="com.balsamiq.mockups::Label" x="290" y="438" w="61" h="25" measuredW="54" measuredH="25" zOrder="20" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>545684</color>
+        <href>busquedas_preventiva_datos_marca%26bm%3Bbusquedas_preventiva_datos_marca.bmml%26bm%3Bbusquedas_preventiva_datos_marca.bmml%26bm%3Bbusquedas_preventiva_datos_marca.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22148%2C438%2C209%2C463%22%20href%3D%22busquedas_preventiva_datos_marca.bmml%22%20alt%3D%22busquedas_preventiva_datos_marca%22%20id%3D%2251%22/%3E</map>
+        <text>BODAN</text>
+        <underline>true</underline>
+      </controlProperties>
+    </control>
+    <control controlID="52" controlTypeID="com.balsamiq.mockups::Label" x="521" y="371" w="43" h="25" measuredW="43" measuredH="25" zOrder="21" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Clase%3A</text>
       </controlProperties>
     </control>
-    <control controlID="48" controlTypeID="com.balsamiq.mockups::DataGrid" x="286" y="405" w="-1" h="-1" measuredW="656" measuredH="118" zOrder="19" locked="false" isInGroup="-1">
+    <control controlID="53" controlTypeID="com.balsamiq.mockups::Label" x="563" y="372" w="22" h="25" measuredW="20" measuredH="25" zOrder="22" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Marca%20vigilada%2C%20Clase%2C%20N%BA%20solicitud%2C%20N%BA%20registro%2CAgente%2C%20Titular%0A%5BNIVEA%5D%2C%2010%2C1224-2010%2C12345-C%2C%20GONZALES%20Y%20ASOCIADOS%2C%20NIVEA%20S.A.%0A%5BNIXEA%5D%2C%2014%2C1214-2010%2C12695-C%2C%20Angel%20Ximenez%2C%20Patricia%20Gomez%0A%5BVINEA%5D%2C%2011%2C1445-2010%2C17536-C%2C%20Jorge%20MacLean%2C%20Clemente%20Soria</text>
+        <bold>false</bold>
+        <text>10</text>
       </controlProperties>
     </control>
-    <control controlID="49" controlTypeID="com.balsamiq.mockups::Label" x="380" y="363" w="-1" h="-1" measuredW="50" measuredH="25" zOrder="20" locked="false" isInGroup="-1">
+    <control controlID="54" controlTypeID="com.balsamiq.mockups::Label" x="654" y="371" w="-1" h="-1" measuredW="53" measuredH="25" zOrder="23" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>NIVEA</text>
+        <align>right</align>
+        <text>Titular%3A</text>
       </controlProperties>
     </control>
-    <control controlID="50" controlTypeID="com.balsamiq.mockups::Label" x="643" y="365" w="83" h="25" measuredW="41" measuredH="25" zOrder="21" locked="false" isInGroup="-1">
+    <control controlID="55" controlTypeID="com.balsamiq.mockups::Label" x="709" y="372" w="-1" h="-1" measuredW="94" measuredH="25" zOrder="24" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>1%2C2%2C4</text>
-      </controlProperties>
-    </control>
-    <control controlID="51" controlTypeID="com.balsamiq.mockups::Label" x="290" y="432" w="61" h="25" measuredW="50" measuredH="25" zOrder="22" locked="false" isInGroup="-1">
-      <controlProperties>
-        <color>545684</color>
-        <href>busquedas_preventiva_datos_marca%26bm%3Bbusquedas_preventiva_datos_marca.bmml%26bm%3Bbusquedas_preventiva_datos_marca.bmml%26bm%3Bbusquedas_preventiva_datos_marca.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22148%2C432%2C209%2C457%22%20href%3D%22busquedas_preventiva_datos_marca.bmml%22%20alt%3D%22busquedas_preventiva_datos_marca%22%20id%3D%2251%22/%3E</map>
-        <text>NIVEA</text>
-        <underline>true</underline>
+        <bold>false</bold>
+        <text>GRANIER%20S.A.</text>
       </controlProperties>
     </control>
   </controls>

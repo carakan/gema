@@ -89,7 +89,7 @@
         <text>Esto%20de%20Marca%20ORPAN%20por%20lo%20de%20propia%3Dtrue</text>
       </controlProperties>
     </control>
-    <control controlID="132" controlTypeID="com.balsamiq.mockups::Canvas" x="365" y="142" w="617" h="581" measuredW="100" measuredH="70" zOrder="20" locked="false" isInGroup="-1"/>
+    <control controlID="132" controlTypeID="com.balsamiq.mockups::Canvas" x="365" y="142" w="617" h="431" measuredW="100" measuredH="70" zOrder="20" locked="false" isInGroup="-1"/>
     <control controlID="133" controlTypeID="com.balsamiq.mockups::Label" x="461" y="200" w="59" h="25" measuredW="60" measuredH="25" zOrder="21" locked="true" isInGroup="-1">
       <controlProperties>
         <align>right</align>
@@ -258,7 +258,7 @@
         <src>./assets/icon_close.gif</src>
       </controlProperties>
     </control>
-    <control controlID="168" controlTypeID="com.balsamiq.mockups::Label" x="967" y="139" w="26" h="25" measuredW="14" measuredH="25" zOrder="51" locked="false" isInGroup="-1">
+    <control controlID="168" controlTypeID="com.balsamiq.mockups::Label" x="967" y="139" w="26" h="25" measuredW="13" measuredH="25" zOrder="51" locked="false" isInGroup="-1">
       <controlProperties>
         <href>busquedas_pre-publicacion_resultado%26bm%3Bbusquedas_pre-publicacion_resultado.bmml%26bm%3Bbusquedas_pre-publicacion_resultado.bmml%26bm%3Bbusquedas_pre-publicacion_resultado.bmml</href>
         <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22909%2C139%2C935%2C164%22%20href%3D%22busquedas_pre-publicacion_resultado.bmml%22%20alt%3D%22busquedas_pre-publicacion_resultado%22%20id%3D%22168%22/%3E</map>
@@ -294,7 +294,7 @@
         <text>Resultados%20de%20la%20busqueda%20*NIVEA*</text>
       </controlProperties>
     </control>
-    <control controlID="173" controlTypeID="com.balsamiq.mockups::DataGrid" x="283" y="356" w="-1" h="-1" measuredW="681" measuredH="178" zOrder="15" locked="false" isInGroup="-1">
+    <control controlID="173" controlTypeID="com.balsamiq.mockups::DataGrid" x="283" y="356" w="-1" h="-1" measuredW="679" measuredH="178" zOrder="15" locked="false" isInGroup="-1">
       <controlProperties>
         <text>%5B%5D%2CMarca%20vigilada%2C%20Clase%2CN%BA%2CMarca%20encontrada%2C%20Clase%2C%20N%BA%20solicitud%2C%20Marca%20ORPAN%0AX%5D%2C%5BNIVEA%5D%2C%2010%2C12345-C%2C%5BIDEA%5D%2C%2010%2C1224-2010%2CSI%0A%5B%5D%2C%5BNIVEA%5D%2C%2014%2C12695-C%2C%5BDIVEA%5D%2C%2010%2C1234-2010%2CNO%0A%5BX%5D%2C%5BNIVEA%5D%2C%2011%2C1753-2010%2C%5BVINEA%5D%2C%2010%2C1238-2010%2CSI%0A%5B%5D%2C%5BNIVEA%5D%2C%2011%2C17536-C%2C%5BVIA%5D%2C%2010%2C1370-2010%2CNO%0A%5B%5D%2C%5BNIVEA%5D%2C%2011%2C17536-C%2C%5BPLANEA%5D%2C%2010%2C1384-2010%2CNO</text>
       </controlProperties>
@@ -316,34 +316,6 @@
       <controlProperties>
         <bold>false</bold>
         <text>*Busqueda%20pre-publicacion*%20%3E%20en%20%28*Productos*%29%20%3E%20clases%20%28*1%2C2%2C4*%29%20%3E%20del%20*11%20de%20Jun%202009*%20al%20*30%20Sep%202009*</text>
-      </controlProperties>
-    </control>
-    <control controlID="177" controlTypeID="com.balsamiq.mockups::Label" x="404" y="573" w="61" h="25" measuredW="47" measuredH="25" zOrder="53" locked="false" isInGroup="-1">
-      <controlProperties>
-        <color>545684</color>
-        <href>busquedas_pre-publicacion_datos_marca_obs%26bm%3Bbusquedas_pre-publicacion_datos_marca_obs.bmml%26bm%3Bbusquedas_pre-publicacion_datos_marca_obs.bmml%26bm%3Bbusquedas_pre-publicacion_datos_marca_obs.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22346%2C573%2C407%2C598%22%20href%3D%22busquedas_pre-publicacion_datos_marca_obs.bmml%22%20alt%3D%22busquedas_pre-publicacion_datos_marca_obs%22%20id%3D%22177%22/%3E</map>
-        <text>Quitar</text>
-        <underline>true</underline>
-      </controlProperties>
-    </control>
-    <control controlID="178" controlTypeID="com.balsamiq.mockups::Image" x="387" y="576" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="54" locked="false" isInGroup="-1">
-      <controlProperties>
-        <src>./assets/delete.png</src>
-      </controlProperties>
-    </control>
-    <control controlID="179" controlTypeID="com.balsamiq.mockups::TextArea" x="385" y="607" w="585" h="75" measuredW="200" measuredH="140" zOrder="55" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>Pese%20a%20que%20la%20clase%20de%20cada%20marca%20es%20completamente%20distinta%20el%20la%20marca%20es%20identica%20por%20lo%20tanto%20se%20tiene%20un%2090%20%25%20de%20exito%20en%20una%20oposicion%20</text>
-      </controlProperties>
-    </control>
-    <control controlID="180" controlTypeID="com.balsamiq.mockups::PointyButton" x="385" y="686" w="68" h="-1" measuredW="60" measuredH="28" zOrder="56" locked="false" isInGroup="-1">
-      <controlProperties>
-        <color>4555150</color>
-        <direction>center</direction>
-        <href>busquedas_pre-publicacion_datos_marca_obs_show%26bm%3Bbusquedas_pre-publicacion_datos_marca_obs_show.bmml%26bm%3Bbusquedas_pre-publicacion_datos_marca_obs_show.bmml%26bm%3Bbusquedas_pre-publicacion_datos_marca_obs_show.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22327%2C686%2C395%2C714%22%20href%3D%22busquedas_pre-publicacion_datos_marca_obs_show.bmml%22%20alt%3D%22busquedas_pre-publicacion_datos_marca_obs_show%22%20id%3D%22180%22/%3E</map>
-        <text>Salvar</text>
       </controlProperties>
     </control>
   </controls>

@@ -84,9 +84,9 @@
         <text>Datos%20Generales</text>
       </controlProperties>
     </control>
-    <control controlID="36" controlTypeID="com.balsamiq.mockups::TextInput" x="310" y="206" w="248" h="-1" measuredW="58" measuredH="29" zOrder="11" locked="false" isInGroup="-1">
+    <control controlID="36" controlTypeID="com.balsamiq.mockups::TextInput" x="310" y="206" w="248" h="-1" measuredW="87" measuredH="29" zOrder="11" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>NIVEA</text>
+        <text>FANTASIA</text>
       </controlProperties>
     </control>
     <control controlID="39" controlTypeID="com.balsamiq.mockups::Label" x="310" y="241" w="109" h="20" measuredW="95" measuredH="20" zOrder="12" locked="false" isInGroup="-1">

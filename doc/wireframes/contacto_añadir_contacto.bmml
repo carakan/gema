@@ -99,8 +99,8 @@
       <controlProperties>
         <color>2848996</color>
         <direction>center</direction>
-        <href>cliente_show%26bm%3Bcliente_show.bmml%26bm%3Bcliente_show.bmml%26bm%3Bcliente_show.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22282%2C645%2C342%2C673%22%20href%3D%22cliente_show.bmml%22%20alt%3D%22cliente_show%22%20id%3D%2255%22/%3E</map>
+        <href>contacto_show%26bm%3Bcontacto_show.bmml%26bm%3Bcontacto_show.bmml%26bm%3Bcontacto_show.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22282%2C645%2C342%2C673%22%20href%3D%22contacto_show.bmml%22%20alt%3D%22contacto_show%22%20id%3D%2255%22/%3E</map>
         <text>Salvar</text>
       </controlProperties>
     </control>

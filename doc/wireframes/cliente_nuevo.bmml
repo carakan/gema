@@ -34,7 +34,7 @@
       <controlProperties>
         <color>15658734</color>
         <href>cliente_menu%26bm%3Bcliente_menu.bmml%26bm%3Bcliente_menu.bmml%26bm%3Bcliente_menu.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22193%2C110%2C250%2C136%22%20href%3D%22cliente_menu.bmml%22%20alt%3D%22cliente_menu%22%20id%3D%2222%22/%3E</map>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22229%2C110%2C286%2C136%22%20href%3D%22cliente_menu.bmml%22%20alt%3D%22cliente_menu%22%20id%3D%2222%22/%3E</map>
         <size>14</size>
         <text>Clientes</text>
       </controlProperties>
@@ -43,7 +43,7 @@
       <controlProperties>
         <color>15658734</color>
         <href>marcas_menu%26bm%3Bmarcas_menu.bmml%26bm%3Bmarcas_menu.bmml%26bm%3Bmarcas_menu.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22262%2C110%2C316%2C136%22%20href%3D%22marcas_menu.bmml%22%20alt%3D%22marcas_menu%22%20id%3D%2223%22/%3E</map>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22298%2C110%2C352%2C136%22%20href%3D%22marcas_menu.bmml%22%20alt%3D%22marcas_menu%22%20id%3D%2223%22/%3E</map>
         <size>14</size>
         <text>Marcas</text>
       </controlProperties>
@@ -52,7 +52,7 @@
       <controlProperties>
         <color>15658734</color>
         <href>importaciones_menu%26bm%3Bimportaciones_menu.bmml%26bm%3Bimportaciones_menu.bmml%26bm%3Bimportaciones_menu.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22331%2C110%2C433%2C136%22%20href%3D%22importaciones_menu.bmml%22%20alt%3D%22importaciones_menu%22%20id%3D%2224%22/%3E</map>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22367%2C110%2C469%2C136%22%20href%3D%22importaciones_menu.bmml%22%20alt%3D%22importaciones_menu%22%20id%3D%2224%22/%3E</map>
         <size>14</size>
         <text>Importaciones</text>
       </controlProperties>
@@ -61,7 +61,7 @@
       <controlProperties>
         <color>15658734</color>
         <href>busquedas_menu%26bm%3Bbusquedas_menu.bmml%26bm%3Bbusquedas_menu.bmml%26bm%3Bbusquedas_menu.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22448%2C110%2C521%2C136%22%20href%3D%22busquedas_menu.bmml%22%20alt%3D%22busquedas_menu%22%20id%3D%2225%22/%3E</map>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22484%2C110%2C557%2C136%22%20href%3D%22busquedas_menu.bmml%22%20alt%3D%22busquedas_menu%22%20id%3D%2225%22/%3E</map>
         <size>14</size>
         <text>Busquedas</text>
       </controlProperties>
@@ -70,7 +70,7 @@
       <controlProperties>
         <color>15658734</color>
         <href>reportes_menu%26bm%3Breportes_menu.bmml%26bm%3Breportes_menu.bmml%26bm%3Breportes_menu.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22686%2C110%2C751%2C136%22%20href%3D%22reportes_menu.bmml%22%20alt%3D%22reportes_menu%22%20id%3D%2226%22/%3E</map>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22722%2C110%2C787%2C136%22%20href%3D%22reportes_menu.bmml%22%20alt%3D%22reportes_menu%22%20id%3D%2226%22/%3E</map>
         <size>14</size>
         <text>Reportes</text>
       </controlProperties>
@@ -79,7 +79,7 @@
       <controlProperties>
         <color>15658734</color>
         <href>datos_generales_menu%26bm%3Bdatos_generales_menu.bmml%26bm%3Bdatos_generales_menu.bmml%26bm%3Bdatos_generales_menu.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22541%2C110%2C656%2C136%22%20href%3D%22datos_generales_menu.bmml%22%20alt%3D%22datos_generales_menu%22%20id%3D%2227%22/%3E</map>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22577%2C110%2C692%2C136%22%20href%3D%22datos_generales_menu.bmml%22%20alt%3D%22datos_generales_menu%22%20id%3D%2227%22/%3E</map>
         <size>14</size>
         <text>Datos%20Generales</text>
       </controlProperties>
@@ -190,6 +190,7 @@
         <color>2848996</color>
         <direction>center</direction>
         <href>cliente_show%26bm%3Bcliente_show.bmml%26bm%3Bcliente_show.bmml%26bm%3Bcliente_show.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22549%2C554%2C609%2C582%22%20href%3D%22cliente_show.bmml%22%20alt%3D%22cliente_show%22%20id%3D%2255%22/%3E</map>
         <text>Salvar</text>
       </controlProperties>
     </control>
