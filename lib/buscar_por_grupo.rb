@@ -5,7 +5,6 @@ module BuscarPorGrupo
     l = busqueda.size - dim
     (0..l).each do |v| 
       @expresiones[2] << busqueda[v,dim]
-      cambios_consonantes(busqueda[v, dim])
     end
   end
 

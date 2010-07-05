@@ -1,6 +1,16 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe Busqueda do
+  before(:each) do
+    class Prueba
+      attr_reader :busqueda
+
+      def initialize(bus)
+        @busqueda = bus
+      end
+    end
+  end
+
 
   it '1 a 3 letras igual' do
     b = Busqueda.buscar('TA')
@@ -19,12 +29,41 @@ describe Busqueda do
     b.expresiones.should == {1 => ['tou'], 2 => ['tuu', 'too'] }
   end
 
-  it 'debe buscar 4 letras' do
-    b = Busqueda.buscar('agel')
-    b.expresiones.should == {1 => [ 'agel' ], 2 => [ 'age', 'gel' ]}
-    b = Busqueda.buscar('hola')
-    b.expresiones.should == {1 => ['hola'], 2 => [ 'hol', 'ola' ]}
+  it 'debe dividir y encontrar los indices de una palabra' do
+    Prueba.send(:include, BusquedaCambio)
+    p = Prueba.new('gelicesi')
+    p.buscar_indices_palabras
+    p.indices_palabra.should == { 0 => 'ge|je', 
+      4 => 'ce|se|ze', 6 => 'ci|si|zi' }
   end
+
+  it 'debe retornar todos los elementos' do
+    Prueba.send(:include, BusquedaCambio)
+    p = Prueba.new('gelicesi')
+    p.buscar_indices_palabras
+    p.obtener_array_silabas.should == [["ge", "je"], ["ci", "zi", "si"], ["ce", "ze", "se"]]
+  end
+
+  it 'debe crear las combinaciones para la palabra' do
+    p = Prueba.send(:include, BusquedaCambio)
+    p = Prueba.new('gelicesi')
+    p.combinaciones_palabra.sort.should == ["geliceci", "gelizeci", "geliseci", "gelicezi", "gelizezi", "gelisezi", "gelicesi", "gelizesi", "gelisesi", "jeliceci", "jelizeci", "jeliseci", "jelicezi", "jelizezi", "jelisezi", "jelicesi", "jelizesi", "jelisesi"].sort
+  end
+
+  #it 'debe buscar 4 letras' do
+  #  b = Busqueda.buscar('agel')
+  #  b.expresiones.should == {1 => [ 'agel' ], 2 => [ 'age', 'gel' ]}
+  #  b = Busqueda.buscar('hola')
+  #  b.expresiones.should == {1 => ['hola'], 2 => [ 'hol', 'ola' ]}
+  #end
+
+  #it 'debe realizar cambio con 5 letras' do
+  #  b = Busqueda.new('ácil')
+  #  b.expresiones.should == {1 => ['acil'], 2 => ['aci',  'cil'],
+  #    3 => ['asi', 'sil', 'azi', 'zil']
+  #  }
+  #  
+  #end
 
   #it 'debe buscar con 5 letras' do
   #  b = Busqueda.buscar('facil')

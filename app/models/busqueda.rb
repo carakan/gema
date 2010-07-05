@@ -5,35 +5,31 @@ class Busqueda
 
   attr_reader :busqueda
 
+
   def initialize(busq)
-    @busqueda = busq.downcase
+    @busqueda = busq.downcase.cambiar_acentos
     @expresiones = {1 => [], 2 => [], 3 => [], 4 => []}
     @expresiones[1] << busqueda
   end
 
   # @param String busq
   def self.buscar(busqueda)
+    include BusquedaCambio
 
     case 
     when busqueda.size <= 3
       include TresLetras
     when busqueda.size == 4
       include CuatroLetras
-      include BusquedaCambio
     when busqueda.size == 5
       include CincoLetras
-      include BusquedaCambio
     when busqueda.size >= 6
       include BuscarPorGrupo
-      include BusquedaCambio
     end
 
     new(busqueda)
   end
 
-  def dividir_partes
-    
-  end
 
   def expresiones_pares_impares
     par = ''
@@ -47,12 +43,13 @@ class Busqueda
         impar << chr
       end
     end
-    @expresiones << {3 => impar}
-    @expresiones << {3 => par}
+    @expresiones[3] << impar
+    @expresiones[3] << par
   end
 
   def expresiones
     buscar_equivalencias
+    cambios_silabas
     filtrar_vacios
     @expresiones
   end
