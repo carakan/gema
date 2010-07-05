@@ -155,11 +155,15 @@
     </control>
     <control controlID="71" controlTypeID="com.balsamiq.mockups::Button" x="606" y="308" w="87" h="28" measuredW="65" measuredH="28" zOrder="21" locked="false" isInGroup="-1">
       <controlProperties>
+        <href>lista_publicacion_errores%26bm%3Blista_publicacion_errores.bmml%26bm%3Blista_publicacion_errores.bmml%26bm%3Blista_publicacion_errores.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22464%2C308%2C551%2C336%22%20href%3D%22lista_publicacion_errores.bmml%22%20alt%3D%22lista_publicacion_errores%22%20id%3D%2271%22/%3E</map>
         <text>Cancel</text>
       </controlProperties>
     </control>
     <control controlID="72" controlTypeID="com.balsamiq.mockups::Button" x="718" y="308" w="96" h="28" measuredW="43" measuredH="28" zOrder="22" locked="false" isInGroup="-1">
       <controlProperties>
+        <href>lista_solicitud_corregir_errores%26bm%3Blista_solicitud_corregir_errores.bmml%26bm%3Blista_solicitud_corregir_errores.bmml%26bm%3Blista_solicitud_corregir_errores.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22576%2C308%2C672%2C336%22%20href%3D%22lista_solicitud_corregir_errores.bmml%22%20alt%3D%22lista_solicitud_corregir_errores%22%20id%3D%2272%22/%3E</map>
         <text>OK</text>
       </controlProperties>
     </control>

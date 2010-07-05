@@ -189,8 +189,8 @@
       <controlProperties>
         <color>2848996</color>
         <direction>center</direction>
-        <href>solicitudes_errores_guardarcambios%26bm%3Bsolicitudes_errores_guardarcambios.bmml%26bm%3Bsolicitudes_errores_guardarcambios.bmml%26bm%3Bsolicitudes_errores_guardarcambios.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22305%2C474%2C365%2C502%22%20href%3D%22solicitudes_errores_guardarcambios.bmml%22%20alt%3D%22solicitudes_errores_guardarcambios%22%20id%3D%22237%22/%3E</map>
+        <href>lista_solicitud_corregir_errores%26bm%3Blista_solicitud_corregir_errores.bmml%26bm%3Blista_solicitud_corregir_errores.bmml%26bm%3Blista_solicitud_corregir_errores.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22305%2C474%2C365%2C502%22%20href%3D%22lista_solicitud_corregir_errores.bmml%22%20alt%3D%22lista_solicitud_corregir_errores%22%20id%3D%22237%22/%3E</map>
         <text>Salvar</text>
       </controlProperties>
     </control>
