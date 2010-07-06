@@ -33,13 +33,13 @@ describe Busqueda do
     Prueba.send(:include, BusquedaCambio)
     p = Prueba.new('gelicesi')
     p.buscar_indices_palabras
-    p.indices_palabra.should == {
-      0 => { :vals => ["ge", "je"], :size => 2 },
-      3 => { :vals => ['i', 'y'], :size => 1 },
-      4 => { :vals => ["ce", "ze", "se"], :size => 2  },
-      6 => { :vals => ["ci", "zi", "si"], :size => 2 },
-      7 => { :vals => ['i', 'y'], :size => 1 }
-    }
+    p.indices_palabra.should == [
+      [ 0, { :vals => ["ge", "je"], :size => 2 }],
+      [ 3, { :vals => ['i', 'y'], :size => 1 }],
+      [ 4, { :vals => ["ce", "ze", "se"], :size => 2  }],
+      [ 6, { :vals => ["ci", "zi", "si"], :size => 2 }],
+      [ 7, { :vals => ['i', 'y'], :size => 1 }]
+    ]
 
   end
 
@@ -47,24 +47,69 @@ describe Busqueda do
     Prueba.send(:include, BusquedaCambio)
     p = Prueba.new('anfi')
     p.buscar_indices_palabras
-    p.indices_palabra.should == {
-      2 => { :vals => ["f", "ph"], :size => 1 },
-      3 => { :vals => ["i", "y"], :size => 1 }
-    }
+    p.indices_palabra.should == [
+      [ 2, { :vals => ["f", "ph"], :size => 1 } ],
+      [ 3, { :vals => ["i", "y"], :size => 1 } ]
+    ]
   end
 
   it 'debe retornar todos los elementos' do
     Prueba.send(:include, BusquedaCambio)
     p = Prueba.new('gelicesi')
     p.buscar_indices_palabras
-    #p.obtener_array_silabas.should == 
+    p.obtener_array_silabas.should == [
+      ["ge", "je"], 
+      ["i", "y"],
+      ["ce", "ze", "se"], 
+      ["ci", "zi", "si"], 
+      ["i", "y"]
+    ]
   end
 
   #it 'debe crear las combinaciones para la palabra' do
   #  p = Prueba.send(:include, BusquedaCambio)
   #  p = Prueba.new('gelicesi')
-  #  p.combinaciones_palabra.sort.should == ["geliceci", "gelizeci", "geliseci", "gelicezi", "gelizezi", "gelisezi", "gelicesi", "gelizesi", "gelisesi", "jeliceci", "jelizeci", "jeliseci", "jelicezi", "jelizezi", "jelisezi", "jelicesi", "jelizesi", "jelisesi"].sort
+  #  p.combinaciones_palabra.sort.should == [
+  #    "geliceci", "gelicecy", 
+  #    "gelicesi", "gelicesy", "gelicezi", 
+  #    "gelicezy", "geliseci", "gelisecy", 
+  #    "gelisesi", "gelisesy", "gelisezi", 
+  #    "gelisezy", "gelizeci", "gelizecy", 
+  #    "gelizesi", "gelizesy", "gelizezi", 
+  #    "gelizezy", "gelyceci", "gelycecy", 
+  #    "gelycesi", "gelycesy", "gelycezi", 
+  #    "gelycezy", "gelyseci", "gelysecy", 
+  #    "gelysesi", "gelysesy", "gelysezi",
+  #    "gelysezy", "gelyzeci", "gelyzecy",
+  #    "gelyzesi", "gelyzesy", "gelyzezi",
+  #    "gelyzezy", "jeliceci", "jelicecy",
+  #    "jelicesi", "jelicesy", "jelicezi",
+  #    "jelicezy", "jeliseci", "jelisecy",
+  #    "jelisesi", "jelisesy", "jelisezi",
+  #    "jelisezy", "jelizeci", "jelizecy",
+  #    "jelizesi", "jelizesy", "jelizezi",
+  #    "jelizezy", "jelyceci", "jelycecy",
+  #    "jelycesi", "jelycesy", "jelycezi",
+  #    "jelycezy", "jelyseci", "jelysecy", 
+  #    "jelysesi", "jelysesy", "jelysezi",
+  #    "jelysezy", "jelyzeci", "jelyzecy",
+  #    "jelyzesi", "jelyzesy", "jelyzezi", "jelyzezy"]
   #end
+
+
+  it 'debe cambiar elementos de una letra' do
+    p = Prueba.send(:include, BusquedaCambio)
+    p = Prueba.new('vhya')
+    p.combinaciones_palabra.should == ["bia", "bya", "bjia", "bjya", "via", "vya", "vjia", "vjya"]
+  end
+
+  it 'debe poder cambiar oo por u, u' do
+    p = Prueba.send(:include, BusquedaCambio)
+    p = Prueba.new('aool')
+    p.combinaciones_palabra.should == ['aol', 'aul']
+
+  end
+
 
   #it 'debe buscar 4 letras' do
   #  b = Busqueda.buscar('agel')

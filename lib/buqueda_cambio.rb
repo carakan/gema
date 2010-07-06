@@ -62,39 +62,32 @@ module BusquedaCambio
 
       obtener_array_silabas.combine.each do |comb|
         subpalabra = busqueda.dup
+        sum_ind = 0
+
         comb.each_with_index do |elem, ind|
-          subpalabra[indices_palabra.keys[ind], 2 ] = elem
+          pos = indices_palabra[ind].first 
+          size = indices_palabra[ind].last[:size]
+          
+          pos_real = pos + sum_ind
+          subpalabra[pos_real, size ] = elem
+          sum_ind = elem.size - size
         end
         arr << subpalabra
       end
 
+      arr.uniq.delete(busqueda)
+
       arr
     end
 
-    # En caso de que existe ['si', 'se', 'zi', 'ze']
-    # se debe aumentar mas conbinaciones a la lista
-    #def extender_equivalencias(ind)
-    #  if ['si', 'se'].include? busqueda[ind,2]
-    #    if busqueda[ind, 2] == 'si'
-    #      @lista_equivalencias_dos_letras.push('')
-    #    else
-    #    end
-    #  elsif ['zi', 'ze'].include? busqueda[ind, 2]
-    #    if !!(busqueda[ind,2] =~ /i/ )
-    #      @lista_equivalencias_dos_letras['ci|si|zi'].push('c', 's', '')
-    #    elsif !!(busqueda[ind, 2] =~ /e/ )
-
-    #    end
-    #  end
-    #end
 
     # Buscas los indices de la palabra
     def buscar_indices_palabras
-      @indices_palabra = {}
+      @indices_palabra = []
       (0..(busqueda.size - 1)).each do |v|
         self.class.listado_equivalencias.each do |sil, val|
           if !!( busqueda[v,2] =~ /^#{sil}/ )
-            @indices_palabra[v] = {:size => $1.size, :vals => val} 
+            @indices_palabra << [ v, {:size => $1.size, :vals => val} ]
           end
         end
       end
@@ -117,5 +110,21 @@ module BusquedaCambio
 
     end
 
+    # En caso de que existe ['si', 'se', 'zi', 'ze']
+    # se debe aumentar mas conbinaciones a la lista
+    #def extender_equivalencias(ind)
+    #  if ['si', 'se'].include? busqueda[ind,2]
+    #    if busqueda[ind, 2] == 'si'
+    #      @lista_equivalencias_dos_letras.push('')
+    #    else
+    #    end
+    #  elsif ['zi', 'ze'].include? busqueda[ind, 2]
+    #    if !!(busqueda[ind,2] =~ /i/ )
+    #      @lista_equivalencias_dos_letras['ci|si|zi'].push('c', 's', '')
+    #    elsif !!(busqueda[ind, 2] =~ /e/ )
+
+    #    end
+    #  end
+    #end
   end
 end
