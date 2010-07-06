@@ -138,8 +138,10 @@ class Marca < ActiveRecord::Base
   # @return Marca.new o clase heredada
   def self.crear_instancia(params, klass = nil)
     params = extraer_params(params)
+    estado = params[:estado]
     params = klass.attributes.merge(params) unless klass.nil?
-    case params[:estado]
+   
+    case estado
       when 'sm' then SolicitudMarca.new(params)
       when 'lp' then ListaPublicacion.new(params)
         # when'lr' then ListaRegistro.new(params)
@@ -174,7 +176,6 @@ class Marca < ActiveRecord::Base
     self.type = klass.type
     # Cambiar fecha si es que se cambio el estado
     # self.estado_fecha = Date.today unless self.changes['estado'].nil?
-
     if klass.valid?
       return self.save
     else

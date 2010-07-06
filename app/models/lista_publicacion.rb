@@ -1,9 +1,9 @@
 # eoncoding: utf-8
 class ListaPublicacion < Marca
 
-  validates_presence_of :tipo_marca_id, :numero_publicacion
+  validates_presence_of :tipo_marca_id, :numero_publicacion, :fecha_publicacion, :numero_gaceta
   validates_numericality_of :numero_publicacion
-  validates_presence_of :fecha_publicacion
+  validates_numericality_of :numero_gaceta
  # validate :existencia_anterior, :if => :importado
   
   #####################################
