@@ -3,13 +3,16 @@ module TresLetras
   # Realiza cambios en equivalencias
   # e = i || o = u
   def buscar_equivalencias
+    arr = []
     if !!( busqueda =~ /[eiou]/ )
       busqueda.chars.each_with_index do |v, ind|
         if !!( v =~ /[eiou]/ )
-          @expresiones[2] << reemplazar_letra(v, ind)
+           arr << reemplazar_letra(v, ind)
         end
       end
     end
+
+    arr
   end
 
   # cambia la letra con el indice indicado

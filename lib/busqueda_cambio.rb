@@ -16,11 +16,11 @@ module BusquedaCambio
         '(co|ko|qo)' =>  ['co', 'ko', 'qo'],
         '(gi|ji)' =>  ['gi', 'ji'],
         '(ge|je)' =>  ['ge', 'je'],
-        '(oo)' =>  ['o', 'u'],
-        '(cs)' =>  ['cs', 'x', 'cz'],
-        '(ll)' =>  ['l'],
+        '(oo)' =>  ['o', 'u', 'oo'],
+        '(cc)' =>  ['cc', 'cs', 'cz', 'x'],
+        '(ll)' =>  ['l', 'll'],
         '(ph|f)' =>  ['f', 'ph'],
-        '(h)' =>  ['', 'j'],
+        '(h)' =>  ['h','', 'j'],
         '(y|i)' => ['i', 'y'],
         '(v|b)' => ['b', 'v']
       }
@@ -57,7 +57,7 @@ module BusquedaCambio
 
     # Crea todas las combinaciones de una palabra
     def combinaciones_palabra()
-      buscar_indices_palabras
+      buscar_indices_palabra
       arr = []
 
       obtener_array_silabas.combine.each do |comb|
@@ -70,19 +70,18 @@ module BusquedaCambio
           
           pos_real = pos + sum_ind
           subpalabra[pos_real, size ] = elem
-          sum_ind = elem.size - size
+          sum_ind = elem.size - size + sum_ind
         end
         arr << subpalabra
       end
+      arr.delete(busqueda)
 
-      arr.uniq.delete(busqueda)
-
-      arr
+      arr.uniq
     end
 
 
     # Buscas los indices de la palabra
-    def buscar_indices_palabras
+    def buscar_indices_palabra
       @indices_palabra = []
       (0..(busqueda.size - 1)).each do |v|
         self.class.listado_equivalencias.each do |sil, val|
