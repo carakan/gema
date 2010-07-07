@@ -6,8 +6,10 @@
     <%= f.input :nombre, :label => 'Nombre' %>
     <%= f.input :rol, :label => 'Rol' %>
     <%= f.input :login, :label => 'Nombre de usuario' %>
-    <%= f.input :password,:as => :password, :label => 'Contraseña' %>
-    <%= f.input :password,:as => :password, :label => 'Confirmar contraseña' %>
+    <% unless :edit? %>
+     <%= f.input :password,:as => :password, :label => 'Contraseña' %>
+     <%= f.input :password,:as => :password, :label => 'Confirmar contraseña' %>
+    <% end %>
   <% end %>
     <%= f.submit 'Salvar' %>
 <% end %>
