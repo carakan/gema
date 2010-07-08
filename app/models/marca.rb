@@ -141,14 +141,10 @@ class Marca < ActiveRecord::Base
   # @param Marca o modelo heredado Indica si se debe unir con los atributos de la clase
   # @return Marca.new o clase heredada
   def self.crear_instancia(params, klass = nil)
-    agentes, titulares = params[:agentes].uniq, params[:titulares].uniq
-
     params = extraer_params(params)
     estado = params[:estado]
     params = klass.attributes.merge(params) unless klass.nil?
-    params[:agente_ids] = agentes
-    params[:titular_ids] = titulares
-   
+    
     case estado
       when 'sm' then SolicitudMarca.new(params)
       when 'lp' then ListaPublicacion.new(params)
@@ -162,12 +158,25 @@ class Marca < ActiveRecord::Base
 
   # extrae los parametros correctos de acuerdo al estado
   def self.extraer_params(params)
-    return params[:marca] unless params[:marca].nil?
-    return params[:solicitud_marca] unless params[:solicitud_marca].nil?
-    return params[:lista_publicacion] unless params[:lista_publicacion].nil?
-    return params[:lista_registro] unless params[:lista_registro].nil?
-    return params[:solicitud_renovacion] unless params[:solicitud_renovacion].nil?
-    return params[:renovacion_concedida] unless params[:renovacion_concedida].nil?
+    agentes, titulares = [ params[:agente_ids].uniq, params[:titular_ids].uniq ]
+
+    case
+      when !!params[:marca]
+        params = params[:marca]
+      when !!params[:solicitud_marca]
+        params = params[:solicitud_marca]
+      when !!params[:lista_publicacion]
+        params = params[:lista_publicacion]
+      when !!params[:lista_registro]
+        params = params[:lista_registro]
+      when !!params[:solicitud_renovacion]
+        params = params[:solicitud_renovacion]
+      when !!params[:renovacion_concedida]
+        params = params[:renovacion_concedida]
+    end
+
+    params.merge(:agente_ids => agentes, :titular_ids => titulares)
+
   end
 
   # Metodo para poder realizar actualizaciones
@@ -176,6 +185,8 @@ class Marca < ActiveRecord::Base
     klass = self.class.crear_instancia(params, self)
     # Se asigna los atributos para no perder datos de los params
     self.attributes = klass.attributes
+    self.agente_ids = klass.agente_ids
+    self.titular_ids = klass.titular_ids
     # se asigna datos faltantes para klass
     klass.estado_fecha = Date.today
     klass.numero_solicitud = '0000-0000'
