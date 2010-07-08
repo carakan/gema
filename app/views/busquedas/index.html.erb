@@ -1,0 +1,23 @@
+<h1>Busquedas</h1>
+
+<%= render :partial => "buscar" %>
+
+<%= @exp %>
+
+<% unless @busqueda.blank? %>
+  <table>
+  	<tr>
+  		<th></th>
+  		<th></th>
+  		<th></th>
+  		<th></th>
+  	</tr>
+    <% @busqueda.each do |b| %>
+      <tr>
+      	<td><%= b.nombre %></td>
+      </tr>
+    <% end %>
+
+  </table>
+<% end %>
+

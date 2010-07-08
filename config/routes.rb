@@ -20,6 +20,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :lista_publicaciones
 
+  map.resources :busquedas
+
   map.resources :solicitudes, :member => { :importado => :get }
 
 

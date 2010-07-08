@@ -49,4 +49,15 @@ namespace :datos do
     Agente.create!(:nombre => 'Lucas Estrella')
     Agente.create!(:nombre => 'Violeta Barroso')
   end
+
+  desc 'Importa solo los nombres de la base de datos de Orpan'
+  task :marcas => :environment do
+    require 'fastercsv'
+    UsuarioSession.current_user = Usuario.first
+    f = FasterCSV.read('', :headers => true)
+    f.each do |r|
+      m = Marca.new(:nombre => r.field('nombre'), :clase_id => r.field('clase_id') )
+      m.save(false)
+    end
+  end
 end
