@@ -1,16 +1,7 @@
-<% semantic_form_for @agentes do |a| %>
-
-<%= a.error_messages  %>
-
-<% a.inputs do %>
-  <%= a.input :nombre , :label => 'Nombre' %>
-  <%= a.input :direccion , :label => 'Direccion' %>
-  <%= a.input :telefono , :label => 'Telefono' %>
-  <%= a.input :email , :label => 'Email' %>
+<% semantic_form_for @agente do |f| %>
+  <%= f.input :nombre , :label => 'Nombre' %>
+  <%= f.input :direccion, :as => :text, :label => 'Direccion', :input_html => {:rows => 3} %>
+  <%= f.input :telefono , :label => 'Telefono' %>
+  <%= f.input :email , :label => 'Email' %>
+  <%= f.submit 'Salvar' %>
 <% end %>
-<p>
-<%=  a.submit 'Salvar' %>
-</p>
-<% end %>
-   
-   

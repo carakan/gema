@@ -38,3 +38,15 @@ namespace :importar do
   end
 
 end
+
+namespace :datos do
+  desc 'Crea datos de demo'
+  task :demo => :environment do
+    Agente.create!(:nombre => 'Karina Luna')
+    Agente.create!(:nombre => 'Eddy Sanchez')
+    Agente.create!(:nombre => 'Marco Arcienaga')
+    Agente.create!(:nombre => 'Amaru Barroso')
+    Agente.create!(:nombre => 'Lucas Estrella')
+    Agente.create!(:nombre => 'Violeta Barroso')
+  end
+end

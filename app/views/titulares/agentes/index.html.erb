@@ -1,0 +1,24 @@
+<h1>Listado de agentes</h1>
+
+<%= link_to 'Nuevo agente', new_agente_path, :class => 'new' %>
+
+<table class="decorated">
+    <tr>
+      <th>Nombre</th>
+      <th>Telefono</th>
+      <th>Email</th>
+      <th></th>
+    </tr>
+
+<% @agentes.each do |agente| %>
+  <tr>
+   <td><%=h link_to agente.nombre, agente %></td>
+   <td><%=h agente.telefono %></td>
+   <td><%=h agente.email %></td>
+   <td>
+     <%= links(agente) %>
+   </td>
+  </tr>
+
+<% end %>
+</table>

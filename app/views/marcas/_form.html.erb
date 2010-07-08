@@ -1,3 +1,5 @@
+<%= stylesheet_link_tag 'facebook' %>
+
 <% semantic_form_for(@marca, :url => @marca.url, :html => {:class => 'in_half'}) do |f| -%>
     <%= f.input :nombre %>
     <%= f.input :clase %>
@@ -6,9 +8,8 @@
     <%= f.input :tipo_signo %>
     
     <%= f.input :propia, :label => 'Marca propia' %>
-    <%= f.input :agente %>
-    <%= f.input :titular %>
-    
+
+
     <%= f.input :tipo_marca %>
 
     <%= f.input :estado, :collection => Marca.lista_estados %>
@@ -22,6 +23,22 @@
     <%= f.input :lema, :as => :text %>
     <%= f.input :productos, :as => :text %>
 
+<ol>  
+  <li id="agente-auto" class="input-text"> 
+    <label for="agente">Agentes</label> 
+    <input type="text" value="" id="agente" /> 
+    <ul id="agentes" style="display:none"> 
+      <% @marca.agentes.each do |a| %>
+        <li rel="<%= a.id %>"><%= a.nombre %></li>
+      <% end %>
+    </ul> 
+    <div id="agentes-list" class="facebook-auto"> 
+      <div class="default">Escriba el nombre de un agente</div>  
+      <ul id="feed">
+      </ul>
+    </div> 
+  </li> 
+</ol>
 
   
   <div style="clear:both"></div>
@@ -29,3 +46,10 @@
 <% end -%>
 
 <div style="clear:both"></div>
+<%= javascript_include_tag 'fcbkcomplete.min' %>
+<script type="text/javascript">
+$(document).ready(function() {
+   $.facebooklist('#agente', '#agentes', '#agentes-list', 
+      { url:'/agentes/buscar.json', cache:0 }, 10, { userfilter: 1, casesensetive: 0 } );
+});
+</script>

@@ -4,9 +4,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :usuarios
 
   #map.resources :representantes
-  map.resources :titulares
+  map.resources :titulares, :collection => { :buscar => :get }
 
-  map.resources :agentes
+  map.resources :agentes, :collection => { :buscar => :get }
 
   map.resources :tipo_signos
 

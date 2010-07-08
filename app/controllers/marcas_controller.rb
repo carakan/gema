@@ -1,11 +1,11 @@
 class MarcasController < ApplicationController
 
   def index
-    @marcas = Marca.buscar(:page => @page, :include => [:agente, :titular], :params => params)
+    @marcas = Marca.buscar(:page => @page, :params => params)
   end
 
   def new
-    @marca = Marca.new(:estado_fecha => Date.today)
+    @marca = Marca.new(:estado_fecha => Date.today, :agente_ids => [1, 2])
   end
 
   def edit

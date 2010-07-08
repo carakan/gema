@@ -53,6 +53,9 @@ module ApplicationHelper
     end
   end
 
+  def listado_facebook(klass, caption, options = {})
+  end
+
 end
 WillPaginate::ViewHelpers.pagination_options[:previous_label] = '<<'
 WillPaginate::ViewHelpers.pagination_options[:next_label] = '>>'

@@ -10,10 +10,14 @@ class Marca < ActiveRecord::Base
   belongs_to :tipo_signo
   belongs_to :tipo_marca
   belongs_to :usuario
-  belongs_to :agente
-  belongs_to :titular
+  #belongs_to :agente
+  #belongs_to :titular
+
+  has_and_belongs_to_many :agentes
+  has_and_belongs_to_many :titulares
 
   
+  # validaciones
   validates_presence_of :nombre, :estado_fecha, 
     :estado, :tipo_signo_id, :clase_id
 
@@ -108,7 +112,7 @@ class Marca < ActiveRecord::Base
 
   # Devuelve los registros y el estado
   def self.buscar_importados(fecha, valid = true)
-    Marca.all(:conditions => { :fecha_importacion => fecha, :valido => valid }, :include => [ :clase, :agente, :tipo_signo ] )
+    Marca.all(:conditions => { :fecha_importacion => fecha, :valido => valid }, :include => [ :clase, :tipo_signo ] )
   end
 
 
