@@ -14,7 +14,7 @@ class Marca < ActiveRecord::Base
   #belongs_to :titular
 
   has_and_belongs_to_many :agentes
-  has_and_belongs_to_many :titulares
+  has_and_belongs_to_many :titulares, :class_name => 'Titular'
 
   
   # validaciones
@@ -141,9 +141,13 @@ class Marca < ActiveRecord::Base
   # @param Marca o modelo heredado Indica si se debe unir con los atributos de la clase
   # @return Marca.new o clase heredada
   def self.crear_instancia(params, klass = nil)
+    agentes, titulares = params[:agentes].uniq, params[:titulares].uniq
+
     params = extraer_params(params)
     estado = params[:estado]
     params = klass.attributes.merge(params) unless klass.nil?
+    params[:agente_ids] = agentes
+    params[:titular_ids] = titulares
    
     case estado
       when 'sm' then SolicitudMarca.new(params)

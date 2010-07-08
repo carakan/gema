@@ -5,7 +5,7 @@ class MarcasController < ApplicationController
   end
 
   def new
-    @marca = Marca.new(:estado_fecha => Date.today, :agente_ids => [1, 2])
+    @marca = Marca.new(:estado_fecha => Date.today)
   end
 
   def edit

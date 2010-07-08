@@ -22,34 +22,59 @@
 
     <%= f.input :lema, :as => :text %>
     <%= f.input :productos, :as => :text %>
-
 <ol>  
   <li id="agente-auto" class="input-text"> 
     <label for="agente">Agentes</label> 
-    <input type="text" value="" id="agente" /> 
-    <ul id="agentes" style="display:none"> 
+    <ul id="ul-agentes" style="display:none"> 
       <% @marca.agentes.each do |a| %>
         <li rel="<%= a.id %>"><%= a.nombre %></li>
       <% end %>
     </ul> 
+    <input type="text" value="" id="agentes" /> 
     <div id="agentes-list" class="facebook-auto"> 
       <div class="default">Escriba el nombre de un agente</div>  
-      <ul id="feed">
+      <ul class="feed">
       </ul>
     </div> 
   </li> 
 </ol>
 
   
+<ol>  
+  <li id="titular-auto" class="input-text"> 
+    <label for="titulares">Titulares</label> 
+    <ul id="ul-titulares" style="display:none"> 
+      <% @marca.titulares.each do |t| %>
+        <li rel="<%= t.id %>"><%= t.nombre %></li>
+      <% end %>
+    </ul> 
+    <input type="text" value="" id="titulares" /> 
+    <div id="titulares-list" class="facebook-auto"> 
+      <div class="default">Escriba el nombre de un titular</div>  
+      <ul class="feed">
+      </ul>
+    </div> 
+  </li> 
+</ol>
+
   <div style="clear:both"></div>
   <%= f.submit "Salvar" %>
 <% end -%>
 
 <div style="clear:both"></div>
-<%= javascript_include_tag 'fcbkcomplete.min' %>
+<%= javascript_include_tag 'fcbkcomplete' %>
 <script type="text/javascript">
 $(document).ready(function() {
-   $.facebooklist('#agente', '#agentes', '#agentes-list', 
-      { url:'/agentes/buscar.json', cache:0 }, 10, { userfilter: 1, casesensetive: 0 } );
+
+  $.facebooklist('#titulares', '#ul-titulares', '#titulares-list', 
+     { url:'/titulares/buscar.json', cache:0 }, 10, { userfilter: 1, casesensetive: 0 } );
+
+  $.facebooklist('#agentes', '#ul-agentes', '#agentes-list', 
+     { url:'/agentes/buscar.json', cache:0 }, 10, { userfilter: 1, casesensetive: 0 } );
+
+  $('form').submit(function(e) {
+    console.log(e.target);
+    return false
+  });
 });
 </script>
