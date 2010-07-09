@@ -7,8 +7,6 @@
     <th>Nombre</th>
     <th>Marca<br />Propia</th>
 		<th>Estado</th>
-		<th>Agente</th>
-		<th>Titular</th>
 		<th>Valido</th>
     <th></th>
 	</tr>
@@ -19,8 +17,6 @@
       <td><%= link_to marca.nombre, marca_path(marca) %></td>
       <td><%= verdad marca.propia %></td>
     	<td><%= marca.ver_estado %></td>
-    	<td><% marca.agente %></td>
-      <td><%= marca.titular %></td>
       <td><%= verdad marca.valido %></td>
       <td>
         <%= link_to "editar", edit_marca_path(marca), :class => 'edit' %>

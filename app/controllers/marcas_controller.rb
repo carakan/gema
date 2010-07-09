@@ -1,7 +1,7 @@
 class MarcasController < ApplicationController
 
   def index
-    @marcas = Marca.buscar(:page => @page, :include => [:agente, :titular], :params => params)
+    @marcas = Marca.buscar(:page => @page, :params => params)
   end
 
   def new

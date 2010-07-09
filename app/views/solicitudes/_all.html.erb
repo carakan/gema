@@ -7,7 +7,6 @@
 		<th>Numero Solicitud</th>
 		<th>Tipo Marca</th>
 		<th>Clase</th>
-		<th>Agente</th>
     <th></th>
     <% @marcas.each do |marca| %>
       <tr>
@@ -16,7 +15,6 @@
         <td><%= marca.numero_solicitud %></td>
         <td><%= marca.tipo_marca %></td>
         <td><%= marca.clase %></td>
-        <td><%= marca.agente %></td>
 
         <td>
           <%= links_for_marca marca %>

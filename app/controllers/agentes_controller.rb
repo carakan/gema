@@ -69,5 +69,10 @@ class AgentesController < ApplicationController
   end
 
 
+  def buscar
+    busq = params[:tag]
+    @agentes = Agente.all(:conditions => ["nombre LIKE ?", "%#{busq}%"])
+    render :text => @agentes.map{ |a| {:caption => a.nombre, :value => a.id} }.to_json 
+  end
   
 end

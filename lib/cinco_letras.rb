@@ -1,7 +1,7 @@
 module CincoLetras
 
   def buscar_equivalencias
-    cambios_palabra_completa   
+    #cambios_palabra_completa   
 
     @expresiones[2] << busqueda[0,3]
     @expresiones[2] << busqueda[1,3]

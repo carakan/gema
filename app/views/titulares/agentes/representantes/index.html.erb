@@ -1,0 +1,28 @@
+<h1>Listing representantes</h1>
+
+<table>
+  <tr>
+    <th>Nombre</th>
+    <th>Email</th>
+    <th>Direccion</th>
+    <th>Telefono</th>
+    <th>Type</th>
+  </tr>
+
+<% @representantes.each do |representante| %>
+  <tr>
+    <td><%=h representante.nombre %></td>
+    <td><%=h representante.email %></td>
+    <td><%=h representante.direccion %></td>
+    <td><%=h representante.telefono %></td>
+    <td><%=h representante.type %></td>
+    <td><%= link_to 'Show', representante %></td>
+    <td><%= link_to 'Edit', edit_representante_path(representante) %></td>
+    <td><%= link_to 'Destroy', representante, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New representante', new_representante_path %>

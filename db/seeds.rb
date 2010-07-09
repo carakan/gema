@@ -31,3 +31,5 @@ TipoMarca.create!(:nombre => 'Marca de Servicio', :sigla => 'MS.')
 TipoMarca.create!(:nombre => 'Nombre Comercial', :sigla => 'NC.')
 TipoMarca.create!(:nombre => 'Rótulo Comercial', :sigla => 'RC.')
 #TipoMarca.create!(:nombre => 'Solicitud Marca', :sigla => 'SM.')
+paises = YAML.load_file(File.join(Rails.root, 'db/paises.yml'))
+paises.each{ |v| Pais.create!(v) }

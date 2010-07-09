@@ -1,12 +1,14 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :paises
+
   map.resources :tipo_marcas
 
   map.resources :usuarios
 
   #map.resources :representantes
-  map.resources :titulares
+  map.resources :titulares, :collection => { :buscar => :get }
 
-  map.resources :agentes
+  map.resources :agentes, :collection => { :buscar => :get }
 
   map.resources :tipo_signos
 
@@ -19,6 +21,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :solicitud_marcas
 
   map.resources :lista_publicaciones
+
+  map.resources :busquedas
 
   map.resources :solicitudes, :member => { :importado => :get }
 

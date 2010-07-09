@@ -1,0 +1,28 @@
+<p>
+  <b>Nombre:</b>
+  <%=h @representante.nombre %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%=h @representante.email %>
+</p>
+
+<p>
+  <b>Direccion:</b>
+  <%=h @representante.direccion %>
+</p>
+
+<p>
+  <b>Telefono:</b>
+  <%=h @representante.telefono %>
+</p>
+
+<p>
+  <b>Type:</b>
+  <%=h @representante.type %>
+</p>
+
+
+<%= link_to 'Edit', edit_representante_path(@representante) %> |
+<%= link_to 'Back', representantes_path %>

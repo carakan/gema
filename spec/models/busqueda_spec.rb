@@ -79,7 +79,7 @@ describe Busqueda do
     b.expresiones[1].should == ['vhya']
     b.expresiones[2].sort.should == [ "bhia", "bhya", "bia", "bya",
     "bjia", "bjya", "vhia", "via", "vya", "vjia", "vjya"].sort
-    b.expresiones[3].should == ["v[a-zñáéíóú]y[a-zñáéíóú]", "[a-zñáéíóú]h[a-zñáéíóú]a"]
+    b.expresiones[3].should == ["v[a-zñ]y[a-zñ]", "[a-zñ]h[a-zñ]a"]
   end
 
   it 'debe poder cambiar oo por u, u' do
@@ -132,6 +132,11 @@ describe Busqueda do
       "s#{Constants::LETRAS_REG}l#{Constants::LETRAS_REG}i#{Constants::LETRAS_REG}t#{Constants::LETRAS_REG}s", 
       "#{Constants::LETRAS_REG}a#{Constants::LETRAS_REG}v#{Constants::LETRAS_REG}e#{Constants::LETRAS_REG}i#{Constants::LETRAS_REG}"]
 
+  end
+
+  it 'debe buscar con ñ' do
+    b = Busqueda.buscar('canaño')
+    b.expresiones[4].should == ['can', 'ana', 'nañ', 'año']
   end
 
 end

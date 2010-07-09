@@ -9,7 +9,30 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100701204224) do
+ActiveRecord::Schema.define(:version => 20100709165249) do
+
+  create_table "agentes", :force => true do |t|
+    t.string   "nombre"
+    t.string   "email"
+    t.string   "direccion"
+    t.string   "telefono"
+    t.string   "movil"
+    t.string   "type"
+    t.boolean  "valido"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "agentes", ["nombre"], :name => "index_agentes_on_nombre"
+
+  create_table "agentes_marcas", :id => false, :force => true do |t|
+    t.integer "agente_id"
+    t.integer "marca_id"
+  end
+
+  add_index "agentes_marcas", ["agente_id", "marca_id"], :name => "index_agentes_marcas_on_agente_id_and_marca_id", :unique => true
+  add_index "agentes_marcas", ["agente_id"], :name => "index_agentes_marcas_on_agente_id"
+  add_index "agentes_marcas", ["marca_id"], :name => "index_agentes_marcas_on_marca_id"
 
   create_table "clases", :force => true do |t|
     t.string   "nombre"
@@ -65,19 +88,21 @@ ActiveRecord::Schema.define(:version => 20100701204224) do
   add_index "marcas", ["type"], :name => "index_marcas_on_type"
   add_index "marcas", ["usuario_id"], :name => "index_marcas_on_usuario_id"
 
-  create_table "representantes", :force => true do |t|
-    t.string   "nombre"
-    t.string   "email"
-    t.string   "direccion"
-    t.string   "telefono"
-    t.string   "movil"
-    t.string   "type"
-    t.boolean  "valido"
+  create_table "marcas_titulares", :id => false, :force => true do |t|
+    t.integer "marca_id"
+    t.integer "titular_id"
+  end
+
+  add_index "marcas_titulares", ["marca_id", "titular_id"], :name => "index_marcas_titulares_on_marca_id_and_titular_id", :unique => true
+  add_index "marcas_titulares", ["marca_id"], :name => "index_marcas_titulares_on_marca_id"
+  add_index "marcas_titulares", ["titular_id"], :name => "index_marcas_titulares_on_titular_id"
+
+  create_table "paises", :force => true do |t|
+    t.string   "nombre",     :limit => 30
+    t.string   "codigo",     :limit => 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "representantes", ["nombre"], :name => "index_representantes_on_nombre"
 
   create_table "tipo_marcas", :force => true do |t|
     t.string   "nombre",      :limit => 100
@@ -93,6 +118,20 @@ ActiveRecord::Schema.define(:version => 20100701204224) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "titulares", :force => true do |t|
+    t.string   "nombre"
+    t.string   "email"
+    t.string   "direccion"
+    t.string   "telefono"
+    t.string   "movil"
+    t.string   "type"
+    t.boolean  "valido"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "titulares", ["nombre"], :name => "index_titulares_on_nombre"
 
   create_table "usuarios", :force => true do |t|
     t.string   "nombre"

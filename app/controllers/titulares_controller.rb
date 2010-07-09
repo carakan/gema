@@ -69,5 +69,12 @@ class TitularesController < ApplicationController
   end
 
 
+
+  def buscar
+    busq = params[:tag]
+    @titulares = Titular.all(:conditions => ["nombre LIKE ?", "%#{busq}%"])
+    render :text => @titulares.map{ |t| {:caption => t.nombre, :value => t.id} }.to_json 
+  end
+  
   
 end

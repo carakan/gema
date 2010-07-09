@@ -72,12 +72,12 @@ class SolicitudMarca < Marca
   # Crea una instancia de SolicitudMarca con los datos de excel
   def self.set_klass(fila, fecha_imp)
     # Buscar agente y titular
-    agente = Agente.find_or_create_by_nombre(:nombre => @excel.cell(fila, 'C').to_s.strip, :validar => false )
-    titular = Titular.find_or_create_by_nombre(:nombre => @excel.cell(fila, 'D').to_s.strip, :validar => false )
+    #agente = Agente.find_or_create_by_nombre(:nombre => @excel.cell(fila, 'C').to_s.strip, :validar => false )
+    #titular = Titular.find_or_create_by_nombre(:nombre => @excel.cell(fila, 'D').to_s.strip, :validar => false )
 
     klass = new( :activo => true, :valido => true, :fila => fila, :propia => false,
-                     :fecha_importacion => fecha_imp, :estado => 'sm',
-                   :agente_id => agente.id, :titular_id => titular.id )
+                     :fecha_importacion => fecha_imp, :estado => 'sm'
+                    )
 
     EXCEL_COLS.each{ |k, v| klass.send("#{k}=", @excel.cell(fila, v) ) }
     c = Clase.find_by_codigo(@excel.cell(fila, 'G'))
@@ -88,6 +88,7 @@ class SolicitudMarca < Marca
 
     klass
   end
+
 
   # @oaram SolicitudMarca
   def self.preparar_numero_solicitud(klass)

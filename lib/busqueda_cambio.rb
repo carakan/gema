@@ -39,15 +39,15 @@ module BusquedaCambio
 
     # Realiza cambios en equivalencias
     # e = i || o = u
-    def buscar_equivalencias
-      if !!( busqueda =~ /[eiou]/ )
-        busqueda.chars.each_with_index do |v, ind|
-          if !!( v =~ /[eiou]/ )
-            @expresiones[2] << reemplazar_letra(v, ind)
-          end
-        end
-      end
-    end
+    #def buscar_equivalencias
+    #  if !!( busqueda =~ /[eiou]/ )
+    #    busqueda.chars.each_with_index do |v, ind|
+    #      if !!( v =~ /[eiou]/ )
+    #        @expresiones[2] << reemplazar_letra(v, ind)
+    #      end
+    #    end
+    #  end
+    #end
 
 
     # Realiza los cambios por silaba

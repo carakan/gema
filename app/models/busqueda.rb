@@ -9,27 +9,30 @@ class Busqueda
 
   def initialize(busq)
     @busqueda = busq.downcase.cambiar_acentos
+    @letras = self.class.dividir_palabra(@busqueda)
     @expresiones = { 1 => [], 2 => [], 3 => [], 4 => [] }
     @expresiones[1] << busqueda
   end
 
   # @param String busq
   def self.buscar(busqueda)
+    letras = dividir_palabra(busqueda)
 
     case 
-    when busqueda.size <= 3
+    when letras.size <= 3
       include TresLetras
-    when busqueda.size == 4
-      include CuatroLetras
-    when busqueda.size == 5
-      include CincoLetras
-    when busqueda.size >= 6
+    when letras.size > 3
       include BuscarPorGrupo
     end
 
     new(busqueda)
   end
 
+  def self.dividir_palabra(busq)
+    letras = []
+    busq.scan(/.{1}/){ |v| letras << v }
+    letras
+  end
 
   def expresiones_pares_impares
     par = ''
@@ -71,5 +74,82 @@ class Busqueda
     @expresiones.each{ |k, val| @expresiones.delete(k) if val.blank? }
   end
 
+
+  # Transforma las fechas de busqueda de String a Date
+  # en caso de que esten correctas devuelve las dos fechas
+  # caso contrario retorna un array de false
+  def self.transformar_fechas(params)
+    begin
+      fecha_ini = params[:fecha_ini].to_date
+      fecha_fin = params[:fecha_fin].to_date
+      if fecha_ini <= fecha_fin
+        [fecha_ini, fecha_fin]
+      else
+        [false, false]
+      end
+    rescue
+      [false, false]
+    end
+  end
+
+  # Funcion que se invoca desde el controlador para realizar busquedas
+  def self.realizar_busqueda(params)
+    b = buscar(params[:busqueda])
+
+    Marca.find_by_sql(crear_sql(b.expresiones, params))
+  end
+
+  # Adiciona las condiciones sql necesarias
+  def self.condiciones_sql(params)
+    clases = params[:clases].split(",").map(&:to_i)
+    sql = "WHERE clase_id in (#{clases.join(', ')})"
+
+    params[:fecha_ini], params[:fecha_fin] = transformar_fechas(params)
+    if params[:fecha_ini]
+      sql << " AND fecha >= '#{params[:fecha_ini]}' AND fecha <= '#{params[:fecha_fin]}'"
+    end
+
+    sql
+  end
+
+  def self.crear_sql(expresiones, params)
+    sql = []
+    expresiones.each do |pos, exp|
+      case pos
+        when 1
+          sql << sql_exacto(exp.first, pos)
+        when 2
+          sql << sql_variaciones(exp, pos)
+        when 3
+          sql << sql_expreg(exp, pos)
+        when 4
+          sql << sql_variaciones(exp, pos)
+      end
+    end
+    [ 
+      "SELECT nombre, pos, clase_id FROM (#{sql.join(" UNION ")}) AS res",
+      condiciones_sql(params),
+      "GROUP BY nombre ORDER BY pos"
+    ].join(" ")
+  end
+
+  def self.sql_exacto(bus, pos)
+    ActiveRecord::Base.send(:sanitize_sql_array, 
+    [ "SELECT nombre, clase_id, #{pos} AS pos FROM marcas WHERE nombre_minusculas = '%s'", bus ] )
+  end
+
+  def self.sql_variaciones(arr, pos)
+    sql = "SELECT nombre, clase_id, #{pos} AS pos FROM marcas WHERE "
+    sql << arr.map{ |v| 
+      ActiveRecord::Base.send(:sanitize_sql_array, ["nombre_minusculas LIKE '%s'", "%#{v}%"] ) 
+    }.join(" OR ")
+  end
+
+  def self.sql_expreg(arr, pos)
+    sql = "SELECT nombre, clase_id, #{pos} AS pos FROM marcas WHERE "
+    sql << arr.map{ 
+      |v| ActiveRecord::Base.send(:sanitize_sql_array, [ "nombre_minusculas REGEXP '%s'", v ] )
+    }.join(" OR ")
+  end
 
 end
