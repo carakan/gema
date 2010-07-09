@@ -1,20 +1,6 @@
-<h1>Editing pais</h1>
+<h1>Editar pais</h1>
 
-<% form_for(@pais) do |f| %>
-  <%= f.error_messages %>
+<%= render :partial => "form" %>
 
-  <p>
-    <%= f.label :nombre %><br />
-    <%= f.text_field :nombre %>
-  </p>
-  <p>
-    <%= f.label :codigo %><br />
-    <%= f.text_field :codigo %>
-  </p>
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
-<% end %>
-
-<%= link_to 'Show', @pais %> |
-<%= link_to 'Back', paises_path %>
+<%= link_to 'Ver', @pais %> |
+<%= link_to 'Lista', paises_path, :class =>'list' %>

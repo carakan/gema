@@ -1,22 +1,26 @@
-<h1>Listing paises</h1>
+<h1>Lista de paises</h1>
 
-<table>
+<%= link_to 'Nuevo pais', new_pais_path, :class => 'new'%>
+
+<%= will_paginate @paises  %>
+
+<table class ="decorated">
   <tr>
     <th>Nombre</th>
     <th>Codigo</th>
+    <th></th>
   </tr>
 
 <% @paises.each do |pais| %>
   <tr>
     <td><%=h pais.nombre %></td>
     <td><%=h pais.codigo %></td>
-    <td><%= link_to 'Show', pais %></td>
-    <td><%= link_to 'Edit', edit_pais_path(pais) %></td>
-    <td><%= link_to 'Destroy', pais, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= links(pais) %></td>
+  </tr>
   </tr>
 <% end %>
 </table>
 
-<br />
+<%= will_paginate @paises  %>
 
-<%= link_to 'New pais', new_pais_path %>
+

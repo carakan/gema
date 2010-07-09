@@ -2,8 +2,7 @@ class PaisesController < ApplicationController
   # GET /paises
   # GET /paises.xml
   def index
-    @paises = Pais.all
-
+    @paises = Pais.paginate(:page => @page)
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @paises }
