@@ -37,6 +37,37 @@ namespace :importar do
     end
   end
 
+  desc 'Importa los paises desde internet y los guarda en un archivo yaml'
+  task :paises => :environment do
+    require 'open-uri'
+    n = Nokogiri::HTML(open('http://www.iso.org/iso/english_country_names_and_code_elements'))
+    arr =[]
+    n.css('table tr').each_with_index do |tr, ind|
+      if ind > 0
+        td = tr.css('td')
+        if td.children.last.text.strip =~ /^[a-z].*/i
+          arr << { :nombre => td.children.first.text.strip, 
+            :codigo => td.children.last.text.strip }
+        end
+      end
+    end
+
+    f = File.new(File.join(Rails.root, 'db/paises.yml'), 'w+' )
+    puts arr.to_yaml
+    f.write(arr.to_yaml)
+    f.close
+  end
+
+end
+
+namespace :db do
+  desc 'Crea todo con datos iniciales'
+  task :inicial => :environment do
+    Rake::Task["db:drop"].execute
+    Rake::Task["db:create"].execute
+    Rake::Task["db:migrate"].execute
+    Rake::Task["db:seed"].execute
+  end
 end
 
 namespace :datos do
@@ -54,9 +85,9 @@ namespace :datos do
   task :marcas => :environment do
     require 'fastercsv'
     UsuarioSession.current_user = Usuario.first
-    f = FasterCSV.read('', :headers => true)
+    f = FasterCSV.read(Rails.root.to_s + '/doc/archivos/BD_ORPAN.csv', :headers => true)
     f.each do |r|
-      m = Marca.new(:nombre => r.field('nombre'), :clase_id => r.field('clase_id') )
+      m = Marca.new(:nombre => r['nombre'], :clase_id => r['clase_id'] )
       m.save(false)
     end
   end

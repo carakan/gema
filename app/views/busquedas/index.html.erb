@@ -2,19 +2,21 @@
 
 <%= render :partial => "buscar" %>
 
-<%= @exp %>
-
 <% unless @busqueda.blank? %>
-  <table>
+  <h2>Resultados para la busqueda "<%= params[:busqueda] %>"</h2>
+  <table class="decorated">
   	<tr>
-  		<th></th>
-  		<th></th>
-  		<th></th>
-  		<th></th>
+      <th></th>
+  		<th>Nombre</th>
+  		<th>Clase</th>
   	</tr>
     <% @busqueda.each do |b| %>
       <tr>
-      	<td><%= b.nombre %></td>
+        <td>
+        	<input name="marcas[]" type="checkbox" id="<%= b.nombre %>" value="<%= b.nombre %>" />
+        </td>
+      	<td><label for="<%= b.nombre %>"><%= b.nombre %></label></td>
+      	<td><%= b.clase_id %></td>
       </tr>
     <% end %>
 

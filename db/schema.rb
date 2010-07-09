@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100707210310) do
+ActiveRecord::Schema.define(:version => 20100709165249) do
 
   create_table "agentes", :force => true do |t|
     t.string   "nombre"
@@ -96,6 +96,13 @@ ActiveRecord::Schema.define(:version => 20100707210310) do
   add_index "marcas_titulares", ["marca_id", "titular_id"], :name => "index_marcas_titulares_on_marca_id_and_titular_id", :unique => true
   add_index "marcas_titulares", ["marca_id"], :name => "index_marcas_titulares_on_marca_id"
   add_index "marcas_titulares", ["titular_id"], :name => "index_marcas_titulares_on_titular_id"
+
+  create_table "paises", :force => true do |t|
+    t.string   "nombre",     :limit => 30
+    t.string   "codigo",     :limit => 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "tipo_marcas", :force => true do |t|
     t.string   "nombre",      :limit => 100

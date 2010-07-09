@@ -2,8 +2,7 @@ class BusquedasController < ApplicationController
   def index
     @busqueda = []
     if params[:busqueda]
-      @exp = Busqueda.realizar_busqueda(params)
-      @busqueda = []
+      @busqueda = Busqueda.realizar_busqueda(params)
     end
 
     @busq = BusquedaVacia.new

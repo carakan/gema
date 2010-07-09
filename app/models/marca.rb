@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Marca < ActiveRecord::Base
 
   #before_save :set_propia
