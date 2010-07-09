@@ -1,7 +1,6 @@
 # encoding: utf-8
 class SolicitudMarca < Marca
   
-
   # Columnas en archivo excel
   EXCEL_COLS = {
     :estado_fecha => 'A', # No es necesario dado que se ingresa la fecha
@@ -39,6 +38,7 @@ class SolicitudMarca < Marca
     
   end
 
+
   # Verifica de que el archivo sea valido
   def self.importacion_validar_archivo(archivo)
     raise "Debe seleccionar un archivo" if archivo.nil?
@@ -71,9 +71,6 @@ class SolicitudMarca < Marca
 
   # Crea una instancia de SolicitudMarca con los datos de excel
   def self.set_klass(fila, fecha_imp)
-    # Buscar agente y titular
-    #agente = Agente.find_or_create_by_nombre(:nombre => @excel.cell(fila, 'C').to_s.strip, :validar => false )
-    #titular = Titular.find_or_create_by_nombre(:nombre => @excel.cell(fila, 'D').to_s.strip, :validar => false )
 
     klass = new( :activo => true, :valido => true, :fila => fila, :propia => false,
                      :fecha_importacion => fecha_imp, :estado => 'sm'

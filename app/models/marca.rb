@@ -4,6 +4,8 @@ class Marca < ActiveRecord::Base
   #before_save :set_propia
   before_save :set_minusculas
   before_save :adicionar_usuario
+  #before_save :set_agentes_titulares
+
   before_update :crear_historico
   before_save :actualizar_validez
 
@@ -25,7 +27,6 @@ class Marca < ActiveRecord::Base
   validates_format_of :numero_solicitud, :with => /^\d+-\d{4}$/
   validates_uniqueness_of :numero_solicitud, :scope => :parent_id
 
-
   serialize :cambios
 
   default_scope :conditions => "marcas.parent_id = 0"
@@ -46,6 +47,8 @@ class Marca < ActiveRecord::Base
     'rc' => 'Renovaciones Concedidas'
   }
 
+  # Modulo base para la importacion desde excel
+  include ModMarca::Excel
 
   # Extra para poder importar
   attr_accessor :tipo, :archivo, :fecha_gen
@@ -68,6 +71,19 @@ class Marca < ActiveRecord::Base
       h[v] = (self.errors[v].is_a?(Array) ) ? self.errors[v].join(', ') : self.errors[v]
       h 
     }
+  end
+
+  def self.importar(params)
+    set_include(params[:tipo])
+  end
+
+  def self.set_include(tipo)
+    case tipo
+      when 'sm'
+        include ModMarca::Solicitud
+      when 'lp'
+        include ModMarca::ListaPublicacion
+    end
   end
 
   def self.ver_estado(est)
@@ -269,5 +285,11 @@ private
     end
   end
 
+  # Copia datos denormalizados para poder tener en el historico
+  # los datos de agentes relacionados y titulares relacionados
+  def set_agentes_titulares
+    self.agente_ids_serial = self.agente_ids
+    self.titular_ids_serial = self.titular_ids
+  end
 
 end
