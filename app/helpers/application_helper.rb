@@ -45,9 +45,13 @@ module ApplicationHelper
   end
 
   # Indica si hay cambio en el campo
-  def cambio(klass, attr)
+  def cambio(klass, attr, presentar = nil)
     if klass.cambios.include?(attr.to_s)
-      "<span class='cambio'>#{klass.send(attr)}</span>"
+      if presentar.nil?
+        "<span class='cambio'>#{klass.send(attr)}</span>"
+      else
+        "<span class='cambio'>#{presentar}</span>"
+      end
     else
       klass.send(attr)
     end

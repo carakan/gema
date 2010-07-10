@@ -25,32 +25,36 @@
 
 
   </div>
-  <div class="half fl">
-    <%= label_tag :clase, 'Clase' %><br />
-
-    <%= label_tag :tipo_marca, 'Tipo de marca' %>
-
-    <%= label_tag :agente, 'Agente' %>
-    
-    <%= label_tag :titular, 'Titular' %>
-
-  </div>
 
 <div style="clear:both"></div>
-
+    <label for="">Nombre</label>
     <%= cambio @marca ,:nombre %>
+
+    <label for="">Clase</label>
     <%= cambio @marca ,:clase %>
     
+    <label for="">Numero Solicitud</label>
     <%= cambio @marca ,:numero_solicitud %>
+
+    <label for="">Tipo signo</label>
     <%= cambio @marca ,:tipo_signo %>
+
     <label for="">Propia</label>
     <%= cambio @marca ,:propia %><br/>
-    <%= cambio @marca ,:agente %>
-    <%= cambio @marca ,:titular %>
     
-    <%= cambio @marca ,:tipo_marca %>
+    <label for="">Agentes</label>
+    <%= cambio @marca, :agente_ids_serial, @marca.agentes.map(&:nombre).join(", ") %>
 
+    <label for="">Titulares</label>
+    <%= cambio @marca, :titular_ids_serial, @marca.titulares.map(&:nombre).join(", ") %>
+    
+    <label for="">Tipo Marca</label>
+    <%= cambio @marca, :tipo_marca_id, @marca.tipo_marca %>
+
+    <label for="">Estado</label>
     <%= cambio @marca ,:estado %>
+
+    <label for="">Fecha</label>
     <%= cambio @marca ,:estado_fecha %>
 
     <%= cambio @marca ,:numero_publicacion %>
