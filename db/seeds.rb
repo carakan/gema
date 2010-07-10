@@ -22,7 +22,6 @@ TipoSigno.create!(:nombre => 'Envase', :sigla => 'Env.' )
 clases = YAML.load_file(File.join(Rails.root, 'db/clases.yml'))
 clases.each{ |attr| Clase.create!(attr) }
 
-
 TipoMarca.create!(:nombre => 'Denominación', :sigla => 'DN.')
 TipoMarca.create!(:nombre => 'Lema Comercial', :sigla => 'LC.')
 TipoMarca.create!(:nombre => 'Marca de Fábrica', :sigla => 'MF.')

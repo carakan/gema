@@ -30,78 +30,24 @@
         <color>13421772</color>
       </controlProperties>
     </control>
-    <control controlID="34" controlTypeID="com.balsamiq.mockups::Label" x="253" y="110" w="-1" h="-1" measuredW="57" measuredH="26" zOrder="5" locked="false" isInGroup="-1">
-      <controlProperties>
-        <color>15658734</color>
-        <href>cliente_menu%26bm%3Bcliente_menu.bmml%26bm%3Bcliente_menu.bmml%26bm%3Bcliente_menu.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22111%2C110%2C168%2C136%22%20href%3D%22cliente_menu.bmml%22%20alt%3D%22cliente_menu%22%20id%3D%2234%22/%3E</map>
-        <size>14</size>
-        <text>Clientes</text>
-      </controlProperties>
-    </control>
-    <control controlID="35" controlTypeID="com.balsamiq.mockups::Label" x="322" y="110" w="-1" h="-1" measuredW="54" measuredH="26" zOrder="6" locked="false" isInGroup="-1">
-      <controlProperties>
-        <color>15658734</color>
-        <href>marcas_menu%26bm%3Bmarcas_menu.bmml%26bm%3Bmarcas_menu.bmml%26bm%3Bmarcas_menu.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22180%2C110%2C234%2C136%22%20href%3D%22marcas_menu.bmml%22%20alt%3D%22marcas_menu%22%20id%3D%2235%22/%3E</map>
-        <size>14</size>
-        <text>Marcas</text>
-      </controlProperties>
-    </control>
-    <control controlID="36" controlTypeID="com.balsamiq.mockups::Label" x="391" y="110" w="-1" h="-1" measuredW="102" measuredH="26" zOrder="7" locked="false" isInGroup="-1">
-      <controlProperties>
-        <color>15658734</color>
-        <href>importaciones_menu%26bm%3Bimportaciones_menu.bmml%26bm%3Bimportaciones_menu.bmml%26bm%3Bimportaciones_menu.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22249%2C110%2C351%2C136%22%20href%3D%22importaciones_menu.bmml%22%20alt%3D%22importaciones_menu%22%20id%3D%2236%22/%3E</map>
-        <size>14</size>
-        <text>Importaciones</text>
-      </controlProperties>
-    </control>
-    <control controlID="37" controlTypeID="com.balsamiq.mockups::Label" x="508" y="110" w="-1" h="-1" measuredW="73" measuredH="26" zOrder="8" locked="false" isInGroup="-1">
-      <controlProperties>
-        <color>15658734</color>
-        <href>busquedas_menu%26bm%3Bbusquedas_menu.bmml%26bm%3Bbusquedas_menu.bmml%26bm%3Bbusquedas_menu.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22366%2C110%2C439%2C136%22%20href%3D%22busquedas_menu.bmml%22%20alt%3D%22busquedas_menu%22%20id%3D%2237%22/%3E</map>
-        <size>14</size>
-        <text>Busquedas</text>
-      </controlProperties>
-    </control>
-    <control controlID="38" controlTypeID="com.balsamiq.mockups::Label" x="746" y="110" w="-1" h="-1" measuredW="65" measuredH="26" zOrder="9" locked="false" isInGroup="-1">
-      <controlProperties>
-        <color>15658734</color>
-        <href>reportes_menu%26bm%3Breportes_menu.bmml%26bm%3Breportes_menu.bmml%26bm%3Breportes_menu.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22604%2C110%2C669%2C136%22%20href%3D%22reportes_menu.bmml%22%20alt%3D%22reportes_menu%22%20id%3D%2238%22/%3E</map>
-        <size>14</size>
-        <text>Reportes</text>
-      </controlProperties>
-    </control>
-    <control controlID="39" controlTypeID="com.balsamiq.mockups::Label" x="601" y="110" w="-1" h="-1" measuredW="115" measuredH="26" zOrder="10" locked="false" isInGroup="-1">
-      <controlProperties>
-        <color>15658734</color>
-        <href>datos_generales_menu%26bm%3Bdatos_generales_menu.bmml%26bm%3Bdatos_generales_menu.bmml%26bm%3Bdatos_generales_menu.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22459%2C110%2C574%2C136%22%20href%3D%22datos_generales_menu.bmml%22%20alt%3D%22datos_generales_menu%22%20id%3D%2239%22/%3E</map>
-        <size>14</size>
-        <text>Datos%20Generales</text>
-      </controlProperties>
-    </control>
-    <control controlID="46" controlTypeID="com.balsamiq.mockups::Title" x="277" y="158" w="-1" h="-1" measuredW="539" measuredH="51" zOrder="11" locked="false" isInGroup="-1">
+    <control controlID="46" controlTypeID="com.balsamiq.mockups::Title" x="277" y="158" w="-1" h="-1" measuredW="539" measuredH="51" zOrder="5" locked="false" isInGroup="-1">
       <controlProperties>
         <size>32</size>
         <text>Importar%20nueva%20solicitud%20de%20marca</text>
       </controlProperties>
     </control>
-    <control controlID="47" controlTypeID="com.balsamiq.mockups::Label" x="287" y="224" w="156" h="25" measuredW="50" measuredH="25" zOrder="12" locked="false" isInGroup="-1">
+    <control controlID="47" controlTypeID="com.balsamiq.mockups::Label" x="287" y="224" w="156" h="25" measuredW="50" measuredH="25" zOrder="6" locked="false" isInGroup="-1">
       <controlProperties>
         <align>left</align>
         <text>Archivo</text>
       </controlProperties>
     </control>
-    <control controlID="48" controlTypeID="com.balsamiq.mockups::TextInput" x="287" y="249" w="424" h="-1" measuredW="194" measuredH="29" zOrder="13" locked="false" isInGroup="-1">
+    <control controlID="48" controlTypeID="com.balsamiq.mockups::TextInput" x="287" y="249" w="424" h="-1" measuredW="194" measuredH="29" zOrder="7" locked="false" isInGroup="-1">
       <controlProperties>
         <text>c%3A/Lista_solicitud_01062010</text>
       </controlProperties>
     </control>
-    <control controlID="49" controlTypeID="com.balsamiq.mockups::PointyButton" x="287" y="305" w="-1" h="-1" measuredW="76" measuredH="28" zOrder="14" locked="false" isInGroup="-1">
+    <control controlID="49" controlTypeID="com.balsamiq.mockups::PointyButton" x="287" y="305" w="-1" h="-1" measuredW="76" measuredH="28" zOrder="8" locked="false" isInGroup="-1">
       <controlProperties>
         <color>4555150</color>
         <direction>center</direction>
@@ -110,11 +56,65 @@
         <text>Importar</text>
       </controlProperties>
     </control>
-    <control controlID="50" controlTypeID="com.balsamiq.mockups::PointyButton" x="716" y="249" w="-1" h="-1" measuredW="63" measuredH="28" zOrder="15" locked="false" isInGroup="-1">
+    <control controlID="50" controlTypeID="com.balsamiq.mockups::PointyButton" x="716" y="249" w="-1" h="-1" measuredW="63" measuredH="28" zOrder="9" locked="false" isInGroup="-1">
       <controlProperties>
         <color>4555150</color>
         <direction>center</direction>
         <text>Buscar</text>
+      </controlProperties>
+    </control>
+    <control controlID="51" controlTypeID="com.balsamiq.mockups::Label" x="253" y="110" w="-1" h="-1" measuredW="57" measuredH="26" zOrder="10" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>15658734</color>
+        <href>cliente_menu%26bm%3Bcliente_menu.bmml%26bm%3Bcliente_menu.bmml%26bm%3Bcliente_menu.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22111%2C110%2C168%2C136%22%20href%3D%22cliente_menu.bmml%22%20alt%3D%22cliente_menu%22%20id%3D%2234%22/%3E</map>
+        <size>14</size>
+        <text>Clientes</text>
+      </controlProperties>
+    </control>
+    <control controlID="52" controlTypeID="com.balsamiq.mockups::Label" x="322" y="110" w="-1" h="-1" measuredW="54" measuredH="26" zOrder="11" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>15658734</color>
+        <href>marcas_menu%26bm%3Bmarcas_menu.bmml%26bm%3Bmarcas_menu.bmml%26bm%3Bmarcas_menu.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22180%2C110%2C234%2C136%22%20href%3D%22marcas_menu.bmml%22%20alt%3D%22marcas_menu%22%20id%3D%2235%22/%3E</map>
+        <size>14</size>
+        <text>Marcas</text>
+      </controlProperties>
+    </control>
+    <control controlID="53" controlTypeID="com.balsamiq.mockups::Label" x="391" y="110" w="-1" h="-1" measuredW="102" measuredH="26" zOrder="12" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>15658734</color>
+        <href>importaciones_listado%26bm%3Bimportaciones_listado.bmml%26bm%3Bimportaciones_listado.bmml%26bm%3Bimportaciones_listado.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22249%2C110%2C351%2C136%22%20href%3D%22importaciones_listado.bmml%22%20alt%3D%22importaciones_listado%22%20id%3D%2236%22/%3E</map>
+        <size>14</size>
+        <text>Importaciones</text>
+      </controlProperties>
+    </control>
+    <control controlID="54" controlTypeID="com.balsamiq.mockups::Label" x="508" y="110" w="-1" h="-1" measuredW="73" measuredH="26" zOrder="13" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>15658734</color>
+        <href>busquedas_menu%26bm%3Bbusquedas_menu.bmml%26bm%3Bbusquedas_menu.bmml%26bm%3Bbusquedas_menu.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22366%2C110%2C439%2C136%22%20href%3D%22busquedas_menu.bmml%22%20alt%3D%22busquedas_menu%22%20id%3D%2237%22/%3E</map>
+        <size>14</size>
+        <text>Busquedas</text>
+      </controlProperties>
+    </control>
+    <control controlID="55" controlTypeID="com.balsamiq.mockups::Label" x="746" y="110" w="-1" h="-1" measuredW="65" measuredH="26" zOrder="14" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>15658734</color>
+        <href>reportes_menu%26bm%3Breportes_menu.bmml%26bm%3Breportes_menu.bmml%26bm%3Breportes_menu.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22604%2C110%2C669%2C136%22%20href%3D%22reportes_menu.bmml%22%20alt%3D%22reportes_menu%22%20id%3D%2238%22/%3E</map>
+        <size>14</size>
+        <text>Reportes</text>
+      </controlProperties>
+    </control>
+    <control controlID="56" controlTypeID="com.balsamiq.mockups::Label" x="601" y="110" w="-1" h="-1" measuredW="115" measuredH="26" zOrder="15" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>15658734</color>
+        <href>datos_generales_menu%26bm%3Bdatos_generales_menu.bmml%26bm%3Bdatos_generales_menu.bmml%26bm%3Bdatos_generales_menu.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22459%2C110%2C574%2C136%22%20href%3D%22datos_generales_menu.bmml%22%20alt%3D%22datos_generales_menu%22%20id%3D%2239%22/%3E</map>
+        <size>14</size>
+        <text>Datos%20Generales</text>
       </controlProperties>
     </control>
   </controls>
