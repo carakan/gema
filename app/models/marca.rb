@@ -4,7 +4,7 @@ class Marca < ActiveRecord::Base
   #before_save :set_propia
   before_save :set_minusculas
   before_save :adicionar_usuario
-  #before_save :set_agentes_titulares
+  before_save :set_agentes_titulares
 
   before_update :crear_historico
   before_save :actualizar_validez
@@ -19,15 +19,15 @@ class Marca < ActiveRecord::Base
   has_and_belongs_to_many :agentes
   has_and_belongs_to_many :titulares, :class_name => 'Titular'
 
-  
-  # validaciones
-  validates_presence_of :nombre, :estado_fecha, 
-    :estado, :tipo_signo_id, :clase_id
+  # Las validaciones se guardan en los modulos 
 
-  validates_format_of :numero_solicitud, :with => /^\d+-\d{4}$/
-  validates_uniqueness_of :numero_solicitud, :scope => :parent_id
-
+  # Serializaciones, Denormalizacion de datos
   serialize :cambios
+  serialize :agente_ids_serial
+  serialize :titular_ids_serial
+
+
+  validates_presence_of :estado
 
   default_scope :conditions => "marcas.parent_id = 0"
 
@@ -161,67 +161,17 @@ class Marca < ActiveRecord::Base
   # @param Hash parmas
   # @param Marca o modelo heredado Indica si se debe unir con los atributos de la clase
   # @return Marca.new o clase heredada
-  def self.crear_instancia(params, klass = nil)
-    params = extraer_params(params)
-    estado = params[:estado]
-    params = klass.attributes.merge(params) unless klass.nil?
-    
-    case estado
-      when 'sm' then SolicitudMarca.new(params)
-      when 'lp' then ListaPublicacion.new(params)
-        # when'lr' then ListaRegistro.new(params)
-        # when'sr' then SolicitudRenovación.new(params)
-        # when 'rc' then RenovacionesConcedidas.new(params)
-      else
-        new(params)
-    end
+  def self.crear_instancia(params)
+    set_include(params[:estado])
+    Marca.new(params)
   end
 
-  # extrae los parametros correctos de acuerdo al estado
-  def self.extraer_params(params)
-    agentes, titulares = [ params[:agente_ids].uniq, params[:titular_ids].uniq ]
-
-    case
-      when !!params[:marca]
-        params = params[:marca]
-      when !!params[:solicitud_marca]
-        params = params[:solicitud_marca]
-      when !!params[:lista_publicacion]
-        params = params[:lista_publicacion]
-      when !!params[:lista_registro]
-        params = params[:lista_registro]
-      when !!params[:solicitud_renovacion]
-        params = params[:solicitud_renovacion]
-      when !!params[:renovacion_concedida]
-        params = params[:renovacion_concedida]
-    end
-
-    params.merge(:agente_ids => agentes, :titular_ids => titulares)
-
-  end
 
   # Metodo para poder realizar actualizaciones
   # que pueda cambiar la clse y el estado
   def update_marca(params)
-    klass = self.class.crear_instancia(params, self)
-    # Se asigna los atributos para no perder datos de los params
-    self.attributes = klass.attributes
-    self.agente_ids = klass.agente_ids
-    self.titular_ids = klass.titular_ids
-    # se asigna datos faltantes para klass
-    klass.estado_fecha = Date.today
-    klass.numero_solicitud = '0000-0000'
-    # Se cambia el estado y la clase de Marca
-    self.estado = klass.estado
-    self.type = klass.type
-    # Cambiar fecha si es que se cambio el estado
-    # self.estado_fecha = Date.today unless self.changes['estado'].nil?
-    if klass.valid?
-      return self.save
-    else
-      adicionar_errores(klass)
-      return false
-    end
+    self.class.set_include(params[:estado])
+    self.update_attributes(params)
   end
 
 

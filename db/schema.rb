@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100709165249) do
+ActiveRecord::Schema.define(:version => 20100710155259) do
 
   create_table "agentes", :force => true do |t|
     t.string   "nombre"
@@ -74,6 +74,8 @@ ActiveRecord::Schema.define(:version => 20100709165249) do
     t.boolean  "anterior",                         :default => false
     t.boolean  "propia",                           :default => false
     t.string   "nombre_minusculas"
+    t.string   "agente_ids_serial"
+    t.string   "titular_ids_serial"
   end
 
   add_index "marcas", ["agente_id"], :name => "index_marcas_on_agente_id"

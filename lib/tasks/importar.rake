@@ -79,6 +79,10 @@ namespace :datos do
     Agente.create!(:nombre => 'Amaru Barroso')
     Agente.create!(:nombre => 'Lucas Estrella')
     Agente.create!(:nombre => 'Violeta Barroso')
+
+    Titular.create!(:nombre => 'Eddy Sanches')
+    Titular.create!(:nombre => 'Alejandra Helguero')
+    Titular.create!(:nombre => 'Marco Arcienaga')
   end
 
   desc 'Importa solo los nombres de la base de datos de Orpan'

@@ -1,4 +1,4 @@
-module ModMarca::Solicitud
+module ModMarca::ListaPublicacion
   def self.included(base)
     base.send(:include, InstanceMethods)
     base.send(:extend, ClassMethods)
@@ -17,6 +17,8 @@ module ModMarca::Solicitud
         :tipo_signo_id, :clase_id
       validates_format_of :numero_solicitud, :with => /^\d+-\d{4}$/
       validates_uniqueness_of :numero_solicitud, :scope => :parent_id
+
+      validates_presence_of :numero_publicacion, :numero_gaceta
     end
 
     def excel_cols
@@ -77,7 +79,7 @@ module ModMarca::Solicitud
         :fila => fila, 
         :propia => false,
         :fecha_importacion => fecha_imp,
-        :estado => 'sm'
+        :estado => 'lp'
       }
       params.merge!(extraer_datos(fila, excel_cols) )
       params[:numero_solicitud] = preparar_numero_solicitud(params[:numero_solicitud])
@@ -89,3 +91,4 @@ module ModMarca::Solicitud
 
   end
 end
+

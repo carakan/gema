@@ -1,6 +1,6 @@
 <%= stylesheet_link_tag 'facebook' %>
 
-<% semantic_form_for(@marca, :url => @marca.url, :html => {:class => 'in_half'}) do |f| -%>
+<% semantic_form_for(@marca,:html => {:class => 'in_half'}) do |f| -%>
     <%= f.input :nombre %>
     <%= f.input :clase %>
     

@@ -22,7 +22,7 @@ protected
 
   # Indica si el usuario ha ingresado al sistema
   def user_signed_in?
-    return false if session[:usuario].nil?
+    return false if session[:usuario].nil? and session[:usuario][:id].nil?
     not session[:usuario][:id].nil?
   end
   
