@@ -16,7 +16,7 @@ class SolicitudesController < ApplicationController
     @marca = ImportacionVacia.new( params[:importacion_vacia] )
 
     if @marca.valid? == true
-      fecha_importacion = @marca.importar(params[:importacion_vacia])
+      fecha_importacion = Marca.importar(params[:importacion_vacia])
       redirect_to(importado_solicitud_url( fecha_importacion ) )
     else
       render :action => 'new'

@@ -73,8 +73,12 @@ class Marca < ActiveRecord::Base
     }
   end
 
+  # Metodo que permite realizar las importaciones
+  #   @param Hash params Parametros que se recibe de el formulario
   def self.importar(params)
     set_include(params[:tipo])
+
+    importar_archivo(params[:archivo])
   end
 
   def self.set_include(tipo)
@@ -236,6 +240,31 @@ class Marca < ActiveRecord::Base
     end
   end
 
+protected
+  #########################################################
+  # Metodos que ayudan para la extraccion de datos de Excel
+
+  # Prepara el numero de solicitud para extraerlo
+  #   @param String num
+  #   @return String
+  def self.preparar_numero_solicitud(num)
+    num.gsub(/\s/, '').gsub(/–/, '-') unless num.nil?
+  end
+
+  #   @param String
+  def self.buscar_tipo_signo_id(tipo_signo_id)
+    t = TipoSigno.find_by_nombre_or_sigla(tipo_signo_id, tipo_signo_id )
+    t.id unless t.nil?
+  end
+
+  # Realiza la busqueda de una clase por su codigo
+  #   @param
+  def self.buscar_clase_id(clase_id)
+    c = Clase.find_by_codigo(clase_id)
+    c.id unless c.nil?
+  end
+
+
 private
 
   def adicionar_usuario
@@ -243,7 +272,7 @@ private
   end
 
   def set_minusculas
-    self.nombre_minusculas = cambiar_acentos(self.nombre.downcase)
+    self.nombre_minusculas = cambiar_acentos(self.nombre.downcase) unless self.nombre.nil?
   end
 
   def cambiar_acentos(palabra)

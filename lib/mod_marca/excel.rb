@@ -14,24 +14,24 @@ module ModMarca
       end
 
       # Prepara el archivo excel para las importaciones
-      def self.crear_excel(archivo, tmp_dir)
+      def crear_excel(archivo, tmp_dir)
         verificar_validez_archivo(archivo)
 
         @excel_path = File.join( Rails.root, tmp_dir, File.basename( archivo.path ) + '.xls' )
         FileUtils.mv( archivo.path, @excel_path )
-        @excel = Excel.new(@excel_path)
+        @excel = ::Excel.new(@excel_path)
       end
 
       # Verifica de que el archivo sea valido
-      def self.verificar_validez_archivo(archivo)
+      def verificar_validez_archivo(archivo)
         raise "Debe seleccionar un archivo" if archivo.nil?
         raise "Solo se permite archivos excel" unless File.extname(archivo.original_filename.downcase) == ".xls"
       end
 
       # Extrae los datos de un archivo excel Roo
       # con la fila y un conf = Hash ({:clase_id => 'C', :nombre => 'D'})
-      def self.extraer_datos(fila, conf)
-        conf.inject({}) { |h, v| h[v.first] = @excel.cell(fila, v.last); v }
+      def extraer_datos(fila, conf)
+        conf.keys.inject({}) { |h, v| h[v] = @excel.cell(fila, conf[v]); h }
       end
 
     end
