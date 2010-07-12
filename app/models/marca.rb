@@ -190,6 +190,19 @@ class Marca < ActiveRecord::Base
     end
   end
 
+  # Retorna los agentes desde el campo serializado
+  #   @return Array
+  def agentes_serial
+    Agente.find(self.agente_ids_serial).map(&:nombre)
+  end
+
+
+  # Retorna los titulares desde el campo serializado
+  #   @return Array
+  def titulares_serial
+    Agente.find(self.titular_ids_serial).map(&:nombre)
+  end
+
 protected
   #########################################################
   # Metodos que ayudan para la extraccion de datos de Excel
