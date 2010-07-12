@@ -2,9 +2,9 @@ class Representante < ActiveRecord::Base
   before_validation :set_validar
   #before_save :strip_data
 
-  validates_presence_of :nombre, :if => :validar
-  validates_presence_of :email, :if => :validar
-  validates_format_of :email, :with => Constants::EMAIL_REG, :if => :validar
+  validates_presence_of :nombre
+  validates_format_of :email, :with => Constants::EMAIL_REG, 
+    :unless => lambda{ |r| r.email.blank? }
 
   attr_accessor :validar
 

@@ -1,4 +1,5 @@
 class MarcasController < ApplicationController
+  before_filter :authenticate_user!
   before_filter :add_params_agentes_titulares
 
   def index

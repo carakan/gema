@@ -1,6 +1,18 @@
 <h1>Listado de Marcas</h1>
 
-<%= link_to "Nueva Marca", new_marca_path, :class => 'new' %>
+<ul class="menu">
+  <li>
+  <a href="javascript:" class="new">Nuevo signo&nbsp;<span class="more"></span></a>
+  <ul>
+    <% Marca.lista_tiposignos.each do |nombre, tiposigno| %>
+      <li><%= link_to nombre, new_marca_path (:tiposigno => tiposigno) %></li>
+    <% end %>
+    </ul>
+  </li>
+</ul>
+<br />
+<br />
+<br />
 
 <%= will_paginate @marcas %>
 

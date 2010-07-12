@@ -10,10 +10,17 @@
     </select>
   </div>
 
+
   <div class="half fl">
-    <label for="">Fechas</label>
-    <input id="fecha_ini" name="fecha_ini" type="text" class="date" value="<%= params[:fecha_ini] %>" />
-    <input id="fecha_fin" name="fecha_fin" type="text" class="date" value="<%= params[:fecha_fin] %>" />
+    <label for="">Tipo de busqueda</label>
+    <label for=""><input id="tipo_busqueda_prev" name="tipo_busqueda" type="radio" value="prev" /> Preventiva</label>
+    <label for=""><input id="tipo_busqueda_prep" name="tipo_busqueda" type="radio" value="prep" /> Prepublicación</label>
+
+    <div id="fechas" style="display:none">
+        <label for="">Fechas</label>
+        <input id="fecha_ini" name="fecha_ini" type="text" class="date" value="<%= params[:fecha_ini] %>" />
+        <input id="fecha_fin" name="fecha_fin" type="text" class="date" value="<%= params[:fecha_fin] %>" />
+    </div>
   </div>
 
   <div style="clear:both"></div>
@@ -21,3 +28,14 @@
   <input type="submit" value="Buscar" />
 </form>
 
+<script type="text/javascript">
+  $(document).ready(function() {
+      $('input[name=tipo_busqueda]').click(function() {
+        if( $(this).val() == 'prep' ) {
+          $('#fechas').show();
+        }else{
+          $('#fechas').hide();
+        }
+      });
+  });
+</script>

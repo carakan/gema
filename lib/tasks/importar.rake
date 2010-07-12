@@ -92,7 +92,7 @@ namespace :datos do
     f = FasterCSV.read(Rails.root.to_s + '/doc/archivos/BD_ORPAN.csv', :headers => true)
     f.each do |r|
       m = Marca.new(:nombre => r['nombre'], :clase_id => r['clase_id'] )
-      m.save(false)
+      m.save(false) unless m.nombre.blank?
     end
   end
 end

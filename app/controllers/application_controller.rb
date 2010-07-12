@@ -17,12 +17,12 @@ class ApplicationController < ActionController::Base
 protected
   # Pregunta si el usuario esta logueado
   def authenticate_user!
-    redirect_to new_login_url if session[:usuario][:id].nil?
+    redirect_to new_login_url if session[:usuario].nil? or session[:usuario][:id].nil?
   end
 
   # Indica si el usuario ha ingresado al sistema
   def user_signed_in?
-    return false if session[:usuario].nil? and session[:id].nil?
+    return false if session[:usuario].nil? or session[:usuario][:id].nil?
     not session[:usuario][:id].nil?
   end
   

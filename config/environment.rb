@@ -47,4 +47,4 @@ Rails::Initializer.run do |config|
 end
 
 # Cargar todas las librerias de lib
-Dir.glob(RAILS_ROOT + "/lib/boot/*.rb").each{ |lib| require lib }
+Dir.glob(Rails.root.to_s + "/lib/boot/*.rb").each{ |lib| require lib }
