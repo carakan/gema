@@ -4,9 +4,10 @@ class Marca < ActiveRecord::Base
   #before_save :set_propia
   before_save :set_minusculas
   before_save :adicionar_usuario
-  before_save :set_agentes_titulares
+  before_save :set_agentes_titulares, :if => lambda{ |m| m.parent_id == 0 }
 
   before_update :crear_historico
+  before_update :set_cambios
   before_save :actualizar_validez
 
   belongs_to :clase
@@ -77,8 +78,7 @@ class Marca < ActiveRecord::Base
   #   @param Hash params Parametros que se recibe de el formulario
   def self.importar(params)
     set_include(params[:tipo])
-
-    importar_archivo(params[:archivo])
+    importar_archivo(params)
   end
 
   def self.set_include(tipo)
@@ -149,7 +149,7 @@ class Marca < ActiveRecord::Base
   end
 
   def self.historial(id)
-    Marca.send(:with_exclusive_scope) { Marca.all(:conditions => ["marcas.parent_id = ?", id]) }
+    Marca.send(:with_exclusive_scope) { Marca.all(:conditions => ["marcas.parent_id = ?", id], :order => "updated_at DESC") }
   end
 
   # Retorna todas las modificaciones realizadas a la marca
@@ -222,27 +222,9 @@ private
   end
 
   def set_minusculas
-    self.nombre_minusculas = cambiar_acentos(self.nombre.downcase) unless self.nombre.nil?
+    self.nombre_minusculas = self.nombre_minusculas.downcase.cambiar_acentos unless self.nombre.nil?
   end
 
-  def cambiar_acentos(palabra)
-    palabra = palabra.gsub(/[áéíóúäëöü]/) do |str|
-      case 
-        when ["á", "ä"].include?(str)
-          str = 'a'
-        when ["é", "ë"].include?(str) 
-          str = 'e'
-        when "í" 
-         str = 'i' 
-        when ["ó", "ö"].include?(str)
-          str = 'o'
-        when ["ú", "ü"].include?(str)
-          str = "u"
-      end
-    end
-
-    palabra
-  end
 
   def crear_historico
     params = self.class.column_names.inject({}){ |hash, col| hash[col] = self.send(col); hash }.merge(:parent_id => self.id)
@@ -250,6 +232,9 @@ private
     m = self.class.new(params)
     self.changes.each{ |k, vals| m.send("#{k}=", vals.first) }
     m.save(false)
+  end
+
+  def set_cambios
     self.cambios =  self.changes.keys.select{ |v| not [:valido, :fila, :type, :nombre_minusculas].include?(v) }
   end
 

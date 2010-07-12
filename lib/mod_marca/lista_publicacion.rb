@@ -1,4 +1,5 @@
 module ModMarca::ListaPublicacion
+
   def self.included(base)
     base.send(:include, InstanceMethods)
     base.send(:extend, ClassMethods)
@@ -32,7 +33,8 @@ module ModMarca::ListaPublicacion
     end
 
     # Realiza la importación de datos desde archivo Excel
-    def importar_archivo(archivo)
+    def importar_archivo()
+      archivo, nro_gaceta = [ params[:archivo], params[:ganceta] ]
       fecha_imp = DateTime.now.strftime("%Y-%m-%d %H:%I:%S")
       importar_excel(archivo)
       fila = 3 # Fila inicial que comienza el excel
