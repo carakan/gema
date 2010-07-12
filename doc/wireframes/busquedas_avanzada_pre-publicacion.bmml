@@ -46,6 +46,7 @@
         <color>1265500</color>
         <direction>center</direction>
         <href>busquedas_pre-publicacion_resultado%26bm%3Bbusquedas_pre-publicacion_resultado.bmml%26bm%3Bbusquedas_pre-publicacion_resultado.bmml%26bm%3Bbusquedas_pre-publicacion_resultado.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22238%2C590%2C301%2C618%22%20href%3D%22busquedas_pre-publicacion_resultado.bmml%22%20alt%3D%22busquedas_pre-publicacion_resultado%22%20id%3D%22113%22/%3E</map>
         <text>Buscar</text>
       </controlProperties>
     </control>
@@ -94,7 +95,7 @@
     </control>
     <control controlID="122" controlTypeID="com.balsamiq.mockups::FieldSet" x="317" y="413" w="229" h="93" measuredW="200" measuredH="170" zOrder="16" locked="false" isInGroup="-1">
       <controlProperties>
-        <text>Rango%20de%20fechas</text>
+        <text>Rango%20de%20vigilancia</text>
       </controlProperties>
     </control>
     <control controlID="123" controlTypeID="com.balsamiq.mockups::Label" x="329" y="436" w="108" h="22" measuredW="39" measuredH="25" zOrder="17" locked="false" isInGroup="-1">
@@ -127,7 +128,7 @@
         <text>Agente</text>
       </controlProperties>
     </control>
-    <control controlID="129" controlTypeID="com.balsamiq.mockups::ComboBox" x="605" y="332" w="-1" h="-1" measuredW="129" measuredH="25" zOrder="23" locked="false" isInGroup="-1">
+    <control controlID="129" controlTypeID="com.balsamiq.mockups::ComboBox" x="605" y="332" w="-1" h="-1" measuredW="130" measuredH="25" zOrder="23" locked="false" isInGroup="-1">
       <controlProperties>
         <text>GRANIER%20S.A.</text>
       </controlProperties>
@@ -137,7 +138,7 @@
         <text>Titular</text>
       </controlProperties>
     </control>
-    <control controlID="131" controlTypeID="com.balsamiq.mockups::ComboBox" x="605" y="398" w="-1" h="-1" measuredW="129" measuredH="25" zOrder="25" locked="false" isInGroup="-1">
+    <control controlID="131" controlTypeID="com.balsamiq.mockups::ComboBox" x="605" y="398" w="-1" h="-1" measuredW="130" measuredH="25" zOrder="25" locked="false" isInGroup="-1">
       <controlProperties>
         <text>GRANIER%20S.A.</text>
       </controlProperties>
@@ -146,7 +147,7 @@
       <controlProperties>
         <color>15658734</color>
         <href>cliente_menu%26bm%3Bcliente_menu.bmml%26bm%3Bcliente_menu.bmml%26bm%3Bcliente_menu.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22111%2C110%2C168%2C136%22%20href%3D%22cliente_menu.bmml%22%20alt%3D%22cliente_menu%22%20id%3D%2234%22/%3E</map>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22204%2C110%2C261%2C136%22%20href%3D%22cliente_menu.bmml%22%20alt%3D%22cliente_menu%22%20id%3D%22132%22/%3E</map>
         <size>14</size>
         <text>Clientes</text>
       </controlProperties>
@@ -155,7 +156,7 @@
       <controlProperties>
         <color>15658734</color>
         <href>marcas_menu%26bm%3Bmarcas_menu.bmml%26bm%3Bmarcas_menu.bmml%26bm%3Bmarcas_menu.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22180%2C110%2C234%2C136%22%20href%3D%22marcas_menu.bmml%22%20alt%3D%22marcas_menu%22%20id%3D%2235%22/%3E</map>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22273%2C110%2C327%2C136%22%20href%3D%22marcas_menu.bmml%22%20alt%3D%22marcas_menu%22%20id%3D%22133%22/%3E</map>
         <size>14</size>
         <text>Marcas</text>
       </controlProperties>
@@ -164,7 +165,7 @@
       <controlProperties>
         <color>15658734</color>
         <href>importaciones_listado%26bm%3Bimportaciones_listado.bmml%26bm%3Bimportaciones_listado.bmml%26bm%3Bimportaciones_listado.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22249%2C110%2C351%2C136%22%20href%3D%22importaciones_listado.bmml%22%20alt%3D%22importaciones_listado%22%20id%3D%2236%22/%3E</map>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22342%2C110%2C444%2C136%22%20href%3D%22importaciones_listado.bmml%22%20alt%3D%22importaciones_listado%22%20id%3D%22134%22/%3E</map>
         <size>14</size>
         <text>Importaciones</text>
       </controlProperties>
@@ -173,7 +174,7 @@
       <controlProperties>
         <color>15658734</color>
         <href>busquedas_menu%26bm%3Bbusquedas_menu.bmml%26bm%3Bbusquedas_menu.bmml%26bm%3Bbusquedas_menu.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22366%2C110%2C439%2C136%22%20href%3D%22busquedas_menu.bmml%22%20alt%3D%22busquedas_menu%22%20id%3D%2237%22/%3E</map>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22459%2C110%2C532%2C136%22%20href%3D%22busquedas_menu.bmml%22%20alt%3D%22busquedas_menu%22%20id%3D%22135%22/%3E</map>
         <size>14</size>
         <text>Busquedas</text>
       </controlProperties>
@@ -182,7 +183,7 @@
       <controlProperties>
         <color>15658734</color>
         <href>reportes_menu%26bm%3Breportes_menu.bmml%26bm%3Breportes_menu.bmml%26bm%3Breportes_menu.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22604%2C110%2C669%2C136%22%20href%3D%22reportes_menu.bmml%22%20alt%3D%22reportes_menu%22%20id%3D%2238%22/%3E</map>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22697%2C110%2C762%2C136%22%20href%3D%22reportes_menu.bmml%22%20alt%3D%22reportes_menu%22%20id%3D%22136%22/%3E</map>
         <size>14</size>
         <text>Reportes</text>
       </controlProperties>
@@ -191,7 +192,7 @@
       <controlProperties>
         <color>15658734</color>
         <href>datos_generales_menu%26bm%3Bdatos_generales_menu.bmml%26bm%3Bdatos_generales_menu.bmml%26bm%3Bdatos_generales_menu.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22459%2C110%2C574%2C136%22%20href%3D%22datos_generales_menu.bmml%22%20alt%3D%22datos_generales_menu%22%20id%3D%2239%22/%3E</map>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22552%2C110%2C667%2C136%22%20href%3D%22datos_generales_menu.bmml%22%20alt%3D%22datos_generales_menu%22%20id%3D%22137%22/%3E</map>
         <size>14</size>
         <text>Datos%20Generales</text>
       </controlProperties>
