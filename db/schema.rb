@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100712164736) do
+ActiveRecord::Schema.define(:version => 20100712214642) do
 
   create_table "clases", :force => true do |t|
     t.string   "nombre"
@@ -79,6 +79,16 @@ ActiveRecord::Schema.define(:version => 20100712164736) do
   create_table "paises", :force => true do |t|
     t.string   "nombre",     :limit => 30
     t.string   "codigo",     :limit => 4
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "posts", :force => true do |t|
+    t.integer  "marca_id"
+    t.integer  "usuario_id"
+    t.string   "titulo"
+    t.string   "comentario", :limit => 2058
+    t.string   "accesso"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

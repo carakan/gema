@@ -1,3 +1,7 @@
+<style type="text/css">
+  #left{ width: 70%; float: left;}
+  #right{ width: 30%; float: left; }
+</style>
 <h1>Marca</h1>
 
 <blockquote>
@@ -5,28 +9,8 @@
   <span class="cambio"></span> son los cambios realizados
 </blockquote>
 
-  <div class="half fl">  
-    <div class="input">
-        <%= label_tag :nombre %><br />
-        <%= cambio @marca, :nombre %>
-    </div>
-    
-    <div class="input">
-        <%= label_tag :estado_fecha, 'Fecha de solicitud' %><br />
-        <%= cambio @marca, :estado_fecha %>
-    </div>
 
-    <div class="input">
-        <%= label_tag :numero_solicitud, 'Número de solicitud' %><br />
-        <%= cambio @marca, :numero_solicitud %>
-    </div>
-
-
-
-
-  </div>
-
-<div style="clear:both"></div>
+<div id="left">
     <label for="">Nombre</label>
     <%= cambio @marca ,:nombre %>
 
@@ -64,6 +48,10 @@
 
     <%= cambio @marca ,:lema %>
     <%= cambio @marca ,:productos %>
+  </div>
+  <div id="right">
+    <%= render :partial => "posts/new" %>
+  </div>
 
 <h2>Historial</h2>
 

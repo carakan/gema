@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :posts
+
   map.resources :paises
 
   map.resources :tipo_marcas

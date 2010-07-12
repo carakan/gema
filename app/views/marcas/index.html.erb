@@ -1,8 +1,40 @@
 <h1>Listado de Marcas</h1>
 
-<%= link_to "Nueva Marca", new_marca_path, :class => 'new' %>
+<ul class="menu">
+	<li>
+  <a href="javascript:" class="new">Nuevo signo&nbsp;<span class="more"></span></a>
+    <ul>
+    	<li>
+      <%= link_to "Denominativo", new_marca_path(:tipo => 'den') %>
+    	</li>
+    	<li>
+        <%= link_to "Figurativo", new_marca_path(:tipo => 'fig') %>
+    	</li>
+    	<li>
+        <%= link_to "Mixto", new_marca_path(:tipo => 'mix') %>
+    	</li>
+    	<li>
+        <%= link_to "Tridimensional", new_marca_path(:tipo => 'tri') %>
+    	</li>
+    	<li>
+        <%= link_to "Nombre comercial denominativo", new_marca_path(:tipo => 'ncd') %>
+    	</li>
+    	<li>
+        <%= link_to "Nombre comercial mixto", new_marca_path(:tipo => 'ncm') %>
+    	</li>
+    	<li>
+        <%= link_to "Lema comercial", new_marca_path(:tipo => 'lco') %>
+    	</li>
+    </ul>
+	</li>
+</ul>
 
-<%= will_paginate @marcas %>
+<br />
+<br />
+<br />
+
+
+<%= @will = will_paginate @marcas %>
 
 <table class="decorated">
 	<tr>
@@ -28,4 +60,4 @@
   <% end %>
 </table>
 
-<%= will_paginate @marcas %>
+<%= @will %>
