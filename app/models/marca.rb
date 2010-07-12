@@ -17,8 +17,13 @@ class Marca < ActiveRecord::Base
   #belongs_to :agente
   #belongs_to :titular
 
-  has_and_belongs_to_many :agentes
-  has_and_belongs_to_many :titulares, :class_name => 'Titular'
+  has_and_belongs_to_many :agentes, :class_name => 'Agente',
+    :association_foreign_key => :representante_id,
+    :join_table => 'marcas_representantes'
+  has_and_belongs_to_many :titulares, :class_name => 'Titular',
+    :association_foreign_key => :representante_id,
+    :join_table => 'marcas_representantes'
+
 
   # Las validaciones se guardan en los modulos 
 
@@ -235,7 +240,7 @@ private
   end
 
   def set_minusculas
-    self.nombre_minusculas = self.nombre_minusculas.downcase.cambiar_acentos unless self.nombre.nil?
+    self.nombre_minusculas = self.nombre.downcase.cambiar_acentos unless self.nombre.nil?
   end
 
 

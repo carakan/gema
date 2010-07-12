@@ -1,6 +1,6 @@
-class CreateAgentes < ActiveRecord::Migration
+class CreateRepresentantes < ActiveRecord::Migration
   def self.up
-    create_table :agentes do |t|
+    create_table :representantes do |t|
       t.string :nombre
       t.string :email
       t.string :direccion
@@ -12,10 +12,10 @@ class CreateAgentes < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :agentes, :nombre
+    add_index :representantes, :nombre
   end
 
   def self.down
-    drop_table :agentes
+    drop_table :representantes
   end
 end
