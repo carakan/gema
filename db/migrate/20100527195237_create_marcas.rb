@@ -28,6 +28,7 @@ class CreateMarcas < ActiveRecord::Migration
       t.boolean :activo
       t.boolean :valido # Para indicar si la importación fue válida
       t.string :cambios, :default => [] # Indica que campos han sido modificados
+      t.boolean :importado, :default => false
 
       t.timestamps
     end
@@ -43,6 +44,7 @@ class CreateMarcas < ActiveRecord::Migration
 
     add_index :marcas, :fecha_importacion
     add_index :marcas, :type
+    add_index :marcas, :importado
 
   end
 

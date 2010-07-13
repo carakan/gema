@@ -81,7 +81,8 @@ module ModMarca::ListaPublicacion
         :fila => fila, 
         :propia => false,
         :fecha_importacion => fecha_imp,
-        :estado => 'lp'
+        :estado => 'lp',
+        :importado => true
       }
       params.merge!(extraer_datos(fila, excel_cols) )
       params[:numero_solicitud] = preparar_numero_solicitud(params[:numero_solicitud])
