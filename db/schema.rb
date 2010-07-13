@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(:version => 20100712214642) do
     t.boolean  "activo"
     t.boolean  "valido"
     t.string   "cambios",                          :default => "--- []\n\n"
+    t.boolean  "importado",                        :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "anterior",                         :default => false
@@ -58,6 +59,7 @@ ActiveRecord::Schema.define(:version => 20100712214642) do
   add_index "marcas", ["agente_id"], :name => "index_marcas_on_agente_id"
   add_index "marcas", ["clase_id"], :name => "index_marcas_on_clase_id"
   add_index "marcas", ["fecha_importacion"], :name => "index_marcas_on_fecha_importacion"
+  add_index "marcas", ["importado"], :name => "index_marcas_on_importado"
   add_index "marcas", ["nombre_minusculas"], :name => "index_marcas_on_nombre_minusculas"
   add_index "marcas", ["parent_id"], :name => "index_marcas_on_parent_id"
   add_index "marcas", ["propia"], :name => "index_marcas_on_propia"

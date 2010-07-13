@@ -90,9 +90,15 @@ namespace :datos do
     require 'fastercsv'
     UsuarioSession.current_user = Usuario.first
     f = FasterCSV.read(Rails.root.to_s + '/doc/archivos/BD_ORPAN.csv', :headers => true)
+    fila = 2
     f.each do |r|
       m = Marca.new(:nombre => r['nombre'], :clase_id => r['clase_id'] )
-      m.save(false) unless m.nombre.blank?
+      begin
+        m.save(false)
+      rescue
+        puts "Error en fila #{fila}"
+      end
+      fila += 1
     end
   end
 end
