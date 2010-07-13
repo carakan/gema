@@ -1,4 +1,4 @@
-<h2>Ultimos comentarios</h2>
+<h2 class="title">Ultimos comentarios</h2>
 <div class="comments">
   <% @marca.ultimos_posts.each do |p| %>
     <h3><%= p.titulo %></h3>
@@ -9,7 +9,6 @@
     </p>
     <hr />
   <% end %>
-  <%= link_to "Nuevo comentario", new_post_path(:marca_id => @marca.id), :class => 'ajax add' %>
   <%= link_to "Ver_mas", posts_path(:marca_id => @marca.id), :class => 'ajax list' %>
 </div>
 
