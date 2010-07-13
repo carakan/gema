@@ -369,6 +369,14 @@ a.new {
   border: 1px solid #cfcfcf;
 }
 a.new:hover { color: #5bbf3b; }
+a.list {
+  background: transparent url(../images/icons/table.png) no-repeat top left;
+  padding-left: 16px;
+}
+a.add {
+  background: transparent url(../images/icons/add.png) no-repeat top left;
+  padding-left: 16px;
+}
 a.show {
   background: url(../images/icons/zoom.png);
   background-position: middle left;
@@ -469,3 +477,9 @@ ul.menu li:hover ul {
 .hide-field text-area { display: none; }
 .hide-field select { display: none; }
 .cambio { color: #2167cb; }
+.adjunto {
+  width: 16px;
+  height: 16px;
+  background: transparent url(../images/icons/attach.png) no-repeat;
+  display: inline-block;
+}

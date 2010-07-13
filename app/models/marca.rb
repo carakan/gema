@@ -14,8 +14,8 @@ class Marca < ActiveRecord::Base
   belongs_to :tipo_signo
   belongs_to :tipo_marca
   belongs_to :usuario
-  #belongs_to :agente
-  #belongs_to :titular
+
+  has_many :posts, :order => 'created_at DESC'
 
   has_and_belongs_to_many :agentes, :class_name => 'Agente',
     :association_foreign_key => :representante_id,
@@ -206,6 +206,14 @@ class Marca < ActiveRecord::Base
   #   @return Array
   def titulares_serial
     Agente.find(self.titular_ids_serial).map(&:nombre)
+  end
+
+  # Presenta los ultimos 3 posts o el parametro que se pase en limit
+  #   @param Integer limit
+  #   @return array
+  def ultimos_posts(limit = 3)
+    Post.all(:conditions => { :marca_id => self.id }, 
+             :limit => limit, :order => 'created_at DESC' )
   end
 
 protected

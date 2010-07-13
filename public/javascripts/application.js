@@ -47,13 +47,11 @@ jQuery(function($) {
       'success': function(resp) {
       },
       'complete': function(resp) {
-        if(resp.status < 400) {
-          var p = $(el).parents('div.ajax-modal');
-          var id = $(p).attr('data-ajax_id');
-          $(p).dialog('destroy');
-          $(p).remove();
-          $('body').trigger('ajax:completed', [id]);
-        }
+        var p = $(el).parents('div.ajax-modal');
+        var id = $(p).attr('data-ajax_id');
+        $(p).dialog('destroy');
+        $(p).remove();
+        $('body').trigger('ajax:completed', [id]);
       },
       'error': function(resp) {
         alert('Existen errores en su formulario por favor corrija los errores');

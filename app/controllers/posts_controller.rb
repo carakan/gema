@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   # GET /posts.xml
   def index
 
-    @posts = Post.all
+    @posts = Post.paginate(:conditions => { :marca_id => params[:marca_id] }, :page => @page )
 
     respond_to do |format|
       format.html # index.html.erb
@@ -26,7 +26,7 @@ class PostsController < ApplicationController
   # GET /posts/new
   # GET /posts/new.xml
   def new
-    @post = Post.new
+    @post = Post.new(:marca_id => params[:marca_id])
 
     respond_to do |format|
       format.html # new.html.erb

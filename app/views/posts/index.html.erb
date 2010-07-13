@@ -1,28 +1,10 @@
-<h1>Listing posts</h1>
+<h1>Comentarios</h1>
 
-<table>
-  <tr>
-    <th>Marca</th>
-    <th>Usuario</th>
-    <th>Titulo</th>
-    <th>Comentario</th>
-    <th>Accesso</th>
-  </tr>
-
-<% @posts.each do |post| %>
-  <tr>
-    <td><%=h post.marca_id %></td>
-    <td><%=h post.usuario_id %></td>
-    <td><%=h post.titulo %></td>
-    <td><%=h post.comentario %></td>
-    <td><%=h post.accesso %></td>
-    <td><%= link_to 'Show', post %></td>
-    <td><%= link_to 'Edit', edit_post_path(post) %></td>
-    <td><%= link_to 'Destroy', post, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+<% @posts.each do |p| %>
+  <h2><%= p.titulo %></h2>
+  Por <strong><%= p.usuario %></strong> el 
+    <em><%= l p.created_at, :format => "%d, %B %Y %H:%M" %></em>
+  <p>
+    <%= p.comentario %>
+  </p>
 <% end %>
-</table>
-
-<br />
-
-<%= link_to 'New post', new_post_path %>
