@@ -102,7 +102,7 @@ jQuery(function($) {
         'type': 'delete',
         'context': el,
         'success': function() {
-          $(el).parents("tr:first").remove();
+          $(el).parents("tr:first, li:first").remove();
 
           $('body').trigger('ajax:delete', url);
         },
