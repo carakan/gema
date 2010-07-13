@@ -3,7 +3,8 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.xml
   def index
-    @posts = Post.paginate(:conditions => { :marca_id => params[:marca_id] }, :page => @page )
+    @posts = Post.paginate(:conditions => { :marca_id => params[:marca_id] }, 
+                           :page => @page, :order => 'updated_at DESC' )
 
     respond_to do |format|
       format.html # index.html.erb
