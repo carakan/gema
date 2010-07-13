@@ -83,6 +83,10 @@ namespace :datos do
     Titular.create!(:nombre => 'Eddy Sanches')
     Titular.create!(:nombre => 'Alejandra Helguero')
     Titular.create!(:nombre => 'Marco Arcienaga')
+
+    Usuario.create!(:nombre => 'Boris Barroso', :login => 'boris', :password => 'demo123', :password_confirmation => 'demo123')
+    Usuario.create!(:nombre => 'Alejandra Helguero', :login => 'ale', :password => 'demo123', :password_confirmation => 'demo123')
+
   end
 
   desc 'Importa solo los nombres de la base de datos de Orpan'
