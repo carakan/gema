@@ -49,6 +49,13 @@ class MarcasController < ApplicationController
     end
   end
 
+  def destroy
+    @marca = Marca.find(params[:id])
+    @marca.destroy
+
+    render :text => 'Ok'
+  end
+
   private
   # Adiciona parametros para agentes y titulares
   def add_params_agentes_titulares
