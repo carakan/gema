@@ -1,0 +1,7 @@
+<% semantic_form_for(@post, :url => create_post_marca_path) do |f| %>
+  <%= f.input :marca_id, :as => :hidden %>
+  <%= f.input :titulo, :label => 'Título' %>
+  <%= f.input :comentario, :as => :text, :label => 'Comentario' %>
+  <%= f.submit 'Salvar' %>
+<% end %>
+

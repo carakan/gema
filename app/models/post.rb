@@ -5,6 +5,8 @@ class Post < ActiveRecord::Base
   belongs_to :marca
   belongs_to :usuario
 
+  validates_presence_of :titulo, :comentario
+
 
 private
   def adicionar_usuario

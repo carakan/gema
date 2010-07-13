@@ -35,8 +35,19 @@ class MarcasController < ApplicationController
 
   def show
     @marca = Marca.find(params[:id])
+    @post = @marca.posts.build
   end
 
+  def create_post()
+    @post = Post.new(params[:post])
+
+    if @post.save
+      redirect_to marca_url(@post.marca_id)
+    else
+      @marca = Marca.find(@post.marca_id)
+      render :action => 'show'
+    end
+  end
 
   private
   # Adiciona parametros para agentes y titulares

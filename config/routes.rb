@@ -18,7 +18,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :clases
 
-  map.resources :marcas
+  map.resources :marcas, :member => { :create_post => :post }
 
   map.resources :solicitud_marcas
 

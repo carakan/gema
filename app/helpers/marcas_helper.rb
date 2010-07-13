@@ -5,7 +5,7 @@ module MarcasHelper
       %Q( <label>#{campo.humanize}</label> #{ klass.send(campo) } )
     else
       hash = label_campos[campo]
-      %Q( <label>#{hash[:label]} #{ klass.send(hash[:field]) } )
+      %Q( <label>#{hash[:label]}</label> #{ klass.send(hash[:field]) } )
     end
   end
 
