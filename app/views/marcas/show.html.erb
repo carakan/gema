@@ -15,58 +15,118 @@
 
 
 <div id="left">
-    <label for="">Nombre</label>
-    <%= cambio @marca ,:nombre %>
+  <p>
+    <label for="">Usuario</label>
+    <%= cambio @marca, :usuario_id %>
+  </p>
 
+  <p>
+    <label for="">Fecha de modificación</label>
+    <%= l @marca.updated_at, :format => "%d, %B %Y %H:%M" %>
+  </p>
+  <p>
+    <label for="">Denominación</label>
+    <%= cambio @marca ,:nombre %>
+  </p>
+
+  <p>
     <label for="">Clase</label>
     <%= cambio @marca ,:clase %>
-    
+  </p>
+  
+  <p>
     <label for="">Numero Solicitud</label>
     <%= cambio @marca ,:numero_solicitud %>
+  </p>
 
+  <p>
     <label for="">Tipo signo</label>
     <%= cambio @marca ,:tipo_signo_id %>
+  </p>
 
+  <p>
     <label for="">Propia</label>
     <%= cambio @marca ,:propia %><br/>
-    
+  </p>
+  
+  <p>
     <label for="">Agentes</label>
     <%= cambio @marca, :agente_ids_serial, @marca.agentes.map(&:nombre).join(", ") %>
+  </p>
 
+  <p>
     <label for="">Titulares</label>
     <%= cambio @marca, :titular_ids_serial, @marca.titulares.map(&:nombre).join(", ") %>
-    
+  </p>
+  
+  <p>
     <label for="">Tipo Marca</label>
     <%= cambio @marca, :tipo_marca_id, @marca.tipo_marca %>
+  </p>
 
+  <p>
     <label for="">Estado</label>
     <%= cambio @marca ,:estado %>
+  </p>
 
+  <p>
     <label for="">Fecha</label>
     <%= cambio @marca ,:estado_fecha %>
+  </p>
 
+  <p>
+    <label for="">Número de publicación</label>
     <%= cambio @marca ,:numero_publicacion %>
+  </p>
+
+  <p>
+    <label for="">Fecha de publicación</label>
     <%= cambio @marca ,:fecha_publicacion %>
+  </p>
 
+  <p>
+    <label for="">Número de gaceta</label>
     <%= cambio @marca ,:numero_gaceta %>
+  </p>
 
-    <%= cambio @marca ,:lema %>
-    <%= cambio @marca ,:productos %>
-  </div>
 
-  <div id="comments">
-    <%= render :partial => "posts" %>
-  </div>
+  <%= cambio @marca ,:lema %>
+  <%= cambio @marca ,:productos %>
+
+  <hr />
+  <h2>Historial</h2>
+
+
+  <% @cambios = @marca.cambios %>
+
+  <% @marca.historial.each do |marca| %>
+    <% @cambios.delete('usuario_id') %>
+    <p>
+      <label for="">Usuario</label>
+      <%= marca.usuario %>
+    </p>
+    <p>
+      <label for="">Fecha de modificación</label>
+      <%= l marca.updated_at, :format => "%d, %B %Y %H:%M" %>
+    </p>
+
+
+    <% @cambios.each do |campo| %>
+      <p>
+      <%= presentar_campo_historial( marca, campo ) %>
+      </p>
+    <% end %>
+    <hr />
+    <% @cambios = marca.cambios %>
+  <% end %>
+</div>
+
+
+<div id="comments">
+  <%= render :partial => "posts" %>
+</div>
 
 <div style="clear:both"></div>
 
-<h2>Historial</h2>
-
-
-
-<% @marca.historial.each do |marca| %>
-  <%= marca.nombre %><br/>
-  <%= marca.propia %>
-<% end %>
 
 <div style="clear:both"></div>

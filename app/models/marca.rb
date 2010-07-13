@@ -205,7 +205,7 @@ class Marca < ActiveRecord::Base
   # Retorna los titulares desde el campo serializado
   #   @return Array
   def titulares_serial
-    Agente.find(self.titular_ids_serial).map(&:nombre)
+    Titular.find(self.titular_ids_serial).map(&:nombre)
   end
 
   # Presenta los ultimos 3 posts o el parametro que se pase en limit

@@ -11,23 +11,23 @@ class CreateMarcas < ActiveRecord::Migration
       t.integer :clase_id
       t.string :numero_solicitud, :limit => 40
       t.string :nombre
-      t.string :numero_registro
-      t.string :numero_renovacion
-      t.string :productos
-      t.string :estado
+      t.string :numero_registro, :default => ''
+      t.string :numero_renovacion, :default => ''
+      t.string :productos, :default => ''
+      t.string :estado, :default => ''
       t.date :estado_fecha
       t.string :estado_serial
-      t.string :numero_publicacion
-      t.string :numero_gaceta
-      t.string  :lema
-      t.string  :imagen
+      t.string :numero_publicacion, :default => ''
+      t.string :numero_gaceta, :default => ''
+      t.string  :lema, :default => ''
+      t.string  :imagen, :default => ''
       t.date  :fecha_publicacion
-      t.string  :type
+      t.string  :type, :default => ''
       t.integer :fila # Fila en la cual se produjo el error al importar
       t.datetime :fecha_importacion
       t.boolean :activo
       t.boolean :valido # Para indicar si la importación fue válida
-      t.string :cambios # Indica que campos han sido modificados
+      t.string :cambios, :default => [] # Indica que campos han sido modificados
 
       t.timestamps
     end
