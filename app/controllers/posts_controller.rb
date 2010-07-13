@@ -3,7 +3,6 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.xml
   def index
-
     @posts = Post.paginate(:conditions => { :marca_id => params[:marca_id] }, :page => @page )
 
     respond_to do |format|
