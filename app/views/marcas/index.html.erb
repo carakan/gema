@@ -1,18 +1,6 @@
 <h1>Listado de Marcas</h1>
 
 <ul class="menu">
-  <li>
-  <a href="javascript:" class="new">Nuevo signo&nbsp;<span class="more"></span></a>
-  <ul>
-    <% Marca.lista_tiposignos.each do |nombre, tiposigno| %>
-      <li><%= link_to nombre, new_marca_path (:tiposigno => tiposigno) %></li>
-    <% end %>
-    </ul>
-  </li>
-</ul>
-<br />
-<br />
-<br />
 	<li>
   <a href="javascript:" class="new">Nuevo signo&nbsp;<span class="more"></span></a>
     <ul>
@@ -40,8 +28,6 @@
     </ul>
 	</li>
 </ul>
->>>>>>> b492b701ba0524ef6050c94b9ecaa3a08823828d
-
 <br />
 <br />
 <br />
