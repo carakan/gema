@@ -2,6 +2,7 @@ class Usuario < ActiveRecord::Base
   before_save :encriptar_password
 
   has_many :marcas
+  has_many :posts
 
   validates_presence_of :login, :password
   validates_format_of :login, :with => /^[a-z0-9_-]{4,16}$/i

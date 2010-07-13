@@ -6,6 +6,7 @@ class CreatePosts < ActiveRecord::Migration
       t.string :titulo, :limit => 255
       t.string :comentario, :limit => 2058
       t.string :accesso
+      t.boolean :adjuntos, :default => false # Indica si tiene adjuntos
 
       t.timestamps
     end

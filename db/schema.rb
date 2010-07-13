@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(:version => 20100712214642) do
     t.string   "titulo"
     t.string   "comentario", :limit => 2058
     t.string   "accesso"
+    t.boolean  "adjuntos",                   :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
