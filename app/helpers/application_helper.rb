@@ -44,23 +44,6 @@ module ApplicationHelper
     l fec, :format => format
   end
 
-  # Indica si hay cambio en el campo
-  def cambio(klass, attr, presentar = nil)
-    if !klass.cambios.nil? and klass.cambios.include?(attr.to_s)
-      attr = attr.to_s.gsub(/(.*)_id$/, '\1') if !!(attr.to_s =~ /.*_id$/)
-      if presentar.nil?
-        "<span class='cambio'>#{klass.send(attr)}</span>"
-      else
-        "<span class='cambio'>#{presentar}</span>"
-      end
-    else
-      if presentar.nil?
-        klass.send(attr)
-      else
-        presentar
-      end
-    end
-  end
 
   def listado_facebook(klass, caption, options = {})
   end
