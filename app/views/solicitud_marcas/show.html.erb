@@ -1,34 +1,34 @@
 <h1>Solicitud de Marca</h1>
 
-  <div class="half fl">  
-    <div class="input">
-        <%= label_tag :nombre %><br />
-        <%= @marca.nombre %>
-    </div>
+<div class="half fl">  
+  <div class="input">
+    <%= label_tag :nombre %>
+    <%= @marca.nombre %><br /><br />
     
-    <div class="input">
-        <%= label_tag :estado_fecha, 'Fecha de solicitud' %><br />
-        <%= @marca.estado_fecha %>
-    </div>
+    <%= label_tag :estado_fecha, 'Fecha de solicitud' %>
+    <%= @marca.estado_fecha %><br /><br />
+        
+    <%= label_tag :numero_solicitud, 'Número de solicitud' %>
+    <%= @marca.numero_solicitud %><br /><br />
 
-    <div class="input">
-        <%= label_tag :numero_solicitud, 'Número de solicitud' %><br />
-        <%= @marca.numero_solicitud %>
-    </div>
-
-
-
+    <%= label_tag :clase, 'Clase' %>
+    <%= @marca.clase %><br /><br />
+    
   </div>
-  <div class="half fl">
-    <%= label_tag :clase, 'Clase' %><br />
-
+</div>
+<div class="half fl">  
+  <div class="input">
     <%= label_tag :tipo_marca, 'Tipo de marca' %>
-
+    <%= @marca.tipo_signo %><br /><br />
+   
     <%= label_tag :agente, 'Agente' %>
-    
+    <%= @marca.agentes %><br /><br />
+   
     <%= label_tag :titular, 'Titular' %>
+    <%= @marca.titulares %><br /><br />
 
   </div>
+</div>
 
 <div style="clear:both"></div>
 

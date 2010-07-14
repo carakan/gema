@@ -21,13 +21,14 @@ class SolicitudMarcasController < ApplicationController
   end
 
   def edit
-    @marca = SolicitudMarca.find(params[:id])
+    #@marca = SolicitudMarca.find(params[:id])
+    @marca = Marca.find(params[:id])
     @marca.valid?
   end
 
   def update
     @marca = SolicitudMarca.find(params[:id])
-    respond_to do |format|
+     respond_to do |format|
       if @marca.update_attributes(params[:solicitud_marca])
         format.html { redirect_ajax(@marca, 'La marca fue exitosamente actualizada.') }
         format.xml  { head :ok }
@@ -40,7 +41,9 @@ class SolicitudMarcasController < ApplicationController
   end
 
   def show
-    @marca = SolicitudMarca.find(params[:id])
+ #   @marca = SolicitudMarca.find(params[:id])
+    @marca = Marca.find(params[:id])
+
   end
 
   def destroy

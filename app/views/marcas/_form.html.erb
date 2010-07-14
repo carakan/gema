@@ -1,27 +1,20 @@
 <%= stylesheet_link_tag 'facebook' %>
 
 <% semantic_form_for(@marca,:html => {:class => 'in_half'}) do |f| -%>
+    <%= f.input :tipo_signo %>
     <%= f.input :nombre %>
     <%= f.input :clase %>
-    
-    <%= f.input :numero_solicitud %>
-    <%= f.input :tipo_signo %>
-    
-    <%= f.input :propia, :label => 'Marca propia' %>
-
-
     <%= f.input :tipo_marca %>
-
+    <%= f.input :numero_solicitud %>
     <%= f.input :estado, :collection => Marca.lista_estados %>
+    <%= f.input :propia, :label => 'Marca propia' %>
     <%= f.input :estado_fecha, :as => :string, :input_html => {:class => 'date'} %>
 
     <%= f.input :numero_publicacion,:label => 'Número de publicación' %>
     <%= f.input :fecha_publicacion, :as => 'string', :input_html => { :class => 'date' } %>
 
     <%= f.input :numero_gaceta, :label => 'Número de gaceta' %>
-
-    <%= f.input :lema, :as => :text %>
-    <%= f.input :productos, :as => :text %>
+<%= f.input :productos, :as => :text %>
 <ol>  
   <li id="agente-auto" class="input-text"> 
     <label for="agente_ids">Agentes</label> 
@@ -39,7 +32,6 @@
   </li> 
 </ol>
 
-  
 <ol>  
   <li id="titular-auto" class="input-text"> 
     <label for="titular_ids">Titulares</label> 
@@ -57,10 +49,10 @@
   </li> 
 </ol>
 
+
   <div style="clear:both"></div>
   <%= f.submit "Salvar" %>
 <% end -%>
-
 <div style="clear:both"></div>
 <%= javascript_include_tag 'fcbkcomplete' %>
 <script type="text/javascript">

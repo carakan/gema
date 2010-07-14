@@ -114,7 +114,10 @@
     <% end %>
     <hr />
     <% @cambios = marca.cambios %>
+
   <% end %>
+<%= link_to 'Editar', edit_marca_path(@marca), :class =>'edit'%> |
+<%= link_to 'Lista', marcas_path, :class =>'list' %>
 </div>
 
 
@@ -130,3 +133,4 @@
 
 
 <div style="clear:both"></div>
+
