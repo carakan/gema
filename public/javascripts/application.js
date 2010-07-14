@@ -92,7 +92,7 @@ jQuery(function($) {
 
 
   $('a.delete').live("click", function(e) {
-    $(this).parents("tr:first").addClass('marked');
+    $(this).parents("tr:first, li:first").addClass('marked');
     if(confirm('Esta seguro de borrar el item seleccionado')) {
       var url = $(this).attr('href');
       var el = this;
@@ -112,7 +112,7 @@ jQuery(function($) {
       });
 
     }else{
-      $(this).parents("tr:first").removeClass('marked');
+      $(this).parents("tr:first, li:first").removeClass('marked');
       e.stopPropagation();
     }
 
