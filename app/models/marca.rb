@@ -226,7 +226,7 @@ class Marca < ActiveRecord::Base
   # Presenta los ultimos 3 posts o el parametro que se pase en limit
   #   @param Integer limit
   #   @return array
-  def ultimos_posts(limit = 3)
+  def ultimos_posts(limit = 2)
     Post.all(:conditions => { :marca_id => self.id }, 
              :limit => limit, :order => 'created_at DESC' )
   end
