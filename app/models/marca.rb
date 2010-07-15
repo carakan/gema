@@ -96,14 +96,28 @@ class Marca < ActiveRecord::Base
     importar_archivo(params)
   end
 
-  def self.set_include(tipo)
-    case tipo
+  # Realiza la inclusion de modulos de acuerdo al estado
+  def self.set_include_estado(estado)
+    case estado
       when 'sm'
         include ModMarca::Solicitud
       when 'lp'
         include ModMarca::ListaPublicacion
     end
   end
+
+  # Realiza la inclusion de modulos de acuerdo al tipo_signo
+  def self.set_include_tipo_signo(signo)
+    case signo
+      when 1
+        include ModMarca::Denominacion
+      when 2
+        include ModMarca::Etiqueta
+      when 3
+        include ModMarca::Figurativa
+    end
+  end
+
 
   def self.ver_estado(est)
     TIPOS[est]
@@ -182,15 +196,17 @@ class Marca < ActiveRecord::Base
   # @param Marca o modelo heredado Indica si se debe unir con los atributos de la clase
   # @return Marca.new o clase heredada
   def self.crear_instancia(params)
-    set_include(params[:estado])
-    Marca.new(params)
+    set_include_estado(params[:estado])
+    set_include_tipo_signo(params[:tipo_signo_id])
+    new(params)
   end
 
 
   # Metodo para poder realizar actualizaciones
   # que pueda cambiar la clse y el estado
   def update_marca(params)
-    self.class.set_include(params[:estado])
+    self.set_include_estado(params[:estado])
+    self.set_include_tipo_signo(params[:tipo_signo_id])
     self.update_attributes(params)
   end
 
