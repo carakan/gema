@@ -1,7 +1,36 @@
-<% semantic_form_for(@post, :url => create_post_marca_path) do |f| %>
+<% semantic_form_for(@post, :url => create_post_marca_path, :html => { :multipart => true } ) do |f| %>
   <%= f.input :marca_id, :as => :hidden %>
   <%= f.input :titulo, :label => 'Título' %>
   <%= f.input :comentario, :as => :text, :label => 'Comentario' %>
+  <% f.fields_for :adjuntos do |adj| %>
+    <li>
+      <%= adj.file_field :archivo, :size => 20 %> 
+      <a href="javascript:" class="delete-l">borrar</a>
+    </li>
+  <% end %>
+  <li>
+    <a href="javascript:" class="add" id="adjunto">Adjuntar archivo</a>
+  </li>
   <%= f.submit 'Salvar' %>
 <% end %>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $('#adjunto').click(function() {
+    var name = ['post', '[adjuntos_attributes]', '[' + new Date().getTime() + ']', '[archivo]'];
+    var html = [
+      '<li>',
+      '<input type="file" name="' + name.join('') + '" size="20" />',
+      '<a href="javascript:" class="delete-l">borrar</a>',
+      '</li>'
+    ];
+
+    $(this).before( html.join('') );
+  });
+
+  $('a.delete-l').live('click', function() {
+    $(this).parents('li:first').remove();
+  });
+});
+</script>
 

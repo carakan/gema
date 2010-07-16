@@ -14,11 +14,7 @@ class AdjuntosController < ApplicationController
   # GET /adjuntos/1.xml
   def show
     @adjunto = Adjunto.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @adjunto }
-    end
+    send_file(File.join( Rails.root, 'public', @adjunto.archivo.url ) )
   end
 
   # GET /adjuntos/new

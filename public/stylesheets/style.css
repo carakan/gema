@@ -389,7 +389,7 @@ a.edit {
   padding-left: 18px;
   background-repeat: no-repeat;
 }
-a.delete {
+a.delete, .delete-l {
   background: url(../images/icons/delete.png);
   background-position: middle left;
   padding-left: 18px;
@@ -482,4 +482,16 @@ ul.menu li:hover ul {
   height: 16px;
   background: transparent url(../images/icons/attach.png) no-repeat;
   display: inline-block;
+}
+.mime .png {
+  padding-left: 16px;
+  background: transparent url(../images/icons/picture.png) no-repeat top left;
+}
+.mime .jpg {
+  padding-left: 16px;
+  background: transparent url(../images/icons/picture.png) no-repeat top left;
+}
+.mime .gif {
+  padding-left: 16px;
+  background: transparent url(../images/icons/picture.png) no-repeat top left;
 }

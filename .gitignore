@@ -19,4 +19,4 @@ rerun.txt
 db/test.sqlite3-journal
 archivos/*
 *.autosave
-
+public/system/*

@@ -36,7 +36,7 @@ class MarcasController < ApplicationController
 
   def show
     @marca = Marca.find(params[:id])
-    @post = @marca.posts.build
+    @post = @marca.posts.build()
   end
 
   def create_post()
