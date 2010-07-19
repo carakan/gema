@@ -3,7 +3,10 @@ class CreateAdjuntos < ActiveRecord::Migration
     create_table :adjuntos do |t|
       t.string :nombre
       t.integer :adjuntable_id
-      t.string :acjuntable_type
+      t.string :adjuntable_type
+      t.string :archivo_file_name
+      t.integer :archivo_file_size
+
       t.timestamps
     end
   end

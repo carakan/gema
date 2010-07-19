@@ -450,6 +450,13 @@ a.delete{
   background-repeat: no-repeat;
 }
 
+.delete-l{
+  .icon-delete;
+  background-position: middle left;
+  padding-left: @icon_pad;
+  background-repeat: no-repeat;
+}
+
 .more{
   .icon-more;
   width: 16px;
@@ -581,4 +588,13 @@ ul.menu{
   height: 16px;
   background: transparent url(../images/icons/attach.png) no-repeat;
   display: inline-block;
+}
+
+/*********************/
+/*clases para tipos de documentos*/
+.mime{
+  .png, .jpg, .gif{
+    padding-left: 16px;
+    background: transparent url(../images/icons/picture.png) no-repeat top left;
+  }
 }

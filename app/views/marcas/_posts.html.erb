@@ -2,14 +2,21 @@
 <div class="comments">
   <ul>
   <% @marca.ultimos_posts.each do |p| %>
-    <li>
-    <h3><%= p.titulo %></h3>
-    <%= adjuntos p.adjuntos %> Por <strong><%= p.usuario %></strong><br /> 
-    <em><%= l p.created_at, :format => "%d, %B %Y %H:%M" %></em>
-    <p>
-      <%= p.comentario %>
-    </p>
-    <%= link_to "borrar", p, :class => 'delete' if UsuarioSession.current_user[:id] == p.usuario_id %>
+    <li class="post">
+      <h3><%= p.titulo %></h3>
+      Por <strong><%= p.usuario %></strong><br /> 
+      <em><%= l p.created_at, :format => "%d, %B %Y %H:%M" %></em>
+      <p>
+        <%= p.comentario %>
+      </p>
+        <ul>
+          <% p.adjuntos.each do |a| %>
+            <li class="mime">
+            <%= link_to "<strong>#{ a.archivo_file_name }</strong> (#{ a.archivo_file_size.to_byte_size})", adjunto_path(a), :class => a.tipo %>
+            </li>
+          <% end %>
+        </ul>
+      <%= link_to "borrar", p, :class => 'delete' if UsuarioSession.current_user[:id] == p.usuario_id %>
     </li>
   <% end %>
   </ul>

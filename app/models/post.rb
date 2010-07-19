@@ -5,6 +5,9 @@ class Post < ActiveRecord::Base
   belongs_to :marca
   belongs_to :usuario
 
+  has_many :adjuntos, :as => :adjuntable, :dependent => :destroy
+  accepts_nested_attributes_for :adjuntos, :reject_if => lambda { |a| a[:archivo].blank? }
+
   validates_presence_of :titulo, :comentario
 
 

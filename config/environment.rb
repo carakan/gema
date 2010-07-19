@@ -26,6 +26,8 @@ Rails::Initializer.run do |config|
   # gem install google-spreadsheet-ruby
   config.gem "roo", :version => '1.9.3'
 
+  config.gem "paperclip"
+
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
   # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
