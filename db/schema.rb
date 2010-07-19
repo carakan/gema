@@ -30,37 +30,41 @@ ActiveRecord::Schema.define(:version => 20100715155057) do
   end
 
   create_table "marcas", :force => true do |t|
-    t.integer  "parent_id",                        :default => 0
+    t.integer  "parent_id",                               :default => 0
     t.integer  "usuario_id"
     t.integer  "titular_id"
     t.integer  "agente_id"
     t.integer  "tipo_signo_id"
     t.integer  "tipo_marca_id"
     t.integer  "clase_id"
-    t.string   "numero_solicitud",   :limit => 40
+    t.integer  "pais_id"
+    t.string   "numero_solicitud",          :limit => 40
     t.string   "nombre"
-    t.string   "numero_registro",                  :default => ""
-    t.string   "numero_renovacion",                :default => ""
-    t.string   "productos",                        :default => ""
-    t.string   "estado",                           :default => ""
+    t.string   "numero_registro",                         :default => ""
+    t.date     "fecha_registro"
+    t.string   "numero_renovacion",                       :default => ""
+    t.string   "productos",                               :default => ""
+    t.string   "estado",                                  :default => ""
     t.date     "estado_fecha"
     t.string   "estado_serial"
-    t.string   "numero_publicacion",               :default => ""
-    t.string   "numero_gaceta",                    :default => ""
-    t.string   "lema",                             :default => ""
-    t.string   "imagen",                           :default => ""
+    t.string   "numero_publicacion",                      :default => ""
+    t.string   "numero_gaceta",                           :default => ""
+    t.string   "lema",                                    :default => ""
+    t.string   "imagen",                                  :default => ""
     t.date     "fecha_publicacion"
-    t.string   "type",                             :default => ""
+    t.string   "type",                                    :default => ""
     t.integer  "fila"
     t.datetime "fecha_importacion"
     t.boolean  "activo"
     t.boolean  "valido"
-    t.string   "cambios",                          :default => "--- []\n\n"
-    t.boolean  "importado",                        :default => false
+    t.string   "cambios",                                 :default => "--- []\n\n"
+    t.boolean  "importado",                               :default => false
+    t.string   "apoderado"
+    t.string   "representante_empresarial"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "anterior",                         :default => false
-    t.boolean  "propia",                           :default => false
+    t.boolean  "anterior",                                :default => false
+    t.boolean  "propia",                                  :default => false
     t.string   "nombre_minusculas"
     t.string   "agente_ids_serial"
     t.string   "titular_ids_serial"
@@ -71,6 +75,7 @@ ActiveRecord::Schema.define(:version => 20100715155057) do
   add_index "marcas", ["fecha_importacion"], :name => "index_marcas_on_fecha_importacion"
   add_index "marcas", ["importado"], :name => "index_marcas_on_importado"
   add_index "marcas", ["nombre_minusculas"], :name => "index_marcas_on_nombre_minusculas"
+  add_index "marcas", ["pais_id"], :name => "index_marcas_on_pais_id"
   add_index "marcas", ["parent_id"], :name => "index_marcas_on_parent_id"
   add_index "marcas", ["propia"], :name => "index_marcas_on_propia"
   add_index "marcas", ["tipo_marca_id"], :name => "index_marcas_on_tipo_marca_id"

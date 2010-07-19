@@ -9,9 +9,11 @@ class CreateMarcas < ActiveRecord::Migration
       t.integer :tipo_signo_id
       t.integer :tipo_marca_id
       t.integer :clase_id
+      t.integer :pais_id
       t.string :numero_solicitud, :limit => 40
       t.string :nombre
       t.string :numero_registro, :default => ''
+      t.date   :fecha_registro
       t.string :numero_renovacion, :default => ''
       t.string :productos, :default => ''
       t.string :estado, :default => ''
@@ -42,6 +44,7 @@ class CreateMarcas < ActiveRecord::Migration
     add_index :marcas, :clase_id
     add_index :marcas, :usuario_id
     add_index :marcas, :parent_id
+    add_index :marcas, :pais_id
 #    add_index :marcas, :marca_id
 
     add_index :marcas, :fecha_importacion

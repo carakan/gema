@@ -33,6 +33,7 @@ private
   def label_campos
     {
       'clase_id' => {:label => 'Clase', :field => 'clase' },
+      'pais_id' => {:label => 'Pais', :field => 'pais' },
       'usuario_id' => {:label => 'Usuario', :field => 'usuario' },
       'agente_ids_serial' => { :label => 'Agentes', :field => 'agentes_serial'},
       'titular_ids_serial' => { :label => 'Titulares', :field => 'titulares_serial'}

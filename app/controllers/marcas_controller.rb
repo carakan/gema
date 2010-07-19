@@ -9,6 +9,12 @@ class MarcasController < ApplicationController
   def new
     @tipo = params[:tipo]
     @marca = Marca.new(:estado_fecha => Date.today)
+    #case @tipo
+      #when 'denominación' then render :partial => "denominacion"
+      #when 'figurativa' then render :partial => "form"
+      #when 'mixta' then render :partial => "mixta"
+    #end
+
   end
 
   def edit

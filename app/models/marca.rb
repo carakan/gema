@@ -14,7 +14,7 @@ class Marca < ActiveRecord::Base
   belongs_to :tipo_signo
   belongs_to :tipo_marca
   belongs_to :usuario
-
+  belongs_to :pais
   has_many :posts, :order => 'created_at DESC'
 
   has_and_belongs_to_many :agentes, :class_name => 'Agente',
