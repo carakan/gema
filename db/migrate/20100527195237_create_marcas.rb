@@ -29,6 +29,8 @@ class CreateMarcas < ActiveRecord::Migration
       t.boolean :valido # Para indicar si la importación fue válida
       t.string :cambios, :default => [] # Indica que campos han sido modificados
       t.boolean :importado, :default => false
+      t.string :apoderado
+      t.string :representante_empresarial
 
       t.timestamps
     end

@@ -7,6 +7,7 @@ class MarcasController < ApplicationController
   end
 
   def new
+    @tipo = params[:tipo]
     @marca = Marca.new(:estado_fecha => Date.today)
   end
 
