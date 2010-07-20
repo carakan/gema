@@ -6,9 +6,9 @@
   <%= f.input :nombre, :input_html => {:tabindex => 3 } %>
   <%= f.input :pais, :as => :select, :collection => Pais.find (:all),:input_html => { :tabindex => 4 } %>
 
-  <%= f.input :clase, :input_html => { :tabindex => 4 } %>
-  <%= f.input :tipo_marca , :input_html => {:tabindex => 2 } %>
-  <%= f.input :productos, :as => :text , :input_html => {:tabindex => 2 } %>
+  <%= f.input :clase, :input_html => { :tabindex => 5 } %>
+  <%= f.input :tipo_marca , :input_html => {:tabindex => 6 } %>
+  <%= f.input :productos, :as => :text , :input_html => {:tabindex => 7 } %>
   <ol>  
   <li id="agente-auto" class="input-text"> 
     <label for="agente_ids">Agentes</label> 
@@ -17,7 +17,7 @@
         <li rel="<%= a.id %>"><%= a.nombre %></li>
       <% end %>
     </ul> 
-    <input type="text" value="" id="agente_ids" /> 
+    <input type="text" value="" id="agente_ids" tabindex="8"/> 
     <div id="agentes-list" class="facebook-auto"> 
       <div class="default">Escriba el nombre de un agente</div>  
       <ul class="feed">
@@ -34,7 +34,7 @@
         <li rel="<%= t.id %>"><%= t.nombre %></li>
       <% end %>
     </ul> 
-    <input type="text" value="" id="titular_ids" /> 
+    <input type="text" value="" id="titular_ids" tabindex="9" /> 
     <div id="titulares-list" class="facebook-auto"> 
       <div class="default">Escriba el nombre de un titular</div>  
       <ul class="feed">
@@ -42,24 +42,24 @@
     </div> 
   </li> 
 </ol></ br>
-  <%= f.input :estado, :collection => Marca.lista_estados , :input_html => {:tabindex => 2 } %>
-  <%= f.input :apoderado, :input_html => { :tabindex => 4 } %>
-  <%= f.input :representante_empresarial, :input_html => { :tabindex => 4 } %>
-  <%= f.input :numero_solicitud , :input_html => {:tabindex => 2 } %>
-  <%= f.input :estado_fecha, :label => 'Fecha solicitud',:as => :string, :input_html => {:class => 'date'} , :input_html => {:tabindex => 2 } %>
+  <%= f.input :estado, :collection => Marca.lista_estados , :input_html => {:tabindex => 10 } %>
+  <%= f.input :apoderado, :input_html => { :tabindex => 11 } %>
+  <%= f.input :representante_empresarial, :input_html => { :tabindex => 12 } %>
+  <%= f.input :numero_solicitud , :input_html => {:tabindex => 13 } %>
+  <%= f.input :estado_fecha, :label => 'Fecha solicitud',:as => :string, :input_html => {:class => 'date'} , :input_html => {:tabindex => 14 } %>
 
-  <%= f.input :numero_publicacion,:label => 'Número de publicación' , :input_html => {:tabindex => 2 } %>
-  <%= f.input :fecha_publicacion, :as => 'string', :input_html => { :class => 'date' } , :input_html => {:tabindex => 2 } %>
+  <%= f.input :numero_publicacion,:label => 'Número de publicación' , :input_html => {:tabindex => 15 } %>
+  <%= f.input :fecha_publicacion, :as => 'string', :input_html => { :class => 'date' } , :input_html => {:tabindex => 16 } %>
 
-  <%= f.input :numero_gaceta, :label => 'Número de gaceta' , :input_html => {:tabindex => 2 } %>
- <%= f.input :numero_registro,:label => 'Número de registro' , :input_html => {:tabindex => 2 } %>
-  <%= f.input :fecha_registro, :as => 'string', :input_html => { :class => 'date' } , :input_html => {:tabindex => 2 } %>
-  <%= f.input :propia, :label => 'Marca propia', :input_html => {:tabindex => 2 }  %>
+  <%= f.input :numero_gaceta, :label => 'Número de gaceta' , :input_html => {:tabindex => 17 } %>
+ <%= f.input :numero_registro,:label => 'Número de registro' , :input_html => {:tabindex => 18 } %>
+  <%= f.input :fecha_registro, :as => 'string', :input_html => { :class => 'date' } , :input_html => {:tabindex => 19 } %>
+  <%= f.input :propia, :label => 'Marca propia', :input_html => {:tabindex => 20 }  %>
 
 
 
   <div style="clear:both"></div>
-  <%= f.submit "Salvar" %>
+  <%= f.submit "Salvar" , :input_html => {:tabindex => 20 }  %>
 <% end -%>
 <div style="clear:both"></div>
 <%= javascript_include_tag 'fcbkcomplete' %>
