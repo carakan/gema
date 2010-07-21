@@ -99,14 +99,15 @@ module ModMarca::PDF
       divs = n.css(css_selector)
       @fin = false
 
-      divs.each_with_index do |div, i| 
+      divs.each_with_index do |div, ind| 
+
         hash = {}
         @lista_seleccionada.each do |key, desp|
           primero = @lista_seleccionada.first[0] == key
           hash[key] = buscar_por_nombre(divs, key, desp, primero)
           # Extraccion de images
-          if key == 'NUMERO DE PUBLICACION' and @seccion == 'FIGURATIVAS'
-            hash['imagen'] = extraer_imagen(div, num)
+          if hash[key].class == String and primero and @seccion == 'FIGURATIVAS' and hash['imagen'].nil?
+            hash['imagen'] = extraer_imagen(divs[@posicion - desp], num)
           end
 
           if hash[key] == false
@@ -116,7 +117,6 @@ module ModMarca::PDF
           end
         end
         arr << hash
-        #debugger unless hash['']
 
         break if @posicion == (divs.size - 1)
       end
@@ -134,6 +134,7 @@ module ModMarca::PDF
       img = buscar_imagen(num)
       to_img = "#{@nombre_basico}-#{Time.now.to_f}.png"
       system("convert #{img} -crop 130x130+417+#{y} #{to_img}")
+      to_img
     end
 
     def buscar_imagen(num)
