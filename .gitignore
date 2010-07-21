@@ -20,3 +20,5 @@ db/test.sqlite3-journal
 archivos/*
 *.autosave
 public/system/*
+spec/archivos/pdftest/*.html
+spec/archivos/pdftest/*.png
