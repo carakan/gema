@@ -9,17 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100715155057) do
-
-  create_table "adjuntos", :force => true do |t|
-    t.string   "nombre"
-    t.integer  "adjuntable_id"
-    t.string   "adjuntable_type"
-    t.string   "archivo_file_name"
-    t.integer  "archivo_file_size"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(:version => 20100712214642) do
 
   create_table "clases", :force => true do |t|
     t.string   "nombre"
