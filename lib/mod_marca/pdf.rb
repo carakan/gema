@@ -35,7 +35,7 @@ module ModMarca::PDF
         end
       end
 
-      borrar_directorio_pdf(pdf)
+      borrar_directorio_pdf(@pdf_archivo)
     end
 
     # Crea el rango para poder iterar en orden por la lista de hojas html
@@ -198,7 +198,7 @@ module ModMarca::PDF
     # @return String
     def preparar_pdf(pdf_path, archivo)
       raise "Error, el archivo selecionado no es un PDF" unless archivo.content_type == 'application/pdf'
-      raise "Error, el directorio \"#{pdf_path}\" al cual desea subir" unless File.exists?(pdf_path)
+      raise "Error, el directorio \"#{pdf_path}\" no existe al cual desea subir" unless File.exists?(pdf_path)
 
       dir = File.join( pdf_path, Time.now.to_i.to_s )
       FileUtils.mkdir(dir)
