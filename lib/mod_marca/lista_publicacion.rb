@@ -33,17 +33,17 @@ module ModMarca::ListaPublicacion
     end
 
     # Realiza la importación de datos desde archivo Excel o PDF
-    def importar_archivo()
-      archivo, nro_gaceta = [ params[:archivo], params[:ganceta] ]
+    def importar_archivo(params)
+      archivo, @nro_gaceta = [ params[:archivo], params[:gaceta] ]
       fecha_imp = DateTime.now.strftime("%Y-%m-%d %H:%I:%S")
       
-      extension, cont_type = [ File.extname( archivo.original_filename ).dowcase, archivo.content_type ]
+      extension, cont_type = [ File.extname( archivo.original_filename ).downcase, archivo.content_type ]
 
-      if extension == '.xls'# and cont_type == ''
-        importar_archivo_excel(archivo, nro_gaceta)
-      elsif extension == '.pdf'# and cont_type == ''
+      if extension == '.xls' and cont_type == 'application/vnd.ms-excel'
+        importar_archivo_excel(archivo)
+      elsif extension == '.pdf' and cont_type == 'application/pdf'
         include ModMarca::PDF
-        importar_pdf(archivo, nro_gaceta, obtener_path_parametros_pdf)
+        importar_pdf(archivo, obtener_path_parametros_pdf)
       else
         raise "Existio un error debe seleccionar un archivo PDF o Excel"
       end
@@ -56,8 +56,8 @@ module ModMarca::ListaPublicacion
 
 
     # Crea una instancia de la clase Marca cuando se importa un PDF
-    def crear_marca_pdf(params)
-      klass = new( get_pdf_params(params) )
+    def crear_marca_pdf(params, hoja)
+      klass = new( get_pdf_params(params, hoja) )
       # Salva correctamente o sino con errores
       unless klass.save
         klass.activo = false
@@ -71,18 +71,19 @@ module ModMarca::ListaPublicacion
     # Utiliza los parametros que se importaron desde marca par poder
     # darles el formato para salvar
     #   @param Hash
+    #   @param hoja
     #   @return Marca
-    def get_pdf_params(params)
+    def get_pdf_params(params, hoja)
       { 
         :activo => true,
         :valido => true, 
-        :fila => fila, 
+        :fila => hoja, 
         :propia => false,
         :fecha_importacion => fecha_imp,
         :estado => 'lp',
         :importado => true,
         :numero_gaceta => nro_gaceta,
-        :numero_publicacion => params['NUMERO DE PUBLICACION']
+        :numero_publicacion => params['NUMERO DE PUBLICACION'],
         :nombre => params['NOMBRE DE LA MARCA']
       }
     end

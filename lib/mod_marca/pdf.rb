@@ -5,8 +5,8 @@ module ModMarca::PDF
   end
 
   module ClassMethods
-    attr_accessor :pdf_dir, :pdf_archivo, :pdf_parametros, 
-      :css_selector, :posicion, :lista_seleccionada, :seccion
+    attr_accessor :pdf_dir, :pdf_archivo, :pdf_parametros, :pdf_path,
+      :css_selector, :lista_seleccionada, :seccion, :posicion
 
     REGEXP = /[^\w\sÑñáéíóú]/i
     REGMARCA = /[^\w\sÑñáéíóú()]/i
@@ -17,24 +17,35 @@ module ModMarca::PDF
     #   @param TmpFile archivo
     #   @param String yaml
     def importar_pdf(*args)
-      prepara_importacion_pdf(args)
-      lista_seleccionada = pdf_parametros['DENOMINATIVAS']
+      preparar_importacion_pdf(args)
+      @seccion = 'DENOMINATIVAS'
+      @lista_seleccionada = pdf_parametros[@seccion]
+      rango = crear_rango()
 
       # Transaccion para la importacion de datos
       transaction do |t|
-        Dir.glob("#{pdf_dir}/*.html").each do |html|
-          arr = extraer_datos_html(html)
+        rango.each do |num|
+          arr = extraer_datos_html(crear_nombre_archivo_html(num), num )
           # Metodo utilizado para actualizar en la clase
           arr.each do |params|
             # crear_instancia_pdf  se encuentra en el archivo lista_publicacion
             # lib/mod_marca/lista_publicacion.rb
-            m = crear_marca_pdf(params)
-            m.save
+            m = crear_marca_pdf(params, num)
           end
         end
       end
 
       borrar_directorio_pdf(pdf)
+    end
+
+    # Crea el rango para poder iterar en orden por la lista de hojas html
+    def crear_rango()
+      (1..Dir.glob("#{pdf_dir}/*.png").size)
+    end
+
+    def crear_nombre_archivo_html(num)
+      @nombre_basico ||= pdf_archivo.gsub(File.extname(pdf_archivo), '')
+      %Q(#{@nombre_basico}-#{num}.html) 
     end
 
     # Realiza la busqueda de seccion dependiendo de la hoja
@@ -44,25 +55,28 @@ module ModMarca::PDF
       divs.each do |div|
         case div.text.gsub(REGBLANK, '').strip
           when 'DENOMINATIVAS'
-            self.seccion = 'DENOMINATIVAS'
+            self.seccion = @seccion = 'DENOMINATIVAS'
           when 'FIGURATIVAS'
-            self.seccion = 'FIGURATIVAS'
-            return
+            self.seccion = @seccion = 'FIGURATIVAS'
         end
       end
+      @lista_seleccionada = pdf_parametros[@seccion]
     end
 
     # Prepara los datos para realizar la importación de un PDF
-    def prepara_importacion_pdf(args)
+    # options es un Hash de opciones
+    #   @params args Array # => [archivo, archivo_parametros_pdf, options]
+    def preparar_importacion_pdf(args)
       options = args.extract_options! || {}
 
-      pdf_archivo = preparar_pdf(args[0])
+      self.css_selector = options[:css_selector] || 'div>div'
+      pdf_path = options[:pdf_path] || File.join(Rails.root, 'archivos/temp/pdf')
+
+      self.pdf_archivo = preparar_pdf(pdf_path, args[0])
       convertir_pdf(pdf_archivo)
 
-      pdf_parametros = YAML.load_file(args[0])
-      pdf_dir = File.dirname(pdf)
-
-      css_selector = options[:css_selector] || 'div>div'
+      self.pdf_parametros = YAML.load_file(args[1])
+      self.pdf_dir = File.dirname(pdf_archivo)
     end
 
 
@@ -76,26 +90,30 @@ module ModMarca::PDF
     # debido a que los tags son una lista puede realizarse una busqueda
     # en otro contexto, y sobrepasarse al primero de la lista 2 veces
     #   @param String html
-    #   @param Array lista
+    #   @param Integer num
     #   @return Array # Retorna un array con varios Hash, en una hoja hay varias marcas
-    def extraer_datos_html(html)
+    def extraer_datos_html(html, num)
       n = Nokogiri::HTML( File.open(html) )
-      posicion = 0
+      @posicion = 0
       arr = []
       divs = n.css(css_selector)
       @fin = false
 
       divs.each_with_index do |div, i| 
         hash = {}
-        lista_seleccionada.each do |key, desp|
-          primero = lista_seleccionada.first[0] == key
+        @lista_seleccionada.each do |key, desp|
+          primero = @lista_seleccionada.first[0] == key
           hash[key] = buscar_por_nombre(divs, key, desp, primero)
+          # Extraccion de images
+          if key == 'NUMERO DE PUBLICACION' and @seccion == 'FIGURATIVAS'
+            hash['imagen'] = extraer_imagen(div, num)
+          end
+
           if hash[key] == false
             hash.delete(key)
             buscar_seccion(divs)
             break
           end
-          hash['imagen'] = extraer_imagen
         end
         arr << hash
         #debugger unless hash['']
@@ -109,14 +127,20 @@ module ModMarca::PDF
 
     # Extraccion de imagen
     # Para la extraccion de la imagen es necesario saber la posicion 
-    # del div con 'NOMBRE DE LA MARCA' y restarle 7
-    # x = 417
-    # y = div[:style].gsub(/.*(top:[0-9]+).*/, '\1').gsub(/top:/, '').to_i - 7
-    # system("convert #{img} -crop 130x130+417+#{y} prueba.png")
-    # system("convert #{img} -crop 130x130+417+#{y} prueba.png")
     # Realiza el crop de imagenes para extraer el logo
-    def extraer_imagen
+    def extraer_imagen(div, num)
+      x = 417
+      y = div[:style].gsub(/.*(top:[0-9]+).*/, '\1').gsub(/top:/, '').to_i + 9
+      img = buscar_imagen(num)
+      to_img = "#{@nombre_basico}-#{Time.now.to_f}.png"
+      system("convert #{img} -crop 130x130+417+#{y} #{to_img}")
+    end
 
+    def buscar_imagen(num)
+      (1..4).each do |v|
+        img = [@nombre_basico, "0" * v, num, '.png'].join('')
+        return img if File.exists? img
+      end
     end
 
     # Busca en la lista de tags
@@ -126,7 +150,7 @@ module ModMarca::PDF
     # @param [true, false] Ayuda a identificar si es el primero de la lista
     def buscar_por_nombre(elements, nombre, desplazar, primero)
       # Identifica si es el primer elemento
-      (posicion..(elements.size - 1)).each do |i|
+      (@posicion..(elements.size - 1)).each do |i|
         text = elements[i].text.gsub(REGBLANK, '').strip
         # Retorna false si es que ya esta buscando en otro contenido
         return false if text == @lista_seleccionada.first[0] and !primero
@@ -171,9 +195,8 @@ module ModMarca::PDF
     # Prepara el archivo subido y lo copia en un directorio
     # @param Rack:TempFile
     # @return String
-    def preparar_pdf(archivo)
+    def preparar_pdf(pdf_path, archivo)
       raise "Error, el archivo selecionado no es un PDF" unless archivo.content_type == 'application/pdf'
-
       raise "Error, el directorio \"#{pdf_path}\" al cual desea subir" unless File.exists?(pdf_path)
 
       dir = File.join( pdf_path, Time.now.to_i.to_s )
