@@ -9,6 +9,8 @@ module ModMarca::ListaPublicacion
   end
 
   module ClassMethods
+    # Atributos comunes a traves de la importacion
+    attr_accessor :nro_gaceta, :fecha_imp
 
     # Define las validaciones y filtros que se deben aplicar a la clase
     def set_validations_and_filters
@@ -25,18 +27,81 @@ module ModMarca::ListaPublicacion
       }
     end
 
-    # Realiza la importación de datos desde archivo Excel
+    # Retorna el lugar donde se encuentra el archivo parametrizable del pdf
+    def obtener_path_parametros_pdf
+      File.join(Rails.root, 'lib/mod_marca/lista_publicacion_pdf.yml')
+    end
+
+    # Realiza la importación de datos desde archivo Excel o PDF
     def importar_archivo()
       archivo, nro_gaceta = [ params[:archivo], params[:ganceta] ]
       fecha_imp = DateTime.now.strftime("%Y-%m-%d %H:%I:%S")
+      
+      extension, cont_type = [ File.extname( archivo.original_filename ).dowcase, archivo.content_type ]
+
+      if extension == '.xls'# and cont_type == ''
+        importar_archivo_excel(archivo, nro_gaceta)
+      elsif extension == '.pdf'# and cont_type == ''
+        include ModMarca::PDF
+        importar_pdf(archivo, nro_gaceta, obtener_path_parametros_pdf)
+      else
+        raise "Existio un error debe seleccionar un archivo PDF o Excel"
+      end
+    end
+
+    
+    ############################################################
+    # Metodos para realizar la importacion desde un PDF
+    ############################################################ 
+
+
+    # Crea una instancia de la clase Marca cuando se importa un PDF
+    def crear_marca_pdf(params)
+      klass = new( get_pdf_params(params) )
+      # Salva correctamente o sino con errores
+      unless klass.save
+        klass.activo = false
+        klass.valido = false # Indica que no paso la validación
+        klass.save( false )
+      end
+
+      klass
+    end
+
+    # Utiliza los parametros que se importaron desde marca par poder
+    # darles el formato para salvar
+    #   @param Hash
+    #   @return Marca
+    def get_pdf_params(params)
+      { 
+        :activo => true,
+        :valido => true, 
+        :fila => fila, 
+        :propia => false,
+        :fecha_importacion => fecha_imp,
+        :estado => 'lp',
+        :importado => true,
+        :numero_gaceta => nro_gaceta,
+        :numero_publicacion => params['NUMERO DE PUBLICACION']
+        :nombre => params['NOMBRE DE LA MARCA']
+      }
+    end
+
+
+    ############################################################
+    # Metodos para realizar la importacion desde un Excel
+    ############################################################ 
+
+    # Realiza la importacion de datos de un archivo excel
+    def importar_archivo_excel(archivo)
       importar_excel(archivo)
       fila = 3 # Fila inicial que comienza el excel
 
-      Marca.transaction do |trans|
+      transaction do |trans|
         for fila in ( 3..(@excel.last_row) )
           # valida de que no este vacio
           break if @excel.cell(fila, 1).blank? && @excel.cell(fila, 2).blank?
-          klass = crear_nueva_solicitud(fila, fecha_imp)
+          klass = crear_marca_excel(fila)
         end
       end
 
@@ -45,12 +110,12 @@ module ModMarca::ListaPublicacion
       fecha_imp
     end
 
-    # Crea nueva solicitud
+
+    # Crea un registro de la clase Marca en la BD
     #   @param Integer fila
-    #   @param DateTime fecha_imp
     #   @return Marca
-    def crear_nueva_solicitud(fila, fecha_imp)
-      klass = Marca.new( get_excel_params(fila, fecha_imp) )
+    def crear_marca_excel(fila)
+      klass = Marca.new( get_excel_params(fila) )
 
       # Salva correctamente o sino con errores
       unless klass.save
@@ -75,7 +140,8 @@ module ModMarca::ListaPublicacion
         :propia => false,
         :fecha_importacion => fecha_imp,
         :estado => 'lp',
-        :importado => true
+        :importado => true,
+        :numero_gaceta => nro_gaceta
       }
       params.merge!(extraer_datos(fila, excel_cols) )
       params[:numero_solicitud] = preparar_numero_solicitud(params[:numero_solicitud])
