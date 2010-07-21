@@ -495,3 +495,15 @@ ul.menu li:hover ul {
   padding-left: 16px;
   background: transparent url(../images/icons/picture.png) no-repeat top left;
 }
+.mime .doc {
+  padding-left: 16px;
+  background: transparent url(../images/icons/page_word.png) no-repeat top left;
+}
+.mime .xls {
+  padding-left: 16px;
+  background: transparent url(../images/icons/page_excel.png) no-repeat top left;
+}
+.mime .pdf {
+  padding-left: 16px;
+  background: transparent url(../images/icons/page_white_.png) no-repeat top left;
+}
