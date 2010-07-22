@@ -1,4 +1,4 @@
-<mockup version="1.0" skin="sketch" measuredW="1289" measuredH="978" mockupW="1203" mockupH="968">
+<mockup version="1.0" skin="sketch" measuredW="1108" measuredH="978" mockupW="956" mockupH="968">
   <controls>
     <control controlID="0" controlTypeID="com.balsamiq.mockups::Canvas" x="245" y="0" w="743" h="947" measuredW="100" measuredH="70" zOrder="1" locked="true" isInGroup="-1">
       <controlProperties>
@@ -30,62 +30,27 @@
         <color>13421772</color>
       </controlProperties>
     </control>
-    <control controlID="68" controlTypeID="com.balsamiq.mockups::Label" x="290" y="267" w="37" h="22" measuredW="37" measuredH="25" zOrder="5" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>Clase</text>
-      </controlProperties>
-    </control>
-    <control controlID="89" controlTypeID="com.balsamiq.mockups::Title" x="290" y="142" w="-1" h="-1" measuredW="412" measuredH="46" zOrder="6" locked="false" isInGroup="-1">
+    <control controlID="89" controlTypeID="com.balsamiq.mockups::Title" x="290" y="142" w="-1" h="-1" measuredW="278" measuredH="46" zOrder="5" locked="false" isInGroup="-1">
       <controlProperties>
         <size>28</size>
-        <text>Busqueda%20preventiva%20avanzada</text>
+        <text>Busqueda%20preventiva</text>
       </controlProperties>
     </control>
-    <control controlID="95" controlTypeID="com.balsamiq.mockups::StickyNote" x="76" y="152" w="169" h="188" measuredW="109" measuredH="123" zOrder="7" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>Cuando%20la%20busqueda%20es%20preventiva%20se%20debe%20buscar%20en%20todas%20las%20marcas%20propias%20de%20ORPAN%20o%20ajenas</text>
-      </controlProperties>
-    </control>
-    <control controlID="96" controlTypeID="com.balsamiq.mockups::StickyNote" x="76" y="367" w="169" h="188" measuredW="109" measuredH="123" zOrder="8" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>el%20tipo%20de%20signo%20no%20debe%20ser%20figurativo</text>
-      </controlProperties>
-    </control>
-    <control controlID="97" controlTypeID="com.balsamiq.mockups::TextInput" x="290" y="223" w="248" h="-1" measuredW="70" measuredH="29" zOrder="9" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>TROYAN</text>
-      </controlProperties>
-    </control>
-    <control controlID="100" controlTypeID="com.balsamiq.mockups::StickyNote" x="1110" y="373" w="169" h="188" measuredW="109" measuredH="123" zOrder="10" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>Siempre%20las%20busquedas%20se%20realizan%20en%20marcas%20activas%20y%20vigentes</text>
-      </controlProperties>
-    </control>
-    <control controlID="101" controlTypeID="com.balsamiq.mockups::ComboBox" x="290" y="289" w="-1" h="-1" measuredW="68" measuredH="25" zOrder="11" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>1%2C2%2C4</text>
-      </controlProperties>
-    </control>
-    <control controlID="112" controlTypeID="com.balsamiq.mockups::Label" x="290" y="198" w="148" h="22" measuredW="143" measuredH="25" zOrder="12" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>Criterios%20de%20busqueda</text>
-      </controlProperties>
-    </control>
-    <control controlID="118" controlTypeID="com.balsamiq.mockups::Canvas" x="245" y="110" w="743" h="26" measuredW="100" measuredH="70" zOrder="13" locked="false" isInGroup="-1">
+    <control controlID="118" controlTypeID="com.balsamiq.mockups::Canvas" x="245" y="110" w="743" h="26" measuredW="100" measuredH="70" zOrder="6" locked="false" isInGroup="-1">
       <controlProperties>
         <backgroundAlpha>1</backgroundAlpha>
         <borderStyle>none</borderStyle>
         <color>4555150</color>
       </controlProperties>
     </control>
-    <control controlID="119" controlTypeID="com.balsamiq.mockups::Canvas" x="245" y="110" w="743" h="26" measuredW="100" measuredH="70" zOrder="14" locked="false" isInGroup="-1">
+    <control controlID="119" controlTypeID="com.balsamiq.mockups::Canvas" x="245" y="110" w="743" h="26" measuredW="100" measuredH="70" zOrder="7" locked="false" isInGroup="-1">
       <controlProperties>
         <backgroundAlpha>1</backgroundAlpha>
         <borderStyle>none</borderStyle>
         <color>4555150</color>
       </controlProperties>
     </control>
-    <control controlID="120" controlTypeID="com.balsamiq.mockups::Label" x="253" y="110" w="-1" h="-1" measuredW="57" measuredH="26" zOrder="15" locked="false" isInGroup="-1">
+    <control controlID="120" controlTypeID="com.balsamiq.mockups::Label" x="253" y="110" w="-1" h="-1" measuredW="57" measuredH="26" zOrder="8" locked="false" isInGroup="-1">
       <controlProperties>
         <color>15658734</color>
         <href>cliente_menu%26bm%3Bcliente_menu.bmml%26bm%3Bcliente_menu.bmml%26bm%3Bcliente_menu.bmml</href>
@@ -94,7 +59,7 @@
         <text>Clientes</text>
       </controlProperties>
     </control>
-    <control controlID="121" controlTypeID="com.balsamiq.mockups::Label" x="343" y="110" w="-1" h="-1" measuredW="54" measuredH="26" zOrder="16" locked="false" isInGroup="-1">
+    <control controlID="121" controlTypeID="com.balsamiq.mockups::Label" x="343" y="110" w="-1" h="-1" measuredW="54" measuredH="26" zOrder="9" locked="false" isInGroup="-1">
       <controlProperties>
         <color>15658734</color>
         <href>marcas_menu%26bm%3Bmarcas_menu.bmml%26bm%3Bmarcas_menu.bmml%26bm%3Bmarcas_menu.bmml</href>
@@ -103,7 +68,7 @@
         <text>Marcas</text>
       </controlProperties>
     </control>
-    <control controlID="122" controlTypeID="com.balsamiq.mockups::Label" x="427" y="110" w="-1" h="-1" measuredW="102" measuredH="26" zOrder="17" locked="false" isInGroup="-1">
+    <control controlID="122" controlTypeID="com.balsamiq.mockups::Label" x="427" y="110" w="-1" h="-1" measuredW="102" measuredH="26" zOrder="10" locked="false" isInGroup="-1">
       <controlProperties>
         <color>15658734</color>
         <href>importaciones_listado%26bm%3Bimportaciones_listado.bmml%26bm%3Bimportaciones_listado.bmml%26bm%3Bimportaciones_listado.bmml</href>
@@ -112,7 +77,7 @@
         <text>Importaciones</text>
       </controlProperties>
     </control>
-    <control controlID="123" controlTypeID="com.balsamiq.mockups::Label" x="560" y="110" w="-1" h="-1" measuredW="73" measuredH="26" zOrder="18" locked="false" isInGroup="-1">
+    <control controlID="123" controlTypeID="com.balsamiq.mockups::Label" x="560" y="110" w="-1" h="-1" measuredW="73" measuredH="26" zOrder="11" locked="false" isInGroup="-1">
       <controlProperties>
         <color>15658734</color>
         <href>busquedas_menu%26bm%3Bbusquedas_menu.bmml%26bm%3Bbusquedas_menu.bmml%26bm%3Bbusquedas_menu.bmml</href>
@@ -121,7 +86,7 @@
         <text>Busquedas</text>
       </controlProperties>
     </control>
-    <control controlID="124" controlTypeID="com.balsamiq.mockups::Label" x="897" y="110" w="65" h="26" measuredW="65" measuredH="26" zOrder="19" locked="false" isInGroup="-1">
+    <control controlID="124" controlTypeID="com.balsamiq.mockups::Label" x="897" y="110" w="65" h="26" measuredW="65" measuredH="26" zOrder="12" locked="false" isInGroup="-1">
       <controlProperties>
         <color>15658734</color>
         <href>reportes_menu%26bm%3Breportes_menu.bmml%26bm%3Breportes_menu.bmml%26bm%3Breportes_menu.bmml</href>
@@ -130,7 +95,7 @@
         <text>Reportes</text>
       </controlProperties>
     </control>
-    <control controlID="125" controlTypeID="com.balsamiq.mockups::Label" x="759" y="110" w="115" h="26" measuredW="115" measuredH="26" zOrder="20" locked="false" isInGroup="-1">
+    <control controlID="125" controlTypeID="com.balsamiq.mockups::Label" x="759" y="110" w="115" h="26" measuredW="115" measuredH="26" zOrder="13" locked="false" isInGroup="-1">
       <controlProperties>
         <color>15658734</color>
         <href>datos_generales_menu%26bm%3Bdatos_generales_menu.bmml%26bm%3Bdatos_generales_menu.bmml%26bm%3Bdatos_generales_menu.bmml</href>
@@ -139,7 +104,7 @@
         <text>Datos%20Generales</text>
       </controlProperties>
     </control>
-    <control controlID="126" controlTypeID="com.balsamiq.mockups::Label" x="658" y="110" w="76" h="26" measuredW="67" measuredH="26" zOrder="21" locked="false" isInGroup="-1">
+    <control controlID="126" controlTypeID="com.balsamiq.mockups::Label" x="658" y="110" w="76" h="26" measuredW="67" measuredH="26" zOrder="14" locked="false" isInGroup="-1">
       <controlProperties>
         <color>15658734</color>
         <href>vigilancia_menu%26bm%3Bvigilancia_menu.bmml%26bm%3Bvigilancia_menu.bmml%26bm%3Bvigilancia_menu.bmml</href>
@@ -148,18 +113,30 @@
         <text>Vigilancia</text>
       </controlProperties>
     </control>
-    <control controlID="128" controlTypeID="com.balsamiq.mockups::RadioButtonGroup" x="704" y="213" w="206" h="125" measuredW="206" measuredH="100" zOrder="22" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>%28o%29%20Nombre%20de%20la%20marca%20identico%0A%28%20%29%20Lema%20Comercial%0A%28%20%29%20Titular%0A%28%20%29%20Agente</text>
-      </controlProperties>
-    </control>
-    <control controlID="129" controlTypeID="com.balsamiq.mockups::PointyButton" x="290" y="343" w="-1" h="-1" measuredW="63" measuredH="28" zOrder="23" locked="false" isInGroup="-1">
+    <control controlID="129" controlTypeID="com.balsamiq.mockups::PointyButton" x="290" y="430" w="-1" h="-1" measuredW="63" measuredH="28" zOrder="15" locked="false" isInGroup="-1">
       <controlProperties>
         <color>1265500</color>
         <direction>center</direction>
         <href>busquedas_preventiva_resultado%26bm%3Bbusquedas_preventiva_resultado.bmml%26bm%3Bbusquedas_preventiva_resultado.bmml%26bm%3Bbusquedas_preventiva_resultado.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22214%2C339%2C277%2C367%22%20href%3D%22busquedas_preventiva_resultado.bmml%22%20alt%3D%22busquedas_preventiva_resultado%22%20id%3D%22129%22/%3E</map>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22214%2C430%2C277%2C458%22%20href%3D%22busquedas_preventiva_resultado.bmml%22%20alt%3D%22busquedas_preventiva_resultado%22%20id%3D%22129%22/%3E</map>
         <text>Buscar</text>
+      </controlProperties>
+    </control>
+    <control controlID="133" controlTypeID="com.balsamiq.mockups::TextInput" x="335" y="287" w="248" h="-1" measuredW="160" measuredH="29" zOrder="17" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Banco%20Fie%20S.A.%20eres%20tu</text>
+      </controlProperties>
+    </control>
+    <control controlID="135" controlTypeID="com.balsamiq.mockups::Label" x="335" y="262" w="148" h="22" measuredW="143" measuredH="25" zOrder="18" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Criterios%20de%20busqueda</text>
+      </controlProperties>
+    </control>
+    <control controlID="136" controlTypeID="com.balsamiq.mockups::TabBar" x="290" y="196" w="592" h="205" measuredW="519" measuredH="100" zOrder="16" locked="false" isInGroup="-1">
+      <controlProperties>
+        <hrefs>busqueda_nombre_marca%26bm%3Bbusqueda_nombre_marca.bmml%26bm%3Bbusqueda_nombre_marca.bmml%26bm%3Bbusqueda_nombre_marca.bmml%2Cbusqueda_lema%20comercial%26bm%3Bbusqueda_lema%20comercial.bmml%26bm%3Bbusqueda_lema%20comercial.bmml%26bm%3Bbusqueda_lema%20comercial.bmml%2Cbusqueda_titulares%26bm%3Bbusqueda_titulares.bmml%26bm%3Bbusqueda_titulares.bmml%26bm%3Bbusqueda_titulares.bmml%2Cbusqueda_agentes%26bm%3Bbusqueda_agentes.bmml%26bm%3Bbusqueda_agentes.bmml%26bm%3Bbusqueda_agentes.bmml%2Cbusqueda_marca_fechas%26bm%3Bbusqueda_marca_fechas.bmml%26bm%3Bbusqueda_marca_fechas.bmml%26bm%3Bbusqueda_marca_fechas.bmml</hrefs>
+        <selectedIndex>1</selectedIndex>
+        <text>Nombre%20Marca%2C%20Lema%20Comercial%2C%20Titular%2C%20Agente%2C%20Rango%20de%20fechas</text>
       </controlProperties>
     </control>
   </controls>

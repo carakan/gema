@@ -17,7 +17,7 @@ class CreateMarcas < ActiveRecord::Migration
       t.string :numero_renovacion, :default => ''
       t.string :productos, :default => ''
       t.string :estado, :default => ''
-      t.date :estado_fecha
+      t.date :estado_fecha # Tambien puede ser Fecha de solicitud
       t.string :estado_serial
       t.string :numero_publicacion, :default => ''
       t.string :numero_gaceta, :default => ''
@@ -33,6 +33,7 @@ class CreateMarcas < ActiveRecord::Migration
       t.boolean :importado, :default => false
       t.string :apoderado
       t.string :representante_empresarial
+      t.integer :importacion_id
 
       t.timestamps
     end
@@ -50,6 +51,8 @@ class CreateMarcas < ActiveRecord::Migration
     add_index :marcas, :fecha_importacion
     add_index :marcas, :type
     add_index :marcas, :importado
+
+    add_index :marcas, :importacion_id
 
   end
 

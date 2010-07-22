@@ -69,6 +69,7 @@ class MarcasController < ApplicationController
   end
 
   private
+
   # Adiciona parametros para agentes y titulares
   def add_params_agentes_titulares
     if ['update', 'create'].include?(params[:action])

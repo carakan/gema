@@ -130,7 +130,7 @@ module ModMarca::PDF
     # Realiza el crop de imagenes para extraer el logo
     def extraer_imagen(div, num)
       x = 417
-      y = div[:style].gsub(/.*(top:[0-9]+).*/, '\1').gsub(/top:/, '').to_i + 9
+      y = div[:style].gsub(/.*(top:[0-9]+).*/, '\1').gsub(/top:/, '').to_i + 6
       img = buscar_imagen(num)
       to_img = "#{@nombre_basico}-#{Time.now.to_f}.png"
       system("convert #{img} -crop 130x130+417+#{y} #{to_img}")
@@ -138,7 +138,7 @@ module ModMarca::PDF
     end
 
     def buscar_imagen(num)
-      (1..4).each do |v|
+      (0..3).each do |v|
         img = [@nombre_basico, "0" * v, num, '.png'].join('')
         return img if File.exists? img
       end

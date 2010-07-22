@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(:version => 20100722162242) do
     t.boolean  "importado",                               :default => false
     t.string   "apoderado"
     t.string   "representante_empresarial"
+    t.integer  "importacion_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "anterior",                                :default => false
@@ -74,7 +75,6 @@ ActiveRecord::Schema.define(:version => 20100722162242) do
     t.string   "nombre_minusculas"
     t.string   "agente_ids_serial"
     t.string   "titular_ids_serial"
-    t.integer  "importacion_id"
   end
 
   add_index "marcas", ["agente_id"], :name => "index_marcas_on_agente_id"

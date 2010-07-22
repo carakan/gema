@@ -5,7 +5,7 @@
   <%= hidden_field_tag "importacion_id", params[:importacion_id] unless params[:importacion_id].nil?  %>
 
   <%= f.input :tipo_signo, :input_html => {:tabindex => 1 } %>
-  <%= f.input :logo,:as => :file, :input_html => {:tabindex => 2 } %>
+  <% # f.input :logo,:as => :file, :input_html => {:tabindex => 2 } %>
   <%= f.input :nombre, :input_html => {:tabindex => 3 } %>
   <%= f.input :pais, :as => :select, :collection => Pais.find (:all),:input_html => { :tabindex => 4 } %>
 

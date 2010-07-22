@@ -105,4 +105,11 @@ namespace :datos do
       fila += 1
     end
   end
+
+  desc "Borra marcas, representantes y adjuntos"
+  task :borrar_imp => :environment do
+    Marca.destroy_all
+    Representante.destroy_all
+    Adjunto.destroy_all
+  end
 end
