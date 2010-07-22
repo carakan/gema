@@ -15,6 +15,8 @@ class Marca < ActiveRecord::Base
   belongs_to :tipo_marca
   belongs_to :usuario
   belongs_to :pais
+  belongs_to :importacion
+
   has_many :posts, :order => 'created_at DESC'
 
   has_and_belongs_to_many :agentes, :class_name => 'Agente',
@@ -37,13 +39,19 @@ class Marca < ActiveRecord::Base
 
   default_scope :conditions => "marcas.parent_id = 0"
 
-  named_scope :importados, lambda{ |fecha| 
-    { :conditions => { :fecha_importacion => fecha} } 
+  #named_scope :importados, lambda{ |fecha| 
+  #  { :conditions => { :fecha_importacion => fecha} } 
+  #}
+
+  named_scope :importado, lambda{ |imp_id| 
+    { :conditions => { :importacion_id => imp_id }, :order => "marcas.valido ASC" }
   }
 
   named_scope :importados_error, lambda{ |fecha| 
     { :conditions => { :fecha_importacion => fecha, :valido => false} } 
   }
+
+
 
   TIPOS = {
     'sm' => 'Solicitud de Marca',
@@ -159,8 +167,8 @@ class Marca < ActiveRecord::Base
     Marca.table_name = 'view_importaciones'
     marcas = Marca.send(:with_exclusive_scope) { 
       Marca.paginate(:page => page, 
-                     :select => "fecha_importacion, SUM(total) AS total, SUM(errores) AS errores, estado",
-                     :group => "fecha_importacion") 
+                     :select => "importacion_id, SUM(total) AS total, SUM(errores) AS errores, estado",
+                     :group => "importacion_id") 
     }
     marcas
   end
@@ -205,8 +213,9 @@ class Marca < ActiveRecord::Base
   # Metodo para poder realizar actualizaciones
   # que pueda cambiar la clse y el estado
   def update_marca(params)
-    self.set_include_estado(params[:estado])
-    self.set_include_tipo_signo(params[:tipo_signo_id])
+    self.class.set_include_estado(params[:estado])
+    #set_include_tipo_signo(params[:tipo_signo_id])
+    params[:valido] = true
     self.update_attributes(params)
   end
 

@@ -36,6 +36,7 @@ module ModMarca::ListaPublicacion
     def importar_archivo(params)
       archivo, @nro_gaceta = [ params[:archivo], params[:gaceta] ]
       @fecha_imp = DateTime.now.strftime("%Y-%m-%d %H:%I:%S")
+      @importacion = Importacion.create!
       
       extension, cont_type = [ File.extname( archivo.original_filename ).downcase, archivo.content_type ]
 
@@ -47,8 +48,9 @@ module ModMarca::ListaPublicacion
       else
         raise "Existio un error debe seleccionar un archivo PDF o Excel"
       end
+      @importacion.update_attributes(:completa => true)
 
-      @fecha_imp
+      @importacion.id
     end
 
     

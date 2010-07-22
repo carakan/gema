@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100715155057) do
+ActiveRecord::Schema.define(:version => 20100722124414) do
 
   create_table "adjuntos", :force => true do |t|
     t.string   "nombre"
@@ -25,6 +25,12 @@ ActiveRecord::Schema.define(:version => 20100715155057) do
     t.string   "nombre"
     t.integer  "codigo",      :null => false
     t.string   "descripcion"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "importaciones", :force => true do |t|
+    t.boolean  "completa"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -68,11 +74,13 @@ ActiveRecord::Schema.define(:version => 20100715155057) do
     t.string   "nombre_minusculas"
     t.string   "agente_ids_serial"
     t.string   "titular_ids_serial"
+    t.integer  "importacion_id"
   end
 
   add_index "marcas", ["agente_id"], :name => "index_marcas_on_agente_id"
   add_index "marcas", ["clase_id"], :name => "index_marcas_on_clase_id"
   add_index "marcas", ["fecha_importacion"], :name => "index_marcas_on_fecha_importacion"
+  add_index "marcas", ["importacion_id"], :name => "index_marcas_on_importacion_id"
   add_index "marcas", ["importado"], :name => "index_marcas_on_importado"
   add_index "marcas", ["nombre_minusculas"], :name => "index_marcas_on_nombre_minusculas"
   add_index "marcas", ["pais_id"], :name => "index_marcas_on_pais_id"

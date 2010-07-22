@@ -1,0 +1,32 @@
+<h1>Importacion de <%= fecha_hora @importacion.created_at %></h1>
+
+<table class="decorated">
+	<tr>
+    <%= '<th>Fila</th>' if @mostra_fila %>
+		<th>Marca</th>
+		<th>Numero Solicitud</th>
+		<th>Tipo Marca</th>
+		<th>Clase</th>
+    <th>Error</th>
+    <th></th>
+    <% @marcas.each do |marca| %>
+      <% @css = marca.valido ? "" : "class=\"error\"" %>
+      <tr <%= @css %>>
+        <%= "<td>#{marca.fila}</td>" if @mostra_fila %>
+        <td><%= link_to marca.nombre, marca_path(marca), :class => 'ajax' %></td>
+        <td><%= marca.numero_solicitud %></td>
+        <td><%= marca.tipo_marca %></td>
+        <td><%= marca.clase %></td>
+        <td><%= verdad marca.valido %></td>
+
+        <td>
+          <%= link_to "editar", edit_marca_path(marca, :importacion_id => @importacion.id), :class => 'edit' %>
+          <%= link_to "borrar", marca, :class => 'delete' %>
+        </td>
+      </tr>
+    <% end %>
+
+	</tr>
+</table>
+
+<%= will_paginate @marcas %>

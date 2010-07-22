@@ -1,0 +1,28 @@
+<% @mostra_fila = @marcas.first.estado == 'lp' %>
+
+<table class="decorated">
+	<tr>
+    <%= '<th>Fila</th>' if @mostra_fila %>
+		<th>Marca</th>
+		<th>Numero Solicitud</th>
+		<th>Tipo Marca</th>
+		<th>Clase</th>
+    <th></th>
+    <% @marcas.each do |marca| %>
+      <tr>
+        <%= "<td>#{marca.fila}</td>" if @mostra_fila %>
+        <td><%= link_to marca.nombre, marca_path(marca), :class => 'ajax' %></td>
+        <td><%= marca.numero_solicitud %></td>
+        <td><%= marca.tipo_marca %></td>
+        <td><%= marca.clase %></td>
+
+        <td>
+          <%= links_for_marca marca %>
+        </td>
+      </tr>
+    <% end %>
+
+	</tr>
+</table>
+
+<%= will_paginate @marcas %>
