@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :importaciones
+
   map.resources :adjuntos
 
   map.resources :posts

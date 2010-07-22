@@ -35,6 +35,7 @@ module ModMarca::Solicitud
       fecha_imp = DateTime.now.strftime("%Y-%m-%d %H:%I:%S")
       importar_excel(archivo)
       fila = 3 # Fila inicial que comienza el excel
+      @importacion = Importacion.create!
 
       Marca.transaction do |trans|
         for fila in ( 3..(@excel.last_row) )
@@ -46,7 +47,7 @@ module ModMarca::Solicitud
 
       File.delete(@excel_path)
 
-      fecha_imp
+      @importacion.id
     end
 
     # Crea nueva solicitud
@@ -79,7 +80,8 @@ module ModMarca::Solicitud
         :propia => false,
         :fecha_importacion => fecha_imp,
         :estado => 'sm',
-        :importado => true
+        :importado => true,
+        :importacion_id => @importacion.id
       }
       params.merge!(extraer_datos(fila, excel_cols) )
       params[:numero_solicitud] = preparar_numero_solicitud(params[:numero_solicitud])

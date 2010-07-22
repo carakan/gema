@@ -1,0 +1,27 @@
+<h2 class="error">Numero de errores <span class="errores"><%= @marcas.size %></span></h2>
+
+<% @mostra_fila = @marcas.first.estado == 'lp' %>
+
+<table class="decorated">
+	<tr>
+    <%= '<th>Fila</th>' if @mostra_fila %>
+		<th>Marca</th>
+		<th>Numero Solicitud</th>
+		<th>Tipo Marca</th>
+		<th>Clase</th>
+    <th></th>
+    <% @marcas.each do |marca| %>
+      <tr>
+        <%= "<td>#{marca.fila}</td>" if @mostra_fila %>
+        <td><%= link_marca marca.nombre, marca, :class => 'ajax' %></td>
+        <td><%= marca.numero_solicitud %></td>
+        <td><%= marca.tipo_marca %></td>
+        <td><%= marca.clase.try(:codigo) %></td>
+        <td>
+          <%= links_for_marca(marca, :class => 'ajax') %>
+        </td>
+      </tr>
+    <% end %>
+
+	</tr>
+</table>

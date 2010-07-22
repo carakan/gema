@@ -1,0 +1,33 @@
+<h1>Importaciones realizadas</h1>
+
+<ul class="menu">
+  <li>
+  <a href="javascript:" class="new">Importar&nbsp;<span class="more"></span></a>
+    <ul>
+    <% Marca.lista_estados.each do |nombre, tipo| %>
+      <li><%= link_to nombre, new_importacion_path(:tipo => tipo) %></li>
+    <% end %>
+    </ul>
+  </li>
+</ul>
+<br />
+<br />
+<br />
+<table class="decorated">
+	<tr>
+		<th>Fecha</th>
+		<th>Tipo</th>
+    <th>Total</th>
+    <th>Errores</th>
+	</tr>
+  <%- @marcas.each do |marca| -%>
+    <tr>
+    	<td><%= link_to fecha_hora(marca.importacion.created_at, 'long'), marca.importacion %></td>
+      <td><strong><%= marca.ver_estado %></strong></td>
+      <td><%= marca.total %></td>
+      <td><%= marca.errores_listado %></td>
+    </tr>
+  <%- end -%>
+</table>
+
+<%= will_paginate @marcas %>

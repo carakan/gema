@@ -1,0 +1,16 @@
+<h1>Editing importacion</h1>
+
+<% form_for(@importacion) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :completa %><br />
+    <%= f.check_box :completa %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @importacion %> |
+<%= link_to 'Back', importaciones_path %>
