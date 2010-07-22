@@ -43,13 +43,13 @@ describe 'Importacion de PDF' do
     Prueba.buscar_por_nombre(n.css('div>div'), 'NUMERO DE PUBLICACION', 1, true).should == false
   end
 
-  it 'debe buscar seccion' do
-    html = File.join(SPEC_FILES, 'prueba_lista_publicacion-6.html')
-    Prueba.lista_seleccionada = @paramas_yaml['DENOMINATIVAS']
-    Prueba.seccion = 'DENOMINATIVAS'
-    Prueba.extraer_datos_html(html, 1)
-    Prueba.seccion.should == 'FIGURATIVAS'
-  end
+  #it 'debe buscar seccion' do
+  #  html = File.join(SPEC_FILES, 'prueba_lista_publicacion-6.html')
+  #  Prueba.lista_seleccionada = @paramas_yaml['DENOMINATIVAS']
+  #  Prueba.seccion = 'DENOMINATIVAS'
+  #  Prueba.extraer_datos_html(html, 1)
+  #  Prueba.seccion.should == 'FIGURATIVAS'
+  #end
 
   it 'debe importar pdf' do
     archivo = File.join( SPEC_FILES, 'pdftest/prueba_lista_publicacion.pdf')

@@ -35,7 +35,7 @@ module ModMarca::ListaPublicacion
     # Realiza la importación de datos desde archivo Excel o PDF
     def importar_archivo(params)
       archivo, @nro_gaceta = [ params[:archivo], params[:gaceta] ]
-      fecha_imp = DateTime.now.strftime("%Y-%m-%d %H:%I:%S")
+      @fecha_imp = DateTime.now.strftime("%Y-%m-%d %H:%I:%S")
       
       extension, cont_type = [ File.extname( archivo.original_filename ).downcase, archivo.content_type ]
 
@@ -47,6 +47,8 @@ module ModMarca::ListaPublicacion
       else
         raise "Existio un error debe seleccionar un archivo PDF o Excel"
       end
+
+      @fecha_imp
     end
 
     
@@ -57,7 +59,9 @@ module ModMarca::ListaPublicacion
 
     # Crea una instancia de la clase Marca cuando se importa un PDF
     def crear_marca_pdf(params, hoja)
+      img = params['imagen']
       klass = new( get_pdf_params(params, hoja) )
+
       # Salva correctamente o sino con errores
       unless klass.save
         klass.activo = false
@@ -65,7 +69,20 @@ module ModMarca::ListaPublicacion
         klass.save( false )
       end
 
+      adjuntar_imagen(klass, img) unless img.nil?
+
       klass
+    end
+
+    # Metodo que sirve para poder adjuntar imagenes
+    #   @param Marca klass
+    #   @param String img
+    def adjuntar_imagen(klass, img)
+      begin
+        archivo = File.new(img)
+        Adjunto.create(:archivo => archivo, :adjuntable_id => klass.id, :adjuntable_type => klass.type.to_s )
+      rescue
+      end
     end
 
     # Utiliza los parametros que se importaron desde marca par poder
@@ -79,7 +96,7 @@ module ModMarca::ListaPublicacion
         :valido => true, 
         :fila => hoja, 
         :propia => false,
-        :fecha_importacion => fecha_imp,
+        :fecha_importacion => @fecha_imp,
         :estado => 'lp',
         :importado => true,
         :numero_gaceta => nro_gaceta,
