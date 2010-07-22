@@ -62,7 +62,7 @@ module ModMarca::ListaPublicacion
     # Crea una instancia de la clase Marca cuando se importa un PDF
     def crear_marca_pdf(params, hoja)
       img = params['imagen']
-      klass = new( get_pdf_params(params, hoja) )
+      klass = buscar_o_crear( params, hoja )
 
       # Salva correctamente o sino con errores
       unless klass.save
@@ -74,6 +74,11 @@ module ModMarca::ListaPublicacion
       adjuntar_imagen(klass, img) unless img.nil?
 
       klass
+    end
+
+    # Busca la marca que debe actualizar o crear una nueva
+    def buscar_o_crear(params, hoja)
+      params = get_params( params, hoja)
     end
 
     # Metodo que sirve para poder adjuntar imagenes
@@ -103,8 +108,55 @@ module ModMarca::ListaPublicacion
         :importado => true,
         :numero_gaceta => nro_gaceta,
         :numero_publicacion => params['NUMERO DE PUBLICACION'],
-        :nombre => params['NOMBRE DE LA MARCA']
+        :nombre => params['NOMBRE DE LA MARCA'],
+        :numero_solicitud => params['NUMERO DE SOLICITUD'],
+        :fecha_solicitud => convertir_fecha_solicitud( params['FECHA SOLICITUD'] ),
+        :tipo_signo_id => buscar_tipo_signo( params['TIPO DE SIGNO'] ),
+        :tipo_marca_id => buscar_tipo_marca( params['TIPO DE MARCA'] ),
+        :titular_ids => [buscar_o_crear_titular(params)].compact
       }
+    end
+
+    def convertir_fecha_solicitud(fec)
+      [ fec[0,4], fec[4,2], fec[6,2] ].join("-")
+    end
+
+    def buscar_tipo_signo( sig )
+      TipoSigno.find_by_nombre_or_sigla(sig, sig).try(:id)
+    end
+
+    def buscar_tipo_marca(tip)
+      TipoMarca.find_by_nombre(tip).try(:id)
+    end
+
+    def buscar_o_crear_titular(params)
+      tit = Titular.find_by_nombre(params['NOMBRE DEL TITULAR'])
+      if tit
+        tit.update_attributes(:direccion => params['DIRECCION DEL TITULAR'])
+      elsif not params['NOMBRE DEL TITULAR'].blank?
+        tit = Titular.new(
+          :nombre => params['NOMBRE DEL TITULAR'],
+          :direccion => params['DIRECCION DEL TITULAR'],
+          :pais_id => Pais.find_by_nombre(params['PAIS DEL TITULAR']).try(:id)
+        )
+        tit.save
+      end
+      tit.id
+    end
+
+    def buscar_o_crear_agente(params)
+      #tit = Titular.find_by_nombre(params['NOMBRE DEL TITULAR'])
+      #if tit
+      #  tit.update_attributes(:direccion => params['DIRECCION DEL TITULAR'])
+      #elsif not params['NOMBRE DEL TITULAR'].blank?
+      #  tit = Titular.new(
+      #    :nombre => params['NOMBRE DEL TITULAR'],
+      #    :direccion => params['DIRECCION DEL TITULAR'],
+      #    :pais_id => Pais.find_by_nombre(params['PAIS DEL TITULAR']).try(:id)
+      #  )
+      #  tit.save
+      #end
+      #tit.id
     end
 
 

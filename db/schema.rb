@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100722124414) do
+ActiveRecord::Schema.define(:version => 20100722162242) do
 
   create_table "adjuntos", :force => true do |t|
     t.string   "nombre"
@@ -129,9 +129,11 @@ ActiveRecord::Schema.define(:version => 20100722124414) do
     t.boolean  "valido"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "pais_id"
   end
 
   add_index "representantes", ["nombre"], :name => "index_representantes_on_nombre"
+  add_index "representantes", ["pais_id"], :name => "index_representantes_on_pais_id"
 
   create_table "tipo_marcas", :force => true do |t|
     t.string   "nombre",      :limit => 100
@@ -160,24 +162,24 @@ ActiveRecord::Schema.define(:version => 20100722124414) do
   end
 
   create_table "view_importaciones", :id => false, :force => true do |t|
-    t.datetime "fecha_importacion"
-    t.integer  "total",             :limit => 8, :default => 0, :null => false
-    t.integer  "errores",           :limit => 8, :default => 0, :null => false
-    t.string   "estado"
+    t.integer "importacion_id"
+    t.integer "total",          :limit => 8, :default => 0, :null => false
+    t.integer "errores",        :limit => 8, :default => 0, :null => false
+    t.string  "estado"
   end
 
   create_table "view_importaciones_errores", :id => false, :force => true do |t|
-    t.datetime "fecha_importacion"
-    t.integer  "total",                          :default => 0,  :null => false
-    t.integer  "errores",           :limit => 8, :default => 0,  :null => false
-    t.string   "estado",                         :default => ""
+    t.integer "importacion_id"
+    t.integer "total",                       :default => 0,  :null => false
+    t.integer "errores",        :limit => 8, :default => 0,  :null => false
+    t.string  "estado",                      :default => ""
   end
 
   create_table "view_importaciones_todos", :id => false, :force => true do |t|
-    t.datetime "fecha_importacion"
-    t.integer  "total",             :limit => 8, :default => 0,  :null => false
-    t.integer  "errores",                        :default => 0,  :null => false
-    t.string   "estado",                         :default => ""
+    t.integer "importacion_id"
+    t.integer "total",          :limit => 8, :default => 0,  :null => false
+    t.integer "errores",                     :default => 0,  :null => false
+    t.string  "estado",                      :default => ""
   end
 
 end
