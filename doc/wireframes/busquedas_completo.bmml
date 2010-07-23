@@ -1,4 +1,4 @@
-<mockup version="1.0" skin="sketch" measuredW="1108" measuredH="978" mockupW="1090" mockupH="968">
+<mockup version="1.0" skin="sketch" measuredW="1175" measuredH="978" mockupW="1157" mockupH="968">
   <controls>
     <control controlID="0" controlTypeID="com.balsamiq.mockups::Canvas" x="245" y="0" w="743" h="947" measuredW="100" measuredH="70" zOrder="1" locked="true" isInGroup="-1">
       <controlProperties>
@@ -19,7 +19,7 @@
         <color>4555150</color>
       </controlProperties>
     </control>
-    <control controlID="20" controlTypeID="com.balsamiq.mockups::Image" x="259" y="6" w="-1" h="-1" measuredW="10" measuredH="4" zOrder="4" locked="true" isInGroup="-1">
+    <control controlID="20" controlTypeID="com.balsamiq.mockups::Image" x="259" y="6" w="-1" h="-1" measuredW="179" measuredH="90" zOrder="4" locked="true" isInGroup="-1">
       <controlProperties>
         <src>./assets/logo-orpan.jpg</src>
       </controlProperties>
@@ -245,7 +245,7 @@
         <text>Criterios%20de%20busqueda%20%28Similitud%20de%20palabra%2C%20palabra%20identica%2C%20cambios%20de%20silabas%29%0AUsar%20este%20criterio%20para%20titulares%0A%20%0AAgente%20es%20solo%20para%20uso%20personal</text>
       </controlProperties>
     </control>
-    <control controlID="158" controlTypeID="com.balsamiq.mockups::StickyNote" x="65" y="454" w="168" h="137" measuredW="109" measuredH="123" zOrder="40" locked="false" isInGroup="-1">
+    <control controlID="158" controlTypeID="com.balsamiq.mockups::StickyNote" x="997" y="136" w="168" h="137" measuredW="109" measuredH="123" zOrder="40" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Dos%20idiomas%20reportes%20externos</text>
       </controlProperties>
