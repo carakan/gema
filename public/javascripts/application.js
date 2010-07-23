@@ -15,6 +15,21 @@ jQuery(function($) {
 
 
   /**
+   * Presenta errores en contexto
+   */
+  $('.error[alt]').bind('mouseover mouseout', function(e) {
+    if(e.type == 'mouseover') {
+      var pos = $(this).position();
+      $('#tooltip-error').css({
+        'top': (pos.top - 30) + 'px', 'left': (e.clientX + 20) + 'px'
+      }).html( $(this).attr('alt') );
+      $('#tooltip-error').show();
+    }else{
+      $('#tooltip-error').hide();
+    }
+  });
+
+  /**
    * Para presentar formulario AJAX
    */
   $('a.ajax').live("click", function(e) {

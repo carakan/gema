@@ -10,8 +10,11 @@
     <th>Error</th>
     <th></th>
     <% @marcas.each do |marca| %>
-      <% @css = marca.valido ? "" : "class=\"error\"" %>
-      <tr <%= @css %>>
+      <% unless marca.errores.nil? %>
+         <tr class="error" alt="<%= marca.presentar_errores %>">
+      <% else %>
+        <tr>
+      <% end %>
         <%= "<td>#{marca.fila}</td>" if @mostra_fila %>
         <td><%= link_to marca.nombre, marca_path(marca), :class => 'ajax' %></td>
         <td><%= marca.numero_solicitud %></td>
