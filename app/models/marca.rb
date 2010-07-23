@@ -18,6 +18,7 @@ class Marca < ActiveRecord::Base
   belongs_to :importacion
 
   has_many :posts, :order => 'created_at DESC'
+  has_many :adjuntos, :as => :adjuntable, :dependent => :destroy
 
   has_and_belongs_to_many :agentes, :class_name => 'Agente',
     :association_foreign_key => :representante_id,
@@ -33,6 +34,10 @@ class Marca < ActiveRecord::Base
   serialize :cambios
   serialize :agente_ids_serial
   serialize :titular_ids_serial
+  serialize :errores
+  # Errores especiales que deben ser eliminados manualmente debido a que el error
+  # es validado por un criterio que no puede identificarse en el sistema
+  serialize :errores_manual
 
 
   validates_presence_of :estado
@@ -256,6 +261,19 @@ class Marca < ActiveRecord::Base
              :limit => limit, :order => 'created_at DESC' )
   end
 
+  # Almacena los errores despues de que es fallida la validación
+  def almacenar_errores
+    self.errores = self.errors.inject({}) { |h, v| h[v.first.humanize] = v.last; h }
+  end
+
+  # Metodo simple para poder presentar errores serializados
+  def presentar_errores
+    arr = self.errores.inject([]) { |str, v| str << "<strong>#{v.first}</strong>: #{v.last}" }
+    arr << self.errores_manual unless self.errores_manual.blank?
+    arr.join("<br />")
+  end
+
+
 protected
   #########################################################
   # Metodos que ayudan para la extraccion de datos de Excel
@@ -282,6 +300,7 @@ protected
 
 
 private
+
 
   def adicionar_usuario
     self.usuario_id = UsuarioSession.current_user[:id]
