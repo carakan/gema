@@ -280,7 +280,7 @@ class Marca < ActiveRecord::Base
 
     marca.errores_manual = {}
     comp.each do |m|
-      marca.errores_manual[m] = "No es igual al de #{TIPOS[params[:estado]]}" unless marca.send(m) == params[m]
+      marca.errores_manual[m] = "#{TIPOS[params[:estado]]} con valor distinto: \"#{params[m]}\"" unless marca.send(m) == params[m]
     end
 
     marca
