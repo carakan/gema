@@ -34,7 +34,7 @@ class CreateMarcas < ActiveRecord::Migration
       t.string :apoderado
       t.string :representante_empresarial
       t.integer :importacion_id
-      t.boolean :inactiva, :default => true
+      t.boolean :activa, :default => true
 
       t.timestamps
     end
