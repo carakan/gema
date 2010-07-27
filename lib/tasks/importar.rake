@@ -113,4 +113,11 @@ namespace :datos do
     Representante.destroy_all
     Adjunto.destroy_all
   end
+
+  desc "Adiciona datos para poder comparar en iportaciones"
+  task :marcas_prueba => :environment do
+    UsuarioSession.current_user = Usuario.first
+    Marca.create!(:nombre => 'VERDE VIV', :estado => 'sm', :numero_solicitud => '3492-2009',  :tipo_signo_id => 1,
+                  :estado_fecha => '2009-09-01', :apoderado => 'Fabiana Cunioli Pa', :clase_id => 38, :propia => true)
+  end
 end
