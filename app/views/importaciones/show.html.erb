@@ -5,12 +5,12 @@
     <%= '<th>Fila</th>' if @mostra_fila %>
 		<th>Marca</th>
 		<th>Numero Solicitud</th>
-		<th>Tipo Marca</th>
+		<th>Tipo Signo</th>
 		<th>Clase</th>
-    <th>Error</th>
+    <th>Válido</th>
     <th></th>
     <% @marcas.each do |marca| %>
-      <% unless marca.errores.nil? %>
+      <% unless marca.valido %>
          <tr class="error" alt="<%= marca.presentar_errores %>">
       <% else %>
         <tr>
@@ -18,7 +18,7 @@
         <%= "<td>#{marca.fila}</td>" if @mostra_fila %>
         <td><%= marca.nombre %></td>
         <td><%= marca.numero_solicitud %></td>
-        <td><%= marca.tipo_marca %></td>
+        <td><%= marca.tipo_signo %></td>
         <td><%= marca.clase %></td>
         <td><%= verdad marca.valido %></td>
 

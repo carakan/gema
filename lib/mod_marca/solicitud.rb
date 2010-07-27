@@ -36,7 +36,7 @@ module ModMarca::Solicitud
       fecha_imp = DateTime.now.strftime("%Y-%m-%d %H:%I:%S")
       importar_excel(archivo)
       fila = 3 # Fila inicial que comienza el excel
-      @importacion = Importacion.create!
+      @importacion = Importacion.create!(:archivo => archivo)
 
       Marca.transaction do |trans|
         for fila in ( 3..(@excel.last_row) )

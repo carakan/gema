@@ -52,8 +52,8 @@
       <td><%= link_to marca.nombre, marca_path(marca) %></td>
       <td><%= verdad marca.propia %></td>
     	<td><%= marca.ver_estado %></td>
-      <td><%= marca.tipo_signo%></td>
-      <td><%= marca.clase.codigo %></td>
+      <td><%= marca.tipo_signo %></td>
+      <td><%= marca.clase.try(:codigo) %></td>
       <td><%= verdad marca.valido %></td>
       <td>
         <%= link_to "editar", edit_marca_path(marca), :class => 'edit' %>

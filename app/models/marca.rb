@@ -50,7 +50,7 @@ class Marca < ActiveRecord::Base
   #}
 
   named_scope :importado, lambda { |imp_id| 
-    { :conditions => { :importacion_id => imp_id }, :order => "marcas.valido ASC" }
+    { :conditions => { :importacion_id => imp_id }, :order => "marcas.valido ASC", :include => [:tipo_signo, :clase] } 
   }
 
   named_scope :importados_error, lambda { |fecha| 
@@ -274,6 +274,7 @@ class Marca < ActiveRecord::Base
   #   @param Hash params
   #   @params Array comp # Array con datos tipo Symbol a comparar en una clase
   def self.buscar_comparar(params, comp )
+    params[:nombre] = params[:nombre].gsub(/^"(.*)$"/, '\1').strip
     marca = Marca.find_by_numero_solicitud(params[:numero_solicitud])
     return Marca.new(params) if marca.nil? or !(marca.propia)
     marca.importacion_id = params[:importacion_id]

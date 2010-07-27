@@ -5,16 +5,6 @@ class ImportacionesController < ApplicationController
     @marcas = Marca.view_importaciones( @page )
   end
 
-  # GET /importaciones/1
-  # GET /importaciones/1.xml
-  def show
-    @importacion = Importacion.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @importacion }
-    end
-  end
 
   # GET /importaciones/new
   # GET /importaciones/new.xml

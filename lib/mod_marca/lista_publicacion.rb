@@ -36,13 +36,13 @@ module ModMarca::ListaPublicacion
     def importar_archivo(params)
       archivo, @nro_gaceta = [ params[:archivo], params[:gaceta] ]
       @fecha_imp = DateTime.now.strftime("%Y-%m-%d %H:%I:%S")
-      @importacion = Importacion.create!
+      @importacion = Importacion.create!(:archivo => archivo, :publicacion => @nro_gaceta)
       
       extension, cont_type = [ File.extname( archivo.original_filename ).downcase, archivo.content_type ]
 
-      if extension == '.xls' and cont_type == 'application/vnd.ms-excel'
+      if extension == '.xls'# and cont_type == 'application/vnd.ms-excel'
         importar_archivo_excel(archivo)
-      elsif extension == '.pdf' and cont_type == 'application/pdf'
+      elsif extension == '.pdf'# and cont_type == 'application/pdf'
         include ModMarca::PDF
         importar_pdf(archivo, obtener_path_parametros_pdf)
       else
@@ -63,8 +63,6 @@ module ModMarca::ListaPublicacion
     def crear_marca_pdf(params, hoja)
       img = params['imagen']
       klass = crear_o_actualizar( params, hoja )
-
-    
       adjuntar_imagen(klass, img) unless img.nil?
 
       klass
@@ -73,8 +71,8 @@ module ModMarca::ListaPublicacion
     # Busca la marca que debe actualizar o crear una nueva
     def crear_o_actualizar(params, hoja)
       params = get_pdf_params( params, hoja)
-
-      klass = Marca.find_by_numero_solicitud(params[:numero_solicitud])
+      comp = [:apoderado, :tipo_signo_id, :clase_id, :nombre]
+      klass = buscar_comparar(params, comp)
       if klass.nil?
         klass = Marca.new(params)
       else
@@ -121,6 +119,7 @@ module ModMarca::ListaPublicacion
         :nombre => params['NOMBRE DE LA MARCA'],
         :numero_solicitud => params['NUMERO DE SOLICITUD'],
         :estado_fecha => convertir_fecha_solicitud( params['FECHA DE SOLICITUD'] ), # Esta es la Fecha de solicitud
+        :clase_id => Clase.find_by_codigo(params['CLASE INTERNACIONAL']).try(:id),
         :tipo_signo_id => buscar_tipo_signo( params['TIPO DE SIGNO'] ),
         :tipo_marca_id => buscar_tipo_marca( params['TIPO DE MARCA'] ),
         :titular_ids => [buscar_o_crear_titular(params)].compact,

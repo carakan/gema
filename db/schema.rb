@@ -30,7 +30,11 @@ ActiveRecord::Schema.define(:version => 20100723155947) do
   end
 
   create_table "importaciones", :force => true do |t|
+    t.string   "gaceta"
     t.boolean  "completa"
+    t.string   "publicacion"
+    t.string   "archivo_file_name"
+    t.integer  "archivo_file_size"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -68,6 +72,7 @@ ActiveRecord::Schema.define(:version => 20100723155947) do
     t.string   "apoderado"
     t.string   "representante_empresarial"
     t.integer  "importacion_id"
+    t.boolean  "inactiva",                                 :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "anterior",                                 :default => false
@@ -84,6 +89,7 @@ ActiveRecord::Schema.define(:version => 20100723155947) do
   add_index "marcas", ["fecha_importacion"], :name => "index_marcas_on_fecha_importacion"
   add_index "marcas", ["importacion_id"], :name => "index_marcas_on_importacion_id"
   add_index "marcas", ["importado"], :name => "index_marcas_on_importado"
+  add_index "marcas", ["inactiva"], :name => "index_marcas_on_inactiva"
   add_index "marcas", ["nombre_minusculas"], :name => "index_marcas_on_nombre_minusculas"
   add_index "marcas", ["pais_id"], :name => "index_marcas_on_pais_id"
   add_index "marcas", ["parent_id"], :name => "index_marcas_on_parent_id"

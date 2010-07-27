@@ -4,6 +4,8 @@
   
   <%= hidden_field_tag "importacion_id", params[:importacion_id] unless params[:importacion_id].nil?  %>
 
+  <%= f.hidden_field :valido, :value => 1 %>
+
   <%= f.input :tipo_signo, :input_html => {:tabindex => 1 } %>
   <% # f.input :logo,:as => :file, :input_html => {:tabindex => 2 } %>
   <%= f.input :nombre, :input_html => {:tabindex => 3 } %>
@@ -60,7 +62,7 @@
   <%= f.input :propia, :label => 'Marca propia', :input_html => {:tabindex => 20 }  %>
 
 
-  <% @marca.errores_manual.each do |k, v| %>
+  <% @marca.errores_manual.try(:each) do |k, v| %>
     <div class="error_manual">
       <input name="marca[errores_manual]" type="hidden" value="" />
       <div>
