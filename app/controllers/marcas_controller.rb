@@ -22,8 +22,8 @@ class MarcasController < ApplicationController
     unless params[:importacion_id].nil?
       Marca.set_include_estado(@marca.estado)
 #      Marca.set_include_tipo_signo(@marca.tipo_signo_id)
-      @marca.valid?
     end
+    @marca.valid?
   end
 
 
