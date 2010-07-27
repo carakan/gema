@@ -49,14 +49,14 @@
   <%= f.input :apoderado, :input_html => { :tabindex => 11 } %>
   <%= f.input :representante_empresarial, :input_html => { :tabindex => 12 } %>
   <%= f.input :numero_solicitud , :input_html => {:tabindex => 13 } %>
-  <%= f.input :estado_fecha, :label => 'Fecha solicitud',:as => :string, :input_html => {:class => 'date'} , :input_html => {:tabindex => 14 } %>
+  <%= f.input :estado_fecha, :label => 'Fecha solicitud',:as => :string, :input_html => {:tabindex => 14, :class => 'date' } %>
 
   <%= f.input :numero_publicacion,:label => 'Número de publicación' , :input_html => {:tabindex => 15 } %>
-  <%= f.input :fecha_publicacion, :as => 'string', :input_html => { :class => 'date' } , :input_html => {:tabindex => 16 } %>
+  <%= f.input :fecha_publicacion, :as => 'string', :input_html => {:tabindex => 16, :class => 'date' } %>
 
   <%= f.input :numero_gaceta, :label => 'Número de gaceta' , :input_html => {:tabindex => 17 } %>
  <%= f.input :numero_registro,:label => 'Número de registro' , :input_html => {:tabindex => 18 } %>
-  <%= f.input :fecha_registro, :as => 'string', :input_html => { :class => 'date' } , :input_html => {:tabindex => 19 } %>
+  <%= f.input :fecha_registro, :as => 'string', :input_html => {:tabindex => 19, :class => 'date'  } %>
   <%= f.input :propia, :label => 'Marca propia', :input_html => {:tabindex => 20 }  %>
 
 

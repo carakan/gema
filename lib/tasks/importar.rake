@@ -108,7 +108,8 @@ namespace :datos do
 
   desc "Borra marcas, representantes y adjuntos"
   task :borrar_imp => :environment do
-    Marca.destroy_all
+    Importacion.destroy_all
+    #Marca.destroy_all # No es necesario por que importacion :dependent => :destroy
     Representante.destroy_all
     Adjunto.destroy_all
   end

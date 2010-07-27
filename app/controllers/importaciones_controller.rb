@@ -33,7 +33,7 @@ class ImportacionesController < ApplicationController
     @marca = ImportacionVacia.new( params[:importacion_vacia] )
     if @marca.valid? == true
       importacion_id = Marca.importar(params[:importacion_vacia])
-      redirect_to importacion_url( importacion_id )
+      redirect_to importacion_url( importacion_id ), :notice => "Se ha importado los datos"
     else
       render :action => 'new'
     end

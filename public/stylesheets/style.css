@@ -177,34 +177,42 @@ form.in_half li {
   font-weight: bold;
 }
 .notice {
-  font-size: 1.6em;
+  font-size: 1.2em;
   margin: 10px;
   border: 4px solid;
-  padding: 20px 20px;
+  padding: 10px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
 }
 #flashNotice {
-  font-size: 1.6em;
+  font-size: 1.2em;
   margin: 10px;
   border: 4px solid;
-  padding: 20px 20px;
+  padding: 10px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
   color: #5bbf3b;
   border-color: #5bbf3b;
   background-color: #dbffdb;
 }
 #flashError {
-  font-size: 1.6em;
+  font-size: 1.2em;
   margin: 10px;
   border: 4px solid;
-  padding: 20px 20px;
+  padding: 10px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
   color: #ff0000;
   border-color: #ff0000;
   background-color: #ffd8d8;
 }
 #flashWarning {
-  font-size: 1.6em;
+  font-size: 1.2em;
   margin: 10px;
   border: 4px solid;
-  padding: 20px 20px;
+  padding: 10px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
   color: #d0d02a;
   border-color: #ffff00;
   background-color: #ffffc5;
@@ -501,6 +509,8 @@ ul.menu li:hover ul {
   z-index: 10000;
   background-color: #ffffff;
   padding: 4px 6px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
 }
 #tooltip-error {
   border: 4px solid #ff0000;

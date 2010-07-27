@@ -4,7 +4,7 @@ class Marca < ActiveRecord::Base
   #before_save :set_propia
   before_save :set_minusculas
   before_save :adicionar_usuario
-  before_save :set_agentes_titulares, :if => lambda{ |m| m.parent_id == 0 }
+  before_save :set_agentes_titulares, :if => lambda { |m| m.parent_id == 0 }
 
   before_update :crear_historico
   before_update :set_cambios
@@ -41,6 +41,7 @@ class Marca < ActiveRecord::Base
 
 
   validates_presence_of :estado
+  validate :validar_errores_manual
 
   default_scope :conditions => "marcas.parent_id = 0"
 
@@ -48,14 +49,13 @@ class Marca < ActiveRecord::Base
   #  { :conditions => { :fecha_importacion => fecha} } 
   #}
 
-  named_scope :importado, lambda{ |imp_id| 
+  named_scope :importado, lambda { |imp_id| 
     { :conditions => { :importacion_id => imp_id }, :order => "marcas.valido ASC" }
   }
 
-  named_scope :importados_error, lambda{ |fecha| 
+  named_scope :importados_error, lambda { |fecha| 
     { :conditions => { :fecha_importacion => fecha, :valido => false} } 
   }
-
 
 
   TIPOS = {
@@ -153,7 +153,7 @@ class Marca < ActiveRecord::Base
     params = options.delete(:params)
     
     unless params['propia'].nil?
-      options = options.merge(:conditions => { :propia => convert_boolean(params['propia']) })
+      options = options.merge( :conditions => { :propia => convert_boolean(params['propia']) } )
     else
       options[:conditions] = {}
     end
@@ -161,10 +161,6 @@ class Marca < ActiveRecord::Base
     paginate(options)
   end
 
-  #def self.all(*args)
-  #  options = args.extract_options!
-  #  super options#, :conditions => "marcas.parent_id = 0"
-  #end
 
   # Presenta un listtado de importaciones
   # acumuladas, desde la vista
@@ -263,14 +259,31 @@ class Marca < ActiveRecord::Base
 
   # Almacena los errores despues de que es fallida la validación
   def almacenar_errores
-    self.errores = self.errors.inject({}) { |h, v| h[v.first.humanize] = v.last; h }
+    self.errores = self.errors.inject([]) { |arr, v| arr << [v.first.humanize, v.last]; arr }
   end
 
   # Metodo simple para poder presentar errores serializados
   def presentar_errores
-    arr = self.errores.inject([]) { |str, v| str << "<strong>#{v.first}</strong>: #{v.last}" }
-    arr << self.errores_manual unless self.errores_manual.blank?
+    arr = self.errores.inject([]) { |arr, v| arr << "<strong>#{v.first}</strong>: #{v.last}" }
     arr.join("<br />")
+  end
+
+
+  # Realiza una comparación de los datos que se importan Vs. los que se encuentran
+  # en la base de datos
+  #   @param Hash params
+  #   @params Array comp # Array con datos tipo Symbol a comparar en una clase
+  def self.buscar_comparar(params, comp )
+    marca = Marca.find_by_numero_solicitud(params[:numero_solicitud])
+    return Marca.new(params) if marca.nil? or !(marca.propia)
+    marca.importacion_id = params[:importacion_id]
+
+    marca.errores_manual = {}
+    comp.each do |m|
+      marca.errores_manual[m] = "No es igual al de #{TIPOS[params[:estado]]}" unless marca.send(m) == params[m]
+    end
+
+    marca
   end
 
 
@@ -341,4 +354,12 @@ private
     self.titular_ids_serial = self.titular_ids
   end
 
+  # Valida de que los campos de comparación esten vacios
+  def validar_errores_manual
+    unless self.errores_manual.blank?
+      self.errores_manual.each do |k, v|
+        self.errors.add(k, v)
+      end
+    end
+  end
 end

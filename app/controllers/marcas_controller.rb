@@ -3,7 +3,7 @@ class MarcasController < ApplicationController
   before_filter :add_params_agentes_titulares
 
   def index
-    @marcas = Marca.buscar(:page => @page, :params => params)
+    @marcas = Marca.buscar(:page => @page, :params => params, :include => [:clase] )
   end
 
   def new
@@ -32,6 +32,7 @@ class MarcasController < ApplicationController
     if @marca.save
       redirect_to @marca, :notice => 'Se ha salvado correctamente'
     else
+#      flash[:error] = "Existio un error al salvar los datos"
       render :action => 'new'
     end
   end

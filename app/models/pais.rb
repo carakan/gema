@@ -6,6 +6,6 @@ class Pais < ActiveRecord::Base
   validates_uniqueness_of :codigo
 
   def to_s
-    codigo
+    "#{codigo} - #{nombre}"
   end
 end

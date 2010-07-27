@@ -56,7 +56,10 @@
     <label for="">Titulares</label>
     <%= cambio @marca, :titular_ids_serial, @marca.titulares.map(&:nombre).join(", ") %>
   </p>
-  
+  <p>
+    <label>Apoderado</label>
+    <%= cambio @marca, :apoderado %>
+  </p>
   <p>
     <label for="">Tipo Marca</label>
     <%= cambio @marca, :tipo_marca_id, @marca.tipo_marca %>

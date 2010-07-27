@@ -83,7 +83,7 @@ jQuery(function($) {
 
   
 
-  $('input.text-date').live('change', function() {
+  $('input.date').live('change', function() {
     var d = $.datepicker.parseDate($.datepicker._defaults.dateFormat, $(this).val() );
     $(this).prev('input').val( [ d.getFullYear(), (d.getMonth() + 1), d.getDate() ].join("-") );
   });

@@ -23,6 +23,7 @@ module ModMarca::Solicitud
       {
         :estado_fecha => 'A',
         :numero_solicitud => 'B',
+        :apoderado => 'C',
         :nombre => 'E',
         :tipo_signo_id => 'F',
         :clase_id => 'G'
@@ -41,7 +42,7 @@ module ModMarca::Solicitud
         for fila in ( 3..(@excel.last_row) )
           # valida de que no este vacio
           break if @excel.cell(fila, 1).blank? && @excel.cell(fila, 2).blank?
-          klass = crear_nueva_solicitud(fila, fecha_imp)
+          klass = buscar_o_crear_marca(fila, fecha_imp)
         end
       end
 
@@ -67,6 +68,23 @@ module ModMarca::Solicitud
 
       klass
     end
+
+    # Busca o crea una nueva solicitud
+    def buscar_o_crear_marca(fila, fecha_imp)
+      comp = [:apoderado, :tipo_signo_id, :clase_id, :nombre]
+      klass = buscar_comparar(get_excel_params(fila, fecha_imp), comp )
+
+      # Salva correctamente o sino con errores
+      unless klass.save
+        klass.almacenar_errores
+        klass.activo = false
+        klass.valido = false # Indica que no paso la validación
+        klass.save( false )
+      end
+
+      klass
+    end
+
 
     # Obitiene los datos de la fila del excel
     # y retorna un array

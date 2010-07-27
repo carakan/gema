@@ -16,7 +16,7 @@
         <tr>
       <% end %>
         <%= "<td>#{marca.fila}</td>" if @mostra_fila %>
-        <td><%= link_to marca.nombre, marca_path(marca), :class => 'ajax' %></td>
+        <td><%= marca.nombre %></td>
         <td><%= marca.numero_solicitud %></td>
         <td><%= marca.tipo_marca %></td>
         <td><%= marca.clase %></td>
