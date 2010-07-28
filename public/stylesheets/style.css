@@ -491,43 +491,42 @@ ul.menu li:hover ul {
   background: transparent url(../images/icons/attach.png) no-repeat;
   display: inline-block;
 }
-.mime .png {
+.mime {
+  .png, .jpg, .gif, .png {
   padding-left: 16px;
   background: transparent url(../images/icons/picture.png) no-repeat top left;
-}
-.mime .jpg {
-  padding-left: 16px;
-  background: transparent url(../images/icons/picture.png) no-repeat top left;
-}
-.mime .gif {
-  padding-left: 16px;
-  background: transparent url(../images/icons/picture.png) no-repeat top left;
-}
-.mime .doc .docx{
+  }
+  
+  .doc .docx{
   padding-left: 16px;
   background: transparent url(../images/icons/page_word.png) no-repeat top left;
-}
-.mime .xls .xlsx {
+  }
+  
+  .xls .xlsx {
   padding-left: 16px;
   background: transparent url(../images/icons/page_excel.png) no-repeat top left;
-}
-.mime .pdf {
+  }
+  
+  .pdf {
   padding-left: 16px;
   background: transparent url(../images/icons/page_white_acrobat.png) no-repeat top left;
-}
-.mime .ppt .pptx {
+  }
+ 
+  .ppt .pptx {
   padding-left: 16px;
   background: transparent url(../images/icons/page_white_powerpoint.png) no-repeat top left;
-}
-.mime .mp3 .mp4 .midi .wma .wav {
+  }
+
+  .mp3 .mp4 .midi .wma .wav {
   padding-left: 16px;
   background: transparent url(../images/icons/music.png) no-repeat top left;
-}
-.mime .mpeg .mpg .avi .flv .wmv {
+  }
+  
+  .mpeg .mpg .avi .flv .wmv {
   padding-left: 16px;
   background: transparent url(../images/icons/film.png) no-repeat top left;
+  }
 }
-
 .tooltip {
   position: absolute;
   width: 400px;
