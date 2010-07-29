@@ -12,4 +12,5 @@ ActiveRecord::Base.instance_eval do
     options.merge(:select => "id, #{label}")
     all(options).map{ |v| [v.send(label), v.id] }
   end
+
 end

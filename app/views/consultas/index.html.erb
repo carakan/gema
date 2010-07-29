@@ -1,0 +1,28 @@
+<h1>Listing consultas</h1>
+
+<table>
+  <tr>
+    <th>Marca</th>
+    <th>Usuario</th>
+    <th>Busqueda</th>
+    <th>Parametros</th>
+    <th>Reporte</th>
+  </tr>
+
+<% @consultas.each do |consulta| %>
+  <tr>
+    <td><%=h consulta.marca_id %></td>
+    <td><%=h consulta.usuario_id %></td>
+    <td><%=h consulta.busqueda %></td>
+    <td><%=h consulta.parametros %></td>
+    <td><%=h consulta.reporte %></td>
+    <td><%= link_to 'Show', consulta %></td>
+    <td><%= link_to 'Edit', edit_consulta_path(consulta) %></td>
+    <td><%= link_to 'Destroy', consulta, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New consulta', new_consulta_path %>

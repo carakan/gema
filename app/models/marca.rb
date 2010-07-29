@@ -19,6 +19,7 @@ class Marca < ActiveRecord::Base
 
   has_many :posts, :order => 'created_at DESC'
   has_many :adjuntos, :as => :adjuntable, :dependent => :destroy
+  has_many :busquedas
 
   has_and_belongs_to_many :agentes, :class_name => 'Agente',
     :association_foreign_key => :representante_id,
@@ -50,8 +51,11 @@ class Marca < ActiveRecord::Base
   #}
 
   named_scope :importado, lambda { |imp_id| 
-    { :conditions => { :importacion_id => imp_id }, :order => "marcas.valido ASC", :include => [:tipo_signo, :clase] } 
-  }
+    { 
+      :conditions => { :importacion_id => imp_id }, 
+      :order => "marcas.valido, marcas.propia DESC", 
+      :include => [:tipo_signo, :clase] } 
+    }
 
   named_scope :importados_error, lambda { |fecha| 
     { :conditions => { :fecha_importacion => fecha, :valido => false} } 

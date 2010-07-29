@@ -31,6 +31,7 @@ table.decorated th {
   background-color: #484848;
   color: #ffffff;
 }
+table.decorated th a { color: #ffffff; }
 table.decorated th { padding: 3px 8px; }
 table.decorated td { padding: 3px 8px; }
 .over { background-color: #c2e0ef !important; }
@@ -491,41 +492,18 @@ ul.menu li:hover ul {
   background: transparent url(../images/icons/attach.png) no-repeat;
   display: inline-block;
 }
-.mime {
-  .png, .jpg, .gif, .png {
+.propia { background-color: #dbffdb; }
+.mime .png {
   padding-left: 16px;
   background: transparent url(../images/icons/picture.png) no-repeat top left;
-  }
-  
-  .doc .docx{
+}
+.mime .jpg {
   padding-left: 16px;
-  background: transparent url(../images/icons/page_word.png) no-repeat top left;
-  }
-  
-  .xls .xlsx {
+  background: transparent url(../images/icons/picture.png) no-repeat top left;
+}
+.mime .gif {
   padding-left: 16px;
-  background: transparent url(../images/icons/page_excel.png) no-repeat top left;
-  }
-  
-  .pdf {
-  padding-left: 16px;
-  background: transparent url(../images/icons/page_white_acrobat.png) no-repeat top left;
-  }
- 
-  .ppt .pptx {
-  padding-left: 16px;
-  background: transparent url(../images/icons/page_white_powerpoint.png) no-repeat top left;
-  }
-
-  .mp3 .mp4 .midi .wma .wav {
-  padding-left: 16px;
-  background: transparent url(../images/icons/music.png) no-repeat top left;
-  }
-  
-  .mpeg .mpg .avi .flv .wmv {
-  padding-left: 16px;
-  background: transparent url(../images/icons/film.png) no-repeat top left;
-  }
+  background: transparent url(../images/icons/picture.png) no-repeat top left;
 }
 .tooltip {
   position: absolute;

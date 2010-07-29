@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100723155947) do
+ActiveRecord::Schema.define(:version => 20100728191627) do
 
   create_table "adjuntos", :force => true do |t|
     t.string   "nombre"
@@ -25,6 +25,16 @@ ActiveRecord::Schema.define(:version => 20100723155947) do
     t.string   "nombre"
     t.integer  "codigo",      :null => false
     t.string   "descripcion"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "consultas", :force => true do |t|
+    t.integer  "marca_id"
+    t.integer  "usuario_id"
+    t.string   "busqueda"
+    t.string   "parametros"
+    t.string   "reporte"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -72,7 +82,7 @@ ActiveRecord::Schema.define(:version => 20100723155947) do
     t.string   "apoderado"
     t.string   "representante_empresarial"
     t.integer  "importacion_id"
-    t.boolean  "inactiva",                                 :default => true
+    t.boolean  "activa",                                   :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "anterior",                                 :default => false
@@ -84,12 +94,12 @@ ActiveRecord::Schema.define(:version => 20100723155947) do
     t.string   "errores_manual",            :limit => 500
   end
 
+  add_index "marcas", ["activa"], :name => "index_marcas_on_activa"
   add_index "marcas", ["agente_id"], :name => "index_marcas_on_agente_id"
   add_index "marcas", ["clase_id"], :name => "index_marcas_on_clase_id"
   add_index "marcas", ["fecha_importacion"], :name => "index_marcas_on_fecha_importacion"
   add_index "marcas", ["importacion_id"], :name => "index_marcas_on_importacion_id"
   add_index "marcas", ["importado"], :name => "index_marcas_on_importado"
-  add_index "marcas", ["inactiva"], :name => "index_marcas_on_inactiva"
   add_index "marcas", ["nombre_minusculas"], :name => "index_marcas_on_nombre_minusculas"
   add_index "marcas", ["pais_id"], :name => "index_marcas_on_pais_id"
   add_index "marcas", ["parent_id"], :name => "index_marcas_on_parent_id"

@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  marca_id: 1
+  usuario_id: 1
+  busqueda: MyString
+  parametros: MyString
+  reporte: MyString
+
+two:
+  marca_id: 1
+  usuario_id: 1
+  busqueda: MyString
+  parametros: MyString
+  reporte: MyString

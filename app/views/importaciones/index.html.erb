@@ -19,6 +19,7 @@
 		<th>Tipo</th>
     <th>Total</th>
     <th>Errores</th>
+    <th></th>
 	</tr>
   <%- @marcas.each do |marca| -%>
     <tr>
@@ -26,6 +27,7 @@
       <td><strong><%= marca.ver_estado %></strong></td>
       <td><%= marca.total %></td>
       <td><%= marca.errores_listado %></td>
+      <td><%= cruce marca %></td>
     </tr>
   <%- end -%>
 </table>

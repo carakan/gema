@@ -3,7 +3,9 @@ class MarcasController < ApplicationController
   before_filter :add_params_agentes_titulares
 
   def index
-    @marcas = Marca.buscar(:page => @page, :params => params, :include => [:clase] )
+    #@marcas = Marca.buscar(:page => @page, :params => params, :include => [:clase] )
+    p = {:page => @page, :include => [:clase, :tipo_signo]}
+    @marcas = Marca.paginate(p)
   end
 
   def new

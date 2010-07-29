@@ -1,0 +1,32 @@
+<h1>Editing consulta</h1>
+
+<% form_for(@consulta) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :marca_id %><br />
+    <%= f.text_field :marca_id %>
+  </p>
+  <p>
+    <%= f.label :usuario_id %><br />
+    <%= f.text_field :usuario_id %>
+  </p>
+  <p>
+    <%= f.label :busqueda %><br />
+    <%= f.text_field :busqueda %>
+  </p>
+  <p>
+    <%= f.label :parametros %><br />
+    <%= f.text_field :parametros %>
+  </p>
+  <p>
+    <%= f.label :reporte %><br />
+    <%= f.text_field :reporte %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @consulta %> |
+<%= link_to 'Back', consultas_path %>

@@ -47,7 +47,7 @@ class CreateMarcas < ActiveRecord::Migration
     add_index :marcas, :usuario_id
     add_index :marcas, :parent_id
     add_index :marcas, :pais_id
-    add_index :marcas, :inactiva
+    add_index :marcas, :activa
 #    add_index :marcas, :marca_id
 
     add_index :marcas, :fecha_importacion

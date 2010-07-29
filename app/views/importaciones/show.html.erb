@@ -8,12 +8,15 @@
 		<th>Tipo Signo</th>
 		<th>Clase</th>
     <th>Válido</th>
+    <th>Propia</th>
     <th></th>
     <% @marcas.each do |marca| %>
+      <% @css = marca.propia ? 'propia': '' %>
       <% unless marca.valido %>
-         <tr class="error" alt="<%= marca.presentar_errores %>">
+          <% @css << ' error' %>
+         <tr class="<%= @css %>" alt="<%= marca.presentar_errores %>">
       <% else %>
-        <tr>
+        <tr class="<%= @css %>" >
       <% end %>
         <%= "<td>#{marca.fila}</td>" if @mostra_fila %>
         <td><%= marca.nombre %></td>
@@ -21,6 +24,7 @@
         <td><%= marca.tipo_signo %></td>
         <td><%= marca.clase %></td>
         <td><%= verdad marca.valido %></td>
+        <td><%= verdad marca.propia %></td>
 
         <td>
           <%= link_to "editar", edit_marca_path(marca, :importacion_id => @importacion.id), :class => 'edit' %>
