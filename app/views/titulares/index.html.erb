@@ -2,21 +2,23 @@
 
 <%= link_to 'Nuevo titular', new_titular_path, :class => 'new' %>
 
+<%= @will = will_paginate @titulares %>
+
 <table class="decorated">
     <tr>
       <th>Nombre</th>
+      <th>País</th>
       <th>Direccion</th>
-      <th>Telefono</th>
-      <th>Email</th>
+      <!--<th>Telefono</th>
+      <th>Email</th> -->
       <th></th>
     </tr>
 
 <% @titulares.each do |titular| %>
   <tr>
    <td><%=h link_to titular.nombre, titular %></td>
+   <td><%=h titular.pais %></td>
    <td><%=h titular.direccion %></td>
-   <td><%=h titular.telefono %></td>
-   <td><%=h titular.email %></td>
    <td>
      <%= links(titular) %>
    </td>
@@ -24,3 +26,5 @@
 
 <% end %>
 </table>
+
+<%= @will %>

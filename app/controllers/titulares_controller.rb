@@ -1,7 +1,9 @@
 class TitularesController < ApplicationController
 
   def index
-    @titulares = Titular.all
+    #@titulares = Titular.all
+    
+    @titulares = Titular.paginate(:page => @page)
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @titulares }
@@ -9,7 +11,7 @@ class TitularesController < ApplicationController
   end
 
    def show
-    @titular = Titulars.find(params[:id])
+    @titular = Titular.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb

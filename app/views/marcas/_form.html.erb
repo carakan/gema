@@ -6,14 +6,14 @@
 
   <%= f.hidden_field :valido, :value => 1 %>
 
-  <%= f.input :tipo_signo, :input_html => {:tabindex => 1 } %>
+  <%= f.input :tipo_signo,:tabindex => 1  %>
   <% # f.input :logo,:as => :file, :input_html => {:tabindex => 2 } %>
-  <%= f.input :nombre, :input_html => {:tabindex => 3 } %>
-  <%= f.input :pais, :as => :select, :collection => Pais.find (:all),:input_html => { :tabindex => 4 } %>
+  <%= f.input :nombre,:tabindex => 3  %>
+  <%= f.input :pais, :as => :select, :collection => Pais.find (:all),:tabindex => 4  %>
 
-  <%= f.input :clase, :input_html => { :tabindex => 5 } %>
-  <%= f.input :tipo_marca , :input_html => {:tabindex => 6 } %>
-  <%= f.input :productos, :as => :text , :input_html => {:tabindex => 7 } %>
+  <%= f.input :clase, :tabindex => 5 %>
+  <%= f.input :tipo_marca , :tabindex => 6 %>
+  <%= f.input :productos, :as => :text , :tabindex => 7 %>
   <ol>  
   <li id="agente-auto" class="input-text"> 
     <label for="agente_ids">Agentes</label> 
@@ -47,19 +47,19 @@
     </div> 
   </li> 
 </ol></ br>
-  <%= f.input :estado, :collection => Marca.lista_estados , :input_html => {:tabindex => 10 } %>
-  <%= f.input :apoderado, :input_html => { :tabindex => 11 } %>
-  <%= f.input :representante_empresarial, :input_html => { :tabindex => 12 } %>
-  <%= f.input :numero_solicitud , :input_html => {:tabindex => 13 } %>
+  <%= f.input :estado, :collection => Marca.lista_estados , :tabindex => 10 %>
+  <%= f.input :apoderado, :tabindex => 11 %>
+  <%= f.input :representante_empresarial, :tabindex => 12 %>
+  <%= f.input :numero_solicitud , :tabindex => 13  %>
   <%= f.input :estado_fecha, :label => 'Fecha solicitud',:as => :string, :input_html => {:tabindex => 14, :class => 'date' } %>
 
-  <%= f.input :numero_publicacion,:label => 'Número de publicación' , :input_html => {:tabindex => 15 } %>
+  <%= f.input :numero_publicacion,:label => 'Número de publicación' , :tabindex => 15  %>
   <%= f.input :fecha_publicacion, :as => 'string', :input_html => {:tabindex => 16, :class => 'date' } %>
 
-  <%= f.input :numero_gaceta, :label => 'Número de gaceta' , :input_html => {:tabindex => 17 } %>
- <%= f.input :numero_registro,:label => 'Número de registro' , :input_html => {:tabindex => 18 } %>
+  <%= f.input :numero_gaceta, :label => 'Número de gaceta' , :tabindex => 17  %>
+ <%= f.input :numero_registro,:label => 'Número de registro' , :tabindex => 18 %>
   <%= f.input :fecha_registro, :as => 'string', :input_html => {:tabindex => 19, :class => 'date'  } %>
-  <%= f.input :propia, :label => 'Marca propia', :input_html => {:tabindex => 20 }  %>
+  <%= f.input :propia, :label => 'Marca propia', :tabindex => 20 %>
 
 
   <% @marca.errores_manual.try(:each) do |k, v| %>
@@ -76,9 +76,10 @@
     <%# hidden_field_tag "marca[errores_manual]", ""  %>
 
   <div style="clear:both"></div>
-  <%= f.submit "Salvar" , :input_html => {:tabindex => 20 }  %>
+  <%= f.submit "Salvar" , :tabindex => 21  %>
 <% end -%>
 <div style="clear:both"></div>
+
 <%= javascript_include_tag 'fcbkcomplete' %>
 
 <script type="text/javascript">

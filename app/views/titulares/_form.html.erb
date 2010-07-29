@@ -4,6 +4,7 @@
 
 <% titular.inputs do %>
   <%= titular.input :nombre , :label => 'Nombre' %>
+  <%= titular.input :pais, :label => 'Pais', :as => :select, :collection Pais.find(:all) %>
   <%= titular.input :direccion , :label => 'Direccion' %>
   <%= titular.input :telefono , :label => 'Telefono' %>
   <%= titular.input :email , :label => 'Email' %>
