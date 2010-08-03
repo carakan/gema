@@ -2,6 +2,8 @@ class BusquedaVacia < Tableless
   column :busqueda
 
   CLASES = [
+    [' '],['Todas'],
+    ['Una sola'],
     [ 1, 2, 4 ],
     [ 3, 5, 10 ],
     [ 6, 14 ],
