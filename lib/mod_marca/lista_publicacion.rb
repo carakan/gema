@@ -14,6 +14,12 @@ module ModMarca::ListaPublicacion
 
     # Define las validaciones y filtros que se deben aplicar a la clase
     def set_validations_and_filters
+      # validaciones
+      validates_presence_of :nombre, :estado_fecha, 
+        :tipo_signo_id, :clase_id
+      validates_format_of :numero_solicitud, :with => /^\d+-\d{4}$/
+      validates_uniqueness_of :numero_solicitud, :scope => :parent_id
+
       validates_presence_of :numero_publicacion, :numero_gaceta
     end
 
@@ -73,6 +79,7 @@ module ModMarca::ListaPublicacion
       params = get_pdf_params( params, hoja)
       comp = [:apoderado, :tipo_signo_id, :clase_id, :nombre]
       klass = buscar_comparar(params, comp)
+
       if klass.nil?
         klass = Marca.new(params)
       else
@@ -81,8 +88,9 @@ module ModMarca::ListaPublicacion
 
       # Salva correctamente o sino con errores
       unless klass.save
-        klass.activo = false
+        klass.activa = true
         klass.valido = false # Indica que no paso la validación
+        klass.almacenar_errores
         klass.save( false )
       end
 
