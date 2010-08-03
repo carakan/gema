@@ -8,6 +8,7 @@
     <select id="clases" name="clases">
       <%= options_for_select(BusquedaVacia.options, params[:clases]) %>
     </select>
+    <input id="oneclass" name="una_clase" type="input" value="" style="display:none"/>
   </div>
 
 
@@ -35,6 +36,18 @@
           $('#fechas').show();
         }else{
           $('#fechas').hide();
+        }
+      });
+  });
+</script>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+      $('select[name=clases]').click(function() {
+        if( $(this).val() == 'Una sola' ) {
+          $('#oneclass').show();
+        }else{
+          $('#oneclass').hide();
         }
       });
   });
