@@ -38,8 +38,8 @@ class ImportacionesController < ApplicationController
 
   # Metodo especial para poder buscar marcas y realizar curce
   def cruce
-
-    render :text => "Cruce"
+    @marcas = Marca.cruce(params[:id]).paginate(:page => @page)
+    @importacion = Importacion.find(params[:id])
   end
 
   # PUT /importaciones/1

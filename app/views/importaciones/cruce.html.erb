@@ -1,0 +1,36 @@
+<h1>Cruce</h1>
+
+<table class="decorated">
+	<tr>
+    <%= '<th>Fila</th>' if @mostra_fila %>
+		<th>Marca</th>
+		<th>Tipo Signo</th>
+		<th>Clase</th>
+    <th>Válido</th>
+    <th>Cruzar</th>
+    <th></th>
+    <% @marcas.each do |marca| %>
+      <% unless marca.valido %>
+          <% @css = 'error' %>
+         <tr class="<%= @css %>" alt="<%= marca.presentar_errores %>">
+      <% else %>
+        <tr class="" >
+      <% end %>
+        <%= "<td>#{marca.fila}</td>" if @mostra_fila %>
+        <td><%= marca.nombre %></td>
+        <td><%= marca.tipo_signo %></td>
+        <td><%= marca.clase %></td>
+        <td><%= verdad marca.valido %></td>
+        <td></td>
+
+        <td>
+          <%= link_to "editar", edit_marca_path(marca, :importacion_id => @importacion.id), :class => 'edit' %>
+          <%= link_to "borrar", marca, :class => 'delete' %>
+        </td>
+      </tr>
+    <% end %>
+
+	</tr>
+</table>
+
+<%= will_paginate @marcas %>

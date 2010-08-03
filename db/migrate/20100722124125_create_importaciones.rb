@@ -6,6 +6,7 @@ class CreateImportaciones < ActiveRecord::Migration
       t.string :publicacion
       t.string :archivo_file_name
       t.integer :archivo_file_size
+      t.integer :cruces_pendientes, :default => -1
 
       t.timestamps
     end
