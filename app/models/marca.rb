@@ -2,6 +2,7 @@
 class Marca < ActiveRecord::Base
 
   #before_save :set_propia
+  before_save :quitar_comillas
   before_save :set_minusculas
   before_save :adicionar_usuario
   before_save :set_agentes_titulares, :if => lambda { |m| m.parent_id == 0 }
@@ -244,6 +245,14 @@ class Marca < ActiveRecord::Base
     end
   end
 
+  # Realiza la busqueda de el cruce (busqueda) realizada para una marca
+  #   @param Integer importacion_id
+  #   @return Consulta
+  def cruce(importacion_id)
+    self.consultas.find_by_importacion_id(importacion_id)
+  end
+
+
   # Retorna los agentes desde el campo serializado
   #   @return Array
   def agentes_serial
@@ -323,6 +332,9 @@ protected
 
 private
 
+  def quitar_comillas
+    self.nombre = self.nombre.gsub(/^(\342\200\234|")(.*)(\342\200\235|")$/, '\2')
+  end
 
   def adicionar_usuario
     self.usuario_id = UsuarioSession.current_user[:id]

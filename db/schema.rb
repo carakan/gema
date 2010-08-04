@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20100728191627) do
     t.string   "busqueda"
     t.string   "parametros"
     t.string   "reporte"
+    t.integer  "importacion_id", :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -45,6 +46,7 @@ ActiveRecord::Schema.define(:version => 20100728191627) do
     t.string   "publicacion"
     t.string   "archivo_file_name"
     t.integer  "archivo_file_size"
+    t.integer  "cruces_pendientes", :default => -1
     t.datetime "created_at"
     t.datetime "updated_at"
   end

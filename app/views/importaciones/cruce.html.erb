@@ -21,11 +21,11 @@
         <td><%= marca.tipo_signo %></td>
         <td><%= marca.clase %></td>
         <td><%= verdad marca.valido %></td>
-        <td></td>
+        <td>
+          <%= cruce_busqueda(marca, @importacion) %>
+        </td>
 
         <td>
-          <%= link_to "editar", edit_marca_path(marca, :importacion_id => @importacion.id), :class => 'edit' %>
-          <%= link_to "borrar", marca, :class => 'delete' %>
         </td>
       </tr>
     <% end %>
