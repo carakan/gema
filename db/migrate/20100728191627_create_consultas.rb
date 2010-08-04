@@ -6,6 +6,7 @@ class CreateConsultas < ActiveRecord::Migration
       t.string :busqueda
       t.string :parametros
       t.string :reporte
+      t.integer :importacion_id, :default => 0
 
       t.timestamps
     end

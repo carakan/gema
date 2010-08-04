@@ -40,6 +40,7 @@ class ImportacionesController < ApplicationController
   def cruce
     @marcas = Marca.cruce(params[:id]).paginate(:page => @page)
     @importacion = Importacion.find(params[:id])
+    @importacion.inicializar_cruces_pendientes
   end
 
   # PUT /importaciones/1
