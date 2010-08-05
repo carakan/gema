@@ -1,5 +1,5 @@
 class Usuario < ActiveRecord::Base
-  before_save :encriptar_password
+  before_create :encriptar_password
 
   has_many :marcas
   has_many :posts

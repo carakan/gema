@@ -3,13 +3,20 @@
 <%= render :partial => "buscar" %>
 
 <% unless @busqueda.blank? %>
+
+  <% form_tag new_busqueda_path, :method => 'get' do -%>
+
+  <%= hidden_field_tag "busqueda", params[:busqueda] %>
+  <%= hidden_field_tag "clases", params[:clases] %>
+  <%= hidden_field_tag "importacion_id", params[:importacion_id] unless params[:importacion_id].nil? %>
+
   <h2>Resultados para la busqueda "<%= params[:busqueda] %>"</h2>
   <table class="decorated">
   	<tr>
       <th></th>
   		<th>Nombre</th>
   		<th>Clase</th>
-      <th>Tipo de busqueda</th>
+      <th>Tipo de<br/> busqueda</th>
   	</tr>
     <% @busqueda.each do |b| %>
       <tr>
@@ -23,5 +30,10 @@
     <% end %>
 
   </table>
+
+  <%= submit_tag "Seleccionar" %>
+
+  <% end %>
+
 <% end %>
 

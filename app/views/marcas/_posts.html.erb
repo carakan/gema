@@ -16,7 +16,7 @@
             </li>
           <% end %>
         </ul>
-      <%= link_to "borrar", p, :class => 'delete' if UsuarioSession.current_user[:id] == p.usuario_id %>
+      <%= link_to "borrar", p, :class => 'delete' if UsuarioSession.current_user[:rol] == 'admin' %>
     </li>
   <% end %>
   </ul>

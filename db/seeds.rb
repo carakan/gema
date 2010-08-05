@@ -5,7 +5,7 @@
 #   
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Major.create(:name => 'Daley', :city => cities.first)
-Usuario.create!(:nombre => 'Admin', :login => 'admin', :password => 'demo123', :password_confirmation => 'demo123' )
+Usuario.create!(:nombre => 'Admin', :login => 'admin', :password => 'demo123', :password_confirmation => 'demo123', :rol => 'admin' )
 
 TipoSigno.create!(:nombre => 'Denominación', :sigla => 'Den.' )
 TipoSigno.create!(:nombre => 'Figurativa', :sigla => 'Fig.' )
