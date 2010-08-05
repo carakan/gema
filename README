@@ -4,4 +4,5 @@ Los archivos de configuración se almacenan en config, para la "Lista de publica
 
 
 Los archivos para hacer pruebas se encuentran en: 'spec/archivos'
+Los modulos de marca se encuentran en lib/mod_marca
 

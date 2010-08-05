@@ -74,7 +74,6 @@ class Busqueda
     @expresiones.each{ |k, val| @expresiones.delete(k) if val.blank? }
   end
 
-
   # Transforma las fechas de busqueda de String a Date
   # en caso de que esten correctas devuelve las dos fechas
   # caso contrario retorna un array de false

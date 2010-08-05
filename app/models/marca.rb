@@ -63,7 +63,17 @@ class Marca < ActiveRecord::Base
   }
 
   named_scope :cruce, lambda { |importacion_id| 
+<<<<<<< HEAD
     { :conditions => { :importacion_id => importacion_id, :propia => false } }
+=======
+    { 
+      :conditions =>  [
+        "marcas.importacion_id = ? AND marcas.propia = ? AND marcas.tipo_signo_id NOT IN (?)", 
+        importacion_id, false, TipoSigno.descartadas_cruce
+      ],
+      :include => [:tipo_signo, :clase, :consultas]
+    }
+>>>>>>> 4718b47b21cd05b683ad145ecdf6cd2d9454d64f
   }
 
 
@@ -249,7 +259,11 @@ class Marca < ActiveRecord::Base
   #   @param Integer importacion_id
   #   @return Consulta
   def cruce(importacion_id)
+<<<<<<< HEAD
     self.consultas.find_by_importacion_id(importacion_id)
+=======
+    self.consultas.try(:find) { |v| v.importacion_id == importacion_id}
+>>>>>>> 4718b47b21cd05b683ad145ecdf6cd2d9454d64f
   end
 
 
