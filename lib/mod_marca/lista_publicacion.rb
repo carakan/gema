@@ -123,7 +123,7 @@ module ModMarca::ListaPublicacion
         :estado => 'lp',
         :importado => true,
         :numero_gaceta => nro_gaceta,
-        :numero_publicacion => params['NUMERO DE PUBLICACION'],
+        :numero_publicacion => params['NUMERO DE PUBLICACION'].gsub(/\s/, ''),
         :nombre => params['NOMBRE DE LA MARCA'],
         :numero_solicitud => params['NUMERO DE SOLICITUD'],
         :estado_fecha => convertir_fecha_solicitud( params['FECHA DE SOLICITUD'] ), # Esta es la Fecha de solicitud

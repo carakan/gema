@@ -299,7 +299,14 @@ class Marca < ActiveRecord::Base
   def self.buscar_comparar(params, comp )
     params[:nombre] = params[:nombre].gsub(/^"(.*)$"/, '\1').strip
     marca = Marca.find_by_numero_solicitud(params[:numero_solicitud])
-    return Marca.new(params) if marca.nil? or !(marca.propia)
+    
+    if marca.nil?
+      return Marca.new(params)
+    elsif !(marca.propia)
+      marca.attributes = params
+      return marca
+    end
+
     marca.importacion_id = params[:importacion_id]
 
     marca.errores_manual = {}
