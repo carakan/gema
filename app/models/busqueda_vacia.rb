@@ -2,12 +2,7 @@ class BusquedaVacia < Tableless
   column :busqueda
 
   CLASES = [
-<<<<<<< HEAD
-    [' '],['Todas'],
-    ['Una sola'],
-=======
     (1..45).to_a,
->>>>>>> 4718b47b21cd05b683ad145ecdf6cd2d9454d64f
     [ 1, 2, 4 ],
     [ 3, 5, 10 ],
     [ 6, 14 ],

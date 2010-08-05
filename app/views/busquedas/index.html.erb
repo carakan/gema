@@ -9,6 +9,7 @@
       <th></th>
   		<th>Nombre</th>
   		<th>Clase</th>
+      <th>Tipo de busqueda</th>
   	</tr>
     <% @busqueda.each do |b| %>
       <tr>
@@ -17,6 +18,7 @@
         </td>
       	<td><label for="<%= b.nombre %>"><%= b.nombre %></label></td>
       	<td><%= b.clase_id %></td>
+        <td><%= tipo_busqueda b.pos %></td>
       </tr>
     <% end %>
 

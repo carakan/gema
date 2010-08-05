@@ -4,6 +4,7 @@ module BusquedasHelper
       when 1 then "Exacta"
       when 2 then "Fonética"
       when 3 then "División"
+      when 4 then "División"
     end
   end
 end
