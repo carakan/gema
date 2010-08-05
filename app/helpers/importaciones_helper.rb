@@ -15,7 +15,7 @@ module ImportacionesHelper
     if imp = marca.cruce(importacion.id)
       link_to "ver cruce", imp.id
     else
-      link_to "realizar cruce", busquedas_path(:importacion_id => importacion.id, :busqueda => marca.nombre, :clases => (1..45).to_a.join(',') )
+      link_to "realizar cruce", cruce_busquedas_path(:importacion_id => importacion.id, :marca_id => marca.id )
     end
   end
 

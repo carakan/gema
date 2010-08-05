@@ -26,11 +26,15 @@ class ConsultasController < ApplicationController
   # GET /consultas/new
   # GET /consultas/new.xml
   def new
+    if params[:marcas].nil?
+      flash[:error] = 'Debe seleccionar alguna marca'
+      redirect_to cruce_busquedas_path(:importacion_id => params[:importacion_id], :marca_id => params[:marca_id])
+      return
+    end
 
-    parametros = Consulta.convertir_parametros_a_hash(params)
-    @consulta = Consulta.new(:busqueda => params[:busqueda], :parametros => parametros.to_yaml )
-    @consulta.importacion_id = params[:importacion_id] unless params[:importacion_id].nil?
-    @marcas = params[:marcas]
+    #parametros = Consulta.convertir_parametros_a_hash(params)
+    #@consulta = Consulta.new(:busqueda => params[:busqueda], :parametros => parametros.to_yaml )
+    @consulta = Consulta.nueva(params)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -39,9 +43,9 @@ class ConsultasController < ApplicationController
   end
 
   # GET /consultas/1/edit
-  def edit
-    @consulta = Consulta.find(params[:id])
-  end
+  #def edit
+  #  @consulta = Consulta.find(params[:id])
+  #end
 
   # POST /consultas
   # POST /consultas.xml
@@ -61,31 +65,31 @@ class ConsultasController < ApplicationController
 
   # PUT /consultas/1
   # PUT /consultas/1.xml
-  def update
-    @consulta = Consulta.find(params[:id])
+  #def update
+  #  @consulta = Consulta.find(params[:id])
 
-    respond_to do |format|
-      if @consulta.update_attributes(params[:consulta])
-        format.html { redirect_to(@consulta, :notice => 'Consulta was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @consulta.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
+  #  respond_to do |format|
+  #    if @consulta.update_attributes(params[:consulta])
+  #      format.html { redirect_to(@consulta, :notice => 'Consulta was successfully updated.') }
+  #      format.xml  { head :ok }
+  #    else
+  #      format.html { render :action => "edit" }
+  #      format.xml  { render :xml => @consulta.errors, :status => :unprocessable_entity }
+  #    end
+  #  end
+  #end
 
-  # DELETE /consultas/1
-  # DELETE /consultas/1.xml
-  def destroy
-    @consulta = Consulta.find(params[:id])
-    @consulta.destroy
+  ## DELETE /consultas/1
+  ## DELETE /consultas/1.xml
+  #def destroy
+  #  @consulta = Consulta.find(params[:id])
+  #  @consulta.destroy
 
-    respond_to do |format|
-      format.html { redirect_to(consultas_url) }
-      format.xml  { head :ok }
-    end
-  end
+  #  respond_to do |format|
+  #    format.html { redirect_to(consultas_url) }
+  #    format.xml  { head :ok }
+  #  end
+  #end
 
 private
   def set_busqueda

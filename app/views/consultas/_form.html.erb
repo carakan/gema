@@ -1,8 +1,7 @@
 <% semantic_form_for(@consulta) do |f| %>
   <%= f.input :busqueda, :as => :hidden %>
   <%= f.input :parametros, :as => :hidden %>
-
-  <table>
+  <table class="decorated">
   	<tr>
   		<th>Marca</th>
   		<th>Tipo</th>
@@ -10,12 +9,13 @@
       <th>Tipo de<br />busqeuda</th>
       <th>Comentario</th>
     </tr>
-    <% f.fields_for :cosulta_detalles do |cd| -%>
+    <% f.fields_for :consulta_detalles do |cd| %>
       <tr>
+      	<td><%= cd.object.marca %></td>
+      	<td><%= tipo_busqueda cd.object.tipo %></td>
       	<td></td>
-      	<td></td>
-      	<td></td>
-      	<td><%= f.input :comentario %></td>
+        <td></td>
+        <td><%= cd.text_area :comentario, :rows => 3 %></td>
       </tr>
     <% end %>
   </table>

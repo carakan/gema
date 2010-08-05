@@ -42,9 +42,9 @@ ActiveRecord::Schema.define(:version => 20100805165350) do
     t.integer  "marca_id"
     t.integer  "usuario_id"
     t.string   "busqueda"
-    t.string   "parametros"
+    t.string   "parametros",     :limit => 400
     t.string   "reporte"
-    t.integer  "importacion_id", :default => 0
+    t.integer  "importacion_id",                :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
