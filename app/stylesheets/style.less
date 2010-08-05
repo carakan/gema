@@ -53,6 +53,9 @@ table.decorated{
   th{
     background-color: @dark;
     color:@white;
+    a{
+      color: @white;
+    }
   }
   th, td{
   /*  border: 1px solid @border_color_table;*/
@@ -202,10 +205,12 @@ form.in_half li{
 }
 
 .notice{
-  font-size: 1.6em;
+  font-size: 1.2em;
   margin: 10px;
   border: 4px solid;
-  padding: 20px 20px;
+  padding: 10px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
 }
 
 #flashNotice{
@@ -590,6 +595,10 @@ ul.menu{
   display: inline-block;
 }
 
+.propia{
+  background-color: @light_green;
+}
+
 /*********************/
 /*clases para tipos de documentos*/
 .mime{
@@ -597,4 +606,18 @@ ul.menu{
     padding-left: 16px;
     background: transparent url(../images/icons/picture.png) no-repeat top left;
   }
+}
+
+.tooltip{
+  position:absolute;
+  width: 400px;
+  z-index: 10000;
+  background-color: @white;
+  padding: 4px 6px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+}
+#tooltip-error{
+  border:4px solid @red;
+  color: @red;
 }

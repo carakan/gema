@@ -2,9 +2,10 @@
 class Marca < ActiveRecord::Base
 
   #before_save :set_propia
+  before_save :quitar_comillas
   before_save :set_minusculas
   before_save :adicionar_usuario
-  before_save :set_agentes_titulares, :if => lambda{ |m| m.parent_id == 0 }
+  before_save :set_agentes_titulares, :if => lambda { |m| m.parent_id == 0 }
 
   before_update :crear_historico
   before_update :set_cambios
@@ -14,8 +15,12 @@ class Marca < ActiveRecord::Base
   belongs_to :tipo_signo
   belongs_to :tipo_marca
   belongs_to :usuario
+  belongs_to :pais
+  belongs_to :importacion
 
   has_many :posts, :order => 'created_at DESC'
+  has_many :adjuntos, :as => :adjuntable, :dependent => :destroy
+  has_many :consultas
 
   has_and_belongs_to_many :agentes, :class_name => 'Agente',
     :association_foreign_key => :representante_id,
@@ -31,19 +36,42 @@ class Marca < ActiveRecord::Base
   serialize :cambios
   serialize :agente_ids_serial
   serialize :titular_ids_serial
+  serialize :errores
+  # Errores especiales que deben ser eliminados manualmente debido a que el error
+  # es validado por un criterio que no puede identificarse en el sistema
+  serialize :errores_manual
 
 
   validates_presence_of :estado
+  validate :validar_errores_manual
 
   default_scope :conditions => "marcas.parent_id = 0"
 
-  named_scope :importados, lambda{ |fecha| 
-    { :conditions => { :fecha_importacion => fecha} } 
-  }
+  #named_scope :importados, lambda{ |fecha| 
+  #  { :conditions => { :fecha_importacion => fecha} } 
+  #}
 
-  named_scope :importados_error, lambda{ |fecha| 
+  named_scope :importado, lambda { |imp_id| 
+    { 
+      :conditions => { :importacion_id => imp_id }, 
+      :order => "marcas.valido, marcas.propia DESC", 
+      :include => [:tipo_signo, :clase] } 
+    }
+
+  named_scope :importados_error, lambda { |fecha| 
     { :conditions => { :fecha_importacion => fecha, :valido => false} } 
   }
+
+  named_scope :cruce, lambda { |importacion_id| 
+    { 
+      :conditions =>  [
+        "marcas.importacion_id = ? AND marcas.propia = ? AND marcas.tipo_signo_id NOT IN (?)", 
+        importacion_id, false, TipoSigno.descartadas_cruce
+      ],
+      :include => [:tipo_signo, :clase, :consultas]
+    }
+  }
+
 
   TIPOS = {
     'sm' => 'Solicitud de Marca',
@@ -140,7 +168,7 @@ class Marca < ActiveRecord::Base
     params = options.delete(:params)
     
     unless params['propia'].nil?
-      options = options.merge(:conditions => { :propia => convert_boolean(params['propia']) })
+      options = options.merge( :conditions => { :propia => convert_boolean(params['propia']) } )
     else
       options[:conditions] = {}
     end
@@ -148,10 +176,6 @@ class Marca < ActiveRecord::Base
     paginate(options)
   end
 
-  #def self.all(*args)
-  #  options = args.extract_options!
-  #  super options#, :conditions => "marcas.parent_id = 0"
-  #end
 
   # Presenta un listtado de importaciones
   # acumuladas, desde la vista
@@ -159,8 +183,8 @@ class Marca < ActiveRecord::Base
     Marca.table_name = 'view_importaciones'
     marcas = Marca.send(:with_exclusive_scope) { 
       Marca.paginate(:page => page, 
-                     :select => "fecha_importacion, SUM(total) AS total, SUM(errores) AS errores, estado",
-                     :group => "fecha_importacion") 
+                     :select => "importacion_id, SUM(total) AS total, SUM(errores) AS errores, estado",
+                     :group => "importacion_id") 
     }
     marcas
   end
@@ -205,8 +229,9 @@ class Marca < ActiveRecord::Base
   # Metodo para poder realizar actualizaciones
   # que pueda cambiar la clse y el estado
   def update_marca(params)
-    self.set_include_estado(params[:estado])
-    self.set_include_tipo_signo(params[:tipo_signo_id])
+    self.class.set_include_estado(params[:estado])
+    #set_include_tipo_signo(params[:tipo_signo_id])
+    params[:valido] = true
     self.update_attributes(params)
   end
 
@@ -225,6 +250,14 @@ class Marca < ActiveRecord::Base
       "/marcas/#{self.id}"
     end
   end
+
+  # Realiza la busqueda de el cruce (busqueda) realizada para una marca
+  #   @param Integer importacion_id
+  #   @return Consulta
+  def cruce(importacion_id)
+    self.consultas.try(:find) { |v| v.importacion_id == importacion_id}
+  end
+
 
   # Retorna los agentes desde el campo serializado
   #   @return Array
@@ -246,6 +279,37 @@ class Marca < ActiveRecord::Base
     Post.all(:conditions => { :marca_id => self.id }, 
              :limit => limit, :order => 'created_at DESC' )
   end
+
+  # Almacena los errores despues de que es fallida la validación
+  def almacenar_errores
+    self.errores = self.errors.inject([]) { |arr, v| arr << [v.first.humanize, v.last]; arr }
+  end
+
+  # Metodo simple para poder presentar errores serializados
+  def presentar_errores
+    arr = self.errores.inject([]) { |arr, v| arr << "<strong>#{v.first}</strong>: #{v.last}" }
+    arr.join("<br />")
+  end
+
+
+  # Realiza una comparación de los datos que se importan Vs. los que se encuentran
+  # en la base de datos
+  #   @param Hash params
+  #   @params Array comp # Array con datos tipo Symbol a comparar en una clase
+  def self.buscar_comparar(params, comp )
+    params[:nombre] = params[:nombre].gsub(/^"(.*)$"/, '\1').strip
+    marca = Marca.find_by_numero_solicitud(params[:numero_solicitud])
+    return Marca.new(params) if marca.nil? or !(marca.propia)
+    marca.importacion_id = params[:importacion_id]
+
+    marca.errores_manual = {}
+    comp.each do |m|
+      marca.errores_manual[m] = "#{TIPOS[params[:estado]]} con valor distinto: #{params[m]}" unless marca.send(m) == params[m]
+    end
+
+    marca
+  end
+
 
 protected
   #########################################################
@@ -273,6 +337,10 @@ protected
 
 
 private
+
+  def quitar_comillas
+    self.nombre = self.nombre.gsub(/^(\342\200\234|")(.*)(\342\200\235|")$/, '\2')
+  end
 
   def adicionar_usuario
     self.usuario_id = UsuarioSession.current_user[:id]
@@ -313,4 +381,12 @@ private
     self.titular_ids_serial = self.titular_ids
   end
 
+  # Valida de que los campos de comparación esten vacios
+  def validar_errores_manual
+    unless self.errores_manual.blank?
+      self.errores_manual.each do |k, v|
+        self.errors.add(k, v)
+      end
+    end
+  end
 end

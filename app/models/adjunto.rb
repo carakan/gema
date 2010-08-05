@@ -2,7 +2,12 @@ class Adjunto < ActiveRecord::Base
   belongs_to :adjuntable, :polymorphic => true
 
   has_attached_file :archivo, :styles => { :mini => "100x100>" },
-    :path => ":rails_root/public/system/:attachment/#{Rails.env}/:id/:style-:filename"
+    :path => ":rails_root/public/system/:rails_env/adjuntos/:id_partition/:style-:filename"
+  before_post_process :image?
+
+  def image?
+    ['.png', '.jpg', '.gif', '.bmp'].include? File.extname( self.archivo.original_filename.downcase )
+  end
 
   def tipo
     File.extname( archivo.url ).downcase.gsub('.', '')

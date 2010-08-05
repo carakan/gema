@@ -20,10 +20,15 @@ module ApplicationHelper
     end
   end  
 
-  def verdad(val)
-    #val == true ? t("yes") : t("no")
-    val ? "Sí" : "<span class='error'>No</span>"
+  #def verdad(val)
+  #  #val == true ? t("yes") : t("no")
+  #  val ? "Sí" : "No"
+  #end
+
+  def valido(val)
+    val ? "Si": "No"
   end
+  alias verdad valido
 
   # localiza la fecha
   def fecha(fec, format = :short)
@@ -46,6 +51,22 @@ module ApplicationHelper
 
 
   def listado_facebook(klass, caption, options = {})
+  end
+
+  def sort_order(title, field)
+    direction = 'ASC'
+    css = ''
+    if params[:order] == field
+      if params[:direction] == 'ASC'
+        direction = 'DESC'
+        css = 'asc'
+      else
+        direction = 'ASC'
+        css = 'desc'
+      end
+    end
+    url = { :controller => params[:controller], :action => params[:action], :order => field, :direction => direction }
+    link_to title, url, :class => css
   end
 
 end
