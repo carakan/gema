@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100728191627) do
+ActiveRecord::Schema.define(:version => 20100805165350) do
 
   create_table "adjuntos", :force => true do |t|
     t.string   "nombre"
@@ -25,6 +25,15 @@ ActiveRecord::Schema.define(:version => 20100728191627) do
     t.string   "nombre"
     t.integer  "codigo",      :null => false
     t.string   "descripcion"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "consulta_detalles", :force => true do |t|
+    t.integer  "consulta_id"
+    t.integer  "marca_id"
+    t.string   "comentario",  :limit => 800
+    t.integer  "tipo"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

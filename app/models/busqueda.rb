@@ -126,7 +126,7 @@ class Busqueda
       end
     end
     [ 
-      "SELECT nombre, pos, clase_id FROM (#{sql.join(" UNION ")}) AS res",
+      "SELECT id, nombre, pos, clase_id FROM (#{sql.join(" UNION ")}) AS res",
       condiciones_sql(params),
       "GROUP BY nombre ORDER BY pos"
     ].join(" ")
@@ -134,18 +134,18 @@ class Busqueda
 
   def self.sql_exacto(bus, pos)
     ActiveRecord::Base.send(:sanitize_sql_array, 
-    [ "SELECT nombre, clase_id, #{pos} AS pos FROM marcas WHERE nombre_minusculas = '%s'", bus ] )
+    [ "SELECT id, nombre, clase_id, #{pos} AS pos FROM marcas WHERE nombre_minusculas = '%s'", bus ] )
   end
 
   def self.sql_variaciones(arr, pos)
-    sql = "SELECT nombre, clase_id, #{pos} AS pos FROM marcas WHERE "
+    sql = "SELECT id, nombre, clase_id, #{pos} AS pos FROM marcas WHERE "
     sql << arr.map{ |v| 
       ActiveRecord::Base.send(:sanitize_sql_array, ["nombre_minusculas LIKE '%s'", "%#{v}%"] ) 
     }.join(" OR ")
   end
 
   def self.sql_expreg(arr, pos)
-    sql = "SELECT nombre, clase_id, #{pos} AS pos FROM marcas WHERE "
+    sql = "SELECT id, nombre, clase_id, #{pos} AS pos FROM marcas WHERE "
     sql << arr.map{ 
       |v| ActiveRecord::Base.send(:sanitize_sql_array, [ "nombre_minusculas REGEXP '%s'", v ] )
     }.join(" OR ")

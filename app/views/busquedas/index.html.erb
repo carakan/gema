@@ -4,7 +4,7 @@
 
 <% unless @busqueda.blank? %>
 
-  <% form_tag new_busqueda_path, :method => 'get' do -%>
+  <% form_tag new_consulta_path, :method => 'get' do -%>
 
   <%= hidden_field_tag "busqueda", params[:busqueda] %>
   <%= hidden_field_tag "clases", params[:clases] %>
@@ -21,11 +21,13 @@
     <% @busqueda.each do |b| %>
       <tr>
         <td>
-        	<input name="marcas[]" type="checkbox" id="<%= b.nombre %>" value="<%= b.nombre %>" />
+          <input name="marcas[<%= b.id %>]" type="checkbox" id="marca<%= b.id %>" value="<%= b.id %>" />
+          <input name="tipos[<%= b.id %>]" type="hidden" value="<%= b.pos %>" />
         </td>
-      	<td><label for="<%= b.nombre %>"><%= b.nombre %></label></td>
+      	<td><label for="marca<%= b.id %>"><%= b.nombre %></label></td>
       	<td><%= b.clase_id %></td>
-        <td><%= tipo_busqueda b.pos %></td>
+        <td><%= tipo_busqueda b.pos %>
+        </td>
       </tr>
     <% end %>
 

@@ -8,9 +8,4 @@ class BusquedasController < ApplicationController
     @busq = BusquedaVacia.new
   end
 
-
-  def new
-    @params = params[:marcas]
-    @busqueda = params[:busqueda]
-  end
 end

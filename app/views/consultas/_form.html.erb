@@ -1,0 +1,25 @@
+<% semantic_form_for(@consulta) do |f| %>
+  <%= f.input :busqueda, :as => :hidden %>
+  <%= f.input :parametros, :as => :hidden %>
+
+  <table>
+  	<tr>
+  		<th>Marca</th>
+  		<th>Tipo</th>
+  		<th>Clase</th>
+      <th>Tipo de<br />busqeuda</th>
+      <th>Comentario</th>
+    </tr>
+    <% f.fields_for :cosulta_detalles do |cd| -%>
+      <tr>
+      	<td></td>
+      	<td></td>
+      	<td></td>
+      	<td><%= f.input :comentario %></td>
+      </tr>
+    <% end %>
+  </table>
+  <p>
+    <%= f.submit 'Salvar' %>
+  </p>
+<% end %>

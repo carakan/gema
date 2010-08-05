@@ -1,4 +1,6 @@
 class ConsultasController < ApplicationController
+  before_filter :set_busqueda, :only => [:new, :create]
+  
   # GET /consultas
   # GET /consultas.xml
   def index
@@ -24,7 +26,11 @@ class ConsultasController < ApplicationController
   # GET /consultas/new
   # GET /consultas/new.xml
   def new
-    @consulta = Consulta.new
+
+    parametros = Consulta.convertir_parametros_a_hash(params)
+    @consulta = Consulta.new(:busqueda => params[:busqueda], :parametros => parametros.to_yaml )
+    @consulta.importacion_id = params[:importacion_id] unless params[:importacion_id].nil?
+    @marcas = params[:marcas]
 
     respond_to do |format|
       format.html # new.html.erb
@@ -78,6 +84,15 @@ class ConsultasController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(consultas_url) }
       format.xml  { head :ok }
+    end
+  end
+
+private
+  def set_busqueda
+    if params[:busqueda]
+      @busqueda = params[:busqueda]
+    elsif
+      @busqueda = params[:consulta][:busqueda]
     end
   end
 end
