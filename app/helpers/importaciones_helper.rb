@@ -12,16 +12,6 @@ module ImportacionesHelper
 
   # Presenta un vinculo relacionado al cruce de una marca
   def cruce_busqueda(marca, importacion)
-<<<<<<< HEAD
-    if consulta = marca.cruce(importacion.id)
-      link_to "ver cruce", cosulta.id
-    else
-      link_to "realizar cruce"
-    end
-  end
-
-  protected
-=======
     if imp = marca.cruce(importacion.id)
       link_to "ver cruce", imp.id
     else
@@ -30,7 +20,6 @@ module ImportacionesHelper
   end
 
 protected
->>>>>>> 4718b47b21cd05b683ad145ecdf6cd2d9454d64f
   def link_cruce(marca)
     imp = marca.importacion
     if imp.cruces_pendientes < 0
