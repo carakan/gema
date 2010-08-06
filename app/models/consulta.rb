@@ -2,7 +2,7 @@ class Consulta < ActiveRecord::Base
   before_create :adicionar_usuario
   before_create :disminuir_cruces_pendientes
   before_create :crear_reporte, :if => lambda { |c| !!c.importacion.nil? }
-  before_destroy :aumentar_cruces_pendientes, :if => lambda { |c| !!c.importacion.nil? }
+  before_destroy :aumentar_cruces_pendientes#, :if => lambda { |c| !!c.importacion.nil? }
 
   belongs_to :marca
   belongs_to :usuario
@@ -25,7 +25,7 @@ class Consulta < ActiveRecord::Base
   # Crea una consulta a partir de los detalles
   def self.nueva(params)
     klass = new(
-      :parametros => convertir_parametros_a_hash(params),
+      :parametros => convertir_parametros_a_hash(params).to_yaml,
       :busqueda => params[:busqueda]
     )
 

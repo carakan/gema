@@ -1,11 +1,11 @@
 <p>
   <b>Marca:</b>
-  <%=h @consulta.marca_id %>
+  <%=h @consulta.marca %>
 </p>
 
 <p>
   <b>Usuario:</b>
-  <%=h @consulta.usuario_id %>
+  <%=h @consulta.usuario %>
 </p>
 
 <p>
@@ -13,16 +13,31 @@
   <%=h @consulta.busqueda %>
 </p>
 
-<p>
-  <b>Parametros:</b>
-  <%=h @consulta.parametros %>
-</p>
+  <table class="decorated">
+  	<tr>
+  		<th>Marca</th>
+  		<th>Tipo de Signo</th>
+  		<th>Clase</th>
+      <th>Tipo de<br />busqueda</th>
+      <th>Comentario</th>
+    </tr>
+    <% @consulta.consulta_detalles.each do |cd| %>
+      <tr>
+        <td>
+          <%= cd.try(:marca) %>
+        </td>
+      	<td><%= cd.marca.try(:tipo_signo) %></td>
+        <td><%= cd.marca.try(:clase) %></td>
+        <td>
+          <%= tipo_busqueda cd.tipo %>
+        </td>
+        <td><%= cd.comentario %></td>
+      </tr>
+    <% end %>
+  </table>
 
-<p>
-  <b>Reporte:</b>
-  <%=h @consulta.reporte %>
-</p>
-
-
-<%= link_to 'Edit', edit_consulta_path(@consulta) %> |
-<%= link_to 'Back', consultas_path %>
+  <% unless @consulta.importacion.nil? %>
+    <%= link_to "Ver importación", cruce_importacion_path( @consulta.importacion, :page => @page ) %>
+  <% else %>
+    <%= link_to "Lista", cosultas_path %>
+  <% end %>
