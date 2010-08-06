@@ -1,5 +1,9 @@
 class Importacion < ActiveRecord::Base
 
+  before_create :adicionar_usuario
+
+  belongs_to :usuario
+
   has_many :marcas, :dependent => :destroy
   has_many :consultas
 
@@ -13,5 +17,10 @@ class Importacion < ActiveRecord::Base
       cruces = Marca.cruce(self.id).size
       self.update_attributes(:cruces_pendientes => cruces)
     end
+  end
+  
+private
+  def adicionar_usuario
+    self.usuario_id = UsuarioSession.current_user[:id]
   end
 end

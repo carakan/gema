@@ -68,7 +68,7 @@ class Marca < ActiveRecord::Base
         "marcas.importacion_id = ? AND marcas.propia = ? AND marcas.tipo_signo_id NOT IN (?)", 
         importacion_id, false, TipoSigno.descartadas_cruce
       ],
-      :include => [:tipo_signo, :clase, :consultas]
+      :include => [:tipo_signo, :clase, { :consultas => :usuario } ]
     }
   }
 

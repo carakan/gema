@@ -17,15 +17,20 @@ jQuery(function($) {
   /**
    * Presenta errores en contexto
    */
-  $('.error[alt]').bind('mouseover mouseout', function(e) {
+  $('[alt]').live('mouseover mouseout', function(e) {
+    var div = '#tooltip';
+    if($(this).hasClass('error') ) {
+      div = '#tooltip-error';
+    }
     if(e.type == 'mouseover') {
       var pos = $(this).position();
-      $('#tooltip-error').css({
+
+      $(div).css({
         'top': (pos.top - 30) + 'px', 'left': (e.clientX + 20) + 'px'
       }).html( $(this).attr('alt') );
-      $('#tooltip-error').show();
+      $(div).show();
     }else{
-      $('#tooltip-error').hide();
+      $(div).hide();
     }
   });
 

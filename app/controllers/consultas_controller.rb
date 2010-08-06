@@ -52,14 +52,18 @@ class ConsultasController < ApplicationController
   def create
     @consulta = Consulta.new(params[:consulta])
 
-    respond_to do |format|
-      if @consulta.save
-        format.html { redirect_to(@consulta, :notice => 'Consulta was successfully created.') }
-        format.xml  { render :xml => @consulta, :status => :created, :location => @consulta }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @consulta.errors, :status => :unprocessable_entity }
-      end
+    unless @consulta.importacion.nil?
+      notice = "Se ha realizado el informe del cruce"
+      path = cruce_importacion_url(@consulta.importacion)
+    else
+      notice = "Se ha realizado el informe de la consulta"
+      paht = "/"
+    end
+
+    if @consulta.save
+      redirect_to path, :notice => notice
+    else
+      render :action => "new"
     end
   end
 

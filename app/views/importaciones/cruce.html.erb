@@ -1,4 +1,4 @@
-<h1>Cruce</h1>
+<h1>Cruce (Faltan <%= @importacion.cruces_pendientes %> cruces)</h1>
 
 <table class="decorated">
 	<tr>
@@ -7,6 +7,7 @@
 		<th>Tipo Signo</th>
 		<th>Clase</th>
     <th>Válido</th>
+    <th>Usuario</th>
     <th>Cruzar</th>
     <th></th>
     <% @marcas.each do |marca| %>
@@ -14,13 +15,14 @@
           <% @css = 'error' %>
          <tr class="<%= @css %>" alt="<%= marca.presentar_errores %>">
       <% else %>
-        <tr class="" >
+        <tr class="">
       <% end %>
         <%= "<td>#{marca.fila}</td>" if @mostra_fila %>
         <td><%= marca.nombre %></td>
         <td><%= marca.tipo_signo %></td>
         <td><%= marca.clase %></td>
         <td><%= verdad marca.valido %></td>
+        <td alt="Cruce realizado por"><%= marca.cruce(@importacion.id).try(:usuario) %></td>
         <td>
           <%= cruce_busqueda(marca, @importacion) %>
         </td>

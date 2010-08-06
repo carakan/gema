@@ -1,6 +1,8 @@
 class Consulta < ActiveRecord::Base
   before_create :adicionar_usuario
-  before_create :crear_reporte
+  before_create :disminuir_cruces_pendientes
+  before_create :crear_reporte, :if => lambda { |c| !!c.importacion.nil? }
+  before_destroy :aumentar_cruces_pendientes, :if => lambda { |c| !!c.importacion.nil? }
 
   belongs_to :marca
   belongs_to :usuario
@@ -27,10 +29,20 @@ class Consulta < ActiveRecord::Base
       :busqueda => params[:busqueda]
     )
 
-    klass.importacion_id = params[:importacion_id] unless params[:importacion_id].nil?
+    klass.set_importacion_id(params)
+    klass.set_marca_id(params)
+
     klass.instanciar_marcas_detalles(params)
 
     klass
+  end
+
+  def set_importacion_id(params)
+    self.importacion_id = params[:importacion_id] unless params[:importacion_id].nil?
+  end
+
+  def set_marca_id(params)
+    self.marca_id = params[:marca_id] unless params[:marca_id].nil?
   end
 
   # Ordena para poder presentar en el orden que aparecieronen 
@@ -56,4 +68,17 @@ private
     self.reporte = ''
   end
 
+  def aumentar_cruces_pendientes
+    modificar_cruces_pendientes(1)
+  end
+
+  def disminuir_cruces_pendientes
+    modificar_cruces_pendientes(-1)
+  end
+
+  # Modifica los cruces pendientes en la importacion
+  def modificar_cruces_pendientes(cant)
+    pend = self.importacion.cruces_pendientes
+    self.importacion.update_attributes(:cruces_pendientes => (pend + cant) )
+  end
 end
