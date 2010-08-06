@@ -5,6 +5,7 @@ class CreateConsultas < ActiveRecord::Migration
       t.integer :usuario_id
       t.string :busqueda
       t.string :parametros, :limit => 400
+      t.string :comentario, :limit => 400
       t.string :reporte
       t.integer :importacion_id, :default => 0
 

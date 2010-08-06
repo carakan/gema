@@ -1,21 +1,33 @@
 <% semantic_form_for(@consulta) do |f| %>
   <%= f.input :busqueda, :as => :hidden %>
   <%= f.input :parametros, :as => :hidden %>
+  <%= f.input :importacion_id, :as => :hidden %>
+
+  <%= f.input :comentario, :as => :text %>
+
+
+  <h2>Marcas seleccionadas</h2>
   <table class="decorated">
   	<tr>
   		<th>Marca</th>
-  		<th>Tipo</th>
+  		<th>Tipo de Signo</th>
   		<th>Clase</th>
-      <th>Tipo de<br />busqeuda</th>
+      <th>Tipo de<br />busqueda</th>
       <th>Comentario</th>
     </tr>
-    <% f.fields_for :consulta_detalles do |cd| %>
+    <% f.semantic_fields_for :consulta_detalles do |cd| %>
       <tr>
-      	<td><%= cd.object.marca %></td>
-      	<td><%= tipo_busqueda cd.object.tipo %></td>
-      	<td></td>
-        <td></td>
-        <td><%= cd.text_area :comentario, :rows => 3 %></td>
+        <td>
+          <%= cd.hidden_field :marca_id %>
+          <%= cd.object.try(:marca) %>
+        </td>
+      	<td><%= cd.object.marca.try(:tipo_signo) %></td>
+        <td><%= cd.object.marca.try(:clase) %></td>
+        <td>
+          <%= cd.hidden_field :tipo %>
+          <%= tipo_busqueda cd.object.tipo %>
+        </td>
+        <td><%= cd.input :comentario, :as => :text, :label => false, :input_html => { :rows => 3 } %></td>
       </tr>
     <% end %>
   </table>

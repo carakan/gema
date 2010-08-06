@@ -1,11 +1,15 @@
 class Consulta < ActiveRecord::Base
-  before_save :adicionar_usuario
+  before_create :adicionar_usuario
+  before_create :crear_reporte
 
   belongs_to :marca
   belongs_to :usuario
+  belongs_to :importacion
 
   has_many :consulta_detalles, :dependent => :destroy
   accepts_nested_attributes_for :consulta_detalles
+
+  validates_presence_of :comentario
 
   serialize :parametros
 
@@ -32,11 +36,11 @@ class Consulta < ActiveRecord::Base
   # Ordena para poder presentar en el orden que aparecieronen 
   # la busqueda y poder presentar
   def instanciar_marcas_detalles(params)
-    params[:marcas].keys.sort.each do |k|
+    params[:marcas].keys.map(&:to_i).sort.each do |k|
+      k = k.to_s
       self.consulta_detalles.build(
         :marca_id => params[:marcas][k],
-        :tipo => params[:tipos][k], 
-        :comentario => 'je' 
+        :tipo => params[:tipos][k] 
       )
     end
   end
@@ -48,7 +52,7 @@ private
   end
 
   # Almacena el reporte creado por la consulta
-  def almacenar_reporte
+  def crear_reporte
     self.reporte = ''
   end
 

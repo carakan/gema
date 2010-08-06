@@ -60,6 +60,7 @@ table.decorated{
   th, td{
   /*  border: 1px solid @border_color_table;*/
     padding: 3px 8px;
+    li{ margin: 0px; }
   }
 }
 .over{
@@ -165,6 +166,12 @@ form ol, form{
       color: @grey;
       margin:0px;
       font-style: italic;
+    }
+  }
+
+  li.error{
+    input, select, textarea{
+      border: 1px solid @red;
     }
   }
 
