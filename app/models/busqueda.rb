@@ -39,14 +39,24 @@ class Busqueda
     impar = ''
     busqueda.chars.each_with_index do |chr, ind|
       unless (ind % 2) == 0
-        par << chr
+        par << cambiar_caracter_especiales( chr )
         impar << Constants::LETRAS_REG
       else
         par << Constants::LETRAS_REG
-        impar << chr
+        impar << cambiar_caracter_especiales( chr )
       end
     end
     [impar, par]
+  end
+
+  # Cambia en caracteres seguros para realizar las busqueda por
+  # expresión regular
+  def cambiar_caracter_especiales(chr)
+    if Constants::SPECIAL_CHARS.include?( chr )
+      "\\#{chr}"
+    else
+      chr
+    end
   end
 
   def silaba_inicio_fin
@@ -118,36 +128,37 @@ class Busqueda
         when 1
           sql << sql_exacto(exp.first, pos)
         when 2
-          sql << sql_variaciones(exp, pos)
-        when 3
           sql << sql_expreg(exp, pos)
+        when 3
+          sql << sql_variaciones(exp, pos)
         when 4
           sql << sql_variaciones(exp, pos)
       end
     end
-    [ 
-      "SELECT id, nombre, pos, clase_id FROM (#{sql.join(" UNION ")}) AS res",
+    
+    [ "SELECT id, nombre, pos, clase_id FROM (#{sql.join(" UNION ")}) AS res",
       condiciones_sql(params),
-      "GROUP BY nombre ORDER BY pos"
+      "GROUP BY nombre, clase_id ORDER BY pos"
     ].join(" ")
   end
 
   def self.sql_exacto(bus, pos)
     ActiveRecord::Base.send(:sanitize_sql_array, 
-    [ "SELECT id, nombre, clase_id, #{pos} AS pos FROM marcas WHERE nombre_minusculas = '%s'", bus ] )
-  end
-
-  def self.sql_variaciones(arr, pos)
-    sql = "SELECT id, nombre, clase_id, #{pos} AS pos FROM marcas WHERE "
-    sql << arr.map{ |v| 
-      ActiveRecord::Base.send(:sanitize_sql_array, ["nombre_minusculas LIKE '%s'", "%#{v}%"] ) 
-    }.join(" OR ")
+      [ "SELECT id, nombre, clase_id, #{pos} AS pos FROM marcas WHERE nombre_minusculas = '%s'", bus ]
+    )
   end
 
   def self.sql_expreg(arr, pos)
     sql = "SELECT id, nombre, clase_id, #{pos} AS pos FROM marcas WHERE "
     sql << arr.map{ 
       |v| ActiveRecord::Base.send(:sanitize_sql_array, [ "nombre_minusculas REGEXP '%s'", v ] )
+    }.join(" OR ")
+  end
+
+  def self.sql_variaciones(arr, pos)
+    sql = "SELECT id, nombre, clase_id, #{pos} AS pos FROM marcas WHERE "
+    sql << arr.map{ |v| 
+      ActiveRecord::Base.send(:sanitize_sql_array, ["nombre_minusculas LIKE '%s'", "%#{v}%"] ) 
     }.join(" OR ")
   end
 
