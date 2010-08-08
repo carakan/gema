@@ -137,7 +137,13 @@ module ModMarca::ListaPublicacion
     end
 
     def convertir_fecha_solicitud(fec)
-      [ fec[0,4], fec[4,2], fec[6,2] ].join("-") if fec.is_a?(String) and fec.size == 8
+      if fec =~ /\//
+        fec.split("/").reverse.join("-")
+      elsif fec =~ /-/
+        fec.split("-").reverse.join("-")
+      else
+        [ fec[0,4], fec[4,2], fec[6,2] ].join("-") if fec.is_a?(String) and fec.size == 8
+      end
     end
 
     def buscar_tipo_signo( sig )
