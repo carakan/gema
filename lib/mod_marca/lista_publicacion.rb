@@ -141,8 +141,8 @@ module ModMarca::ListaPublicacion
         fec.split("/").reverse.join("-")
       elsif fec =~ /-/
         fec.split("-").reverse.join("-")
-      else
-        [ fec[0,4], fec[4,2], fec[6,2] ].join("-") if fec.is_a?(String) and fec.size == 8
+      elsif fec.is_a?(String) and fec.size == 8
+        [ fec[0,4], fec[4,2], fec[6,2] ].join("-")
       end
     end
 
