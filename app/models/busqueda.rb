@@ -139,9 +139,9 @@ class Busqueda
         when 1
           sql << sql_exacto(exp.first, pos)
         when 2
-          sql << sql_expreg(exp, pos)
-        when 3
           sql << sql_variaciones(exp, pos)
+        when 3
+          sql << sql_expreg(exp, pos)
         when 4
           sql << sql_variaciones(exp, pos)
       end
