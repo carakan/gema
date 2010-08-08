@@ -117,8 +117,19 @@ class Busqueda
     if params[:fecha_ini]
       sql << " AND fecha >= '#{params[:fecha_ini]}' AND fecha <= '#{params[:fecha_fin]}'"
     end
+    sql << condicion_marca_propia(params)
 
     sql
+  end
+
+  def self.condicion_marca_propia(params)
+    if params[:propia].nil?
+      ""
+    elsif params[:propia] == true
+      " AND propia=1"
+    elsif params[:propia] == false
+      " AND propia=0"
+    end
   end
 
   def self.crear_sql(expresiones, params)
@@ -136,7 +147,7 @@ class Busqueda
       end
     end
     
-    [ "SELECT id, nombre, pos, clase_id FROM (#{sql.join(" UNION ")}) AS res",
+    [ "SELECT id, nombre, pos, clase_id, propia FROM (#{sql.join(" UNION ")}) AS res",
       condiciones_sql(params),
       "GROUP BY nombre, clase_id ORDER BY pos"
     ].join(" ")
@@ -144,19 +155,19 @@ class Busqueda
 
   def self.sql_exacto(bus, pos)
     ActiveRecord::Base.send(:sanitize_sql_array, 
-      [ "SELECT id, nombre, clase_id, #{pos} AS pos FROM marcas WHERE nombre_minusculas = '%s'", bus ]
+      [ "SELECT id, nombre, clase_id, #{pos} AS pos, propia FROM marcas WHERE nombre_minusculas = '%s'", bus ]
     )
   end
 
   def self.sql_expreg(arr, pos)
-    sql = "SELECT id, nombre, clase_id, #{pos} AS pos FROM marcas WHERE "
+    sql = "SELECT id, nombre, clase_id, #{pos} AS pos, propia FROM marcas WHERE "
     sql << arr.map{ 
       |v| ActiveRecord::Base.send(:sanitize_sql_array, [ "nombre_minusculas REGEXP '%s'", v ] )
     }.join(" OR ")
   end
 
   def self.sql_variaciones(arr, pos)
-    sql = "SELECT id, nombre, clase_id, #{pos} AS pos FROM marcas WHERE "
+    sql = "SELECT id, nombre, clase_id, #{pos} AS pos, propia FROM marcas WHERE "
     sql << arr.map{ |v| 
       ActiveRecord::Base.send(:sanitize_sql_array, ["nombre_minusculas LIKE '%s'", "%#{v}%"] ) 
     }.join(" OR ")

@@ -12,7 +12,7 @@ class BusquedasController < ApplicationController
     Consulta.find(params[:consulta_id]).destroy unless params[:consulta_id].nil?
 
     @marca = Marca.find(params[:marca_id])
-    query = { :busqueda => @marca.nombre, :clases => (1..45).to_a.join(",") }
+    query = { :busqueda => @marca.nombre, :clases => (1..45).to_a.join(","), :propia => true }
     @importacion = Importacion.find(params[:importacion_id])
 
     @busqueda = Busqueda.realizar_busqueda(query)
