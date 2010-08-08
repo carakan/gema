@@ -118,7 +118,7 @@ class Busqueda
       sql << " AND fecha >= '#{params[:fecha_ini]}' AND fecha <= '#{params[:fecha_fin]}'"
     end
     sql << condicion_marca_propia(params)
-    sql << condicion_activa
+    sql << condicion_activas
 
     sql
   end
@@ -133,8 +133,14 @@ class Busqueda
     end
   end
 
-  def self.params_activas(params)
+  def self.condicion_activas
     " AND activa=1"
+  end
+
+  def self.seleccionar_tipos(params)
+    if params[:tipo_signo]
+
+    end
   end
 
   def self.crear_sql(expresiones, params)
