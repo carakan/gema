@@ -123,9 +123,9 @@ module ModMarca::ListaPublicacion
         :estado => 'lp',
         :importado => true,
         :numero_gaceta => nro_gaceta,
-        :numero_publicacion => params['NUMERO DE PUBLICACION'].gsub(/(\s|\302\240)/, ''),
+        :numero_publicacion => params['NUMERO DE PUBLICACION'],
         :nombre => params['NOMBRE DE LA MARCA'],
-        :numero_solicitud => params['NUMERO DE SOLICITUD'],
+        :numero_solicitud => params['NUMERO DE SOLICITUD'].gsub(/(\s|\302\240)/, ''),
         :estado_fecha => convertir_fecha_solicitud( params['FECHA DE SOLICITUD'] ), # Esta es la Fecha de solicitud
         :clase_id => Clase.find_by_codigo(params['CLASE INTERNACIONAL']).try(:id),
         :tipo_signo_id => buscar_tipo_signo( params['TIPO DE SIGNO'] ),

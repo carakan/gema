@@ -137,10 +137,13 @@ class Busqueda
     " AND activa=1"
   end
 
-  def self.seleccionar_tipos(params)
-    if params[:tipo_signo]
-
-    end
+  # Trabajar en esto
+  def self.condicion_tipo_signo(params)
+    #if params[:tipo_signo_id].nil?
+    #  ActiveRecord::Base.send(:sanitize_sql_array, [" AND tipo_signo_id IN (%s)", signos])
+    #else
+    #  ""
+    #end
   end
 
   def self.crear_sql(expresiones, params)
