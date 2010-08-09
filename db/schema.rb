@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(:version => 20100805165350) do
     t.integer  "usuario_id"
     t.string   "busqueda"
     t.string   "parametros",     :limit => 400
+    t.string   "comentario",     :limit => 400
     t.string   "reporte"
     t.integer  "importacion_id",                :default => 0
     t.datetime "created_at"
@@ -50,12 +51,12 @@ ActiveRecord::Schema.define(:version => 20100805165350) do
   end
 
   create_table "importaciones", :force => true do |t|
-    t.string   "gaceta"
     t.boolean  "completa"
-    t.string   "publicacion"
+    t.string   "publicacion",       :limit => 30
     t.string   "archivo_file_name"
     t.integer  "archivo_file_size"
-    t.integer  "cruces_pendientes", :default => -1
+    t.integer  "cruces_pendientes",               :default => -1
+    t.integer  "usuario_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

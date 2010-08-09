@@ -43,7 +43,8 @@ module ModMarca::ListaPublicacion
       archivo, @nro_gaceta = [ params[:archivo], params[:gaceta] ]
       @fecha_imp = DateTime.now.strftime("%Y-%m-%d %H:%I:%S")
       @importacion = Importacion.create!(:archivo => archivo, :publicacion => @nro_gaceta)
-      
+      @formato_fecha = params[:formato_fecha]
+
       extension, cont_type = [ File.extname( archivo.original_filename ).downcase, archivo.content_type ]
 
       if extension == '.xls'# and cont_type == 'application/vnd.ms-excel'
@@ -137,12 +138,28 @@ module ModMarca::ListaPublicacion
     end
 
     def convertir_fecha_solicitud(fec)
-      if fec =~ /\//
-        fec.split("/").reverse.join("-")
-      elsif fec =~ /-/
-        fec.split("-").reverse.join("-")
+      @orden_reg_fecha ||= orden_reg_fecha
+
+      if fec =~ /(-|\/)/
+        fec.gsub(/([0-9]+)[-\/]([0-9]+)[-\/]([0-9]+)/, @orden_reg_fecha)
       elsif fec.is_a?(String) and fec.size == 8
-        [ fec[0,4], fec[4,2], fec[6,2] ].join("-")
+        fec.gsub(@reg_fecha_sin_sep, @orden_reg_fecha)
+      end
+    end
+
+
+    # Se define expresiones regulares para poder calcular la fecha
+    def orden_reg_fecha
+      case @formato_fecha
+      when 'd-m-y'
+        @reg_fecha_sin_sep = /([0-9]{2})([0-9]{2})([0-9]{4})/
+        '\3-\2-\1'
+      when 'm-d-y'
+        @reg_fecha_sin_sep = /([0-9]{2})([0-9]{2})([0-9]{4})/
+        '\3-\1-\2'
+      when 'y-m-d'
+        @reg_fecha_sin_sep = /([0-9]{4})([0-9]{2})([0-9]{2})/
+        '\1-\2-\3'
       end
     end
 
