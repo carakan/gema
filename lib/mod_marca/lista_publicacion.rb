@@ -132,6 +132,7 @@ module ModMarca::ListaPublicacion
         :tipo_marca_id => buscar_tipo_marca( params['TIPO DE MARCA'] ),
         :titular_ids => [buscar_o_crear_titular(params)].compact,
         :apoderado => params['NOMBRE DEL APODERADO'],
+        :productos => params['PRODUCTOS'],
         :importacion_id => @importacion.id
       }
     end
