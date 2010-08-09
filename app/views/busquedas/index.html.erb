@@ -3,23 +3,35 @@
 <%= render :partial => "buscar" %>
 
 <% unless @busqueda.blank? %>
+
+  <% form_tag new_consulta_path, :method => 'get' do -%>
+
   <h2>Resultados para la busqueda "<%= params[:busqueda] %>"</h2>
   <table class="decorated">
   	<tr>
       <th></th>
   		<th>Nombre</th>
   		<th>Clase</th>
+      <th>Tipo de<br/> busqueda</th>
   	</tr>
     <% @busqueda.each do |b| %>
       <tr>
         <td>
-        	<input name="marcas[]" type="checkbox" id="<%= b.nombre %>" value="<%= b.nombre %>" />
+          <input name="marcas[<%= b.id %>]" type="checkbox" id="marca<%= b.id %>" value="<%= b.id %>" />
+          <input name="tipos[<%= b.id %>]" type="hidden" value="<%= b.pos %>" />
         </td>
-      	<td><label for="<%= b.nombre %>"><%= b.nombre %></label></td>
+      	<td><label for="marca<%= b.id %>"><%= b.nombre %></label></td>
       	<td><%= b.clase_id %></td>
+        <td><%= tipo_busqueda b.pos %>
+        </td>
       </tr>
     <% end %>
 
   </table>
+
+  <%= submit_tag "Seleccionar" %>
+
+  <% end %>
+
 <% end %>
 

@@ -63,7 +63,13 @@ class Marca < ActiveRecord::Base
   }
 
   named_scope :cruce, lambda { |importacion_id| 
-    { :conditions => { :importacion_id => importacion_id, :propia => false } }
+    { 
+      :conditions =>  [
+        "marcas.importacion_id = ? AND marcas.propia = ? AND marcas.tipo_signo_id NOT IN (?)", 
+        importacion_id, false, TipoSigno.descartadas_cruce
+      ],
+      :include => [:tipo_signo, :clase, { :consultas => :usuario } ]
+    }
   }
 
 
@@ -249,7 +255,7 @@ class Marca < ActiveRecord::Base
   #   @param Integer importacion_id
   #   @return Consulta
   def cruce(importacion_id)
-    self.consultas.find_by_importacion_id(importacion_id)
+    self.consultas.try(:find) { |v| v.importacion_id == importacion_id}
   end
 
 
@@ -293,7 +299,14 @@ class Marca < ActiveRecord::Base
   def self.buscar_comparar(params, comp )
     params[:nombre] = params[:nombre].gsub(/^"(.*)$"/, '\1').strip
     marca = Marca.find_by_numero_solicitud(params[:numero_solicitud])
-    return Marca.new(params) if marca.nil? or !(marca.propia)
+    
+    if marca.nil?
+      return Marca.new(params)
+    elsif !(marca.propia)
+      marca.attributes = params
+      return marca
+    end
+
     marca.importacion_id = params[:importacion_id]
 
     marca.errores_manual = {}

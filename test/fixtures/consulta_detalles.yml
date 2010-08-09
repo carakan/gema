@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  consulta_id: 1
+  marca_id: 1
+  comentario: MyString
+  tipo: 1
+
+two:
+  consulta_id: 1
+  marca_id: 1
+  comentario: MyString
+  tipo: 1

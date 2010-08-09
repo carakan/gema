@@ -1,4 +1,4 @@
-<h1>Cruce</h1>
+<h1>Cruce (Faltan <%= @importacion.cruces_pendientes %> cruces)</h1>
 
 <table class="decorated">
 	<tr>
@@ -7,6 +7,7 @@
 		<th>Tipo Signo</th>
 		<th>Clase</th>
     <th>Válido</th>
+    <th>Usuario</th>
     <th>Cruzar</th>
     <th></th>
     <% @marcas.each do |marca| %>
@@ -14,15 +15,18 @@
           <% @css = 'error' %>
          <tr class="<%= @css %>" alt="<%= marca.presentar_errores %>">
       <% else %>
-        <tr class="" >
+        <tr class="">
       <% end %>
         <%= "<td>#{marca.fila}</td>" if @mostra_fila %>
         <td><%= marca.nombre %></td>
         <td><%= marca.tipo_signo %></td>
         <td><%= marca.clase %></td>
         <td><%= verdad marca.valido %></td>
-        <td>
-          <%= cruce_busqueda(marca, @importacion) %>
+        <% @con = marca.cruce(@importacion.id) %>
+        <td><%= @con.try(:usuario) %></td>
+        <td class="<%= @con.try(:type) %>">
+          <%= realizar_cruce(marca, @importacion, @con.try(:id)) %>
+          <%= link_to "ver cruce", consulta_path( @con, :page => @page ) unless @con.nil? %>
         </td>
 
         <td>
@@ -34,3 +38,17 @@
 </table>
 
 <%= will_paginate @marcas %>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('td.Consulta a.nueva').click(function() {
+      var tr = $(this).parents('tr:first').addClass('selected');
+      if(confirm("Esta seguro de borrar la consulta seleccionada y realizar una nueva")) {
+        return true;
+      }else{
+        tr.removeClass('selected');
+        return false;
+      }
+    });
+  });
+</script>

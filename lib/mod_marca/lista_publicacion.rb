@@ -125,7 +125,7 @@ module ModMarca::ListaPublicacion
         :numero_gaceta => nro_gaceta,
         :numero_publicacion => params['NUMERO DE PUBLICACION'],
         :nombre => params['NOMBRE DE LA MARCA'],
-        :numero_solicitud => params['NUMERO DE SOLICITUD'],
+        :numero_solicitud => params['NUMERO DE SOLICITUD'].gsub(/(\s|\302\240)/, ''),
         :estado_fecha => convertir_fecha_solicitud( params['FECHA DE SOLICITUD'] ), # Esta es la Fecha de solicitud
         :clase_id => Clase.find_by_codigo(params['CLASE INTERNACIONAL']).try(:id),
         :tipo_signo_id => buscar_tipo_signo( params['TIPO DE SIGNO'] ),
@@ -137,7 +137,13 @@ module ModMarca::ListaPublicacion
     end
 
     def convertir_fecha_solicitud(fec)
-      [ fec[0,4], fec[4,2], fec[6,2] ].join("-") if fec.is_a?(String) and fec.size == 8
+      if fec =~ /\//
+        fec.split("/").reverse.join("-")
+      elsif fec =~ /-/
+        fec.split("-").reverse.join("-")
+      elsif fec.is_a?(String) and fec.size == 8
+        [ fec[0,4], fec[4,2], fec[6,2] ].join("-")
+      end
     end
 
     def buscar_tipo_signo( sig )

@@ -4,7 +4,8 @@ class CreateConsultas < ActiveRecord::Migration
       t.integer :marca_id
       t.integer :usuario_id
       t.string :busqueda
-      t.string :parametros
+      t.string :parametros, :limit => 400
+      t.string :comentario, :limit => 400
       t.string :reporte
       t.integer :importacion_id, :default => 0
 

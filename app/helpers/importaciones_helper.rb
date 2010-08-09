@@ -9,17 +9,14 @@ module ImportacionesHelper
     end
   end
 
-
   # Presenta un vinculo relacionado al cruce de una marca
-  def cruce_busqueda(marca, importacion)
-    if consulta = marca.cruce(importacion.id)
-      link_to "ver cruce", cosulta.id
-    else
-      link_to "realizar cruce"
-    end
+  def realizar_cruce(marca, importacion, consulta_id)
+    query = { :importacion_id => importacion.id, :marca_id => marca.id }
+    query.merge!(:consulta_id => consulta_id ) unless consulta_id.nil?
+    link_to "realizar cruce", cruce_busquedas_path(query), :class => 'nueva'
   end
 
-  protected
+protected
   def link_cruce(marca)
     imp = marca.importacion
     if imp.cruces_pendientes < 0

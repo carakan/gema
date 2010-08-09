@@ -39,14 +39,24 @@ class Busqueda
     impar = ''
     busqueda.chars.each_with_index do |chr, ind|
       unless (ind % 2) == 0
-        par << chr
+        par << cambiar_caracter_especiales( chr )
         impar << Constants::LETRAS_REG
       else
         par << Constants::LETRAS_REG
-        impar << chr
+        impar << cambiar_caracter_especiales( chr )
       end
     end
     [impar, par]
+  end
+
+  # Cambia en caracteres seguros para realizar las busqueda por
+  # expresión regular
+  def cambiar_caracter_especiales(chr)
+    if Constants::SPECIAL_CHARS.include?( chr )
+      "\\#{chr}"
+    else
+      chr
+    end
   end
 
   def silaba_inicio_fin
@@ -73,7 +83,6 @@ class Busqueda
   def filtrar_vacios
     @expresiones.each{ |k, val| @expresiones.delete(k) if val.blank? }
   end
-
 
   # Transforma las fechas de busqueda de String a Date
   # en caso de que esten correctas devuelve las dos fechas
@@ -108,8 +117,33 @@ class Busqueda
     if params[:fecha_ini]
       sql << " AND fecha >= '#{params[:fecha_ini]}' AND fecha <= '#{params[:fecha_fin]}'"
     end
+    sql << condicion_marca_propia(params)
+    sql << condicion_activas
 
     sql
+  end
+
+  def self.condicion_marca_propia(params)
+    if params[:propia].nil?
+      ""
+    elsif params[:propia] == true
+      " AND propia=1"
+    elsif params[:propia] == false
+      " AND propia=0"
+    end
+  end
+
+  def self.condicion_activas
+    " AND activa=1"
+  end
+
+  # Trabajar en esto
+  def self.condicion_tipo_signo(params)
+    #if params[:tipo_signo_id].nil?
+    #  ActiveRecord::Base.send(:sanitize_sql_array, [" AND tipo_signo_id IN (%s)", signos])
+    #else
+    #  ""
+    #end
   end
 
   def self.crear_sql(expresiones, params)
@@ -126,29 +160,30 @@ class Busqueda
           sql << sql_variaciones(exp, pos)
       end
     end
-    [ 
-      "SELECT nombre, pos, clase_id FROM (#{sql.join(" UNION ")}) AS res",
+    
+    [ "SELECT id, nombre, pos, clase_id, propia, activa FROM (#{sql.join(" UNION ")}) AS res",
       condiciones_sql(params),
-      "GROUP BY nombre ORDER BY pos"
+      "GROUP BY nombre, clase_id ORDER BY pos"
     ].join(" ")
   end
 
   def self.sql_exacto(bus, pos)
     ActiveRecord::Base.send(:sanitize_sql_array, 
-    [ "SELECT nombre, clase_id, #{pos} AS pos FROM marcas WHERE nombre_minusculas = '%s'", bus ] )
-  end
-
-  def self.sql_variaciones(arr, pos)
-    sql = "SELECT nombre, clase_id, #{pos} AS pos FROM marcas WHERE "
-    sql << arr.map{ |v| 
-      ActiveRecord::Base.send(:sanitize_sql_array, ["nombre_minusculas LIKE '%s'", "%#{v}%"] ) 
-    }.join(" OR ")
+      [ "SELECT id, nombre, clase_id, #{pos} AS pos, propia, activa FROM marcas WHERE nombre_minusculas = '%s'", bus ]
+    )
   end
 
   def self.sql_expreg(arr, pos)
-    sql = "SELECT nombre, clase_id, #{pos} AS pos FROM marcas WHERE "
+    sql = "SELECT id, nombre, clase_id, #{pos} AS pos, propia, activa FROM marcas WHERE "
     sql << arr.map{ 
       |v| ActiveRecord::Base.send(:sanitize_sql_array, [ "nombre_minusculas REGEXP '%s'", v ] )
+    }.join(" OR ")
+  end
+
+  def self.sql_variaciones(arr, pos)
+    sql = "SELECT id, nombre, clase_id, #{pos} AS pos, propia, activa FROM marcas WHERE "
+    sql << arr.map{ |v| 
+      ActiveRecord::Base.send(:sanitize_sql_array, ["nombre_minusculas LIKE '%s'", "%#{v}%"] ) 
     }.join(" OR ")
   end
 

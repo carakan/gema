@@ -84,8 +84,8 @@ namespace :datos do
     Titular.create!(:nombre => 'Alejandra Helguero')
     Titular.create!(:nombre => 'Marco Arcienaga')
 
-    Usuario.create!(:nombre => 'Boris Barroso', :login => 'boris', :password => 'demo123', :password_confirmation => 'demo123')
-    Usuario.create!(:nombre => 'Alejandra Helguero', :login => 'alejandra', :password => 'demo123', :password_confirmation => 'demo123')
+    Usuario.create!(:nombre => 'Boris Barroso', :login => 'boris', :password => 'demo123', :password_confirmation => 'demo123', :rol => 'genrente')
+    Usuario.create!(:nombre => 'Alejandra Helguero', :login => 'alejandra', :password => 'demo123', :password_confirmation => 'demo123', :rol => 'genrente')
 
   end
 

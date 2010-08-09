@@ -33,7 +33,9 @@ table.decorated th {
 }
 table.decorated th a { color: #ffffff; }
 table.decorated th { padding: 3px 8px; }
+table.decorated th li { margin: 0px; }
 table.decorated td { padding: 3px 8px; }
+table.decorated td li { margin: 0px; }
 .over { background-color: #c2e0ef !important; }
 .selected {
   background-color: #61b5df !important;
@@ -119,6 +121,9 @@ form ol li p.inline-hints {
   margin: 0px;
   font-style: italic;
 }
+form ol li.error input { border: 1px solid #ff0000; }
+form ol li.error select { border: 1px solid #ff0000; }
+form ol li.error textarea { border: 1px solid #ff0000; }
 form ol .in_half ol li {
   width: 49%;
   float: left;
@@ -145,6 +150,9 @@ form li p.inline-hints {
   margin: 0px;
   font-style: italic;
 }
+form li.error input { border: 1px solid #ff0000; }
+form li.error select { border: 1px solid #ff0000; }
+form li.error textarea { border: 1px solid #ff0000; }
 form .in_half ol li {
   width: 49%;
   float: left;
@@ -493,38 +501,18 @@ ul.menu li:hover ul {
   display: inline-block;
 }
 .propia { background-color: #dbffdb; }
-.mime {
- .png .jpg .gif .png{
-   padding-left: 16px;
-   background: transparent url(../images/icons/picture.png) no-repeat top left;
+.mime .png {
+  padding-left: 16px;
+  background: transparent url(../images/icons/picture.png) no-repeat top left;
 }
- .doc .docx{
-   padding-left: 16px;
-   background: transparent url(../images/icons/page_word.png) no-repeat top left;
+.mime .jpg {
+  padding-left: 16px;
+  background: transparent url(../images/icons/picture.png) no-repeat top left;
 }
- .xls .xlsx {
-   padding-left: 16px;
-   background: transparent url(../images/icons/page_excel.png) no-repeat top left;
+.mime .gif {
+  padding-left: 16px;
+  background: transparent url(../images/icons/picture.png) no-repeat top left;
 }
- .pdf {
-   padding-left: 16px;
-   background: transparent url(../images/icons/page_white_acrobat.png) no-repeat top left;
-}
- .ppt .pptx {
-   padding-left: 16px;
-   background: transparent url(../images/icons/page_white_powerpoint.png) no-repeat top left;
-}
- .mp3 .mp4 .midi .wma .wav {
-   padding-left: 16px;
-   background: transparent url(../images/icons/music.png) no-repeat top left;
-}
- .mpeg .mpg .avi .flv .wmv {
-   padding-left: 16px;
-   background: transparent url(../images/icons/film.png) no-repeat top left;
-  }
-}
-
-
 .tooltip {
   position: absolute;
   width: 400px;
@@ -533,8 +521,12 @@ ul.menu li:hover ul {
   padding: 4px 6px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
+  border-radius: 4px;
+  border-width: 4px;
+  border-style: solid;
 }
 #tooltip-error {
-  border: 4px solid #ff0000;
   color: #ff0000;
+  border-color: #ff0000;
 }
+#tooltip { border-color: #676767; }

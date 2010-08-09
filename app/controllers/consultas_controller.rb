@@ -1,4 +1,6 @@
 class ConsultasController < ApplicationController
+  before_filter :set_busqueda, :only => [:new, :create]
+  
   # GET /consultas
   # GET /consultas.xml
   def index
@@ -24,7 +26,15 @@ class ConsultasController < ApplicationController
   # GET /consultas/new
   # GET /consultas/new.xml
   def new
-    @consulta = Consulta.new
+    if params[:marcas].nil?
+      flash[:error] = 'Debe seleccionar alguna marca'
+      redirect_to cruce_busquedas_path(:importacion_id => params[:importacion_id], :marca_id => params[:marca_id])
+      return
+    end
+
+    #parametros = Consulta.convertir_parametros_a_hash(params)
+    #@consulta = Consulta.new(:busqueda => params[:busqueda], :parametros => parametros.to_yaml )
+    @consulta = Consulta.nueva(params)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -33,51 +43,64 @@ class ConsultasController < ApplicationController
   end
 
   # GET /consultas/1/edit
-  def edit
-    @consulta = Consulta.find(params[:id])
-  end
+  #def edit
+  #  @consulta = Consulta.find(params[:id])
+  #end
 
   # POST /consultas
   # POST /consultas.xml
   def create
     @consulta = Consulta.new(params[:consulta])
 
-    respond_to do |format|
-      if @consulta.save
-        format.html { redirect_to(@consulta, :notice => 'Consulta was successfully created.') }
-        format.xml  { render :xml => @consulta, :status => :created, :location => @consulta }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @consulta.errors, :status => :unprocessable_entity }
-      end
+    unless @consulta.importacion.nil?
+      notice = "Se ha realizado el informe del cruce"
+      path = cruce_importacion_url(@consulta.importacion)
+    else
+      notice = "Se ha realizado el informe de la consulta"
+      paht = "/"
+    end
+
+    if @consulta.save
+      redirect_to path, :notice => notice
+    else
+      render :action => "new"
     end
   end
 
   # PUT /consultas/1
   # PUT /consultas/1.xml
-  def update
-    @consulta = Consulta.find(params[:id])
+  #def update
+  #  @consulta = Consulta.find(params[:id])
 
-    respond_to do |format|
-      if @consulta.update_attributes(params[:consulta])
-        format.html { redirect_to(@consulta, :notice => 'Consulta was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @consulta.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
+  #  respond_to do |format|
+  #    if @consulta.update_attributes(params[:consulta])
+  #      format.html { redirect_to(@consulta, :notice => 'Consulta was successfully updated.') }
+  #      format.xml  { head :ok }
+  #    else
+  #      format.html { render :action => "edit" }
+  #      format.xml  { render :xml => @consulta.errors, :status => :unprocessable_entity }
+  #    end
+  #  end
+  #end
 
-  # DELETE /consultas/1
-  # DELETE /consultas/1.xml
-  def destroy
-    @consulta = Consulta.find(params[:id])
-    @consulta.destroy
+  ## DELETE /consultas/1
+  ## DELETE /consultas/1.xml
+  #def destroy
+  #  @consulta = Consulta.find(params[:id])
+  #  @consulta.destroy
 
-    respond_to do |format|
-      format.html { redirect_to(consultas_url) }
-      format.xml  { head :ok }
+  #  respond_to do |format|
+  #    format.html { redirect_to(consultas_url) }
+  #    format.xml  { head :ok }
+  #  end
+  #end
+
+private
+  def set_busqueda
+    if params[:busqueda]
+      @busqueda = params[:busqueda]
+    elsif
+      @busqueda = params[:consulta][:busqueda]
     end
   end
 end
