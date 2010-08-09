@@ -9,7 +9,16 @@
       <%= f.input :tipo, :label => '&nbsp;' %>
     </div>
 
-    <%= f.input :gaceta if params[:tipo] == 'lp' %>
+    <% if params[:tipo] == 'lp' %>
+      <%= f.input :gaceta %>
+      <li>
+        <%= f.label :formato_fecha, "Formato de la fecha en el PDF" %>
+        <%= f.select :formato_fecha, ImportacionVacia::FORMATOS_FECHA %>
+        <p class="inline-hints">
+        El sistema reconocera automaticamente el separador "/" o "-"
+        </p>
+      </li>
+    <% end %>
     <%= f.input :archivo, :as => :file, :label => "Archivo", :input_html => { :size => 60 } %>
 
   </div>
