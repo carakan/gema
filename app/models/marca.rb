@@ -51,9 +51,9 @@ class Marca < ActiveRecord::Base
   #  { :conditions => { :fecha_importacion => fecha} } 
   #}
 
-  named_scope :importado, lambda { |imp_id| 
+  named_scope :importado, lambda { |imp_id, nombre_marca| 
     { 
-      :conditions => { :importacion_id => imp_id }, 
+      :conditions => [ "marcas.importacion_id = ? AND marcas.nombre_minusculas LIKE ?", imp_id, "%#{nombre_marca.downcase}%" ], 
       :order => "marcas.valido, marcas.propia DESC", 
       :include => [:tipo_signo, :clase] } 
     }
@@ -62,11 +62,11 @@ class Marca < ActiveRecord::Base
     { :conditions => { :fecha_importacion => fecha, :valido => false} } 
   }
 
-  named_scope :cruce, lambda { |importacion_id| 
+  named_scope :cruce, lambda { |importacion_id, nombre_marca| 
     { 
       :conditions =>  [
-        "marcas.importacion_id = ? AND marcas.propia = ? AND marcas.tipo_signo_id NOT IN (?)", 
-        importacion_id, false, TipoSigno.descartadas_cruce
+        "marcas.importacion_id = ? AND marcas.tipo_signo_id NOT IN (?) AND marcas.nombre_minusculas LIKE ?", 
+        importacion_id, TipoSigno.descartadas_cruce, "%#{nombre_marca.downcase}%"
       ],
       :include => [:tipo_signo, :clase, { :consultas => :usuario } ]
     }
@@ -346,7 +346,7 @@ protected
 private
 
   def quitar_comillas
-    self.nombre = self.nombre.gsub(/^(\342\200\234|")(.*)(\342\200\235|")$/, '\2')
+    self.nombre = self.nombre.gsub(/^(\342\200\234|"|\342\200\235)(.*)(\342\200\235|"|\342\200\234)$/, '\2').strip
   end
 
   def adicionar_usuario

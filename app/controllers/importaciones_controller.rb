@@ -33,12 +33,14 @@ class ImportacionesController < ApplicationController
   # Presenta el listado de una importacion realizada
   def show
     @importacion = Importacion.find(params[:id])
-    @marcas = Marca.importado( params[:id] ).paginate(:page => @page )
+    nombre_marca = (params[:nombre_marca] || "")
+    @marcas = Marca.importado( params[:id], nombre_marca ).paginate(:page => @page )
   end
 
   # Metodo especial para poder buscar marcas y realizar curce
   def cruce
-    @marcas = Marca.cruce(params[:id]).paginate(:page => @page)
+    nombre_marca = (params[:nombre_marca] || "")
+    @marcas = Marca.cruce(params[:id], nombre_marca).paginate(:page => @page)
     @importacion = Importacion.find(params[:id])
     @importacion.inicializar_cruces_pendientes
   end

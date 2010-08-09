@@ -32,6 +32,11 @@
 <br />
 <br />
 
+<%= link_to "Listado", marcas_path %>
+<% form_tag marcas_path, :method => :get  do %>
+  <%= text_field_tag :nombre_marca %>
+  <%= submit_tag "Buscar" %>
+<% end %>
 
 <%= @will = will_paginate @marcas %>
 

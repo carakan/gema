@@ -1,5 +1,11 @@
 <h1>Cruce (Faltan <%= @importacion.cruces_pendientes %> cruces)</h1>
 
+<%= link_to "Listado", cruce_importacion_path(@importacion) %>
+<% form_tag cruce_importacion_path(@importacion), :method => :get  do %>
+  <%= text_field_tag :nombre_marca %>
+  <%= submit_tag "Buscar" %>
+<% end %>
+
 <table class="decorated">
 	<tr>
     <%= '<th>Fila</th>' if @mostra_fila %>
@@ -11,11 +17,12 @@
     <th>Cruzar</th>
     <th></th>
     <% @marcas.each do |marca| %>
+      <% @css = marca.propia ? 'propia': '' %>
       <% unless marca.valido %>
-          <% @css = 'error' %>
+          <% @css << ' error' %>
          <tr class="<%= @css %>" alt="<%= marca.presentar_errores %>">
       <% else %>
-        <tr class="">
+        <tr class="<%= @css %>" >
       <% end %>
         <%= "<td>#{marca.fila}</td>" if @mostra_fila %>
         <td><%= marca.nombre %></td>

@@ -1,5 +1,11 @@
 <h1>Importacion de <%= fecha_hora @importacion.created_at %></h1>
 
+<%= link_to "Listado", importacion_path(@importacion) %>
+<% form_tag importacion_path(@importacion), :method => :get  do %>
+  <%= text_field_tag :nombre_marca %>
+  <%= submit_tag "Buscar" %>
+<% end %>
+
 <table class="decorated">
 	<tr>
     <%= '<th>Fila</th>' if @mostra_fila %>
