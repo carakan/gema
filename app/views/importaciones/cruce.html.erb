@@ -6,6 +6,9 @@
   <%= submit_tag "Buscar" %>
 <% end %>
 
+<%= @will = will_paginate @marcas %>
+
+
 <table class="decorated">
 	<tr>
     <%= '<th>Fila</th>' if @mostra_fila %>
@@ -29,11 +32,11 @@
         <td><%= marca.tipo_signo %></td>
         <td><%= marca.clase %></td>
         <td><%= verdad marca.valido %></td>
-        <% @con = marca.cruce(@importacion.id) %>
-        <td><%= @con.try(:usuario) %></td>
-        <td class="<%= @con.try(:type) %>">
-          <%= realizar_cruce(marca, @importacion, @con.try(:id)) %>
-          <%= link_to "ver cruce", consulta_path( @con, :page => @page ) unless @con.nil? %>
+        <% @consult = marca.cruce(@importacion.id) %>
+        <td><%= @consult.try(:usuario) %></td>
+        <td class="<%= @consult.try(:type) %>">
+          <%= realizar_cruce(marca, @importacion, @consult.try(:id)) %>
+          <%= ver_cruce (@consult) unless @consult.nil? %>
         </td>
 
         <td>
@@ -44,10 +47,11 @@
 	</tr>
 </table>
 
-<%= will_paginate @marcas %>
+<%= @will %>
 
 <script type="text/javascript">
   $(document).ready(function() {
+    /*
     $('td.Consulta a.nueva').click(function() {
       var tr = $(this).parents('tr:first').addClass('selected');
       if(confirm("Esta seguro de borrar la consulta seleccionada y realizar una nueva")) {
@@ -56,6 +60,7 @@
         tr.removeClass('selected');
         return false;
       }
-    });
+      });
+    */
   });
 </script>

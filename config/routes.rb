@@ -30,7 +30,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :lista_publicaciones
 
-  map.resources :busquedas, :collection => { :cruce => :get }
+  map.resources :busquedas, :collection => { :cruce => :get, :verificar_cruce => :get }
 
   map.resources :solicitudes, :member => { :importado => :get }
 

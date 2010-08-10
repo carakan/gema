@@ -27,7 +27,6 @@ class CreateMarcas < ActiveRecord::Migration
       t.string  :type, :default => ''
       t.integer :fila # Fila en la cual se produjo el error al importar
       t.datetime :fecha_importacion
-      t.boolean :activo
       t.boolean :valido # Para indicar si la importación fue válida
       t.string :cambios, :default => [] # Indica que campos han sido modificados
       t.boolean :importado, :default => false

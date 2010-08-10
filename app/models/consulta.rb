@@ -59,6 +59,10 @@ class Consulta < ActiveRecord::Base
     end
   end
 
+  # Descarta una consulta para un cruce, alamcenando la consulta pero sin datos de cruce
+  def self.descartar(params)
+    Consulta.create!(:marca_id => params[:marca_id], :descartada => true, :importacion_id => params[:importacion_id], :comentario => 'Descartada')
+  end
 
 private
   def adicionar_usuario

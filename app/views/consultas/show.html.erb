@@ -37,7 +37,7 @@
   </table>
 
   <% unless @consulta.importacion.nil? %>
-    <%= link_to "Ver importación", cruce_importacion_path( @consulta.importacion, :page => @page ) %>
+    <%= link_to "Volver a importación", cruce_importacion_path( @consulta.importacion, :page => @page ) %>
   <% else %>
     <%= link_to "Lista", cosultas_path %>
   <% end %>

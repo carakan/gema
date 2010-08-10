@@ -409,7 +409,12 @@ ul.inline{
 .icon-info{
   background: url(../images/icons/information.png);
 }
-
+.icon-failed{
+  background: url(../images/icons/failed.gif);
+}
+.icon-checked{
+  background: url(../images/icons/check.gif);
+}
 
 @icon_pad: 18px;
 .big{ 
@@ -457,6 +462,18 @@ a.edit{
 }
 a.delete{
   .icon-delete;
+  background-position: middle left;
+  padding-left: @icon_pad;
+  background-repeat: no-repeat;
+}
+a.fail{
+  .icon-failed;
+  background-position: middle left;
+  padding-left: @icon_pad;
+  background-repeat: no-repeat;
+}
+a.succeed{
+  .icon-checked;
   background-position: middle left;
   padding-left: @icon_pad;
   background-repeat: no-repeat;
@@ -634,3 +651,14 @@ ul.menu{
 #tooltip{
   border-color: @grey;
 }
+
+/* Colores de texto */
+.red{
+  color: @red !important;
+}
+.green{
+  color: @green !important;  
+}
+
+
+
