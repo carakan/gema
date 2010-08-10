@@ -48,7 +48,9 @@ class Consulta < ActiveRecord::Base
   # Ordena para poder presentar en el orden que aparecieronen 
   # la busqueda y poder presentar
   def instanciar_marcas_detalles(params)
+    @marca_ids ||= []
     params[:marcas].keys.map(&:to_i).sort.each do |k|
+      # Array de marcas que mejora la velocidad para el listado
       k = k.to_s
       self.consulta_detalles.build(
         :marca_id => params[:marcas][k],

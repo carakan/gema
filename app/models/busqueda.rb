@@ -161,10 +161,12 @@ class Busqueda
       end
     end
     
-    [ "SELECT id, nombre, pos, clase_id, propia, activa FROM (#{sql.join(" UNION ")}) AS res",
-      condiciones_sql(params),
-      "GROUP BY nombre, clase_id ORDER BY pos"
-    ].join(" ")
+
+    sql = [ "SELECT res.id, res.nombre, res.pos, res.clase_id, res.propia, res.activa FROM (#{sql.join(" UNION ")}) AS res" ]
+    #sql << "LEFT JOIN clases ON ( clases.id = res.clase_id)"
+    sql << condiciones_sql(params)
+    sql << "GROUP BY nombre, clase_id ORDER BY pos"
+    sql.join(" ")
   end
 
   def self.sql_exacto(bus, pos)
