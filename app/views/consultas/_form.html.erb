@@ -20,10 +20,10 @@
       <tr>
         <td>
           <%= cd.hidden_field :marca_id %>
-          <%= cd.object.try(:marca) %>
+          <%= cd.object.marca %>
         </td>
-      	<td><%= cd.object.marca.try(:tipo_signo) %></td>
-        <td><%= cd.object.marca.try(:clase) %></td>
+      	<td><%= buscar_tipo_signo cd.object.marca.tipo_signo_id %></td>
+        <td><%= buscar_clase cd.object.marca.clase_id %></td>
         <td>
           <%= cd.hidden_field :tipo %>
           <%= tipo_busqueda cd.object.tipo %>

@@ -21,6 +21,7 @@ class Marca < ActiveRecord::Base
   has_many :posts, :order => 'created_at DESC'
   has_many :adjuntos, :as => :adjuntable, :dependent => :destroy
   has_many :consultas
+  has_many :consulta_detalles
 
   has_and_belongs_to_many :agentes, :class_name => 'Agente',
     :association_foreign_key => :representante_id,

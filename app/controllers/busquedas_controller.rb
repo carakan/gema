@@ -16,7 +16,6 @@ class BusquedasController < ApplicationController
     @importacion = Importacion.find(params[:importacion_id])
 
     @busqueda = Busqueda.realizar_busqueda(query)
-
     @busq = BusquedaVacia.new
   end
 

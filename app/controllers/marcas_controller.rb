@@ -4,9 +4,13 @@ class MarcasController < ApplicationController
 
   def index
     #@marcas = Marca.buscar(:page => @page, :params => params, :include => [:clase] )
+    order = ( params[:order] || "marcas.nombre" )
+    direction = ( params[:direction] || "ASC" )
     nombre_marca = (params[:nombre_marca] || "")
     p = {:page => @page, :include => [:clase, :tipo_signo], 
-      :conditions => [ "nombre_minusculas LIKE ?", "%#{nombre_marca.downcase}%" ] }
+      :conditions => [ "nombre_minusculas LIKE ?", "%#{nombre_marca.downcase}%" ],
+      :order => "#{order} #{direction}"
+    }
     @marcas = Marca.paginate(p)
   end
 

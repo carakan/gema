@@ -28,6 +28,22 @@ module MarcasHelper
     end
   end
 
+  def buscar_clase(clase_id)
+    @clases ||= Clase.all(:select => "id, nombre, codigo")
+    
+    unless clase_id.nil?
+      @clases.find { |v| v.id == clase_id }
+    end
+  end
+  
+  def buscar_tipo_signo(tipo_signo_id)
+    @signos ||= TipoSigno.all(:select => 'id, nombre')
+
+    unless tipo_signo_id.nil?
+      @signos.find { |v| v.id == tipo_signo_id }
+    end
+  end
+  
 
 private
   # Relacion entre campos y el historico

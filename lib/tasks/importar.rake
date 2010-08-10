@@ -90,13 +90,32 @@ namespace :datos do
   end
 
   desc 'Importa solo los nombres de la base de datos de Orpan'
-  task :marcas => :environment do
+  task :marcas_csv => :environment do
     require 'fastercsv'
     UsuarioSession.current_user = Usuario.first
-    f = FasterCSV.read(Rails.root.to_s + '/doc/archivos/BD_ORPAN.csv', :headers => true)
+    Dir.chdir("#{Rails.root}/doc/archivos")
+    system("tar xjf OrpanPropia_7-8-2010_1.csv.tar.bz2")
+    archivo = 'OrpanPropia_7-8-2010_1.csv'
+
+    f = FasterCSV.read( archivo, :headers => true) # :col_sep => ','
     fila = 2
     f.each do |r|
-      m = Marca.new(:nombre => r['nombre'], :clase_id => r['clase_id'] )
+      m = Marca.new(
+        :nombre => r['nombre'], 
+        :clase_id => r['clase_id'],
+        :tipo_signo_id => r['tipo_signo_id'],
+        :tipo_marca_id => r['tipo_marca_id'],
+        :clase_id => r['clase_id'],
+        :numero_solicitud => r['numero_solicitud'],
+        :numero_registro => r['numero_registro'],
+        :fecha_registro => r['fecha_registro'],
+        :numero_renovacion => r['numero_renovacion'],
+        :numero_publicacion => r['numero_publicacion'],
+        :numero_gaceta => r['numero_gaceta'],
+        :fecha_publicacion => r['fecha_publicacion'],
+        :activo => r['activo'] == 1 ? true : false,
+        :propia => r['propia']
+      )
       begin
         m.save(false)
       rescue
@@ -104,7 +123,21 @@ namespace :datos do
       end
       fila += 1
     end
+
+    File.delete( archivo )
   end
+
+  desc "Ejecuta un SQL para importar las marcas"
+  task :marcas_sql => :environment do
+    Dir.chdir("#{Rails.root}/doc/archivos")
+    system("bunzip2 marcas.sql.bz2 -k")
+    archivo = File.read( 'marcas.sql' )
+    archivo.split(";").each do |sql|
+      ActiveRecord::Base.connection.execute( sql )
+    end
+    File.delete( 'marcas.sql' )
+  end
+
 
   desc "Borra marcas, representantes y adjuntos"
   task :borrar_imp => :environment do
