@@ -88,7 +88,6 @@ ActiveRecord::Schema.define(:version => 20100810193623) do
     t.string   "type",                                     :default => ""
     t.integer  "fila"
     t.datetime "fecha_importacion"
-    t.boolean  "activo"
     t.boolean  "valido"
     t.string   "cambios",                                  :default => "--- []\n\n"
     t.boolean  "importado",                                :default => false

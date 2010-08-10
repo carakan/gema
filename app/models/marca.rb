@@ -15,7 +15,7 @@ class Marca < ActiveRecord::Base
   belongs_to :tipo_signo
   belongs_to :tipo_marca
   belongs_to :usuario
-  belongs_to :pais
+  #belongs_to :pais
   belongs_to :importacion
 
   has_many :posts, :order => 'created_at DESC'
