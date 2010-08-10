@@ -1,4 +1,5 @@
 <% semantic_form_for(@consulta) do |f| %>
+  <%= hidden_field_tag :page, @page %>
   <%= f.input :busqueda, :as => :hidden %>
   <%= f.input :parametros, :as => :hidden %>
   <%= f.input :importacion_id, :as => :hidden %>

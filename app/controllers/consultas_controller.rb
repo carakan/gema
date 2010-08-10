@@ -1,6 +1,6 @@
 class ConsultasController < ApplicationController
   before_filter :set_busqueda, :only => [:new, :create]
-  
+  before_filter :borrar_consulta, :only => [:new]  
   # GET /consultas
   # GET /consultas.xml
   def index
@@ -26,14 +26,12 @@ class ConsultasController < ApplicationController
   # GET /consultas/new
   # GET /consultas/new.xml
   def new
-    if params[:marcas].nil?
-      flash[:error] = 'Debe seleccionar alguna marca'
-      redirect_to cruce_busquedas_path(:importacion_id => params[:importacion_id], :marca_id => params[:marca_id])
+    if params[:commit] == 'Descartar'
+      Consulta.descartar( params )
+      redirect_to cruce_importacion_url(params[:importacion_id], :page => @page), :notice => "Se ha descartado el cruce"
       return
     end
 
-    #parametros = Consulta.convertir_parametros_a_hash(params)
-    #@consulta = Consulta.new(:busqueda => params[:busqueda], :parametros => parametros.to_yaml )
     @consulta = Consulta.nueva(params)
 
     respond_to do |format|
@@ -54,7 +52,7 @@ class ConsultasController < ApplicationController
 
     unless @consulta.importacion.nil?
       notice = "Se ha realizado el informe del cruce"
-      path = cruce_importacion_url(@consulta.importacion)
+      path = cruce_importacion_url(@consulta.importacion, :page => @page)
     else
       notice = "Se ha realizado el informe de la consulta"
       paht = "/"
@@ -102,5 +100,11 @@ private
     elsif
       @busqueda = params[:consulta][:busqueda]
     end
+  end
+
+  # Borra una consulta previamente realizada
+  def borrar_consulta
+    Consulta.find(params[:consulta_id]).destroy unless params[:consulta_id].nil?
+
   end
 end

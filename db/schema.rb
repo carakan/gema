@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100805165350) do
+ActiveRecord::Schema.define(:version => 20100810193623) do
 
   create_table "adjuntos", :force => true do |t|
     t.string   "nombre"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(:version => 20100805165350) do
     t.integer  "importacion_id",                :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "descartada",                    :default => false
   end
 
   create_table "importaciones", :force => true do |t|

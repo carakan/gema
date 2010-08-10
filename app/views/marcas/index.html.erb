@@ -61,7 +61,7 @@
       <td><%= marca.tipo_signo %></td>
       <td><%= marca.clase.try(:codigo) %></td>
       <td><%= valido marca.valido %></td>
-      <td><%= valido marca.activo %></td>
+      <td><%= valido marca.activa %></td>
       <td>
         <%= link_to "editar", edit_marca_path(marca), :class => 'edit' %>
         <%= link_to "borrar", marca_path(marca), :class => 'delete' %>

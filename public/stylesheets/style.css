@@ -366,6 +366,8 @@ ul.inline li a {
 .icon-show { background: url(../images/icons/zoom.png); }
 .icon-top-right { background-position: top right; }
 .icon-info { background: url(../images/icons/information.png); }
+.icon-failed { background: url(../images/icons/failed.gif); }
+.icon-checked { background: url(../images/icons/check.gif); }
 .big {
   font-size: 1.4em;
   font-weight: bold;
@@ -406,7 +408,25 @@ a.edit {
   padding-left: 18px;
   background-repeat: no-repeat;
 }
-a.delete, .delete-l {
+a.delete {
+  background: url(../images/icons/delete.png);
+  background-position: middle left;
+  padding-left: 18px;
+  background-repeat: no-repeat;
+}
+a.fail {
+  background: url(../images/icons/failed.gif);
+  background-position: middle left;
+  padding-left: 18px;
+  background-repeat: no-repeat;
+}
+a.succeed {
+  background: url(../images/icons/check.gif);
+  background-position: middle left;
+  padding-left: 18px;
+  background-repeat: no-repeat;
+}
+.delete-l {
   background: url(../images/icons/delete.png);
   background-position: middle left;
   padding-left: 18px;
@@ -530,3 +550,5 @@ ul.menu li:hover ul {
   border-color: #ff0000;
 }
 #tooltip { border-color: #676767; }
+.red { color: #ff0000 !important; }
+.green { color: #5bbf3b !important; }

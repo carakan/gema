@@ -251,3 +251,7 @@ function mark(selector, velocity, val) {
     mark(selector, velocity, val);
   }, velocity);
 }
+
+function getTarget(e) {
+  return e.target || e.srcElement;
+}

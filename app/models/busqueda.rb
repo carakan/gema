@@ -109,32 +109,36 @@ class Busqueda
   end
 
   # Adiciona las condiciones sql necesarias
+  #   @param Hash
+  #   @return String
   def self.condiciones_sql(params)
     clases = params[:clases].split(",").map(&:to_i)
-    sql = "WHERE clase_id in (#{clases.join(', ')})"
+    sql = [ "WHERE res.clase_id IN (#{clases.join(', ')})" ]
 
     params[:fecha_ini], params[:fecha_fin] = transformar_fechas(params)
     if params[:fecha_ini]
-      sql << " AND fecha >= '#{params[:fecha_ini]}' AND fecha <= '#{params[:fecha_fin]}'"
+      sql << "AND fecha >= '#{params[:fecha_ini]}' AND fecha <= '#{params[:fecha_fin]}'"
     end
     sql << condicion_marca_propia(params)
     sql << condicion_activas
 
-    sql
+    sql.join(" ")
   end
 
+  #   @param Hash
+  #   @return String
   def self.condicion_marca_propia(params)
     if params[:propia].nil?
       ""
     elsif params[:propia] == true
-      " AND propia=1"
+      "AND res.propia=1"
     elsif params[:propia] == false
-      " AND propia=0"
+      "AND res.propia=0"
     end
   end
 
   def self.condicion_activas
-    " AND activa=1"
+    "AND res.activa=1"
   end
 
   # Trabajar en esto
@@ -146,47 +150,64 @@ class Busqueda
     #end
   end
 
+  # Funcion principal que une todas las partes del SQL para crearel query
+  #   @param Array
+  #   @param Hash
+  #   @return String
   def self.crear_sql(expresiones, params)
-    sql = []
+    sql_exp = []
     expresiones.each do |pos, exp|
       case pos
         when 1
-          sql << sql_exacto(exp.first, pos)
+          sql_exp << sql_exacto(exp.first, pos)
         when 2
-          sql << sql_variaciones(exp, pos)
+          sql_exp << sql_variaciones(exp, pos)
         when 3
-          sql << sql_expreg(exp, pos)
+          sql_exp << sql_exp_reg(exp, pos)
         when 4
-          sql << sql_variaciones(exp, pos)
+          sql_exp << sql_variaciones(exp, pos)
       end
     end
-    
 
-    sql = [ "SELECT res.id, res.nombre, res.pos, res.clase_id, res.propia, res.activa FROM (#{sql.join(" UNION ")}) AS res" ]
+    sql = [ "SELECT res.id, res.nombre, res.pos, res.clase_id, res.propia, res.activa FROM" ]
+    sql << [ "(#{sql_exp.join("\n UNION \n")}) AS res" ]
     #sql << "LEFT JOIN clases ON ( clases.id = res.clase_id)"
     sql << condiciones_sql(params)
-    sql << "GROUP BY nombre, clase_id ORDER BY pos"
-    sql.join(" ")
+    #sql << "GROUP BY nombre, clase_id ORDER BY pos"
+
+    sql.join("\n")
   end
 
+  # SQl que busca la palabra exacata
+  #   @param String
+  #   @param Integer
+  #   @return String
   def self.sql_exacto(bus, pos)
     ActiveRecord::Base.send(:sanitize_sql_array, 
-      [ "SELECT id, nombre, clase_id, #{pos} AS pos, propia, activa FROM marcas WHERE nombre_minusculas = '%s'", bus ]
+      [ "SELECT id, nombre, clase_id, #{pos} AS pos, propia, activa FROM marcas WHERE parent_id = 0 AND nombre_minusculas = '%s'", bus ]
     )
   end
 
-  def self.sql_expreg(arr, pos)
-    sql = "SELECT id, nombre, clase_id, #{pos} AS pos, propia, activa FROM marcas WHERE "
+  # SQl con expresion regular
+  #   @param Array
+  #   @param Integer
+  #   @return String
+  def self.sql_exp_reg(arr, pos)
+    sql = "SELECT id, nombre, clase_id, #{pos} AS pos, propia, activa FROM marcas WHERE parent_id = 0 AND ("
     sql << arr.map{ 
       |v| ActiveRecord::Base.send(:sanitize_sql_array, [ "nombre_minusculas REGEXP '%s'", v ] )
-    }.join(" OR ")
+    }.join(" OR ") << ")"
   end
 
+  # Crea variaciones de la busqueda (palabra)
+  #   @param Array
+  #   @param Integer
+  #   @return String
   def self.sql_variaciones(arr, pos)
-    sql = "SELECT id, nombre, clase_id, #{pos} AS pos, propia, activa FROM marcas WHERE "
+    sql = "SELECT id, nombre, clase_id, #{pos} AS pos, propia, activa FROM marcas WHERE parent_id = 0 AND ("
     sql << arr.map{ |v| 
       ActiveRecord::Base.send(:sanitize_sql_array, ["nombre_minusculas LIKE '%s'", "%#{v}%"] ) 
-    }.join(" OR ")
+    }.join(" OR ") << ")"
   end
 
 end

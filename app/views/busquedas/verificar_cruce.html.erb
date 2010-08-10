@@ -1,0 +1,30 @@
+<h1>Verificación de cruce"<%= @marca.nombre %>" gaceta <%= @importacion.publicacion %></h1>
+
+<% unless @busqueda.blank? %>
+
+  <%= hidden_field_tag "clases", (1..45).to_a.join(",") %>
+  <%= hidden_field_tag "busqueda", @marca.nombre %>
+
+  <%= hidden_field_tag "marca_id", params[:marca_id] %>
+  <%= hidden_field_tag "importacion_id", params[:importacion_id] unless params[:importacion_id].nil? %>
+
+  <table class="decorated">
+  	<tr>
+  		<th>Nombre</th>
+  		<th>Clase</th>
+      <th>Tipo de signo</th>
+      <th>Tipo de<br/> busqueda</th>
+  	</tr>
+    <% @busqueda.each_with_index do |b, i| %>
+      <tr>
+      	<td><label for="marca<%= b.id %>"><%= b.nombre %></label></td>
+      	<td><%= b.clase_id %></td>
+        <td><%= tipo_busqueda b.pos %></td>
+        <td><%= b.try(:tipo_signo) %></td>
+      </tr>
+    <% end %>
+
+  </table>
+<% end %>
+
+
