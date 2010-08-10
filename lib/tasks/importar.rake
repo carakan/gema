@@ -113,8 +113,9 @@ namespace :datos do
         :numero_publicacion => r['numero_publicacion'],
         :numero_gaceta => r['numero_gaceta'],
         :fecha_publicacion => r['fecha_publicacion'],
-        :activo => r['activo'] == 1 ? true : false,
-        :propia => r['propia']
+        :activa => r['activa'].to_i == 1 ? true : false,
+        :propia => true,
+        :parent_id => 0
       )
       begin
         m.save(false)
@@ -135,6 +136,7 @@ namespace :datos do
     archivo.split(";").each do |sql|
       ActiveRecord::Base.connection.execute( sql )
     end
+
     File.delete( 'marcas.sql' )
   end
 

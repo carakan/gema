@@ -65,8 +65,6 @@ ActiveRecord::Schema.define(:version => 20100810193623) do
   create_table "marcas", :force => true do |t|
     t.integer  "parent_id",                                :default => 0
     t.integer  "usuario_id"
-    t.integer  "titular_id"
-    t.integer  "agente_id"
     t.integer  "tipo_signo_id"
     t.integer  "tipo_marca_id"
     t.integer  "clase_id"
@@ -83,12 +81,9 @@ ActiveRecord::Schema.define(:version => 20100810193623) do
     t.string   "numero_publicacion",                       :default => ""
     t.string   "numero_gaceta",                            :default => ""
     t.string   "lema",                                     :default => ""
-    t.string   "imagen",                                   :default => ""
     t.date     "fecha_publicacion"
-    t.string   "type",                                     :default => ""
     t.integer  "fila"
     t.datetime "fecha_importacion"
-    t.boolean  "activo"
     t.boolean  "valido"
     t.string   "cambios",                                  :default => "--- []\n\n"
     t.boolean  "importado",                                :default => false
@@ -108,7 +103,6 @@ ActiveRecord::Schema.define(:version => 20100810193623) do
   end
 
   add_index "marcas", ["activa"], :name => "index_marcas_on_activa"
-  add_index "marcas", ["agente_id"], :name => "index_marcas_on_agente_id"
   add_index "marcas", ["clase_id"], :name => "index_marcas_on_clase_id"
   add_index "marcas", ["fecha_importacion"], :name => "index_marcas_on_fecha_importacion"
   add_index "marcas", ["importacion_id"], :name => "index_marcas_on_importacion_id"
@@ -119,8 +113,6 @@ ActiveRecord::Schema.define(:version => 20100810193623) do
   add_index "marcas", ["propia"], :name => "index_marcas_on_propia"
   add_index "marcas", ["tipo_marca_id"], :name => "index_marcas_on_tipo_marca_id"
   add_index "marcas", ["tipo_signo_id"], :name => "index_marcas_on_tipo_signo_id"
-  add_index "marcas", ["titular_id"], :name => "index_marcas_on_titular_id"
-  add_index "marcas", ["type"], :name => "index_marcas_on_type"
   add_index "marcas", ["usuario_id"], :name => "index_marcas_on_usuario_id"
 
   create_table "marcas_representantes", :id => false, :force => true do |t|

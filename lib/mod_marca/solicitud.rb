@@ -77,7 +77,6 @@ module ModMarca::Solicitud
       # Salva correctamente o sino con errores
       unless klass.save
         klass.almacenar_errores
-        klass.activo = false
         klass.valido = false # Indica que no paso la validación
         klass.save( false )
       end

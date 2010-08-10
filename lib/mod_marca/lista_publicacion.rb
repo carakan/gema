@@ -116,7 +116,7 @@ module ModMarca::ListaPublicacion
     #   @return Marca
     def get_pdf_params(params, hoja)
       { 
-        :activo => true,
+        :activa => true,
         :valido => true, 
         :fila => hoja, 
         :propia => false,
@@ -220,7 +220,6 @@ module ModMarca::ListaPublicacion
 
       # Salva correctamente o sino con errores
       unless klass.save
-        klass.activo = false
         klass.valido = false # Indica que no paso la validación
         klass.save( false )
       end
