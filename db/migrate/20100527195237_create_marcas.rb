@@ -4,8 +4,8 @@ class CreateMarcas < ActiveRecord::Migration
       t.integer :parent_id, :default => 0
 #      t.integer :marca_id
       t.integer :usuario_id
-      t.integer :titular_id
-      t.integer :agente_id
+      #t.integer :titular_id
+      #t.integer :agente_id
       t.integer :tipo_signo_id
       t.integer :tipo_marca_id
       t.integer :clase_id
@@ -15,16 +15,16 @@ class CreateMarcas < ActiveRecord::Migration
       t.string :numero_registro, :default => ''
       t.date   :fecha_registro
       t.string :numero_renovacion, :default => ''
-      t.string :productos, :default => ''
+      t.string :productos, :default => '', :limit => 1024
       t.string :estado, :default => ''
       t.date :estado_fecha # Tambien puede ser Fecha de solicitud
       t.string :estado_serial
       t.string :numero_publicacion, :default => ''
       t.string :numero_gaceta, :default => ''
       t.string  :lema, :default => ''
-      t.string  :imagen, :default => ''
+      #t.string  :imagen, :default => ''
       t.date  :fecha_publicacion
-      t.string  :type, :default => ''
+      #t.string  :type, :default => ''
       t.integer :fila # Fila en la cual se produjo el error al importar
       t.datetime :fecha_importacion
       t.boolean :valido # Para indicar si la importación fue válida
@@ -38,8 +38,8 @@ class CreateMarcas < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :marcas, :agente_id
-    add_index :marcas, :titular_id
+    #add_index :marcas, :agente_id
+    #add_index :marcas, :titular_id
     add_index :marcas, :tipo_signo_id
     add_index :marcas, :tipo_marca_id
     add_index :marcas, :clase_id
@@ -50,7 +50,7 @@ class CreateMarcas < ActiveRecord::Migration
 #    add_index :marcas, :marca_id
 
     add_index :marcas, :fecha_importacion
-    add_index :marcas, :type
+    #add_index :marcas, :type
     add_index :marcas, :importado
 
     add_index :marcas, :importacion_id
