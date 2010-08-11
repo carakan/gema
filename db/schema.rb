@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(:version => 20100810193623) do
     t.string   "representante_empresarial"
     t.integer  "importacion_id"
     t.boolean  "activa",                                    :default => true
+    t.string   "archivo_adjunto",                           :default => ""
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "anterior",                                  :default => false

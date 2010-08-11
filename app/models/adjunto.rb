@@ -1,5 +1,5 @@
 class Adjunto < ActiveRecord::Base
-  before_save :set_marca_archivo
+  after_save :set_marca_archivo
 
   belongs_to :adjuntable, :polymorphic => true
 
@@ -30,10 +30,7 @@ private
   def set_marca_archivo
     if self.adjuntable_type == 'Marca'
       self.adjuntable.con_historico = false
-      adj = Adjunto.last(:conditions => {:adjuntable_type => self.adjuntable.class.to_s, :adjuntable_id => self.adjuntable.id} )
-      m = Marca.historial(self.adjuntable.id, :limit => 1)
-      img = adj.archivo.url(:mini).dup
-      self.adjuntable.historico.last.update_attribute( 'archivo_adjunto', img )
+      self.adjuntable.update_attribute( 'archivo_adjunto', self.archivo.url(:mini) )
     end
   end
 end
