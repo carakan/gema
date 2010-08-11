@@ -97,7 +97,7 @@ module ModMarca::ListaPublicacion
     def adjuntar_imagen(klass, img)
       begin
         archivo = File.new(img)
-        Adjunto.create:archivo => archivo, :adjuntable_id => klass.id, :adjuntable_type => klass.class.to_s )
+        Adjunto.create( :archivo => archivo, :adjuntable_id => klass.id, :adjuntable_type => klass.class.to_s )
       rescue
       end
     end

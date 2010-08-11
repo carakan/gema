@@ -7,7 +7,7 @@ class Marca < ActiveRecord::Base
   before_save :adicionar_usuario
   before_save :set_agentes_titulares, :if => lambda { |m| m.parent_id == 0 }
 
-  before_update :crear_historico
+  before_update :crear_historico, :if => :con_historico?
   before_update :set_cambios
   before_save :actualizar_validez
 
@@ -31,6 +31,17 @@ class Marca < ActiveRecord::Base
     :association_foreign_key => :representante_id,
     :join_table => 'marcas_representantes'
 
+  def after_initialize
+    @con_historico = true
+  end
+
+  def con_historico?
+    @con_historico
+  end
+
+  def con_historico=(val)
+    @con_historico = val
+  end
 
   # Las validaciones se guardan en los modulos 
 
@@ -108,6 +119,10 @@ class Marca < ActiveRecord::Base
 
   def ver_estado
     TIPOS[estado]
+  end
+
+  def con_imagen?
+    [2, 3, 4].include? self.tipo_signo_id
   end
 
   def ver_fila
@@ -211,8 +226,10 @@ class Marca < ActiveRecord::Base
     end
   end
 
-  def self.historial(id)
-    Marca.send(:with_exclusive_scope) { Marca.all(:conditions => ["marcas.parent_id = ?", id], :order => "updated_at DESC") }
+  def self.historial(id, params = {})
+    params = { :order => "updated_at DESC" }.merge(params)
+    params[:conditions] = ["marcas.parent_id = ?", id]
+    Marca.send(:with_exclusive_scope) { Marca.all(params) }
   end
 
   # Retorna todas las modificaciones realizadas a la marca
@@ -418,4 +435,5 @@ private
       end
     end
   end
+
 end

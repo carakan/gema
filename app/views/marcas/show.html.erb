@@ -90,10 +90,23 @@
     <%= cambio @marca ,:numero_gaceta %>
   </p>
 
+  <p>
+    <label for="">Lema</label>
+    <%= cambio @marca ,:lema %>
+  </p>
 
-  <%= cambio @marca ,:lema %>
-  <%= cambio @marca ,:productos %>
+  <p>
+    <label for="">Productos</label>
+    <%= cambio @marca ,:productos %>
+  </p>
 
+  <p>
+    <label for="">Imagen</label>
+    <%= cambio @marca, :archivo_adjunto, image_tag( @marca.adjuntos.last.archivo.url(:mini), :class => 'mini' ) %>
+  </p>
+
+<%= link_to 'Editar', edit_marca_path(@marca), :class =>'edit'%> |
+<%= link_to 'Lista', marcas_path, :class =>'list' %>
   <hr />
   <h2>Historial de modificaciones</h2>
 
@@ -101,28 +114,22 @@
   <% @cambios = @marca.cambios %>
 
   <% @marca.historial.each do |marca| %>
+
     <% @cambios.delete('usuario_id') %>
     <p>
-      <label for="">Usuario</label>
-      <%= marca.usuario %>
+      Modificado por <strong><%= marca.usuario %></strong> en fecha: <em><%= l marca.updated_at, :format => "%d, %B %Y %H:%M" %></em>
     </p>
-    <p>
-      <label for="">Fecha de modificación</label>
-      <%= l marca.updated_at, :format => "%d, %B %Y %H:%M" %>
-    </p>
-
 
     <% @cambios.each do |campo| %>
       <p>
       <%= presentar_campo_historial( marca, campo ) %>
       </p>
     <% end %>
+
     <hr />
     <% @cambios = marca.cambios %>
 
   <% end %>
-<%= link_to 'Editar', edit_marca_path(@marca), :class =>'edit'%> |
-<%= link_to 'Lista', marcas_path, :class =>'list' %>
 </div>
 
 

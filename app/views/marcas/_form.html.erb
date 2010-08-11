@@ -11,6 +11,19 @@
     <label for="">Tipo de signo</label>
     <%= @marca.tipo_signo %>
   </li>
+  <% if @marca.con_imagen? %>
+    <li>
+      <%= image_tag @marca.adjuntos.last.archivo.url(:mini), :class => 'mini' %>
+      <% unless @marca.tipo_signo_id == 4 %>
+        <%# f.fields_for :adjuntos do |adj| %>
+          <label for="">Imagen</label>
+          <input type="file" name="marca[adjuntos_attributes][0][archivo]" size= "30" />
+          <%# adj.file_field :archivo, :size => 30 %>
+        <%# end %>
+      <% end %>
+    </li>
+  <% end %>
+
   <% # f.input :logo,:as => :file, :input_html => {:tabindex => 2 } %>
   <%= f.input :nombre,:tabindex => 3  %>
 

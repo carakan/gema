@@ -55,11 +55,11 @@
   <% @marcas.each do |marca| %>
     <%= tr_marca marca %>
       <td><%= link_to marca.nombre, marca_path(marca) %></td>
-      <td><%= verdad marca.propia %></td>
+      <td class="<%= marca.propia %>"></td>
     	<td><%= marca.ver_estado %></td>
       <td><%= marca.tipo_signo %></td>
       <td><%= marca.clase.try(:codigo) %></td>
-      <td><%= valido marca.activa %></td>
+      <td class="<%= marca.activa %>"></td>
       <td><%= marca.titulares.map(&:nombre).join(", ") %></td>
       <td>
         <%= link_to "editar", edit_marca_path(marca), :class => 'edit' %>
