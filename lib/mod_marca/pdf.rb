@@ -23,7 +23,7 @@ module ModMarca::PDF
       rango = crear_rango()
 
       # Transaccion para la importacion de datos
-      transaction do |t|
+      Marca.transaction do
         rango.each do |num|
           arr = extraer_datos_html(crear_nombre_archivo_html(num), num )
           # Metodo utilizado para actualizar en la clase
