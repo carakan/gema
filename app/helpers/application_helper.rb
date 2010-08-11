@@ -69,6 +69,12 @@ module ApplicationHelper
     link_to title, url, :class => css
   end
 
+  def lo(data, options = {})
+    if data.is_a? Date or data.is_a? DateTime or data.is_a? Time
+      l data, options
+    end
+  end
+
 end
 WillPaginate::ViewHelpers.pagination_options[:previous_label] = '<<'
 WillPaginate::ViewHelpers.pagination_options[:next_label] = '>>'

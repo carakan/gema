@@ -34,6 +34,20 @@ jQuery(function($) {
     }
   });
 
+  // Para presentar la imagen en tamaño original
+  $('img.mini').live('click', function() {
+    var lista = $(this).attr("src").split("/");
+    var l = lista.length - 1;
+    lista[l] = lista[l].replace(/^mini/, 'original');
+    var div = document.createElement('div');
+    $(div).html(['<img', ' src=', '"', lista.join("/") , '"', " />"].join("") );
+
+    $(div).dialog({
+        'width': 700, 'height': 500, 
+        'close': function(e, ui) { $(div).dialog('destroy');  }
+    });
+  });
+
   /**
    * Para presentar formulario AJAX
    */

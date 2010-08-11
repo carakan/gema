@@ -7,9 +7,10 @@ class MarcasController < ApplicationController
     order = ( params[:order] || "marcas.nombre" )
     direction = ( params[:direction] || "ASC" )
     nombre_marca = (params[:nombre_marca] || "")
-    p = {:page => @page, :include => [:clase, :tipo_signo], 
+    p = {
+      :include => [:clase, :tipo_signo, :titulares], 
       :conditions => [ "nombre_minusculas LIKE ?", "%#{nombre_marca.downcase}%" ],
-      :order => "#{order} #{direction}"
+      :order => "#{order} #{direction}", :page => @page
     }
     @marcas = Marca.paginate(p)
   end

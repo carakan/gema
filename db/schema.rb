@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(:version => 20100810193623) do
   end
 
   create_table "marcas", :force => true do |t|
-    t.integer  "parent_id",                                :default => 0
+    t.integer  "parent_id",                                 :default => 0
     t.integer  "usuario_id"
     t.integer  "tipo_signo_id"
     t.integer  "tipo_marca_id"
@@ -71,34 +71,34 @@ ActiveRecord::Schema.define(:version => 20100810193623) do
     t.integer  "pais_id"
     t.string   "numero_solicitud",          :limit => 40
     t.string   "nombre"
-    t.string   "numero_registro",                          :default => ""
+    t.string   "numero_registro",                           :default => ""
     t.date     "fecha_registro"
-    t.string   "numero_renovacion",                        :default => ""
-    t.string   "productos",                                :default => ""
-    t.string   "estado",                                   :default => ""
+    t.string   "numero_renovacion",                         :default => ""
+    t.string   "productos",                 :limit => 1024, :default => ""
+    t.string   "estado",                                    :default => ""
     t.date     "estado_fecha"
     t.string   "estado_serial"
-    t.string   "numero_publicacion",                       :default => ""
-    t.string   "numero_gaceta",                            :default => ""
-    t.string   "lema",                                     :default => ""
+    t.string   "numero_publicacion",                        :default => ""
+    t.string   "numero_gaceta",                             :default => ""
+    t.string   "lema",                                      :default => ""
     t.date     "fecha_publicacion"
     t.integer  "fila"
     t.datetime "fecha_importacion"
     t.boolean  "valido"
-    t.string   "cambios",                                  :default => "--- []\n\n"
-    t.boolean  "importado",                                :default => false
+    t.string   "cambios",                                   :default => "--- []\n\n"
+    t.boolean  "importado",                                 :default => false
     t.string   "apoderado"
     t.string   "representante_empresarial"
     t.integer  "importacion_id"
-    t.boolean  "activa",                                   :default => true
+    t.boolean  "activa",                                    :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "anterior",                                 :default => false
-    t.boolean  "propia",                                   :default => false
+    t.boolean  "anterior",                                  :default => false
+    t.boolean  "propia",                                    :default => false
     t.string   "nombre_minusculas"
     t.string   "agente_ids_serial"
     t.string   "titular_ids_serial"
-    t.string   "errores",                   :limit => 500
+    t.string   "errores",                   :limit => 700
     t.string   "errores_manual",            :limit => 500
   end
 

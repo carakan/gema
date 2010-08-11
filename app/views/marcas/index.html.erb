@@ -47,21 +47,20 @@
 		<th>Estado</th>
     <th><%= sort_order "Tipo de signo", "tipo_signos.nombre" %></th>
     <th><%= sort_order "Clase", "marcas.clase_id" %></th>
-		<th>Valido</th>
     <th><%= sort_order "Activa", "marcas.activa" %></th>
+    <th>Titulares</th>
     <th></th>
 	</tr>
 
   <% @marcas.each do |marca| %>
-    <% @clase = marca.propia ? ' class="propia"': '' %>
-    <tr <%= @clase %>>
+    <%= tr_marca marca %>
       <td><%= link_to marca.nombre, marca_path(marca) %></td>
       <td><%= verdad marca.propia %></td>
     	<td><%= marca.ver_estado %></td>
       <td><%= marca.tipo_signo %></td>
       <td><%= marca.clase.try(:codigo) %></td>
-      <td><%= valido marca.valido %></td>
       <td><%= valido marca.activa %></td>
+      <td><%= marca.titulares.map(&:nombre).join(", ") %></td>
       <td>
         <%= link_to "editar", edit_marca_path(marca), :class => 'edit' %>
         <%= link_to "borrar", marca_path(marca), :class => 'delete' %>

@@ -10,7 +10,7 @@
     </p>
     <p>
       <label for="">Fecha</label>
-      <%= cambio @marca ,:estado_fecha, l(@marca.estado_fecha) %>
+      <%= cambio @marca ,:estado_fecha, lo( @marca.estado_fecha ) %>
     </p>
     <p>
       <label for="">Tipo Marca</label>
@@ -44,6 +44,7 @@
 
 
   <div class="half fl" id="div2">
+    <%= content_tag 'p', mostrar_imagen(@marca) %>
     <p>
       <label for="">Número de gaceta</label>
       <%= cambio @marca ,:numero_gaceta %>

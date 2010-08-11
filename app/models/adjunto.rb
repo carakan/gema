@@ -2,7 +2,8 @@ class Adjunto < ActiveRecord::Base
   belongs_to :adjuntable, :polymorphic => true
 
   has_attached_file :archivo, :styles => { :mini => "100x100>" },
-    :path => ":rails_root/public/system/:rails_env/adjuntos/:id_partition/:style-:filename"
+    :path => ":rails_root/public/system/:rails_env/adjuntos/:id_partition/:style-:filename",
+    :url => "/system/:rails_env/adjuntos/:id_partition/:style-:filename"
   before_post_process :image?
 
   def image?

@@ -71,6 +71,12 @@ module MarcasHelper
     options.map { |v| "#{v.first}=\"#{v.last}\"" }.join(" ")
   end
 
+  def mostrar_imagen(marca)
+    if [2, 3, 4].include? marca.tipo_signo_id
+      image_tag marca.adjuntos.first.archivo.url(:mini), :class => 'mini'
+    end
+  end
+
 private
   # Relacion entre campos y el historico
   def label_campos
