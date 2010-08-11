@@ -1,4 +1,4 @@
-<h1>Importacion de <%= fecha_hora @importacion.created_at %></h1>
+<h1>Importacion de <%= fecha_hora @importacion.created_at %> <%= gaceta @importacion %></h1>
 
 <%= link_to "Listado", importacion_path(@importacion) %>
 <% form_tag importacion_path(@importacion), :method => :get  do %>
@@ -10,27 +10,19 @@
 	<tr>
     <%= '<th>Fila</th>' if @mostra_fila %>
 		<th>Marca</th>
-		<th>Numero Solicitud</th>
+    <th>Numero<br />Solicitud</th>
 		<th>Tipo Signo</th>
 		<th>Clase</th>
-    <th>Válido</th>
-    <th>Propia</th>
+    <th>Titulares</th>
     <th></th>
     <% @marcas.each do |marca| %>
-      <% @css = marca.propia ? 'propia': '' %>
-      <% unless marca.valido %>
-          <% @css << ' error' %>
-         <tr class="<%= @css %>" alt="<%= marca.presentar_errores %>">
-      <% else %>
-        <tr class="<%= @css %>" >
-      <% end %>
+      <%= tr_marca marca %>
         <%= "<td>#{marca.fila}</td>" if @mostra_fila %>
-        <td><%= marca.nombre %></td>
+        <td><%= link_to marca.nombre, ver_marca_path(marca), :class => 'ajax' %></td>
         <td><%= marca.numero_solicitud %></td>
         <td><%= marca.tipo_signo %></td>
         <td><%= marca.clase %></td>
-        <td><%= verdad marca.valido %></td>
-        <td><%= verdad marca.propia %></td>
+        <td><%= marca.try(:titulares).map(&:nombre).join(",") %></td>
 
         <td>
           <%= link_to "editar", edit_marca_path(marca, :importacion_id => @importacion.id), :class => 'edit' %>

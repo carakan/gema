@@ -72,7 +72,7 @@ module ModMarca::Solicitud
     # Busca o crea una nueva solicitud
     def buscar_o_crear_marca(fila, fecha_imp)
       comp = [:apoderado, :tipo_signo_id, :clase_id, :nombre]
-      klass = buscar_comparar(get_excel_params(fila, fecha_imp), comp )
+      klass = buscar_comparar_o_nuevo(get_excel_params(fila, fecha_imp), comp )
 
       # Salva correctamente o sino con errores
       unless klass.save

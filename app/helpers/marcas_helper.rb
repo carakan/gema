@@ -13,6 +13,10 @@ module MarcasHelper
   # Indica si hay cambio en el campo
   def cambio(klass, attr, presentar = nil)
     attr = attr.to_s.gsub(/(.*)_id$/, '\1') if !!(attr.to_s =~ /.*_id$/)
+    if presentar.nil? and [true, false].include?( klass[attr] )
+      presentar = valido(klass[attr])
+    end
+
     if !klass.cambios.nil? and klass.cambios.include?(attr.to_s)
       if presentar.nil?
         "<span class='cambio'>#{klass.send(attr)}</span>"
@@ -44,6 +48,28 @@ module MarcasHelper
     end
   end
   
+  # Presenta un tr indicando si es propia y presentado
+  # los errores dependiendo si se elija la opcion error
+  # para presentar
+  #   @param Marca
+  #   @param [true, false]
+  #   @return String
+  def tr_marca(marca, error = true)
+    css = marca.propia ? 'propia' : ''
+    alt = ''
+
+    unless not error or marca.valido
+      css << ' error'
+      alt << %Q(alt="#{marca.presentar_errores}")
+    end
+    
+    "<tr class=\"#{css}\" #{alt}>"
+  end
+
+
+  def opciones_extra(options)
+    options.map { |v| "#{v.first}=\"#{v.last}\"" }.join(" ")
+  end
 
 private
   # Relacion entre campos y el historico

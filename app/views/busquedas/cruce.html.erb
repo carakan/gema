@@ -1,6 +1,7 @@
 <h1>Resultados para cruce "<%= @marca.nombre %>" gaceta <%= @importacion.publicacion %></h1>
 
 <%= link_to "Volver a importacion", cruce_importacion_path(@importacion, :page => @page) %>
+<%= ver_cruce(@consulta, :class => 'ajax') unless params[:consulta_id].nil? %>
 
 <% form_tag new_consulta_path, :method => 'get' do -%>
   <%= hidden_field_tag "clases", (1..45).to_a.join(",") %>

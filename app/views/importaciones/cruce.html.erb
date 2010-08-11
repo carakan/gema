@@ -1,4 +1,4 @@
-<h1>Cruce (Faltan <%= @importacion.cruces_pendientes %> cruces)</h1>
+<h1>Cruce (Faltan <%= @importacion.cruces_pendientes %> cruces)<%= gaceta @importacion %></h1>
 
 <%= link_to "Listado", cruce_importacion_path(@importacion) %>
 <% form_tag cruce_importacion_path(@importacion), :method => :get  do %>
@@ -15,25 +15,18 @@
 		<th>Marca</th>
 		<th>Tipo Signo</th>
 		<th>Clase</th>
-    <th>Válido</th>
     <th>Usuario</th>
+    <th>Titulares</th>
     <th>Cruzar</th>
     <th></th>
     <% @marcas.each do |marca| %>
-      <% @css = marca.propia ? 'propia': '' %>
-      <% unless marca.valido %>
-          <% @css << ' error' %>
-         <tr class="<%= @css %>" alt="<%= marca.presentar_errores %>">
-      <% else %>
-        <tr class="<%= @css %>" >
-      <% end %>
-        <%= "<td>#{marca.fila}</td>" if @mostra_fila %>
+      <%= tr_marca marca %>
         <td><%= marca.nombre %></td>
         <td><%= marca.tipo_signo %></td>
         <td><%= marca.clase %></td>
-        <td><%= verdad marca.valido %></td>
         <% @consult = marca.cruce(@importacion.id) %>
         <td><%= @consult.try(:usuario) %></td>
+        <td><%= marca.try(:titulares).map(&:nombre).join(",") %></td>
         <td class="<%= @consult.try(:type) %>">
           <%= realizar_cruce(marca, @importacion, @consult.try(:id)) %>
           <%= ver_cruce (@consult) unless @consult.nil? %>
