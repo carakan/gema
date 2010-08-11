@@ -20,6 +20,7 @@ class Marca < ActiveRecord::Base
 
   has_many :posts, :order => 'created_at DESC'
   has_many :adjuntos, :as => :adjuntable, :dependent => :destroy
+  accepts_nested_attributes_for :adjuntos
   has_many :consultas
   has_many :consulta_detalles
 
@@ -56,8 +57,9 @@ class Marca < ActiveRecord::Base
     { 
       :conditions => [ "marcas.importacion_id = ? AND marcas.nombre_minusculas LIKE ?", imp_id, "%#{nombre_marca.downcase}%" ], 
       :order => "marcas.valido, marcas.propia DESC", 
-      :include => [:tipo_signo, :clase] } 
-    }
+      :include => [:tipo_signo, :clase, :titulares] 
+    } 
+  }
 
   named_scope :importados_error, lambda { |fecha| 
     { :conditions => { :fecha_importacion => fecha, :valido => false} } 
@@ -69,7 +71,7 @@ class Marca < ActiveRecord::Base
         "marcas.importacion_id = ? AND marcas.tipo_signo_id NOT IN (?) AND marcas.nombre_minusculas LIKE ?", 
         importacion_id, TipoSigno.descartadas_cruce, "%#{nombre_marca.downcase}%"
       ],
-      :include => [:tipo_signo, :clase, { :consultas => :usuario } ]
+      :include => [:tipo_signo, :clase, { :consultas => :usuario }, :titulares ]
     }
   }
 
@@ -81,6 +83,8 @@ class Marca < ActiveRecord::Base
     'sr' => 'Solicitud de Renovación',
     'rc' => 'Renovaciones Concedidas'
   }
+
+  ESTADOS = TIPOS
 
   SIGNOS = {
     'sigden' => 'Marcas Denomainativas',
@@ -294,11 +298,12 @@ class Marca < ActiveRecord::Base
 
 
   # Realiza una comparación de los datos que se importan Vs. los que se encuentran
-  # en la base de datos
+  # en la base de datos, de lo contrario retorna una instancia
   #   @param Hash params
   #   @params Array comp # Array con datos tipo Symbol a comparar en una clase
-  def self.buscar_comparar(params, comp )
-    params[:nombre] = params[:nombre].gsub(/^"(.*)$"/, '\1').strip
+  #   @return Marca
+  def self.buscar_comparar_o_nuevo( params, comp )
+    params[:nombre] = Marca.quitar_comillas( params[:nombre] )
     marca = Marca.find_by_numero_solicitud(params[:numero_solicitud])
     
     if marca.nil?
@@ -309,15 +314,31 @@ class Marca < ActiveRecord::Base
     end
 
     marca.importacion_id = params[:importacion_id]
-
     marca.errores_manual = {}
+
     comp.each do |m|
-      marca.errores_manual[m] = "#{TIPOS[params[:estado]]} con valor distinto: #{params[m]}" unless marca.send(m) == params[m]
+      if m.to_s =~ /^.*_ids$/
+        unless marca[m].try(:sort) == params[m].try(:sort)
+          marca.errores_manual[m] = "tiene valor distinto"
+        end
+      else
+        #marca.errores_manual[m] = "#{TIPOS[params[:estado]]} con valor distinto: #{params[m]}" unless marca.send(m) == params[m]
+        marca.errores_manual[m] = error_manual_comparacion(params[m])
+      end
     end
 
     marca
   end
 
+  def self.error_manual_comparacion(param, act)
+    e2 = act.size <= 50 ? act : act[0,50] + '...'
+    "tiene un valor diferente: #{e2}"
+  end
+
+
+  def self.quitar_comillas(txt)
+    txt.gsub(/^(\342\200\234|"|\342\200\235)(.*)(\342\200\235|"|\342\200\234)$/, '\2').strip
+  end
 
 protected
   #########################################################
@@ -347,7 +368,7 @@ protected
 private
 
   def quitar_comillas
-    self.nombre = self.nombre.gsub(/^(\342\200\234|"|\342\200\235)(.*)(\342\200\235|"|\342\200\234)$/, '\2').strip
+    self.nombre = Marca.quitar_comillas(self.nombre)
   end
 
   def adicionar_usuario

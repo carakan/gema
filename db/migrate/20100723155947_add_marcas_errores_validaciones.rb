@@ -1,6 +1,6 @@
 class AddMarcasErroresValidaciones < ActiveRecord::Migration
   def self.up
-    add_column :marcas, :errores, :string, :limit => 500
+    add_column :marcas, :errores, :string, :limit => 700
     add_column :marcas, :errores_manual, :string, :limit => 500
   end
 

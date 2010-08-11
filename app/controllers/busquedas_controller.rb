@@ -14,6 +14,7 @@ class BusquedasController < ApplicationController
     @marca = Marca.find(params[:marca_id])
     query = { :busqueda => @marca.nombre, :clases => (1..45).to_a.join(","), :propia => true }
     @importacion = Importacion.find(params[:importacion_id])
+    @consulta = Consulta.find(params[:consulta_id]) unless params[:consulta_id].nil?
 
     @busqueda = Busqueda.realizar_busqueda(query)
     @busq = BusquedaVacia.new

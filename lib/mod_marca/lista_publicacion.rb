@@ -78,18 +78,11 @@ module ModMarca::ListaPublicacion
     # Busca la marca que debe actualizar o crear una nueva
     def crear_o_actualizar(params, hoja)
       params = get_pdf_params( params, hoja)
-      comp = [:apoderado, :tipo_signo_id, :clase_id, :nombre]
-      klass = buscar_comparar(params, comp)
-
-      if klass.nil?
-        klass = Marca.new(params)
-      else
-        klass.attributes = params
-      end
+      comp = [ :apoderado, :tipo_signo_id, :clase_id, :nombre, :tipo_marca_id, :titular_ids, :productos ]
+      klass = buscar_comparar_o_nuevo(params, comp)
 
       # Salva correctamente o sino con errores
       unless klass.save
-        klass.activa = true
         klass.valido = false # Indica que no paso la validación
         klass.almacenar_errores
         klass.save( false )
@@ -104,7 +97,7 @@ module ModMarca::ListaPublicacion
     def adjuntar_imagen(klass, img)
       begin
         archivo = File.new(img)
-        Adjunto.create(:archivo => archivo, :adjuntable_id => klass.id, :adjuntable_type => klass.type.to_s )
+        Adjunto.create(:archivo => archivo, :adjuntable_id => klass.id, :adjuntable_type => klass.class.to_s )
       rescue
       end
     end
@@ -136,6 +129,7 @@ module ModMarca::ListaPublicacion
         :productos => params['PRODUCTOS'],
         :importacion_id => @importacion.id
       }
+
     end
 
     def convertir_fecha_solicitud(fec)

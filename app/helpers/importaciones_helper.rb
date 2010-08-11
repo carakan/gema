@@ -13,14 +13,24 @@ module ImportacionesHelper
   def realizar_cruce(marca, importacion, consulta_id)
     query = { :importacion_id => importacion.id, :marca_id => marca.id, :page => @page }
     query.merge!(:consulta_id => consulta_id ) unless consulta_id.nil?
-    link_to "realizar cruce", cruce_busquedas_path(query), :class => 'nueva'
+    link_to "cruzar", cruce_busquedas_path(query), :class => 'nueva'
   end
 
-  def ver_cruce(consulta)
+  def ver_cruce(consulta, options = {})
     if consulta.descartada
-      link_to "Ver descarte", consulta_path(consulta, :page => @page), :class => "fail"
+      options[:class] = options[:class].to_s + ' fail'
+      link_to "descartado", consulta_path(consulta, :page => @page), options
     else
-      link_to "Ver cruce", consulta_path(consulta, :page => @page), :class => 'succeed'
+      options[:class] = options[:class].to_s + ' succeed'
+      link_to "cruzado", consulta_path(consulta, :page => @page), options
+    end
+  end
+
+  def gaceta(importacion)
+    unless importacion.publicacion.nil?
+      ", Gaceta #{importacion.publicacion}"
+    else
+      ""
     end
   end
 

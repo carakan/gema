@@ -16,13 +16,7 @@ class MarcasController < ApplicationController
 
   def new
     @tipo = params[:tipo]
-    @marca = Marca.new(:estado_fecha => Date.today)
-    #case @tipo
-      #when 'denominación' then render :partial => "denominacion"
-      #when 'figurativa' then render :partial => "form"
-      #when 'mixta' then render :partial => "mixta"
-    #end
-
+    @marca = Marca.new(:estado_fecha => Date.today, :tipo_signo_id => TipoSigno.find_by_sigla(params[:tipo]).id )
   end
 
   def edit
@@ -57,6 +51,10 @@ class MarcasController < ApplicationController
   def show
     @marca = Marca.find(params[:id])
     @post = @marca.posts.build()
+  end
+
+  def ver
+    @marca = Marca.find(params[:id])
   end
 
   def create_post()
