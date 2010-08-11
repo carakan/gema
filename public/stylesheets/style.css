@@ -366,8 +366,8 @@ ul.inline li a {
 .icon-show { background: url(../images/icons/zoom.png); }
 .icon-top-right { background-position: top right; }
 .icon-info { background: url(../images/icons/information.png); }
-.icon-failed { background: url(../images/icons/failed.gif); }
-.icon-checked { background: url(../images/icons/check.gif); }
+.icon-failed { background: url(../images/icons/cross.png); }
+.icon-checked { background: url(../images/icons/tick.png); }
 .big {
   font-size: 1.4em;
   font-weight: bold;
@@ -415,16 +415,26 @@ a.delete {
   background-repeat: no-repeat;
 }
 a.fail {
-  background: url(../images/icons/failed.gif);
+  background: url(../images/icons/cross.png);
   background-position: middle left;
   padding-left: 18px;
   background-repeat: no-repeat;
 }
 a.succeed {
-  background: url(../images/icons/check.gif);
+  background: url(../images/icons/tick.png);
   background-position: middle left;
   padding-left: 18px;
   background-repeat: no-repeat;
+}
+.true {
+  background: url(../images/icons/tick.png);
+  background-repeat: no-repeat;
+  background-position: top;
+}
+.false {
+  background: url(../images/icons/cross.png);
+  background-repeat: no-repeat;
+  background-position: top;
 }
 .delete-l {
   background: url(../images/icons/delete.png);

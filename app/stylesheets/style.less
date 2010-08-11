@@ -410,10 +410,10 @@ ul.inline{
   background: url(../images/icons/information.png);
 }
 .icon-failed{
-  background: url(../images/icons/failed.gif);
+  background: url(../images/icons/cross.png);
 }
 .icon-checked{
-  background: url(../images/icons/check.gif);
+  background: url(../images/icons/tick.png);
 }
 
 @icon_pad: 18px;
@@ -477,6 +477,17 @@ a.succeed{
   background-position: middle left;
   padding-left: @icon_pad;
   background-repeat: no-repeat;
+}
+
+.true{
+  .icon-checked;
+  background-repeat: no-repeat;
+  background-position: top;
+}
+.false{
+  .icon-failed;
+  background-repeat: no-repeat;
+  background-position: top;
 }
 
 .delete-l{

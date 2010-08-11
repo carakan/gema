@@ -34,6 +34,7 @@ class CreateMarcas < ActiveRecord::Migration
       t.string :representante_empresarial
       t.integer :importacion_id
       t.boolean :activa, :default => true
+      t.string :archivo_adjunto, :default => ''
 
       t.timestamps
     end

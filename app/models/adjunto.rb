@@ -1,4 +1,6 @@
 class Adjunto < ActiveRecord::Base
+  before_save :set_marca_archivo
+
   belongs_to :adjuntable, :polymorphic => true
 
   has_attached_file :archivo, :styles => { :mini => "100x100>" },
@@ -23,4 +25,15 @@ class Adjunto < ActiveRecord::Base
     end
   end
 
+private
+  # metodo que actualiza el archivo de la marca
+  def set_marca_archivo
+    if self.adjuntable_type == 'Marca'
+      self.adjuntable.con_historico = false
+      adj = Adjunto.last(:conditions => {:adjuntable_type => self.adjuntable.class.to_s, :adjuntable_id => self.adjuntable.id} )
+      m = Marca.historial(self.adjuntable.id, :limit => 1)
+      img = adj.archivo.url(:mini).dup
+      self.adjuntable.historico.last.update_attribute( 'archivo_adjunto', img )
+    end
+  end
 end

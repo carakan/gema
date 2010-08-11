@@ -1,14 +1,34 @@
 module MarcasHelper
   # Presenta los campos con su label
   def presentar_campo_historial(klass, campo)
+
+    pres = presentar_campo_por_tipo(klass, campo)
     if label_campos[campo].nil?
-      %Q( <label>#{campo.humanize}</label> #{ klass.send(campo) } )
+      %Q( <label>#{campo.humanize}</label> #{ pres } )
     else
       hash = label_campos[campo]
-      %Q( <label>#{hash[:label]}</label> #{ klass.send(hash[:field]) } )
+      pres = klass.send(hash[:field])
+      %Q( <label>#{hash[:label]}</label> #{ pres } )
     end
   end
 
+  def presentar_campo_por_tipo(klass, campo)
+    unless label_campos[campo].nil?
+      val = klass.send( label_campos[campo][:field] )
+    else
+      val = klass.send(campo)
+    end
+    txt = ''
+    case true
+      #when ( val.is_a?(Date) or val.is_a?(DateTime) or val.is_a?(Time) )
+      #  txt << lo val
+      when campo.to_s == 'archivo_adjunto'
+        "<img src=\"#{val}\" class=\"mini\" />"
+      else
+        val
+    end
+
+  end
 
   # Indica si hay cambio en el campo
   def cambio(klass, attr, presentar = nil)
