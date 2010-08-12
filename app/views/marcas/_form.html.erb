@@ -7,6 +7,7 @@
   <%= f.hidden_field :valido, :value => 1 %>
 
   <%= f.input :tipo_signo_id, :as => :hidden  %>
+  <%= f.input :tipo_marca_id, :as => :hidden  %>
   <li>
     <label for="">Tipo de signo</label>
     <%= @marca.tipo_signo %>
@@ -24,11 +25,14 @@
     </li>
   <% end %>
 
-  <% # f.input :logo,:as => :file, :input_html => {:tabindex => 2 } %>
   <%= f.input :nombre,:tabindex => 3  %>
 
   <%= f.input :clase, :tabindex => 5 %>
-  <%= f.input :tipo_marca , :tabindex => 6 %>
+  <li>
+    <label for="">Tipo de marca</label>
+    <%= @marca.tipo_marca %>
+  </li>
+
   <%= f.input :productos, :label=>"Descripción productos/servicios", :as => :text, :tabindex => 7 %>
   <ol>  
   <li id="agente-auto" class="input-text"> 
