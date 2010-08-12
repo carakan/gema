@@ -21,16 +21,17 @@ class Busqueda
     case 
     when letras.size <= 3
       include TresLetras
-    when letras.size > 3
-      include BuscarPorGrupo
+    #when letras.size > 3
     end
+
+    include BuscarPorGrupo
 
     new(busqueda)
   end
 
   def self.dividir_palabra(busq)
     letras = []
-    busq.scan(/.{1}/){ |v| letras << v }
+    busq.scan(/.{1}/) { |v| letras << v }
     letras
   end
 
@@ -64,10 +65,10 @@ class Busqueda
   end
 
   def expresiones
-    if busqueda.size > 3
+    #if busqueda.size > 3
       @expresiones[2] = combinaciones_palabra
       @expresiones[3] = expresiones_pares_impares
-    end
+    #end
 
     # divide en subgrupos la palabra "BuscarPorGrupo"
     @expresiones[4] = buscar_equivalencias
@@ -117,7 +118,7 @@ class Busqueda
 
     params[:fecha_ini], params[:fecha_fin] = transformar_fechas(params)
     if params[:fecha_ini]
-      sql << "AND fecha >= '#{params[:fecha_ini]}' AND fecha <= '#{params[:fecha_fin]}'"
+      sql << "AND estado_fecha >= '#{params[:fecha_ini]}' AND estado_fecha <= '#{params[:fecha_fin]}'"
     end
     sql << condicion_marca_propia(params)
     sql << condicion_activas
@@ -184,7 +185,7 @@ class Busqueda
   #   @return String
   def self.sql_exacto(bus, pos)
     ActiveRecord::Base.send(:sanitize_sql_array, 
-      [ "SELECT id, nombre, clase_id, #{pos} AS pos, propia, activa FROM marcas WHERE parent_id = 0 AND nombre_minusculas = '%s'", bus ]
+      [ "SELECT id, nombre, clase_id, #{pos} AS pos, propia, activa, estado_fecha FROM marcas WHERE parent_id = 0 AND nombre_minusculas = '%s'", bus ]
     )
   end
 
@@ -193,7 +194,7 @@ class Busqueda
   #   @param Integer
   #   @return String
   def self.sql_exp_reg(arr, pos)
-    sql = "SELECT id, nombre, clase_id, #{pos} AS pos, propia, activa FROM marcas WHERE parent_id = 0 AND ("
+    sql = "SELECT id, nombre, clase_id, #{pos} AS pos, propia, activa, estado_fecha FROM marcas WHERE parent_id = 0 AND ("
     sql << arr.map{ 
       |v| ActiveRecord::Base.send(:sanitize_sql_array, [ "nombre_minusculas REGEXP '%s'", v ] )
     }.join(" OR ") << ")"
@@ -204,7 +205,7 @@ class Busqueda
   #   @param Integer
   #   @return String
   def self.sql_variaciones(arr, pos)
-    sql = "SELECT id, nombre, clase_id, #{pos} AS pos, propia, activa FROM marcas WHERE parent_id = 0 AND ("
+    sql = "SELECT id, nombre, clase_id, #{pos} AS pos, propia, activa, estado_fecha FROM marcas WHERE parent_id = 0 AND ("
     sql << arr.map{ |v| 
       ActiveRecord::Base.send(:sanitize_sql_array, ["nombre_minusculas LIKE '%s'", "%#{v}%"] ) 
     }.join(" OR ") << ")"

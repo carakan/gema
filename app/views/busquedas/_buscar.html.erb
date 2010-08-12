@@ -1,4 +1,4 @@
-<form action="/busquedas" method="get">
+<form action="/busquedas" method="get", id="form_buscar" >
   <%= text_field_tag :busqueda, params[:busqueda], :size => 40 %>
 
   <div style="clear:both"></div>
@@ -14,10 +14,14 @@
 
   <div class="half fl">
     <label for="">Tipo de busqueda</label>
-    <label for=""><input id="tipo_busqueda_prev" name="tipo_busqueda" type="radio" value="prev" /> Preventiva</label>
-    <label for=""><input id="tipo_busqueda_prep" name="tipo_busqueda" type="radio" value="prep" /> Prepublicación</label>
+    <label for="">
+      <%= radio_button_tag "tipo_busqueda", "prev", params[:tipo_busqueda] == 'prev', :id => 'tipo_busqueda_prev' %>
+      Preventiva</label>
+    <label for="">
+      <%= radio_button_tag "tipo_busqueda", "prep", params[:tipo_busqueda] == 'prep', :id => 'tipo_busqueda_prep' %>
+      Prepublicación</label>
 
-    <div id="fechas" style="display:none">
+    <div id="fechas" style="<%= "display:none" unless params[:tipo_busqueda] == "prep" %>">
         <label for="">Fechas</label>
         <input id="fecha_ini" name="fecha_ini" type="text" class="date" value="<%= params[:fecha_ini] %>" />
         <input id="fecha_fin" name="fecha_fin" type="text" class="date" value="<%= params[:fecha_fin] %>" />
@@ -30,25 +34,24 @@
 </form>
 
 <script type="text/javascript">
-  $(document).ready(function() {
-      $('input[name=tipo_busqueda]').click(function() {
-        if( $(this).val() == 'prep' ) {
-          $('#fechas').show();
-        }else{
-          $('#fechas').hide();
-        }
-      });
+$(document).ready(function() {
+  $('input[name=tipo_busqueda]').click(function() {
+    if( $(this).val() == 'prep' ) {
+      $('#fechas').show();
+    }else{
+      $('#fechas').hide();
+      $('#fechas input').val('');
+    }
   });
+
+  $('#form_buscar').submit(function() {
+    if( $('#busqueda').val().trim() == '' ) {
+      alert('Debe ingresar un termino de busqueda');
+      return false;
+    }else{
+      return true;
+    }
+  });
+});
 </script>
 
-<script type="text/javascript">
-  $(document).ready(function() {
-      $('select[name=clases]').click(function() {
-        if( $(this).val() == 'Una sola' ) {
-          $('#oneclass').show();
-        }else{
-          $('#oneclass').hide();
-        }
-      });
-  });
-</script>

@@ -4,7 +4,9 @@ class ConsultasController < ApplicationController
   # GET /consultas
   # GET /consultas.xml
   def index
-    @consultas = Consulta.all
+    @consultas = Consulta.paginate(:page => @oage, 
+                    :conditions => { :importacion_id => 0 }, 
+                    :include => [ :consulta_detalles, :usuario])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -55,7 +57,7 @@ class ConsultasController < ApplicationController
       path = cruce_importacion_url(@consulta.importacion, :page => @page)
     else
       notice = "Se ha realizado el informe de la consulta"
-      paht = "/"
+      path = consulta_url(@consulta)
     end
 
     if @consulta.save

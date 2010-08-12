@@ -5,6 +5,14 @@
 <% unless @busqueda.blank? %>
 
   <% form_tag new_consulta_path, :method => 'get' do -%>
+  <%= hidden_field_tag "clases", (1..45).to_a.join(",") %>
+  <%= hidden_field_tag "busqueda", params[:busqueda] %>
+  <%= hidden_field_tag "tipo_busqueda", params[:tipo_busqueda] %>
+  <% if params[:tipo_busqueda] == 'prep' %>
+    <%= hidden_field_tag "fecha_ini", params[:fecha_ini]  %>
+    <%= hidden_field_tag "fecha_fin", params[:fecha_fin] %>
+  <% end %>
+
 
   <h2>Resultados para la busqueda "<%= params[:busqueda] %>"</h2>
   <table class="decorated">
@@ -18,7 +26,6 @@
       <tr>
         <td>
           <input name="marcas[<%= b.id %>]" type="checkbox" id="marca<%= b.id %>" value="<%= b.id %>" />
-          <input name="tipos[<%= b.id %>]" type="hidden" value="<%= b.pos %>" />
         </td>
       	<td><label for="marca<%= b.id %>"><%= b.nombre %></label></td>
       	<td><%= b.clase_id %></td>
@@ -29,9 +36,33 @@
 
   </table>
 
-  <%= submit_tag "Seleccionar" %>
+  <%= submit_tag "Seleccionar", :id => 'seleccionar' %>
 
   <% end %>
 
 <% end %>
+<script type="text/javascript">
+(function($) {
+  $('input:checkbox').click(function() {
+    if( $(this).attr('checked') ) {
+      var input = document.createElement('input');
+      $(input).attr({ 
+        'name': $(this).attr('name').replace(/marcas/, 'tipos'),
+        'type': 'hidden',
+        'value': $(this).attr('data-tipo')
+      });
+      $(this).after(input);
+    }else {
+      $(this).siblings('input:hidden').remove();
+    }
+    //$(this).siblings('input:hidden').attr('disabled', $(this).attr('checked') );
+  });
 
+  $('#seleccionar').click(function(e) {
+    if ( $('input:checkbox:checked').length <= 0 ) {
+      alert('Debe seleccionar al menos una marca una marca');
+      return false;
+    }
+  });
+})(jQuery);
+</script>

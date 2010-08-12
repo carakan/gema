@@ -1,6 +1,7 @@
 class BusquedasController < ApplicationController
   def index
     @busqueda = []
+    params[:tipo_busqueda] = 'prev' if params[:tipo_busqueda].nil?
     if params[:busqueda]
       @busqueda = Busqueda.realizar_busqueda(params)
     end

@@ -1,3 +1,3 @@
-<h1>Busqueda "<%= @busqueda %>" <%= "Gaceta " + @consulta.importacion.publicacion if @consulta.importacion_id %></h1>
+<h1>Busqueda "<%= @busqueda %>" <%= consulta_gaceta @consulta %></h1>
 <%= render 'form' %>
 

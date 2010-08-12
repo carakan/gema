@@ -27,4 +27,14 @@ class BusquedaVacia < Tableless
       end
     }
   end
+
+  def self.label(clases)
+      if clases.size > 20
+        'Todas las clases'
+      elsif clases.size > 8 
+       '34 al 45'
+      else
+       clases.join(', ')
+      end
+  end
 end

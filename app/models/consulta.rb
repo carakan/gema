@@ -15,10 +15,17 @@ class Consulta < ActiveRecord::Base
 
   serialize :parametros
 
+  PARAMS = [:clases, :tipo_busqueda, :fecha_ini, :fecha_fin]
+
   # Convierte los parametros que se utilizaron en la busqueda
   # como las clases, rangos de fechas y otros a un hash
   def self.convertir_parametros_a_hash(params)
     hash = { :clases => params[:clases].split(",").map(&:to_i) }
+    [:tipo_busqueda, :fecha_ini, :fecha_fin].each do |v|
+      hash[v] = params[v]
+    end
+
+    hash
   end
 
 
@@ -84,7 +91,9 @@ private
 
   # Modifica los cruces pendientes en la importacion
   def modificar_cruces_pendientes(cant)
-    pend = self.importacion.cruces_pendientes
-    self.importacion.update_attributes(:cruces_pendientes => (pend + cant) )
+    unless self.importacion.nil?
+      pend = self.importacion.cruces_pendientes
+      self.importacion.update_attributes(:cruces_pendientes => (pend + cant) )
+    end
   end
 end

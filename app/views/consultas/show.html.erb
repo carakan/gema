@@ -12,6 +12,13 @@
   <b>Busqueda:</b>
   <%=h @consulta.busqueda %>
 </p>
+<% if @consulta.importacion.nil? %>
+  <% Consulta::PARAMS.each do |param| %>
+    <p>
+      <%= presentar_parametro @consulta, param %>
+    </p>
+  <% end %>
+<% end %>
 
   <table class="decorated">
   	<tr>
@@ -39,5 +46,5 @@
   <% unless @consulta.importacion.nil? %>
     <%= link_to "Volver a importación", cruce_importacion_path( @consulta.importacion, :page => @page ) %>
   <% else %>
-    <%= link_to "Lista", cosultas_path %>
+    <%= link_to "Lista", consultas_path %>
   <% end %>

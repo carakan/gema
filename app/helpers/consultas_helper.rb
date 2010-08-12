@@ -1,2 +1,19 @@
 module ConsultasHelper
+  def consulta_gaceta(consulta)
+    if consulta and consulta.importacion_id > 0
+      "Gaceta " + @consulta.importacion.publicacion
+    end
+  end
+  
+  def presentar_parametro(consulta, param)
+    case param
+      when :clases
+        '<label>Clases</label>' + BusquedaVacia.label(consulta.parametros[param])
+      when :fecha_ini
+        "<label>Fecha inicial</label> #{ l Date.parse(consulta.parametros[param]) }"
+      when :fecha_fin
+        "<label>Fecha final</label> #{ l Date.parse(consulta.parametros[param]) }"
+    end
+  end
+
 end

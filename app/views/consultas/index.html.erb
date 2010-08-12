@@ -1,28 +1,26 @@
-<h1>Listing consultas</h1>
+<h1>Busquedas realizadas</h1>
 
-<table>
+<%= link_to "Nueva busqueda", busquedas_path %>
+
+<table class="decorated">
   <tr>
-    <th>Marca</th>
-    <th>Usuario</th>
     <th>Busqueda</th>
-    <th>Parametros</th>
+    <th>Usuario</th>
+    <th>Resultados</th>
     <th>Reporte</th>
+    <th></th>
   </tr>
 
 <% @consultas.each do |consulta| %>
   <tr>
-    <td><%=h consulta.marca_id %></td>
-    <td><%=h consulta.usuario_id %></td>
-    <td><%=h consulta.busqueda %></td>
-    <td><%=h consulta.parametros %></td>
+    <td><%=h  link_to consulta.busqueda, consulta %></td>
+    <td><%=h consulta.usuario %></td>
+    <td><%=h consulta.consulta_detalles.size %></td>
     <td><%=h consulta.reporte %></td>
-    <td><%= link_to 'Show', consulta %></td>
-    <td><%= link_to 'Edit', edit_consulta_path(consulta) %></td>
-    <td><%= link_to 'Destroy', consulta, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td>
+      <%= link_to 'Borrar', consulta, :class => 'delete' %>
+    </td>
   </tr>
 <% end %>
 </table>
 
-<br />
-
-<%= link_to 'New consulta', new_consulta_path %>
