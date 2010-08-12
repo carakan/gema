@@ -1,9 +1,7 @@
 class TitularesController < ApplicationController
 
   def index
-    #@titulares = Titular.all
-    
-    @titulares = Titular.paginate(:page => @page)
+    @titulares = Titular.paginate( order_query_params( :include => :pais, :order => 'representantes.nombre' ) )
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @titulares }

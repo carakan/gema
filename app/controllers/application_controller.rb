@@ -25,6 +25,26 @@ protected
     return false if session[:usuario].nil? or session[:usuario][:id].nil?
     not session[:usuario][:id].nil?
   end
+
+  # Ordena los parametros que son usados en orden eliminando los inecesarios
+  def order_query_params(extra = {})
+    options = extra.merge( convert_keys_to_sym( params ) )
+
+    [:action, :controller].each { |v| options.delete(v) }
+    unless options[:order].nil?
+      direction = ( options[:direction] || "ASC" )
+      options.delete(:direction)
+      params[:order] = options[:order]
+      params[:direction] = direction
+      options[:order] = "#{options[:order]} #{direction}"
+    end
+
+    options.merge(:page => @page)
+  end
+
+  def convert_keys_to_sym(h)
+    h.keys.map(&:to_sym).zip(h.values).inject({}) { |h, v| h[v.first] = v.last; h }
+  end
   
   helper_method :user_signed_in?
 
