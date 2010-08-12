@@ -38,7 +38,7 @@ module ModMarca::Solicitud
       fila = 3 # Fila inicial que comienza el excel
       @importacion = Importacion.create!(:archivo => archivo)
 
-      Marca.transaction do |trans|
+      Marca.transaction do
         for fila in ( 3..(@excel.last_row) )
           # valida de que no este vacio
           break if @excel.cell(fila, 1).blank? && @excel.cell(fila, 2).blank?

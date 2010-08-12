@@ -2,7 +2,7 @@ class AgentesController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @agentes = Agente.all
+    @agentes = Agente.paginate(order_query_params)
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @agentes }

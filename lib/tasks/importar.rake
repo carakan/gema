@@ -1,5 +1,5 @@
 require 'open-uri'
-
+require 'forgery'
 
 namespace :importar do
   desc "Importa todas las clases desde internet"
@@ -87,6 +87,19 @@ namespace :datos do
     Usuario.create!(:nombre => 'Boris Barroso', :login => 'boris', :password => 'demo123', :password_confirmation => 'demo123', :rol => 'genrente')
     Usuario.create!(:nombre => 'Alejandra Helguero', :login => 'alejandra', :password => 'demo123', :password_confirmation => 'demo123', :rol => 'genrente')
 
+  end
+
+  desc "Crea datos falsos para titulares"
+  task :titulares => :environment do
+    paises = Pais.all(:select => "id").map(&:id)
+    1000.times do
+      Titular.create(
+        :nombre => Forgery::Name.company_name,
+        :pais_id => paises[rand(paises.size - 1)],
+        :email => Forgery::Internet.email_address,
+        :direccion => [ Forgery::Address.city +  Forgery::Address.country, Forgery::Address.street_address ].join(" ")
+      )
+    end
   end
 
   desc 'Importa solo los nombres de la base de datos de Orpan'
