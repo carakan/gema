@@ -102,7 +102,7 @@
 
   <p>
     <label for="">Imagen</label>
-    <%= cambio @marca, :archivo_adjunto, image_tag( @marca.adjuntos.last.archivo.url(:mini), :class => 'mini' ) %>
+    <%= cambio @marca, :archivo_adjunto, image_tag( @marca.adjuntos.last.archivo.url(:mini), :class => 'mini' ) unless @marca.archivo_adjunto.blank? %>
   </p>
 
 <%= link_to 'Editar', edit_marca_path(@marca), :class =>'edit'%> |
