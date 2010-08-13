@@ -30,7 +30,7 @@ protected
   def order_query_params(extra = {})
     options = extra.merge( convert_keys_to_sym( params ) )
 
-    [:action, :controller].each { |v| options.delete(v) }
+    [:action, :controller, :commit].each { |v| options.delete(v) }
     unless options[:order].nil?
       direction = ( options[:direction] || "ASC" )
       options.delete(:direction)

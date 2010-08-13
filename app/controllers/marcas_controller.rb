@@ -7,6 +7,7 @@ class MarcasController < ApplicationController
     #order = ( params[:order] || "marcas.nombre" )
     #direction = ( params[:direction] || "ASC" )
     nombre_marca = (params[:nombre_marca] || "")
+    params.delete(:nombre_marca)
     #p = {
     #  :include => [:clase, :tipo_signo, :titulares], 
     #  :conditions => [ "nombre_minusculas LIKE ?", "%#{nombre_marca.downcase}%" ],
