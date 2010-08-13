@@ -76,10 +76,6 @@ private
     self.usuario_id = UsuarioSession.current_user[:id]
   end
 
-  # Almacena el reporte creado por la consulta
-  def crear_reporte
-    self.reporte = ''
-  end
 
   def aumentar_cruces_pendientes
     modificar_cruces_pendientes(1)
@@ -95,5 +91,13 @@ private
       pend = self.importacion.cruces_pendientes
       self.importacion.update_attributes(:cruces_pendientes => (pend + cant) )
     end
+  end
+  
+  # Almacena el reporte creado por la consulta
+  def crear_reporte
+    self.reporte = ''
+  end
+
+  def titulo
   end
 end

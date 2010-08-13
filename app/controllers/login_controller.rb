@@ -7,7 +7,7 @@ class LoginController < ApplicationController
     if usuario = Usuario.find_login_password(params[:usuario][:login], params[:usuario][:password])
       session[:usuario] = { :id => usuario.id, :nombre => usuario.nombre, :rol => usuario.rol }
       flash[:notice] = 'Usted a ingresado correctamente'
-      redirect_to importaciones_url
+      redirect_to busquedas_url
     else
       @usuario = Usuario.new
       flash[:error] = 'El usuario o contraseña es incorrecto'

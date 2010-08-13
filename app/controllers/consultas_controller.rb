@@ -4,9 +4,10 @@ class ConsultasController < ApplicationController
   # GET /consultas
   # GET /consultas.xml
   def index
-    @consultas = Consulta.paginate(:page => @oage, 
+    @consultas = Consulta.paginate( :page => @oage, 
                     :conditions => { :importacion_id => 0 }, 
-                    :include => [ :consulta_detalles, :usuario])
+                    :include => [ :consulta_detalles, :usuario],
+                    :order => "consultas.created_at DESC" )
 
     respond_to do |format|
       format.html # index.html.erb
@@ -107,6 +108,5 @@ private
   # Borra una consulta previamente realizada
   def borrar_consulta
     Consulta.find(params[:consulta_id]).destroy unless params[:consulta_id].nil?
-
   end
 end
