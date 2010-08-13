@@ -16,4 +16,12 @@ module ConsultasHelper
     end
   end
 
+  def titulo_consulta(consulta)
+    unless consulta.marca.nil?
+      "Cruce de \"#{consulta.marca.nombre}\" #{consulta.marca.clase}"
+    else 
+      "Busqueda de \"#{consulta.busqueda}\""
+    end
+  end
+
 end

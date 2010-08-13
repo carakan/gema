@@ -1,21 +1,30 @@
+<h1><%= titulo_consulta @consulta %></h1>
+
+<% unless @consulta.marca.nil? %>
 <p>
-  <b>Marca:</b>
+  <label>Marca:</label>
   <%=h @consulta.marca %>
 </p>
+<% end %>
 
 <p>
-  <b>Usuario:</b>
+  <label>Usuario:</label>
   <%=h @consulta.usuario %>
 </p>
+<p>
+  <label for="">Comentario</label>
+  <%=h @consulta.comentario %>
+</p>
+
 
 <p>
-  <b>Busqueda:</b>
+  <label>Busqueda:</label>
   <%=h @consulta.busqueda %>
 </p>
 <% if @consulta.importacion.nil? %>
   <% Consulta::PARAMS.each do |param| %>
     <p>
-      <%= presentar_parametro @consulta, param %>
+      <%= presentar_parametro @consulta, param unless @consulta.parametros[param].nil? %>
     </p>
   <% end %>
 <% end %>
