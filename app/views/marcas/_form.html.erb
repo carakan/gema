@@ -25,7 +25,7 @@
     </li>
   <% end %>
 
-  <%= f.input :nombre,:tabindex => 3  %>
+  <%= f.input :nombre,:label => "Denominación",:tabindex => 3  %>
 
   <%= f.input :clase, :tabindex => 5 %>
   <li>
@@ -103,6 +103,7 @@
 <%= javascript_include_tag 'fcbkcomplete' %>
 
 <script type="text/javascript">
+
 $(document).ready(function() {
 
   $.facebooklist('#titular_ids', '#ul-titulares', '#titulares-list', 
@@ -117,5 +118,21 @@ $(document).ready(function() {
     verificarErrorresManuales();
   });
 
-});
+  });
+
+function validar(new_marca){
+  var clase = document.new_marca.clase.value
+  if (new_marca.tipo_marca == "Marca Producto"){
+    if (new_marca.clase >=35){
+      alert ("La clase no corresponde al tipo de marca seleccionado")
+    else
+      if (new_marca.tipo_marca == "Marca Servicio"){
+        if (new_marca.clase <35){
+          alert ("La clase no corresponde al tipo de marca seleccionado")
+        }
+      }
+    }
+  }
+
+}
 </script>
