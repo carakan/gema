@@ -1,3 +1,39 @@
+ 
+<ul class="menu">
+	<li>
+  <a href="javascript:" class="new">Nuevo signo&nbsp;<span class="more"></span></a>
+    <ul>
+    	<li>
+      <%= link_to "Marca Denominativa", new_marca_path(:tipo => 'Den.') %>
+    	</li>
+    	<li>
+        <%= link_to "Marca Figurativa", new_marca_path(:tipo => 'Fig.') %>
+    	</li>
+    	<li>
+        <%= link_to "Marca Mixta", new_marca_path(:tipo => 'Mix.') %>
+    	</li>
+    	<li>
+        <%= link_to "Marca Tridimensional", new_marca_path(:tipo => 'Tri.') %>
+    	</li>
+    	<li>
+        <%= link_to "Nombre comercial denominativo", new_marca_path(:tipo => 'Den.') %>
+    	</li>
+    	<li>
+        <%= link_to "Nombre comercial mixto", new_marca_path(:tipo => 'Mix.') %>
+    	</li>
+    	<li>
+        <%= link_to "Lema comercial", new_marca_path(:tipo => 'Den.') %>
+    	</li>
+    </ul>
+	</li>
+</ul>
+
+<div style="clear:both"></div>  
+<div style="clear:both"></div> 
+</ br>
+</ br>
+</ br>
+</ br>
 <h1>Busquedas</h1>
 
 <%= render :partial => "buscar" %>
