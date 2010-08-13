@@ -151,6 +151,12 @@ class Marca < ActiveRecord::Base
         include ModMarca::Solicitud
       when 'lp'
         include ModMarca::ListaPublicacion
+      when 'lr'
+        include ModMarca::ListaRegistro
+      when 'sr'
+        include ModMarca::SolicitudRenovacion
+      when 'rc'
+        include ModMarca::RenovacionConcedida
     end
   end
 

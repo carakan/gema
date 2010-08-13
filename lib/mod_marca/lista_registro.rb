@@ -1,4 +1,4 @@
-module ModMarca::Solicitud
+module ModMarca::ListaRegistro
   def self.included(base)
     base.send(:include, InstanceMethods)
     base.send(:extend, ClassMethods)
@@ -14,19 +14,22 @@ module ModMarca::Solicitud
     def set_validations_and_filters
       # validaciones
       validates_presence_of :nombre, :estado_fecha, 
-        :tipo_signo_id, :clase_id
+        :tipo_signo_id, :clase_id, :numero_registro, :fecha_registro
       validates_format_of :numero_solicitud, :with => /^\d+-\d{4}$/
+      validates_format_of :numero_registro, :with => /^\d{5}-C$/
       validates_uniqueness_of :numero_solicitud, :scope => :parent_id
     end
 
     def excel_cols
       {
-        :estado_fecha => 'A',
-        :numero_solicitud => 'B',
+        :estado_fecha => 'H',
+        :numero_solicitud => 'A',
         :apoderado => 'C',
-        :nombre => 'E',
-        :tipo_signo_id => 'F',
-        :clase_id => 'G'
+        :nombre => 'D',
+        :tipo_signo_id => 'E',
+        :clase_id => 'F',
+        :numero_registro => 'G',
+        :fecha_registro => 'B'
       }
     end
 
@@ -97,14 +100,14 @@ module ModMarca::Solicitud
         :fila => fila, 
         :propia => false,
         :fecha_importacion => fecha_imp,
-        :estado => 'sm',
+        :estado => 'lr',
         :importado => true,
         :importacion_id => @importacion.id
       }
       params.merge!(extraer_datos(fila, excel_cols) )
       params[:numero_solicitud] = preparar_numero_solicitud(params[:numero_solicitud])
       params[:tipo_signo_id] = buscar_tipo_signo_id(params[:tipo_signo_id])
-      params[:clase_id] = buscar_clase_id(params[:clase_id])
+      params[:clase_id] = params[:clase_id].to_i
 
       params
     end
