@@ -57,7 +57,7 @@ class ConsultasController < ApplicationController
       path = cruce_importacion_url(@consulta.importacion, :page => @page)
     else
       notice = "Se ha realizado el informe de la consulta"
-      path = consulta_url(@consulta)
+      path = @consulta
     end
 
     if @consulta.save
