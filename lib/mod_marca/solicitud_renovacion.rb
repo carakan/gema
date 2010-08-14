@@ -13,16 +13,16 @@ module ModMarca::SolicitudRenovacion
     # Define las validaciones y filtros que se deben aplicar a la clase
     def set_validations_and_filters
       # validaciones
-     # validates_presence_of :nombre,:fecha_ , 
-      #  :tipo_signo_id, :clase_id
-      validates_format_of :numero_solicitud, :with => /^\d+-\d{4}$/
+      validates_presence_of :nombre,:fecha_solicitud_renovacion, :numero_solicitud_renovacion, :numero_registro, :tipo_signo_id, :clase_id
+      validates_format_of :numero_solicitud_renovacion, :with => /^\d+-\d{4}$/
+      validates_format_of :numero_registro, :with => /^\d{5}-C$/
       validates_uniqueness_of :numero_solicitud, :scope => :parent_id
     end
 
     def excel_cols
       {
-        :estado_fecha => 'A',
-        :numero_solicitud => 'B',
+        :fecha_solicitud_renovacion => 'A',
+        :numero_solicitud_renovacion => 'B',
         :apoderado => 'C',
         :nombre => 'E',
         :tipo_signo_id => 'F',
