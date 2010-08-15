@@ -1,7 +1,9 @@
 <% semantic_form_for @representante do |f| -%>
   <%= f.input :nombre, :label => 'Nombre', :input_html => { :size => 70 } %>
+  <%= f.input :direccion, :label => 'Dirección', :as => :text, :input_html => { :rows => 3, :cols => 45 } %>
   <%= f.input :email, :label => 'Email' %>
   <%= f.input :telefono, :label => 'Teléfono' %>
-  <%= f.input :direccion, :label => 'Dirección', :as => :text, :input_html => { :rows => 3, :cols => 45 } %>
+  <%= f.input :fax, :label => 'Fax' %>
+  <%= f.input :pagina_web, :label => 'Pagina web' %>
   <%= f.submit "Salvar" %>
 <% end -%>

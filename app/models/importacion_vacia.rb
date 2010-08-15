@@ -29,7 +29,7 @@ class ImportacionVacia < Tableless
       when 'lp'
         fecha_importacion = ListaPublicacion.importar( params[:archivo] )
       when 'lr'
-        #fecha_importacion = ListaRegistro.importar( params[:marca][:archivo] )
+        fecha_importacion = ListaRegistro.importar( params[:marca][:archivo] )
       when 'sr'
         fecha_importacion = SolicitudRenovacion.importar( params[:marca][:archivo] )
       when 'rc'

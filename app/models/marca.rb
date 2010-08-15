@@ -327,7 +327,11 @@ class Marca < ActiveRecord::Base
   #   @return Marca
   def self.buscar_comparar_o_nuevo( params, comp )
     params[:nombre] = Marca.quitar_comillas( params[:nombre] )
-    marca = Marca.find_by_numero_solicitud(params[:numero_solicitud])
+    if :numero_solicitud.nil?
+      marca = Marca.find_by_numero_registro(params[:numero_registro])
+    else
+      marca = Marca.find_by_numero_solicitud(params[:numero_solicitud])
+    end
     
     if marca.nil?
       return Marca.new(params)
@@ -371,6 +375,14 @@ protected
   #   @param String num
   #   @return String
   def self.preparar_numero_solicitud(num)
+    num.gsub(/\s/, '').gsub(/–/, '-') unless num.nil?
+  end
+  
+  def self.preparar_numero_solicitud_renovacion(num)
+    num.gsub(/\s/, '').gsub(/–/, '-') unless num.nil?
+  end
+
+  def self.preparar_numero_registro(num)
     num.gsub(/\s/, '').gsub(/–/, '-') unless num.nil?
   end
 

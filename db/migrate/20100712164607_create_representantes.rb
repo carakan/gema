@@ -6,6 +6,8 @@ class CreateRepresentantes < ActiveRecord::Migration
       t.string :direccion
       t.string :telefono
       t.string :movil
+      t.string :fax
+      t.string :pagina_web
       t.string :type
       t.boolean :valido
 

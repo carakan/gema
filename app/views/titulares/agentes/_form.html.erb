@@ -1,15 +1,18 @@
-<% semantic_form_for @agentes do |a| %>
+<% semantic_form_for @agentes do |agente| %>
+  
+<%= agente.error_messages  %>
 
-<%= a.error_messages  %>
-
-<% a.inputs do %>
-  <%= a.input :nombre , :label => 'Nombre' %>
-  <%= a.input :direccion , :label => 'Direccion' %>
-  <%= a.input :telefono , :label => 'Telefono' %>
-  <%= a.input :email , :label => 'Email' %>
+<% agente.inputs do %>
+  <%= agente.input :pais, :as => :select, :collection => Pais.find(:all) %>
+  <%= agente.input :nombre, :label => 'Nombre', :input_html => { :size => 70 } %>
+  <%= agente.input :direccion, :label => 'Dirección', :as => :text, :input_html => { :rows => 3, :cols => 45 } %>
+  <%= agente.input :email, :label => 'Email central' %>
+  <%= agente.input :telefono, :label => 'Teléfono' %>
+  <%= agente.input :fax, :label => 'Fax' %>
+  <%= agente.input :pagina_web, :label => 'Página web' %>
 <% end %>
 <p>
-<%=  a.submit 'Salvar' %>
+<%=  agente.submit 'Salvar' %>
 </p>
 <% end %>
    

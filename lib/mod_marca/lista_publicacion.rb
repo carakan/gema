@@ -15,7 +15,7 @@ module ModMarca::ListaPublicacion
     # Define las validaciones y filtros que se deben aplicar a la clase
     def set_validations_and_filters
       # validaciones
-      validates_presence_of :nombre, :estado_fecha, 
+      validates_presence_of :nombre, :estado_fecha, :numero_publicacion, 
         :tipo_signo_id, :clase_id
       validates_format_of :numero_solicitud, :with => /^\d+-\d{4}$/
       validates_uniqueness_of :numero_solicitud, :scope => :parent_id
@@ -27,9 +27,12 @@ module ModMarca::ListaPublicacion
       {
         :estado_fecha => 'A',
         :numero_solicitud => 'B',
+        :apoderado => 'C',
         :nombre => 'E',
         :tipo_signo_id => 'F',
-        :clase_id => 'G'
+        :clase_id => 'G',
+        :numero_publicacion => 'H',
+        :numero_gaceta => 'J'
       }
     end
 
@@ -189,37 +192,73 @@ module ModMarca::ListaPublicacion
 
     # Realiza la importacion de datos de un archivo excel
     def importar_archivo_excel(archivo)
+      fecha_imp = DateTime.now.strftime("%Y-%m-%d %H:%I:%S")
       importar_excel(archivo)
       fila = 3 # Fila inicial que comienza el excel
+      @importacion = Importacion.create!(:archivo => archivo)
 
       transaction do |trans|
         for fila in ( 3..(@excel.last_row) )
           # valida de que no este vacio
           break if @excel.cell(fila, 1).blank? && @excel.cell(fila, 2).blank?
-          klass = crear_marca_excel(fila)
+          #klass = crear_marca_excel(fila, fecha_imp)
+          klass = buscar_o_crear_marca(fila, fecha_imp)
         end
       end
 
       File.delete(@excel_path)
-
-      fecha_imp
+      @importacion.id
+      #fecha_imp
     end
 
-
-    # Crea un registro de la clase Marca en la BD
+    # Crea nueva solicitud
     #   @param Integer fila
+    #   @param DateTime fecha_imp
     #   @return Marca
-    def crear_marca_excel(fila)
-      klass = Marca.new( get_excel_params(fila) )
+    def crear_nueva_solicitud(fila, fecha_imp)
+      klass = Marca.new( get_excel_params(fila, fecha_imp) )
 
       # Salva correctamente o sino con errores
       unless klass.save
+        klass.almacenar_errores
+        klass.activo = false
         klass.valido = false # Indica que no paso la validación
         klass.save( false )
       end
 
       klass
     end
+
+    # Busca o crea una nueva solicitud
+    def buscar_o_crear_marca(fila, fecha_imp)
+      comp = [:apoderado, :tipo_signo_id, :clase_id, :nombre, :numero_solicitud]
+      klass = buscar_comparar_o_nuevo(get_excel_params(fila, fecha_imp), comp )
+
+      # Salva correctamente o sino con errores
+      unless klass.save
+        klass.almacenar_errores
+        klass.valido = false # Indica que no paso la validación
+        klass.save( false )
+      end
+
+      klass
+    end
+
+
+    # Crea un registro de la clase Marca en la BD
+    #   @param Integer fila
+    #   @return Marca
+    #def crear_marca_excel(fila, fecha_imp)
+      #klass = Marca.new( get_excel_params(fila, fecha_imp) )
+
+      ## Salva correctamente o sino con errores
+      #unless klass.save
+        #klass.valido = false # Indica que no paso la validación
+        #klass.save( false )
+      #end
+
+      #klass
+    #end
 
     # Obitiene los datos de la fila del excel
     # y retorna un array
@@ -228,14 +267,15 @@ module ModMarca::ListaPublicacion
     #   @return Hash
     def get_excel_params(fila, fecha_imp)
       params = { 
-        :activo => true,
+        :activa => true,
         :valido => true, 
         :fila => fila, 
         :propia => false,
         :fecha_importacion => fecha_imp,
         :estado => 'lp',
+        :numero_gaceta => nro_gaceta,
         :importado => true,
-        :numero_gaceta => nro_gaceta
+        :importacion_id => @importacion.id
       }
       params.merge!(extraer_datos(fila, excel_cols) )
       params[:numero_solicitud] = preparar_numero_solicitud(params[:numero_solicitud])

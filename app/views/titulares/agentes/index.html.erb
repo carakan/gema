@@ -2,19 +2,23 @@
 
 <%= link_to 'Nuevo agente', new_agente_path, :class => 'new' %>
 
+<%= @will = will_paginate @titulares %>
+
 <table class="decorated">
     <tr>
-      <th>Nombre</th>
-      <th>Telefono</th>
-      <th>Email</th>
+      <th><%= sort_order "Nombre", "representantes.nombre" %></th>
+      <th><%= sort_order "País", "paises.nombre" %></th>
+      <th>Direccion</th>
+      <!--<th>Telefono</th>
+      <th>Email</th> -->
       <th></th>
     </tr>
 
 <% @agentes.each do |agente| %>
   <tr>
    <td><%=h link_to agente.nombre, agente %></td>
-   <td><%=h agente.telefono %></td>
-   <td><%=h agente.email %></td>
+   <td><%=h agente.pais %></td>
+   <td><%=h agente.direccion %></td>
    <td>
      <%= links(agente) %>
    </td>
@@ -22,3 +26,5 @@
 
 <% end %>
 </table>
+
+<%= @will %>

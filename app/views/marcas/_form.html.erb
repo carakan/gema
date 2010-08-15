@@ -8,9 +8,10 @@
 
   <%= f.input :tipo_signo_id, :as => :hidden  %>
   <%= f.input :tipo_marca_id, :as => :hidden  %>
+  <%= f.input :propia, :label => 'Marca propia'%>
   <li>
     <label for="">Tipo de signo</label>
-    <%= @marca.tipo_signo %>
+  <%= @marca.tipo_signo %>
   </li>
   <% if @marca.con_imagen? %>
     <li>
@@ -34,6 +35,7 @@
   </li>
 
   <%= f.input :productos, :label=>"Descripción productos/servicios", :as => :text, :tabindex => 7 %>
+  <div class="in_half">
   <ol>  
   <li id="agente-auto" class="input-text"> 
     <label for="agente_ids">Agentes</label> 
@@ -66,10 +68,11 @@
       </ul>
     </div> 
   </li> 
-</ol></ br>
+</ol></div></ br>
   <%= f.input :estado, :collection => Marca.lista_estados , :tabindex => 10 %>
   <%= f.input :apoderado, :tabindex => 11 %>
   <%= f.input :representante_empresarial, :tabindex => 12 %>
+  <%= f.input :fecha_instruccion , :as => 'string', :input_html => { :class => 'date' } %>
   <%= f.input :numero_solicitud , :tabindex => 13  %>
   <%= f.input :estado_fecha, :label => 'Fecha solicitud',:as => :string, :input_html => {:tabindex => 14, :class => 'date' } %>
 
@@ -79,7 +82,6 @@
   <%= f.input :numero_gaceta, :label => 'Número de gaceta' , :tabindex => 17  %>
  <%= f.input :numero_registro,:label => 'Número de registro' , :tabindex => 18 %>
   <%= f.input :fecha_registro, :as => 'string', :input_html => {:tabindex => 19, :class => 'date'  } %>
-  <%= f.input :propia, :label => 'Marca propia', :tabindex => 20 %>
 
 
   <% @marca.errores_manual.try(:each) do |k, v| %>
