@@ -1,6 +1,6 @@
 <%= stylesheet_link_tag 'facebook' %>
 
-<% semantic_form_for(@marca,:html => { :class => 'in_half', :multipart => true } ) do |f| -%>
+<% semantic_form_for(@marca,:html => { :multipart => true } ) do |f| -%>
   
   <%= hidden_field_tag "importacion_id", params[:importacion_id] unless params[:importacion_id].nil?  %>
 
@@ -122,7 +122,7 @@ $(document).ready(function() {
 
   });
 
-function validar(new_marca){
+/*function validar(new_marca){
   var clase = document.new_marca.clase.value
   if (new_marca.tipo_marca == "Marca Producto"){
     if (new_marca.clase >=35){
@@ -136,5 +136,5 @@ function validar(new_marca){
     }
   }
 
-}
+}*/
 </script>
