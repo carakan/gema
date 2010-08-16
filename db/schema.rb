@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100810193623) do
+ActiveRecord::Schema.define(:version => 20100816112409) do
 
   create_table "adjuntos", :force => true do |t|
     t.string   "nombre"
@@ -51,6 +51,15 @@ ActiveRecord::Schema.define(:version => 20100810193623) do
     t.boolean  "descartada",                    :default => false
   end
 
+  create_table "contactos", :force => true do |t|
+    t.string   "nombre"
+    t.string   "cargo"
+    t.string   "telefono"
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "importaciones", :force => true do |t|
     t.boolean  "completa"
     t.string   "publicacion",       :limit => 30
@@ -63,11 +72,12 @@ ActiveRecord::Schema.define(:version => 20100810193623) do
   end
 
   create_table "marcas", :force => true do |t|
-    t.integer  "parent_id",                                   :default => 0
+    t.integer  "parent_id",                                  :default => 0
     t.integer  "usuario_id"
     t.integer  "tipo_signo_id"
     t.integer  "tipo_marca_id"
     t.integer  "clase_id"
+    t.integer  "pais_id"
     t.string   "numero_solicitud",           :limit => 40
     t.string   "nombre"
     t.string   "numero_registro",                            :default => ""
@@ -91,10 +101,8 @@ ActiveRecord::Schema.define(:version => 20100810193623) do
     t.integer  "importacion_id"
     t.boolean  "activa",                                     :default => true
     t.string   "archivo_adjunto",                            :default => ""
-    
     t.date     "fecha_solicitud_renovacion"
     t.date     "fecha_instruccion"
-    
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "anterior",                                   :default => false
@@ -104,7 +112,7 @@ ActiveRecord::Schema.define(:version => 20100810193623) do
     t.string   "titular_ids_serial"
     t.string   "errores",                    :limit => 700
     t.string   "errores_manual",             :limit => 500
- end
+  end
 
   add_index "marcas", ["activa"], :name => "index_marcas_on_activa"
   add_index "marcas", ["clase_id"], :name => "index_marcas_on_clase_id"

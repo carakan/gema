@@ -1,4 +1,4 @@
-module ModMarca::SolicitudRenovacion
+module ModMarca::RenovacionConcedida
   def self.included(base)
     base.send(:include, InstanceMethods)
     base.send(:extend, ClassMethods)
@@ -13,8 +13,7 @@ module ModMarca::SolicitudRenovacion
     # Define las validaciones y filtros que se deben aplicar a la clase
     def set_validations_and_filters
       # validaciones
-      validates_presence_of :nombre, :fecha_renovacion, 
-        :tipo_signo_id, :clase_id, :numero_registro, :fecha_registro
+      validates_presence_of :nombre, :tipo_signo_id, :clase_id, :numero_registro, :fecha_registro, :numero_renovacion, :fecha_renovacion
       validates_format_of :numero_solicitud, :with => /^\d+-\d{4}$/
       validates_format_of :numero_registro, :with => /^\d+-\-C$/
       validates_uniqueness_of :numero_solicitud, :scope => :parent_id
@@ -22,14 +21,13 @@ module ModMarca::SolicitudRenovacion
 
     def excel_cols
       {
-        :fecha_solicitud_renovacion => 'A',
-        :numero_solicitud_renovacion => 'B',
-        :apoderado => 'C',
-        :nombre => 'E',
-        :tipo_signo_id => 'F',
-        :clase_id => 'G',
-        :numero_registro => 'H',
-        :fecha_registro => 'I'
+        :nombre => 'B',
+        :tipo_signo_id => 'C',
+        :clase_id => 'D',
+        :numero_registro => 'E',
+        :fecha_registro => 'F',
+        :numero_renovacion => 'G',
+        :fecha_renovacion => 'H'
       }
     end
 
@@ -74,7 +72,7 @@ module ModMarca::SolicitudRenovacion
 
     # Busca o crea una nueva solicitud
     def buscar_o_crear_marca(fila, fecha_imp)
-      comp = [ :tipo_signo_id, :clase_id, :nombre]
+      comp = [:apoderado, :tipo_signo_id, :clase_id, :nombre]
       klass = buscar_comparar_o_nuevo(get_excel_params(fila, fecha_imp), comp )
 
       # Salva correctamente o sino con errores
@@ -100,7 +98,7 @@ module ModMarca::SolicitudRenovacion
         :fila => fila, 
         :propia => false,
         :fecha_importacion => fecha_imp,
-        :estado => 'sr',
+        :estado => 'rc',
         :importado => true,
         :importacion_id => @importacion.id
       }

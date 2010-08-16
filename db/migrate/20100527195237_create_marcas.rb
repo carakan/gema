@@ -37,6 +37,7 @@ class CreateMarcas < ActiveRecord::Migration
       t.string :archivo_adjunto, :default => ''
       t.date  :fecha_solicitud_renovacion #Fecha en la q se realizo la solicitud
       t.strinig :numero_solicitud_renovacion #Numero de solicitud de la renovacion de la marca
+      t.date :fecha_renovacion
       t.date :fecha_instruccion
       t.timestamps
     end
