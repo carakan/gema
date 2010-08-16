@@ -327,7 +327,7 @@ class Marca < ActiveRecord::Base
   #   @return Marca
   def self.buscar_comparar_o_nuevo( params, comp )
     params[:nombre] = Marca.quitar_comillas( params[:nombre] )
-    if :numero_solicitud.nil?
+    if params[:numero_solicitud].nil?
       marca = Marca.find_by_numero_registro(params[:numero_registro])
     else
       marca = Marca.find_by_numero_solicitud(params[:numero_solicitud])
