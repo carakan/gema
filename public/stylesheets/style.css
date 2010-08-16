@@ -125,11 +125,11 @@ form ol li.error input { border: 1px solid #ff0000; }
 form ol li.error select { border: 1px solid #ff0000; }
 form ol li.error textarea { border: 1px solid #ff0000; }
 form ol .in_half ol li {
-  width: 49%;
+  width: 40%;
   float: left;
 }
 form ol .in_half ul li {
-  width: 49%;
+  width: 40%;
   float: left;
 }
 form {
@@ -156,6 +156,7 @@ form li.error textarea { border: 1px solid #ff0000; }
 form .in_half ol li {
   width: 49%;
   float: left;
+  padding-left :5px;
 }
 form .in_half ul li {
   width: 49%;

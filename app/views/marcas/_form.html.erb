@@ -34,17 +34,19 @@
     <%= @marca.tipo_marca %>
   </li>
 
-  <%= f.input :productos, :label=>"Descripción productos/servicios", :as => :text, :tabindex => 7 %>
+  <%= f.input :productos, :label=>"Descripción productos/servicios", :as => :text,:input_html => { :size => 1024 }, :tabindex => 7 %>
+
   <div class="in_half">
   <ol>  
-  <li id="agente-auto" class="input-text"> 
-    <label for="agente_ids">Agentes</label> 
+  <li id="agente-auto" class="input-text">
+    <label for="agente_ids">Agentes</label>
+    <%= link_to 'Nuevo agente', new_agente_path, :class => 'new' %>
     <ul id="ul-agentes" style="display:none"> 
       <% @marca.agentes.each do |a| %>
         <li rel="<%= a.id %>"><%= a.nombre %></li>
       <% end %>
     </ul> 
-    <input type="text" value="" id="agente_ids" tabindex="8"/> 
+    <input type="text" value="" id="agente_ids" tabindex="8"/>
     <div id="agentes-list" class="facebook-auto"> 
       <div class="default">Escriba el nombre de un agente</div>  
       <ul class="feed">
@@ -55,7 +57,8 @@
 
 <ol>  
   <li id="titular-auto" class="input-text"> 
-    <label for="titular_ids">Titulares</label> 
+    <label for="titular_ids">Titulares</label>
+    <%= link_to 'Nuevo titular', new_titular_path, :class => 'new' %> 
     <ul id="ul-titulares" style="display:none"> 
       <% @marca.titulares.each do |t| %>
         <li rel="<%= t.id %>"><%= t.nombre %></li>
@@ -122,19 +125,4 @@ $(document).ready(function() {
 
   });
 
-/*function validar(new_marca){
-  var clase = document.new_marca.clase.value
-  if (new_marca.tipo_marca == "Marca Producto"){
-    if (new_marca.clase >=35){
-      alert ("La clase no corresponde al tipo de marca seleccionado")
-    else
-      if (new_marca.tipo_marca == "Marca Servicio"){
-        if (new_marca.clase <35){
-          alert ("La clase no corresponde al tipo de marca seleccionado")
-        }
-      }
-    }
-  }
-
-}*/
 </script>
