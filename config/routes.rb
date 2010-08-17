@@ -36,6 +36,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :solicitudes, :member => { :importado => :get }
 
+  # Plugin
+  map.resources :roles
 
   # The priority is based upon order of creation: first created -> highest priority.
 
