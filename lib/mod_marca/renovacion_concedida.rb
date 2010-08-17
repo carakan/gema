@@ -15,7 +15,7 @@ module ModMarca::RenovacionConcedida
       # validaciones
       validates_presence_of :nombre, :tipo_signo_id, :clase_id, :numero_registro, :fecha_registro, :numero_renovacion, :fecha_renovacion
       validates_format_of :numero_solicitud, :with => /^\d+-\d{4}$/
-      validates_format_of :numero_registro, :with => /^\d+-\-C$/
+      validates_format_of :numero_registro, :with => /^\d+-C$/
       validates_uniqueness_of :numero_solicitud, :scope => :parent_id
     end
 
