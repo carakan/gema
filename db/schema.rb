@@ -102,6 +102,7 @@ ActiveRecord::Schema.define(:version => 20100816112409) do
     t.boolean  "activa",                                     :default => true
     t.string   "archivo_adjunto",                            :default => ""
     t.date     "fecha_solicitud_renovacion"
+    t.date     "fecha_renovacion"
     t.date     "fecha_instruccion"
     t.datetime "created_at"
     t.datetime "updated_at"

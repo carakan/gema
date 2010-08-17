@@ -9,11 +9,17 @@
   <%= f.input :tipo_signo_id, :as => :hidden  %>
   <%= f.input :tipo_marca_id, :as => :hidden  %>
   <%= f.input :propia, :label => 'Marca propia'%>
-  <%= f.input :nombre,:label => "Denominación",:tabindex => 3  %>
 
+
+  <%= f.input :nombre,:label => "Denominación",:tabindex => 3  %>
+  <li>
+      <label for="">Tipo de signo</label>
+      <%= @marca.tipo_marca %>
+  </li>
+ 
   <li>
     <label for="">Tipo</label>
-  <%= @marca.tipo_signo %>
+    <%= @marca.tipo_signo %>
   </li>
   <% if @marca.con_imagen? %>
     <li>
@@ -28,11 +34,7 @@
     </li>
   <% end %>
 
-  <li>
-    <label for="">Tipo de signo</label>
-    <%= @marca.tipo_marca %>
-  </li>
-  <%= f.input :clase, :tabindex => 5 %>
+ <%= f.input :clase, :tabindex => 5 %>
   <%= f.input :productos, :label=>"Descripción productos/servicios", :as => :text,:input_html => { :size => 1024 }, :tabindex => 7 %>
 
   <div class="in_half">
