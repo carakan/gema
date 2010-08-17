@@ -16,7 +16,7 @@ module ModMarca::SolicitudRenovacion
       validates_presence_of :nombre, :fecha_renovacion, 
         :tipo_signo_id, :clase_id, :numero_registro, :fecha_registro
       validates_format_of :numero_solicitud, :with => /^\d+-\d{4}$/
-      validates_format_of :numero_registro, :with => /^\d+-\-C$/
+      validates_format_of :numero_registro, :with => /^\d+-\C$/
       validates_uniqueness_of :numero_solicitud, :scope => :parent_id
     end
 
@@ -74,7 +74,7 @@ module ModMarca::SolicitudRenovacion
 
     # Busca o crea una nueva solicitud
     def buscar_o_crear_marca(fila, fecha_imp)
-      comp = [ :tipo_signo_id, :clase_id, :nombre]
+      comp = [:apoderado, :tipo_signo_id, :clase_id, :nombre]
       klass = buscar_comparar_o_nuevo(get_excel_params(fila, fecha_imp), comp )
 
       # Salva correctamente o sino con errores
@@ -105,7 +105,7 @@ module ModMarca::SolicitudRenovacion
         :importacion_id => @importacion.id
       }
       params.merge!(extraer_datos(fila, excel_cols) )
-      params[:numero_solicitud] = preparar_numero_solicitud(params[:numero_solicitud])
+     # params[:numero_solicitud] = preparar_numero_solicitud(params[:numero_solicitud])
       params[:tipo_signo_id] = buscar_tipo_signo_id(params[:tipo_signo_id])
       params[:clase_id] = params[:clase_id].to_i
 
