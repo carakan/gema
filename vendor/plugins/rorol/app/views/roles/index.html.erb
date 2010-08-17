@@ -1,0 +1,19 @@
+<h1>Roles</h1>
+<%= link_to 'Crear Rol', new_rol_path, :class => 'new' %>
+
+<table class="decorated">
+  <tr>
+    <th>Rol</th>
+    <th></th>
+  </tr>
+
+
+  <% for rol in @roles do %>
+  <tr>
+    <td><%= link_to rol.to_s, rol  %></td>
+    <td><%= link_to "editar", edit_rol_path(rol), :class => 'edit' %>
+    <%= link_to "borrar", rol, :class => 'delete' %>
+    </td>
+  </tr>
+  <% end %>
+</table>

@@ -1,0 +1,29 @@
+<style type="text/css">
+  #rol{
+    list-style: none;
+  }
+  #rol ul.acciones{
+    list-style: none;
+  }
+  #rol h3{
+    clear:both;
+  }
+  ul.acciones>li {
+    background-position:center right !important;
+    padding:4px 20px 4px 15px;
+    float: left;
+  }
+</style>
+<h1>Rol <%= @rol %></h1>
+<ul id="rol">
+<% @rol.permisos.each do |permiso| %>
+  <li><h3><%= permiso.controlador.titleize %></h3>
+    <ul class="acciones">
+      <% permiso.acciones.each do |k, v| -%>
+        <li class="<%= v %>"><%= k %></li>
+      <% end %>
+    </ul>
+  </li>
+
+<% end %>
+</ul>

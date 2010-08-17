@@ -100,8 +100,9 @@ ActiveRecord::Schema.define(:version => 20100816112409) do
     t.string   "representante_empresarial"
     t.integer  "importacion_id"
     t.boolean  "activa",                                      :default => true
+    t.string   "archivo_adjunto",                             :default => ""
     t.date     "fecha_solicitud_renovacion"
-    t.string   "numero_solicitud_renovacion"
+    t.string   "numero_solicitud_renovacion", :limit => 40
     t.date     "fecha_renovacion"
     t.date     "fecha_instruccion"
     t.datetime "created_at"

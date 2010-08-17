@@ -6,6 +6,7 @@ class Marca < ActiveRecord::Base
   before_save :set_minusculas
   before_save :adicionar_usuario
   before_save :set_agentes_titulares, :if => lambda { |m| m.parent_id == 0 }
+  before_save :llenar_productos, :if => lambda { |m| m.productos.blank? }
 
   before_update :crear_historico, :if => :con_historico?
   before_update :set_cambios
@@ -250,7 +251,14 @@ class Marca < ActiveRecord::Base
   def self.crear_instancia(params)
     set_include_estado(params[:estado])
     set_include_tipo_signo(params[:tipo_signo_id])
+    #set_include_propia(params[:propia]) 
     new(params)
+  end
+
+  def set_include_propia(propia)
+    if propia == "1"
+      include ModMarca::Propia
+    end
   end
 
 
@@ -452,6 +460,12 @@ private
         self.errors.add(k, v)
       end
     end
+  end
+
+  # Llena el campo productos con la descripcion de la clase
+  # en caso de que no hayan escrito nada
+  def llenar_productos
+    self.productos = self.clase.descripcion unless self.clase.nil?
   end
 
 end

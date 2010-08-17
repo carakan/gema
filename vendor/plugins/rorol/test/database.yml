@@ -1,0 +1,10 @@
+sqlite3:
+  :adapter: sqlite3
+  :dbfile: vendor/plugins/rorol/test/rorol_test.sqlite3
+
+mysql:
+  :adapter: mysql
+  :host: localhost
+  :username: root
+  :password: demo123
+  :database: rorol_test

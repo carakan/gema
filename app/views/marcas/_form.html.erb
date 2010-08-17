@@ -11,7 +11,7 @@
   <%= f.input :propia, :label => 'Marca propia'%>
 
 
-  <%= f.input :nombre,:label => "Denominación",:tabindex => 3  %>
+  <%= f.input :nombre,:label => "Denominación",:tabindex => 3 %>
   <li>
       <label for="">Tipo de signo</label>
       <%= @marca.tipo_marca %>
@@ -112,6 +112,7 @@
 
 $(document).ready(function() {
 
+
   $.facebooklist('#titular_ids', '#ul-titulares', '#titulares-list', 
      { url:'/titulares/buscar.json', cache:0 }, 10, { userfilter: 1, casesensetive: 0 } );
 
@@ -124,6 +125,24 @@ $(document).ready(function() {
     verificarErrorresManuales();
   });
 
-  });
+  if( $('#marca_tipo_marca_id').val() == "1" ) {
+    $('#marca_clase_id option').each( function(i, el) {
+      if( parseInt( $(el).val() ) > 34) {
+        $(el).remove();
+      }
+    });
+  }
+
+  if( $('#marca_tipo_marca_id').val() == "4" ) {
+    $('#marca_clase_id option').each( function(i, el) {
+      if( parseInt( $(el).val() ) < 34) {
+        $(el).remove();
+      }
+    });
+  }
+
+});
+
+
   
 </script>
