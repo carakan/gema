@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include Rorol::Controllers::Helpers
 
   before_filter :set_page
   before_filter :set_user_session, :if => :user_signed_in?

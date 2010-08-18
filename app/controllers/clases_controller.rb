@@ -1,5 +1,6 @@
 # encoding: utf-8
 class ClasesController < ApplicationController
+  before_filter :revisar_permiso!
   # GET /clases
   # GET /clases.xml
   def index
