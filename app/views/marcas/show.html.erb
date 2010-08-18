@@ -15,9 +15,14 @@
 <div id="marca">
     <p>
       <label for="">Propia</label>
-      <%= cambio @marca ,:propia %><br/>
+      <%= cambio @marca ,:propia, valido_img(@marca.propia) %><br/>
     </p>
     
+    <p>
+      <label for="">Activa</label>
+      <%= cambio @marca ,:activa, valido_img(@marca.activa) %><br/>
+    </p>
+
     <p>
       <label for="">Denominación</label>
       <%= cambio @marca ,:nombre %>

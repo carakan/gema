@@ -125,11 +125,11 @@ form ol li.error input { border: 1px solid #ff0000; }
 form ol li.error select { border: 1px solid #ff0000; }
 form ol li.error textarea { border: 1px solid #ff0000; }
 form ol .in_half ol li {
-  width: 40%;
+  width: 49%;
   float: left;
 }
 form ol .in_half ul li {
-  width: 40%;
+  width: 49%;
   float: left;
 }
 form {
@@ -156,7 +156,6 @@ form li.error textarea { border: 1px solid #ff0000; }
 form .in_half ol li {
   width: 49%;
   float: left;
-  padding-left :5px;
 }
 form .in_half ul li {
   width: 49%;
@@ -564,3 +563,11 @@ ul.menu li:hover ul {
 .red { color: #ff0000 !important; }
 .green { color: #5bbf3b !important; }
 img.mini { cursor: pointer; }
+.pad-left-img {
+  background-position: left top;
+  padding-left: 24px;
+}
+.pad-right-img {
+  background-position: right top;
+  padding-right: 24px;
+}
