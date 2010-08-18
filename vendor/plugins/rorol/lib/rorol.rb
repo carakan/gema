@@ -5,5 +5,6 @@
   ActiveSupport::Dependencies.load_once_paths.delete(path)
 end
 
-
-
+# Necesario para que funcione correctamente los tasks
+module Rorol
+end
