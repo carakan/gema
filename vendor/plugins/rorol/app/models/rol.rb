@@ -57,6 +57,10 @@ class Rol < ActiveRecord::Base
       end
     end
 
+    def hash_controladores_acciones
+      list_controllers.map { |c| {:controlador => c.first, :acciones => c.last} }
+    end
+
   end
 
 end

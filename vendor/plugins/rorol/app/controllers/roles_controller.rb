@@ -1,14 +1,13 @@
 class RolesController < ApplicationController
-  #unloadable 
   before_filter :verificar_permiso
+  unloadable 
 
   def index
     @roles = Rol.paginate(:page => @page)
   end
 
   def new
-    @controladores = Rol.list_controllers
-    @rol = Rol.new(:permisos_attributes => @controladores.map{|c| {:controlador => c[0], :acciones => c[1]} })
+    @rol = Rol.new(:permisos_attributes => Rol.hash_controladores_acciones )
   end
 
   def show

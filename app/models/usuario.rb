@@ -6,6 +6,8 @@ class Usuario < ActiveRecord::Base
   has_many :consultas
   has_many :importaciones
 
+  belongs_to :rol
+
   validates_presence_of :login, :password
   validates_format_of :login, :with => /^[a-z0-9_-]{4,16}$/i
   validates_uniqueness_of :login

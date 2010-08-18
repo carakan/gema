@@ -1,6 +1,7 @@
 <h1>Editar usuario</h1>
 
+<%= link_to 'Ver', @usuario, :class => 'show' %> 
+<%= link_to 'Lista', usuarios_path, :class => 'list' %>
+
 <%= render :partial => "form" %>
 
-<%= link_to 'Ver', @usuario %> |
-<%= link_to 'Lista', usuarios_path %>

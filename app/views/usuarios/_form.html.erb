@@ -1,16 +1,12 @@
 <% semantic_form_for(@usuario) do |f| %>
-  
-  <%= f.error_messages %>
 
-  <% f.inputs do  %>
     <%= f.input :nombre, :label => 'Nombre' %>
-    <%= f.input :rol, :label => 'Rol' %>
     <%= f.input :login, :label => 'Nombre de usuario' %>
-    <% unless :edit? %>
+    <%= f.input :rol, :collection => Rol.all %>
+    <% unless edit_usuario? -%>
      <%= f.input :password,:as => :password, :label => 'Contraseña' %>
      <%= f.input :password,:as => :password, :label => 'Confirmar contraseña' %>
-    <% end %>
-  <% end %>
+    <% end -%>
     <%= f.submit 'Salvar' %>
 <% end %>
 

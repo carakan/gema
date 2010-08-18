@@ -50,7 +50,7 @@ Rails::Initializer.run do |config|
   config.i18n.default_locale = :es
 
   # recargar plugins
-  config.reload_plugins = true if Rails.env == 'development'
+  #config.reload_plugins = true if Rails.env == 'development'
 end
 
 # Cargar todas las librerias de lib
