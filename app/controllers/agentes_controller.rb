@@ -1,5 +1,5 @@
 class AgentesController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :revisar_permiso!
 
   def index
     @agentes = Agente.paginate(order_query_params)

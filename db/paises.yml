@@ -1,493 +1,501 @@
----
-- codigo: AF
-  nombre: AFGHANISTAN
-- codigo: AX
-  nombre: "\xC3\x85LAND ISLANDS"
-- codigo: AL
-  nombre: ALBANIA
-- codigo: DZ
-  nombre: ALGERIA
-- codigo: AS
-  nombre: AMERICAN SAMOA
-- codigo: AD
-  nombre: ANDORRA
-- codigo: AO
-  nombre: ANGOLA
-- codigo: AI
-  nombre: ANGUILLA
-- codigo: AQ
-  nombre: ANTARCTICA
-- codigo: AG
-  nombre: ANTIGUA AND BARBUDA
-- codigo: AR
-  nombre: ARGENTINA
-- codigo: AM
-  nombre: ARMENIA
-- codigo: AW
-  nombre: ARUBA
-- codigo: AU
-  nombre: AUSTRALIA
-- codigo: AT
-  nombre: AUSTRIA
-- codigo: AZ
-  nombre: AZERBAIJAN
-- codigo: BS
-  nombre: BAHAMAS
-- codigo: BH
-  nombre: BAHRAIN
-- codigo: BD
-  nombre: BANGLADESH
-- codigo: BB
-  nombre: BARBADOS
-- codigo: BY
-  nombre: BELARUS
-- codigo: BE
-  nombre: BELGIUM
-- codigo: BZ
-  nombre: BELIZE
-- codigo: BJ
-  nombre: BENIN
-- codigo: BM
-  nombre: BERMUDA
-- codigo: BT
-  nombre: BHUTAN
-- codigo: BO
-  nombre: BOLIVIA, PLURINATIONAL STATE OF
-- codigo: BA
-  nombre: BOSNIA AND HERZEGOVINA
-- codigo: BW
-  nombre: BOTSWANA
-- codigo: BV
-  nombre: BOUVET ISLAND
-- codigo: BR
-  nombre: BRAZIL
-- codigo: IO
-  nombre: BRITISH INDIAN OCEAN TERRITORY
-- codigo: BN
-  nombre: BRUNEI DARUSSALAM
-- codigo: BG
-  nombre: BULGARIA
-- codigo: BF
-  nombre: BURKINA FASO
-- codigo: BI
-  nombre: BURUNDI
-- codigo: KH
-  nombre: CAMBODIA
-- codigo: CM
-  nombre: CAMEROON
-- codigo: CA
-  nombre: CANADA
-- codigo: CV
-  nombre: CAPE VERDE
-- codigo: KY
-  nombre: CAYMAN ISLANDS
-- codigo: CF
-  nombre: CENTRAL AFRICAN REPUBLIC
-- codigo: TD
-  nombre: CHAD
-- codigo: CL
-  nombre: CHILE
-- codigo: CN
-  nombre: CHINA
-- codigo: CX
-  nombre: CHRISTMAS ISLAND
-- codigo: CC
-  nombre: COCOS (KEELING) ISLANDS
-- codigo: CO
-  nombre: COLOMBIA
-- codigo: KM
-  nombre: COMOROS
-- codigo: CG
-  nombre: CONGO
-- codigo: CD
-  nombre: CONGO, THE DEMOCRATIC REPUBLIC OF THE
-- codigo: CK
-  nombre: COOK ISLANDS
-- codigo: CR
-  nombre: COSTA RICA
-- codigo: CI
-  nombre: "C\xC3\x94TE D'IVOIRE"
-- codigo: HR
-  nombre: CROATIA
-- codigo: CU
-  nombre: CUBA
-- codigo: CY
-  nombre: CYPRUS
-- codigo: CZ
-  nombre: CZECH REPUBLIC
-- codigo: DK
-  nombre: DENMARK
-- codigo: DJ
-  nombre: DJIBOUTI
-- codigo: DM
-  nombre: DOMINICA
-- codigo: DO
-  nombre: DOMINICAN REPUBLIC
-- codigo: EC
-  nombre: ECUADOR
-- codigo: EG
-  nombre: EGYPT
-- codigo: SV
-  nombre: EL SALVADOR
-- codigo: GQ
-  nombre: EQUATORIAL GUINEA
-- codigo: ER
-  nombre: ERITREA
-- codigo: EE
-  nombre: ESTONIA
-- codigo: ET
-  nombre: ETHIOPIA
-- codigo: FK
-  nombre: FALKLAND ISLANDS (MALVINAS)
-- codigo: FO
-  nombre: FAROE ISLANDS
-- codigo: FJ
-  nombre: FIJI
-- codigo: FI
-  nombre: FINLAND
-- codigo: FR
-  nombre: FRANCE
-- codigo: GF
-  nombre: FRENCH GUIANA
-- codigo: PF
-  nombre: FRENCH POLYNESIA
-- codigo: TF
-  nombre: FRENCH SOUTHERN TERRITORIES
-- codigo: GA
-  nombre: GABON
-- codigo: GM
-  nombre: GAMBIA
-- codigo: GE
-  nombre: GEORGIA
-- codigo: DE
-  nombre: GERMANY
-- codigo: GH
-  nombre: GHANA
-- codigo: GI
-  nombre: GIBRALTAR
-- codigo: GR
-  nombre: GREECE
-- codigo: GL
-  nombre: GREENLAND
-- codigo: GD
-  nombre: GRENADA
-- codigo: GP
-  nombre: GUADELOUPE
-- codigo: GU
-  nombre: GUAM
-- codigo: GT
-  nombre: GUATEMALA
-- codigo: GG
-  nombre: GUERNSEY
-- codigo: GN
-  nombre: GUINEA
-- codigo: GW
-  nombre: GUINEA-BISSAU
-- codigo: GY
-  nombre: GUYANA
-- codigo: HT
-  nombre: HAITI
-- codigo: HM
-  nombre: HEARD ISLAND AND MCDONALD ISLANDS
-- codigo: VA
-  nombre: HOLY SEE (VATICAN CITY STATE)
-- codigo: HN
-  nombre: HONDURAS
-- codigo: HK
-  nombre: HONG KONG
-- codigo: HU
-  nombre: HUNGARY
-- codigo: IS
-  nombre: ICELAND
-- codigo: IN
-  nombre: INDIA
-- codigo: ID
-  nombre: INDONESIA
-- codigo: IR
-  nombre: IRAN, ISLAMIC REPUBLIC OF
-- codigo: IQ
-  nombre: IRAQ
-- codigo: IE
-  nombre: IRELAND
-- codigo: IM
-  nombre: ISLE OF MAN
-- codigo: IL
-  nombre: ISRAEL
-- codigo: IT
-  nombre: ITALY
-- codigo: JM
-  nombre: JAMAICA
-- codigo: JP
-  nombre: JAPAN
-- codigo: JE
-  nombre: JERSEY
-- codigo: JO
-  nombre: JORDAN
-- codigo: KZ
-  nombre: KAZAKHSTAN
-- codigo: KE
-  nombre: KENYA
-- codigo: KI
-  nombre: KIRIBATI
-- codigo: KP
-  nombre: KOREA, DEMOCRATIC PEOPLE'S REPUBLIC OF
-- codigo: KR
-  nombre: KOREA, REPUBLIC OF
-- codigo: KW
-  nombre: KUWAIT
-- codigo: KG
-  nombre: KYRGYZSTAN
-- codigo: LA
-  nombre: LAO PEOPLE'S DEMOCRATIC REPUBLIC
-- codigo: LV
-  nombre: LATVIA
-- codigo: LB
-  nombre: LEBANON
-- codigo: LS
-  nombre: LESOTHO
-- codigo: LR
-  nombre: LIBERIA
-- codigo: LY
-  nombre: LIBYAN ARAB JAMAHIRIYA
-- codigo: LI
-  nombre: LIECHTENSTEIN
-- codigo: LT
-  nombre: LITHUANIA
-- codigo: LU
-  nombre: LUXEMBOURG
-- codigo: MO
-  nombre: MACAO
-- codigo: MK
-  nombre: MACEDONIA, THE FORMER YUGOSLAV REPUBLIC OF
-- codigo: MG
-  nombre: MADAGASCAR
-- codigo: MW
-  nombre: MALAWI
-- codigo: MY
-  nombre: MALAYSIA
-- codigo: MV
-  nombre: MALDIVES
-- codigo: ML
-  nombre: MALI
-- codigo: MT
-  nombre: MALTA
-- codigo: MH
-  nombre: MARSHALL ISLANDS
-- codigo: MQ
-  nombre: MARTINIQUE
-- codigo: MR
-  nombre: MAURITANIA
-- codigo: MU
-  nombre: MAURITIUS
-- codigo: YT
-  nombre: MAYOTTE
-- codigo: MX
-  nombre: MEXICO
-- codigo: FM
-  nombre: MICRONESIA, FEDERATED STATES OF
-- codigo: MD
-  nombre: MOLDOVA, REPUBLIC OF
-- codigo: MC
-  nombre: MONACO
-- codigo: MN
-  nombre: MONGOLIA
-- codigo: ME
-  nombre: MONTENEGRO
-- codigo: MS
-  nombre: MONTSERRAT
-- codigo: MA
-  nombre: MOROCCO
-- codigo: MZ
-  nombre: MOZAMBIQUE
-- codigo: MM
-  nombre: MYANMAR
-- codigo: NA
-  nombre: NAMIBIA
-- codigo: NR
-  nombre: NAURU
-- codigo: NP
-  nombre: NEPAL
-- codigo: NL
-  nombre: NETHERLANDS
-- codigo: AN
-  nombre: NETHERLANDS ANTILLES
-- codigo: NC
-  nombre: NEW CALEDONIA
-- codigo: NZ
-  nombre: NEW ZEALAND
-- codigo: NI
-  nombre: NICARAGUA
-- codigo: NE
-  nombre: NIGER
-- codigo: NG
-  nombre: NIGERIA
-- codigo: NU
-  nombre: NIUE
-- codigo: NF
-  nombre: NORFOLK ISLAND
-- codigo: MP
-  nombre: NORTHERN MARIANA ISLANDS
-- codigo: "NO"
-  nombre: NORWAY
-- codigo: OM
-  nombre: OMAN
-- codigo: PK
-  nombre: PAKISTAN
-- codigo: PW
-  nombre: PALAU
-- codigo: PS
-  nombre: PALESTINIAN TERRITORY, OCCUPIED
-- codigo: PA
-  nombre: PANAMA
-- codigo: PG
-  nombre: PAPUA NEW GUINEA
-- codigo: PY
-  nombre: PARAGUAY
-- codigo: PE
-  nombre: PERU
-- codigo: PH
-  nombre: PHILIPPINES
-- codigo: PN
-  nombre: PITCAIRN
-- codigo: PL
-  nombre: POLAND
-- codigo: PT
-  nombre: PORTUGAL
-- codigo: PR
-  nombre: PUERTO RICO
-- codigo: QA
-  nombre: QATAR
-- codigo: RE
-  nombre: "R\xC3\x89UNION"
-- codigo: RO
-  nombre: ROMANIA
-- codigo: RU
-  nombre: RUSSIAN FEDERATION
-- codigo: RW
-  nombre: RWANDA
-- codigo: BL
-  nombre: "SAINT BARTH\xC3\x89LEMY"
-- codigo: SH
-  nombre: SAINT HELENA, ASCENSION AND TRISTAN DA CUNHA
-- codigo: KN
-  nombre: SAINT KITTS AND NEVIS
-- codigo: LC
-  nombre: SAINT LUCIA
-- codigo: MF
-  nombre: SAINT MARTIN
-- codigo: PM
-  nombre: SAINT PIERRE AND MIQUELON
-- codigo: VC
-  nombre: SAINT VINCENT AND THE GRENADINES
-- codigo: WS
-  nombre: SAMOA
-- codigo: SM
-  nombre: SAN MARINO
-- codigo: ST
-  nombre: SAO TOME AND PRINCIPE
-- codigo: SA
-  nombre: SAUDI ARABIA
-- codigo: SN
-  nombre: SENEGAL
-- codigo: RS
-  nombre: SERBIA
-- codigo: SC
-  nombre: SEYCHELLES
-- codigo: SL
-  nombre: SIERRA LEONE
-- codigo: SG
-  nombre: SINGAPORE
-- codigo: SK
-  nombre: SLOVAKIA
-- codigo: SI
-  nombre: SLOVENIA
-- codigo: SB
-  nombre: SOLOMON ISLANDS
-- codigo: SO
-  nombre: SOMALIA
-- codigo: ZA
-  nombre: SOUTH AFRICA
-- codigo: GS
-  nombre: SOUTH GEORGIA AND THE SOUTH SANDWICH ISLANDS
-- codigo: ES
-  nombre: SPAIN
-- codigo: LK
-  nombre: SRI LANKA
-- codigo: SD
-  nombre: SUDAN
-- codigo: SR
-  nombre: SURINAME
-- codigo: SJ
-  nombre: SVALBARD AND JAN MAYEN
-- codigo: SZ
-  nombre: SWAZILAND
-- codigo: SE
-  nombre: SWEDEN
-- codigo: CH
-  nombre: SWITZERLAND
-- codigo: SY
-  nombre: SYRIAN ARAB REPUBLIC
-- codigo: TW
-  nombre: TAIWAN, PROVINCE OF CHINA
-- codigo: TJ
-  nombre: TAJIKISTAN
-- codigo: TZ
-  nombre: TANZANIA, UNITED REPUBLIC OF
-- codigo: TH
-  nombre: THAILAND
-- codigo: TL
-  nombre: TIMOR-LESTE
-- codigo: TG
-  nombre: TOGO
-- codigo: TK
-  nombre: TOKELAU
-- codigo: TO
-  nombre: TONGA
-- codigo: TT
-  nombre: TRINIDAD AND TOBAGO
-- codigo: TN
-  nombre: TUNISIA
-- codigo: TR
-  nombre: TURKEY
-- codigo: TM
-  nombre: TURKMENISTAN
-- codigo: TC
-  nombre: TURKS AND CAICOS ISLANDS
-- codigo: TV
-  nombre: TUVALU
-- codigo: UG
-  nombre: UGANDA
-- codigo: UA
-  nombre: UKRAINE
-- codigo: AE
-  nombre: UNITED ARAB EMIRATES
-- codigo: GB
-  nombre: UNITED KINGDOM
-- codigo: US
-  nombre: UNITED STATES
-- codigo: UM
-  nombre: UNITED STATES MINOR OUTLYING ISLANDS
-- codigo: UY
-  nombre: URUGUAY
-- codigo: UZ
-  nombre: UZBEKISTAN
-- codigo: VU
-  nombre: VANUATU
-- codigo: VE
-  nombre: VENEZUELA, BOLIVARIAN REPUBLIC OF
-- codigo: VN
-  nombre: VIET NAM
-- codigo: VG
-  nombre: VIRGIN ISLANDS, BRITISH
-- codigo: VI
-  nombre: VIRGIN ISLANDS, U.S.
-- codigo: WF
-  nombre: WALLIS AND FUTUNA
-- codigo: EH
-  nombre: WESTERN SAHARA
-- codigo: YE
-  nombre: YEMEN
-- codigo: ZM
-  nombre: ZAMBIA
-- codigo: ZW
-  nombre: ZIMBABWE
+--- 
+- :codigo: AF
+  :nombre: "Afganist\xC3\xA1n"
+- :codigo: AL
+  :nombre: Albania
+- :codigo: DE
+  :nombre: Alemania
+- :codigo: AD
+  :nombre: Andorra
+- :codigo: AO
+  :nombre: Angola
+- :codigo: AI
+  :nombre: Anguila
+- :codigo: AQ
+  :nombre: "Ant\xC3\xA1rtida"
+- :codigo: AG
+  :nombre: Antigua y Barbuda
+- :codigo: AN
+  :nombre: Antillas Neerlandesas
+- :codigo: SA
+  :nombre: "Arabia Saud\xC3\xAD"
+- :codigo: DZ
+  :nombre: Argelia
+- :codigo: AR
+  :nombre: Argentina
+- :codigo: AM
+  :nombre: Armenia
+- :codigo: AW
+  :nombre: Aruba
+- :codigo: AU
+  :nombre: Australia
+- :codigo: AT
+  :nombre: Austria
+- :codigo: AZ
+  :nombre: "Azerbaiy\xC3\xA1n"
+- :codigo: BE
+  :nombre: "B\xC3\xA9lgica"
+- :codigo: BS
+  :nombre: Bahamas
+- :codigo: BH
+  :nombre: "Bahr\xC3\xA1in"
+- :codigo: BD
+  :nombre: Bangladesh
+- :codigo: BB
+  :nombre: Barbados
+- :codigo: BZ
+  :nombre: Belice
+- :codigo: BJ
+  :nombre: !binary |
+    QmVuw61u
+
+- :codigo: BM
+  :nombre: Bermudas
+- :codigo: BY
+  :nombre: Bielorrusia
+- :codigo: MM
+  :nombre: Birmania; Myanmar
+- :codigo: BO
+  :nombre: Bolivia
+- :codigo: BA
+  :nombre: Bosnia y Hercegovina
+- :codigo: BW
+  :nombre: Botsuana
+- :codigo: BR
+  :nombre: Brasil
+- :codigo: BN
+  :nombre: "Brun\xC3\xA9i"
+- :codigo: BG
+  :nombre: Bulgaria
+- :codigo: BF
+  :nombre: Burkina Faso
+- :codigo: BI
+  :nombre: Burundi
+- :codigo: BT
+  :nombre: !binary |
+    QnV0w6Fu
+
+- :codigo: CV
+  :nombre: Cabo Verde
+- :codigo: KH
+  :nombre: Camboya
+- :codigo: CM
+  :nombre: "Camer\xC3\xBAn"
+- :codigo: CA
+  :nombre: "Canad\xC3\xA1"
+- :codigo: TD
+  :nombre: Chad
+- :codigo: CL
+  :nombre: Chile
+- :codigo: CN
+  :nombre: China
+- :codigo: CY
+  :nombre: Chipre
+- :codigo: CO
+  :nombre: Colombia
+- :codigo: KM
+  :nombre: Comoras
+- :codigo: CG
+  :nombre: Congo
+- :codigo: KP
+  :nombre: Corea del Norte
+- :codigo: KR
+  :nombre: Corea del Sur
+- :codigo: CR
+  :nombre: Costa Rica
+- :codigo: CI
+  :nombre: Costa de Marfil
+- :codigo: HR
+  :nombre: Croacia
+- :codigo: CU
+  :nombre: Cuba
+- :codigo: DK
+  :nombre: Dinamarca
+- :codigo: DM
+  :nombre: Dominica
+- :codigo: EC
+  :nombre: Ecuador
+- :codigo: EG
+  :nombre: Egipto
+- :codigo: SV
+  :nombre: El Salvador
+- :codigo: VA
+  :nombre: El Vaticano
+- :codigo: AE
+  :nombre: "Emiratos \xC3\x81rabes Unidos"
+- :codigo: ER
+  :nombre: Eritrea
+- :codigo: SK
+  :nombre: Eslovaquia
+- :codigo: SI
+  :nombre: Eslovenia
+- :codigo: ES
+  :nombre: "Espa\xC3\xB1a"
+- :codigo: US
+  :nombre: Estados Unidos
+- :codigo: EE
+  :nombre: Estonia
+- :codigo: ET
+  :nombre: "Etiop\xC3\xADa"
+- :codigo: PH
+  :nombre: Filipinas
+- :codigo: FI
+  :nombre: Finlandia
+- :codigo: FJ
+  :nombre: Fiyi
+- :codigo: FR
+  :nombre: Francia
+- :codigo: GA
+  :nombre: !binary |
+    R2Fiw7Nu
+
+- :codigo: GM
+  :nombre: Gambia
+- :codigo: GE
+  :nombre: Georgia
+- :codigo: GH
+  :nombre: Ghana
+- :codigo: GI
+  :nombre: Gibraltar
+- :codigo: GD
+  :nombre: Granada
+- :codigo: GR
+  :nombre: Grecia
+- :codigo: GL
+  :nombre: Groenlandia
+- :codigo: GP
+  :nombre: Guadalupe
+- :codigo: GU
+  :nombre: Guam
+- :codigo: GT
+  :nombre: Guatemala
+- :codigo: GF
+  :nombre: Guayana Francesa
+- :codigo: GN
+  :nombre: Guinea
+- :codigo: GQ
+  :nombre: Guinea Ecuatorial
+- :codigo: GW
+  :nombre: Guinea-Bissau
+- :codigo: GY
+  :nombre: Guyana
+- :codigo: HT
+  :nombre: !binary |
+    SGFpdMOt
+
+- :codigo: HN
+  :nombre: Honduras
+- :codigo: HK
+  :nombre: Hong Kong
+- :codigo: HU
+  :nombre: "Hungr\xC3\xADa"
+- :codigo: IN
+  :nombre: India (la)
+- :codigo: ID
+  :nombre: Indonesia
+- :codigo: IR
+  :nombre: !binary |
+    SXLDoW4=
+
+- :codigo: IQ
+  :nombre: Iraq
+- :codigo: IE
+  :nombre: Irlanda
+- :codigo: BV
+  :nombre: Isla Bouvet
+- :codigo: CX
+  :nombre: Isla Christmas
+- :codigo: NF
+  :nombre: Isla Norfolk
+- :codigo: IS
+  :nombre: Islandia
+- :codigo: KY
+  :nombre: "Islas Caim\xC3\xA1n"
+- :codigo: CC
+  :nombre: Islas Cocos
+- :codigo: CK
+  :nombre: Islas Cook
+- :codigo: FO
+  :nombre: Islas Feroe
+- :codigo: GS
+  :nombre: Islas Georgia del Sur y Sandwich del Sur
+- :codigo: HM
+  :nombre: Islas Heard y McDonald
+- :codigo: FK
+  :nombre: Islas Malvinas
+- :codigo: MP
+  :nombre: Islas Marianas del Norte
+- :codigo: MH
+  :nombre: Islas Marshall
+- :codigo: PN
+  :nombre: Islas Pitcairn
+- :codigo: SB
+  :nombre: "Islas Salom\xC3\xB3n"
+- :codigo: TC
+  :nombre: Islas Turcas y Caicos
+- :codigo: VI
+  :nombre: "Islas V\xC3\xADrgenes Americanas"
+- :codigo: VG
+  :nombre: "Islas V\xC3\xADrgenes Brit\xC3\xA1nicas"
+- :codigo: UM
+  :nombre: Islas menores alejadas de los Estados Unidos
+- :codigo: IL
+  :nombre: Israel
+- :codigo: IT
+  :nombre: Italia
+- :codigo: JM
+  :nombre: Jamaica
+- :codigo: JP
+  :nombre: !binary |
+    SmFww7Nu
+
+- :codigo: JO
+  :nombre: Jordania
+- :codigo: KZ
+  :nombre: "Kazajist\xC3\xA1n"
+- :codigo: KE
+  :nombre: Kenia
+- :codigo: KG
+  :nombre: "Kirguizist\xC3\xA1n"
+- :codigo: KI
+  :nombre: Kiribati
+- :codigo: KW
+  :nombre: Kuwait
+- :codigo: LB
+  :nombre: "L\xC3\xADbano"
+- :codigo: LA
+  :nombre: Laos
+- :codigo: LS
+  :nombre: Lesoto
+- :codigo: LV
+  :nombre: Letonia
+- :codigo: LR
+  :nombre: Liberia
+- :codigo: LY
+  :nombre: Libia
+- :codigo: LI
+  :nombre: Liechtenstein
+- :codigo: LT
+  :nombre: Lituania
+- :codigo: LU
+  :nombre: Luxemburgo
+- :codigo: MX
+  :nombre: "M\xC3\xA9xico"
+- :codigo: MC
+  :nombre: "M\xC3\xB3naco"
+- :codigo: MO
+  :nombre: Macao
+- :codigo: MK
+  :nombre: Macedonia
+- :codigo: MG
+  :nombre: Madagascar
+- :codigo: ML
+  :nombre: !binary |
+    TWFsw60=
+
+- :codigo: MY
+  :nombre: Malasia
+- :codigo: MW
+  :nombre: Malaui
+- :codigo: MV
+  :nombre: Maldivas
+- :codigo: MT
+  :nombre: Malta
+- :codigo: MA
+  :nombre: Marruecos
+- :codigo: MQ
+  :nombre: Martinica
+- :codigo: MU
+  :nombre: Mauricio
+- :codigo: MR
+  :nombre: Mauritania
+- :codigo: YT
+  :nombre: Mayotte
+- :codigo: FM
+  :nombre: Micronesia
+- :codigo: MD
+  :nombre: Moldavia
+- :codigo: MN
+  :nombre: Mongolia
+- :codigo: MS
+  :nombre: Montserrat
+- :codigo: MZ
+  :nombre: Mozambique
+- :codigo: NE
+  :nombre: !binary |
+    TsOtZ2Vy
+
+- :codigo: NA
+  :nombre: Namibia
+- :codigo: NR
+  :nombre: Nauru
+- :codigo: NP
+  :nombre: Nepal
+- :codigo: NI
+  :nombre: Nicaragua
+- :codigo: NG
+  :nombre: Nigeria
+- :codigo: NU
+  :nombre: Niue
+- :codigo: "NO"
+  :nombre: Noruega
+- :codigo: NC
+  :nombre: Nueva Caledonia
+- :codigo: NZ
+  :nombre: Nueva Zelanda
+- :codigo: OM
+  :nombre: !binary |
+    T23DoW4=
+
+- :codigo: NL
+  :nombre: "Pa\xC3\xADses Bajos"
+- :codigo: PK
+  :nombre: "Pakist\xC3\xA1n"
+- :codigo: PW
+  :nombre: Palaos
+- :codigo: PA
+  :nombre: "Panam\xC3\xA1"
+- :codigo: PG
+  :nombre: "Pap\xC3\xBAa-Nueva Guinea"
+- :codigo: PY
+  :nombre: Paraguay
+- :codigo: PE
+  :nombre: !binary |
+    UGVyw7o=
+
+- :codigo: PF
+  :nombre: Polinesia Francesa
+- :codigo: PL
+  :nombre: Polonia
+- :codigo: PT
+  :nombre: Portugal
+- :codigo: PR
+  :nombre: Puerto Rico
+- :codigo: QA
+  :nombre: Qatar
+- :codigo: GB
+  :nombre: Reino Unido
+- :codigo: CF
+  :nombre: "Rep\xC3\xBAblica Centroafricana"
+- :codigo: CZ
+  :nombre: "Rep\xC3\xBAblica Checa; Chequia"
+- :codigo: CD
+  :nombre: "Rep\xC3\xBAblica Democr\xC3\xA1tica del Congo"
+- :codigo: DO
+  :nombre: "Rep\xC3\xBAblica Dominicana"
+- :codigo: RE
+  :nombre: "Reuni\xC3\xB3n"
+- :codigo: RW
+  :nombre: Ruanda
+- :codigo: RO
+  :nombre: "Rumania; Ruman\xC3\xADa"
+- :codigo: RU
+  :nombre: Rusia
+- :codigo: EH
+  :nombre: "S\xC3\xA1hara Occidental"
+- :codigo: WS
+  :nombre: Samoa
+- :codigo: AS
+  :nombre: Samoa Americana
+- :codigo: KN
+  :nombre: "San Crist\xC3\xB3bal y Nieves"
+- :codigo: SM
+  :nombre: San Marino
+- :codigo: PM
+  :nombre: "San Pedro y Miquel\xC3\xB3n"
+- :codigo: VC
+  :nombre: San Vicente y las Granadinas
+- :codigo: SH
+  :nombre: Santa Helena
+- :codigo: LC
+  :nombre: "Santa Luc\xC3\xADa"
+- :codigo: ST
+  :nombre: "Santo Tom\xC3\xA9 y Pr\xC3\xADncipe"
+- :codigo: SN
+  :nombre: Senegal
+- :codigo: SC
+  :nombre: Seychelles
+- :codigo: SL
+  :nombre: Sierra Leona
+- :codigo: SG
+  :nombre: Singapur
+- :codigo: SY
+  :nombre: Siria
+- :codigo: SO
+  :nombre: Somalia
+- :codigo: LK
+  :nombre: Sri Lanka
+- :codigo: SZ
+  :nombre: Suazilandia
+- :codigo: ZA
+  :nombre: "Sud\xC3\xA1frica"
+- :codigo: SD
+  :nombre: !binary |
+    U3Vkw6Fu
+
+- :codigo: SE
+  :nombre: Suecia
+- :codigo: CH
+  :nombre: Suiza
+- :codigo: SR
+  :nombre: Surinam
+- :codigo: SJ
+  :nombre: Svalbard y Jan Mayen
+- :codigo: TN
+  :nombre: !binary |
+    VMO6bmV6
+
+- :codigo: TH
+  :nombre: Tailandia
+- :codigo: TW
+  :nombre: "Taiw\xC3\xA1n"
+- :codigo: TZ
+  :nombre: Tanzania
+- :codigo: TJ
+  :nombre: "Tayikist\xC3\xA1n"
+- :codigo: IO
+  :nombre: "Territorio Brit\xC3\xA1nico del Oc\xC3\xA9ano Indico"
+- :codigo: TF
+  :nombre: Territorios Australes Franceses
+- :codigo: TL
+  :nombre: Timor Oriental
+- :codigo: TG
+  :nombre: Togo
+- :codigo: TK
+  :nombre: Tokelau
+- :codigo: TO
+  :nombre: Tonga
+- :codigo: TT
+  :nombre: Trinidad y Tobago
+- :codigo: TM
+  :nombre: "Turkmenist\xC3\xA1n"
+- :codigo: TR
+  :nombre: "Turqu\xC3\xADa"
+- :codigo: TV
+  :nombre: Tuvalu
+- :codigo: UA
+  :nombre: Ucrania
+- :codigo: UG
+  :nombre: Uganda
+- :codigo: UY
+  :nombre: Uruguay
+- :codigo: UZ
+  :nombre: "Uzbekist\xC3\xA1n"
+- :codigo: VU
+  :nombre: Vanuatu
+- :codigo: VE
+  :nombre: Venezuela
+- :codigo: VN
+  :nombre: Vietnam
+- :codigo: WF
+  :nombre: Wallis y Futuna
+- :codigo: YE
+  :nombre: Yemen
+- :codigo: DJ
+  :nombre: Yibuti
+- :codigo: YU
+  :nombre: Yugoslavia
+- :codigo: ZM
+  :nombre: Zambia
+- :codigo: ZW
+  :nombre: Zimbabue

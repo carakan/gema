@@ -1,4 +1,5 @@
 class ImportacionesController < ApplicationController
+  before_filter :authenticate_user!
   # GET /importaciones
   # GET /importaciones.xml
   def index

@@ -1,6 +1,12 @@
 class LoginController < ApplicationController
   def new
     @usuario = Usuario.new
+
+    unless session[:usuario] and session[:usuario][:id]
+      render "new"
+    else
+      render "logged"
+    end
   end
 
   def create

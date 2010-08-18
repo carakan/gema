@@ -1,4 +1,5 @@
 class PaisesController < ApplicationController
+  before_filter :revisar_permiso!
   # GET /paises
   # GET /paises.xml
   def index

@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_filter :revisar_permiso!
 
   # GET /posts
   # GET /posts.xml

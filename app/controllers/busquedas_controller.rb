@@ -1,4 +1,6 @@
 class BusquedasController < ApplicationController
+  before_filter :authenticate_user!
+
   def index
     @busqueda = []
     params[:tipo_busqueda] = 'prev' if params[:tipo_busqueda].nil?
