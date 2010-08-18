@@ -170,5 +170,17 @@
         <text>No</text>
       </controlProperties>
     </control>
+    <control controlID="25" controlTypeID="com.balsamiq.mockups::TextArea" x="280" y="408" w="568" h="90" measuredW="200" measuredH="140" zOrder="25" locked="false" isInGroup="-1">
+      <controlProperties>
+        <bold>false</bold>
+        <text>Nuestro%20cliente%20querido%20nos%20ha%20solicitado%20buscar%20pato%20y%20patito%20por%20que%20tiene%20problemas%20la%20pata</text>
+      </controlProperties>
+    </control>
+    <control controlID="26" controlTypeID="com.balsamiq.mockups::Label" x="280" y="379" w="-1" h="-1" measuredW="74" measuredH="25" zOrder="26" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>5263440</color>
+        <text>Descripci%F3n</text>
+      </controlProperties>
+    </control>
   </controls>
 </mockup>
