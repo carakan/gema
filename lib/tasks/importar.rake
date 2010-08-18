@@ -15,6 +15,7 @@ namespace :gema do
 
       puts "Se ha creado el usuario Admin con #{rol.nombre}"
     end
+
   end
 end
 
