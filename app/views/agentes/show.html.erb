@@ -1,0 +1,36 @@
+<p>
+  <b>Nombre:</b>
+  <%=h @agente.nombre %>
+</p>
+
+<p>
+  <b>Pais:</b>
+  <%=h @agente.pais %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%=h @agente.email %>
+</p>
+<p>
+  <b>Direccion:</b>
+  <%=h @agente.direccion %>
+</p>
+
+<p>
+  <b>Telefono:</b>
+  <%=h @agente.telefono %>
+</p>
+  
+<p>
+  <b>Fax:</b>
+  <%=h @agente.fax %>
+</p>
+
+<p>
+  <b>Pagina web:</b>
+  <%=h @agente.pagina_web %>
+</p>
+
+<%= link_to 'Editar', edit_agente_path(@agente), :class =>'edit' %> |
+<%= link_to 'Lista', agentes_path, :class =>'list' %>
