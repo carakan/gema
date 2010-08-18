@@ -1,6 +1,24 @@
 require 'open-uri'
 require 'forgery'
 
+namespace :gema do
+  namespace :usuarios do
+    desc "Creacion de usuario con privilegios con el plugin rorol"
+    task :admin => :environment do
+      rol = Rol.new(:nombre => 'admin', :descripcion => 'Rol de administrador')
+      Rol.hash_controladores_acciones.each do |cont|
+        cont[:acciones] = cont[:acciones].inject({}) { |h, v| h[v.first] = true ; h }
+        rol.permisos.build(cont)
+      end
+      rol.save!
+      Usuario.create!(:nombre => 'Admin', :login => 'admin', :password => 'demo123', :password_confirmation => 'demo123', :rol_id => rol.id )
+
+      puts "Se ha creado el usuario Admin con #{rol.nombre}"
+    end
+  end
+end
+
+
 namespace :importar do
   desc "Importa todas las clases desde internet"
   task :clases => :environment do
@@ -67,6 +85,8 @@ namespace :db do
     Rake::Task["db:create"].execute
     Rake::Task["db:migrate"].execute
     Rake::Task["db:seed"].execute
+    Rake::Task["db:migrate:rorol"].execute
+    Rake::Task["gema:usuarios:admin"].execute
   end
 end
 
