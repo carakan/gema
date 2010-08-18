@@ -1,0 +1,36 @@
+<p>
+  <b>Nombre:</b>
+  <%=h @titular.nombre %>
+</p>
+
+<p>
+  <b>Pais:</b>
+  <%=h @titular.pais %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%=h @titular.email %>
+</p>
+<p>
+  <b>Direccion:</b>
+  <%=h @titular.direccion %>
+</p>
+
+<p>
+  <b>Telefono:</b>
+  <%=h @titular.telefono %>
+</p>
+  
+<p>
+  <b>Fax:</b>
+  <%=h @titular.fax %>
+</p>
+
+<p>
+  <b>Pagina web:</b>
+  <%=h @titular.pagina_web %>
+</p>
+
+<%= link_to 'Editar', edit_titular_path(@titular), :class =>'edit' %> |
+<%= link_to 'Lista', titulares_path, :class =>'list' %>
