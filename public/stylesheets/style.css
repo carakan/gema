@@ -518,7 +518,7 @@ ul.menu li:hover ul {
 }
 .b { font-weight: bold; }
 .ajax-modal { background-color: #ffffff !important; }
-.marked { background-color: #d5e1f1; }
+.marked { background-color: #d5e1f1 !important; }
 .hide { display: none; }
 .hide-field input { display: none; }
 .hide-field text-area { display: none; }
@@ -570,4 +570,12 @@ img.mini { cursor: pointer; }
 .pad-right-img {
   background-position: right top;
   padding-right: 24px;
+}
+a.asc {
+  padding-right: 20px;
+  background: url("../images/icons/bullet_arrow_up.png") no-repeat scroll right center transparent;
+}
+a.desc {
+  padding-right: 20px;
+  background: url("../images/icons/bullet_arrow_down.png") no-repeat scroll right center transparent;
 }
