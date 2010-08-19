@@ -35,19 +35,19 @@
   <% end %>
 
  <%= f.input :clase, :tabindex => 5 %>
-  <%= f.input :productos, :label=>"Descripción productos/servicios", :as => :text,:input_html => { :size => 1024 }, :tabindex => 7 %>
+  <%= f.input :productos, :label=>"Descripción productos/servicios", :as => :text, :input_html => { :rows => 10, :cols => 115 }, :tabindex => 7 %>
 
   <div class="in_half">
   <ol>  
   <li id="agente-auto" class="input-text">
     <label for="agente_ids">Agentes</label>
-    <%= link_to 'Nuevo agente', new_agente_path, :class => 'new' %>
     <ul id="ul-agentes" style="display:none"> 
       <% @marca.agentes.each do |a| %>
         <li rel="<%= a.id %>"><%= a.nombre %></li>
       <% end %>
     </ul> 
     <input type="text" value="" id="agente_ids" tabindex="8"/>
+    <%= link_to 'Nuevo agente', new_agente_path, :class => 'ajax' %>
     <div id="agentes-list" class="facebook-auto"> 
       <div class="default">Escriba el nombre de un agente</div>  
       <ul class="feed">
@@ -59,13 +59,13 @@
 <ol>  
   <li id="titular-auto" class="input-text"> 
     <label for="titular_ids">Titulares</label>
-    <%= link_to 'Nuevo titular', new_titular_path, :class => 'new' %> 
     <ul id="ul-titulares" style="display:none"> 
       <% @marca.titulares.each do |t| %>
         <li rel="<%= t.id %>"><%= t.nombre %></li>
       <% end %>
     </ul> 
     <input type="text" value="" id="titular_ids" tabindex="9" /> 
+    <%= link_to 'Nuevo titular', new_titular_path, :class => 'ajax' %> 
     <div id="titulares-list" class="facebook-auto"> 
       <div class="default">Escriba el nombre de un titular</div>  
       <ul class="feed">
