@@ -77,7 +77,11 @@
   <%= f.input :representante_empresarial, :tabindex => 12 %>
   <%= f.input :fecha_instruccion , :as => 'string', :input_html => { :class => 'date' } %>
   <%= f.input :numero_solicitud , :tabindex => 13  %>
-  <%= f.input :estado_fecha, :label => 'Fecha solicitud',:as => :string, :input_html => {:tabindex => 14, :class => 'date' } %>
+  <%# f.input :estado_fecha, :label => 'Fecha solicitud',:as => :string, :input_html => {:tabindex => 14, :class => 'date' } %>
+  <li class="date">
+    <%= f.label :numero_solicitud, "Fecha hora solicitud" %>
+    <%= f.datetime_select :numero_solicitud %>
+  </li>
 
   <%= f.input :numero_publicacion,:label => 'Número de publicación' , :tabindex => 15  %>
   <%= f.input :fecha_publicacion, :as => 'string', :input_html => {:tabindex => 16, :class => 'date' } %>

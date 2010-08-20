@@ -54,10 +54,10 @@ module ApplicationHelper
   end
 
 
-  def listado_facebook(klass, caption, options = {})
+  def listado_facebook(klass, caption)
   end
 
-  def sort_order(title, field)
+  def sort_order(title, field, options = {})
     direction = 'ASC'
     css = ''
     if params[:order] == field
