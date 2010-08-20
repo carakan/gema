@@ -1,23 +1,64 @@
 require 'open-uri'
 require 'forgery'
 
-namespace :importar do
-  desc "Importa todas las clases desde internet"
-  task :clases => :environment do
-    n = Nokogiri::HTML( open('http://www.marcasenelmundo.com.ar/clasificacion%20de%20niza.htm') )
-    clases = []
-    n.css('h1').each{ |h1| clases << h1 if h1.text =~ /Clase/ }
-    clases.each do |clase|
-      c = Clase.new(:nombre => clase.text, :codigo => clase.text.gsub(/[^0-9]/,'').to_i )
-      c.descripcion = clase.next_element.text.gsub(/^[^a-zñÑáéíóú09\s(),"\n\r]+$/i, '').squish
-      if c.save
-        puts "Se importo #{c.nombre}, #{c.codigo}"
-      else
-        puts "Error al importar #{c.nombre}, #{c.codigo}"
+namespace :gema do
+  namespace :usuarios do
+    desc "Creacion de usuario con privilegios con el plugin rorol"
+    task :admin => :environment do
+      rol = Rol.new(:nombre => 'admin', :descripcion => 'Rol de administrador')
+      Rol.hash_controladores_acciones.each do |cont|
+        cont[:acciones] = cont[:acciones].inject({}) { |h, v| h[v.first] = true ; h }
+        rol.permisos.build(cont)
       end
+      rol.save!
+      Usuario.create!(:nombre => 'Admin', :login => 'admin', :password => 'demo123', :password_confirmation => 'demo123', :rol_id => rol.id )
+
+      puts "Se ha creado el usuario Admin con #{rol.nombre}"
     end
   end
 
+
+  namespace :importar do
+    desc 'Importa los paises desde internet y los guarda en un archivo yaml'
+    task :paises => :environment do
+      require 'open-uri'
+      arr = []
+      n = Nokogiri::HTML(open ('http://www.foreignword.com/countries/Spanish.htm') )
+      n.css('table[bgcolor="#ffffff"] tr').each_with_index do |tr, i|
+        if i > 0
+          td = tr.css('td').map { |td| td.text.gsub(/\r\n/, '').strip }
+          arr << { :nombre => td[1], :codigo => td[0] }
+        end
+      end
+
+      f = File.new(File.join(Rails.root, 'db/paises.yml'), 'w+' )
+      puts arr.to_yaml
+      f.write(arr.to_yaml)
+      f.close
+    end
+
+    desc "Importa todas las clases desde internet"
+    task :clases => :environment do
+      n = Nokogiri::HTML( open('http://www.marcasenelmundo.com.ar/clasificacion%20de%20niza.htm') )
+      clases = []
+      n.css('h1').each{ |h1| clases << h1 if h1.text =~ /Clase/ }
+      clases.each do |clase|
+        c = Clase.new(:nombre => clase.text, :codigo => clase.text.gsub(/[^0-9]/,'').to_i )
+        c.descripcion = clase.next_element.text.gsub(/^[^a-zñÑáéíóú09\s(),"\n\r]+$/i, '').squish
+        if c.save
+          puts "Se importo #{c.nombre}, #{c.codigo}"
+        else
+          puts "Error al importar #{c.nombre}, #{c.codigo}"
+        end
+      end
+    end
+
+  end
+
+end
+
+
+namespace :importar do
   desc 'Descarga de http://www.senapi.gob.bo/ los archivos de publicacion'
   task :descargar_publicaciones do
     require 'mechanize'
@@ -37,27 +78,6 @@ namespace :importar do
     end
   end
 
-  desc 'Importa los paises desde internet y los guarda en un archivo yaml'
-  task :paises => :environment do
-    require 'open-uri'
-    n = Nokogiri::HTML(open('http://www.iso.org/iso/english_country_names_and_code_elements'))
-    arr =[]
-    n.css('table tr').each_with_index do |tr, ind|
-      if ind > 0
-        td = tr.css('td')
-        if td.children.last.text.strip =~ /^[a-z].*/i
-          arr << { :nombre => td.children.first.text.strip, 
-            :codigo => td.children.last.text.strip }
-        end
-      end
-    end
-
-    f = File.new(File.join(Rails.root, 'db/paises.yml'), 'w+' )
-    puts arr.to_yaml
-    f.write(arr.to_yaml)
-    f.close
-  end
-
 end
 
 namespace :db do
@@ -67,6 +87,8 @@ namespace :db do
     Rake::Task["db:create"].execute
     Rake::Task["db:migrate"].execute
     Rake::Task["db:seed"].execute
+    Rake::Task["db:migrate:rorol"].execute
+    Rake::Task["gema:usuarios:admin"].execute
   end
 end
 

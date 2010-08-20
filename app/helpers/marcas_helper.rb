@@ -22,6 +22,10 @@ module MarcasHelper
     case true
       #when ( val.is_a?(Date) or val.is_a?(DateTime) or val.is_a?(Time) )
       #  txt << lo val
+      when [Date, Time, DateTime].include?( val.class )
+        fecha val
+      when [true, false].include?( val )
+        valido_img(val)
       when campo.to_s == 'archivo_adjunto'
         "<img src=\"#{val}\" class=\"mini\" />"
       else

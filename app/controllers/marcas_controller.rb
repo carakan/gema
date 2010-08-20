@@ -1,5 +1,5 @@
 class MarcasController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :revisar_permiso!
   before_filter :add_params_agentes_titulares
 
   def index
@@ -23,8 +23,9 @@ class MarcasController < ApplicationController
 
   def new
     @tipo = params[:tipo]
-    @tipo_marca = params[:tipo_marca]
-    @marca = Marca.new(:estado_fecha => Date.today, :tipo_signo_id => TipoSigno.find_by_sigla(params[:tipo]).id, :tipo_marca_id => TipoMarca.find_by_sigla(params[:tipo_marca]).id)
+    @a = params[:a]
+#    @tipo_marca = params[:tipo_marca]
+    @marca = Marca.new(:estado_fecha => Date.today, :tipo_signo_id => TipoSigno.find_by_sigla(params[:tipo]).id)#, :tipo_marca_id => TipoMarca.find_by_sigla(params[:tipo_marca]).id)
   end
 
   def edit

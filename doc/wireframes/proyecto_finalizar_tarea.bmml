@@ -1,4 +1,4 @@
-<mockup version="1.0" skin="sketch" measuredW="1294" measuredH="861" mockupW="1256" mockupH="851">
+<mockup version="1.0" skin="sketch" measuredW="1574" measuredH="861" mockupW="1422" mockupH="851">
   <controls>
     <control controlID="0" controlTypeID="com.balsamiq.mockups::Canvas" x="245" y="110" w="743" h="26" measuredW="100" measuredH="70" zOrder="2" locked="false" isInGroup="-1">
       <controlProperties>
@@ -16,7 +16,7 @@
       <controlProperties>
         <color>15658734</color>
         <href>cliente_menu%26bm%3Bcliente_menu.bmml%26bm%3Bcliente_menu.bmml%26bm%3Bcliente_menu.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22225%2C110%2C282%2C136%22%20href%3D%22cliente_menu.bmml%22%20alt%3D%22cliente_menu%22%20id%3D%222%22/%3E</map>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22111%2C110%2C168%2C136%22%20href%3D%22cliente_menu.bmml%22%20alt%3D%22cliente_menu%22%20id%3D%222%22/%3E</map>
         <size>14</size>
         <text>Clientes</text>
       </controlProperties>
@@ -25,7 +25,7 @@
       <controlProperties>
         <color>15658734</color>
         <href>marcas_menu%26bm%3Bmarcas_menu.bmml%26bm%3Bmarcas_menu.bmml%26bm%3Bmarcas_menu.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22294%2C110%2C348%2C136%22%20href%3D%22marcas_menu.bmml%22%20alt%3D%22marcas_menu%22%20id%3D%223%22/%3E</map>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22180%2C110%2C234%2C136%22%20href%3D%22marcas_menu.bmml%22%20alt%3D%22marcas_menu%22%20id%3D%223%22/%3E</map>
         <size>14</size>
         <text>Marcas</text>
       </controlProperties>
@@ -34,7 +34,7 @@
       <controlProperties>
         <color>15658734</color>
         <href>importaciones_listado%26bm%3Bimportaciones_listado.bmml%26bm%3Bimportaciones_listado.bmml%26bm%3Bimportaciones_listado.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22363%2C110%2C465%2C136%22%20href%3D%22importaciones_listado.bmml%22%20alt%3D%22importaciones_listado%22%20id%3D%224%22/%3E</map>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22249%2C110%2C351%2C136%22%20href%3D%22importaciones_listado.bmml%22%20alt%3D%22importaciones_listado%22%20id%3D%224%22/%3E</map>
         <size>14</size>
         <text>Importaciones</text>
       </controlProperties>
@@ -43,7 +43,7 @@
       <controlProperties>
         <color>15658734</color>
         <href>busquedas_menu%26bm%3Bbusquedas_menu.bmml%26bm%3Bbusquedas_menu.bmml%26bm%3Bbusquedas_menu.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22480%2C110%2C553%2C136%22%20href%3D%22busquedas_menu.bmml%22%20alt%3D%22busquedas_menu%22%20id%3D%225%22/%3E</map>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22366%2C110%2C439%2C136%22%20href%3D%22busquedas_menu.bmml%22%20alt%3D%22busquedas_menu%22%20id%3D%225%22/%3E</map>
         <size>14</size>
         <text>Busquedas</text>
       </controlProperties>
@@ -52,7 +52,7 @@
       <controlProperties>
         <color>15658734</color>
         <href>reportes_menu%26bm%3Breportes_menu.bmml%26bm%3Breportes_menu.bmml%26bm%3Breportes_menu.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22718%2C110%2C783%2C136%22%20href%3D%22reportes_menu.bmml%22%20alt%3D%22reportes_menu%22%20id%3D%226%22/%3E</map>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22604%2C110%2C669%2C136%22%20href%3D%22reportes_menu.bmml%22%20alt%3D%22reportes_menu%22%20id%3D%226%22/%3E</map>
         <size>14</size>
         <text>Reportes</text>
       </controlProperties>
@@ -61,7 +61,7 @@
       <controlProperties>
         <color>15658734</color>
         <href>datos_generales_menu%26bm%3Bdatos_generales_menu.bmml%26bm%3Bdatos_generales_menu.bmml%26bm%3Bdatos_generales_menu.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22573%2C110%2C688%2C136%22%20href%3D%22datos_generales_menu.bmml%22%20alt%3D%22datos_generales_menu%22%20id%3D%227%22/%3E</map>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22459%2C110%2C574%2C136%22%20href%3D%22datos_generales_menu.bmml%22%20alt%3D%22datos_generales_menu%22%20id%3D%227%22/%3E</map>
         <size>14</size>
         <text>Datos%20Generales</text>
       </controlProperties>
@@ -141,7 +141,7 @@
     <control controlID="29" controlTypeID="__group__" x="280" y="413" w="-1" h="-1" measuredW="124" measuredH="25" zOrder="19" locked="false" isInGroup="-1">
       <controlProperties>
         <href>proyecto_nueva_tarea%26bm%3Bproyecto_nueva_tarea.bmml%26bm%3Bproyecto_nueva_tarea.bmml%26bm%3Bproyecto_nueva_tarea.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22252%2C413%2C376%2C438%22%20href%3D%22proyecto_nueva_tarea.bmml%22%20alt%3D%22proyecto_nueva_tarea%22%20id%3D%2229%22/%3E</map>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22138%2C413%2C262%2C438%22%20href%3D%22proyecto_nueva_tarea.bmml%22%20alt%3D%22proyecto_nueva_tarea%22%20id%3D%2229%22/%3E</map>
       </controlProperties>
       <groupChildrenDescriptors>
         <control controlID="0" controlTypeID="com.balsamiq.mockups::Link" x="20" y="0" w="-1" h="-1" measuredW="104" measuredH="25" zOrder="0" locked="false" isInGroup="29">
@@ -156,41 +156,30 @@
         </control>
       </groupChildrenDescriptors>
     </control>
-    <control controlID="32" controlTypeID="com.balsamiq.mockups::StickyNote" x="985" y="173" w="221" h="105" measuredW="109" measuredH="123" zOrder="21" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>Las%20tareas%20que%20no%20se%20cobran%20tendran%20otro%20icono</text>
-      </controlProperties>
-    </control>
-    <control controlID="33" controlTypeID="com.balsamiq.mockups::Image" x="642" y="182" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="22" locked="false" isInGroup="-1">
+    <control controlID="33" controlTypeID="com.balsamiq.mockups::Image" x="642" y="182" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="21" locked="false" isInGroup="-1">
       <controlProperties>
         <src>./assets/money_dollar.png</src>
       </controlProperties>
     </control>
-    <control controlID="34" controlTypeID="com.balsamiq.mockups::Image" x="1124" y="225" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="23" locked="false" isInGroup="-1">
+    <control controlID="35" controlTypeID="com.balsamiq.mockups::DataGrid" x="280" y="636" w="313" h="156" measuredW="187" measuredH="138" zOrder="22" locked="false" isInGroup="-1">
       <controlProperties>
-        <src>./assets/close_icon.gif</src>
-      </controlProperties>
-    </control>
-    <control controlID="35" controlTypeID="com.balsamiq.mockups::DataGrid" x="280" y="636" w="313" h="156" measuredW="177" measuredH="72" zOrder="24" locked="false" isInGroup="-1">
-      <controlProperties>
-        <alternateRowColor>16777215</alternateRowColor>
         <bold>false</bold>
         <borderStyle>none</borderStyle>
         <hasHeader>false</hasHeader>
         <rowHeight>66</rowHeight>
         <selectedIndex>-1</selectedIndex>
-        <text>%5BBusqueda%20preventiva%20pato%5D%20%5Cr%20Juan%20Gomez%20*%5C*%5C*%5C*%5C**%20_2%20hrs._</text>
+        <text>%5BBusqueda%20preventiva%20pato%5D%20%5Cr%20Juan%20Gomez%20*%5C*%5C*%5C*%5C**%20_2%20hrs._%0A%5BBusqueda%20preventiva%20patito%5D%20%5Cr%20Ana%20Garcia%20*%5C*%5C*%5C**%20_3%20hrs._</text>
         <vLines>false</vLines>
       </controlProperties>
     </control>
-    <control controlID="36" controlTypeID="com.balsamiq.mockups::Label" x="645" y="595" w="-1" h="-1" measuredW="184" measuredH="34" zOrder="25" locked="false" isInGroup="-1">
+    <control controlID="36" controlTypeID="com.balsamiq.mockups::Label" x="645" y="595" w="-1" h="-1" measuredW="184" measuredH="34" zOrder="23" locked="false" isInGroup="-1">
       <controlProperties>
         <color>5263440</color>
         <size>20</size>
         <text>Tareas%20terminadas</text>
       </controlProperties>
     </control>
-    <control controlID="39" controlTypeID="com.balsamiq.mockups::DataGrid" x="647" y="633" w="313" h="163" measuredW="199" measuredH="142" zOrder="26" locked="false" isInGroup="-1">
+    <control controlID="39" controlTypeID="com.balsamiq.mockups::DataGrid" x="647" y="633" w="313" h="163" measuredW="199" measuredH="142" zOrder="24" locked="false" isInGroup="-1">
       <controlProperties>
         <bold>false</bold>
         <borderStyle>none</borderStyle>
@@ -201,7 +190,7 @@
         <vLines>false</vLines>
       </controlProperties>
     </control>
-    <control controlID="43" controlTypeID="__group__" x="864" y="645" w="-1" h="-1" measuredW="110" measuredH="49" zOrder="27" locked="false" isInGroup="-1">
+    <control controlID="43" controlTypeID="__group__" x="864" y="645" w="-1" h="-1" measuredW="110" measuredH="49" zOrder="25" locked="false" isInGroup="-1">
       <groupChildrenDescriptors>
         <control controlID="0" controlTypeID="com.balsamiq.mockups::List" x="10" y="0" w="100" h="49" measuredW="100" measuredH="126" zOrder="0" locked="false" isInGroup="43">
           <controlProperties>
@@ -222,15 +211,15 @@
         </control>
       </groupChildrenDescriptors>
     </control>
-    <control controlID="44" controlTypeID="com.balsamiq.mockups::Icon" x="651" y="720" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="28" locked="false" isInGroup="-1">
+    <control controlID="44" controlTypeID="com.balsamiq.mockups::Icon" x="651" y="720" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="26" locked="false" isInGroup="-1">
       <controlProperties>
         <color>40463</color>
         <href>proyecto_tarea_hija%26bm%3Bproyecto_tarea_hija.bmml%26bm%3Bproyecto_tarea_hija.bmml%26bm%3Bproyecto_tarea_hija.bmml</href>
         <icon>DownTriangleIcon%7Cxsmall</icon>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22623%2C720%2C639%2C736%22%20href%3D%22proyecto_tarea_hija.bmml%22%20alt%3D%22proyecto_tarea_hija%22%20id%3D%2244%22/%3E</map>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22509%2C720%2C525%2C736%22%20href%3D%22proyecto_tarea_hija.bmml%22%20alt%3D%22proyecto_tarea_hija%22%20id%3D%2244%22/%3E</map>
       </controlProperties>
     </control>
-    <control controlID="45" controlTypeID="__group__" x="864" y="716" w="106" h="48" measuredW="106" measuredH="48" zOrder="29" locked="false" isInGroup="-1">
+    <control controlID="45" controlTypeID="__group__" x="864" y="716" w="106" h="48" measuredW="106" measuredH="48" zOrder="27" locked="false" isInGroup="-1">
       <groupChildrenDescriptors>
         <control controlID="0" controlTypeID="com.balsamiq.mockups::List" x="6" y="0" w="100" h="48" measuredW="100" measuredH="126" zOrder="0" locked="false" isInGroup="45">
           <controlProperties>
@@ -251,17 +240,7 @@
         </control>
       </groupChildrenDescriptors>
     </control>
-    <control controlID="46" controlTypeID="com.balsamiq.mockups::StickyNote" x="988" y="471" w="289" h="151" measuredW="109" measuredH="123" zOrder="30" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>En%20caso%20de%20que%20la%20tarea%20haya%20sido%20aprobada%2C%20pero%20se%20desea%20modificar%2C%20se%20hace%20click%20sobre%20rechazar%20y%20esta%20vuelve%20al%20estado%20de%20aprobar%2C%20rechazar%20original</text>
-      </controlProperties>
-    </control>
-    <control controlID="47" controlTypeID="com.balsamiq.mockups::StickyNote" x="995" y="365" w="289" h="101" measuredW="109" measuredH="123" zOrder="31" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>Reasignar%20significa%20que%20una%20tarea%20terminada%20es%20asignada%20a%20otro%20proyecto</text>
-      </controlProperties>
-    </control>
-    <control controlID="48" controlTypeID="__group__" x="483" y="647" w="-1" h="-1" measuredW="110" measuredH="49" zOrder="32" locked="false" isInGroup="-1">
+    <control controlID="48" controlTypeID="__group__" x="483" y="633" w="-1" h="-1" measuredW="110" measuredH="49" zOrder="28" locked="false" isInGroup="-1">
       <groupChildrenDescriptors>
         <control controlID="0" controlTypeID="com.balsamiq.mockups::List" x="10" y="0" w="100" h="49" measuredW="100" measuredH="126" zOrder="0" locked="false" isInGroup="48">
           <controlProperties>
@@ -282,40 +261,35 @@
         </control>
       </groupChildrenDescriptors>
     </control>
-    <control controlID="49" controlTypeID="__group__" x="483" y="725" w="67" h="48" measuredW="66" measuredH="48" zOrder="34" locked="false" isInGroup="-1">
+    <control controlID="49" controlTypeID="__group__" x="483" y="716" w="-1" h="-1" measuredW="110" measuredH="49" zOrder="29" locked="false" isInGroup="-1">
       <groupChildrenDescriptors>
-        <control controlID="1" controlTypeID="com.balsamiq.mockups::Image" x="0" y="3" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="0" locked="false" isInGroup="49">
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::List" x="10" y="0" w="100" h="49" measuredW="100" measuredH="126" zOrder="0" locked="false" isInGroup="49">
+          <controlProperties>
+            <bold>false</bold>
+            <borderStyle>none</borderStyle>
+            <text>%5Beditar%5D%0A%5Bborrar%5D</text>
+          </controlProperties>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::Image" x="0" y="4" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="1" locked="false" isInGroup="49">
           <controlProperties>
             <src>./assets/pencil.png</src>
           </controlProperties>
         </control>
-        <control controlID="2" controlTypeID="com.balsamiq.mockups::Image" x="2" y="25" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="1" locked="false" isInGroup="49">
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::Image" x="2" y="26" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="2" locked="false" isInGroup="49">
           <controlProperties>
             <src>./assets/delete.png</src>
           </controlProperties>
         </control>
-        <control controlID="3" controlTypeID="com.balsamiq.mockups::Link" x="23" y="0" w="-1" h="-1" measuredW="42" measuredH="25" zOrder="2" locked="false" isInGroup="49">
-          <controlProperties>
-            <bold>false</bold>
-            <text>editar</text>
-          </controlProperties>
-        </control>
-        <control controlID="4" controlTypeID="com.balsamiq.mockups::Link" x="23" y="23" w="-1" h="-1" measuredW="43" measuredH="25" zOrder="3" locked="false" isInGroup="49">
-          <controlProperties>
-            <bold>false</bold>
-            <text>borrar</text>
-          </controlProperties>
-        </control>
       </groupChildrenDescriptors>
     </control>
-    <control controlID="50" controlTypeID="com.balsamiq.mockups::Label" x="280" y="452" w="-1" h="-1" measuredW="217" measuredH="34" zOrder="35" locked="false" isInGroup="-1">
+    <control controlID="50" controlTypeID="com.balsamiq.mockups::Label" x="280" y="452" w="-1" h="-1" measuredW="217" measuredH="34" zOrder="30" locked="false" isInGroup="-1">
       <controlProperties>
         <color>5263440</color>
         <size>20</size>
         <text>Mis%20tareas%20pendientes</text>
       </controlProperties>
     </control>
-    <control controlID="51" controlTypeID="com.balsamiq.mockups::DataGrid" x="280" y="489" w="669" h="84" measuredW="561" measuredH="88" zOrder="36" locked="false" isInGroup="-1">
+    <control controlID="51" controlTypeID="com.balsamiq.mockups::DataGrid" x="280" y="489" w="669" h="84" measuredW="561" measuredH="88" zOrder="31" locked="false" isInGroup="-1">
       <controlProperties>
         <bold>false</bold>
         <borderStyle>none</borderStyle>
@@ -323,11 +297,21 @@
         <vLines>false</vLines>
       </controlProperties>
     </control>
-    <control controlID="57" controlTypeID="__group__" x="850" y="516" w="-1" h="-1" measuredW="74" measuredH="25" zOrder="37" locked="false" isInGroup="-1">
-      <controlProperties>
-        <href>proyecto_finalizar_tarea%26bm%3Bproyecto_finalizar_tarea.bmml%26bm%3Bproyecto_finalizar_tarea.bmml%26bm%3Bproyecto_finalizar_tarea.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22822%2C516%2C896%2C541%22%20href%3D%22proyecto_finalizar_tarea.bmml%22%20alt%3D%22proyecto_finalizar_tarea%22%20id%3D%2257%22/%3E</map>
-      </controlProperties>
+    <control controlID="56" controlTypeID="__group__" x="850" y="545" w="-1" h="-1" measuredW="74" measuredH="25" zOrder="32" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::Link" x="16" y="0" w="-1" h="-1" measuredW="58" measuredH="25" zOrder="0" locked="false" isInGroup="56">
+          <controlProperties>
+            <text>finalizar</text>
+          </controlProperties>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::Image" x="0" y="5" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="1" locked="false" isInGroup="56">
+          <controlProperties>
+            <src>./assets/accept.png</src>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
+    </control>
+    <control controlID="57" controlTypeID="__group__" x="850" y="516" w="-1" h="-1" measuredW="74" measuredH="25" zOrder="33" locked="false" isInGroup="-1">
       <groupChildrenDescriptors>
         <control controlID="0" controlTypeID="com.balsamiq.mockups::Link" x="16" y="0" w="-1" h="-1" measuredW="58" measuredH="25" zOrder="0" locked="false" isInGroup="57">
           <controlProperties>
@@ -341,59 +325,62 @@
         </control>
       </groupChildrenDescriptors>
     </control>
-    <control controlID="58" controlTypeID="com.balsamiq.mockups::StickyNote" x="32" y="344" w="210" h="146" measuredW="109" measuredH="123" zOrder="38" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>Dependiendo%20del%20nivel%20podran%20asignar%20tareas%20a%20subordinados%20o%20se%20podran%20autoasignar</text>
-      </controlProperties>
-    </control>
-    <control controlID="59" controlTypeID="com.balsamiq.mockups::Paragraph" x="280" y="360" w="593" h="68" measuredW="200" measuredH="140" zOrder="39" locked="false" isInGroup="-1">
+    <control controlID="59" controlTypeID="com.balsamiq.mockups::Paragraph" x="280" y="360" w="593" h="68" measuredW="200" measuredH="140" zOrder="34" locked="false" isInGroup="-1">
       <controlProperties>
         <bold>false</bold>
         <text>Nuestro%20cliente%20querido%20nos%20ha%20solicitado%20buscar%20pato%20y%20patito%20por%20que%20tiene%20problemas%20la%20pata</text>
       </controlProperties>
     </control>
-    <control controlID="60" controlTypeID="com.balsamiq.mockups::Label" x="280" y="336" w="-1" h="-1" measuredW="74" measuredH="25" zOrder="40" locked="false" isInGroup="-1">
+    <control controlID="60" controlTypeID="com.balsamiq.mockups::Label" x="280" y="336" w="-1" h="-1" measuredW="74" measuredH="25" zOrder="35" locked="false" isInGroup="-1">
       <controlProperties>
         <color>5263440</color>
         <text>Descripci%F3n</text>
       </controlProperties>
     </control>
-    <control controlID="61" controlTypeID="__group__" x="850" y="544" w="-1" h="-1" measuredW="72" measuredH="25" zOrder="41" locked="false" isInGroup="-1">
-      <controlProperties>
-        <href>proyecto_finalizar_tarea%26bm%3Bproyecto_finalizar_tarea.bmml%26bm%3Bproyecto_finalizar_tarea.bmml%26bm%3Bproyecto_finalizar_tarea.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22822%2C544%2C894%2C569%22%20href%3D%22proyecto_finalizar_tarea.bmml%22%20alt%3D%22proyecto_finalizar_tarea%22%20id%3D%2261%22/%3E</map>
-      </controlProperties>
+    <control controlID="61" controlTypeID="__group__" x="1083" y="273" w="481" h="515" measuredW="481" measuredH="515" zOrder="36" locked="false" isInGroup="-1">
       <groupChildrenDescriptors>
-        <control controlID="0" controlTypeID="com.balsamiq.mockups::Link" x="16" y="0" w="-1" h="-1" measuredW="56" measuredH="25" zOrder="0" locked="false" isInGroup="61">
+        <control controlID="0" controlTypeID="__group__" x="0" y="0" w="481" h="494" measuredW="481" measuredH="494" zOrder="0" locked="false" isInGroup="61">
+          <groupChildrenDescriptors>
+            <control controlID="0" controlTypeID="com.balsamiq.mockups::Canvas" x="0" y="0" w="481" h="494" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="0"/>
+            <control controlID="1" controlTypeID="com.balsamiq.mockups::Title" x="15" y="43" w="314" h="-1" measuredW="224" measuredH="32" zOrder="1" locked="false" isInGroup="0">
+              <controlProperties>
+                <align>left</align>
+                <color>4144959</color>
+                <size>18</size>
+                <text>Completar%20datos%20marca%20x</text>
+              </controlProperties>
+            </control>
+            <control controlID="2" controlTypeID="com.balsamiq.mockups::Title" x="9" y="8" w="222" h="-1" measuredW="195" measuredH="40" zOrder="2" locked="false" isInGroup="0">
+              <controlProperties>
+                <align>left</align>
+                <size>24</size>
+                <text>Tarea%20finalizada</text>
+              </controlProperties>
+            </control>
+          </groupChildrenDescriptors>
+        </control>
+        <control controlID="11" controlTypeID="com.balsamiq.mockups::PointyButton" x="174" y="487" w="-1" h="-1" measuredW="60" measuredH="28" zOrder="1" locked="false" isInGroup="61">
           <controlProperties>
-            <text>reiniciar</text>
+            <color>4555150</color>
+            <direction>center</direction>
+            <href>proyecto_show%26bm%3Bproyecto_show.bmml%26bm%3Bproyecto_show.bmml%26bm%3Bproyecto_show.bmml</href>
+            <map>%3Carea%20shape%3D%22rect%22%20coords%3D%221115%2C760%2C1175%2C788%22%20href%3D%22proyecto_show.bmml%22%20alt%3D%22proyecto_show%22%20id%3D%2211%22/%3E</map>
+            <text>Salvar</text>
           </controlProperties>
         </control>
-        <control controlID="1" controlTypeID="com.balsamiq.mockups::Image" x="0" y="5" w="-1" h="-1" measuredW="16" measuredH="16" zOrder="1" locked="false" isInGroup="61">
+        <control controlID="19" controlTypeID="com.balsamiq.mockups::Label" x="19" y="81" w="-1" h="-1" measuredW="61" measuredH="25" zOrder="2" locked="false" isInGroup="61">
           <controlProperties>
-            <src>./assets/accept.png</src>
+            <color>5263440</color>
+            <text>Comentar</text>
+          </controlProperties>
+        </control>
+        <control controlID="20" controlTypeID="com.balsamiq.mockups::TextArea" x="19" y="111" w="420" h="94" measuredW="200" measuredH="140" zOrder="3" locked="false" isInGroup="61">
+          <controlProperties>
+            <bold>false</bold>
+            <text>Realizar%20la%20busqueda%20preventiva%20de%20patitos%2C%20en%20clases%202%2C%203%20y%205</text>
           </controlProperties>
         </control>
       </groupChildrenDescriptors>
-    </control>
-    <control controlID="65" controlTypeID="com.balsamiq.mockups::Paragraph" x="286" y="730" w="200" h="53" measuredW="200" measuredH="140" zOrder="42" locked="false" isInGroup="-1">
-      <controlProperties>
-        <bold>false</bold>
-        <color>0</color>
-        <text>%5BBusqueda%20preventiva%20patito%5D%0AAna%20Garcia%20*%5C*%5C*%5C**%20_3%20hrs._</text>
-      </controlProperties>
-    </control>
-    <control controlID="66" controlTypeID="com.balsamiq.mockups::Canvas" x="278" y="718" w="274" h="70" measuredW="100" measuredH="70" zOrder="33" locked="false" isInGroup="-1">
-      <controlProperties>
-        <backgroundAlpha>0.5</backgroundAlpha>
-        <borderStyle>none</borderStyle>
-        <color>16776960</color>
-      </controlProperties>
-    </control>
-    <control controlID="67" controlTypeID="com.balsamiq.mockups::StickyNote" x="28" y="667" w="210" h="146" measuredW="109" measuredH="123" zOrder="43" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>Las%20tareas%20marcadas%20con%20amarillo%20han%20sido%20reasignadas%2C%20tal%20ves%20por%20que%20fueron%20rechazadas</text>
-      </controlProperties>
     </control>
   </controls>
 </mockup>

@@ -1,4 +1,5 @@
 class RepresentantesController < ApplicationController
+  before_filter :revisar_permiso!
   # GET /representantes
   # GET /representantes.xml
   def index

@@ -1,8 +1,5 @@
-# encoding: utf-8
-# Filters added to this controller apply to all controllers in the application.
-# Likewise, all the methods added will be available for all controllers.
-
 class ApplicationController < ActionController::Base
+  include Rorol::Controllers::Helpers
 
   before_filter :set_page
   before_filter :set_user_session, :if => :user_signed_in?
@@ -26,6 +23,7 @@ protected
     return false if session[:usuario].nil? or session[:usuario][:id].nil?
     not session[:usuario][:id].nil?
   end
+  helper_method :user_signed_in?
 
   # Ordena los parametros que son usados en orden eliminando los inecesarios
   def order_query_params(extra = {})
@@ -47,7 +45,6 @@ protected
     h.keys.map(&:to_sym).zip(h.values).inject({}) { |h, v| h[v.first] = v.last; h }
   end
   
-  helper_method :user_signed_in?
 
   # Si es AJAX presenta OK, sino redirecciona
   def redirect_ajax(klass, notice)

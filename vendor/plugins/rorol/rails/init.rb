@@ -1,1 +1,1 @@
-#require 'rorol'
+require 'rorol'

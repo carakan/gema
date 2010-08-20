@@ -30,10 +30,14 @@ module ApplicationHelper
   end
   alias verdad valido
 
+  def valido_img(val)
+    "<span class='#{val} pad-right-img'>#{valido val}</span>"
+  end
+
   # localiza la fecha
   def fecha(fec, format = :short)
-    if format == :short
-      format = ''
+    if :short == format
+      format = '%d %b %Y'
     else
       format = '%d %B de %Y a hrs. %H:%I'
     end
@@ -41,7 +45,7 @@ module ApplicationHelper
   end
 
   def fecha_hora(fec, format = :short)
-    if format == :short
+    if :short == format
       format = '%d %b %Y  %H:%I'
     else
       format = '%d %B de %Y a hrs. %H:%I'

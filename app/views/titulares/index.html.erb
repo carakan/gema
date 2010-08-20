@@ -1,10 +1,6 @@
 <h1>Listado de titulares</h1>
 
 <%= link_to 'Nuevo titular', new_titular_path, :class => 'new' %>
-<% form_tag titulares_path, :method => :get  do %>
-  <%= text_field_tag :nombre_titular %>
-  <%= submit_tag "Buscar" %>
-<% end %>
 
 <%= @will = will_paginate @titulares %>
 

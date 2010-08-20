@@ -1,4 +1,5 @@
 class TipoSignosController < ApplicationController
+  before_filter :revisar_permiso!
   # GET /tipo_marcas
   # GET /tipo_marcas.xml
   def index

@@ -1,4 +1,6 @@
 class ConsultasController < ApplicationController
+  before_filter :authenticate_user!
+
   before_filter :set_busqueda, :only => [:new, :create]
   before_filter :borrar_consulta, :only => [:new]  
   # GET /consultas

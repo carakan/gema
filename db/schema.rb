@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100816112409) do
+ActiveRecord::Schema.define(:version => 20100818015040) do
 
   create_table "adjuntos", :force => true do |t|
     t.string   "nombre"
@@ -145,6 +145,14 @@ ActiveRecord::Schema.define(:version => 20100816112409) do
     t.datetime "updated_at"
   end
 
+  create_table "permisos", :force => true do |t|
+    t.integer  "rol_id"
+    t.string   "controlador", :limit => 150
+    t.string   "acciones"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "posts", :force => true do |t|
     t.integer  "marca_id"
     t.integer  "usuario_id"
@@ -174,6 +182,13 @@ ActiveRecord::Schema.define(:version => 20100816112409) do
   add_index "representantes", ["nombre"], :name => "index_representantes_on_nombre"
   add_index "representantes", ["pais_id"], :name => "index_representantes_on_pais_id"
 
+  create_table "roles", :force => true do |t|
+    t.string   "nombre",      :limit => 100
+    t.string   "descripcion"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "tipo_marcas", :force => true do |t|
     t.string   "nombre",      :limit => 100
     t.string   "sigla",       :limit => 5
@@ -191,13 +206,13 @@ ActiveRecord::Schema.define(:version => 20100816112409) do
 
   create_table "usuarios", :force => true do |t|
     t.string   "nombre"
-    t.string   "rol",           :limit => 20
     t.string   "login",         :limit => 16
     t.string   "email"
     t.string   "password",      :limit => 40
     t.string   "password_salt", :limit => 32
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "rol_id"
   end
 
   create_table "view_importaciones", :id => false, :force => true do |t|

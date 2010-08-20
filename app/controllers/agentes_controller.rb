@@ -1,5 +1,5 @@
 class AgentesController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :revisar_permiso!
 
   def index
     @agentes = Agente.paginate(order_query_params)
@@ -10,8 +10,7 @@ class AgentesController < ApplicationController
   end
 
    def show
-    @agente = Agentes.find(params[:id])
-
+    @agente = Agente.find(params[:id])
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @agentes }
