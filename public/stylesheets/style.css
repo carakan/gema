@@ -54,7 +54,6 @@ input[type=text], select, textarea {
   -moz-box-shadow: 2px 2px #dfdfdf;
   -webkit-box-shadow: 2px 2px #dfdfdf;
   box-shadow: 2px 2px #dfdfdf;
-  -moz-border-radius: 0px 0px 3px 3px;
   border: 1px solid #666666;
   color: #000000;
 }
@@ -84,9 +83,8 @@ label {
 .input { padding: 4px; }
 .i { margin: 12px 4px; }
 div#cont {
-  padding: 10px 25px;
   text-align: left;
-  margin: auto;
+  margin-bottom: 40px;
 }
 div#header {
   height: 90px;

@@ -26,11 +26,12 @@
 
   <%= render :partial => "layouts/menu" %>
   <div style="clear:both"></div>
-  <div id="cont">
+  <div id="cont" class="grid_12">
     <%= render :partial => "layouts/notice" %>
 
     <%= yield %>
   </div>
+  <div class="clear"></div>
 </div>
 
 </body>
