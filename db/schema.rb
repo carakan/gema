@@ -105,6 +105,8 @@ ActiveRecord::Schema.define(:version => 20100818015040) do
     t.string   "numero_solicitud_renovacion", :limit => 40
     t.date     "fecha_renovacion"
     t.date     "fecha_instruccion"
+    t.string   "via_instruccion"
+    t.string   "descripcion_imagen"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "anterior",                                    :default => false
