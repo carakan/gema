@@ -14,7 +14,7 @@ class MarcasController < ApplicationController
     #  :order => "#{order} #{direction}", :page => @page
     #}
     p = order_query_params(
-      :include => [:clase, :tipo_signo, :titulares],
+      :include => [:clase, :tipo_signo],
       :conditions => [ "nombre_minusculas LIKE ?", "%#{nombre_marca.downcase}%" ],
       :order => "marcas.nombre"
     )

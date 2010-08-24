@@ -15,7 +15,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :usuarios
 
-  #map.resources :representantes
+  map.resources :representantes, :collection => { :buscar => :get }
+
   map.resources :titulares, :collection => { :buscar => :get }
 
   map.resources :agentes, :collection => { :buscar => :get }

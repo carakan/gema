@@ -28,6 +28,7 @@ module HasManyRight
       
       # klass.pluralize
       define_method "#{klass}_ids=" do |ids|
+        return if ids.nil?
         raise "Error, you must pass an instance of array" unless ids.is_a? Array
         set_right_ids(klass, join_model, join_alias, ids)
       end
@@ -41,7 +42,6 @@ module HasManyRight
   end
 
   module InstanceMethods
-
     # Busca los ids relacionados de una clase
     def find_right_ids(klass, join_model, join_alias)
       join_alias_id = "#{join_alias}_id".to_sym
@@ -49,7 +49,7 @@ module HasManyRight
 
       join_klass.all(:select => "#{join_alias}_id",
           :conditions => { "#{join_alias}_type".to_sym => klass.titleize,
-          "#{self.class.to_s.downcase}_id".to_sym => self.id } ).map(&join_alias_id)
+          "#{self.class.to_s.downcase}_id" => self.id } ).map(&join_alias_id)
     end
 
     def init_has_many_right_instance(klass, val = nil)
@@ -80,7 +80,9 @@ module HasManyRight
         end
 
         unless old_ids.empty?
-          join_klass.destroy_all( join_alias_id => old_ids, join_alias_type => klass.classify )
+          old_ids.each do |key|
+            join_klass.first( :conditions => { join_alias_id => key, join_alias_type => klass.classify  } ).destroy
+          end
         end
       end
 

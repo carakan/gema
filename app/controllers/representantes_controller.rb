@@ -81,4 +81,10 @@ class RepresentantesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def buscar
+    busq = params[:tag]
+    @representantes = Representante.all(:conditions => ["nombre LIKE ?", "%#{busq}%"], :limit => 100)
+    render :text => @representantes.map{ |a| {:caption => a.nombre, :value => a.id} }.to_json 
+  end
 end

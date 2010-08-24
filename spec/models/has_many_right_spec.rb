@@ -52,6 +52,30 @@ describe Marca do
     MarcaRepresentante.all.map(&:id).should == [1, 4]
   end
 
+  it 'debe poder asignar titulares y agentes' do
+    arr = [1, 2, 3]
+    @m.agente_ids = arr
+    @m.titular_ids = [1, 4]
+
+    MarcaRepresentante.all(:conditions => {:representable_type => 'Agente'} ).map(&:representable_id).should == [1, 2, 3]
+    MarcaRepresentante.all(:conditions => {:representable_type => 'Titular'} ).map(&:representable_id).should == [1, 4]
+    
+  end
+
+  it 'debe asignar titular y agente con el mismo id' do
+    arr = [1]
+    @m.agente_ids = arr
+    @m.titular_ids = arr
+
+    MarcaRepresentante.all(:conditions => {:representable_type => 'Agente'} ).map(&:representable_id).should == arr
+    MarcaRepresentante.all(:conditions => {:representable_type => 'Titular'} ).map(&:representable_id).should == arr
+    
+  end
+
+  it 'marca debe poder asignar agente_ids y titular_ids' do
+    
+  end
+
   it 'debe buscar modelo a la derecha' do
     ids  = []
     ids << Representante.create(:nombre => 'Juan Perez').id

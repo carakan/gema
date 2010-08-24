@@ -6,8 +6,8 @@
 
   <%= f.hidden_field :valido, :value => 1 %>
 
-  <%= f.input :tipo_signo_id, :as => :hidden  %>
-  <%= f.input :tipo_marca_id, :as => :hidden  %>
+  <%= f.input :tipo_signo_id, :as => :hidden %>
+  <%= f.input :tipo_marca_id, :as => :hidden %>
   <%= f.input :propia, :label => 'Marca propia' %>
   <%= f.input :activa, :label => 'Marca activa' %>
   <%= f.input :nombre,:label => "Denominación",:tabindex => 3 %>
@@ -130,10 +130,10 @@ $(document).ready(function() {
 
 
   $.facebooklist('#titular_ids', '#ul-titulares', '#titulares-list', 
-     { url:'/titulares/buscar.json', cache:0 }, 10, { userfilter: 1, casesensetive: 0 } );
+     { url:'/representantes/buscar.json', cache:0 }, 10, { userfilter: 1, casesensetive: 0 } );
 
   $.facebooklist('#agente_ids', '#ul-agentes', '#agentes-list', 
-    { url:'/agentes/buscar.json', cache:0 }, 10, { userfilter: 1, casesensetive: 0 } );
+    { url:'/representantes/buscar.json', cache:0 }, 10, { userfilter: 1, casesensetive: 0 } );
 
 
   $('.error_manual a').click(function(){
