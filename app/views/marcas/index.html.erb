@@ -5,25 +5,25 @@
   <a href="javascript:" class="new">Nuevo signo&nbsp;<span class="more"></span></a>
     <ul>
     	<li>
-      <%= link_to "Marca Denominativa", new_marca_path(:tipo => 'Den.', :tipo_marca =>'MP.') %>
+      <%= link_to "Marca Denominativa", new_marca_path(:tipo => 'Den.', :a =>'Marca Denominativa') %>
     	</li>
     	<li>
-        <%= link_to "Marca Figurativa", new_marca_path(:tipo => 'Fig.', :tipo_marca =>'MP.') %>
+        <%= link_to "Marca Figurativa", new_marca_path(:tipo => 'Fig.', :a =>'Marca Figurativa') %>
     	</li>
     	<li>
-        <%= link_to "Marca Mixta", new_marca_path(:tipo => 'Mix.', :tipo_marca =>'MP.') %>
+        <%= link_to "Marca Mixta", new_marca_path(:tipo => 'Mix.', :a =>'Marca Mixta') %>
     	</li>
     	<li>
-        <%= link_to "Marca Tridimensional", new_marca_path(:tipo => 'Tri.', :tipo_marca =>'MP.') %>
+        <%= link_to "Marca Tridimensional", new_marca_path(:tipo => 'Tri.', :a =>'Marca Tridimensional')%>
     	</li>
     	<li>
-        <%= link_to "Nombre comercial denominativo", new_marca_path(:tipo => 'Den.', :tipo_marca =>'NC.') %>
+        <%= link_to "Nombre comercial denominativo", new_marca_path(:tipo => 'Den.', :a =>'Nombre Comercial denominativo') %>
     	</li>
     	<li>
-        <%= link_to "Nombre comercial mixto", new_marca_path(:tipo => 'Mix.', :tipo_marca =>'NC.') %>
+        <%= link_to "Nombre comercial mixto", new_marca_path(:tipo => 'Mix.', :a =>'Nombre comercial mixto') %>
     	</li>
     	<li>
-        <%= link_to "Lema comercial", new_marca_path(:tipo => 'Den.', :tipo_marca =>'LC.') %>
+        <%= link_to "Lema comercial", new_marca_path(:tipo => 'Den.', :a =>'Lema Comercial') %>
     	</li>
     </ul>
 	</li>
@@ -42,7 +42,7 @@
 
 <table class="decorated">
 	<tr>
-    <th><%= sort_order "Nombre", "marcas.nombre" %></th>
+    <th style="width:250px"><%= sort_order "Nombre", "marcas.nombre" %></th>
     <th><%= sort_order "Marca <br />Propia","marcas.propia" %></th>
 		<th>Estado</th>
     <th><%= sort_order "Tipo de signo", "tipo_signos.nombre" %></th>

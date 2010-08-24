@@ -1,8 +1,6 @@
 <% semantic_form_for @titular do |titular| %>
   
-<%= titular.error_messages  %>
 
-<% titular.inputs do %>
   <%= titular.input :pais, :as => :select, :collection => Pais.find(:all) %>
   <%= titular.input :nombre, :label => 'Nombre', :input_html => { :size => 70 } %>
   <%= titular.input :direccion, :label => 'Dirección', :as => :text, :input_html => { :rows => 3, :cols => 45 } %>
@@ -10,7 +8,6 @@
   <%= titular.input :telefono, :label => 'Teléfono' %>
   <%= titular.input :fax, :label => 'Fax' %>
   <%= titular.input :pagina_web, :label => 'Página web' %>
-<% end %>
 <p>
 <%=  titular.submit 'Salvar' %>
 </p>

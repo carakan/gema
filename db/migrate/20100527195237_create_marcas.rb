@@ -39,6 +39,8 @@ class CreateMarcas < ActiveRecord::Migration
       t.string :numero_solicitud_renovacion, :limit => 40 #Numero de solicitud de la renovacion de la marca
       t.date :fecha_renovacion
       t.date :fecha_instruccion
+      t.string :via_instruccion
+      t.string :descripcion_imagen
       t.timestamps
     end
 

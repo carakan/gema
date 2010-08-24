@@ -51,7 +51,7 @@
 
 
   <div class="half fl" id="div2">
-    <%= content_tag 'p', mostrar_imagen(@marca) %>
+   <%= content_tag 'p', mostrar_imagen(@marca) %>
     <p>
       <label for="">Titulares</label>
       <%= cambio @marca, :titular_ids_serial, @marca.titulares.map(&:nombre).join(", ") %>

@@ -50,7 +50,7 @@ Rails::Initializer.run do |config|
   config.i18n.default_locale = :es
 
   # recargar plugins
-  config.reload_plugins = true if $0 != 'irb' and Rails.env == 'development' # No carga los modelos en consola
+  # config.reload_plugins = true if $0 != 'irb' and Rails.env == 'development' # No carga los modelos en consola
 end
 
 # Cargar todas las librerias de lib

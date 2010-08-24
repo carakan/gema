@@ -1,5 +1,19 @@
-<h1>Resultados para cruce "<%= @marca.nombre %>" gaceta <%= @importacion.publicacion %></h1>
+<div id="flybar">
+  <h1>"<%= @marca.nombre %>"</h1>
+  <div class="half fl" id="div1">
+    <h3> Clase: <%= @marca.clase_id %></h3>
+    <h3> Nº solicitud <%= @marca.numero_solicitud %></h3>
+    <h3> Nº publicación: <%= @marca.numero_publicacion %></h3>
+  </div>
+  <div class="half fl" id="div2">
+    <h3> Tipo: <%= @marca.tipo_signo %></h3>
+    <h3> Fecha solicitud <%= @marca.estado_fecha %></h3>
+    <h3> Titulares: <%= @marca.titulares %></h3>
+  </div>
+    <%= link_to "Ver mas", ver_marca_path(@marca), :class => 'ajax' %>
+</div>
 
+<h2>Resultados para el cruce</h2>
 <%= link_to "Volver a importacion", cruce_importacion_path(@importacion, :page => @page) %>
 <%= ver_cruce(@consulta, :class => 'ajax') unless params[:consulta_id].nil? %>
 

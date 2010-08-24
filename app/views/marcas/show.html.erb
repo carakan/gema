@@ -15,9 +15,14 @@
 <div id="marca">
     <p>
       <label for="">Propia</label>
-      <%= cambio @marca ,:propia %><br/>
+      <%= cambio @marca ,:propia, valido_img(@marca.propia) %><br/>
     </p>
     
+    <p>
+      <label for="">Activa</label>
+      <%= cambio @marca ,:activa, valido_img(@marca.activa) %><br/>
+    </p>
+
     <p>
       <label for="">Denominación</label>
       <%= cambio @marca ,:nombre %>
@@ -26,6 +31,7 @@
       <label for="">Imagen</label>
       <%= cambio @marca, :archivo_adjunto, image_tag( @marca.adjuntos.last.archivo.url(:mini), :class => 'mini' ) unless @marca.archivo_adjunto.blank? %>
     </p>
+
     <p>
       <label for="">Estado</label>
       <%= cambio @marca ,:estado, Marca::ESTADOS[ @marca.estado ] %>
