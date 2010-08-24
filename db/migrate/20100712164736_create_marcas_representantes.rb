@@ -1,4 +1,4 @@
-class MarcasRepresentantes < ActiveRecord::Migration
+class CreateMarcasRepresentantes < ActiveRecord::Migration
   def self.up
     create_table :marcas_representantes do |t|
       t.integer :marca_id

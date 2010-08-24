@@ -5,7 +5,7 @@ class Marca < ActiveRecord::Base
   before_save :quitar_comillas
   before_save :set_minusculas
   before_save :adicionar_usuario
-  before_save :set_agentes_titulares, :if => lambda { |m| m.parent_id == 0 }
+  #before_save :set_agentes_titulares, :if => lambda { |m| m.parent_id == 0 }
   before_save :llenar_productos, :if => lambda { |m| m.productos.blank? }
 
   before_update :crear_historico, :if => :con_historico?
@@ -28,8 +28,8 @@ class Marca < ActiveRecord::Base
   #has_many :marcas_representantes#, :as => :representable
 
   include HasManyRight
-  has_many_right :agentes, :marca_representante, :representable
-  has_many_right :titulares, :marca_representante, :representable
+  has_many_right :agentes, :representante, :marca_representante, :representable
+  has_many_right :titulares, :representante ,:marca_representante, :representable
   
   # Metodos para poder realacionarce
   #def representantes_tipo(tipo)
