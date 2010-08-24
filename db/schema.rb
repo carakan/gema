@@ -131,14 +131,15 @@ ActiveRecord::Schema.define(:version => 20100818015040) do
   add_index "marcas", ["tipo_signo_id"], :name => "index_marcas_on_tipo_signo_id"
   add_index "marcas", ["usuario_id"], :name => "index_marcas_on_usuario_id"
 
-  create_table "marcas_representantes", :id => false, :force => true do |t|
+  create_table "marcas_representantes", :force => true do |t|
     t.integer "marca_id"
-    t.integer "representante_id"
+    t.integer "representable_id"
+    t.string  "representable_type", :limit => 20
   end
 
-  add_index "marcas_representantes", ["marca_id", "representante_id"], :name => "index_marcas_representantes_on_marca_id_and_representante_id", :unique => true
   add_index "marcas_representantes", ["marca_id"], :name => "index_marcas_representantes_on_marca_id"
-  add_index "marcas_representantes", ["representante_id"], :name => "index_marcas_representantes_on_representante_id"
+  add_index "marcas_representantes", ["representable_id"], :name => "index_marcas_representantes_on_representable_id"
+  add_index "marcas_representantes", ["representable_type"], :name => "index_marcas_representantes_on_representable_type"
 
   create_table "paises", :force => true do |t|
     t.string   "nombre",     :limit => 30

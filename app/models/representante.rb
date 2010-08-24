@@ -1,8 +1,10 @@
 class Representante < ActiveRecord::Base
-  before_validation :set_validar
+  #before_validation :set_validar
   #before_save :strip_data
 
   belongs_to :pais
+  #has_many :marcas, :through => :marcas_representanres,
+  #  :association_foreign_key => :representable_id
 
   validates_presence_of :nombre
   validates_format_of :email, :with => Constants::EMAIL_REG, 

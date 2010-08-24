@@ -50,9 +50,9 @@ $(document).ready(->
       pos = $(this).position()
 
       $(div).css(
-        'top': (pos.top - 30) + 'px'
+        'top': (pos.top + 90) + 'px'
         'left': (e.clientX + 20) + 'px'
-      ).html( $(this).attr('alt') );
+      ).html( $(this).attr('alt') )
       $(div).show()
     else
       $(div).hide()

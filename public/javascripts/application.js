@@ -46,7 +46,7 @@
       if ((e.type === 'mouseover')) {
         pos = $(this).position();
         $(div).css({
-          'top': (pos.top - 30) + 'px',
+          'top': (pos.top + 90) + 'px',
           'left': (e.clientX + 20) + 'px'
         }).html($(this).attr('alt'));
         return $(div).show();
