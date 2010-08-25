@@ -177,9 +177,9 @@ class Busqueda
     sql << ", IF(res.id=#{params[:clase_id].to_i}, 0, 2) AS dist_clase_id" unless params[:clase_id].nil?
     sql = [ "#{sql} FROM" ]
     sql << "(#{sql_exp.join("\n UNION \n")}) AS res"
-    #sql << "LEFT JOIN clases ON ( clases.id = res.clase_id)"
     sql << condiciones_sql(params)
-    #sql << "GROUP BY nombre, clase_id ORDER BY pos"
+    sql << "GROUP BY res.id"
+
     unless params[:clase_id].nil?
       sql << "ORDER BY res.pos, dist_clase_id, longitud_letras ASC"
     else
