@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100818015040) do
+ActiveRecord::Schema.define(:version => 20100825141915) do
 
   create_table "adjuntos", :force => true do |t|
     t.string   "nombre"
@@ -131,6 +131,15 @@ ActiveRecord::Schema.define(:version => 20100818015040) do
   add_index "marcas", ["tipo_signo_id"], :name => "index_marcas_on_tipo_signo_id"
   add_index "marcas", ["usuario_id"], :name => "index_marcas_on_usuario_id"
 
+  create_table "marcas_agentes", :id => false, :force => true do |t|
+    t.integer "marca_id"
+    t.integer "agente_id"
+  end
+
+  add_index "marcas_agentes", ["agente_id"], :name => "index_marcas_agentes_on_agente_id"
+  add_index "marcas_agentes", ["marca_id", "agente_id"], :name => "index_marcas_agentes_on_marca_id_and_agente_id", :unique => true
+  add_index "marcas_agentes", ["marca_id"], :name => "index_marcas_agentes_on_marca_id"
+
   create_table "marcas_representantes", :force => true do |t|
     t.integer "marca_id"
     t.integer "representable_id"
@@ -140,6 +149,15 @@ ActiveRecord::Schema.define(:version => 20100818015040) do
   add_index "marcas_representantes", ["marca_id"], :name => "index_marcas_representantes_on_marca_id"
   add_index "marcas_representantes", ["representable_id"], :name => "index_marcas_representantes_on_representable_id"
   add_index "marcas_representantes", ["representable_type"], :name => "index_marcas_representantes_on_representable_type"
+
+  create_table "marcas_titulares", :id => false, :force => true do |t|
+    t.integer "marca_id"
+    t.integer "titular_id"
+  end
+
+  add_index "marcas_titulares", ["marca_id", "titular_id"], :name => "index_marcas_titulares_on_marca_id_and_titular_id", :unique => true
+  add_index "marcas_titulares", ["marca_id"], :name => "index_marcas_titulares_on_marca_id"
+  add_index "marcas_titulares", ["titular_id"], :name => "index_marcas_titulares_on_titular_id"
 
   create_table "paises", :force => true do |t|
     t.string   "nombre",     :limit => 30

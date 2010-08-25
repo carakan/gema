@@ -27,74 +27,16 @@ class Marca < ActiveRecord::Base
 
   #has_many :marcas_representantes#, :as => :representable
 
-  include HasManyRight
-  has_many_right :agentes, :representante, :marca_representante, :representable
-  has_many_right :titulares, :representante ,:marca_representante, :representable
+  #include HasManyRight
+  #has_many_right :agentes, :representante, :marca_representante, :representable
+  #has_many_right :titulares, :representante ,:marca_representante, :representable
   
-  # Metodos para poder realacionarce
-  #def representantes_tipo(tipo)
-  #  Representante.find( representable_ids(tipo) )
-  #end
-
-  #def agentes
-  #  representantes_tipo('Agente')
-  #end
-
-  #def titulares
-  #  representantes_tipo('Titular')
-  #end
-
-  #def agente_ids=(ids)
-  #  @agente_ids = set_representable_ids(ids, @agente_ids, 'Agente')
-  #end
-
-  #def titular_ids=(ids)
-  #  @titular_ids = set_representable_ids(ids, @titular_ids, 'Titular')
-  #end
-
-  #def set_representable_ids(ids, rep_ids, tipo)
-  #  unless ids == rep_ids
-  #    rep_ids = Representante.all(:select => 'id', :conditions => {:id => ids} ).map(&:id)
-  #    del_ids = []
-  #    rep_ids.each do |key|
-  #      ids.include?
-  #    end
-  #    MarcaRepresentante.destroy(del_ids) unless del_ids.blank?
-  #  else
-  #    ids
-  #  end
-  #end
-
-  #def representable_ids(tipo)
-  #  MarcaRepresentante.all( :select => 'representable_id', 
-  #                :conditions => { :representable_type => tipo, :id => self.id } 
-  #  ).map(&:representable_id )
-  #end
-
-  #def agente_ids
-  #  @agente_ids ||= representable_ids('Agente')
-  #end
-
-  #def titular_ids
-  #  @titular_ids ||= representable_ids('Titular')
-  #end
-
-  #has_many :agentes, :through => :marcas_representantes,
-  #  :conditions => ["marcas_representantes.representable_type = ?", 'Agente']
-  #has_many :agentes, :through => :marcas_representantes, 
-  #  :source => :representable, :source_type => 'Agente', :class_name => 'Representante'
-  #has_many :marcas_representantes, :as => :representable
-  #has_many :representantes, :through => :marcas_representantes
-  #
-#    :source => 'Agente'#,
-#    :conditions => "marcas_representantes.type = 'Agente'"
-  #has_many :agentes, :as => :agente
-  #has_and_belongs_to_many :agentes, :class_name => 'Agente',
-  #  :association_foreign_key => :representante_id,
-  #  :join_table => 'marcas_representantes'
-  #has_and_belongs_to_many :titulares, :class_name => 'Titular',
-  #  :association_foreign_key => :representante_id,
-  #  :join_table => 'marcas_representantes'
+  has_and_belongs_to_many :agentes, :class_name => 'Representante',
+    :association_foreign_key => :agente_id,
+    :join_table => 'marcas_agentes'
+  has_and_belongs_to_many :titulares, :class_name => 'Representante',
+    :association_foreign_key => :titular_id,
+    :join_table => 'marcas_titulares'
 
   def after_initialize
     @con_historico = true

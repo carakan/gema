@@ -7,7 +7,17 @@
   <%= f.hidden_field :valido, :value => 1 %>
 
   <%= f.input :tipo_signo_id, :as => :hidden %>
+  <label for="">Tipo de signo</label>
+  <%= @marca.tipo_signo %>
+  <%= "<span class=\"error\">#{ @marca.errors.on(:tipo_signo_id) }</span>" %>
+
   <%= f.input :tipo_marca_id, :as => :hidden %>
+  <label for="">Tipo de marca</label>
+  <%= @marca.tipo_marca %>
+  <%= "<span class=\"error\">#{ @marca.errors.on(:tipo_marca_id) }</span>" %>
+
+
+
   <%= f.input :propia, :label => 'Marca propia' %>
   <%= f.input :activa, :label => 'Marca activa' %>
   <%= f.input :nombre,:label => "Denominación",:tabindex => 3 %>
@@ -70,21 +80,6 @@
   </li> 
 </ol>
 </div></ br>
-<ol>  
-  <li id="contactos-auto" class="input-text"> 
-    <label for="contacto_ids">Contacto</label>
-    <%= link_to 'Nuevo contacto', new_contacto_path, :class => 'new ajax' %> 
-    <ul id="ul-contactos" style="display:none"> 
-
-    </ul> 
-    <input type="text" value="" id="contacto_ids" tabindex="9" /> 
-    <div id="contactos-list" class="facebook-auto"> 
-      <div class="default">Escriba el nombre de un titular</div>  
-      <ul class="feed">
-      </ul>
-    </div> 
-  </li> 
-</ol>
 
   <%= f.input :apoderado, :tabindex => 11 %>
   <%= f.input :representante_empresarial, :tabindex => 12 %>
