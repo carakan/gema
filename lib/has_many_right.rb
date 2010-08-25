@@ -44,12 +44,16 @@ module HasManyRight
   module InstanceMethods
     # Busca los ids relacionados de una clase
     def find_right_ids(klass, join_model, join_alias)
-      join_alias_id = "#{join_alias}_id".to_sym
-      join_klass = join_model.classify.constantize
+      unless instance_variable_get("@#{klass}_ids".to_sym).nil?
+        instance_variable_get("@#{klass}_ids".to_sym)
+      else
+        join_alias_id = "#{join_alias}_id".to_sym
+        join_klass = join_model.classify.constantize
 
-      join_klass.all(:select => "#{join_alias}_id",
-          :conditions => { "#{join_alias}_type".to_sym => klass.titleize,
-          "#{self.class.to_s.downcase}_id" => self.id } ).map(&join_alias_id)
+        instance_variable_set "@#{klass}_ids", join_klass.all(:select => "#{join_alias}_id",
+            :conditions => { "#{join_alias}_type".to_sym => klass.titleize,
+            "#{self.class.to_s.downcase}_id" => self.id } ).map(&join_alias_id)
+      end
     end
 
     def init_has_many_right_instance(klass, val = nil)
@@ -61,6 +65,7 @@ module HasManyRight
     end
 
     def set_right_ids(klass, join_model, join_alias, ids)
+      ids.uniq!
       join_klass = join_model.classify.constantize
       join_alias_id = "#{join_alias}_id"
       join_alias_type = "#{join_alias}_type"
@@ -78,25 +83,35 @@ module HasManyRight
             old_ids.delete(key)
           end
         end
+        
+        # Actualizacion de variable para cache
+        instance_variable_set("@#{klass}_ids".to_sym, ids)
+        instance_variable_set("@#{klass.pluralize}".to_sym, nil)
 
         unless old_ids.empty?
           old_ids.each do |key|
             join_klass.first( :conditions => { join_alias_id => key, join_alias_type => klass.classify  } ).destroy
           end
         end
+
       end
 
     end
 
     # Busca los modelos a la derecha
     def find_right_models(klass, original_klass, join_model, join_alias)
-      right_ids = find_right_ids(klass, join_model, join_alias)
-      original_klass_model = original_klass.classify.constantize
-      unless right_ids.empty?
-        original_klass_model.find(right_ids)
-      else
-        []
-      end
+      #debugger if 'titular' == klass
+      #unless instance_variable_get("@#{klass}".to_sym).blank?
+      #  instance_variable_get("@#{klass}".to_sym)
+      #else
+        right_ids = find_right_ids(klass, join_model, join_alias)
+        original_klass_model = original_klass.classify.constantize
+        unless right_ids.empty?
+          instance_variable_set "@#{klass}".to_sym, original_klass_model.find(right_ids)
+        else
+          []
+        end
+      #end
     end
 
   end

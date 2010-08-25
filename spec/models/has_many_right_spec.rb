@@ -72,9 +72,6 @@ describe Marca do
     
   end
 
-  it 'marca debe poder asignar agente_ids y titular_ids' do
-    
-  end
 
   it 'debe buscar modelo a la derecha' do
     ids  = []
@@ -85,6 +82,8 @@ describe Marca do
     @m.titular_ids = [ids.first]
     @m.agentes.map(&:nombre).should == ['Juan Perez', 'Ana Torroja']
     @m.titulares.map(&:nombre).should == ['Juan Perez']
+    @m.titular_ids = ids
+    @m.titulares.map(&:nombre).should == ['Juan Perez', 'Ana Torroja']
   end
 
 end
