@@ -8,6 +8,7 @@ module MarcasHelper
     else
       hash = label_campos[campo]
       pres = klass.send(hash[:field])
+      pres = pres.join(", ") if pres.is_a? Array
       %Q( <label>#{hash[:label]}</label> #{ pres } )
     end
   end
@@ -20,8 +21,6 @@ module MarcasHelper
     end
     txt = ''
     case true
-      #when ( val.is_a?(Date) or val.is_a?(DateTime) or val.is_a?(Time) )
-      #  txt << lo val
       when [Date, Time, DateTime].include?( val.class )
         fecha val
       when [true, false].include?( val )

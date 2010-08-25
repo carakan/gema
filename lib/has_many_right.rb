@@ -28,7 +28,7 @@ module HasManyRight
       
       # klass.pluralize
       define_method "#{klass}_ids=" do |ids|
-        return if ids.nil?
+        ids = [] if ids.nil?
         raise "Error, you must pass an instance of array" unless ids.is_a? Array
         set_right_ids(klass, join_model, join_alias, ids)
       end

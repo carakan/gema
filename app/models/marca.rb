@@ -5,7 +5,7 @@ class Marca < ActiveRecord::Base
   before_save :quitar_comillas
   before_save :set_minusculas
   before_save :adicionar_usuario
-  #before_save :set_agentes_titulares, :if => lambda { |m| m.parent_id == 0 }
+  before_save :set_agentes_titulares, :if => lambda { |m| m.parent_id == 0 }
   before_save :llenar_productos, :if => lambda { |m| m.productos.blank? }
 
   before_update :crear_historico, :if => :con_historico?
@@ -362,14 +362,14 @@ class Marca < ActiveRecord::Base
   # Retorna los agentes desde el campo serializado
   #   @return Array
   def agentes_serial
-    Agente.find(self.agente_ids_serial).map(&:nombre)
+    Representante.find(self.agente_ids_serial).map(&:nombre)
   end
 
 
   # Retorna los titulares desde el campo serializado
   #   @return Array
   def titulares_serial
-    Titular.find(self.titular_ids_serial).map(&:nombre)
+    Representante.find(self.titular_ids_serial).map(&:nombre)
   end
 
   # Presenta los ultimos 3 posts o el parametro que se pase en limit
