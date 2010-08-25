@@ -8,6 +8,9 @@ class Marca < ActiveRecord::Base
   before_save :set_agentes_titulares, :if => lambda { |m| m.parent_id == 0 }
   before_save :llenar_productos, :if => lambda { |m| m.productos.blank? }
 
+  # Numero de palabras
+  #before_save lambda { |m| m.numero_palabras = m.nombre_minusculas.strip.split(/\s/).size } 
+
   before_update :crear_historico, :if => :con_historico?
   before_update :set_cambios
   before_save :actualizar_validez
@@ -93,6 +96,13 @@ class Marca < ActiveRecord::Base
     }
   }
 
+  # Configuracion de thinking-sphinx
+  define_index do
+    indexes nombre_minusculas
+    indexes nombre
+
+    has clase_id, created_at, updated_at
+  end
 
   TIPOS = {
     'sm' => 'Solicitud de Marca',

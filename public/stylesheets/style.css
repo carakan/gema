@@ -583,26 +583,5 @@ a.desc {
   padding-right: 20px;
   background: url("../images/icons/bullet_arrow_down.png") no-repeat scroll right center transparent;
 }
-
-div#flybar {
--moz-background-clip:border;
--moz-background-inline-policy:continuous;
--moz-background-origin:padding;
--moz-border-radius-bottomleft:20px;
--moz-border-radius-bottomright:20px;
--moz-border-radius-topleft:20px;
--moz-border-radius-topright:20px;
--moz-box-shadow:0 0 7px #AAAAAA;
-background:#DDDDDD none repeat scroll 0 0;
-border:1px solid #AAAAAA;
-/*height:50px;*/
-left:580px;
-width:430px;
-/*min-width:490px;*/
--moz-padding-box:100px;
-padding-left:25px;
-position:fixed;
-right:40px;
-top:5px;
-z-index:100;
-}
+._110 { font-size: 110%; }
+._120 { font-size: 120%; }

@@ -101,7 +101,7 @@ ActiveRecord::Schema.define(:version => 20100825141915) do
     t.integer  "importacion_id"
     t.boolean  "activa",                                      :default => true
     t.string   "archivo_adjunto",                             :default => ""
-    t.date     "fecha_solicitud_renovacion"
+    t.datetime "fecha_solicitud_renovacion"
     t.string   "numero_solicitud_renovacion", :limit => 40
     t.date     "fecha_renovacion"
     t.date     "fecha_instruccion"
@@ -139,16 +139,6 @@ ActiveRecord::Schema.define(:version => 20100825141915) do
   add_index "marcas_agentes", ["agente_id"], :name => "index_marcas_agentes_on_agente_id"
   add_index "marcas_agentes", ["marca_id", "agente_id"], :name => "index_marcas_agentes_on_marca_id_and_agente_id", :unique => true
   add_index "marcas_agentes", ["marca_id"], :name => "index_marcas_agentes_on_marca_id"
-
-  create_table "marcas_representantes", :force => true do |t|
-    t.integer "marca_id"
-    t.integer "representable_id"
-    t.string  "representable_type", :limit => 20
-  end
-
-  add_index "marcas_representantes", ["marca_id"], :name => "index_marcas_representantes_on_marca_id"
-  add_index "marcas_representantes", ["representable_id"], :name => "index_marcas_representantes_on_representable_id"
-  add_index "marcas_representantes", ["representable_type"], :name => "index_marcas_representantes_on_representable_type"
 
   create_table "marcas_titulares", :id => false, :force => true do |t|
     t.integer "marca_id"
