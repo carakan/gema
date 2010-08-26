@@ -28,7 +28,7 @@ module ImportacionesHelper
 
   def gaceta(importacion)
     unless importacion.publicacion.nil?
-      ", Gaceta #{importacion.publicacion}"
+      "Gaceta #{importacion.publicacion}, "
     else
       ""
     end

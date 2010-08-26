@@ -97,12 +97,12 @@ class Marca < ActiveRecord::Base
   }
 
   # Configuracion de thinking-sphinx
-  define_index do
-    indexes nombre_minusculas
-    indexes nombre
+  #define_index do
+  #  indexes nombre_minusculas
+  #  indexes nombre
 
-    has clase_id, created_at, updated_at
-  end
+  #  has clase_id, created_at, updated_at
+  #end
 
   TIPOS = {
     'sm' => 'Solicitud de Marca',

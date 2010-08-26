@@ -7,7 +7,7 @@
   <meta name="csrf-token" content="<%= form_authenticity_token() %>" />
 
   <title>ORPAN - GEMA</title>
-  <%= stylesheet_link_tag 'style', 'jquery-ui-1.8.1.custom.css', 'grid', :cache => 'styles' %>
+  <%= stylesheet_link_tag 'style', 'jquery-ui-1.8.1.custom.css', :cache => 'styles' %>
 
   <%= javascript_include_tag 'jquery-1.4.2.min', 'jquery-ui-1.8.1.custom.min', 'jquery.ui.datepicker-es', 'application', :cache => 'js' %>
 
@@ -26,7 +26,7 @@
 
   <%= render :partial => "layouts/menu" %>
   <div style="clear:both"></div>
-  <div id="cont" class="grid_12">
+  <div id="cont">
     <%= render :partial => "layouts/notice" %>
 
     <%= yield %>

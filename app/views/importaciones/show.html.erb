@@ -1,10 +1,15 @@
-<h1>Importacion de <%= fecha_hora @importacion.created_at %> <%= gaceta @importacion %></h1>
+<h1>Importacion</h1>
+<div class="clear"></div>
+<h2 class="dark"><%= gaceta @importacion %> <%= fecha_hora @importacion.created_at %> </h2>
 
-<%= link_to "Listado", importacion_path(@importacion) %>
-<% form_tag importacion_path(@importacion), :method => :get  do %>
-  <%= text_field_tag :nombre_marca %>
-  <%= submit_tag "Buscar" %>
-<% end %>
+    <%= link_to "Listado", importacion_path(@importacion), :class => 'list' %>
+
+<div class="pad-tb">
+  <% form_tag importacion_path(@importacion), :method => :get  do %>
+    <%= text_field_tag :nombre_marca %>
+    <%= submit_tag "Buscar" %>
+  <% end %>
+</div>
 
 <table class="decorated">
 	<tr>
@@ -21,7 +26,7 @@
         <td><%= link_to marca.nombre, ver_marca_path(marca), :class => 'ajax' %></td>
         <td><%= marca.numero_solicitud %></td>
         <td><%= marca.tipo_signo %></td>
-        <td><%= marca.clase %></td>
+        <td><%= marca.clase_id %></td>
         <td><%= marca.try(:titulares).map(&:nombre).join(",") %></td>
 
         <td>

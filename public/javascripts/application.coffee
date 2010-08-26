@@ -50,7 +50,7 @@ $(document).ready(->
       pos = $(this).position()
 
       $(div).css(
-        'top': (pos.top + 90) + 'px'
+        'top': pos.top + 'px'
         'left': (e.clientX + 20) + 'px'
       ).html( $(this).attr('alt') )
       $(div).show()

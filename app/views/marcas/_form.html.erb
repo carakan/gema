@@ -7,14 +7,18 @@
   <%= f.hidden_field :valido, :value => 1 %>
 
   <%= f.input :tipo_signo_id, :as => :hidden %>
-  <label for="">Tipo de signo</label>
-  <%= @marca.tipo_signo %>
-  <%= "<span class=\"error\">#{ @marca.errors.on(:tipo_signo_id) }</span>" %>
+  <li>
+    <label for="">Tipo de signo</label>
+    <%= @marca.tipo_signo %>
+    <%= "<span class=\"error\">#{ @marca.errors.on(:tipo_signo_id) }</span>" %>
+  </li>
 
   <%= f.input :tipo_marca_id, :as => :hidden %>
-  <label for="">Tipo de marca</label>
-  <%= @marca.tipo_marca %>
-  <%= "<span class=\"error\">#{ @marca.errors.on(:tipo_marca_id) }</span>" %>
+  <li>
+    <label for="">Tipo de marca</label>
+    <%= @marca.tipo_marca %>
+    <%= "<span class=\"error\">#{ @marca.errors.on(:tipo_marca_id) }</span>" %>
+  </li>
 
 
 

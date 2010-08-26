@@ -29,7 +29,6 @@
 
 @menu: #45818E;
 
-
 body{
   padding: 0px;
   margin: 0px;
@@ -40,29 +39,34 @@ body{
 
 body, p, ol, ul{
   font-family: verdana, arial, helvetica, sans-serif;
-  font-size:   13px;
+  font-size:   12px;
   line-height: 18px;
 }
+h1{ margin-top: 35px; }
 a { color: @blue; text-decoration: underline; cursor: pointer; }
 a:hover { text-decoration: none; }
 
 table.decorated{
   border-collapse: collapse;
+  margin: 15px 0px;
+  border-bottom: 1px solid @grey;
   tr{
     border-top: 1px solid @table_border_color;
   }
   th{
     color:@white;
     background: @dark url(../images/bg_tr_tabs_tab.png) repeat-x scroll 0 50%;
+    border-right: 1px solid @dark;
     a{
       color: @white;
     }
   }
   th, td{
   /*  border: 1px solid @border_color_table;*/
-    padding: 3px 8px;
+    padding: 6px 10px;
     li{ margin: 0px; }
   }
+  th:last-child{ width:110px; }
 }
 .over{
   background-color: @tr_background !important;
@@ -123,6 +127,7 @@ label{
   font-weight: bold;
   display: block;
   color: @dark;
+  margin: 3px 0px;
 }
 .input{
   padding: 4px;
@@ -135,9 +140,8 @@ label{
 /***************************/
 /*LAYOUT*/
 div#cont{ 
-  /*padding: 10px 25px;*/
   text-align:left;
-  margin-bottom: 40px;
+  margin:0px 20px 40px 20px;
 }
 
 div#header{
@@ -258,7 +262,7 @@ td .fieldWithErrors {
 
 /* Contenidos */
 #wrapper{
-  /*width: 900px;*/
+  width: 960px;
   margin: auto;
   /*border:1px solid @dark;*/
   background-color: @white;
@@ -276,7 +280,7 @@ td .fieldWithErrors {
 /* Menu */
 @a_menu_color: #5f5f5f;
 ul#navigation{
-  height: 28px;
+  height: 38px;
   list-style: none;
   padding: 0px; margin: 0px;
   background: @dark_blue;
@@ -290,7 +294,7 @@ ul#navigation{
       text-decoration: none;
       font-weight: bold;
       font-size: 1em;
-      padding: 5px 7px;
+      padding: 9px 12px;
       border-right: 1px solid @dark;
       border-left: 1px solid @grey;
       color: @white;
@@ -303,9 +307,13 @@ ul#navigation{
       z-index: 200;
       min-width: 140px;
       padding: 0px;
+      opacity: 0.95;
+      margin-top: 1px;
       li a{
         border-right:none;
         display: block;
+        font-weight: normal;
+        padding: 7px 12px;
       }
     }
   }
@@ -413,10 +421,10 @@ ul.inline{
   background: url(../images/icons/pencil.png);
 }
 .icon-delete{
-  background: url(../images/icons/delete.png);
+  background-image: url(../images/icons/delete.png);
 }
 .icon-show{
-  background: url(../images/icons/zoom.png);
+  background-image: url(../images/icons/zoom.png);
 }
 
 .icon-top-right{
@@ -424,13 +432,13 @@ ul.inline{
 }
 
 .icon-info{
-  background: url(../images/icons/information.png);
+  background-image: url(../images/icons/information.png);
 }
 .icon-failed{
-  background: url(../images/icons/cross.png);
+  background-image: url(../images/icons/cross.png);
 }
 .icon-checked{
-  background: url(../images/icons/tick.png);
+  background-image: url(../images/icons/tick.png);
 }
 
 @icon_pad: 18px;
@@ -499,12 +507,12 @@ a.succeed{
 .true{
   .icon-checked;
   background-repeat: no-repeat;
-  background-position: top;
+  background-position: center 50%;
 }
 .false{
   .icon-failed;
   background-repeat: no-repeat;
-  background-position: top;
+  background-position: center 50%;
 }
 
 .delete-l{
@@ -566,22 +574,10 @@ ul.list{
   }
 }
 
-.pagination{
-  .prev_page, .next_page{
-    font-weight: bold;
-    font-size:0.8em;
-  }
-  a.prev_page, a.next_page{
-    text-decoration: none;
-  }
-  a.prev_page:hover, a.next_page:hover{
-    text-decoration: underline;
-  }
-}
+
 
 ul.menu{
   position: relative;
-  margin: 0px;
   padding: 0px;
   a{
     margin: 0px;
@@ -601,7 +597,7 @@ ul.menu{
       border: 1px solid @light_grey;
       background-color: @white;
       margin-top: -1px;
-      font-weight: bold;
+      font-weight: normal;
       li{
         float: none !important;
         a{
@@ -714,3 +710,22 @@ a.desc{
 ._120{
   font-size: 120%;
 }
+.pad-tb{
+  padding: 10px 0px;
+}
+
+.pagination{
+  font-size: 115%;
+  margin: 10px 0px;
+  .next_page, .prev_page, .current, a{
+    margin: 0px 5px;
+  }
+  .next_page, .prev_page{
+    font-weight: bold;
+  }
+  a{
+    text-decoration: none;
+  }
+}
+
+.dark{ color: @dark;}

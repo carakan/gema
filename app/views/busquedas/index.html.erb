@@ -1,42 +1,42 @@
- 
-<ul class="menu">
-	<li>
-  <a href="javascript:" class="new">Nuevo signo&nbsp;<span class="more"></span></a>
-    <ul>
-    	<li>
-      <%= link_to "Marca Denominativa", new_marca_path(:tipo => 'Den.', :a =>'Marca Denominativa') %>
-    	</li>
-    	<li>
-        <%= link_to "Marca Figurativa", new_marca_path(:tipo => 'Fig.', :a =>'Marca Figurativa') %>
-    	</li>
-    	<li>
-        <%= link_to "Marca Mixta", new_marca_path(:tipo => 'Mix.', :a =>'Marca Mixta') %>
-    	</li>
-    	<li>
-        <%= link_to "Marca Tridimensional", new_marca_path(:tipo => 'Tri.', :a =>'Marca Tridimensional')%>
-    	</li>
-    	<li>
-        <%= link_to "Nombre comercial denominativo", new_marca_path(:tipo => 'Den.', :a =>'Nombre Comercial denominativo') %>
-    	</li>
-    	<li>
-        <%= link_to "Nombre comercial mixto", new_marca_path(:tipo => 'Mix.', :a =>'Nombre comercial mixto') %>
-    	</li>
-    	<li>
-        <%= link_to "Lema comercial", new_marca_path(:tipo => 'Den.', :a =>'Lema Comercial') %>
-    	</li>
-    </ul>
-	</li>
-</ul>
-
-<div style="clear:both"></div>  
-<div style="clear:both"></div> 
-</ br>
-</ br>
-</ br>
-</ br>
 <h1>Busquedas</h1>
+ 
+<!--
+<div class="pad-tb">
+  <ul class="menu">
+    <li>
+    <a href="javascript:" class="new">Nuevo signo&nbsp;<span class="more"></span></a>
+      <ul>
+        <li>
+        <%= link_to "Marca Denominativa", new_marca_path(:tipo => 'Den.', :a =>'Marca Denominativa') %>
+        </li>
+        <li>
+          <%= link_to "Marca Figurativa", new_marca_path(:tipo => 'Fig.', :a =>'Marca Figurativa') %>
+        </li>
+        <li>
+          <%= link_to "Marca Mixta", new_marca_path(:tipo => 'Mix.', :a =>'Marca Mixta') %>
+        </li>
+        <li>
+          <%= link_to "Marca Tridimensional", new_marca_path(:tipo => 'Tri.', :a =>'Marca Tridimensional')%>
+        </li>
+        <li>
+          <%= link_to "Nombre comercial denominativo", new_marca_path(:tipo => 'Den.', :a =>'Nombre Comercial denominativo') %>
+        </li>
+        <li>
+          <%= link_to "Nombre comercial mixto", new_marca_path(:tipo => 'Mix.', :a =>'Nombre comercial mixto') %>
+        </li>
+        <li>
+          <%= link_to "Lema comercial", new_marca_path(:tipo => 'Den.', :a =>'Lema Comercial') %>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+-->
 
-<%= render :partial => "buscar" %>
+<div class="clear"></div>
+<div class="pad-tb">
+  <%= render :partial => "buscar" %>
+</div>
 
 <% unless @busqueda.blank? %>
 
