@@ -112,7 +112,7 @@ namespace :datos do
   end
 
   desc 'Asigna a marcas propias titulares y agentes'
-  task :demoagentes => do
+  task :demoagentes => :environment do
     ids = Representante.all(:select => "id").map(&:id)
     Marca.all(:conditions => { :propia => true} ).each do |m|
       m.titular_ids = ids.rand
