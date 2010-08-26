@@ -1,5 +1,5 @@
-<% semantic_form_for(@post, :url => create_post_agente_path, :html => { :multipart => true } ) do |f| %>
-  <%= f.input :agente_ids, :as => :hidden %>
+<% semantic_form_for(@post, :url => create_post_representante_path, :html => { :multipart => true } ) do |f| %>
+  <%= f.input :representante_id, :as => :hidden %>
   <%= f.input :titulo, :label => 'Título' %>
   <%= f.input :comentario, :as => :text, :label => 'Comentario' %>
   <% f.fields_for :adjuntos do |adj| %>

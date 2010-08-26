@@ -166,12 +166,12 @@ ActiveRecord::Schema.define(:version => 20100825141915) do
 
   create_table "posts", :force => true do |t|
     t.integer  "marca_id"
-    t.integer  "agente_ids"
+    t.integer  "representante_id"
     t.integer  "usuario_id"
     t.string   "titulo"
-    t.string   "comentario", :limit => 2058
+    t.string   "comentario",       :limit => 2058
     t.string   "accesso"
-    t.boolean  "adjuntos",                   :default => false
+    t.boolean  "adjuntos",                         :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

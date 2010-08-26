@@ -15,12 +15,24 @@ class RepresentantesController < ApplicationController
   # GET /representantes/1.xml
   def show
     @representante = Representante.find(params[:id])
+    @post = @representante.posts.build()
+    #respond_to do |format|
+      #format.html # show.html.erb
+      #format.xml  { render :xml => @representante }
+    #end
+  end
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml  { render :xml => @representante }
+  def create_post()
+    @post = Post.new(params[:post])
+
+    if @post.save
+      redirect_to representante_url(@post.representante_id)
+    else
+      @representante = Representante.find(@post.representante_id)
+      render :action => 'show'
     end
   end
+
 
   # GET /representantes/new
   # GET /representantes/new.xml

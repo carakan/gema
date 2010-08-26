@@ -34,7 +34,10 @@ class Representante < ActiveRecord::Base
     find_by_sql( ["SELECT agente_id FROM marcas_agentes WHERE marca_id IN (?)", marca_ids ] ).map(&:agente_id).uniq
   end
 
-
+  def ultimos_posts(limit = 2)
+    Post.all(:conditions => { :representante_id => self.id }, 
+             :limit => limit, :order => 'created_at DESC' )
+  end
 
 private
   # Prepara el atributo validar

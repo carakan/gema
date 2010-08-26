@@ -11,22 +11,10 @@ class AgentesController < ApplicationController
 
    def show
     @agente = Representante.find(params[:id])
-    @post = @agente.posts.build()
     #respond_to do |format|
       #format.html # show.html.erb
       #format.xml  { render :xml => @agentes }
     #end
-  end
-
-  def create_post()
-    @post = Post.new(params[:post])
-
-    if @post.save
-      redirect_to agente_url(@post.agente_ids)
-    else
-      @agente = Representante.find(@post.agente_ids)
-      render :action => 'show'
-    end
   end
 
   def new

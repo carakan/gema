@@ -1,8 +1,20 @@
+<style type="text/css">
+  #marca{ width: 54%; float: left;}
+  #comments{ width: 44%; float: left; background-color: #EFEFEF; }
+  #comments .comments{ padding: 10px; }
+  #comments .title { margin: 0px 0px; background: #484848; color: #FFF; padding: 7px 5px; }
+  .comments p{ margin: 3px 0px;  }
+  .comments h3 { margin: 5px 0px; }
+  .comments ul{ list-style: none; }
+  .comments ul li.post{ border-bottom: 1px solid #000 }
+
+</style>
+
 <h1>Cliente</h1>
 
 <%= link_to 'Editar', edit_representante_path(@representante), :class =>'edit' %>
 <%= link_to 'Lista', representantes_path, :class =>'list' %>
-
+<div id="marca">
 <p>
   <label>Nombre:</label>
   <%=h @representante.nombre %>
@@ -36,5 +48,15 @@
   <label>Pagina web:</label>
   <%=h @representante.pagina_web %>
 </p>
+</div>
+<div id="comments">
+  <%= render :partial => "posts" %>
+  <h3 class="title">Nuevo comentario</h3>
+  <div class="comments">
+    <%= render :partial => "create_post" %>
+  </div>
+</div>
+
+<div style="clear:both"></div>
 
 <%= link_to "Nuevo contacto", new_contacto_path, :class => 'new ajax' %>
