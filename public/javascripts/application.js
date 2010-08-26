@@ -83,7 +83,9 @@
       $(div).attr('id', (new Date()).getTime.toString()).addClass('ajax-modal').css({
         'z-index': 1000
       }).attr('data-ajax_id', id);
-      $(div).load($(this).attr("href"));
+      $(div).load($(this).attr("href"), function(e) {
+        return $(div).find('a[href*=/]').hide();
+      });
       $(div).dialog({
         'width': 800,
         'height': 400,

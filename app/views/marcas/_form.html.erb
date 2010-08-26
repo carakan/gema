@@ -48,10 +48,10 @@
   <%= f.input :productos, :label=>"Descripción productos/servicios", :as => :text, :input_html => { :rows => 10, :cols => 115 }, :tabindex => 7 %>
 
   <div class="in_half">
+    <%= link_to 'Nuevo cliente', new_representante_path, :class => 'new ajax' %>
     <ol>  
       <li id="agente-auto" class="input-text">
         <label for="agente_ids">Agentes</label>
-        <%= link_to 'Nuevo agente', new_agente_path, :class => 'new ajax' %>
         <ul id="ul-agentes" style="display:none"> 
           <% @marca.agentes.each do |a| %>
             <li rel="<%= a.id %>"><%= a.nombre %></li>
@@ -69,7 +69,6 @@
     <ol>  
       <li id="titular-auto" class="input-text"> 
         <label for="titular_ids">Titulares</label>
-        <%= link_to 'Nuevo titular', new_titular_path, :class => 'new ajax' %> 
         <ul id="ul-titulares" style="display:none"> 
           <% @marca.titulares.each do |t| %>
             <li rel="<%= t.id %>"><%= t.nombre %></li>
