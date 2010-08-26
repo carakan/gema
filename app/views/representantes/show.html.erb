@@ -1,0 +1,40 @@
+<h1>Cliente</h1>
+
+<%= link_to 'Editar', edit_representante_path(@representante), :class =>'edit' %>
+<%= link_to 'Lista', representantes_path, :class =>'list' %>
+
+<p>
+  <label>Nombre:</label>
+  <%=h @representante.nombre %>
+</p>
+
+<p>
+  <label>Pais:</label>
+  <%=h @representante.pais %>
+</p>
+
+<p>
+  <label>Email:</label>
+  <%=h @representante.email %>
+</p>
+<p>
+  <label>Direccion:</label>
+  <%=h @representante.direccion %>
+</p>
+
+<p>
+  <label>Telefono:</label>
+  <%=h @representante.telefono %>
+</p>
+  
+<p>
+  <label>Fax:</label>
+  <%=h @representante.fax %>
+</p>
+
+<p>
+  <label>Pagina web:</label>
+  <%=h @representante.pagina_web %>
+</p>
+
+<%= link_to "Nuevo contacto", new_contacto_path, :class => 'new ajax' %>

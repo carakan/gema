@@ -1,0 +1,10 @@
+<% semantic_form_for(@contacto) do |f| %>
+
+  <%= f.input :nombre %>
+  <%= f.input :cargo %>
+  <%= f.input :telefono, :label => 'Teléfono' %>
+  <%= f.input :email %>
+  <p>
+    <%= f.submit 'Salvar' %>
+  </p>
+<% end %>

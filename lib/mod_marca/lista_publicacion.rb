@@ -169,19 +169,20 @@ module ModMarca::ListaPublicacion
       TipoMarca.find_by_nombre(tip).try(:id)
     end
 
+    # Crea un representante y lo relaciona
     def buscar_o_crear_titular(params)
-      tit = Titular.find_by_nombre(params['NOMBRE DEL TITULAR'])
-      if tit
-        tit.update_attributes(:direccion => params['DIRECCION DEL TITULAR'])
+      rep = Representante.find_by_nombre(params['NOMBRE DEL TITULAR'])
+      if rep
+        rep.update_attributes(:direccion => params['DIRECCION DEL TITULAR'])
       elsif not params['NOMBRE DEL TITULAR'].blank?
-        tit = Titular.new(
+        rep = Representante.new(
           :nombre => params['NOMBRE DEL TITULAR'],
           :direccion => params['DIRECCION DEL TITULAR'],
           :pais_id => Pais.find_by_codigo(params['PAIS DEL TITULAR']).try(:id)
         )
-        tit.save
+        rep.save
       end
-      tit.id
+      rep.id
     end
 
 

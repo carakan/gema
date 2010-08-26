@@ -17,9 +17,9 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :representantes, :collection => { :buscar => :get }
 
-  map.resources :titulares, :collection => { :buscar => :get }
+  #map.resources :titulares, :collection => { :buscar => :get }
 
-  map.resources :agentes, :collection => { :buscar => :get }
+  #map.resources :agentes, :collection => { :buscar => :get }
 
   map.resources :tipo_signos
 

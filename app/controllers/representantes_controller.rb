@@ -3,7 +3,7 @@ class RepresentantesController < ApplicationController
   # GET /representantes
   # GET /representantes.xml
   def index
-    @representantes = Representante.all
+    @representantes = Representante.paginate({:include => :pais}.merge( order_query_params("nombre") ) )
 
     respond_to do |format|
       format.html # index.html.erb
