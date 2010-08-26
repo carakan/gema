@@ -238,7 +238,7 @@ form.in_half li {
 }
 td .fieldWithErrors { display: block !important; }
 #wrapper {
-  width: 960px;
+  width: 970px;
   margin: auto;
   background-color: #ffffff;
   -moz-border-radius: 15px 15px 0px 0px;
