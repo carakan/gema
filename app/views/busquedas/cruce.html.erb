@@ -2,23 +2,35 @@
 <h1>"<%= @marca.nombre %>"</h1>
 <div class="_110">
   <div class="half fl" id="div1">
-    <label>Clase:</label>
-    <%= @marca.clase_id %>
-    <label> Nº solicitud </label>
-    <%= @marca.numero_solicitud %>
-    <label>Nº publicación:</label>
-    <%= @marca.numero_publicacion %>
+    <p>
+        <label>Clase:</label>
+        <%= @marca.clase_id %>
+    </p>
+    <p>
+        <label> Nº solicitud </label>
+        <%= @marca.numero_solicitud %>
+    </p>
+    <p>
+        <label>Nº publicación:</label>
+        <%= @marca.numero_publicacion %>
+    </p>
   </div>
   <div class="half fl" id="div2">
-      <label for="">Tipo: </label>
-      <%= @marca.tipo_signo %>
-      <label for="">Fecha solicitud</label>  
-      <%= lo @marca.estado_fecha %></h3>
-      <label>Titulares:</label>
-      <%= @marca.titulares.join(", ") %>
+      <p>
+            <label for="">Tipo: </label>
+            <%= @marca.tipo_signo %>
+      </p>
+      <p>
+            <label for="">Fecha solicitud</label>  
+            <%= lo @marca.estado_fecha %></h3>
+      </p>
+      <p>
+            <label>Titulares:</label>
+            <%= @marca.titulares.join(", ") %>
+      </p>
   </div>
 </div>
-    <%= link_to "Ver mas", ver_marca_path(@marca), :class => 'ajax' %>
+    <%= link_to "Ver mas", ver_marca_path(@marca), :class => 'ajax show' %>
 
 <h2>Resultados para el cruce</h2>
 <%= link_to "Volver a importacion", cruce_importacion_path(@importacion, :page => @page) %>
