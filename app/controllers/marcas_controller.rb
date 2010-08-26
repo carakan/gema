@@ -1,23 +1,14 @@
+# encoding: utf-8
 class MarcasController < ApplicationController
   before_filter :revisar_permiso!
   before_filter :add_params_agentes_titulares
 
   def index
-    #@marcas = Marca.buscar(:page => @page, :params => params, :include => [:clase] )
-    #order = ( params[:order] || "marcas.nombre" )
-    #direction = ( params[:direction] || "ASC" )
     nombre_marca = (params[:nombre_marca] || "")
-    params.delete(:nombre_marca)
-    #p = {
-    #  :include => [:clase, :tipo_signo, :titulares], 
-    #  :conditions => [ "nombre_minusculas LIKE ?", "%#{nombre_marca.downcase}%" ],
-    #  :order => "#{order} #{direction}", :page => @page
-    #}
-    p = order_query_params(
+    p = {
       :include => [:clase, :tipo_signo, :titulares],
       :conditions => [ "nombre_minusculas LIKE ?", "%#{nombre_marca.downcase}%" ],
-      :order => "marcas.nombre"
-    )
+    }.merge(order_query_params("marcas.nombre"))
     @marcas = Marca.paginate(p)
   end
 

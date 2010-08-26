@@ -24,7 +24,7 @@
 @dark_green:#003000;
 @light_green:#E4FFE4;/* #DBFFDB;*/
 @yellow:#FFFF00;
-@ligth_yellow:#FFFFC5;
+@light_yellow:#FFFFC5;
 @dark_yellow:#D0D02A;
 
 @menu: #45818E;
@@ -58,7 +58,8 @@ table.decorated{
     background: @dark url(../images/bg_tr_tabs_tab.png) repeat-x scroll 0 50%;
     border-right: 1px solid @dark;
     a{
-      color: @white;
+      color: @light_yellow;
+      text-decoration: none;
     }
   }
   th, td{
@@ -174,11 +175,11 @@ form ol, form{
       margin: 0px;
       color: @red;
     }
-    p.inline-hints{
-      color: @grey;
-      margin:0px;
-      font-style: italic;
-    }
+  }
+  p.inline-hints{
+    color: @grey;
+    margin:0px;
+    font-style: italic;
   }
 
   li.error{
@@ -248,7 +249,7 @@ form.in_half li{
   .notice;
   color: @dark_yellow;
   border-color:@yellow;
-  background-color:@ligth_yellow;
+  background-color:@light_yellow;
 }
 
 .fieldWithErrors {

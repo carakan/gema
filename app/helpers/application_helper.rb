@@ -58,15 +58,13 @@ module ApplicationHelper
   end
 
   def sort_order(title, field, options = {})
-    direction = 'ASC'
     css = ''
+    direction = 'asc'
     if params[:order] == field
-      if params[:direction] == 'ASC'
-        direction = 'DESC'
-        css = 'asc'
+      if params[:direction] == 'asc'
+        css = direction = 'desc'
       else
-        direction = 'ASC'
-        css = 'desc'
+        css = direction = 'asc'
       end
     end
     url = { :controller => params[:controller], :action => params[:action], :order => field, :direction => direction }

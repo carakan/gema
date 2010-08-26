@@ -48,42 +48,42 @@
   <%= f.input :productos, :label=>"Descripción productos/servicios", :as => :text, :input_html => { :rows => 10, :cols => 115 }, :tabindex => 7 %>
 
   <div class="in_half">
-  <ol>  
-  <li id="agente-auto" class="input-text">
-    <label for="agente_ids">Agentes</label>
-    <%= link_to 'Nuevo agente', new_agente_path, :class => 'new ajax' %>
-    <ul id="ul-agentes" style="display:none"> 
-      <% @marca.agentes.each do |a| %>
-        <li rel="<%= a.id %>"><%= a.nombre %></li>
-      <% end %>
-    </ul> 
-    <input type="text" value="" id="agente_ids" tabindex="8"/>
-    <div id="agentes-list" class="facebook-auto"> 
-      <div class="default">Escriba el nombre de un agente</div>  
-      <ul class="feed">
-      </ul>
-    </div> 
-  </li> 
-</ol>
+    <ol>  
+      <li id="agente-auto" class="input-text">
+        <label for="agente_ids">Agentes</label>
+        <%= link_to 'Nuevo agente', new_agente_path, :class => 'new ajax' %>
+        <ul id="ul-agentes" style="display:none"> 
+          <% @marca.agentes.each do |a| %>
+            <li rel="<%= a.id %>"><%= a.nombre %></li>
+          <% end %>
+        </ul> 
+        <input type="text" value="" id="agente_ids" tabindex="8"/>
+        <div id="agentes-list" class="facebook-auto"> 
+          <div class="default">Escriba el nombre de un agente</div>  
+          <ul class="feed">
+          </ul>
+        </div> 
+      </li> 
+    </ol>
 
-<ol>  
-  <li id="titular-auto" class="input-text"> 
-    <label for="titular_ids">Titulares</label>
-    <%= link_to 'Nuevo titular', new_titular_path, :class => 'new ajax' %> 
-    <ul id="ul-titulares" style="display:none"> 
-      <% @marca.titulares.each do |t| %>
-        <li rel="<%= t.id %>"><%= t.nombre %></li>
-      <% end %>
-    </ul> 
-    <input type="text" value="" id="titular_ids" tabindex="9" /> 
-    <div id="titulares-list" class="facebook-auto"> 
-      <div class="default">Escriba el nombre de un titular</div>  
-      <ul class="feed">
-      </ul>
-    </div> 
-  </li> 
-</ol>
-</div></ br>
+    <ol>  
+      <li id="titular-auto" class="input-text"> 
+        <label for="titular_ids">Titulares</label>
+        <%= link_to 'Nuevo titular', new_titular_path, :class => 'new ajax' %> 
+        <ul id="ul-titulares" style="display:none"> 
+          <% @marca.titulares.each do |t| %>
+            <li rel="<%= t.id %>"><%= t.nombre %></li>
+          <% end %>
+        </ul> 
+        <input type="text" value="" id="titular_ids" tabindex="9" /> 
+        <div id="titulares-list" class="facebook-auto"> 
+          <div class="default">Escriba el nombre de un titular</div>  
+          <ul class="feed">
+          </ul>
+        </div> 
+      </li> 
+    </ol>
+  </div>
 
   <%= f.input :apoderado, :tabindex => 11 %>
   <%= f.input :representante_empresarial, :tabindex => 12 %>
@@ -103,22 +103,30 @@
   <%= f.input :numero_registro,:label => 'Número de registro' , :tabindex => 18 %>
   <%= f.input :fecha_registro, :as => 'string', :input_html => {:tabindex => 19, :class => 'date'  } %>
 
-  <% @marca.errores_manual.try(:each) do |k, v| %>
-    <div class="error_manual">
-      <input name="marca[errores_manual]" type="hidden" value="" />
-      <div>
-        <%= hidden_field_tag "marca[errores_manual][#{k}]", v  %>
-        <%= k.to_s.humanize %>: <%= v %>
-        <a href="javascript:;">borrar</a>
+  <% unless @marca.errores_manual.blank? %>
+    <h3 class="error">Existen errores de comparación</h3>
+
+    <% @marca.errores_manual.try(:each) do |k, v| %>
+      <div class="error_manual erro error">
+        <input name="marca[errores_manual]" type="hidden" value="" />
+        <div>
+          <%= hidden_field_tag "marca[errores_manual][#{k}]", v  %>
+          <%= k.to_s.humanize %>: <%= v %>
+          <a href="javascript:;">borrar</a>
+        </div>
       </div>
-    </div>
+    <% end %>
+    <p class="inline-hints">
+      Debe borrar los errores para que pueda validar el signo al salvar
+    </p>
   <% end %>
 
     <%# hidden_field_tag "marca[errores_manual]", ""  %>
 
-  <div style="clear:both"></div>
+  <div style="clear:both; height: 30px"></div>
   <%= f.submit "Salvar" , :tabindex => 21  %>
 <% end -%>
+
 <div style="clear:both"></div>
 
 <%= javascript_include_tag 'fcbkcomplete' %>

@@ -1,0 +1,30 @@
+<h1>Listado de clientes</h1>
+
+<%= link_to 'Nuevo cliente', new_representante_path, :class => 'new' %>
+
+<%= @will = will_paginate @representantes %>
+
+<table class="decorated">
+    <tr>
+      <th><%= sort_order "Nombre", "representantes.nombre" %></th>
+      <th><%= sort_order "País", "paises.nombre" %></th>
+      <th>Direccion</th>
+      <!--<th>Telefono</th>
+      <th>Email</th> -->
+      <th></th>
+    </tr>
+
+<% @representantes.each do |representante| %>
+  <tr>
+   <td><%=h link_to representante.nombre, representante %></td>
+   <td><%=h representante.pais %></td>
+   <td><%=h representante.direccion %></td>
+   <td>
+     <%= links(representante) %>
+   </td>
+  </tr>
+
+<% end %>
+</table>
+
+<%= @will %>

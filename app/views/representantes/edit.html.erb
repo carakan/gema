@@ -1,0 +1,7 @@
+<h1>Editar cliente</h1>
+
+<%= link_to 'Ver', @representante, :class => 'show' %> 
+<%= link_to 'Lista', representantes_path, :class => 'list' %>
+
+<% @representante = @representante %>
+<%= render :partial => "form" %>

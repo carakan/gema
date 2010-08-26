@@ -1,3 +1,4 @@
+# encoding: utf-8
 class ApplicationController < ActionController::Base
   include Rorol::Controllers::Helpers
 
@@ -26,19 +27,12 @@ protected
   helper_method :user_signed_in?
 
   # Ordena los parametros que son usados en orden eliminando los inecesarios
-  def order_query_params(extra = {})
-    options = extra.merge( convert_keys_to_sym( params ) )
-
-    [:action, :controller, :commit].each { |v| options.delete(v) }
-    unless options[:order].nil?
-      direction = ( options[:direction] || "ASC" )
-      options.delete(:direction)
-      params[:order] = options[:order]
-      params[:direction] = direction
-      options[:order] = "#{options[:order]} #{direction}"
-    end
-
-    options.merge(:page => @page)
+  # Retorna el parametro de orden ademas de la pagina para paginación
+  def order_query_params(order, direction = 'asc')
+    direction = params[:direction] unless params[:direction].nil?
+    params[:direction] = ['asc', 'desc'].include?(direction) ? direction : 'asc'
+    params[:order] = order if params[:order].nil?
+    { :order => "#{params[:order]} #{params[:direction]}", :page => @page }
   end
 
   def convert_keys_to_sym(h)
