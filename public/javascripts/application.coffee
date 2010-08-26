@@ -151,7 +151,16 @@ $(document).ready(->
           e
       
     )
+  #fin datePicker
 
+  # Cambiar icono para more y less
+  $('ul.menu>li').live('mouseover mouseout', (e)->
+    $span = $(this).find('.more, .less')
+    if(e.type == 'mouseover')
+      $span.removeClass('more').addClass('less')
+    else
+      $span.removeClass('less').addClass('more')
+  )
 
   # cambiar valores para datepiscker con sibling input:text
   $('input.date').live('change', ->

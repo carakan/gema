@@ -92,7 +92,8 @@ label {
 .i { margin: 12px 4px; }
 div#cont {
   text-align: left;
-  margin: 0px 20px 40px 20px;
+  margin: 0px 20px;
+  padding: 20px 0px 40px 0px;
 }
 div#header {
   height: 90px;
@@ -239,12 +240,11 @@ form.in_half li {
 td .fieldWithErrors { display: block !important; }
 #wrapper {
   width: 970px;
-  margin: auto;
+  margin: 12px auto;
   background-color: #ffffff;
   -moz-border-radius: 15px 15px 0px 0px;
   -webkit-border-radius: 15px 15px 0px 0px;
   border-radius: 15px 15px 0px 0px;
-  margin-top: 10px;
   -moz-box-shadow: 0px 0px 12px #3b4d71;
   -webkit-box-shadow: 0px 0px 12px #3b4d71;
   box-shadow: 0px 0px 12px #3b4d71;
@@ -255,6 +255,7 @@ ul#navigation {
   padding: 0px;
   margin: 0px;
   background: #3b4d71;
+  position: relative;
 }
 ul#navigation li {
   padding: 0px;
@@ -268,24 +269,33 @@ ul#navigation li a {
   font-weight: bold;
   font-size: 1em;
   padding: 9px 12px;
-  border-right: 1px solid #484848;
-  border-left: 1px solid #676767;
+  border-right: 1px solid #676767;
+  border-left: 1px solid #484848;
   color: #ffffff;
 }
-ul#navigation li a:hover { background: #2167cb !important; }
+ul#navigation li a:hover {
+  background: #2167cb !important;
+  color: #ffff00;
+}
 ul#navigation li ul {
+  display: none;
+  padding: 0px;
+  margin: 0px;
   background-color: #3b4d71 !important;
   z-index: 200;
   min-width: 140px;
-  padding: 0px;
   opacity: 0.95;
-  margin-top: 1px;
 }
+ul#navigation li ul li { float: none !important; }
 ul#navigation li ul li a {
   border-right: none;
   display: block;
   font-weight: normal;
-  padding: 7px 12px;
+  padding: 6px 12px;
+}
+ul#navigation li:hover ul {
+  display: block;
+  position: absolute;
 }
 .buscar {
   background: #595959;
@@ -466,6 +476,13 @@ a.succeed {
   display: inline-block;
   vertical-align: middle;
 }
+.less {
+  background: url(../images/icons/bullet_arrow_up.png) no-repeat;
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: middle;
+}
 .info {
   background-image: url(../images/icons/information.png);
   background-repeat: no-repeat;
@@ -598,3 +615,4 @@ a.desc {
 .pagination .prev_page { font-weight: bold; }
 .pagination a { text-decoration: none; }
 .dark { color: #484848; }
+.clear { clear: both; }

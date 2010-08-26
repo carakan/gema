@@ -141,7 +141,8 @@ label{
 /*LAYOUT*/
 div#cont{ 
   text-align:left;
-  margin:0px 20px 40px 20px;
+  margin:0px 20px;
+  padding: 20px 0px 40px 0px;
 }
 
 div#header{
@@ -263,13 +264,11 @@ td .fieldWithErrors {
 /* Contenidos */
 #wrapper{
   width: 970px;
-  margin: auto;
-  /*border:1px solid @dark;*/
+  margin: 12px auto;
   background-color: @white;
   -moz-border-radius: 15px 15px 0px 0px;
   -webkit-border-radius:15px 15px 0px 0px;
   border-radius: 15px 15px 0px 0px;
-  margin-top: 10px;
 
   -moz-box-shadow: 0px 0px 12px @dark_blue;
   -webkit-box-shadow: 0px 0px 12px @dark_blue;
@@ -284,6 +283,7 @@ ul#navigation{
   list-style: none;
   padding: 0px; margin: 0px;
   background: @dark_blue;
+  position: relative;
   li{
     padding: 0px;
     margin:0px;
@@ -295,26 +295,37 @@ ul#navigation{
       font-weight: bold;
       font-size: 1em;
       padding: 9px 12px;
-      border-right: 1px solid @dark;
-      border-left: 1px solid @grey;
+      border-right: 1px solid @grey;
+      border-left: 1px solid @dark;
       color: @white;
     }
     a:hover{
       background: @blue !important;
+      color:@yellow;
     }
     ul{
+      display: none;
+      padding: 0px;
+      margin: 0px;
       background-color: @dark_blue !important;
       z-index: 200;
       min-width: 140px;
-      padding: 0px;
       opacity: 0.95;
-      margin-top: 1px;
-      li a{
-        border-right:none;
-        display: block;
-        font-weight: normal;
-        padding: 7px 12px;
+      li{
+        float:none !important;
+        a{
+          border-right:none;
+          display: block;
+          font-weight: normal;
+          padding: 6px 12px;
+        }
       }
+    }
+  }
+  li:hover{
+    ul{
+      display: block;
+      position: absolute;
     }
   }
 }
@@ -530,6 +541,13 @@ a.succeed{
   vertical-align: middle;
 }
 
+.less{
+  .icon-less;
+  width: 16px;
+  height: 16px;  
+  display: inline-block;
+  vertical-align: middle;
+}
 .info{
   .icon-info;
   background-repeat: no-repeat;
@@ -729,3 +747,6 @@ a.desc{
 }
 
 .dark{ color: @dark;}
+.clear{
+  clear:both;
+}

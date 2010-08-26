@@ -147,6 +147,11 @@
         }
       });
     };
+    $('ul.menu>li').live('mouseover mouseout', function(e) {
+      var $span;
+      $span = $(this).find('.more, .less');
+      return (e.type === 'mouseover') ? $span.removeClass('more').addClass('less') : $span.removeClass('less').addClass('more');
+    });
     $('input.date').live('change', function() {
       var d;
       d = parsearFecha($(this).val());
