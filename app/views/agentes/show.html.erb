@@ -1,3 +1,4 @@
+<div id="marca">
 <p>
   <b>Nombre:</b>
   <%=h @agente.nombre %>
@@ -34,3 +35,16 @@
 
 <%= link_to 'Editar', edit_agente_path(@agente), :class =>'edit' %> |
 <%= link_to 'Lista', agentes_path, :class =>'list' %>
+</div>
+
+<div id="comments">
+  <%= render :partial => "posts" %>
+  <h3 class="title">Nuevo comentario</h3>
+  <div class="comments">
+    <%= render :partial => "create_post" %>
+  </div>
+</div>
+
+<div style="clear:both"></div>
+
+

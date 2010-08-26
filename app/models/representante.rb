@@ -10,6 +10,10 @@ class Representante < ActiveRecord::Base
   #  :join_table => 'marcas_titulares'
 
   belongs_to :pais
+  
+  #has_many :posts, :order => 'created_at DESC'
+  has_many :posts, :as => :postable, :dependent => :destroy
+  has_many :adjuntos, :as => :adjuntable, :dependent => :destroy
 
   validates_presence_of :nombre
   validates_format_of :email, :with => Constants::EMAIL_REG, 
@@ -29,6 +33,8 @@ class Representante < ActiveRecord::Base
   def self.agente_ids(marca_ids = [])
     find_by_sql( ["SELECT agente_id FROM marcas_agentes WHERE marca_id IN (?)", marca_ids ] ).map(&:agente_id).uniq
   end
+
+
 
 private
   # Prepara el atributo validar

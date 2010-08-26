@@ -4,6 +4,7 @@ class Post < ActiveRecord::Base
 
   belongs_to :marca
   belongs_to :usuario
+  belongs_to :postable, :polymorphic => true
 
   has_many :adjuntos, :as => :adjuntable, :dependent => :destroy
   accepts_nested_attributes_for :adjuntos, :reject_if => lambda { |a| a[:archivo].blank? }

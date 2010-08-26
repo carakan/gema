@@ -1,0 +1,18 @@
+<h2 class="title">Ultimos comentarios</h2>
+<div class="comments">
+  <ul>
+  <% @representante.ultimos_posts.each do |p| %>
+    <li class="post">
+      <h3><%= p.titulo %></h3>
+      Por <strong><%= p.usuario %></strong><br /> 
+      <em><%= l p.created_at, :format => "%d, %B %Y %H:%M" %></em>
+      <p>
+        <%= p.comentario %>
+      </p>
+
+      <%= link_to "borrar", p, :class => 'delete' if UsuarioSession.current_user[:rol] == 'admin' %>
+    </li>
+  <% end %>
+  </ul>
+</div>
+
