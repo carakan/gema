@@ -22,7 +22,7 @@ class Marca < ActiveRecord::Base
   #belongs_to :pais
   belongs_to :importacion
 
-  has_many :posts, :order => 'created_at DESC'
+  has_many :posts, :as => :postable, :order => 'created_at DESC'
   has_many :adjuntos, :as => :adjuntable, :dependent => :destroy
   accepts_nested_attributes_for :adjuntos
   has_many :consultas
@@ -328,7 +328,7 @@ class Marca < ActiveRecord::Base
   #   @param Integer limit
   #   @return array
   def ultimos_posts(limit = 2)
-    Post.all(:conditions => { :marca_id => self.id }, 
+    Post.all(:conditions => { :postable_id => self.id, :postable_type => 'Marca' }, 
              :limit => limit, :order => 'created_at DESC' )
   end
 

@@ -94,10 +94,10 @@ $(document).ready(->
     if /data-title=/.test( uri )
       uri.match(/^.*(data-title=)([^&]+).*$/)[2].replace(/\+/g, ' ')
     else
-
+      ''
   # Crea un dialogo y retorna el id con el que fue creado
   createDialog = (params)->
-    params = $.extend({ 
+    params = $.extend({
       'id': new Date().getTime(), 'title': '', 'width': 800, 'height' : 400, 'modal': true, 'resizable' : false
     }, params)
     div = document.createElement('div')
@@ -119,6 +119,7 @@ $(document).ready(->
     createDialog( { 'title': getDataTitle( $(this).attr('href') ) } )
     e.stopPropagation()
     false
+  )
 
 
   # Hacer submit de un formulario AJAX
@@ -278,7 +279,3 @@ $(document).ready(->
 
   iniciar()
 )
-
-getTarget = (e)->
-  return e.target || e.srcElement
-

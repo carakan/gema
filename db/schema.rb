@@ -165,16 +165,19 @@ ActiveRecord::Schema.define(:version => 20100825141915) do
   end
 
   create_table "posts", :force => true do |t|
-    t.integer  "marca_id"
-    t.integer  "representante_id"
+    t.integer  "postable_id"
+    t.string   "postable_type"
     t.integer  "usuario_id"
     t.string   "titulo"
-    t.string   "comentario",       :limit => 2058
-    t.string   "accesso"
-    t.boolean  "adjuntos",                         :default => false
+    t.string   "comentario",    :limit => 2058
+    t.integer  "accesso"
+    t.boolean  "adjuntos",                      :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "posts", ["postable_id"], :name => "index_posts_on_postable_id"
+  add_index "posts", ["postable_type"], :name => "index_posts_on_postable_type"
 
   create_table "representantes", :force => true do |t|
     t.string   "nombre"

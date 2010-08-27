@@ -1,5 +1,4 @@
 (function() {
-  var getTarget;
   $(document).ready(function() {
     var addDatePicker, createDialog, csfr_token, getDataTitle, iniciar, mark, parsearFecha, serializeFormElements, setFechaDateSelect, speed, transformarDateSelect;
     speed = 300;
@@ -78,11 +77,7 @@
       });
     });
     getDataTitle = function(uri) {
-      if (/data-title=/.test(uri)) {
-        return uri.match(/^.*(data-title=)([^&]+).*$/)[2].replace(/\+/g, ' ');
-      } else {
-
-      }
+      return /data-title=/.test(uri) ? uri.match(/^.*(data-title=)([^&]+).*$/)[2].replace(/\+/g, ' ') : '';
     };
     createDialog = function(params) {
       var div;
@@ -263,7 +258,4 @@
     };
     return iniciar();
   });
-  getTarget = function(e) {
-    return e.target || e.srcElement;
-  };
 })();
