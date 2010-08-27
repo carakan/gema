@@ -26,9 +26,13 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   # GET /posts/new.xml
-  def new
-    @post = Post.new(:marca_id => params[:marca_id])
-
+  def new()
+    x = params[:marca_id]
+    if x?nil
+      @post = Post.new(:representante_id => params[:representante_id])
+    else
+      @post = Post.new(:marca_id => params[:marca_id])
+    end
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @post }

@@ -12,8 +12,6 @@
 
 <h1>Cliente</h1>
 
-<%= link_to 'Editar', edit_representante_path(@representante), :class =>'edit' %>
-<%= link_to 'Lista', representantes_path, :class =>'list' %>
 <div id="marca">
 <p>
   <label>Nombre:</label>
@@ -47,7 +45,9 @@
 <p>
   <label>Pagina web:</label>
   <%=h @representante.pagina_web %>
-</p>
+  </p>
+  <%= link_to 'Editar', edit_representante_path(@representante), :class =>'edit' %>
+  <%= link_to 'Lista', representantes_path, :class =>'list' %>
 </div>
 <div id="comments">
   <%= render :partial => "posts" %>
