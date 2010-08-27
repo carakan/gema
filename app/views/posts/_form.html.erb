@@ -1,8 +1,15 @@
 <% semantic_form_for(@post) do |f| %>
-
-  <%= f.input :marca_id, :as => :hidden %>
+  <%= f.input :postable_id, :as => :hidden %>
+  <%= f.input :postable_type, :as => :hidden %>
   <%= f.input :titulo, :label => 'Título' %>
   <%= f.input :comentario, :as => :text, :label => 'Comentario' %>
   <%= f.submit 'Salvar' %>
 <% end %>
 
+<script type="text/javascript">
+$(document).ready(function() {
+  var id = new Date().getTime()
+  var iframe = $('<iframe/>').attr({ 'id': id, 'style': 'display:none' });
+  $('body').append(iframe);
+});
+</script>

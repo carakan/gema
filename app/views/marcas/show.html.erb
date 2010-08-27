@@ -122,19 +122,12 @@
     <% @cambios = marca.cambios %>
 
   <% end %>
+  <div class="clear"></div>
 </div>
 
 
 <div id="comments">
   <%= render :partial => "posts" %>
-  <h3 class="title">Nuevo comentario</h3>
-  <div class="comments">
-    <%= render :partial => "create_post" %>
-  </div>
+  <%= link_to "Nuevo comentario", new_post_path('data-title' => 'Nuevo post', :type => 'Marca' ), :class => 'new post' %>
 </div>
-
-<div style="clear:both"></div>
-
-
-<div style="clear:both"></div>
 

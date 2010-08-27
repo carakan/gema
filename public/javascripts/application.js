@@ -1,13 +1,15 @@
 (function() {
   var getTarget;
   $(document).ready(function() {
-    var addDatePicker, csfr_token, iniciar, mark, parsearFecha, serializeFormElements, setFechaDateSelect, speed, transformarDateSelect;
+    var addDatePicker, createDialog, csfr_token, getDataTitle, iniciar, mark, parsearFecha, serializeFormElements, setFechaDateSelect, speed, transformarDateSelect;
     speed = 300;
     csfr_token = $('meta[name=csfr-token]').attr('content');
     $.datepicker._defaults.dateFormat = 'dd M yy';
-    parsearFecha = function(fecha) {
+    parsearFecha = function(fecha, tipo) {
+      var d;
       fecha = $.datepicker.parseDate($.datepicker._defaults.dateFormat, fecha);
-      return [fecha.getFullYear(), fecha.getMonth() + 1, fecha.getDate()];
+      d = [fecha.getFullYear(), fecha.getMonth() + 1, fecha.getDate()];
+      return 'string' === tipo ? d.join("-") : d;
     };
     setFechaDateSelect = function(el) {
       var fecha;
@@ -75,27 +77,50 @@
         }
       });
     });
-    $('a.ajax').live("click", function(e) {
-      var div, id;
-      id = (new Date()).getTime().toString();
-      $(this).attr('data-ajax_id', id);
-      div = document.createElement('div');
-      $(div).attr('id', (new Date()).getTime.toString()).addClass('ajax-modal').css({
-        'z-index': 1000
-      }).attr('data-ajax_id', id);
-      $(div).load($(this).attr("href"), function(e) {
-        return $(div).find('a[href*=/]').hide();
-      });
-      $(div).dialog({
+    getDataTitle = function(uri) {
+      if (/data-title=/.test(uri)) {
+        return uri.match(/^.*(data-title=)([^&]+).*$/)[2].replace(/\+/g, ' ');
+      } else {
+
+      }
+    };
+    createDialog = function(params) {
+      var div;
+      params = $.extend({
+        'id': new Date().getTime(),
+        'title': '',
         'width': 800,
         'height': 400,
         'modal': true,
         'resizable': false
+      }, params);
+      div = document.createElement('div');
+      $(div).attr({
+        'id': params['id'],
+        'title': params['title'],
+        'data-ajax_id': id
+      }).addClass('ajax-modal').css({
+        'z-index': 1000
+      });
+      delete (params['id']);
+      delete (params['title']);
+      $(div).dialog(params);
+      return id;
+    };
+    $('a.ajax').live("click", function(e) {
+      var id;
+      id = (new Date()).getTime().toString();
+      $(this).attr('data-ajax_id', id);
+      $(div).load($(this).attr("href"), function(e) {
+        return $(div).find('a[href*=/]').hide();
+      });
+      createDialog({
+        'title': getDataTitle($(this).attr('href'))
       });
       e.stopPropagation();
       return false;
     });
-    $('div.ajax-modal form').live('submit', function() {
+    $('div.ajax-modal form').not('[enctype]').live('submit', function() {
       var data, el;
       data = serializeFormElements(this);
       el = this;
@@ -155,9 +180,7 @@
       return (e.type === 'mouseover') ? $span.removeClass('more').addClass('less') : $span.removeClass('less').addClass('more');
     });
     $('input.date').live('change', function() {
-      var d;
-      d = parsearFecha($(this).val());
-      return $(this).prev('input').val([d[0], d[1], d[2]].join("-"));
+      return $(this).prev('input').val(parsearFecha($(this).val(), 'string'));
     });
     $('a.delete').live("click", function(e) {
       var el, url;

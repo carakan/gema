@@ -2,7 +2,6 @@ class Post < ActiveRecord::Base
   before_save :adicionar_usuario
   before_save :new_line_to_br
 
-  belongs_to :marca
   belongs_to :usuario
   belongs_to :postable, :polymorphic => true
 
@@ -11,6 +10,7 @@ class Post < ActiveRecord::Base
 
   validates_presence_of :titulo, :comentario
 
+  attr_accessor :postable_id, :postable_type, :referer
 
 private
   def adicionar_usuario

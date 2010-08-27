@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_filter :revisar_permiso!
+  before_filter :crear_params, :only => [:new]
 
   # GET /posts
   # GET /posts.xml
@@ -27,7 +28,7 @@ class PostsController < ApplicationController
   # GET /posts/new
   # GET /posts/new.xml
   def new
-    @post = Post.new(:marca_id => params[:marca_id])
+    @post = Post.new(:postable_id => params[:postable_id], :postable_type => params[:postable_type])
 
     respond_to do |format|
       format.html # new.html.erb
@@ -82,5 +83,12 @@ class PostsController < ApplicationController
       format.html { redirect_to(posts_url) }
       format.xml  { head :ok }
     end
+  end
+
+private
+  def crear_params
+    #controller, action = get_controller_action_from_uri(request.referer)
+    params[:postable_id]
+    params[:postable_type]
   end
 end

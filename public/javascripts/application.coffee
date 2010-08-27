@@ -7,9 +7,15 @@ $(document).ready(->
   $.datepicker._defaults.dateFormat = 'dd M yy'
 
   # Parsea la fecha con formato seleciando a un objeto Date
-  parsearFecha = (fecha)->
+  # @param String fecha
+  # @param String tipo : Tipo de dato a devolver
+  parsearFecha = (fecha, tipo)->
     fecha = $.datepicker.parseDate($.datepicker._defaults.dateFormat, fecha )
-    [ fecha.getFullYear(), fecha.getMonth() + 1, fecha.getDate() ]
+    d = [ fecha.getFullYear(), fecha.getMonth() + 1, fecha.getDate() ]
+    if 'string' == tipo
+      d.join("-")
+    else
+      d
 
   # Asignar la fecha a los elementos siblings del campo con datepicker
   # cuando los campos son select
@@ -76,29 +82,47 @@ $(document).ready(->
     $(div).html(['<img', ' src=', '"', lista.join("/") , '"', " />"].join("") )
 
     $(div).dialog(
-        'width': 700, 'height': 500 
+        'width': 700, 'height': 500
         'close': (e, ui)->
           $(div).dialog('destroy')
     )
   )
 
+  # Retorna el titulo desde un uri
+  # @param String uri
+  getDataTitle = (uri)->
+    if /data-title=/.test( uri )
+      uri.match(/^.*(data-title=)([^&]+).*$/)[2].replace(/\+/g, ' ')
+    else
+
+  # Crea un dialogo y retorna el id con el que fue creado
+  createDialog = (params)->
+    params = $.extend({ 
+      'id': new Date().getTime(), 'title': '', 'width': 800, 'height' : 400, 'modal': true, 'resizable' : false
+    }, params)
+    div = document.createElement('div')
+    $(div).attr( { 'id': params['id'], 'title': params['title'], 'data-ajax_id': id } )
+    .addClass('ajax-modal').css( { 'z-index': 1000 } )
+    delete(params['id'])
+    delete(params['title'])
+    $(div).dialog( params )
+    id
+
   # Presentar formulario AJAX
   $('a.ajax').live("click", (e)->
     id = (new Date).getTime().toString()
     $(this).attr('data-ajax_id', id)
-    div = document.createElement('div')
-    $(div).attr( 'id', (new Date).getTime.toString() )
-    .addClass('ajax-modal').css( { 'z-index': 1000 } ).attr('data-ajax_id', id)
+
     $(div).load( $(this).attr("href"), (e)->
       $(div).find('a[href*=/]').hide()
     )
-    $(div).dialog({ 'width': 800, 'height' : 400, 'modal': true, 'resizable' : false })
+    createDialog( { 'title': getDataTitle( $(this).attr('href') ) } )
     e.stopPropagation()
     false
-  )
+
 
   # Hacer submit de un formulario AJAX
-  $('div.ajax-modal form').live('submit', ->
+  $('div.ajax-modal form').not('[enctype]').live('submit', ->
 
     data = serializeFormElements(this)
     el = this
@@ -123,7 +147,7 @@ $(document).ready(->
     false
   )
 
-  # Adicionar datepicker
+  # Adicionar datepicker a un elemento input
   addDatePicker = ->
     $('input.date').each( (i, el)->
       if(!$(el).hasClass('hasDate'))
@@ -132,7 +156,6 @@ $(document).ready(->
 
         $(input).attr({'type': 'text', 'class': 'ui-date-text'})
         $(el).addClass('hasDate hide').after(input)
-        #$(el).hide().attr({'type': 'hidden'})
 
         id = '#' + el.id
 
@@ -166,8 +189,7 @@ $(document).ready(->
 
   # cambiar valores para datepiscker con sibling input:text
   $('input.date').live('change', ->
-    d = parsearFecha( $(this).val() )
-    $(this).prev('input').val( [ d[0], d[1], d[2] ].join("-") )
+    $(this).prev('input').val( parsearFecha( $(this).val(), 'string' ) )
   )
 
   # Para borrar algum item

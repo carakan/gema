@@ -100,5 +100,11 @@
       return false;
     }
   });
+  // Controla rango de fechas
+  $('input#fecha_ini').change( function() {
+      alert('s');
+    //var val = $.datepicker.parseDate('yy-mm-dd', $('input#fecha_fin').val() );
+    //$('#fecha_fin').next().datepicker('option', { 'minDate': val } );
+  });
 })(jQuery);
 </script>
