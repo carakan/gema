@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_filter :revisar_permiso!
-  before_filter :crear_params, :only => [:new]
+  layout false
 
   # GET /posts
   # GET /posts.xml
@@ -29,11 +29,6 @@ class PostsController < ApplicationController
   # GET /posts/new.xml
   def new
     @post = Post.new(:postable_id => params[:postable_id], :postable_type => params[:postable_type])
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @post }
-    end
   end
 
   # GET /posts/1/edit
@@ -46,14 +41,10 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(params[:post])
 
-    respond_to do |format|
-      if @post.save
-        format.html { redirect_to(marca_path(@post.marca_id), :notice => 'Comentario creado.') }
-        format.xml  { render :xml => @post, :status => :created, :location => @post }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @post.errors, :status => :unprocessable_entity }
-      end
+    if @post.save
+      redirect_to @post
+    else
+      render :action => "new"
     end
   end
 
@@ -85,10 +76,4 @@ class PostsController < ApplicationController
     end
   end
 
-private
-  def crear_params
-    #controller, action = get_controller_action_from_uri(request.referer)
-    params[:postable_id]
-    params[:postable_type]
-  end
 end

@@ -122,18 +122,67 @@ $(document).ready(->
     false
   )
 
-  $('a.post').live('click', ->
-    if $('iframe#post_iframe').length > 0
-      iframe = $('<iframe />').attr({ 'id': 'post_iframe' })
-      $('body').append(iframe)
+  # Para redondear decimales
+  roundVal = (val, dec)->
+  	dec = dec or 2
+	  Math.round(val*Math.pow(10,dec))/Math.pow(10,dec)
 
-    div = createDialog( { 'id':'create_post_dialog', 'title': 'Crear Comentario' } )
-    $(div).load( $(this).attr('href'), (e)->
-      $(div).find('a[href*=/]').hide()
-    )
-    
+  $.roundVal = $.fn.roundVal = roundVal
+
+  # presenta en bytes la dimension
+  toByteSize = (bytes)->
+    switch true
+      when bytes < 1024 then bytes + " bytes"
+      when bytes < Math.pow(1024, 2) then roundVal( bytes/Math.pow(1024, 1) ) + " Kb"
+      when bytes < Math.pow(1024, 3) then roundVal( bytes/Math.pow(1024, 2) ) + " MB"
+      when bytes < Math.pow(1024, 4) then roundVal( bytes/Math.pow(1024, 3) ) + " GB"
+      when bytes < Math.pow(1024, 5) then roundVal( bytes/Math.pow(1024, 4) ) + " TB"
+      when bytes < Math.pow(1024, 6) then roundVal( bytes/Math.pow(1024, 5) ) + " PB"
+      else
+        roundVal( bytes/ Math.pow(1024, 6)) + " EB"
+
+  $.toByteSize = $.fn.toByteSize = toByteSize
+
+  # Adjunta un nuevo post
+  nuevoPost = (json)->
+    id = 'post-' + json.post.id
+    html = '<li class="post" id="' + id + '" data-usuario_id="' + json.post.usuario_id + '" style="">'
+    html += '<h3>' + json.post.titulo + '</h3>'
+    html += '<p>' + json.post.comentario + '</p>'
+    html += '<ul class="post_adjuntos">'
+    for adjun in json.post.adjuntos
+      adj = adjun.adjunto
+      html +=  ['<li>', '<a href="/adjuntos/"', adj.id, '">', adj.archivo_file_name, ' (',toByteSize(adj.archivo_file_size),')</a></li>' ].join('')
+
+    html += '</ul></li>'
+    $('#posts>ul').prepend(html)
+    mark('#'+id, 7)
+
+  $.fn.nuevoPost = nuevoPost
+
+  $('a.post').live('click', ->
+    if $('iframe#post_iframe').length <= 0
+      iframe = $('<iframe />').attr({ 'id': 'post_iframe', 'name': 'post_iframe', 'style': 'display:none;' })
+      $('body').append(iframe)
+      div = createDialog({'id':'create_post_dialog', 'title': 'Crear comentario'})
+    else
+      iframe = $('#post_iframe')[0]
+      div = $('#create_post_dialog')
+      div.dialog("show")
+
+    $(div).load( $(this).attr("href") );
+
+    iframe.onload = ->
+      html = $(iframe).contents().find('body').html()
+      if $(iframe).contents().find('body post_show_iframe').length > 0
+        $('#posts>ul').prepend(html)
+        mark('#posts>ul>li:first')
+      else
+        $('#create_post_dialog').html(html)
+
     false
   )
+
 
 
   # Hacer submit de un formulario AJAX
@@ -279,7 +328,8 @@ $(document).ready(->
   # @param String // jQuery selector
   # @param Integer velocity
   mark = (selector, velocity, val)->
-    val = val || 0
+    val = val or 0
+    velocity = velocity or 7
     $(selector).css({'background': 'rgb(255,255,'+val+')'})
     if(val >= 255)
       return false

@@ -10,14 +10,12 @@ class Post < ActiveRecord::Base
 
   validates_presence_of :titulo, :comentario
 
-  attr_accessor :postable_id, :postable_type, :referer
-
 private
   def adicionar_usuario
     self.usuario_id = UsuarioSession.current_user[:id]
   end
   
   def new_line_to_br
-    self.comentario.gsub!(/\n/, '<br />')
+    self.comentario = comentario.gsub(/\n/, '<br />').strip
   end
 end

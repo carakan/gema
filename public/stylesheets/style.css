@@ -619,3 +619,19 @@ a.desc {
 .pagination a { text-decoration: none; }
 .dark { color: #484848; }
 .clear { clear: both; }
+#posts h2 { margin: 10px; }
+#posts ul {
+  padding: 10px;
+  list-style: none;
+}
+#posts ul li h3 { color: #484848; }
+#comments .title {
+  margin: 0px 0px;
+  background: #484848;
+  color: #ffffff;
+  padding: 7px 5px;
+}
+.comments p { margin: 3px 0px; }
+.comments h3 { margin: 5px 0px; }
+.comments ul { list-style: none; }
+.comments ul li.post { border-bottom: 1px solid #000000; }

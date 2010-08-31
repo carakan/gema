@@ -28,6 +28,8 @@ class Marca < ActiveRecord::Base
   has_many :consultas
   has_many :consulta_detalles
 
+  POSTS_SIZE = 2
+
   #has_many :marcas_representantes#, :as => :representable
 
   #include HasManyRight
@@ -327,9 +329,9 @@ class Marca < ActiveRecord::Base
   # Presenta los ultimos 3 posts o el parametro que se pase en limit
   #   @param Integer limit
   #   @return array
-  def ultimos_posts(limit = 2)
+  def ultimos_posts()
     Post.all(:conditions => { :postable_id => self.id, :postable_type => 'Marca' }, 
-             :limit => limit, :order => 'created_at DESC' )
+             :limit => POSTS_SIZE, :order => 'created_at DESC' )
   end
 
   # Almacena los errores despues de que es fallida la validación

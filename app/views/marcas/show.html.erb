@@ -1,13 +1,6 @@
 <style type="text/css">
   #marca{ width: 54%; float: left;}
-  #comments{ width: 44%; float: left; background-color: #EFEFEF; }
-  #comments .comments{ padding: 10px; }
-  #comments .title { margin: 0px 0px; background: #484848; color: #FFF; padding: 7px 5px; }
-  .comments p{ margin: 3px 0px;  }
-  .comments h3 { margin: 5px 0px; }
-  .comments ul{ list-style: none; }
-  .comments ul li.post{ border-bottom: 1px solid #000 }
-
+  #posts{ width: 44%; float: left; background-color: #EFEFEF; }
 </style>
 <h1>Marca</h1>
 
@@ -126,7 +119,17 @@
 </div>
 
 
-<div id="comments">
-  <%= render :partial => "posts" %>
-  <%= link_to "Nuevo comentario", new_post_path('data-title' => 'Nuevo post', :type => 'Marca' ), :class => 'new post' %>
+<div id="posts" data-posts_size="<%= Marca::POSTS_SIZE %>">
+  <h2 class="title">Ultimos comentarios</h2>
+  <%= render :partial => "posts/posts", :locals => { :posts => @marca.ultimos_posts } %>
+  <%= link_nuevo_post @marca %>
 </div>
+
+<iframe src="http://localhost:3000/posts/1" width="200" height="150" name="hola" id="hola"></iframe>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('body').live("iframe:click",function() {
+    alert("cargo");
+  });
+})
+</script>

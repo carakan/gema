@@ -1,28 +1,13 @@
-<p>
-  <b>Marca:</b>
-  <%=h @post.marca_id %>
-</p>
-
-<p>
-  <b>Usuario:</b>
-  <%=h @post.usuario_id %>
-</p>
-
-<p>
-  <b>Titulo:</b>
-  <%=h @post.titulo %>
-</p>
-
-<p>
-  <b>Comentario:</b>
-  <%=h @post.comentario %>
-</p>
-
-<p>
-  <b>Accesso:</b>
-  <%=h @post.accesso %>
-</p>
-
-
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+<li>
+  <h3>Titulo</h3>
+</li>
+<div id="post_show_iframe"></div>
+<script type="text/javascript" src="/javascripts/jquery-1.4.2.min.js?1280353099"></script>
+<script type="text/javascript">
+$(document).ready( function() {
+    setTimeout(function(){
+    $(parent.document.body).trigger("iframe:click");
+    //.getElementByTagName('body')).find('a.post').trigger('click');
+    }, 1000);
+})
+</script>
