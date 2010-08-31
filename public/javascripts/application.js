@@ -41,10 +41,10 @@
     $('[alt]').live('mouseover mouseout', function(e) {
       var div, pos;
       div = '#tooltip';
-      if (($(this).hasClass('error'))) {
+      if ($(this).hasClass('error')) {
         div = '#tooltip-error';
-      };
-      if ((e.type === 'mouseover')) {
+      }
+      if (e.type === 'mouseover') {
         pos = $(this).position();
         $(div).css({
           'top': pos.top + 'px',
@@ -93,26 +93,43 @@
       $(div).attr({
         'id': params['id'],
         'title': params['title'],
-        'data-ajax_id': id
+        'data-ajax_id': params['id']
       }).addClass('ajax-modal').css({
         'z-index': 1000
       });
       delete (params['id']);
       delete (params['title']);
       $(div).dialog(params);
-      return id;
+      return div;
     };
     $('a.ajax').live("click", function(e) {
-      var id;
-      id = (new Date()).getTime().toString();
+      var div, id;
+      id = new Date().getTime().toString();
       $(this).attr('data-ajax_id', id);
+      div = createDialog({
+        'title': getDataTitle($(this).attr('href'))
+      });
       $(div).load($(this).attr("href"), function(e) {
         return $(div).find('a[href*=/]').hide();
       });
-      createDialog({
-        'title': getDataTitle($(this).attr('href'))
-      });
       e.stopPropagation();
+      return false;
+    });
+    $('a.post').live('click', function() {
+      var div, iframe;
+      if ($('iframe#post_iframe').length > 0) {
+        iframe = $('<iframe />').attr({
+          'id': 'post_iframe'
+        });
+        $('body').append(iframe);
+      }
+      div = createDialog({
+        'id': 'create_post_dialog',
+        'title': 'Crear Comentario'
+      });
+      $(div).load($(this).attr('href'), function(e) {
+        return $(div).find('a[href*=/]').hide();
+      });
       return false;
     });
     $('div.ajax-modal form').not('[enctype]').live('submit', function() {
@@ -142,7 +159,7 @@
     addDatePicker = function() {
       return $('input.date').each(function(i, el) {
         var d, id, input;
-        if ((!$(el).hasClass('hasDate'))) {
+        if (!$(el).hasClass('hasDate')) {
           input = document.createElement('input');
           $(input).attr({
             'type': 'text',
@@ -180,7 +197,7 @@
     $('a.delete').live("click", function(e) {
       var el, url;
       $(this).parents("tr:first, li:first").addClass('marked');
-      if ((confirm('Esta seguro de borrar el item seleccionado'))) {
+      if (confirm('Esta seguro de borrar el item seleccionado')) {
         url = $(this).attr('href');
         el = this;
         $.ajax({
@@ -212,7 +229,7 @@
     addDatePicker = function() {
       return $('input.date').each(function(i, el) {
         var d, id, input;
-        if ((!$(el).hasClass('hasDate'))) {
+        if (!$(el).hasClass('hasDate')) {
           input = document.createElement('input');
           $(input).attr({
             'type': 'text',
@@ -244,7 +261,7 @@
       $(selector).css({
         'background': 'rgb(255,255,' + val + ')'
       });
-      if ((val >= 255)) {
+      if (val >= 255) {
         return false;
       }
       return setTimeout(function() {
@@ -252,6 +269,7 @@
         return mark(selector, velocity, val);
       }, velocity);
     };
+    $.mark = ($.fn.mark = mark);
     iniciar = function() {
       transformarDateSelect();
       return addDatePicker();

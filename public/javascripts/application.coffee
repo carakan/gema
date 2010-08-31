@@ -5,7 +5,6 @@ $(document).ready(->
   csfr_token = $('meta[name=csfr-token]').attr('content')
   # Date format
   $.datepicker._defaults.dateFormat = 'dd M yy'
-
   # Parsea la fecha con formato seleciando a un objeto Date
   # @param String fecha
   # @param String tipo : Tipo de dato a devolver
@@ -101,23 +100,38 @@ $(document).ready(->
       'id': new Date().getTime(), 'title': '', 'width': 800, 'height' : 400, 'modal': true, 'resizable' : false
     }, params)
     div = document.createElement('div')
-    $(div).attr( { 'id': params['id'], 'title': params['title'], 'data-ajax_id': id } )
+    $(div).attr( { 'id': params['id'], 'title': params['title'], 'data-ajax_id': params['id'] } )
     .addClass('ajax-modal').css( { 'z-index': 1000 } )
     delete(params['id'])
     delete(params['title'])
     $(div).dialog( params )
-    id
+    div
+
+  #$.fn.createDialog = createDialog
 
   # Presentar formulario AJAX
   $('a.ajax').live("click", (e)->
-    id = (new Date).getTime().toString()
+    id = new Date().getTime().toString()
     $(this).attr('data-ajax_id', id)
 
+    div = createDialog( { 'title': getDataTitle( $(this).attr('href') ) } )
     $(div).load( $(this).attr("href"), (e)->
       $(div).find('a[href*=/]').hide()
     )
-    createDialog( { 'title': getDataTitle( $(this).attr('href') ) } )
     e.stopPropagation()
+    false
+  )
+
+  $('a.post').live('click', ->
+    if $('iframe#post_iframe').length > 0
+      iframe = $('<iframe />').attr({ 'id': 'post_iframe' })
+      $('body').append(iframe)
+
+    div = createDialog( { 'id':'create_post_dialog', 'title': 'Crear Comentario' } )
+    $(div).load( $(this).attr('href'), (e)->
+      $(div).find('a[href*=/]').hide()
+    )
+    
     false
   )
 
@@ -147,6 +161,7 @@ $(document).ready(->
 
     false
   )
+
 
   # Adicionar datepicker a un elemento input
   addDatePicker = ->
@@ -272,6 +287,8 @@ $(document).ready(->
       val += 5
       mark(selector, velocity, val)
     , velocity)
+
+  $.mark = $.fn.mark = mark
 
   iniciar = ->
     transformarDateSelect()

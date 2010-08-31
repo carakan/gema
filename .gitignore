@@ -2,6 +2,7 @@
 *.kpf
 *.swp
 *.swo
+*.swn
 *.log
 *.sqlite3
 *~

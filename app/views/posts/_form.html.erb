@@ -1,15 +1,34 @@
-<% semantic_form_for(@post) do |f| %>
+<% semantic_form_for(@post, :html => {:multipart => true}) do |f| %>
   <%= f.input :postable_id, :as => :hidden %>
   <%= f.input :postable_type, :as => :hidden %>
   <%= f.input :titulo, :label => 'Título' %>
   <%= f.input :comentario, :as => :text, :label => 'Comentario' %>
+  <a id="a_adjuntar_archivo" href="javascript:" class="new">Adjuntar archivo</a>
+  <% @post.adjuntos.build %>
+  
+  <div id="adjuntos">
+  </div>
+
   <%= f.submit 'Salvar' %>
+
 <% end %>
 
 <script type="text/javascript">
 $(document).ready(function() {
-  var id = new Date().getTime()
-  var iframe = $('<iframe/>').attr({ 'id': id, 'style': 'display:none' });
-  $('body').append(iframe);
+  $('#a_adjuntar_archivo').click(function() {
+    input = $('<input/>').attr({
+      'name': 'post[adjuntos_attributes][' + ( new Date() ).getTime().toString() + '][archivo]',
+      'type': 'file',
+      'size': 40
+    });
+    del = '<a href="javascript:" class="adjunto_delete">borrar</a>';
+    li = $('<li/>').append('<label>Adjunto</label>').append(input).append(del)
+    $('#adjuntos').append( li );
+    $.mark(li, 7);
+  });
+
+  $('.adjunto_delete').live('click', function(e) {
+    $(this).parents('li:first').remove();
+  });
 });
 </script>
