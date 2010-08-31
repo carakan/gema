@@ -1,12 +1,14 @@
-<% semantic_form_for(@post, :html => {:multipart => true, :target => 'post_iframe'}) do |f| %>
+<% semantic_form_for(@post, :html => {:multipart => true, :target => 'post_iframe', :id => 'post_form'}) do |f| %>
   <%= f.input :postable_id, :as => :hidden %>
   <%= f.input :postable_type, :as => :hidden %>
-  <%= f.input :titulo, :label => 'Título' %>
-  <%= f.input :comentario, :as => :text, :label => 'Comentario' %>
+  <%= f.input :titulo, :label => 'Título', :input_html => { :size => 70 } %>
+  <%= f.input :comentario, :as => :text, :label => 'Comentario', :input_html => {:cols => 70, :rows => 10} %>
   <a id="a_adjuntar_archivo" href="javascript:" class="new">Adjuntar archivo</a>
-  <% @post.adjuntos.build %>
   
   <div id="adjuntos">
+    <% f.semantic_fields_for :adjuntos do |adj| %>
+      <%= adj.input :archivo, :as => :file, :input_html => { :size => 60 } %>
+    <% end %>
   </div>
 
   <%= f.submit 'Salvar' %>
@@ -19,7 +21,7 @@ $(document).ready(function() {
     input = $('<input/>').attr({
       'name': 'post[adjuntos_attributes][' + ( new Date() ).getTime().toString() + '][archivo]',
       'type': 'file',
-      'size': 40
+      'size': 60
     });
     del = '<a href="javascript:" class="adjunto_delete">borrar</a>';
     li = $('<li/>').append('<label>Adjunto</label>').append(input).append(del)
@@ -29,6 +31,30 @@ $(document).ready(function() {
 
   $('.adjunto_delete').live('click', function(e) {
     $(this).parents('li:first').remove();
+  });
+
+  // Validacion
+  $('#post_form').submit(function() {
+    var valid = true;
+    var str = $('#post_titulo').val().trim();
+    
+    if( str.length < 4 ) {
+      valid = false;
+      if($('#post_titulo').siblings("p").length <= 0)
+        $('#post_titulo').after('<p class="inline-errors">No debe estar en blanco y debe tener al menos 4 caracteres</span>');
+    }
+    str = $('#post_comentario').val().trim();
+    if(  str.length < 4  ) {
+      valid = false;
+      if($('#post_comentario').siblings("p").length <= 0)
+        $('#post_comentario').after('<p class="inline-errors">No debe estar en blanco y debe tener al menos 4 caracteres</span>');
+    }
+    
+    if( !valid )
+      alert('Corrija los errores en el formulario');
+
+    return valid;
+   
   });
 });
 </script>

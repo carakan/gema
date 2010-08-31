@@ -50,8 +50,8 @@ $(document).ready(->
     div = '#tooltip'
     if($(this).hasClass('error') )
       div = '#tooltip-error'
-    
-    if(e.type == 'mouseover') 
+
+    if(e.type == 'mouseover')
       pos = $(this).position()
 
       $(div).css(
@@ -61,7 +61,7 @@ $(document).ready(->
       $(div).show()
     else
       $(div).hide()
-    
+
   )
 
   # Para poder presentar mas o menos
@@ -143,46 +143,34 @@ $(document).ready(->
 
   $.toByteSize = $.fn.toByteSize = toByteSize
 
-  # Adjunta un nuevo post
-  nuevoPost = (json)->
-    id = 'post-' + json.post.id
-    html = '<li class="post" id="' + id + '" data-usuario_id="' + json.post.usuario_id + '" style="">'
-    html += '<h3>' + json.post.titulo + '</h3>'
-    html += '<p>' + json.post.comentario + '</p>'
-    html += '<ul class="post_adjuntos">'
-    for adjun in json.post.adjuntos
-      adj = adjun.adjunto
-      html +=  ['<li>', '<a href="/adjuntos/"', adj.id, '">', adj.archivo_file_name, ' (',toByteSize(adj.archivo_file_size),')</a></li>' ].join('')
-
-    html += '</ul></li>'
-    $('#posts>ul').prepend(html)
-    mark('#'+id, 7)
-
-  $.fn.nuevoPost = nuevoPost
-
-  $('a.post').live('click', ->
-    if $('iframe#post_iframe').length <= 0
-      iframe = $('<iframe />').attr({ 'id': 'post_iframe', 'name': 'post_iframe', 'style': 'display:none;' })
-      $('body').append(iframe)
-      div = createDialog({'id':'create_post_dialog', 'title': 'Crear comentario'})
-    else
-      iframe = $('#post_iframe')[0]
-      div = $('#create_post_dialog')
-      div.dialog("show")
-
-    $(div).load( $(this).attr("href") );
-
+  #$.fn.nuevoPost = nuevoPost
+  setIframePostEvents = (iframe)->
     iframe.onload = ->
       html = $(iframe).contents().find('body').html()
-      if $(iframe).contents().find('body post_show_iframe').length > 0
+      if $(iframe).contents().find('#post_show_iframe').length > 0
         $('#posts>ul').prepend(html)
         mark('#posts>ul>li:first')
+        posts = parseInt($('#post>ul>li').length)
+        maxPosts = parseInt($('#post').attr("data-max_posts") )
+        if(posts > maxPosts)
+          $('#post>ul>li:last').remove()
+        $('#create_post_dialog').dialog('close')
       else
         $('#create_post_dialog').html(html)
 
+  $('a.post').live('click', ->
+    if $('iframe#post_iframe').length <= 0
+      iframe = $('<iframe />').attr({ 'id': 'post_iframe', 'name': 'post_iframe', 'style': 'display:none;' })[0]
+      $('body').append(iframe)
+      setIframePostEvents(iframe)
+      div = createDialog({'id':'create_post_dialog', 'title': 'Crear comentario'})
+    else
+      div = $('#create_post_dialog').dialog("open").html("");
+
+    $(div).load( $(this).attr("href") )
+
     false
   )
-
 
 
   # Hacer submit de un formulario AJAX
@@ -227,8 +215,8 @@ $(document).ready(->
         $(input).datepicker(
           'altFormat': 'yy-mm-dd'
           'altField': id
-          'showOtherMonths': true 
-          'selectOtherMonths': true 
+          'showOtherMonths': true
+          'selectOtherMonths': true
           'buttonImage': '/images/icons/calendar.gif'
           'showOn': 'button'
           'buttonImageOnly': true
@@ -239,7 +227,7 @@ $(document).ready(->
           $(input).datepicker('setDate', d)
         catch e
           e
-      
+
     )
   #fin datePicker
 
@@ -332,6 +320,7 @@ $(document).ready(->
     velocity = velocity or 7
     $(selector).css({'background': 'rgb(255,255,'+val+')'})
     if(val >= 255)
+      $(selector).attr("style", "")
       return false
     setTimeout(->
       val += 5

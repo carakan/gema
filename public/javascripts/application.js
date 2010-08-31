@@ -1,6 +1,6 @@
 (function() {
   $(document).ready(function() {
-    var addDatePicker, createDialog, csfr_token, getDataTitle, iniciar, mark, nuevoPost, parsearFecha, roundVal, serializeFormElements, setFechaDateSelect, speed, toByteSize, transformarDateSelect;
+    var addDatePicker, createDialog, csfr_token, getDataTitle, iniciar, mark, parsearFecha, roundVal, serializeFormElements, setFechaDateSelect, setIframePostEvents, speed, toByteSize, transformarDateSelect;
     speed = 300;
     csfr_token = $('meta[name=csfr-token]').attr('content');
     $.datepicker._defaults.dateFormat = 'dd M yy';
@@ -41,10 +41,10 @@
     $('[alt]').live('mouseover mouseout', function(e) {
       var div, pos;
       div = '#tooltip';
-      if (($(this).hasClass('error'))) {
+      if ($(this).hasClass('error')) {
         div = '#tooltip-error';
-      };
-      if ((e.type === 'mouseover')) {
+      }
+      if (e.type === 'mouseover') {
         pos = $(this).position();
         $(div).css({
           'top': pos.top + 'px',
@@ -138,24 +138,24 @@
       }
     };
     $.toByteSize = ($.fn.toByteSize = toByteSize);
-    nuevoPost = function(json) {
-      var _a, _b, _c, adj, adjun, html, id;
-      id = 'post-' + json.post.id;
-      html = '<li class="post" id="' + id + '" data-usuario_id="' + json.post.usuario_id + '" style="">';
-      html += '<h3>' + json.post.titulo + '</h3>';
-      html += '<p>' + json.post.comentario + '</p>';
-      html += '<ul class="post_adjuntos">';
-      _b = json.post.adjuntos;
-      for (_a = 0, _c = _b.length; _a < _c; _a++) {
-        adjun = _b[_a];
-        adj = adjun.adjunto;
-        html += ['<li>', '<a href="/adjuntos/"', adj.id, '">', adj.archivo_file_name, ' (', toByteSize(adj.archivo_file_size), ')</a></li>'].join('');
-      }
-      html += '</ul></li>';
-      $('#posts>ul').prepend(html);
-      return mark('#' + id, 7);
+    setIframePostEvents = function(iframe) {
+      return (iframe.onload = function() {
+        var html, maxPosts, posts;
+        html = $(iframe).contents().find('body').html();
+        if ($(iframe).contents().find('#post_show_iframe').length > 0) {
+          $('#posts>ul').prepend(html);
+          mark('#posts>ul>li:first');
+          posts = parseInt($('#post>ul>li').length);
+          maxPosts = parseInt($('#post').attr("data-max_posts"));
+          if (posts > maxPosts) {
+            $('#post>ul>li:last').remove();
+          }
+          return $('#create_post_dialog').dialog('close');
+        } else {
+          return $('#create_post_dialog').html(html);
+        }
+      });
     };
-    $.fn.nuevoPost = nuevoPost;
     $('a.post').live('click', function() {
       var div, iframe;
       if ($('iframe#post_iframe').length <= 0) {
@@ -163,28 +163,17 @@
           'id': 'post_iframe',
           'name': 'post_iframe',
           'style': 'display:none;'
-        });
+        })[0];
         $('body').append(iframe);
+        setIframePostEvents(iframe);
         div = createDialog({
           'id': 'create_post_dialog',
           'title': 'Crear comentario'
         });
       } else {
-        iframe = $('#post_iframe')[0];
-        div = $('#create_post_dialog');
-        div.dialog("show");
+        div = $('#create_post_dialog').dialog("open").html("");
       }
       $(div).load($(this).attr("href"));
-      iframe.onload = function() {
-        var html;
-        html = $(iframe).contents().find('body').html();
-        if ($(iframe).contents().find('body post_show_iframe').length > 0) {
-          $('#posts>ul').prepend(html);
-          return mark('#posts>ul>li:first');
-        } else {
-          return $('#create_post_dialog').html(html);
-        }
-      };
       return false;
     });
     $('div.ajax-modal form').not('[enctype]').live('submit', function() {
@@ -214,7 +203,7 @@
     addDatePicker = function() {
       return $('input.date').each(function(i, el) {
         var d, id, input;
-        if ((!$(el).hasClass('hasDate'))) {
+        if (!$(el).hasClass('hasDate')) {
           input = document.createElement('input');
           $(input).attr({
             'type': 'text',
@@ -252,7 +241,7 @@
     $('a.delete').live("click", function(e) {
       var el, url;
       $(this).parents("tr:first, li:first").addClass('marked');
-      if ((confirm('Esta seguro de borrar el item seleccionado'))) {
+      if (confirm('Esta seguro de borrar el item seleccionado')) {
         url = $(this).attr('href');
         el = this;
         $.ajax({
@@ -284,7 +273,7 @@
     addDatePicker = function() {
       return $('input.date').each(function(i, el) {
         var d, id, input;
-        if ((!$(el).hasClass('hasDate'))) {
+        if (!$(el).hasClass('hasDate')) {
           input = document.createElement('input');
           $(input).attr({
             'type': 'text',
@@ -317,7 +306,8 @@
       $(selector).css({
         'background': 'rgb(255,255,' + val + ')'
       });
-      if ((val >= 255)) {
+      if (val >= 255) {
+        $(selector).attr("style", "");
         return false;
       }
       return setTimeout(function() {

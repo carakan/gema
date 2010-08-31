@@ -1,13 +1,17 @@
-<li>
-  <h3>Titulo</h3>
+<li class="post">
+  <h3><%= @post.titulo %></h3>
+  Por <strong><%= @post.usuario %></strong><br /> 
+  <em><%= l @post.created_at, :format => "%d, %B %Y %H:%M" %></em>
+  <p>
+    <%= @post.comentario %>
+  </p>
+    <ul>
+      <% @post.adjuntos.each do |a| %>
+        <li class="mime">
+        <%= link_to "<strong>#{ a.archivo_file_name }</strong> (#{ a.archivo_file_size.to_byte_size})", adjunto_path(a), :class => a.tipo %>
+        </li>
+      <% end %>
+    </ul>
 </li>
+
 <div id="post_show_iframe"></div>
-<script type="text/javascript" src="/javascripts/jquery-1.4.2.min.js?1280353099"></script>
-<script type="text/javascript">
-$(document).ready( function() {
-    setTimeout(function(){
-    $(parent.document.body).trigger("iframe:click");
-    //.getElementByTagName('body')).find('a.post').trigger('click');
-    }, 1000);
-})
-</script>
