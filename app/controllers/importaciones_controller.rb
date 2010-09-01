@@ -46,6 +46,10 @@ class ImportacionesController < ApplicationController
     @importacion.inicializar_cruces_pendientes
   end
 
+  def descarga
+    @importacion = Importacion.find(params[:id])
+    send_file @importacion.archivo.path
+  end
   # PUT /importaciones/1
   # PUT /importaciones/1.xml
   #def update

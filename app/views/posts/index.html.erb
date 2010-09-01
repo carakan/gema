@@ -1,10 +1,5 @@
 <h1>Comentarios</h1>
-
-<% @posts.each do |p| %>
-  <h2><%= p.titulo %></h2>
-  Por <strong><%= p.usuario %></strong> el 
-    <em><%= l p.created_at, :format => "%d, %B %Y %H:%M" %></em>
-  <p>
-    <%= p.comentario %>
-  </p>
-<% end %>
+<div class="posts">
+<%= render "posts", :locales => {:posts => @posts} %>
+</div>
+<%= will_paginate @posts %>
