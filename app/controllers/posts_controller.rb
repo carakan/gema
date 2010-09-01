@@ -5,8 +5,8 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.xml
   def index
-    @posts = Post.paginate(:conditions => { :marca_id => params[:marca_id] }, 
-                           :page => @page, :order => 'updated_at DESC' )
+    q = {:conditions => set_conditions, :include => :adjuntos}.merge(order_query_params("posts.created_at"))
+    @posts = Post.paginate( q )
 
     respond_to do |format|
       format.html # index.html.erb
@@ -74,6 +74,10 @@ class PostsController < ApplicationController
       format.html { redirect_to(posts_url) }
       format.xml  { head :ok }
     end
+  end
+private
+  def set_conditions
+    { :postable_id => params[:postable_id], :postable_type => params[:postable_type] }
   end
 
 end

@@ -24,6 +24,8 @@ module ApplicationHelper
   #  #val == true ? t("yes") : t("no")
   #  val ? "Sí" : "No"
   #end
+  # Vinculo para descargas
+
 
   def valido(val)
     val ? "Si": "No"

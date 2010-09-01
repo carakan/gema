@@ -3,13 +3,13 @@
   <%= f.input :postable_type, :as => :hidden %>
   <%= f.input :titulo, :label => 'Título', :input_html => { :size => 70 } %>
   <%= f.input :comentario, :as => :text, :label => 'Comentario', :input_html => {:cols => 70, :rows => 10} %>
-  <a id="a_adjuntar_archivo" href="javascript:" class="new">Adjuntar archivo</a>
   
   <div id="adjuntos">
     <% f.semantic_fields_for :adjuntos do |adj| %>
       <%= adj.input :archivo, :as => :file, :input_html => { :size => 60 } %>
     <% end %>
   </div>
+  <a id="a_adjuntar_archivo" href="javascript:" class="new">Adjuntar archivo</a>
 
   <%= f.submit 'Salvar' %>
 

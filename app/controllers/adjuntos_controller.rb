@@ -14,7 +14,7 @@ class AdjuntosController < ApplicationController
   # GET /adjuntos/1.xml
   def show
     @adjunto = Adjunto.find(params[:id])
-    send_file(File.join( Rails.root, 'public', @adjunto.archivo.url ) )
+    send_file @adjunto.archivo.path
   end
 
   # GET /adjuntos/new

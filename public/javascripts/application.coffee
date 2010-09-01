@@ -116,7 +116,8 @@ $(document).ready(->
 
     div = createDialog( { 'title': getDataTitle( $(this).attr('href') ) } )
     $(div).load( $(this).attr("href"), (e)->
-      $(div).find('a[href*=/]').hide()
+      #$(div).find('a[href*=/]').hide()
+      $(div).find('a.new[href*=/], a.edit[href*=/], a.list[href*=/]').hide()
     )
     e.stopPropagation()
     false
