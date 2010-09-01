@@ -15,6 +15,8 @@ class Representante < ActiveRecord::Base
   has_many :posts, :as => :postable, :dependent => :destroy
   has_many :adjuntos, :as => :adjuntable, :dependent => :destroy
 
+  POSTS_SIZE = 2
+  
   validates_presence_of :nombre
   validates_format_of :email, :with => Constants::EMAIL_REG, 
     :unless => lambda{ |r| r.email.blank? }
@@ -34,9 +36,9 @@ class Representante < ActiveRecord::Base
     find_by_sql( ["SELECT agente_id FROM marcas_agentes WHERE marca_id IN (?)", marca_ids ] ).map(&:agente_id).uniq
   end
 
-  def ultimos_posts(limit = 2)
-    Post.all(:conditions => { :representante_id => self.id }, 
-             :limit => limit, :order => 'created_at DESC' )
+  def ultimos_posts()
+    Post.all(:conditions => { :postable_id => self.id, :postable_type => 'Representante' }, 
+             :limit => POSTS_SIZE, :order => 'created_at DESC' )
   end
 
 private
