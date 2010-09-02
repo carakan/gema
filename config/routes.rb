@@ -3,7 +3,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :consultas
 
-  map.resources :importaciones, :member => { :cruce => :get, :descarga => :get }
+  map.resources :importaciones, :member => { :cruce => :get, :descarga => :get, :reportes => :get }
 
   map.resources :adjuntos
 
@@ -15,9 +15,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :usuarios
 
-  map.resources :representantes, :collection => { :buscar => :get }
-  
-  map.resources :representantes, :member => { :create_post => :post, :show => :get }
+  map.resources :representantes, :member => { :create_post => :post, :show => :get }, :collection => { :buscar => :get }
 
   #map.resources :titulares, :collection => { :buscar => :get }
 

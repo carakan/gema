@@ -50,6 +50,11 @@ class ImportacionesController < ApplicationController
     @importacion = Importacion.find(params[:id])
     send_file @importacion.archivo.path
   end
+
+  # Presenta los reportes relacionados a un cruce
+  def reportes
+
+  end
   # PUT /importaciones/1
   # PUT /importaciones/1.xml
   #def update
