@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  representante_id: 1
+  representante_type: MyString
+  importacion_id: 1
+  reporte_pdf: MyString
+
+two:
+  representante_id: 1
+  representante_type: MyString
+  importacion_id: 1
+  reporte_pdf: MyString

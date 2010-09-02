@@ -9,6 +9,9 @@ class CreateAdjuntos < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :adjuntos, :adjuntable_id
+    add_index :adjuntos, :adjuntable_type
   end
 
   def self.down

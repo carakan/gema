@@ -6,6 +6,7 @@ class Importacion < ActiveRecord::Base
 
   has_many :marcas, :dependent => :destroy
   has_many :consultas
+  has_many :reporte_marcas
 
   default_scope :conditions => { :completa => true }
 

@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  reporte_marca_id: 1
+  marca_id: 1
+  comentario: MyString
+
+two:
+  reporte_marca_id: 1
+  marca_id: 1
+  comentario: MyString

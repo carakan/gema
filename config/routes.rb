@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :reporte_marcas
+
   map.resources :contactos
 
   map.resources :consultas

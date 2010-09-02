@@ -1,0 +1,23 @@
+<p>
+  <b>Representante:</b>
+  <%=h @reporte_marca.representante_id %>
+</p>
+
+<p>
+  <b>Representante type:</b>
+  <%=h @reporte_marca.representante_type %>
+</p>
+
+<p>
+  <b>Importacion:</b>
+  <%=h @reporte_marca.importacion_id %>
+</p>
+
+<p>
+  <b>Reporte pdf:</b>
+  <%=h @reporte_marca.reporte_pdf %>
+</p>
+
+
+<%= link_to 'Edit', edit_reporte_marca_path(@reporte_marca) %> |
+<%= link_to 'Back', reporte_marcas_path %>

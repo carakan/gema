@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100825141915) do
+ActiveRecord::Schema.define(:version => 20100902222847) do
 
   create_table "adjuntos", :force => true do |t|
     t.string   "nombre"
@@ -178,6 +178,29 @@ ActiveRecord::Schema.define(:version => 20100825141915) do
 
   add_index "posts", ["postable_id"], :name => "index_posts_on_postable_id"
   add_index "posts", ["postable_type"], :name => "index_posts_on_postable_type"
+
+  create_table "reporte_marca_detalles", :force => true do |t|
+    t.integer  "reporte_marca_id"
+    t.integer  "marca_id"
+    t.string   "comentario"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "reporte_marca_detalles", ["marca_id"], :name => "index_reporte_marca_detalles_on_marca_id"
+  add_index "reporte_marca_detalles", ["reporte_marca_id"], :name => "index_reporte_marca_detalles_on_reporte_marca_id"
+
+  create_table "reporte_marcas", :force => true do |t|
+    t.integer  "representante_id"
+    t.string   "representante_type"
+    t.integer  "importacion_id"
+    t.string   "reporte_pdf"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "reporte_marcas", ["representante_id"], :name => "index_reporte_marcas_on_representante_id"
+  add_index "reporte_marcas", ["representante_type"], :name => "index_reporte_marcas_on_representante_type"
 
   create_table "representantes", :force => true do |t|
     t.string   "nombre"
