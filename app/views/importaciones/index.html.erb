@@ -30,6 +30,7 @@
       <td><%= marca.total %></td>
       <td><%= marca.errores_listado %></td>
       <td><%= cruce marca %></td>
+      <td><%=  %></td>
       <td><%= link_to "descargar", descarga_importacion_path(marca.importacion_id), :class => 'dowload' %></td>
     </tr>
   <%- end -%>
