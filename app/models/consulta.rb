@@ -71,6 +71,16 @@ class Consulta < ActiveRecord::Base
     Consulta.create!(:marca_id => params[:marca_id], :descartada => true, :importacion_id => params[:importacion_id], :comentario => 'Descartada')
   end
 
+  # Busca todos los titulares relacionados a una importacion
+  #   @params Integer imp_id => importacion_id
+  #   @param Symbol tipo => [ :agentes, :titulares ]
+  #   @return Array
+  def self.buscar_representantes(imp_id, tipo)
+    marcas = Consulta.all(:select => 'consulta_detalles.marca_id', :conditions => { :importacion_id => imp_id }, 
+                 :include => :consulta_detalles ).map { |c| c.consulta_detalles.map(&:marca_id) }.flatten.uniq
+    Marca.find(marcas, :include => tipo, :order => "representantes.nombre ASC").map { |m| m.send(tipo) }.flatten.uniq
+  end
+
 private
   def adicionar_usuario
     self.usuario_id = UsuarioSession.current_user[:id]
