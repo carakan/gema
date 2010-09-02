@@ -41,18 +41,18 @@
   </p>
   <%= link_to 'Editar', edit_representante_path(@representante), :class =>'edit' %>
   <%= link_to 'Lista', representantes_path, :class =>'list' %>
-</div>
-
 <div style="clear:both"></div>
 
 <%= link_to "Nuevo contacto", new_contacto_path, :class => 'new ajax' %>
 
 <div style="clear:both"></div>
+</div>
 
-<div id="posts" data-max_posts="<%= Marca::POSTS_SIZE %>">
+<div id="posts" data-max_posts="<%= Representante::POSTS_SIZE %>">
   <h2 class="title">Ultimos comentarios</h2>
   <%= render :partial => "posts/posts", :locals => { :post => @representante.ultimos_posts } %>
-  <%= link_nuevo_post @representante %>
+  <%= link_post @representante, 'index' %>
+  <%= link_post @representante, 'new' %>
 </div>
 
 <script type="text/javascript">
