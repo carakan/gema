@@ -1,11 +1,11 @@
 <style type="text/css">
-  #marca{ width: 54%; float: left;}
+  #cliente{ width: 54%; float: left;}
   #posts{ width: 44%; float: left; background-color: #EFEFEF; }
 </style>
 
 <h1>Cliente</h1>
 
-<div id="marca">
+<div id="cliente">
 <p>
   <label>Nombre:</label>
   <%=h @representante.nombre %>
@@ -43,17 +43,14 @@
   <%= link_to 'Lista', representantes_path, :class =>'list' %>
 </div>
 
-<div style="clear:both"></div>
-
-<%= link_to "Nuevo contacto", new_contacto_path, :class => 'new ajax' %>
-
-<div style="clear:both"></div>
-
-<div id="posts" data-max_posts="<%= Marca::POSTS_SIZE %>">
+<div id="posts" class="posts" data-posts_size="<%= Representante::POSTS_SIZE %>">
   <h2 class="title">Ultimos comentarios</h2>
-  <%= render :partial => "posts/posts", :locals => { :post => @representante.ultimos_posts } %>
-  <%= link_nuevo_post @representante %>
+  <%= render :partial => "posts/posts", :locals => { :posts => @representante.ultimos_posts } %>
+  <%= link_post @representante, 'index' %>
+  <%= link_post @representante, 'new' %>
 </div>
+
+<div style="clear:both"></div>
 
 <script type="text/javascript">
 $(document).ready(function() {

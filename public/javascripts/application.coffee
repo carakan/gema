@@ -151,10 +151,10 @@ $(document).ready(->
       if $(iframe).contents().find('#post_show_iframe').length > 0
         $('#posts>ul').prepend(html)
         mark('#posts>ul>li:first')
-        posts = parseInt($('#post>ul>li').length)
-        maxPosts = parseInt($('#post').attr("data-max_posts") )
-        if(posts > maxPosts)
-          $('#post>ul>li:last').remove()
+        posts = parseInt($('#posts>ul>li').length)
+        postsSize = parseInt($('#posts').attr("data-posts_size") )
+        if(posts > postsSize)
+          $('#posts>ul>li:last').remove()
         $('#create_post_dialog').dialog('close')
       else
         $('#create_post_dialog').html(html)
@@ -166,7 +166,7 @@ $(document).ready(->
       setIframePostEvents(iframe)
       div = createDialog({'id':'create_post_dialog', 'title': 'Crear comentario'})
     else
-      div = $('#create_post_dialog').dialog("open").html("");
+      div = $('#create_post_dialog').dialog("open").html("")
 
     $(div).load( $(this).attr("href") )
 

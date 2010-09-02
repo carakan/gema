@@ -13,7 +13,6 @@ class Representante < ActiveRecord::Base
   
   #has_many :posts, :order => 'created_at DESC'
   has_many :posts, :as => :postable, :dependent => :destroy
-  has_many :adjuntos, :as => :adjuntable, :dependent => :destroy
 
   POSTS_SIZE = 2
   

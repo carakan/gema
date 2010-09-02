@@ -1,0 +1,143 @@
+--- 
+- tipo_marca_id: 1
+  numero_registro: ""
+  importado: true
+  fecha_importacion: 2010-09-02 15:11:53 Z
+  errores: 
+  valido: true
+  fecha_registro: 
+  created_at: 2010-09-02 15:08:57 Z
+  numero_solicitud_renovacion: 
+  nombre: TOONIX
+  usuario_id: 1
+  updated_at: 2010-09-02 15:08:57 Z
+  numero_gaceta: "123"
+  importacion_id: 
+  fila: 
+  estado_serial: 
+  estado_fecha: 2009-10-30
+  cambios: []
+
+  anterior: false
+  via_instruccion: 
+  numero_solicitud: 4459-2009
+  fecha_solicitud_renovacion: 
+  titular_ids_serial: []
+
+  numero_publicacion: "137895"
+  lema: ""
+  fecha_renovacion: 
+  agente_ids_serial: []
+
+  activa: true
+  propia: true
+  parent_id: 0
+  fecha_publicacion: 
+  apoderado: JORGE SORUCO VILLANUEVA
+  estado: lp
+  errores_manual: 
+  representante_empresarial: 
+  pais_id: 
+  numero_renovacion: ""
+  nombre_minusculas: toonix
+  fecha_instruccion: 
+  descripcion_imagen: 
+  clase_id: 20
+  tipo_signo_id: 1
+  productos: MUEBLES, ESPECIALMENTE ESCRITORIOS, MESAS, SILLAS, ESPEJOS Y MARCOS DE CUADROS; ALMOHADAS, cojines, BOLSAS DE DORMIR, FIGURINES, SCULTURAS, STATUAS, ESTATUILLAS, MARCOS DE PLATOS PLASTICOS CON LICENCIA NOVEDOSOS; BARBEROS DE PLASTICO, DECORACIONES PLASTICAS PARA TORTAS; LLAVEROS NO METALICOS Y NO DE CUERO; CLIPS PARA MONEDAS NO METALICOS, CORCHOS PARA BOTELLAS; BOMBILLAS PARA BEBER, ASIENTOS INFANTILES ELEVADOS, ANDADORES INFANTILES, BASENICAS, SILLAS ALTAS, VENTILADORES DE MANO, TELEFONOS MOVILES DECORTATIVOS, ADORNOS DE ESCULTURA BLANDA PARA PARED
+  archivo_adjunto: ""
+- tipo_marca_id: 2
+  numero_registro: ""
+  importado: true
+  fecha_importacion: 2010-09-02 15:11:53 Z
+  errores: 
+  valido: true
+  fecha_registro: 
+  created_at: 2010-09-02 15:08:58 Z
+  numero_solicitud_renovacion: 
+  nombre: CITIGOLD PRIVATE CLIENT
+  usuario_id: 1
+  updated_at: 2010-09-02 15:08:58 Z
+  numero_gaceta: "123"
+  importacion_id: 1
+  fila: 
+  estado_serial: 
+  estado_fecha: 2009-10-30
+  cambios: []
+
+  anterior: false
+  via_instruccion: 
+  numero_solicitud: 4463-2009
+  fecha_solicitud_renovacion: 
+  titular_ids_serial: []
+ 
+  numero_publicacion: "137896"
+  lema: ""
+  fecha_renovacion: 
+  agente_ids_serial: []
+
+  activa: true
+  propia: true
+  parent_id: 0
+  fecha_publicacion: 
+  apoderado: Roberto Roque Ch.
+  estado: lp
+  errores_manual: 
+  representante_empresarial: 
+  pais_id: 
+  numero_renovacion: ""
+  nombre_minusculas: citigold private client
+  fecha_instruccion: 
+  descripcion_imagen: 
+  clase_id: 36
+  tipo_signo_id: 1
+  productos: "Seguros; negocios financieros; negocios monetarios; negocios inmobiliarios, en la clase 36 de la Clasificaci\xC3\xB3n Internacional."
+  archivo_adjunto: ""
+- tipo_marca_id: 2
+  numero_registro: ""
+  importado: true
+  fecha_importacion: 2010-09-02 15:11:53 Z
+  errores: 
+  valido: true
+  fecha_registro: 
+  created_at: 2010-09-02 15:08:58 Z
+  numero_solicitud_renovacion: 
+  nombre: CITIGOLD
+  usuario_id: 1
+  updated_at: 2010-09-02 15:08:58 Z
+  numero_gaceta: "123"
+  importacion_id: 1
+  fila: 4
+  estado_serial: 
+  estado_fecha: 2009-10-30
+  cambios: []
+
+  anterior: false
+  via_instruccion: 
+  numero_solicitud: 4464-2009
+  id: 5
+  fecha_solicitud_renovacion: 
+  titular_ids_serial: 
+  - 3
+  numero_publicacion: "137897"
+  lema: ""
+  fecha_renovacion: 
+  agente_ids_serial: []
+
+  activa: true
+  propia: true
+  parent_id: 0
+  fecha_publicacion: 
+  apoderado: Roberto Roque Ch.
+  estado: lp
+  errores_manual: 
+  representante_empresarial: 
+  pais_id: 
+  numero_renovacion: ""
+  nombre_minusculas: citigold
+  fecha_instruccion: 
+  descripcion_imagen: 
+  clase_id: 36
+  tipo_signo_id: 1
+  productos: "Seguros; negocios financieros; negocios monetarios; negocios inmobiliarios, en la clase 36 de la Clasificaci\xC3\xB3n Internacional."
+  archivo_adjunto: ""

@@ -119,7 +119,7 @@
 </div>
 
 
-<div id="posts" data-max_posts="<%= Marca::POSTS_SIZE %>">
+<div id="posts" data-posts_size="<%= Marca::POSTS_SIZE %>">
   <h2 class="title">Ultimos comentarios  123</h2>
   <%= render :partial => "posts/posts", :locals => { :posts => @marca.ultimos_posts } %>
   <%= link_post @marca, 'index' %>

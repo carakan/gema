@@ -1,3 +1,4 @@
+# encoding: utf-8
 require 'open-uri'
 require 'forgery'
 
@@ -55,6 +56,32 @@ namespace :gema do
 
   end
 
+  namespace :demo do
+    #desc 'Creacion de clientes'
+    #task :clientes => :environment do
+    #  YAML.load_file("#{Rails.root}/db/clientes_demo.yml").each do |c| 
+    #    Representante.create!(v)
+    #  end
+    #end
+
+    desc 'Creación de marcas de prueba'
+    task :marcas => :environment do
+      YAML.load_file("#{Rails.root}/db/clientes_demo.yml").each do |c| 
+        #Representante.create!(c)
+      end
+
+      UsuarioSession.current_user = Usuario.first
+      YAML.load_file("#{Rails.root}/db/marcas_demo.yml").each do |m|
+        m = Marca.create!(m)
+      debugger
+        if m['nombre'] == 'TOONIX'
+          m.titular_ids = [2]
+        else
+          m.titular_ids = [1]
+        end
+      end
+    end
+  end
 end
 
 
@@ -89,22 +116,22 @@ namespace :db do
     Rake::Task["db:seed"].execute
     Rake::Task["db:migrate:rorol"].execute
     Rake::Task["gema:usuarios:admin"].execute
+    Dir.glob("#{Rails.root}/public/system/*").each { |f| FileUtils.rm_rf(f) }
   end
 end
+
+
 
 namespace :datos do
   desc 'Crea datos de demo'
   task :demo => :environment do
-    Agente.create!(:nombre => 'Karina Luna')
-    Agente.create!(:nombre => 'Eddy Sanchez')
-    Agente.create!(:nombre => 'Marco Arcienaga')
-    Agente.create!(:nombre => 'Amaru Barroso')
-    Agente.create!(:nombre => 'Lucas Estrella')
-    Agente.create!(:nombre => 'Violeta Barroso')
-
-    Titular.create!(:nombre => 'Eddy Sanches')
-    Titular.create!(:nombre => 'Alejandra Helguero')
-    Titular.create!(:nombre => 'Marco Arcienaga')
+    Representante.create!(:nombre => 'Karina Luna')
+    Representante.create!(:nombre => 'Eddy Sanchez')
+    Representante.create!(:nombre => 'Marco Arcienaga')
+    Representante.create!(:nombre => 'Amaru Barroso')
+    Representante.create!(:nombre => 'Lucas Estrella')
+    Representante.create!(:nombre => 'Violeta Barroso')
+    Representante.create!(:nombre => 'Alejandra Helguero')
 
     Usuario.create!(:nombre => 'Boris Barroso', :login => 'boris', :password => 'demo123', :password_confirmation => 'demo123', :rol => 'genrente')
     Usuario.create!(:nombre => 'Alejandra Helguero', :login => 'alejandra', :password => 'demo123', :password_confirmation => 'demo123', :rol => 'genrente')
@@ -120,11 +147,11 @@ namespace :datos do
   end
 
 
-  desc "Crea datos falsos para titulares"
-  task :titulares => :environment do
+  desc "Crea datos falsos para clientes"
+  task :clientes => :environment do
     paises = Pais.all(:select => "id").map(&:id)
     1000.times do
-      Titular.create(
+      Representante.create(
         :nombre => Forgery::Name.company_name,
         :pais_id => paises[rand(paises.size - 1)],
         :email => Forgery::Internet.email_address,

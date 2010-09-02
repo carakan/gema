@@ -1,0 +1,21 @@
+--- 
+- telefono: 
+  valido: 
+  nombre: CITIGROUP INC.
+  movil: 
+  type: 
+  fax: 
+  pais_id: 65
+  pagina_web: 
+  direccion: "399 Park Avenue, New York , New York 10043, Estados Unidos de Norteam\xC3\xA9rica"
+  email: 
+- telefono: 
+  valido: 
+  nombre: THE CARTOON NETWORK, INC.,
+  movil: 
+  type: 
+  fax: 
+  pais_id: 65
+  pagina_web: 
+  direccion: 1050 Techwood Drive, NW, Atlanta, Georgia 30318 USA
+  email: 

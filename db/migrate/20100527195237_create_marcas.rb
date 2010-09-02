@@ -17,7 +17,7 @@ class CreateMarcas < ActiveRecord::Migration
       t.string :numero_renovacion, :default => ''
       t.string :productos, :default => '', :limit => 1024
       t.string :estado, :default => ''
-      t.date :estado_fecha # Tambien puede ser Fecha de solicitud
+      t.datetime :estado_fecha # Tambien puede ser Fecha de solicitud
       t.string :estado_serial
       t.string :numero_publicacion, :default => ''
       t.string :numero_gaceta, :default => ''
