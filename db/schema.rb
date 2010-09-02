@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(:version => 20100825141915) do
     t.string   "numero_renovacion",                           :default => ""
     t.string   "productos",                   :limit => 1024, :default => ""
     t.string   "estado",                                      :default => ""
-    t.date     "estado_fecha"
+    t.datetime "estado_fecha"
     t.string   "estado_serial"
     t.string   "numero_publicacion",                          :default => ""
     t.string   "numero_gaceta",                               :default => ""

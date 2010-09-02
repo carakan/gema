@@ -226,12 +226,13 @@ class Marca < ActiveRecord::Base
   # acumuladas, desde la vista
   def self.view_importaciones(page = 1)
     Marca.table_name = 'view_importaciones'
-    marcas = Marca.send(:with_exclusive_scope) { 
+
+    Marca.send(:with_exclusive_scope) { 
       Marca.paginate(:page => page, 
                      :select => "importacion_id, SUM(total) AS total, SUM(errores) AS errores, estado",
-                     :group => "importacion_id") 
+                     :conditions => [ "importacion_id > ?", 0 ],
+                     :group => "importacion_id")
     }
-    marcas
   end
 
   # Devuelve los registros y el estado

@@ -72,16 +72,17 @@ namespace :gema do
 
       UsuarioSession.current_user = Usuario.first
       YAML.load_file("#{Rails.root}/db/marcas_demo.yml").each do |m|
+      if m.marca == 'TOONIX'
         m = Marca.create!(m)
-      debugger
-        if m['nombre'] == 'TOONIX'
           m.titular_ids = [2]
         else
           m.titular_ids = [1]
         end
       end
     end
+
   end
+
 end
 
 
@@ -108,7 +109,7 @@ namespace :importar do
 end
 
 namespace :db do
-  desc 'Crea todo con datos iniciales'
+  desc 'Crea la base de datos y datos iniciales'
   task :inicial => :environment do
     Rake::Task["db:drop"].execute
     Rake::Task["db:create"].execute

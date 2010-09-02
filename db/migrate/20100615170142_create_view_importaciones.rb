@@ -4,13 +4,13 @@ class CreateViewImportaciones < ActiveRecord::Migration
     sql = "CREATE VIEW view_importaciones_todos AS
     SELECT importacion_id, COUNT(*) AS total, 0 as errores, estado FROM marcas 
     WHERE parent_id = 0 AND importado = 1
-    GROUP BY fecha_importacion"
+    GROUP BY importacion_id"
     execute(sql)
     # Errores
     sql2 = Marca.send(:construct_finder_sql, 
                       :select => "importacion_id, 0 AS total, COUNT(*) AS errores, estado",
-                      :conditions => { :valido => false, :importado => true }, # No es necesario :parent_id => 0, por que hay un default scope
-                      :group => "marcas.fecha_importacion"
+                      :conditions => ["valido = ? AND importado = ?", false, true], # No es necesario :parent_id => 0, por que hay un default scope
+                      :group => "marcas.importacion_id"
                      )
     sql = "CREATE VIEW view_importaciones_errores AS #{sql2}"
     execute(sql)
