@@ -66,6 +66,8 @@ ActiveRecord::Schema.define(:version => 20100902222847) do
   create_table "importaciones", :force => true do |t|
     t.boolean  "completa"
     t.string   "publicacion",       :limit => 30
+    t.date     "publicacion_fecha"
+    t.string   "tipo"
     t.string   "archivo_file_name"
     t.integer  "archivo_file_size"
     t.integer  "cruces_pendientes",               :default => -1

@@ -47,14 +47,17 @@
 
 <% unless @busqueda.blank? %>
 
-  <table class="decorated">
+  <table class="decorated .nolink">
   	<tr>
       <th></th>
   		<th>Nombre</th>
   		<th>Clase</th>
       <th>Tipo de<br/> busqueda</th>
+      <th>Agentes</th>
+      <th>Titulares</th>
   	</tr>
     <% @busqueda.each_with_index do |b, i| %>
+      <%= b.class %>
       <tr>
         <td>
           <input name="marcas[<%= i %>]" type="checkbox" id="marca<%= b.id %>" value="<%= b.id %>" data-tipo="<%= b.pos %>" />
@@ -62,6 +65,8 @@
       	<td><label for="marca<%= b.id %>"><%= b.nombre %></label></td>
       	<td><%= b.clase_id %></td>
         <td><%= tipo_busqueda b.pos %></td>
+        <td><%= buscar_representante(b.agente_ids_serial, @representantes) %></td>
+        <td><%= buscar_representante(b.titular_ids_serial, @representantes) %></td>
       </tr>
     <% end %>
 

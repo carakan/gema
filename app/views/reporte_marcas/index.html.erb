@@ -1,26 +1,22 @@
-<h1>Listing reporte_marcas</h1>
+<h1>Reportes imporatción <%= tipo_reporte @importacion %></h1>
 
-<table>
-  <tr>
-    <th>Representante</th>
-    <th>Representante type</th>
-    <th>Importacion</th>
-    <th>Reporte pdf</th>
-  </tr>
+<div id="tabs">
+  <ul>
+    <li>
+      <a href="#agentes">Agentes</a>
+    </li>
+    <li>
+      <a href="/<%=  %>">Títulares</a>
+    </li>
+  </ul>
+  <div id="agentes">
+    Prueba
+  </div>
+</div>
 
-<% @reporte_marcas.each do |reporte_marca| %>
-  <tr>
-    <td><%=h reporte_marca.representante_id %></td>
-    <td><%=h reporte_marca.representante_type %></td>
-    <td><%=h reporte_marca.importacion_id %></td>
-    <td><%=h reporte_marca.reporte_pdf %></td>
-    <td><%= link_to 'Show', reporte_marca %></td>
-    <td><%= link_to 'Edit', edit_reporte_marca_path(reporte_marca) %></td>
-    <td><%= link_to 'Destroy', reporte_marca, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
 
-<br />
-
-<%= link_to 'New reporte_marca', new_reporte_marca_path %>
+<script type="text/javascript">
+  $(function() {
+      $('#tabs').tabs();
+  })
+</script>

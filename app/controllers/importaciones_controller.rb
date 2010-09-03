@@ -10,7 +10,7 @@ class ImportacionesController < ApplicationController
   # GET /importaciones/new
   # GET /importaciones/new.xml
   def new
-    @marca = ImportacionVacia.new(:tipo => params[:tipo])
+    @marca_vacia = ImportacionVacia.new(:tipo => params[:tipo])
   end
 
   # GET /importaciones/1/edit
@@ -21,8 +21,8 @@ class ImportacionesController < ApplicationController
   # POST /importaciones
   # POST /importaciones.xml
   def create
-    @marca = ImportacionVacia.new( params[:importacion_vacia] )
-    if @marca.valid? == true
+    @marca_vacia = ImportacionVacia.new( params[:importacion_vacia] )
+    if @marca_vacia.valid? == true
       importacion_id = Marca.importar(params[:importacion_vacia])
       redirect_to importacion_url( importacion_id ), :notice => "Se ha importado los datos"
     else

@@ -2,7 +2,8 @@ class ReporteMarcasController < ApplicationController
   # GET /reporte_marcas
   # GET /reporte_marcas.xml
   def index
-    @reporte_marcas = ReporteMarca.all
+    @reporte_marcas = ReporteMarca.all(:conditions => ["importacion_id = ?", params[:importacion_id] ] )
+    @importacion = Importacion.find(params[:importacion_id])
 
     respond_to do |format|
       format.html # index.html.erb

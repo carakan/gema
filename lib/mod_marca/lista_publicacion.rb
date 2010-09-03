@@ -43,10 +43,11 @@ module ModMarca::ListaPublicacion
 
     # Realiza la importación de datos desde archivo Excel o PDF
     def importar_archivo(params)
-      archivo, @nro_gaceta = [ params[:archivo], params[:gaceta] ]
+      archivo, @nro_gaceta = [ params[:archivo], params[:publicacion] ]
       @fecha_imp = DateTime.now.strftime("%Y-%m-%d %H:%I:%S")
-      @importacion = Importacion.create!(:archivo => archivo, :publicacion => @nro_gaceta)
-      @formato_fecha = params[:formato_fecha]
+      @formato_fecha = params.delete(:formato_fecha)
+
+      @importacion = Importacion.create!(params)
 
       extension, cont_type = [ File.extname( archivo.original_filename ).downcase, archivo.content_type ]
 

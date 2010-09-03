@@ -1,16 +1,19 @@
+# encoding: utf-8
 # Modelo sin tabla que solo sirve para poder
 # realizar validaciones de los datos
 class ImportacionVacia < Tableless
   column :archivo, :string
-  column :gaceta, :integer
   column :formato_fecha
-  column :gaceta_fecha
+  column :publicacion
+  column :publicacion_fecha
+  column :tipo
 
   validates_inclusion_of :tipo, :in => Marca::TIPOS.keys, :message => 'Tipo inexistente'
   validates_presence_of :archivo
-  validates_presence_of :gaceta, :if => :ver_gaceta?
-  validates_numericality_of :gaceta, :if => :ver_gaceta?
-  validates_presence_of :fecha_gaceta, :if => :ver_gaceta?
+  validates_presence_of :publicacion, :if => :ver_gaceta?
+  validates_numericality_of :publicacion, :if => :ver_gaceta?
+  #validates_presence_of :publicacion_fecha, :if => :ver_gaceta?
+  validate :fecha_valida
 
   FORMATOS_FECHA = [
     ["dia mes año", "d-m-y"],
@@ -18,7 +21,7 @@ class ImportacionVacia < Tableless
     ["año mes dia", "y-m-d"]
   ]
 
-  attr_accessor :tipo
+  #attr_accessor :tipo
 
   def after_initialize
     self.errors.add(:tipo, 'Tipo inexistente') unless Marca::TIPOS.keys.include?(tipo)
@@ -42,7 +45,7 @@ class ImportacionVacia < Tableless
   end
 
   def self.set_validaciones(tipo, params)
-    new(params.merge(:tipo => tipo) )
+    #new(params.merge(:tipo => tipo) )
   end
 
   def ver_tipo
@@ -56,6 +59,14 @@ private
       when 'lp' then true
       else 
         false
+    end
+  end
+
+  def fecha_valida
+    begin
+      Date.parse(self.publicacion_fecha)
+    rescue
+      self.errors.add(:publicacion_fecha, "Debe ingresar un fecha válida")
     end
   end
 end

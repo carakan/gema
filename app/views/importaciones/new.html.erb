@@ -1,16 +1,19 @@
 <h1>Importar Nueva <%= Marca::TIPOS[ params[:tipo] ] %></h1>
 
 
-<% semantic_form_for( @marca, :url => importaciones_path, :html => { :multipart => true } ) do |f| %>
+<% semantic_form_for( @marca_vacia, :url => importaciones_path, :html => { :multipart => true } ) do |f| %>
   <%= hidden_field_tag('tipo', params[:tipo]) %>
 
   <div> 
     <div class="hide-field">
-      <%= f.input :tipo, :label => '&nbsp;' %>
+      <%= f.label :tipo, "&nbsp;" %>
+      <%= f.text_field :tipo %>
     </div>
 
     <% if params[:tipo] == 'lp' %>
-      <%= f.input :gaceta %>
+      <li>
+       <%= f.input :publicacion, :as => :string, :label => 'Gaceta' %>
+      </li>
       <li>
         <%= f.label :formato_fecha, "Formato de la fecha en el PDF" %>
         <%= f.select :formato_fecha, ImportacionVacia::FORMATOS_FECHA %>
@@ -19,8 +22,7 @@
         </p>
       </li>
       <li class="date">
-        <%= f.label :gaceta_fecha, "Fecha gaceta" %>
-        <%= f.date_select :gaceta_fecha %>
+      <%= f.input :publicacion_fecha, :as => :string, :label => 'Fecha gaceta', :input_html => { :class => 'date' } %>
       </li>
     <% end %>
     <%= f.input :archivo, :as => :file, :label => "Archivo", :input_html => { :size => 60 } %>

@@ -36,6 +36,23 @@ class Representante < ActiveRecord::Base
     find_by_sql( ["SELECT agente_id FROM marcas_agentes WHERE marca_id IN (?)", marca_ids ] ).map(&:agente_id).uniq
   end
 
+  # Retorna un Hash con la lista de representantes todos los representantes "clientes" buscando en las marcas
+  #   @param Array
+  #   @param Symbol => [ :agentes, :titulares ]
+  #   @return Hash
+  def self.marcas_representantes(marca_ids, tipo )
+    singular_id = "#{tipo.to_s.singularize}_id"
+    marcas_representantes = Representante.find_by_sql( ["SELECT * FROM marcas_#{tipo.to_s} WHERE marca_id IN (?)", marca_ids] )
+    representantes = Representante.all(:select => "id, nombre", 
+                      :conditions => { :id => marcas_representantes.map(&singular_id.to_sym).uniq} )
+  end
+
+  # Busca en un array los representantes segun los ids 
+  def self.buscar_representantes(representante_ids, representantes)
+    @reps ||= representantes.inject({}) { |h,v| h[v.id] = v; h }
+    representante_ids.map { |v| @reps[v] }
+  end
+
   def ultimos_posts()
     Post.all(:conditions => { :postable_id => self.id, :postable_type => 'Representante' }, 
              :limit => POSTS_SIZE, :order => 'created_at DESC' )

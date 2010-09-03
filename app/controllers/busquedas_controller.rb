@@ -6,6 +6,7 @@ class BusquedasController < ApplicationController
     params[:tipo_busqueda] = 'prev' if params[:tipo_busqueda].nil?
     if params[:busqueda]
       @busqueda = Busqueda.realizar_busqueda(params)
+      @representantes = preparar_representantes()
     end
 
     @busq = BusquedaVacia.new
@@ -21,6 +22,8 @@ class BusquedasController < ApplicationController
     @consulta = Consulta.find(params[:consulta_id]) unless params[:consulta_id].nil?
 
     @busqueda = Busqueda.realizar_busqueda(query)
+
+    @representantes = preparar_representantes() # BusquedasController#preparar_representantes
     @busq = BusquedaVacia.new
   end
 
@@ -33,4 +36,9 @@ class BusquedasController < ApplicationController
     @busq = BusquedaVacia.new
   end
 
+private
+  def preparar_representantes()
+    representante_ids = ( @busqueda.map(&:agente_ids_serial) + @busqueda.map(&:titular_ids_serial) ).uniq
+    Representante.find( representante_ids ).inject({})  { |h,v| h[v.id] = v; h } 
+  end
 end

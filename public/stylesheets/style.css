@@ -46,7 +46,7 @@ table.decorated th { padding: 6px 10px; }
 table.decorated th li { margin: 0px; }
 table.decorated td { padding: 6px 10px; }
 table.decorated td li { margin: 0px; }
-table.decorated th:last-child { width: 110px; }
+table.decorated th.last { width: 110px; }
 .over { background-color: #c2e0ef !important; }
 .selected {
   background-color: #61b5df !important;
