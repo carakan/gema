@@ -4,11 +4,13 @@ class ImportacionVacia < Tableless
   column :archivo, :string
   column :gaceta, :integer
   column :formato_fecha
+  column :gaceta_fecha
 
   validates_inclusion_of :tipo, :in => Marca::TIPOS.keys, :message => 'Tipo inexistente'
   validates_presence_of :archivo
   validates_presence_of :gaceta, :if => :ver_gaceta?
   validates_numericality_of :gaceta, :if => :ver_gaceta?
+  validates_presence_of :fecha_gaceta, :if => :ver_gaceta?
 
   FORMATOS_FECHA = [
     ["dia mes año", "d-m-y"],

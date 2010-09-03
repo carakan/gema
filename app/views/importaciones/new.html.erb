@@ -18,6 +18,10 @@
         El sistema reconocera automaticamente el separador "/" o "-"
         </p>
       </li>
+      <li class="date">
+        <%= f.label :gaceta_fecha, "Fecha gaceta" %>
+        <%= f.date_select :gaceta_fecha %>
+      </li>
     <% end %>
     <%= f.input :archivo, :as => :file, :label => "Archivo", :input_html => { :size => 60 } %>
 

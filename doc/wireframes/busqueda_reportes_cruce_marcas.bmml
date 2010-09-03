@@ -107,7 +107,7 @@
         <text>Vigilancia</text>
       </controlProperties>
     </control>
-    <control controlID="72" controlTypeID="com.balsamiq.mockups::DataGrid" x="276" y="388" w="635" h="236" measuredW="335" measuredH="244" zOrder="14" locked="false" isInGroup="-1">
+    <control controlID="72" controlTypeID="com.balsamiq.mockups::DataGrid" x="276" y="388" w="635" h="236" measuredW="337" measuredH="244" zOrder="14" locked="false" isInGroup="-1">
       <controlProperties>
         <bold>false</bold>
         <borderStyle>none</borderStyle>
@@ -118,8 +118,9 @@
         <vLines>false</vLines>
       </controlProperties>
     </control>
-    <control controlID="73" controlTypeID="com.balsamiq.mockups::TextArea" x="276" y="206" w="571" h="123" measuredW="200" measuredH="140" zOrder="15" locked="false" isInGroup="-1">
+    <control controlID="73" controlTypeID="com.balsamiq.mockups::TextArea" x="280" y="250" w="571" h="123" measuredW="200" measuredH="140" zOrder="15" locked="false" isInGroup="-1">
       <controlProperties>
+        <bold>false</bold>
         <text>Estimado%20cliente%2C%20le%20mandamos%20esta%20nota%20para%20mostrar%20los%20problemas%20que%20existieron%20en%20el%20cruce%20de%20la%20%FAltima%20gaceta%20N%BA%20123</text>
       </controlProperties>
     </control>
@@ -134,17 +135,31 @@
     </control>
     <control controlID="75" controlTypeID="com.balsamiq.mockups::TextArea" x="670" y="414" w="227" h="62" measuredW="200" measuredH="140" zOrder="17" locked="false" isInGroup="-1">
       <controlProperties>
+        <bold>false</bold>
         <text>Las%20dos%20marcas%20son%20casi%20similares</text>
       </controlProperties>
     </control>
     <control controlID="76" controlTypeID="com.balsamiq.mockups::TextArea" x="670" y="491" w="227" h="62" measuredW="200" measuredH="140" zOrder="18" locked="false" isInGroup="-1">
       <controlProperties>
+        <bold>false</bold>
         <text>Es%20muy%20poco%20probable%20que%20se%20pueda%20hacer%20algo%2C%20pero%20le%20informo</text>
       </controlProperties>
     </control>
     <control controlID="77" controlTypeID="com.balsamiq.mockups::TextArea" x="670" y="562" w="227" h="62" measuredW="200" measuredH="140" zOrder="19" locked="false" isInGroup="-1">
       <controlProperties>
+        <bold>false</bold>
         <text/>
+      </controlProperties>
+    </control>
+    <control controlID="78" controlTypeID="com.balsamiq.mockups::RadioButton" x="280" y="218" w="-1" h="-1" measuredW="59" measuredH="22" zOrder="20" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Ingles</text>
+      </controlProperties>
+    </control>
+    <control controlID="79" controlTypeID="com.balsamiq.mockups::RadioButton" x="371" y="218" w="-1" h="-1" measuredW="67" measuredH="22" zOrder="21" locked="false" isInGroup="-1">
+      <controlProperties>
+        <state>selected</state>
+        <text>Espa%F1ol</text>
       </controlProperties>
     </control>
   </controls>

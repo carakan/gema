@@ -21,6 +21,9 @@ ActiveRecord::Schema.define(:version => 20100902222847) do
     t.datetime "updated_at"
   end
 
+  add_index "adjuntos", ["adjuntable_id"], :name => "index_adjuntos_on_adjuntable_id"
+  add_index "adjuntos", ["adjuntable_type"], :name => "index_adjuntos_on_adjuntable_type"
+
   create_table "clases", :force => true do |t|
     t.string   "nombre"
     t.integer  "codigo",      :null => false

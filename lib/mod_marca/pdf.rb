@@ -194,8 +194,8 @@ module ModMarca::PDF
     end
 
     # Prepara el archivo subido y lo copia en un directorio
-    # @param Rack:TempFile
-    # @return String
+    #   @param Rack:TempFile
+    #   @return String
     def preparar_pdf(pdf_path, archivo)
       raise "Error, el archivo selecionado no es un PDF" unless File.extname(archivo.original_filename).downcase == '.pdf'
       raise "Error, el directorio \"#{pdf_path}\" no existe al cual desea subir" unless File.exists?(pdf_path)

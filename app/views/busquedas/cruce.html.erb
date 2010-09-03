@@ -53,7 +53,6 @@
   		<th>Nombre</th>
   		<th>Clase</th>
       <th>Tipo de<br/> busqueda</th>
-      <th>Activa</th>
   	</tr>
     <% @busqueda.each_with_index do |b, i| %>
       <tr>
@@ -63,7 +62,6 @@
       	<td><label for="marca<%= b.id %>"><%= b.nombre %></label></td>
       	<td><%= b.clase_id %></td>
         <td><%= tipo_busqueda b.pos %></td>
-        <td><%= b.activa %></td>
       </tr>
     <% end %>
 

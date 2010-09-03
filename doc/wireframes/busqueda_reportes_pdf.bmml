@@ -30,7 +30,7 @@
         <color>13421772</color>
       </controlProperties>
     </control>
-    <control controlID="44" controlTypeID="com.balsamiq.mockups::Title" x="276" y="160" w="-1" h="-1" measuredW="579" measuredH="46" zOrder="5" locked="false" isInGroup="-1">
+    <control controlID="44" controlTypeID="com.balsamiq.mockups::Title" x="276" y="158" w="-1" h="-1" measuredW="579" measuredH="46" zOrder="5" locked="false" isInGroup="-1">
       <controlProperties>
         <bold>false</bold>
         <size>28</size>
@@ -107,26 +107,27 @@
         <text>Vigilancia</text>
       </controlProperties>
     </control>
-    <control controlID="72" controlTypeID="com.balsamiq.mockups::DataGrid" x="276" y="276" w="635" h="180" measuredW="635" measuredH="172" zOrder="14" locked="false" isInGroup="-1">
+    <control controlID="72" controlTypeID="com.balsamiq.mockups::DataGrid" x="276" y="316" w="635" h="191" measuredW="607" measuredH="188" zOrder="14" locked="false" isInGroup="-1">
       <controlProperties>
         <bold>false</bold>
         <borderStyle>none</borderStyle>
         <hasHeader>true</hasHeader>
-        <rowHeight>72</rowHeight>
+        <rowHeight>80</rowHeight>
         <selectedIndex>-1</selectedIndex>
-        <text>%2C*Marca%20propia*%2C%20*Marca%20foranea*%2C%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%0A%5Bx%5D%2C%20SINTIUM%2C%20SYNTIUM%2C%20Las%20dos%20marcas%20son%20casi%20similares%0A%5Bx%5D%2C%20INTIUM%2C%20SYMTIUM%2C%20Es%20muy%20poco%20probable%20que%20se%20pueda%20hacer%20algo%2C%20pero%20le%20informo</text>
+        <text>*Marca%20propia*%2C%20*Marca%20foranea*%2C%20*Comentario*%20%20%20%20%20%20%20%20%20%20%20%20%20%20%0A*SINTIUM*%5Cr2%20_Oct%202009_%5Cr%20Clase%202%5CrDenominacion%2C%20*SYNTIUM*%5Cr4%20_Nov%202009_%5CrClase%202%5CrDenominacion%2C%20Las%20dos%20marcas%20son%20casi%20similares%0A*INTIUM*%5Cr4%20_Dic%202007_%5Cr%20Clase%204%5CrMixta%2C%20*SYMTIUM*%5Cr5%20_Feb%202010_%5Cr%20Clase%204%5CrMixta%2C%20Es%20muy%20poco%20probable%20que%20se%20pueda%20hacer%20algo%2C%20pero%20le%20informo</text>
         <vLines>false</vLines>
       </controlProperties>
     </control>
-    <control controlID="74" controlTypeID="com.balsamiq.mockups::PointyButton" x="529" y="471" w="-1" h="-1" measuredW="113" measuredH="28" zOrder="15" locked="false" isInGroup="-1">
+    <control controlID="74" controlTypeID="com.balsamiq.mockups::PointyButton" x="529" y="551" w="-1" h="-1" measuredW="113" measuredH="28" zOrder="15" locked="false" isInGroup="-1">
       <controlProperties>
         <color>2848996</color>
         <direction>center</direction>
         <text>Descargar%20PDF</text>
       </controlProperties>
     </control>
-    <control controlID="78" controlTypeID="com.balsamiq.mockups::Paragraph" x="276" y="206" w="635" h="115" measuredW="200" measuredH="140" zOrder="16" locked="false" isInGroup="-1">
+    <control controlID="78" controlTypeID="com.balsamiq.mockups::Paragraph" x="274" y="244" w="635" h="63" measuredW="200" measuredH="140" zOrder="16" locked="false" isInGroup="-1">
       <controlProperties>
+        <bold>false</bold>
         <text>Estimado%20cliente%2C%20le%20mandamos%20esta%20nota%20para%20mostrar%20los%20problemas%20que%20existieron%20en%20el%20cruce%20de%20la%20%FAltima%20gaceta%20N%BA%20123</text>
       </controlProperties>
     </control>

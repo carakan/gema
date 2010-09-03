@@ -112,13 +112,13 @@
         <text>Agentes%2C%20Titulares</text>
       </controlProperties>
     </control>
-    <control controlID="72" controlTypeID="com.balsamiq.mockups::DataGrid" x="322" y="288" w="584" h="236" measuredW="206" measuredH="118" zOrder="15" locked="false" isInGroup="-1">
+    <control controlID="72" controlTypeID="com.balsamiq.mockups::DataGrid" x="322" y="288" w="584" h="236" measuredW="288" measuredH="118" zOrder="15" locked="false" isInGroup="-1">
       <controlProperties>
         <bold>false</bold>
         <borderStyle>none</borderStyle>
         <hasHeader>true</hasHeader>
         <selectedIndex>-1</selectedIndex>
-        <text>*Agente*%2C%20*Signos*%2C*Reporte*%0A%5BJuan%20Perez%5D%2C%204%2C%5Breporte%5D%0A%5BJuan%20Akbak%5D%2C%203%0A%5BAna%20Torroja%5D%2C%202</text>
+        <text>*Agente*%2C%20*Signos*%2C*Reporte*%0A%5BJuan%20Perez%5D%2C%204%2C%5Bver%5D%20%5Beditar%5D%20%5Bdescargar%5D%0A%5BJuan%20Akbak%5D%2C%203%0A%5BAna%20Torroja%5D%2C%202</text>
         <vLines>false</vLines>
       </controlProperties>
     </control>

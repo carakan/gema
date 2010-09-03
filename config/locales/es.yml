@@ -141,7 +141,7 @@ es:
       # When no format has been given, it uses default.
       # You can provide other formats here if you like!
       default: "%d %b, %Y"
-      short: "%e de %b"
+      short: "%e de %b %Y"
       long: "%e de %B de %Y"
 
     day_names: [Domingo, Lunes, Martes, Miércoles, Jueves, Viernes, Sábado]
@@ -156,7 +156,7 @@ es:
   time:
     formats:
       default: "%A, %e de %B de %Y %H:%M:%S %z"
-      short: "%e de %b %H:%M"
+      short: "%e de %b %Y %H:%M"
       long: "%e de %B de %Y %H:%M"
     am: "am"
     pm: "pm"

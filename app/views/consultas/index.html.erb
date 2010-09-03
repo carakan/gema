@@ -4,8 +4,10 @@
 
 <table class="decorated">
   <tr>
+    <th></th>
     <th>Busqueda</th>
     <th>Usuario</th>
+    <th>Fecha</th>
     <th>Resultados</th>
     <th>Reporte</th>
     <th></th>
@@ -13,8 +15,10 @@
 
 <% @consultas.each do |consulta| %>
   <tr>
+    <td><%= check_box_tag "consultas[]", consulta.id %></td>
     <td><%=h  link_to consulta.busqueda, consulta %></td>
     <td><%=h consulta.usuario %></td>
+    <td><%= l consulta.created_at, :format => :short %></td>
     <td><%=h consulta.consulta_detalles.size %></td>
     <td><%=h consulta.reporte %></td>
     <td>

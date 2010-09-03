@@ -41,6 +41,7 @@ class Representante < ActiveRecord::Base
              :limit => POSTS_SIZE, :order => 'created_at DESC' )
   end
 
+
 private
   # Prepara el atributo validar
   def set_validar
