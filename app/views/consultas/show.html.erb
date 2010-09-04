@@ -35,7 +35,8 @@
   		<th>Tipo de Signo</th>
   		<th>Clase</th>
       <th>Tipo de<br />busqueda</th>
-      <th>Comentario</th>
+      <th>Agentes</th>
+      <th>Titulares</th>
     </tr>
     <% @consulta.consulta_detalles.each do |cd| %>
       <tr>
@@ -47,7 +48,12 @@
         <td>
           <%= tipo_busqueda cd.tipo %>
         </td>
-        <td><%= cd.comentario %></td>
+        <td>
+          <%= cd.marca.agentes.join(", ") %>
+        </td>
+        <td>
+          <%= cd.marca.titulares.join(", ") %>
+        </td>
       </tr>
     <% end %>
   </table>
