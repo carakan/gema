@@ -6,11 +6,19 @@
       <a href="#agentes">Agentes</a>
     </li>
     <li>
-      <a href="/<%=  %>">Títulares</a>
+    <a href="<%= reporte_marcas_path(:tipo => 'titulares', :importacion_id => params[:importacion_id]) %>">Títulares</a>
     </li>
   </ul>
   <div id="agentes">
-    Prueba
+    <table>
+    	<tr>
+    		<th>Agentes</th>
+        <th>
+        </th>
+    	</tr>
+      <%  %>
+      <%  %>
+    </table>
   </div>
 </div>
 

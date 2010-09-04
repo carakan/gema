@@ -13,7 +13,6 @@ class BusquedasController < ApplicationController
   end
 
   def cruce
-    #Consulta.find(params[:consulta_id]).destroy unless params[:consulta_id].nil?
 
     @marca = Marca.find(params[:marca_id])
     query = { :busqueda => @marca.nombre, :clases => (1..45).to_a.join(","), 

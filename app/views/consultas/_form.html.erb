@@ -5,7 +5,7 @@
   <%= f.input :importacion_id, :as => :hidden %>
   <%= f.input :marca_id, :as => :hidden %>
 
-  <%= f.input :comentario, :as => :text %>
+  <%= f.input :comentario, :as => :text, :input_html => {:cols => 100} %>
 
 
   <h2>Marcas seleccionadas</h2>
@@ -15,7 +15,8 @@
   		<th>Tipo de Signo</th>
   		<th>Clase</th>
       <th>Tipo de<br />busqueda</th>
-      <th>Comentario</th>
+      <th>Agentes</th>
+      <th>Titulares</th>
     </tr>
     <% f.semantic_fields_for :consulta_detalles do |cd| %>
       <tr>
@@ -29,7 +30,12 @@
           <%= cd.hidden_field :tipo %>
           <%= tipo_busqueda cd.object.tipo %>
         </td>
-        <td><%= cd.input :comentario, :as => :text, :label => false, :input_html => { :rows => 3 } %></td>
+        <td>
+          <%= cd.object.marca.agentes.join(", ") %>
+        </td>
+        <td>
+          <%= cd.object.marca.titulares.join(", ") %>
+        </td>
       </tr>
     <% end %>
   </table>
