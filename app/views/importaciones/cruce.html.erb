@@ -15,24 +15,20 @@
 		<th>Marca</th>
 		<th>Tipo Signo</th>
 		<th>Clase</th>
-    <th>Usuario</th>
     <th>Titulares</th>
+    <th>Usuario</th>
     <th>Cruzar</th>
-    <th></th>
     <% @marcas.each do |marca| %>
       <%= tr_marca marca %>
         <td><%= marca.nombre %></td>
         <td><%= marca.tipo_signo %></td>
-        <td><%= marca.clase %></td>
+        <td><%= marca.clase_id %></td>
         <% @consult = marca.cruce(@importacion.id) %>
-        <td><%= @consult.try(:usuario) %></td>
         <td><%= marca.try(:titulares).map(&:nombre).join(",") %></td>
+        <td><%= @consult.try(:usuario) %></td>
         <td class="<%= @consult.try(:type) %>">
           <%= realizar_cruce(marca, @importacion, @consult.try(:id)) %>
           <%= ver_cruce (@consult) unless @consult.nil? %>
-        </td>
-
-        <td>
         </td>
       </tr>
     <% end %>
@@ -42,18 +38,3 @@
 
 <%= @will %>
 
-<script type="text/javascript">
-  $(document).ready(function() {
-    /*
-    $('td.Consulta a.nueva').click(function() {
-      var tr = $(this).parents('tr:first').addClass('selected');
-      if(confirm("Esta seguro de borrar la consulta seleccionada y realizar una nueva")) {
-        return true;
-      }else{
-        tr.removeClass('selected');
-        return false;
-      }
-      });
-    */
-  });
-</script>

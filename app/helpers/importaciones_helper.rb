@@ -13,7 +13,7 @@ module ImportacionesHelper
   def realizar_cruce(marca, importacion, consulta_id)
     query = { :importacion_id => importacion.id, :marca_id => marca.id, :page => @page }
     query.merge!(:consulta_id => consulta_id ) unless consulta_id.nil?
-    link_to "cruzar", cruce_busquedas_path(query), :class => 'nueva'
+    link_to "cruzar", cruce_busquedas_path(query), :class => 'process'
   end
 
   def ver_cruce(consulta, options = {})

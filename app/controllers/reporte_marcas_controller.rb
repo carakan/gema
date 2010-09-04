@@ -2,12 +2,14 @@ class ReporteMarcasController < ApplicationController
   # GET /reporte_marcas
   # GET /reporte_marcas.xml
   def index
-    @reporte_marcas = ReporteMarca.all(:conditions => ["importacion_id = ?", params[:importacion_id] ] )
+    params[:tipo] ||= :agentes
+    @representantes = Consulta.representantes(params[:importacion_id], params[:tipo])
     @importacion = Importacion.find(params[:importacion_id])
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @reporte_marcas }
+    if request.xhr?
+      render :partial => 'representantes'
+    else
+      render :action => 'index'
     end
   end
 

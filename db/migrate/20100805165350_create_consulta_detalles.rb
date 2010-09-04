@@ -3,7 +3,7 @@ class CreateConsultaDetalles < ActiveRecord::Migration
     create_table :consulta_detalles do |t|
       t.integer :consulta_id
       t.integer :marca_id
-      t.string :comentario, :limit => 800
+      #t.string :comentario, :limit => 800
       t.integer :tipo
 
       t.timestamps

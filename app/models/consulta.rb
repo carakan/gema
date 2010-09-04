@@ -1,8 +1,8 @@
 class Consulta < ActiveRecord::Base
   before_create :adicionar_usuario
-  before_create :disminuir_cruces_pendientes
-  before_create :crear_reporte, :if => lambda { |c| !!c.importacion.nil? }
-  before_destroy :aumentar_cruces_pendientes#, :if => lambda { |c| !!c.importacion.nil? }
+  before_create :disminuir_cruces_pendientes, :if => :importacion_id? #lambda { |c| !!c.importacion.nil? }
+  before_destroy :aumentar_cruces_pendientes, :if => :importacion_id?
+  before_save :serializar_marca_ids
 
   belongs_to :marca
   belongs_to :usuario
@@ -14,6 +14,7 @@ class Consulta < ActiveRecord::Base
   validates_presence_of :comentario
 
   serialize :parametros
+  serialize :marca_ids_serial
 
   PARAMS = [:clases, :tipo_busqueda, :fecha_ini, :fecha_fin]
 
@@ -42,6 +43,18 @@ class Consulta < ActiveRecord::Base
     klass.instanciar_marcas_detalles(params)
 
     klass
+  end
+
+  # Retorna los representantes de las marcas que internvinieron en la
+  # consulta
+  def self.representantes(importacion_id, tipo)
+    tipo = ['agentes', 'titulares'].include?(tipo) ? tipo.to_sym : :agentes
+    
+    marca_ids = Consulta.all(:select => "id, marca_ids_serial",
+                 :conditions => { :importacion_id => importacion_id} 
+    ).map(&:marca_ids_serial).flatten.compact.uniq
+
+    Representante.marcas_representantes(marca_ids, tipo)
   end
 
   def set_importacion_id(params)
@@ -103,11 +116,9 @@ private
     end
   end
   
-  # Almacena el reporte creado por la consulta
-  def crear_reporte
-    self.reporte = ''
+  def serializar_marca_ids
+    self.marca_ids_serial = self.consulta_detalles.map(&:marca_id)
   end
 
-  def titulo
-  end
+
 end

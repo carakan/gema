@@ -393,6 +393,7 @@ ul.inline li a {
 .icon-add { background: url(../images/icons/add.png); }
 .icon-edit { background: url(../images/icons/pencil.png); }
 .icon-delete { background-image: url(../images/icons/delete.png); }
+.icon-process { background-image: url(../images/icons/cog.png); }
 .icon-show { background-image: url(../images/icons/zoom.png); }
 .icon-top-right { background-position: top right; }
 .icon-info { background-image: url(../images/icons/information.png); }
@@ -452,6 +453,12 @@ a.fail {
 }
 a.succeed {
   background-image: url(../images/icons/tick.png);
+  background-position: middle left;
+  padding-left: 18px;
+  background-repeat: no-repeat;
+}
+a.process {
+  background-image: url(../images/icons/cog.png);
   background-position: middle left;
   padding-left: 18px;
   background-repeat: no-repeat;

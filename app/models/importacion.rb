@@ -11,7 +11,6 @@ class Importacion < ActiveRecord::Base
   default_scope :conditions => { :completa => true }
 
 
-
   has_attached_file :archivo, :path => ":rails_root/public/system/:rails_env/importaciones/:id_partition/:filename"
 
   # Realiza el conteo de cruces que se realizaron y lo actualiza (dato denormalizado)

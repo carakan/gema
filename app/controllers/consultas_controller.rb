@@ -56,15 +56,15 @@ class ConsultasController < ApplicationController
     @consulta = Consulta.new(params[:consulta])
 
     unless @consulta.importacion.nil?
-      notice = "Se ha realizado el informe del cruce"
-      path = cruce_importacion_url(@consulta.importacion, :page => @page)
+      notice = "Se ha almacenado la consulta del cruce"
+      uri = cruce_importacion_url(@consulta.importacion, :page => @page)
     else
-      notice = "Se ha realizado el informe de la consulta"
-      path = @consulta
+      notice = "Se ha almacenado la consulta"
+      uri = @consulta
     end
 
     if @consulta.save
-      redirect_to path, :notice => notice
+      redirect_to uri, :notice => notice
     else
       render :action => "new"
     end

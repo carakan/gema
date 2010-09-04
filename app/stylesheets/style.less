@@ -436,6 +436,9 @@ ul.inline{
 .icon-delete{
   background-image: url(../images/icons/delete.png);
 }
+.icon-process{
+  background-image: url(../images/icons/cog.png);
+}
 .icon-show{
   background-image: url(../images/icons/zoom.png);
 }
@@ -512,6 +515,13 @@ a.fail{
 }
 a.succeed{
   .icon-checked;
+  background-position: middle left;
+  padding-left: @icon_pad;
+  background-repeat: no-repeat;
+}
+
+a.process{
+  .icon-process;
   background-position: middle left;
   padding-left: @icon_pad;
   background-repeat: no-repeat;

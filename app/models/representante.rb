@@ -39,12 +39,12 @@ class Representante < ActiveRecord::Base
   # Retorna un Hash con la lista de representantes todos los representantes "clientes" buscando en las marcas
   #   @param Array
   #   @param Symbol => [ :agentes, :titulares ]
-  #   @return Hash
+  #   @return Array
   def self.marcas_representantes(marca_ids, tipo )
     singular_id = "#{tipo.to_s.singularize}_id"
     marcas_representantes = Representante.find_by_sql( ["SELECT * FROM marcas_#{tipo.to_s} WHERE marca_id IN (?)", marca_ids] )
-    representantes = Representante.all(:select => "id, nombre", 
-                      :conditions => { :id => marcas_representantes.map(&singular_id.to_sym).uniq} )
+    Representante.all(:select => "id, nombre", 
+                      :conditions => { :id => marcas_representantes.map(&singular_id.to_sym).uniq } )
   end
 
   # Busca en un array los representantes segun los ids 
