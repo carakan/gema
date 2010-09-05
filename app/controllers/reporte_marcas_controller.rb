@@ -26,9 +26,11 @@ class ReporteMarcasController < ApplicationController
 
   # GET /reporte_marcas/new
   # GET /reporte_marcas/new.xml
-  def new
-    @reporte_marca = ReporteMarca.new
-
+  def cruce
+    preparar_datos_cruce
+    @reporte_marca = ReporteMarca.new(:representante_id => params[:representante_id], 
+                                      :representante_type => params[:representante_type],
+                                      :importacion_id => params[:importacion_id])
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @reporte_marca }
@@ -45,14 +47,11 @@ class ReporteMarcasController < ApplicationController
   def create
     @reporte_marca = ReporteMarca.new(params[:reporte_marca])
 
-    respond_to do |format|
-      if @reporte_marca.save
-        format.html { redirect_to(@reporte_marca, :notice => 'ReporteMarca was successfully created.') }
-        format.xml  { render :xml => @reporte_marca, :status => :created, :location => @reporte_marca }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @reporte_marca.errors, :status => :unprocessable_entity }
-      end
+    if @reporte_marca.save
+      redirect_to(@reporte_marca, :notice => 'ReporteMarca was successfully created.')
+    else
+      preparar_datos_cruce
+      render :action => "cruce"
     end
   end
 
@@ -82,5 +81,18 @@ class ReporteMarcasController < ApplicationController
       format.html { redirect_to(reporte_marcas_url) }
       format.xml  { head :ok }
     end
+  end
+private
+  def preparar_datos_cruce
+    p = params[:representante_id].nil? ? params[:reporte_marca] : params
+    if 'Agente' == p[:representante_type]
+      tipo = :agentes
+    else
+      tipo = :titulares
+    end
+    
+    @representante = Representante.find(p[:representante_id])
+    @importacion = Importacion.find(p[:importacion_id])
+    @marcas = Consulta.marcas_representante_cruce(p[:importacion_id], p[:representante_id], tipo )
   end
 end

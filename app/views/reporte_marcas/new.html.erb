@@ -1,27 +1,59 @@
-<h1>New reporte_marca</h1>
+<h1>Reporte <%= @representante %></h1>
 
-<% form_for(@reporte_marca) do |f| %>
-  <%= f.error_messages %>
+<% semantic_form_for(@reporte_marca) do |f| %>
+
+  <%= f.input :representante_id, :as => :hidden %>
+  <%= f.input :representante_type, :as => :hidden %>
+  <%= f.input :importacion_id, :as => :hidden %>
 
   <p>
-    <%= f.label :representante_id %><br />
-    <%= f.text_field :representante_id %>
+    <label for="idioma_es">
+      <%= radio_button_tag "idioma", 'es' %>
+      Español
+    </label>
+    <label for="idioma_en">
+      <%= radio_button_tag "idioma", 'en' %>
+      Ingles
+    </label>
   </p>
+  <%= f.input :carta, :as => :text, :input_html => {:cols => 100} %>
+
+  <table class="decorated">
+  	<tr>
+  		<th></th>
+  		<th>Marca propia</th>
+  		<th>Marca agena</th>
+  		<th>Comentario</th>
+  	</tr>
+    <%  %>
+    <%  %>
+  </table>
   <p>
-    <%= f.label :representante_type %><br />
-    <%= f.text_field :representante_type %>
-  </p>
-  <p>
-    <%= f.label :importacion_id %><br />
-    <%= f.text_field :importacion_id %>
-  </p>
-  <p>
-    <%= f.label :reporte_pdf %><br />
-    <%= f.text_field :reporte_pdf %>
-  </p>
-  <p>
-    <%= f.submit 'Create' %>
+    <%= f.submit 'Salvar' %>
   </p>
 <% end %>
 
-<%= link_to 'Back', reporte_marcas_path %>
+<script type="text/javascript">
+  $(function() {
+      // Idioma
+      $('input[name=idioma]').click(function() {
+        var val = 'es' == $(this).val() ? carta_es : carta_en;
+        $('#reporte_marca_carta').val(val);
+      });
+      // Habilitar desabilitar
+      $('input:checkbox').click(function() {
+        $(this).parents("tr:first").find("td textarea").attr("disabled", $(this).attr("checked"));
+      });
+      // Formulario
+      $('form').submit(function() {
+        if( $('input:checkbox[checked]').length <= 0 ) {
+          alert("Debe seleccionar al menos una marca");
+          return false;
+        }else{
+          return true;
+        }
+      });
+  });
+  var carta_es = "español";
+  var carta_en = "english";
+</script>

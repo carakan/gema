@@ -29,6 +29,22 @@ class Consulta < ActiveRecord::Base
     hash
   end
 
+  # Realiza la busqueda de todos las marcas que existe en un cruce
+  #   @param importacion_id Integer
+  #   @param representante_id Integer
+  #   @param tipo Symbol [:agentes, :titulares]
+  def self.marcas_representante_cruce(importacion_id, representante_id, tipo)
+    singular_id =  "#{tipo.to_s.singularize}_id"
+
+    m_ids = Consulta.find_by_sql(["SELECT marca_id, #{singular_id} FROM marcas_#{tipo} 
+                                     WHERE #{singular_id} = ?", representante_id]
+            ).map(&:marca_id).flatten.uniq
+
+    ConsultaDetalle.all( 
+      :conditions => ["consultas.importacion_id = ? AND consulta_detalles.marca_id IN (?)", importacion_id, m_ids],
+      :include => [ :consulta, :marca ]
+    ).uniq
+  end
 
   # Crea una consulta a partir de los detalles
   def self.nueva(params)
