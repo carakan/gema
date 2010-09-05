@@ -6,6 +6,7 @@ class CreateReporteMarcas < ActiveRecord::Migration
       t.integer :importacion_id
       t.string :carta
       t.string :reporte_pdf
+      t.string :idioma, :limit => 4, :default => 'es'
 
       t.timestamps
     end

@@ -72,6 +72,9 @@ input[type=submit] {
   font-size: 1.3em;
   color: #2167cb;
 }
+input:disabled { background-color: #b9b9b9; }
+textarea:disabled { background-color: #b9b9b9; }
+select:disabled { background-color: #b9b9b9; }
 input[type='file'] {
   color: #000000;
   background-color: #efefef;

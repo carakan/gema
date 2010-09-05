@@ -7,12 +7,12 @@
   <%= f.input :importacion_id, :as => :hidden %>
 
   <p>
-    <label for="idioma_es">
-      <%= radio_button_tag "idioma", 'es' %>
+    <label for="reporte_marca_idioma_es">
+      <%= f.radio_button :idioma, 'es' %>
       Español
     </label>
-    <label for="idioma_en">
-      <%= radio_button_tag "idioma", 'en' %>
+    <label for="reporte_marca_idioma_en">
+      <%= f.radio_button :idioma, 'en' %>
       Ingles
     </label>
   </p>
@@ -20,20 +20,20 @@
 
   <table class="decorated">
   	<tr>
-  		<th></th>
   		<th>Marca propia</th>
   		<th>Marca agena</th>
   		<th>Comentario</th>
   	</tr>
-    <% @marcas.each{ |v| f.object.reporte_marca_detalles.build } if params[:reporte_marca].nil? %>
+    <% @marcas.each{ |v| f.object.reporte_marca_detalles.build(:marca_id => v.marca_id, :marca_foranea_id => v.consulta.marca_id) } if params[:reporte_marca].nil? %>
     <% @i = 0 %>
     <% f.semantic_fields_for :reporte_marca_detalles do |rd| %>
       <tr>
         <td>
-          <input id="" name="" type="checkbox" />
+          <%= rd.input :marca_id, :as => :hidden %>
+          <%= rd.input :marca_foranea_id, :as => :hidden %>
+      	  <%= @marcas[@i].marca.nombre %>
         </td>
-      	<td><%= @marcas[@i].marca.nombre %></td>
-      	<td><%= @marcas[@i].consulta.marca.nombre %></td>
+        <td><%= @marcas[@i].consulta.marca.nombre %></td>
         <td>
           <%= rd.input :comentario, :as => :text, :label => false, :input_html => {:cols => 50, :rows => 10} %>
         </td>
@@ -49,14 +49,14 @@
 <script type="text/javascript">
   $(function() {
       // Idioma
-      $('input[name=idioma]').click(function() {
+      $('input[name="reporte_marca[idioma]"]').click(function() {
         var val = 'es' == $(this).val() ? carta_es : carta_en;
         $('#reporte_marca_carta').val(val);
       });
       // Habilitar desabilitar
-      $('input:checkbox').click(function() {
-        $(this).parents("tr:first").find("td textarea").attr("disabled", $(this).attr("checked"));
-      });
+      /*$('input:checkbox').click(function() {
+        $(this).parents("tr:first").find("td textarea").attr("disabled", !$(this).attr("checked"));
+      });*/
       // Formulario
       $('form').submit(function() {
         /*if( $('input:checkbox[checked]').length <= 0 ) {
