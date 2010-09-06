@@ -65,8 +65,8 @@
       	<td><label for="marca<%= b.id %>"><%= b.nombre %></label></td>
       	<td><%= b.clase_id %></td>
         <td><%= tipo_busqueda b.pos %></td>
-        <td><%= buscar_representante(b.agente_ids_serial, @representantes) %></td>
-        <td><%= buscar_representante(b.titular_ids_serial, @representantes) %></td>
+        <td><%# buscar_representante(b.agente_ids_serial, @representantes) %></td>
+        <td><%# buscar_representante(b.titular_ids_serial, @representantes) %></td>
       </tr>
     <% end %>
 

@@ -35,11 +35,12 @@ body{
   background: #EFEFEF; 
   color: @black;
   height: 100%;
+  font-family: arial,helvetica,freesans,clean,sans-serif;
+  font-size:   78%;
 }
 
 body, p, ol, ul{
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size:   12px;
+  font-family: arial,helvetica,freesans,clean,sans-serif;
   line-height: 18px;
 }
 h1{ margin-top: 35px; }
@@ -67,8 +68,11 @@ table.decorated{
     padding: 6px 10px;
     li{ margin: 0px; }
   }
+  td:last-child{
+    white-space: nowrap;
+  }
   /*th:last-child{ width:110px; }*/
-  th.last{ width:110px; }
+  /*th.last{ width:110px; }*/
 }
 .over{
   background-color: @tr_background !important;

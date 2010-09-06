@@ -1,4 +1,5 @@
 <h1>Reporte <%= @representante %></h1>
+<h2 class="dark">Gaceta <%= @importacion.publicacion %> del <%= l @importacion.publicacion_fecha %></h2>
 
 <% semantic_form_for(@reporte_marca) do |f| %>
 
@@ -18,6 +19,9 @@
   </p>
   <%= f.input :carta, :as => :text, :input_html => {:cols => 100} %>
 
+  <p class="inline-hints">
+    Si no escribe en el comentario la marca no sera seleccionada para reporte
+  </p>
   <table class="decorated">
   	<tr>
   		<th>Marca propia</th>
@@ -53,6 +57,12 @@
         var val = 'es' == $(this).val() ? carta_es : carta_en;
         $('#reporte_marca_carta').val(val);
       });
+      if( $('input[name="reporte_marca[idioma]"]').val() == 'es') {
+        $('#reporte_marca_carta').val(carta_es);
+      }else {
+        $('#reporte_marca_carta').val(carta_en);
+      }
+
       // Habilitar desabilitar
       /*$('input:checkbox').click(function() {
         $(this).parents("tr:first").find("td textarea").attr("disabled", !$(this).attr("checked"));
@@ -67,6 +77,8 @@
         }*/
       });
   });
-  var carta_es = "español";
-  var carta_en = "english";
+  var carta_es = "Estimado cliente le enviamos las coincidencias de sus marcas en la gaceta \"<%= @importacion.publicacion %>\" en fecha <%= l @importacion.publicacion_fecha %>";
+  <% I18n.locale = :en %>
+  var carta_en = "Dear customer we have found some coincidences with your trademarks in gaceta \"<%= @importacion.publicacion %>\" from date <%= l @importacion.publicacion_fecha %>";
+  <% I18n.locale = :es %>
 </script>

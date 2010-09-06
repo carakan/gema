@@ -210,7 +210,8 @@ class Busqueda
      FROM marcas WHERE parent_id = 0 AND ("
     sql << arr.map{ 
       |v| ActiveRecord::Base.send(:sanitize_sql_array, [ "nombre_minusculas REGEXP '%s'", v ] )
-    }.join(" OR ") << ")"
+    }.join(" OR ")
+   sql << ")"
   end
 
   # Crea variaciones de la busqueda (palabra)
@@ -222,7 +223,8 @@ class Busqueda
     FROM marcas WHERE parent_id = 0 AND ("
     sql << arr.map{ |v| 
       ActiveRecord::Base.send(:sanitize_sql_array, ["nombre_minusculas LIKE '%s'", "%#{v}%"] ) 
-    }.join(" OR ") << ")"
+    }.join(" OR ")
+   sql << ")"
   end
 
 end

@@ -22,7 +22,7 @@ class BusquedasController < ApplicationController
 
     @busqueda = Busqueda.realizar_busqueda(query)
 
-    @representantes = preparar_representantes() # BusquedasController#preparar_representantes
+    #@representantes = preparar_representantes() # BusquedasController#preparar_representantes
     @busq = BusquedaVacia.new
   end
 
