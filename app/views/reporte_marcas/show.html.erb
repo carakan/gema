@@ -1,23 +1,16 @@
-<p>
-  <b>Representante:</b>
-  <%=h @reporte_marca.representante_id %>
-</p>
+<% unless @importacion.nil? %>
+  <h1>Reporte <%= @reporte_marca.representante_type %>: <%= @reporte_marca.try(:representante) %></h1>
+  <h2 class="dark">Gaceta <%= @importacion.publicacion %> del <%= l @importacion.publicacion_fecha %></h2>
+<% else %>
+  <h1>Reporte de busquedas</h1>
+<% end %>
 
 <p>
-  <b>Representante type:</b>
-  <%=h @reporte_marca.representante_type %>
-</p>
-
-<p>
-  <b>Importacion:</b>
+  <label>Importacion:</label>
   <%=h @reporte_marca.importacion_id %>
 </p>
 
-<p>
-  <b>Reporte pdf:</b>
-  <%=h @reporte_marca.reporte_pdf %>
-</p>
 
 
-<%= link_to 'Edit', edit_reporte_marca_path(@reporte_marca) %> |
-<%= link_to 'Back', reporte_marcas_path %>
+<%= link_to 'Editar', edit_reporte_marca_path(@reporte_marca), :class => 'edit' %>
+<%= link_to 'lista', reporte_marcas_path, :class => 'list' %>

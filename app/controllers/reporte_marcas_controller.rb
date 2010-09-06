@@ -21,11 +21,18 @@ class ReporteMarcasController < ApplicationController
   # GET /reporte_marcas/1.xml
   def show
     @reporte_marca = ReporteMarca.find(params[:id])
+    @importacion = Importacion.find(@reporte_marca.importacion_id) unless @reporte_marca.importacion_id.nil?
 
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @reporte_marca }
     end
+  end
+
+  def download
+    @reporte_marca = ReporteMarca.find(params[:id])
+    rep = CruceReport.new
+    send_data rep.to_pdf(@reporte_marca), :filename => "#{@reporte_marca.crear_nombre_archivo}.pdf"
   end
 
   # GET /reporte_marcas/new

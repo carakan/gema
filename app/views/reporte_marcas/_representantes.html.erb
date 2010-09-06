@@ -13,9 +13,9 @@
         <td>
           <% if reporte_marca = @reportes.find { |v| v.representante_id == rep.id } %>
             <%= link_to "ver", reporte_marca, :class => 'show' %>
-            <%= link_to "reporte", reporte_marca, :class => 'pdf' %>
+            <%= link_to "reporte", download_reporte_marca_path(reporte_marca), :class => 'pdf' %>
             <%= link_to "editar", edit_reporte_marca_path(reporte_marca), :class => 'edit' %>
-            <%= link_to "borrar", edit_reporte_marca_path(reporte_marca), :class => 'delete' %>
+            <%= link_to "borrar", reporte_marca, :class => 'delete' %>
           <% end %>
         </td>
       </tr>
