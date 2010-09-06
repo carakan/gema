@@ -5,6 +5,10 @@ class ReporteMarcasController < ApplicationController
     params[:tipo] ||= :agentes
     @representantes = Consulta.representantes(params[:importacion_id], params[:tipo])
     @importacion = Importacion.find(params[:importacion_id])
+    tipo = params[:tipo].to_s.singularize.capitalize
+    @reportes = ReporteMarca.all(:conditions => 
+      {:importacion_id => params[:importacion_id], :representante_type => tipo } 
+    )
 
     if request.xhr?
       render :partial => 'representantes'
@@ -48,7 +52,7 @@ class ReporteMarcasController < ApplicationController
     @reporte_marca = ReporteMarca.new(params[:reporte_marca])
 
     if @reporte_marca.save
-      redirect_to(@reporte_marca, :notice => 'ReporteMarca was successfully created.')
+      redirect_to(@reporte_marca, :notice => 'Se ha salvado correctamente el reporte.')
     else
       preparar_datos_cruce
       render :action => "cruce"

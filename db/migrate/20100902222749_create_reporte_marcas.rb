@@ -4,9 +4,9 @@ class CreateReporteMarcas < ActiveRecord::Migration
       t.integer :representante_id
       t.string :representante_type
       t.integer :importacion_id
-      t.string :carta
+      t.string :carta, :limit => 500
       t.string :reporte_pdf
-      t.string :idioma, :limit => 4, :default => 'es'
+      t.string :idioma, :limit => 4#, :default => 'es'
 
       t.timestamps
     end

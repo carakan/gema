@@ -433,7 +433,6 @@ ul.inline{
 .icon-less{
   background: url(../images/icons/bullet_arrow_up.png) no-repeat;
 }
-
 .icon-add{
   background: url(../images/icons/add.png);
 }
@@ -449,11 +448,6 @@ ul.inline{
 .icon-show{
   background-image: url(../images/icons/zoom.png);
 }
-
-.icon-top-right{
-  background-position:top right;
-}
-
 .icon-info{
   background-image: url(../images/icons/information.png);
 }
@@ -462,6 +456,12 @@ ul.inline{
 }
 .icon-checked{
   background-image: url(../images/icons/tick.png);
+}
+.icon-dowload{
+  background-icon: url(../images/incons/down.png);
+}
+.icon-top-right{
+  background-position:top right;
 }
 
 @icon_pad: 18px;
@@ -497,41 +497,36 @@ a.add{
 }
 
 a.show{
-  .icon-show;
-  background-position: middle left;
+  background: transparent url(../images/icons/zoom.png) no-repeat top left;
   padding-left: @icon_pad;
-  background-repeat: no-repeat;
 }
 a.edit{
-  .icon-edit;
-  background-position: middle left;
+  background: transparent url(../images/icons/pencil.png) no-repeat top left;
   padding-left: @icon_pad;
-  background-repeat: no-repeat;
 }
 a.delete{
-  .icon-delete;
-  background-position: middle left;
+  background: transparent url(../images/icons/delete.png) no-repeat top left;
   padding-left: @icon_pad;
-  background-repeat: no-repeat;
 }
 a.fail{
-  .icon-failed;
-  background-position: middle left;
+  background: transparent url(../images/icons/cross.png) no-repeat top left;
   padding-left: @icon_pad;
-  background-repeat: no-repeat;
 }
-a.succeed{
-  .icon-checked;
-  background-position: middle left;
+a.succeed, a.checked{
+  background: transparent url(../images/icons/tick.png) no-repeat top left;
   padding-left: @icon_pad;
-  background-repeat: no-repeat;
 }
-
 a.process{
-  .icon-process;
-  background-position: middle left;
+  background: transparent url(../images/icons/cog.png) no-repeat top left;
   padding-left: @icon_pad;
-  background-repeat: no-repeat;
+}
+a.download{
+  background: transparent url(../images/icons/down.png) no-repeat top left;
+  padding-left: @icon_pad;
+}
+a.pdf{
+  background: transparent url(../images/icons/page_white_acrobat.png) no-repeat top left;
+  padding-left: @icon_pad;
 }
 
 .true{

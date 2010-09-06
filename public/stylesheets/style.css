@@ -399,10 +399,11 @@ ul.inline li a {
 .icon-delete { background-image: url(../images/icons/delete.png); }
 .icon-process { background-image: url(../images/icons/cog.png); }
 .icon-show { background-image: url(../images/icons/zoom.png); }
-.icon-top-right { background-position: top right; }
 .icon-info { background-image: url(../images/icons/information.png); }
 .icon-failed { background-image: url(../images/icons/cross.png); }
 .icon-checked { background-image: url(../images/icons/tick.png); }
+.icon-dowload { background-icon: url(../images/incons/down.png); }
+.icon-top-right { background-position: top right; }
 .big {
   font-size: 1.4em;
   font-weight: bold;
@@ -432,40 +433,36 @@ a.add {
   padding-left: 16px;
 }
 a.show {
-  background-image: url(../images/icons/zoom.png);
-  background-position: middle left;
+  background: transparent url(../images/icons/zoom.png) no-repeat top left;
   padding-left: 18px;
-  background-repeat: no-repeat;
 }
 a.edit {
-  background: url(../images/icons/pencil.png);
-  background-position: middle left;
+  background: transparent url(../images/icons/pencil.png) no-repeat top left;
   padding-left: 18px;
-  background-repeat: no-repeat;
 }
 a.delete {
-  background-image: url(../images/icons/delete.png);
-  background-position: middle left;
+  background: transparent url(../images/icons/delete.png) no-repeat top left;
   padding-left: 18px;
-  background-repeat: no-repeat;
 }
 a.fail {
-  background-image: url(../images/icons/cross.png);
-  background-position: middle left;
+  background: transparent url(../images/icons/cross.png) no-repeat top left;
   padding-left: 18px;
-  background-repeat: no-repeat;
 }
-a.succeed {
-  background-image: url(../images/icons/tick.png);
-  background-position: middle left;
+a.succeed, a.checked {
+  background: transparent url(../images/icons/tick.png) no-repeat top left;
   padding-left: 18px;
-  background-repeat: no-repeat;
 }
 a.process {
-  background-image: url(../images/icons/cog.png);
-  background-position: middle left;
+  background: transparent url(../images/icons/cog.png) no-repeat top left;
   padding-left: 18px;
-  background-repeat: no-repeat;
+}
+a.download {
+  background: transparent url(../images/icons/down.png) no-repeat top left;
+  padding-left: 18px;
+}
+a.pdf {
+  background: transparent url(../images/icons/page_white_acrobat.png) no-repeat top left;
+  padding-left: 18px;
 }
 .true {
   background-image: url(../images/icons/tick.png);

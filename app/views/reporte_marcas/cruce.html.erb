@@ -17,7 +17,7 @@
       Ingles
     </label>
   </p>
-  <%= f.input :carta, :as => :text, :input_html => {:cols => 100} %>
+  <%= f.input :carta, :as => :text, :input_html => {:cols => 100, :rows => 7} %>
 
   <p class="inline-hints">
     Si no escribe en el comentario la marca no sera seleccionada para reporte
@@ -39,7 +39,7 @@
         </td>
         <td><%= @marcas[@i].consulta.marca.nombre %></td>
         <td>
-          <%= rd.input :comentario, :as => :text, :label => false, :input_html => {:cols => 50, :rows => 10} %>
+          <%= rd.input :comentario, :as => :text, :label => false, :input_html => {:cols => 60, :rows => 12} %>
         </td>
       </tr>
       <% @i += 1 %>
