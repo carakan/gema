@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(:version => 20100902222847) do
   create_table "consulta_detalles", :force => true do |t|
     t.integer  "consulta_id"
     t.integer  "marca_id"
-    t.string   "comentario",  :limit => 800
     t.integer  "tipo"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -45,13 +44,13 @@ ActiveRecord::Schema.define(:version => 20100902222847) do
     t.integer  "marca_id"
     t.integer  "usuario_id"
     t.string   "busqueda"
-    t.string   "parametros",     :limit => 400
-    t.string   "comentario",     :limit => 400
-    t.string   "reporte"
-    t.integer  "importacion_id",                :default => 0
+    t.string   "parametros",       :limit => 400
+    t.string   "comentario",       :limit => 800
+    t.string   "marca_ids_serial",                :default => "--- []\n\n"
+    t.integer  "importacion_id",                  :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "descartada",                    :default => false
+    t.boolean  "descartada",                      :default => false
   end
 
   create_table "contactos", :force => true do |t|
@@ -187,7 +186,9 @@ ActiveRecord::Schema.define(:version => 20100902222847) do
   create_table "reporte_marca_detalles", :force => true do |t|
     t.integer  "reporte_marca_id"
     t.integer  "marca_id"
-    t.string   "comentario"
+    t.integer  "marca_foranea_id"
+    t.string   "comentario",       :limit => 800
+    t.boolean  "ignorada"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -199,7 +200,9 @@ ActiveRecord::Schema.define(:version => 20100902222847) do
     t.integer  "representante_id"
     t.string   "representante_type"
     t.integer  "importacion_id"
+    t.string   "carta",              :limit => 500
     t.string   "reporte_pdf"
+    t.string   "idioma",             :limit => 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end

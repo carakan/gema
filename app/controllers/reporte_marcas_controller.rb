@@ -41,7 +41,7 @@ class ReporteMarcasController < ApplicationController
     preparar_datos_cruce
     @reporte_marca = ReporteMarca.new(:representante_id => params[:representante_id], 
                                       :representante_type => params[:representante_type],
-                                      :importacion_id => params[:importacion_id])
+                                      :importacion_id => params[:importacion_id], :idioma => 'es')
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @reporte_marca }

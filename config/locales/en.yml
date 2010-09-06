@@ -3,8 +3,15 @@
 
 en:
   denominacion: "Denomination"
+  figurativa: "Figurative"
+  mixta: "Mixed"
+  tridimencional: "Tridimentional"
+
   date:
     formats:
       default: "%b %d, %Y"
       short: "%b %d"
       long: "%B %d of %Y"
+  time:
+    formats:
+      date: "%B %d, %Y"

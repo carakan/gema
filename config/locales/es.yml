@@ -158,6 +158,7 @@ es:
       default: "%A, %e de %B de %Y %H:%M:%S %z"
       short: "%e de %b %Y %H:%M"
       long: "%e de %B de %Y %H:%M"
+      date: "%d de %B, %Y"
     am: "am"
     pm: "pm"
 

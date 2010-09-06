@@ -77,7 +77,7 @@
         }*/
       });
   });
-  var carta_es = "Estimado cliente le enviamos las coincidencias de sus marcas en la gaceta \"<%= @importacion.publicacion %>\" en fecha <%= l @importacion.publicacion_fecha %>";
+  var carta_es = "Estimado cliente le enviamos las coincidencias de sus marcas en la gaceta \"<%= @importacion.publicacion %>\" de fecha <%= l @importacion.publicacion_fecha %>";
   <% I18n.locale = :en %>
   var carta_en = "Dear customer we have found some coincidences with your trademarks in gaceta \"<%= @importacion.publicacion %>\" from date <%= l @importacion.publicacion_fecha %>";
   <% I18n.locale = :es %>
