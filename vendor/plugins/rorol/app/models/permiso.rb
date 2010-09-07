@@ -1,3 +1,6 @@
+# encoding: utf-8
+# author: Boris Barroso
+# email: boriscyber@gmail.com
 class Permiso < ActiveRecord::Base
   before_save :cambiar_valor_acciones!
 

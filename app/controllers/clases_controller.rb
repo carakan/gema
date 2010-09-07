@@ -1,4 +1,6 @@
 # encoding: utf-8
+# author: Boris Barroso
+# email: boriscyber@gmail.com
 class ClasesController < ApplicationController
   before_filter :revisar_permiso!
   # GET /clases

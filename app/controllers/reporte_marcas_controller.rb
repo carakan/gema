@@ -1,3 +1,6 @@
+# encoding: utf-8
+# author: Boris Barroso
+# email: boriscyber@gmail.com
 class ReporteMarcasController < ApplicationController
   # GET /reporte_marcas
   # GET /reporte_marcas.xml

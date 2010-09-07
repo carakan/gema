@@ -1,3 +1,6 @@
+# encoding: utf-8
+# author: Boris Barroso
+# email: boriscyber@gmail.com
 Array.class_eval do
   def repeated_combination(n = 0)
     arr = []

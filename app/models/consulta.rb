@@ -1,3 +1,6 @@
+# encoding: utf-8
+# author: Boris Barroso
+# email: boriscyber@gmail.com
 class Consulta < ActiveRecord::Base
   before_create :adicionar_usuario
   before_create :disminuir_cruces_pendientes, :if => :importacion_id? #lambda { |c| !!c.importacion.nil? }

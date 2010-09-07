@@ -1,3 +1,6 @@
+# encoding: utf-8
+# author: Boris Barroso
+# email: boriscyber@gmail.com
 class Agente < Representante
   #has_many :marcas_representantes, :as => :representable
   #has_many :marcas, :through => :representable

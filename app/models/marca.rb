@@ -1,4 +1,6 @@
 # encoding: utf-8
+# author: Boris Barroso
+# email: boriscyber@gmail.com
 class Marca < ActiveRecord::Base
 
   #before_save :set_propia

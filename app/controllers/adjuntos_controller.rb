@@ -1,3 +1,6 @@
+# encoding: utf-8
+# author: Boris Barroso
+# email: boriscyber@gmail.com
 class AdjuntosController < ApplicationController
   # GET /adjuntos
   # GET /adjuntos.xml

@@ -1,3 +1,12 @@
+# encoding: utf-8
+# author: Boris Barroso
+# email: boriscyber@gmail.com
+# Este modulo utiliza el programa pdftohtml http://pdftohtml.sourceforge.net/
+# Cuando se utiliza este programa para convertir el PDF en html este covierte el PDF
+# en varios archivos *.html y *.png, cada html tiene solo una imagen .png que despues
+# es necesaria recortarla para poder extraer la imagen deseada del logo. Para poder extraer
+# los datos utila un archivo .yml "yaml" que indica la sección y el orden en el cual debe
+# realizar las busquedas para que encuentre los datos
 module ModMarca::PDF
 
   def self.included(base)
@@ -128,15 +137,20 @@ module ModMarca::PDF
     # Extraccion de imagen
     # Para la extraccion de la imagen es necesario saber la posicion 
     # Realiza el crop de imagenes para extraer el logo
+    #   @param Nokogiri::XML::Element
+    #   @param num
     def extraer_imagen(div, num)
       x = 417
       y = div[:style].gsub(/.*(top:[0-9]+).*/, '\1').gsub(/top:/, '').to_i + 6
       img = buscar_imagen(num)
       to_img = "#{@nombre_basico}-#{Time.now.to_f}.png"
-      system("convert #{img} -crop 130x130+417+#{y} #{to_img}")
+      raise "Error debe instalar ImageMagick" unless system("convert #{img} -crop 130x130+417+#{y} #{to_img}")
       to_img
     end
 
+    # Busca la imagen que corresponde al número de página que se ha extraido
+    #   @param Integer
+    #   @return String
     def buscar_imagen(num)
       (0..3).each do |v|
         img = [@nombre_basico, "0" * v, num, '.png'].join('')
@@ -144,11 +158,12 @@ module ModMarca::PDF
       end
     end
 
-    # Busca en la lista de tags
-    # @param element
-    # @param String nombre
-    # @param Integer pos
-    # @param [true, false] Ayuda a identificar si es el primero de la lista
+    # Busca dentro de los elemetos "div" de un listado .css Nokogiri por nombre
+    #   @param element
+    #   @param String nombre
+    #   @param Integer pos
+    #   @param [true, false] Ayuda a identificar si es el primero de la lista
+    #   @return [String, false] # Retorna false en caso de que no encuentre o llegue al final
     def buscar_por_nombre(elements, nombre, desplazar, primero)
       # Identifica si es el primer elemento
       (@posicion..(elements.size - 1)).each do |i|
@@ -209,7 +224,7 @@ module ModMarca::PDF
 
     # Convierte un PDF en archivos de HTML usando pdftohtml "http://pdftohtml.sourceforge.net/"
     def convertir_pdf(pdf)
-      raise "Error al convertir #{pdf} de pdf a html" unless system("pdftohtml -c #{pdf}")
+      raise "Error debe instalar pdftohtml" unless system("pdftohtml -c #{pdf}")
     end
   end
 

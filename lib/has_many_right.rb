@@ -1,3 +1,6 @@
+# encoding: utf-8
+# author: Boris Barroso
+# email: boriscyber@gmail.com
 # Crea una realacion polimorfica hacia la derecha
 module HasManyRight
   def self.included(base)

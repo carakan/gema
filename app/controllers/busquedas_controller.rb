@@ -1,5 +1,8 @@
+# encoding: utf-8
+# author: Boris Barroso
+# email: boriscyber@gmail.com
 class BusquedasController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :revisar_permiso!
 
   def index
     @busqueda = []
@@ -22,7 +25,7 @@ class BusquedasController < ApplicationController
 
     @busqueda = Busqueda.realizar_busqueda(query)
 
-    #@representantes = preparar_representantes() # BusquedasController#preparar_representantes
+    @representantes = preparar_representantes() # BusquedasController#preparar_representantes
     @busq = BusquedaVacia.new
   end
 

@@ -1,5 +1,7 @@
+# encoding: utf-8
+# author: Boris Barroso
+# email: boriscyber@gmail.com
 module BuscarPorGrupo
-
 
   def buscar_por_grupos(dim)
     letras = []

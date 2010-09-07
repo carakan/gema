@@ -1,3 +1,6 @@
+# encoding: utf-8
+# author: Boris Barroso
+# email: boriscyber@gmail.com
 # Hacer un post acerca de no dejar las constantes libres
 # y colocarlas dentro de un modulo para testear
 module Constants

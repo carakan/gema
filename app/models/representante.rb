@@ -1,3 +1,6 @@
+# encoding: utf-8
+# author: Boris Barroso
+# email: boriscyber@gmail.com
 class Representante < ActiveRecord::Base
   #before_validation :set_validar
   #before_save :strip_data

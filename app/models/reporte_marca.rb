@@ -1,3 +1,6 @@
+# encoding: utf-8
+# author: Boris Barroso
+# email: boriscyber@gmail.com
 class ReporteMarca < ActiveRecord::Base
   belongs_to :representante
   belongs_to :importacion

@@ -32,9 +32,7 @@
 </div>
     <%= link_to "Ver mas", ver_marca_path(@marca), :class => 'ajax show' %>
 
-<h2>Resultados para el cruce</h2>
-<%= link_to "Volver a importacion", cruce_importacion_path(@importacion, :page => @page) %>
-<%= ver_cruce(@consulta, :class => 'ajax') unless params[:consulta_id].nil? %>
+<h2 class="dark">Resultados del cruce</h2>
 
 <% form_tag new_consulta_path, :method => 'get' do -%>
   <%= hidden_field_tag "clases", (1..45).to_a.join(",") %>
@@ -57,7 +55,6 @@
       <th>Titulares</th>
   	</tr>
     <% @busqueda.each_with_index do |b, i| %>
-      <%= b.class %>
       <tr>
         <td>
           <input name="marcas[<%= i %>]" type="checkbox" id="marca<%= b.id %>" value="<%= b.id %>" data-tipo="<%= b.pos %>" />
@@ -65,20 +62,24 @@
       	<td><label for="marca<%= b.id %>"><%= b.nombre %></label></td>
       	<td><%= b.clase_id %></td>
         <td><%= tipo_busqueda b.pos %></td>
-        <td><%# buscar_representante(b.agente_ids_serial, @representantes) %></td>
-        <td><%# buscar_representante(b.titular_ids_serial, @representantes) %></td>
+        <td><%= buscar_representante(b.agente_ids_serial, @representantes) %></td>
+        <td><%= buscar_representante(b.titular_ids_serial, @representantes) %></td>
       </tr>
     <% end %>
 
   </table>
 
+  <br />
   <%= submit_tag "Seleccionar", :id => 'seleccionar' %>
   <% end %>
 
   <%= submit_tag "Descartar", :class => 'red', :id => 'descartar' if params[:importacion_id] %>
 
 <% end %>
-
+<br />
+<br />
+<%= link_to "Volver a importacion", cruce_importacion_path(@importacion, :page => @page), :class => 'back' %>
+<%= ver_cruce(@consulta, :class => 'ajax') unless params[:consulta_id].nil? %>
 <script type="text/javascript">
 (function($) {
   // Confirmacion de borrado de cruce y verificacion de nuevo cruce

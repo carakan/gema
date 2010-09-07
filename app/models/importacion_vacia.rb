@@ -1,4 +1,6 @@
 # encoding: utf-8
+# author: Boris Barroso
+# email: boriscyber@gmail.com
 # Modelo sin tabla que solo sirve para poder
 # realizar validaciones de los datos
 class ImportacionVacia < Tableless

@@ -1,3 +1,6 @@
+# encoding: utf-8
+# author: Boris Barroso
+# email: boriscyber@gmail.com
 class Pais < ActiveRecord::Base
   #has_many :marcas
   has_many :representantes

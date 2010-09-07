@@ -29,6 +29,7 @@
   <% end %>
 <% end %>
 
+  <h2 class="dark">Marcas que coinciden</h2>
   <table class="decorated">
   	<tr>
   		<th>Marca</th>
@@ -58,8 +59,9 @@
     <% end %>
   </table>
 
+  <br /><br />
   <% unless @consulta.importacion.nil? %>
-    <%= link_to "Volver a importación", cruce_importacion_path( @consulta.importacion, :page => @page ) %>
+    <%= link_to "Volver a importación", cruce_importacion_path( @consulta.importacion, :page => @page ), :class => 'back' %>
   <% else %>
-    <%= link_to "Lista", consultas_path %>
+    <%= link_to "Lista", consultas_path, :class => 'list' %>
   <% end %>

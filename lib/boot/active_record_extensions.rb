@@ -1,3 +1,6 @@
+# encoding: utf-8
+# author: Boris Barroso
+# email: boriscyber@gmail.com
 ActiveRecord::Base.instance_eval do
   def convert_boolean(param)
     if ['true', 't', 1].include?(param)

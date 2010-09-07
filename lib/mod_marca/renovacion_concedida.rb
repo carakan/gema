@@ -1,3 +1,6 @@
+# encoding: utf-8
+# author: Boris Barroso
+# email: boriscyber@gmail.com
 module ModMarca::RenovacionConcedida
   def self.included(base)
     base.send(:include, InstanceMethods)

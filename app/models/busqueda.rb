@@ -1,4 +1,7 @@
-# coding: utf-8
+# encoding: utf-8
+# author: Boris Barroso
+# email: boriscyber@gmail.com
+##############################
 # Clase que se utiliza para poder otener las expresiones necesarias
 # en una busqueda
 class Busqueda

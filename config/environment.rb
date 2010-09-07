@@ -1,3 +1,6 @@
+# encoding: utf-8
+# author: Boris Barroso
+# email: boriscyber@gmail.com
 # Be sure to restart your server when you modify this file
 
 # Specifies gem version of Rails to use when vendor/rails is not present
@@ -14,7 +17,7 @@ Rails::Initializer.run do |config|
 
   # Add additional load paths for your own custom dirs
   # config.load_paths += %W( #{RAILS_ROOT}/extras )
-  config.load_paths << "#{Rails.root}/app/reports"
+  config.autoload_paths << "#{Rails.root}/app/reports"
 
 
   # Specify gems that this application depends on and have them installed with rake gems:install
@@ -23,6 +26,7 @@ Rails::Initializer.run do |config|
   config.gem "formtastic", :version => '0.9.10'
   config.gem "will_paginate", :version => '2.3.14'
   config.gem "nokogiri", :version => '1.4.2'
+  config.gem "forgery"
   # gem install zip
   # gem install spreadsheet
   # gem install google-spreadsheet-ruby

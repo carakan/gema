@@ -1,3 +1,6 @@
+# encoding: utf-8
+# author: Boris Barroso
+# email: boriscyber@gmail.com
 class Post < ActiveRecord::Base
   before_save :adicionar_usuario
   before_save :new_line_to_br

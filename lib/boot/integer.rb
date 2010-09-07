@@ -1,3 +1,6 @@
+# encoding: utf-8
+# author: Boris Barroso
+# email: boriscyber@gmail.com
 Integer.class_eval do
   def to_byte_size(r=2)
     case

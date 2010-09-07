@@ -1,6 +1,7 @@
 # encoding: utf-8
+# author: Boris Barroso
+# email: boriscyber@gmail.com
 require 'open-uri'
-require 'forgery'
 
 namespace :gema do
   namespace :usuarios do

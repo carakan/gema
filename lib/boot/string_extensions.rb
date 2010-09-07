@@ -1,3 +1,6 @@
+# encoding: utf-8
+# author: Boris Barroso
+# email: boriscyber@gmail.com
 # Copiado y testeado para poder cambiar mayusculas y minusculas con acentos y ñ
 String.class_eval do
   alias_method :old_upcase, :upcase

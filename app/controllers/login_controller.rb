@@ -1,3 +1,6 @@
+# encoding: utf-8
+# author: Boris Barroso
+# email: boriscyber@gmail.com
 class LoginController < ApplicationController
   def new
     @usuario = Usuario.new

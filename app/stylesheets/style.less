@@ -43,13 +43,11 @@ body, p, ol, ul{
   font-family: arial,helvetica,freesans,clean,sans-serif;
   line-height: 18px;
 }
-h1{ margin-top: 35px; }
 a { color: @blue; text-decoration: underline; cursor: pointer; }
 a:hover { text-decoration: none; }
 
 table.decorated{
   border-collapse: collapse;
-  margin: 15px 0px;
   border-bottom: 1px solid @grey;
   tr{
     border-top: 1px solid @table_border_color;
@@ -487,6 +485,9 @@ a.new{
 }
 a.new:hover{ color: @green; }
 
+/*************************************************************************
+ * Lista de iconos para vinculos
+ */
 a.list{
   background: transparent url(../images/icons/table.png) no-repeat top left;
   padding-left: 16px;
@@ -528,6 +529,11 @@ a.pdf{
   background: transparent url(../images/icons/page_white_acrobat.png) no-repeat top left;
   padding-left: @icon_pad;
 }
+a.back{
+  background: transparent url(../images/icons/arrow_left.png) no-repeat top left;
+  padding-left: @icon_pad;
+}
+/*********************************************************************/
 
 .true{
   .icon-checked;

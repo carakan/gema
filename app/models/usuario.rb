@@ -1,3 +1,6 @@
+# encoding: utf-8
+# author: Boris Barroso
+# email: boriscyber@gmail.com
 class Usuario < ActiveRecord::Base
   before_create :encriptar_password
 

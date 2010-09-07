@@ -1,4 +1,6 @@
 # encoding: utf-8
+# author: Boris Barroso
+# email: boriscyber@gmail.com
 class BusquedaVacia < Tableless
   column :busqueda
 
@@ -14,7 +16,7 @@ class BusquedaVacia < Tableless
     [ 29, 30, 31 ],
     [ 32, 33 ],
     (34..45).to_a,
-  ] + (1..45).to_a.map(&:to_a)
+  ] + (1..45).to_a.map { |v| [v] }
 
   def self.options
     CLASES.map{ |v| 

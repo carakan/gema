@@ -48,7 +48,7 @@
   <%= f.input :productos, :label=>"Descripción productos/servicios", :as => :text, :input_html => { :rows => 10, :cols => 115 }, :tabindex => 7 %>
 
   <div class="in_half">
-    <%= link_to 'Nuevo cliente', new_representante_path, :class => 'new ajax' %>
+    <%= link_to 'Nuevo cliente', new_representante_path('data-title' => 'Crear cliente'), :class => 'new ajax' %>
     <ol>  
       <li id="agente-auto" class="input-text">
         <label for="agente_ids">Agentes</label>
