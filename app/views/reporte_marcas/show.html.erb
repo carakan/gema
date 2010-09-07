@@ -11,6 +11,7 @@
 </p>
 
 
-
-<%= link_to 'Editar', edit_reporte_marca_path(@reporte_marca), :class => 'edit' %>
-<%= link_to 'lista', reporte_marcas_path, :class => 'list' %>
+<% unless @reporte_marca.importacion_id.nil? %>
+  <%= link_to 'Editar', edit_reporte_marca_path(@reporte_marca), :class => 'edit' %>
+  <%= link_to 'lista', reporte_marcas_path(:importacion_id => @reporte_marca.importacion_id), :class => 'list' %>
+<% end %>

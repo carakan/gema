@@ -1,6 +1,8 @@
 <h1>Reporte <%= @representante %></h1>
 <h2 class="dark">Gaceta <%= @importacion.publicacion %> del <%= l @importacion.publicacion_fecha %></h2>
 
+<%= link_to "Listado", reporte_marcas_path(:importacion_id => params[:importacion_id]), :class => 'list' %>
+
 <% semantic_form_for(@reporte_marca) do |f| %>
 
   <%= f.input :representante_id, :as => :hidden %>
