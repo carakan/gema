@@ -26,6 +26,7 @@
 @yellow:#FFFF00;
 @light_yellow:#FFFFC5;
 @dark_yellow:#D0D02A;
+@cherry: #A9316F;
 
 @menu: #45818E;
 
@@ -672,7 +673,7 @@ ul.menu{
 
 }
 .cambio{
-  color: @blue;
+  color: @cherry;
 }
 .adjunto{
   width: 16px;
@@ -772,9 +773,8 @@ a.desc{
 }
 
 #posts, .posts{
-  h2{ margin: 10px; }
+  h2{ margin: 10px 0px; }
   ul{
-    padding: 10px;
     list-style: none;
     li{
       h3{
@@ -782,11 +782,14 @@ a.desc{
       }
     }
   }
-
 }
-  #comments .title { margin: 0px 0px; background: #484848; color: #FFF; padding: 7px 5px; }
-  .comments p{ margin: 3px 0px;  }
-  .comments h3 { margin: 5px 0px; }
-  .comments ul{ list-style: none; }
-  .comments ul li.post{ border-bottom: 1px solid #000 }
+.posts>div{
+  padding: 10px;
+}
+
+#comments .title { margin: 0px 0px; background: #484848; color: #FFF; padding: 7px 5px; }
+.comments p{ margin: 3px 0px;  }
+.comments h3 { margin: 5px 0px; }
+.comments ul{ list-style: none; }
+.comments ul li.post{ border-bottom: 1px solid #000 }
 

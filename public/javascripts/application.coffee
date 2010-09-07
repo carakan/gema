@@ -174,25 +174,29 @@ $(document).ready(->
   )
 
 
-  # Hacer submit de un formulario AJAX
-  $('div.ajax-modal form').not('[enctype]').live('submit', ->
+  # Hacer submit de un formulario AJAX que permite crear nuevos datos
+  # Si al retornar no hay formulario significa que reenvia a una vista
+  # y que la transaccion a sido completada
+  $('div.ajax-modal form[enctype!=multipart/form-data]').live('submit', ->
 
     data = serializeFormElements(this)
     el = this
 
     $.ajax(
       'url': $(el).attr('action')
-      # 'cache': false
+      'cache': false
       'context':el
       'data':data
-      'type': (data['_method'] || 'post')
+      'type': (data['_method'] || $(this).attr('method') )
       'success': (resp)->
-      'complete': (resp)->
-        p = $(el).parents('div.ajax-modal')
-        id = $(p).attr('data-ajax_id')
-        $(p).dialog('destroy')
-        $(p).remove()
-        $('body').trigger('ajax:completed', [id])
+        if $(resp).find('form').length <= 0
+          p = $(el).parents('div.ajax-modal')
+          id = $(p).attr('data-ajax_id')
+          $(p).dialog('destroy')
+          $(p).remove()
+          $('body').trigger('ajax:completed', [id, resp])
+        else
+          $(el).parents('div.ajax-modal:first').html(resp)
       'error': (resp)->
         alert('Existen errores en su formulario por favor corrija los errores')
     )
@@ -280,6 +284,8 @@ $(document).ready(->
     )
 
     return params
+
+  $.serializeFormElements = $.fn.serializeFormElements = serializeFormElements
 
   # Adiciona un datePicker a todos los elementos con clase date
   addDatePicker = ->

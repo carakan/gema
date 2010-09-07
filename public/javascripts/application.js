@@ -176,23 +176,27 @@
       $(div).load($(this).attr("href"));
       return false;
     });
-    $('div.ajax-modal form').not('[enctype]').live('submit', function() {
+    $('div.ajax-modal form[enctype!=multipart/form-data]').live('submit', function() {
       var data, el;
       data = serializeFormElements(this);
       el = this;
       $.ajax({
         'url': $(el).attr('action'),
+        'cache': false,
         'context': el,
         'data': data,
-        'type': (data['_method'] || 'post'),
-        'success': function(resp) {},
-        'complete': function(resp) {
+        'type': (data['_method'] || $(this).attr('method')),
+        'success': function(resp) {
           var id, p;
-          p = $(el).parents('div.ajax-modal');
-          id = $(p).attr('data-ajax_id');
-          $(p).dialog('destroy');
-          $(p).remove();
-          return $('body').trigger('ajax:completed', [id]);
+          if ($(resp).find('form').length <= 0) {
+            p = $(el).parents('div.ajax-modal');
+            id = $(p).attr('data-ajax_id');
+            $(p).dialog('destroy');
+            $(p).remove();
+            return $('body').trigger('ajax:completed', [id]);
+          } else {
+            return $(el).parents('div.ajax-modal:first').html(resp);
+          }
         },
         'error': function(resp) {
           return alert('Existen errores en su formulario por favor corrija los errores');
@@ -270,6 +274,7 @@
       });
       return params;
     };
+    $.serializeFormElements = ($.fn.serializeFormElements = serializeFormElements);
     addDatePicker = function() {
       return $('input.date').each(function(i, el) {
         var d, id, input;

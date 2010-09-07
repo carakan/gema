@@ -557,7 +557,7 @@ ul.menu li:hover ul {
 .hide-field input { display: none; }
 .hide-field text-area { display: none; }
 .hide-field select { display: none; }
-.cambio { color: #2167cb; }
+.cambio { color: #a9316f; }
 .adjunto {
   width: 16px;
   height: 16px;
@@ -629,18 +629,13 @@ a.desc {
 .pagination a { text-decoration: none; }
 .dark { color: #484848; }
 .clear { clear: both; }
-#posts h2 { margin: 10px; }
-#posts ul {
-  padding: 10px;
-  list-style: none;
-}
+#posts h2 { margin: 10px 0px; }
+#posts ul { list-style: none; }
 #posts ul li h3 { color: #484848; }
-.posts h2 { margin: 10px; }
-.posts ul {
-  padding: 10px;
-  list-style: none;
-}
+.posts h2 { margin: 10px 0px; }
+.posts ul { list-style: none; }
 .posts ul li h3 { color: #484848; }
+.posts > div { padding: 10px; }
 #comments .title {
   margin: 0px 0px;
   background: #484848;

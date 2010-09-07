@@ -94,7 +94,7 @@
 <%= link_to 'Editar', edit_marca_path(@marca), :class =>'edit'%> 
 <%= link_to 'Lista', marcas_path, :class =>'list' %>
   <hr />
-  <h2>Historial de modificaciones</h2>
+  <h1 class="dark">Historial de modificaciones</h1>
 
 
   <% @cambios = @marca.cambios %>
@@ -119,17 +119,11 @@
 </div>
 
 
-<div id="posts" data-posts_size="<%= Marca::POSTS_SIZE %>">
-  <h2 class="title">Ultimos comentarios  123</h2>
-  <%= render :partial => "posts/posts", :locals => { :posts => @marca.ultimos_posts } %>
-  <%= link_post @marca, 'index' %>
-  <%= link_post @marca, 'new' %>
+<div id="posts" class="posts" data-posts_size="<%= Marca::POSTS_SIZE %>">
+  <div>
+    <h2 class="title">Ultimos comentarios  123</h2>
+    <%= render :partial => "posts/posts", :locals => { :posts => @marca.ultimos_posts } %>
+    <%= link_post @marca, 'index' %>
+    <%= link_post @marca, 'new' %>
+  </div>
 </div>
-
-<script type="text/javascript">
-$(document).ready(function() {
-  $('body').live("iframe:click",function() {
-    alert("cargo");
-  });
-})
-</script>

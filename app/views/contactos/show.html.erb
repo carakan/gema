@@ -1,23 +1,24 @@
-<p>
-  <b>Nombre:</b>
-  <%=h @contacto.nombre %>
-</p>
+<div class="response">
+  <p>
+    <label>Nombre:</label>
+    <%=h @contacto.nombre %>
+  </p>
 
-<p>
-  <b>Cargo:</b>
-  <%=h @contacto.cargo %>
-</p>
+  <p>
+    <label>Cargo:</label>
+    <%=h @contacto.cargo %>
+  </p>
 
-<p>
-  <b>Telefono:</b>
-  <%=h @contacto.telefono %>
-</p>
+  <p>
+    <label>Teléfono:</label>
+    <%=h @contacto.telefono %>
+  </p>
 
-<p>
-  <b>Email:</b>
-  <%=h @contacto.email %>
-</p>
+  <p>
+    <label>Email:</label>
+    <%=h @contacto.email %>
+  </p>
+</div>
 
-
-<%= link_to 'Edit', edit_contacto_path(@contacto) %> |
-<%= link_to 'Back', contactos_path %>
+<%= link_to 'Editar', edit_contacto_path(@contacto), :class => 'edit' %> 
+<%= link_to 'Lista', contactos_path, :class => 'list' %>

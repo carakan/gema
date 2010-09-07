@@ -41,13 +41,15 @@
 </p>
   <%= link_to 'Editar', edit_representante_path(@representante), :class =>'edit' %>
   <%= link_to 'Lista', representantes_path, :class =>'list' %>
-  <%= link_to "Nuevo contacto", new_contacto_path, :class => 'new ajax' %>
+  <%= link_to "Nuevo contacto", new_contacto_path('data-title' => 'Crear contacto'), :class => 'new ajax' %>
 </div>
 
-<div id="posts" data-max_posts="<%= Representante::POSTS_SIZE %>">
-  <h2 class="title">Ultimos comentarios</h2>
-  <%= render :partial => "posts/posts", :locals => { :posts => @representante.ultimos_posts } %>
-  <%= link_post @representante, 'new' %>
+<div id="posts" class="posts" data-max_posts="<%= Representante::POSTS_SIZE %>">
+  <div>
+    <h2 class="title">Ultimos comentarios</h2>
+    <%= render :partial => "posts/posts", :locals => { :posts => @representante.ultimos_posts } %>
+    <%= link_post @representante, 'new' %>
+  </div>
 </div>
 
 <div style="clear:both"></div>
