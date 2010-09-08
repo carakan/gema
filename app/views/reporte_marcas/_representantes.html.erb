@@ -7,7 +7,7 @@
     <% @representantes.each do |rep| %>
       <tr>
         <td><%= link_to rep, 
-          cruce_reporte_marca_path('reporte', :representante_id => rep.id, 
+          cruce_reporte_marcas_path(:representante_id => rep.id, 
                                    :representante_type => params[:tipo].to_s.singularize.capitalize ,
                                    :importacion_id => params[:importacion_id]) %></td>
         <td>

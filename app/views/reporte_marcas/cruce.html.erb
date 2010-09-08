@@ -1,7 +1,12 @@
+<div class="breadcrumps">
+  <%= link_to "Lista de importaciones", importaciones_path %> > 
+  <%= link_to "Agentes y Títulares", reporte_marcas_path(:importacion_id => params[:importacion_id]) %>
+  > Reporte
+</div>
+
 <h1>Reporte <%= @representante %></h1>
 <h2 class="dark">Gaceta <%= @importacion.publicacion %> del <%= l @importacion.publicacion_fecha %></h2>
 
-<%= link_to "Listado", reporte_marcas_path(:importacion_id => params[:importacion_id]), :class => 'list' %>
 
 <% semantic_form_for(@reporte_marca) do |f| %>
 

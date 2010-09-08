@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :reporte_marcas, :member => { :cruce => :get, :download => :get }
+  map.resources :reporte_marcas, :collection => { :cruce => :get }, :member => { :download => :get }
 
   map.resources :contactos
 
