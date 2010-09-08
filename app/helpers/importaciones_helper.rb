@@ -38,9 +38,9 @@ protected
   def link_cruce(marca)
     imp = marca.importacion
     if imp.cruces_pendientes < 0
-      link_to "Realizar cruce gaceta #{imp.publicacion}", cruce_importacion_path(imp.id)
+      link_to "Realizar cruce gaceta #{imp.publicacion}", cruce_importaciones_path(:importacion_id => imp.id)
     elsif imp.cruces_pendientes > 0
-      link_to "Faltan #{imp.cruces_pendientes} cruces", cruce_importacion_path(imp.id)
+      link_to "Faltan #{imp.cruces_pendientes} cruces", cruce_importaciones_path(:importacion_id => imp.id)
     else
       link_to "Ver cruces", cruce_importacion_path(imp.id)
     end

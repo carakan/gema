@@ -220,6 +220,8 @@ ActiveRecord::Schema.define(:version => 20100902222847) do
     t.string   "pagina_web"
     t.string   "type"
     t.boolean  "valido"
+    t.string   "pais_nombre"
+    t.string   "pais_codigo"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "pais_id"

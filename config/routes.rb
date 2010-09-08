@@ -5,7 +5,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :consultas
 
-  map.resources :importaciones, :member => { :cruce => :get, :descarga => :get, :reportes => :get }
+  map.resources :importaciones, :collection => { :cruce => :get }, :member => { :descarga => :get, :reportes => :get }
 
   map.resources :adjuntos
 

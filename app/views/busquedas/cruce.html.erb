@@ -1,6 +1,11 @@
+<div class="breadcrumps">
+  <%= link_to "Lista de importaciones", importaciones_path %> > <%= link_to "Cruce gaceta", cruce_importaciones_path(:importacion_id => params[:importacion_id], :page => @page) %> > Selección
+</div>
 
 <h1>"<%= @marca.nombre %>"</h1>
-<div class="_110">
+
+<a class="more" href="javascript:">Ver más</a>
+<div class="hidden">
   <div class="half fl" id="div1">
     <p>
         <label>Clase:</label>
@@ -29,8 +34,8 @@
             <%= @marca.titulares.join(", ") %>
       </p>
   </div>
+    <%= link_to "Ver marca", ver_marca_path(@marca), :class => 'ajax show' %>
 </div>
-    <%= link_to "Ver mas", ver_marca_path(@marca), :class => 'ajax show' %>
 
 <h2 class="dark">Resultados del cruce</h2>
 
@@ -78,7 +83,6 @@
 <% end %>
 <br />
 <br />
-<%= link_to "Volver a importacion", cruce_importacion_path(@importacion, :page => @page), :class => 'back' %>
 <%= ver_cruce(@consulta, :class => 'ajax') unless params[:consulta_id].nil? %>
 <script type="text/javascript">
 (function($) {

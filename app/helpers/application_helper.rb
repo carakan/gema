@@ -20,6 +20,14 @@ module ApplicationHelper
     end
   end  
 
+  def tr_error(klass)
+    if klass.try(:valido)
+      "<tr>"
+    else
+      "<tr class=\"error\">"
+    end
+  end
+
   #def verdad(val)
   #  #val == true ? t("yes") : t("no")
   #  val ? "Sí" : "No"

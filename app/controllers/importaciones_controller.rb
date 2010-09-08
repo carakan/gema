@@ -44,8 +44,8 @@ class ImportacionesController < ApplicationController
   # Metodo especial para poder buscar marcas y realizar curce
   def cruce
     nombre_marca = (params[:nombre_marca] || "")
-    @marcas = Marca.cruce(params[:id], nombre_marca).paginate(:page => @page)
-    @importacion = Importacion.find(params[:id])
+    @marcas = Marca.cruce(params[:importacion_id], nombre_marca).paginate(:page => @page)
+    @importacion = Importacion.find(params[:importacion_id])
     @importacion.inicializar_cruces_pendientes
   end
 

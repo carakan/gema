@@ -36,7 +36,7 @@ class ConsultasController < ApplicationController
   def new
     if params[:commit] == 'Descartar'
       Consulta.descartar( params )
-      redirect_to cruce_importacion_url(params[:importacion_id], :page => @page), :notice => "Se ha descartado el cruce"
+      redirect_to cruce_importaciones_url(:importacion_id => params[:importacion_id], :page => @page), :notice => "Se ha descartado el cruce"
       return
     end
 
@@ -60,7 +60,7 @@ class ConsultasController < ApplicationController
 
     unless @consulta.importacion.nil?
       notice = "Se ha almacenado la consulta del cruce"
-      uri = cruce_importacion_url(@consulta.importacion, :page => @page)
+      uri = cruce_importaciones_url(:importacion_id => @consulta.importacion.id, :page => @page)
     else
       notice = "Se ha almacenado la consulta"
       uri = @consulta

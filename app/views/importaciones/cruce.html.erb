@@ -1,14 +1,27 @@
-<h1>Cruce (Faltan <%= @importacion.cruces_pendientes %> cruces)<%= gaceta @importacion %></h1>
+<div class="breadcrumps">
+  <%= link_to "Lista de importaciones", importaciones_path %> > Cruce
+</div>
 
-<%= link_to "Listado", cruce_importacion_path(@importacion) %>
-<% form_tag cruce_importacion_path(@importacion), :method => :get  do %>
+<h1>Cruce (Faltan <%= @importacion.cruces_pendientes %> cruces)<%= gaceta @importacion %></h1>
+<br />
+
+
+<% form_tag cruce_importaciones_path(:importacion_id => @importacion.id), :method => :get  do %>
+  <%= hidden_field_tag :importacion_id, params[:importacion_id] %>
   <%= text_field_tag :nombre_marca %>
   <%= submit_tag "Buscar" %>
 <% end %>
+<%= link_to "Borra busqueda", cruce_importaciones_path(:importacion_id => @importacion.id), :class => 'fl' %>
+
+<br />
+<br />
+<br />
+
+
 
 <%= @will = will_paginate @marcas %>
 
-<table class="decorated">
+<table class="decorated nwl nwf">
 	<tr>
     <%= '<th>Fila</th>' if @mostra_fila %>
 		<th>Marca</th>
@@ -18,8 +31,8 @@
     <th>Usuario</th>
     <th>Cruzar</th>
     <% @marcas.each do |marca| %>
-      <%= tr_marca marca %>
-        <td><%= marca.nombre %></td>
+      <tr>
+        <td><span class="<%= marca.propia! %>"><%= marca.nombre %></span></td>
         <td><%= marca.tipo_signo %></td>
         <td><%= marca.clase_id %></td>
         <% @consult = marca.cruce(@importacion.id) %>

@@ -69,7 +69,7 @@ $(document).ready(->
     $(this).html('Ver menos').removeClass('more').addClass('less').next('.hidden').show(speed)
   )
   $('a.less').live('click', ->
-    $(this).html('Ver mas').removeClass('less').addClass('more').next('.hidden').hide(speed)
+    $(this).html('Ver más').removeClass('less').addClass('more').next('.hidden').hide(speed)
   )
 
   # Para presentar imagenes con tamaño original

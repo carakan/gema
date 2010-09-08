@@ -10,6 +10,8 @@ class CreateRepresentantes < ActiveRecord::Migration
       t.string :pagina_web
       t.string :type
       t.boolean :valido
+      t.string :pais_nombre
+      t.string :pais_codigo
 
       t.timestamps
     end

@@ -150,6 +150,14 @@ class Marca < ActiveRecord::Base
     "El error fue encontrado en la fila #{fila} del archivo importado" if fila and valido == false
   end
 
+  def propia!
+    propia? ? "propia" : "foranea"
+  end
+
+  def valido!
+    valido? ? "" : "error"
+  end
+
   # Transforma los errores en un Hash que puede ser utilizado para JSON
   def hashify_errors
     self.errors.map(&:first).uniq.inject({}) { |h, v| 

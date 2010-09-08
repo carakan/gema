@@ -67,12 +67,20 @@ table.decorated{
     padding: 6px 10px;
     li{ margin: 0px; }
   }
-  td:last-child{
-    white-space: nowrap;
-  }
   /*th:last-child{ width:110px; }*/
   /*th.last{ width:110px; }*/
 }
+table.nwl{
+  td:last-child{
+    white-space: nowrap;
+  }
+}
+table.nwf{
+  td:first-child{
+    white-space: nowrap;
+  }
+}
+
 .over{
   background-color: @tr_background !important;
 }
@@ -233,7 +241,7 @@ form.in_half li{
 
 .notice{
   font-size: 1.2em;
-  margin: 10px;
+  margin: 0px 0px 15px;
   border: 4px solid;
   padding: 10px;
   -moz-border-radius: 4px;
@@ -462,6 +470,16 @@ ul.inline{
 .icon-top-right{
   background-position:top right;
 }
+.true{
+  .icon-checked;
+  background-repeat: no-repeat;
+  background-position: center 50%;
+}
+.false{
+  .icon-failed;
+  background-repeat: no-repeat;
+  background-position: center 50%;
+}
 
 @icon_pad: 18px;
 .big{ 
@@ -534,17 +552,22 @@ a.back{
   background: transparent url(../images/icons/arrow_left.png) no-repeat top left;
   padding-left: @icon_pad;
 }
+a.back{
+  background: transparent url(../images/icons/arrow_left.png) no-repeat top left;
+  padding-left: @icon_pad;
+}
+a.error{
+  color: @red;
+}
 /*********************************************************************/
 
-.true{
-  .icon-checked;
-  background-repeat: no-repeat;
-  background-position: center 50%;
+span.propia, a.propia{
+  background: transparent url(../images/icons/orpan-mini.png) no-repeat top left;
+  padding-left: @icon_pad;
 }
-.false{
-  .icon-failed;
-  background-repeat: no-repeat;
-  background-position: center 50%;
+span.foranea, a.foranea{
+  background: transparent url(../images/icons/blank.png) no-repeat top left;
+  padding-left: @icon_pad;
 }
 
 .delete-l{
@@ -568,6 +591,16 @@ a.back{
   height: 16px;  
   display: inline-block;
   vertical-align: middle;
+}
+a.more{
+  display: inline;
+  background: url(../images/icons/bullet_arrow_down.png) no-repeat right top;
+  padding-right: @icon_pad;
+}
+a.less{
+  display: inline;
+  background: url(../images/icons/bullet_arrow_up.png) no-repeat right top;
+  padding-right: @icon_pad;
 }
 .info{
   .icon-info;
@@ -793,3 +826,10 @@ a.desc{
 .comments ul{ list-style: none; }
 .comments ul li.post{ border-bottom: 1px solid #000 }
 
+.breadcrumps{
+  margin-top: -10px;
+  font-weight: bold;
+  a{
+    font-weight: normal;
+  }
+}

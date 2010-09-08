@@ -45,7 +45,8 @@ table.decorated th { padding: 6px 10px; }
 table.decorated th li { margin: 0px; }
 table.decorated td { padding: 6px 10px; }
 table.decorated td li { margin: 0px; }
-table.decorated td:last-child { white-space: nowrap; }
+table.nwl td:last-child { white-space: nowrap; }
+table.nwf td:first-child { white-space: nowrap; }
 .over { background-color: #c2e0ef !important; }
 .selected {
   background-color: #61b5df !important;
@@ -198,7 +199,7 @@ form.in_half li {
 }
 .notice {
   font-size: 1.2em;
-  margin: 10px;
+  margin: 0px 0px 15px;
   border: 4px solid;
   padding: 10px;
   -moz-border-radius: 4px;
@@ -206,7 +207,7 @@ form.in_half li {
 }
 #flashNotice {
   font-size: 1.2em;
-  margin: 10px;
+  margin: 0px 0px 15px;
   border: 4px solid;
   padding: 10px;
   -moz-border-radius: 4px;
@@ -217,7 +218,7 @@ form.in_half li {
 }
 #flashError {
   font-size: 1.2em;
-  margin: 10px;
+  margin: 0px 0px 15px;
   border: 4px solid;
   padding: 10px;
   -moz-border-radius: 4px;
@@ -228,7 +229,7 @@ form.in_half li {
 }
 #flashWarning {
   font-size: 1.2em;
-  margin: 10px;
+  margin: 0px 0px 15px;
   border: 4px solid;
   padding: 10px;
   -moz-border-radius: 4px;
@@ -402,6 +403,16 @@ ul.inline li a {
 .icon-checked { background-image: url(../images/icons/tick.png); }
 .icon-dowload { background-icon: url(../images/incons/down.png); }
 .icon-top-right { background-position: top right; }
+.true {
+  background-image: url(../images/icons/tick.png);
+  background-repeat: no-repeat;
+  background-position: center 50%;
+}
+.false {
+  background-image: url(../images/icons/cross.png);
+  background-repeat: no-repeat;
+  background-position: center 50%;
+}
 .big {
   font-size: 1.4em;
   font-weight: bold;
@@ -466,15 +477,14 @@ a.back {
   background: transparent url(../images/icons/arrow_left.png) no-repeat top left;
   padding-left: 18px;
 }
-.true {
-  background-image: url(../images/icons/tick.png);
-  background-repeat: no-repeat;
-  background-position: center 50%;
+a.error { color: #ff0000; }
+span.propia, a.propia {
+  background: transparent url(../images/icons/orpan-mini.png) no-repeat top left;
+  padding-left: 18px;
 }
-.false {
-  background-image: url(../images/icons/cross.png);
-  background-repeat: no-repeat;
-  background-position: center 50%;
+span.foranea, a.foranea {
+  background: transparent url(../images/icons/blank.png) no-repeat top left;
+  padding-left: 18px;
 }
 .delete-l {
   background-image: url(../images/icons/delete.png);
@@ -495,6 +505,16 @@ a.back {
   height: 16px;
   display: inline-block;
   vertical-align: middle;
+}
+a.more {
+  display: inline;
+  background: url(../images/icons/bullet_arrow_down.png) no-repeat right top;
+  padding-right: 18px;
+}
+a.less {
+  display: inline;
+  background: url(../images/icons/bullet_arrow_up.png) no-repeat right top;
+  padding-right: 18px;
 }
 .info {
   background-image: url(../images/icons/information.png);
@@ -646,3 +666,8 @@ a.desc {
 .comments h3 { margin: 5px 0px; }
 .comments ul { list-style: none; }
 .comments ul li.post { border-bottom: 1px solid #000000; }
+.breadcrumps {
+  margin-top: -10px;
+  font-weight: bold;
+}
+.breadcrumps a { font-weight: normal; }
