@@ -23,9 +23,10 @@ class CruceReport < Prawn::Document
   end
 
   def tabla(reporte_marca)
-    table( [ encabezado ] + datos(reporte_marca), :header => true, :width => 550) do
+    data = datos(reporte_marca)
+    table( [ encabezado ] + data, :header => true, :width => 550) do
       row(0).style(:background_color => 'cccccc', :style => :bold)
-      cells.style(:size => 11)
+      cells.style(:size => 10, :inline_format => true)
       column(0).style(:width => 125)
       column(1).style(:width => 125)
       column(2).style(:width => 300)
@@ -35,16 +36,23 @@ class CruceReport < Prawn::Document
   def datos(reporte_marca)
     reporte_marca.reporte_marca_detalles.inject([]) do |arr, det|
       arr << [ datos_marca(det.marca_propia), datos_marca(det.marca_foranea), det.comentario ] unless det.comentario.blank?
+      arr
     end
   end
 
   def datos_marca(marca)
     if I18n.locale == :es
-      "#{ marca.nombre }\n\n Clase #{marca.clase_id}\n#{marca.tipo_signo}\n#{ I18n.l marca.estado_fecha, :format => :date }
+      "<b>#{ marca.nombre }</b>
+      Clase #{ marca.clase_id }
+      #{ marca.tipo_signo }
+      <i>#{ I18n.l marca.estado_fecha, :format => :date }</i>
       #{ marca.titulares.join(", ") }"
     else
-      "#{ marca.nombre }\n\n Class #{marca.clase_id}\n#{ I18n.t marca.tipo_signo.nombre.cambiar_acentos.downcase }
-      #{ I18n.l marca.estado_fecha, :format => :date }\n#{ marca.titulares.join(", ") }"
+      "<b>#{ marca.nombre }</b>
+      Class #{marca.clase_id}
+      #{ I18n.t marca.tipo_signo.nombre.cambiar_acentos.downcase }
+      <i>#{ I18n.l marca.estado_fecha, :format => :date }</i>
+      #{ marca.titulares.join(", ") }"
     end
   end
 

@@ -4,7 +4,8 @@
   > Reporte
 </div>
 
-<h1>Reporte <%= @representante %></h1>
+<h1>Crear Reporte cruce</h1>
+<h2 class="dark"><%= params[:representante_type] %>: <%= @representante %></h2>
 <h2 class="dark">Gaceta <%= @importacion.publicacion %> del <%= l @importacion.publicacion_fecha %></h2>
 
 
@@ -42,9 +43,20 @@
         <td>
           <%= rd.input :marca_id, :as => :hidden %>
           <%= rd.input :marca_foranea_id, :as => :hidden %>
-      	  <%= @marcas[@i].marca.nombre %>
+          <strong><%= rd.object.marca_propia.nombre %></strong>
+          <br />
+          Clase <%= rd.object.marca_propia.clase_id %><br />
+          <%= rd.object.marca_propia.tipo_signo %><br />
+          <%= l rd.object.marca_propia.estado_fecha, :format => :date %>
         </td>
-        <td><%= @marcas[@i].consulta.marca.nombre %></td>
+        <td>
+          <strong><%= rd.object.marca_foranea.nombre %></strong><br />
+          Clase <%= rd.object.marca_foranea.clase_id %><br />
+          <%= rd.object.marca_foranea.tipo_signo %><br />
+          <%= l rd.object.marca_foranea.estado_fecha, :format => :date %><br />
+          <span class="dark b">Títulares</span>
+          <%= rd.object.marca_foranea.titulares.join(", ") %><br />
+        </td>
         <td>
           <%= rd.input :comentario, :as => :text, :label => false, :input_html => {:cols => 60, :rows => 12} %>
         </td>

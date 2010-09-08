@@ -1,6 +1,7 @@
 # encoding: utf-8
 # author: Boris Barroso
 # email: boriscyber@gmail.com
+#
 # Este modulo utiliza el programa pdftohtml http://pdftohtml.sourceforge.net/
 # Cuando se utiliza este programa para convertir el PDF en html este covierte el PDF
 # en varios archivos *.html y *.png, cada html tiene solo una imagen .png que despues
@@ -58,8 +59,7 @@ module ModMarca::PDF
     end
 
     # Realiza la busqueda de seccion dependiendo de la hoja
-    #   @param Array divs # Lista de objetos Nokogiri
-    #
+    #   @param Array #  divs lista de objetos Nokogiri
     def buscar_seccion(divs)
       divs.each do |div|
         case div.text.gsub(REGBLANK, '').strip
@@ -192,6 +192,10 @@ module ModMarca::PDF
 
     end
 
+    # Se mueve hasta el siguiente elemento hasta que pos == 0
+    #   @param Nokogiri::XML:Element
+    #   @param Integer
+    #   @return Nokogiri::XML::Element
     def buscar_siguiente(element, pos)
       if pos == 0
         element
@@ -200,6 +204,10 @@ module ModMarca::PDF
       end
     end
 
+    # Se mueve hasta el anterior elemento hasta que pos == 0
+    #   @param Nokogiri::XML:Element
+    #   @param Integer
+    #   @return Nokogiri::XML::Element
     def buscar_anterior(element, pos)
       if pos == 0
         element
@@ -210,6 +218,7 @@ module ModMarca::PDF
 
     # Prepara el archivo subido y lo copia en un directorio
     #   @param Rack:TempFile
+    #   @param String
     #   @return String
     def preparar_pdf(pdf_path, archivo)
       raise "Error, el archivo selecionado no es un PDF" unless File.extname(archivo.original_filename).downcase == '.pdf'
@@ -223,6 +232,7 @@ module ModMarca::PDF
     end
 
     # Convierte un PDF en archivos de HTML usando pdftohtml "http://pdftohtml.sourceforge.net/"
+    #   @param String # path al archivo PDF
     def convertir_pdf(pdf)
       raise "Error debe instalar pdftohtml" unless system("pdftohtml -c #{pdf}")
     end

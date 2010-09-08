@@ -21,8 +21,8 @@ module MarcasHelper
     end
     txt = ''
     case true
-      when [Date, Time, DateTime].include?( val.class )
-        fecha val
+      when [Date, Time, DateTime, ActiveSupport::TimeWithZone].include?( val.class )
+        l val
       when [true, false].include?( val )
         valido_img(val)
       when campo.to_s == 'archivo_adjunto'
@@ -38,6 +38,10 @@ module MarcasHelper
     attr = attr.to_s.gsub(/(.*)_id$/, '\1') if !!(attr.to_s =~ /.*_id$/)
     if presentar.nil? and [true, false].include?( klass[attr] )
       presentar = valido(klass[attr])
+    end
+    
+    if [Date, Time, DateTime, ActiveSupport::TimeWithZone ].include? klass.send(attr).class
+      presentar = l(klass.send(attr))
     end
 
     if !klass.cambios.nil? and klass.cambios.include?(attr.to_s)

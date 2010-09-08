@@ -28,12 +28,6 @@ module ApplicationHelper
     end
   end
 
-  #def verdad(val)
-  #  #val == true ? t("yes") : t("no")
-  #  val ? "Sí" : "No"
-  #end
-  # Vinculo para descargas
-
 
   def valido(val)
     val ? "Si": "No"
@@ -63,10 +57,6 @@ module ApplicationHelper
     l fec, :format => format
   end
 
-
-  def listado_facebook(klass, caption)
-  end
-
   def sort_order(title, field, options = {})
     css = ''
     direction = 'asc'
@@ -81,6 +71,7 @@ module ApplicationHelper
     link_to title, url, :class => css
   end
 
+  # Para poder localizar la fecha
   def lo(data, options = {})
     if data.is_a? Date or data.is_a? DateTime or data.is_a? Time
       l data, options

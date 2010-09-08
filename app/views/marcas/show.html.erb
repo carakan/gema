@@ -2,6 +2,11 @@
   #marca{ width: 54%; float: left;}
   #posts{ width: 44%; float: left; background-color: #EFEFEF; }
 </style>
+
+<div class="breadcrumps">
+  <%= link_to 'Lista de marcas', marcas_path, :class =>'list' %> > Marca
+</div>
+
 <h1>Marca</h1>
 
 
@@ -47,11 +52,11 @@
     </p>
     <p>
       <label for="">Fecha</label>
-      <%= cambio @marca ,:estado_fecha, lo( @marca.estado_fecha ) %>
+      <%= cambio @marca ,:estado_fecha %>
     </p>
     <p>
       <label for="">Fecha de modificación</label>
-      <%= l @marca.updated_at, :format => "%d, %B %Y %H:%M" %>
+      <%= l @marca.updated_at %>
     </p>
 
     <p>
@@ -88,7 +93,10 @@
       <label for="">Productos</label>
       <%= cambio @marca ,:productos %>
     </p>
-
+    <p>
+      <label for="">Fecha registro</label>
+      <%= cambio @marca ,:fecha_registro %>
+    </p>
  
 
 <%= link_to 'Editar', edit_marca_path(@marca), :class =>'edit'%> 

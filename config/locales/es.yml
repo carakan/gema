@@ -155,7 +155,7 @@ es:
 
   time:
     formats:
-      default: "%A, %e de %B de %Y %H:%M:%S %z"
+      default: "%d de %B, %Y %H:%M"
       short: "%e de %b %Y %H:%M"
       long: "%e de %B de %Y %H:%M"
       date: "%d de %B, %Y"

@@ -1,4 +1,5 @@
 module BusquedasHelper
+  # Indica que tipo de resultado de fue encontrado "Exacta", "Reemplazos", etc.
   def tipo_busqueda(tipo)
     case tipo.to_i
       when 1 then "Exacta"

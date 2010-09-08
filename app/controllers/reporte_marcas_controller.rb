@@ -54,6 +54,10 @@ class ReporteMarcasController < ApplicationController
   # GET /reporte_marcas/1/edit
   def edit
     @reporte_marca = ReporteMarca.find(params[:id])
+    [:representante_type, :representante_id, :importacion_id].each do |param|
+      params[param] = @reporte_marca.send(param)
+    end
+    preparar_datos_cruce
   end
 
   # POST /reporte_marcas
@@ -104,6 +108,7 @@ private
     else
       tipo = :titulares
     end
+    params[:representante_type] = p[:representante_type]
     
     @representante = Representante.find(p[:representante_id])
     @importacion = Importacion.find(p[:importacion_id])

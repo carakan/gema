@@ -61,7 +61,7 @@
 
   <br /><br />
   <% unless @consulta.importacion.nil? %>
-    <%= link_to "Volver a importación", cruce_importacion_path( @consulta.importacion, :page => @page ), :class => 'back' %>
+    <%= link_to "Volver a importación", cruce_importaciones_path(:importacion_id =>  @consulta.importacion, :page => @page ), :class => 'back' %>
   <% else %>
     <%= link_to "Lista", consultas_path, :class => 'list' %>
   <% end %>

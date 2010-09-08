@@ -12,14 +12,17 @@ class Adjunto < ActiveRecord::Base
     :url => "/system/:rails_env/adjuntos/:id_partition/:style-:filename"
   before_post_process :image?
 
+  # Indica si el tipo de adjunto es imagen
   def image?
     ['.png', '.jpg', '.gif', '.bmp'].include? File.extname( self.archivo.original_filename.downcase )
   end
 
+  # Indica el tipo de archivo que es el adjunto
   def tipo
     File.extname( archivo.url ).downcase.gsub('.', '')
   end
 
+  # indica la cantidad de bytes en bytes, Kb, MB
   def quota
     @regex = /^([0-9]+\.?[0-9]*?) (.*)/
     @sizes = { 'kilobyte' => 1024, 'megabyte' => 1048576, 'gigabyte' => 1073741824}

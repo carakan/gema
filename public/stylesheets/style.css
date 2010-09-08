@@ -8,7 +8,9 @@
 
 
 
-*/body {
+*/.dark { color: #484848; }
+.grey { color: #676767; }
+body {
   padding: 0px;
   margin: 0px;
   background: #efefef;
@@ -45,6 +47,7 @@ table.decorated th { padding: 6px 10px; }
 table.decorated th li { margin: 0px; }
 table.decorated td { padding: 6px 10px; }
 table.decorated td li { margin: 0px; }
+table.decorated td { vertical-align: top; }
 table.nwl td:last-child { white-space: nowrap; }
 table.nwf td:first-child { white-space: nowrap; }
 .over { background-color: #c2e0ef !important; }
@@ -647,7 +650,6 @@ a.desc {
 .pagination .next_page { font-weight: bold; }
 .pagination .prev_page { font-weight: bold; }
 .pagination a { text-decoration: none; }
-.dark { color: #484848; }
 .clear { clear: both; }
 #posts h2 { margin: 10px 0px; }
 #posts ul { list-style: none; }

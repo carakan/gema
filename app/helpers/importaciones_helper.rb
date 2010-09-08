@@ -42,7 +42,7 @@ protected
     elsif imp.cruces_pendientes > 0
       link_to "Faltan #{imp.cruces_pendientes} cruces", cruce_importaciones_path(:importacion_id => imp.id)
     else
-      link_to "Ver cruces", cruce_importacion_path(imp.id)
+      link_to "Ver cruces", cruce_importaciones_path(:importacion_id => imp.id)
     end
   end
 end
