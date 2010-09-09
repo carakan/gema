@@ -78,14 +78,11 @@ class ReporteMarcasController < ApplicationController
   def update
     @reporte_marca = ReporteMarca.find(params[:id])
 
-    respond_to do |format|
-      if @reporte_marca.update_attributes(params[:reporte_marca])
-        format.html { redirect_to(@reporte_marca, :notice => 'ReporteMarca was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @reporte_marca.errors, :status => :unprocessable_entity }
-      end
+    if @reporte_marca.update_attributes(params[:reporte_marca])
+      redirect_to(@reporte_marca, :notice => 'Se ha salvado correctamente el reporte.')
+    else
+      preparar_datos_cruce
+      render :action => "edit"
     end
   end
 

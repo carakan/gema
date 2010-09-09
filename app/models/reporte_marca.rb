@@ -5,6 +5,8 @@ class ReporteMarca < ActiveRecord::Base
   belongs_to :representante
   belongs_to :importacion
   has_many :reporte_marca_detalles, :dependent => :destroy
+
+  IDIOMAS = [['Español', 'es'], ['Ingles', 'en']]
   
   accepts_nested_attributes_for :reporte_marca_detalles
 
@@ -24,6 +26,11 @@ class ReporteMarca < ActiveRecord::Base
     end
 
     nombre
+  end
+
+  # Retorna el nombre del idioma en base a la abreviación que fue almacenada en la BD
+  def idioma!
+    IDIOMAS.find { |v| v.last == self.idioma }.first
   end
 
 end

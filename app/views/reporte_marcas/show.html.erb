@@ -1,17 +1,59 @@
-<% unless @importacion.nil? %>
-  <h1>Reporte <%= @reporte_marca.representante_type %>: <%= @reporte_marca.try(:representante) %></h1>
-  <h2 class="dark">Gaceta <%= @importacion.publicacion %> del <%= l @importacion.publicacion_fecha %></h2>
-<% else %>
-  <h1>Reporte de busquedas</h1>
+<style type="text/css">
+  ._150{ width: 150px; }
+</style>
+
+<% unless @reporte_marca.importacion_id.nil? %>
+  <div class="breadcrumps">
+    <%= link_to "Lista de importaciones", importaciones_path %> > 
+    <%= link_to "Agentes y Títulares", reporte_marcas_path(:importacion_id => @reporte_marca.importacion_id) %>
+    > Reporte
+  </div>
 <% end %>
 
+<h1>Crear Reporte cruce</h1>
+<h2 class="dark"><%= @reporte_marca.representante_type %>: <%= @reporte_marca.representante %></h2>
+<h2 class="dark">Gaceta <%= @importacion.publicacion %> del <%= l @importacion.publicacion_fecha %></h2>
 <p>
-  <label>Importacion:</label>
-  <%=h @reporte_marca.importacion_id %>
+  <label for="">Idioma</label>
+  <%= @reporte_marca.idioma! %>
 </p>
+
+<p>
+  <label for="">Carta</label>
+  <%= @reporte_marca.carta %>
+</p>
+
+<table class="decorated">
+	<tr>
+		<th class="_150">Marca propia</th>
+		<th class="_150">Marca agena</th>
+		<th>Comentario</th>
+	</tr>
+  <% @reporte_marca.reporte_marca_detalles.each do |rd|  %>
+  <tr>
+    <td>
+      <strong><%= rd.marca_propia.nombre %></strong>
+      <br />
+      Clase <%= rd.marca_propia.clase_id %><br />
+      <%= rd.marca_propia.tipo_signo %><br />
+      <i><%= l rd.marca_propia.estado_fecha, :format => :date %></i>
+    </td>
+    <td>
+      <strong><%= rd.marca_foranea.nombre %></strong>
+      <br />
+      Clase <%= rd.marca_foranea.clase_id %><br />
+      <%= rd.marca_foranea.tipo_signo %><br />
+      <i><%= l rd.marca_foranea.estado_fecha, :format => :date %></i>
+      <%= rd.marca_foranea.titulares.join(", ") %>
+    </td>
+    <td><%= rd.comentario %></td>
+  </tr>
+  <% end %>
+</table>
 
 
 <% unless @reporte_marca.importacion_id.nil? %>
   <%= link_to 'Editar', edit_reporte_marca_path(@reporte_marca), :class => 'edit' %>
   <%= link_to 'lista', reporte_marcas_path(:importacion_id => @reporte_marca.importacion_id), :class => 'list' %>
 <% end %>
+<%= link_to "Descargar reporte", download_reporte_marca_path(@reporte_marca), :class => 'pdf' %>
