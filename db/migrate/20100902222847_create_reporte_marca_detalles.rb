@@ -4,6 +4,7 @@ class CreateReporteMarcaDetalles < ActiveRecord::Migration
       t.integer :reporte_marca_id
       t.integer :marca_id # marca propia
       t.integer :marca_foranea_id
+      t.string :busqueda # En caso de que la busqueda sea con un texto y no sea cruce
       t.string :comentario, :limit => 800
       t.boolean :ignorada # indica si fue ignarada la marca para el reporte
 

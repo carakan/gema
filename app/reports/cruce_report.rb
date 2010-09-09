@@ -42,17 +42,21 @@ class CruceReport < Prawn::Document
 
   def datos_marca(marca)
     if I18n.locale == :es
-      "<b>#{ marca.nombre }</b>
+      <<-COM
+      <b>#{ marca.nombre }</b>
       Clase #{ marca.clase_id }
       #{ marca.tipo_signo }
       <i>#{ I18n.l marca.estado_fecha, :format => :date }</i>
-      #{ marca.titulares.join(", ") }"
+      #{ marca.titulares.join(", ") }
+      COM
     else
-      "<b>#{ marca.nombre }</b>
+      <<-COM
+      <b>#{ marca.nombre }</b>
       Class #{marca.clase_id}
       #{ I18n.t marca.tipo_signo.nombre.cambiar_acentos.downcase }
       <i>#{ I18n.l marca.estado_fecha, :format => :date }</i>
-      #{ marca.titulares.join(", ") }"
+      #{ marca.titulares.join(", ") }
+      COM
     end
   end
 

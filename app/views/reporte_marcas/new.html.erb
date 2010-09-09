@@ -4,30 +4,42 @@
 
   <%= f.input :representante_id, :as => :hidden %>
   <%= f.input :representante_type, :as => :hidden %>
-  <%= f.input :importacion_id, :as => :hidden %>
 
   <p>
-    <label for="idioma_es">
-      <%= radio_button_tag "idioma", 'es' %>
+    <label for="reporte_marca_idioma_es">
+      <%= f.radio_button :idioma, 'es' %>
       Español
     </label>
-    <label for="idioma_en">
-      <%= radio_button_tag "idioma", 'en' %>
+    <label for="reporte_marca_idioma_en">
+      <%= f.radio_button :idioma, 'en' %>
       Ingles
     </label>
   </p>
   <%= f.input :carta, :as => :text, :input_html => {:cols => 100} %>
-
   <table class="decorated">
   	<tr>
-  		<th></th>
   		<th>Marca propia</th>
   		<th>Marca agena</th>
   		<th>Comentario</th>
   	</tr>
-    <%  %>
-    <%  %>
+    <% f.semantic_fields_for :reporte_marca_detalles do |rd| %>
+      <tr>
+        <td>
+          <%= rd.input :marca_id, :as => :hidden %>
+          <%= rd.input :marca_foranea_id, :as => :hidden %>
+          <%= render :partial => "marca_propia", :locals => { :marca => rd.object.marca_propia } %>
+        </td>
+        <td>
+          <%= render :partial => "marca_foranea", :locals => { :marca => rd.object.marca_foranea } %>
+        </td>
+        <td>
+          <%= rd.input :comentario, :as => :text, :label => false, :input_html => {:cols => 60, :rows => 12} %>
+        </td>
+      </tr>
+    <% end %>
   </table>
+
+  
   <p>
     <%= f.submit 'Salvar' %>
   </p>
@@ -35,25 +47,17 @@
 
 <script type="text/javascript">
   $(function() {
-      // Idioma
-      $('input[name=idioma]').click(function() {
-        var val = 'es' == $(this).val() ? carta_es : carta_en;
-        $('#reporte_marca_carta').val(val);
-      });
-      // Habilitar desabilitar
-      $('input:checkbox').click(function() {
-        $(this).parents("tr:first").find("td textarea").attr("disabled", $(this).attr("checked"));
-      });
-      // Formulario
-      $('form').submit(function() {
-        if( $('input:checkbox[checked]').length <= 0 ) {
-          alert("Debe seleccionar al menos una marca");
-          return false;
-        }else{
-          return true;
-        }
-      });
+    // Idioma
+    $('input[name="reporte_marca[idioma]"]').click(function() {
+      var val = 'es' == $(this).val() ? carta_es : carta_en;
+      $('#reporte_marca_carta').val(val);
+    });
+    if( $('input[name="reporte_marca[idioma]"]').val() == 'es') {
+      $('#reporte_marca_carta').val(carta_es);
+    }else {
+      $('#reporte_marca_carta').val(carta_en);
+    }
   });
-  var carta_es = "español";
-  var carta_en = "english";
+  var carta_es = "<%= @reporte_marca.crear_carta %>";
+  var carta_en = "<%= @reporte_marca.crear_carta('en') %>";
 </script>

@@ -32,19 +32,11 @@
   <% @reporte_marca.reporte_marca_detalles.each do |rd|  %>
   <tr>
     <td>
-      <strong><%= rd.marca_propia.nombre %></strong>
-      <br />
-      Clase <%= rd.marca_propia.clase_id %><br />
-      <%= rd.marca_propia.tipo_signo %><br />
-      <i><%= l rd.marca_propia.estado_fecha, :format => :date %></i>
+      <% @marca = rd.marca_propia %>
+      <%= render :partial => "marca_propia", :locals => { :marca => rd.marca_propia } %>
     </td>
     <td>
-      <strong><%= rd.marca_foranea.nombre %></strong>
-      <br />
-      Clase <%= rd.marca_foranea.clase_id %><br />
-      <%= rd.marca_foranea.tipo_signo %><br />
-      <i><%= l rd.marca_foranea.estado_fecha, :format => :date %></i>
-      <%= rd.marca_foranea.titulares.join(", ") %>
+      <%= render :partial => "marca_foranea", :locals => { :marca => rd.marca_foranea } %>
     </td>
     <td><%= rd.comentario %></td>
   </tr>

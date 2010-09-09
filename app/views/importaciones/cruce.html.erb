@@ -32,7 +32,9 @@
     <th>Cruzar</th>
     <% @marcas.each do |marca| %>
       <tr>
-        <td><span class="<%= marca.propia! %>"><%= marca.nombre %></span></td>
+        <td <%= errores_marca(marca) %>>
+          <span class="<%= marca.propia! %>"><%= marca.nombre %></span>
+        </td>
         <td><%= marca.tipo_signo %></td>
         <td><%= marca.clase_id %></td>
         <% @consult = marca.cruce(@importacion.id) %>

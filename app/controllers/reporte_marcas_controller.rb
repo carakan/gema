@@ -32,6 +32,14 @@ class ReporteMarcasController < ApplicationController
     end
   end
 
+  # GET /reporte_marcas/new
+  def new
+    @reporte_marca = ReporteMarca.nuevo_busqueda(:idioma => 'es', :consulta_ids => params[:consulta_ids])
+    params[:marca_ids].each{ |k,v| @reporte_marca.reporte_marca_detalles.build(:marca_id => v) }
+  end
+
+  # GET /reporte_marca/1/dowload
+  # Metodo para descargar el reporte en PDF
   def download
     @reporte_marca = ReporteMarca.find(params[:id])
     rep = CruceReport.new
@@ -68,7 +76,7 @@ class ReporteMarcasController < ApplicationController
     if @reporte_marca.save
       redirect_to(@reporte_marca, :notice => 'Se ha salvado correctamente el reporte.')
     else
-      preparar_datos_cruce
+      preparar_datos_cruce if @reporte_marca.importacion_id? 
       render :action => "cruce"
     end
   end

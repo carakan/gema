@@ -54,7 +54,9 @@
 
   <% @marcas.each do |marca| %>
     <tr>
-      <td><%= link_to marca.nombre, marca_path(marca), :class => "#{ marca.propia! } #{marca.valido!}" %></td>
+      <td <%= errores_marca marca %>>
+        <%= link_to marca.nombre, marca_path(marca), :class => "#{ marca.propia! } #{marca.valido!}" %>
+      </td>
       <td class="<%= marca.propia %>"></td>
     	<td><%= marca.ver_estado %></td>
       <td><%= marca.tipo_signo %></td>

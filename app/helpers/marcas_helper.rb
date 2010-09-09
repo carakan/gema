@@ -93,6 +93,14 @@ module MarcasHelper
     "<tr class=\"#{css}\" #{alt}>"
   end
 
+  # Presenta un título con los errores de la marca
+  # ademas de añadir la clase error
+  def errores_marca(marca)
+    unless marca.valido?
+      "class=\"error\" alt=\"#{ marca.presentar_errores }\""
+    end
+  end
+
 
   def opciones_extra(options)
     options.map { |v| "#{v.first}=\"#{v.last}\"" }.join(" ")

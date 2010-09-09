@@ -14,6 +14,7 @@
   <%= f.input :representante_id, :as => :hidden %>
   <%= f.input :representante_type, :as => :hidden %>
   <%= f.input :importacion_id, :as => :hidden %>
+  <%= hidden_field_tag "_reporte_marca", 1 unless ReporteMarca.buscar_en_cruce(params).nil? %>
 
   <p>
     <label for="reporte_marca_idioma_es">
@@ -43,19 +44,10 @@
         <td>
           <%= rd.input :marca_id, :as => :hidden %>
           <%= rd.input :marca_foranea_id, :as => :hidden %>
-          <strong><%= rd.object.marca_propia.nombre %></strong>
-          <br />
-          Clase <%= rd.object.marca_propia.clase_id %><br />
-          <%= rd.object.marca_propia.tipo_signo %><br />
-          <%= l rd.object.marca_propia.estado_fecha, :format => :date %>
+          <%= render :partial => "marca_propia", :locals => { :marca => rd.object.marca_propia } %>
         </td>
         <td>
-          <strong><%= rd.object.marca_foranea.nombre %></strong><br />
-          Clase <%= rd.object.marca_foranea.clase_id %><br />
-          <%= rd.object.marca_foranea.tipo_signo %><br />
-          <%= l rd.object.marca_foranea.estado_fecha, :format => :date %><br />
-          <span class="dark b">Títulares</span>
-          <%= rd.object.marca_foranea.titulares.join(", ") %><br />
+          <%= render :partial => "marca_foranea", :locals => { :marca => rd.object.marca_foranea } %>
         </td>
         <td>
           <%= rd.input :comentario, :as => :text, :label => false, :input_html => {:cols => 60, :rows => 12} %>
@@ -82,22 +74,15 @@
         $('#reporte_marca_carta').val(carta_en);
       }
 
-      // Habilitar desabilitar
-      /*$('input:checkbox').click(function() {
-        $(this).parents("tr:first").find("td textarea").attr("disabled", !$(this).attr("checked"));
-      });*/
       // Formulario
       $('form').submit(function() {
-        /*if( $('input:checkbox[checked]').length <= 0 ) {
-          alert("Debe seleccionar al menos una marca");
-          return false;
-        }else{
-          return true;
-        }*/
+        if( $('#_reporte_marca').length > 0 ) {
+          if(confirm("Esta seguro de borrar el reporte anterior para crear uno nuevo?") ) {
+            return true;
+          } else { return false; }
+        }
       });
   });
-  var carta_es = "Estimado cliente le enviamos las coincidencias de sus marcas en la gaceta \"<%= @importacion.publicacion %>\" de fecha <%= l @importacion.publicacion_fecha %>";
-  <% I18n.locale = :en %>
-  var carta_en = "Dear customer we have found some coincidences with your trademarks in gaceta \"<%= @importacion.publicacion %>\" from date <%= l @importacion.publicacion_fecha %>";
-  <% I18n.locale = :es %>
+  var carta_es = "<%= @reporte_marca.crear_carta %>";
+  var carta_en = "<%= @reporte_marca.crear_carta('en') %>";
 </script>

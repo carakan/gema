@@ -38,6 +38,10 @@
   <%= render :partial => "buscar" %>
 </div>
 
+<% unless params[:busqueda].nil? %>
+  <h1 class="dark"><%= @busqueda.size %> resultados para la busqueda "<%= params[:busqueda] %>"</h1>
+<% end %>
+
 <% unless @busqueda.blank? %>
 
   <% form_tag new_consulta_path, :method => 'get' do -%>
@@ -50,7 +54,6 @@
   <% end %>
 
 
-  <h2>Resultados para la busqueda "<%= params[:busqueda] %>"</h2>
   <table class="decorated">
   	<tr>
       <th></th>

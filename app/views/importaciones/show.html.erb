@@ -14,7 +14,6 @@
 
 <table class="decorated nwf nwl">
 	<tr>
-    <%= '<th>Fila</th>' if @mostra_fila %>
 		<th>Marca</th>
     <th>Numero<br />Solicitud</th>
 		<th>Tipo Signo</th>
@@ -24,8 +23,7 @@
     <% @marcas.each do |marca| %>
       <% tr_error marca %>
       <tr>
-        <%= "<td>#{marca.fila}</td>" if @mostra_fila %>
-        <td><%= link_to marca.nombre, ver_marca_path(marca), :class => "ajax #{marca.propia!} #{marca.valido!}" %></td>
+        <td <%= errores_marca(marca) %>><%= link_to marca.nombre, ver_marca_path(marca), :class => "ajax #{marca.propia!} #{marca.valido!}" %></td>
         <td><%= marca.numero_solicitud %></td>
         <td><%= marca.tipo_signo %></td>
         <td><%= marca.clase_id %></td>
