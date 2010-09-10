@@ -32,6 +32,8 @@ class Marca < ActiveRecord::Base
 
   POSTS_SIZE = 2
 
+  INSTRUCCION = ["Carta", "Teléfono", "Email"]
+
   #has_many :marcas_representantes#, :as => :representable
 
   #include HasManyRight
@@ -109,6 +111,7 @@ class Marca < ActiveRecord::Base
   #end
 
   TIPOS = {
+    'pp' => 'Pendiente de presentación',
     'sm' => 'Solicitud de Marca',
     'lp' => 'Lista de publicación',
     'lr' => 'Lista de Registro',
@@ -209,7 +212,7 @@ class Marca < ActiveRecord::Base
   # Presenta una lista que puede ser usada en
   # formularios de seleccion multiple
   def self.lista_estados
-    orden = ['sm' ,'lp', 'lr', 'sr', 'rc']
+    orden = ['pp', 'sm' ,'lp', 'lr', 'sr', 'rc']
     orden.inject([]) { |arr, val| arr << [TIPOS[val], val] }
   end
 
