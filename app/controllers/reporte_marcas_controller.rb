@@ -48,8 +48,12 @@ class ReporteMarcasController < ApplicationController
   # Metodo para descargar el reporte en PDF
   def download
     @reporte_marca = ReporteMarca.find(params[:id])
-    rep = CruceReport.new
-    send_data rep.to_pdf(@reporte_marca), :filename => "#{@reporte_marca.crear_nombre_archivo}.pdf"
+    if @reporte_marca
+      reporte, nombre_archivo = @reporte_marca.crear_reporte, @reporte_marca.crear_nombre_archivo
+      send_data reporte, :filename => "#{nombre_archivo}.pdf"
+    else
+      raise "Error el reporte que solicito no existe"
+    end
   end
 
   # GET /reporte_marcas/new

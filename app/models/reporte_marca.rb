@@ -21,11 +21,12 @@ class ReporteMarca < ActiveRecord::Base
 
   # Crea el nombre de archivo para el pdf
   def crear_nombre_archivo
-    if self.importacion_id.nil?
-    else
-      nombre = "Gaceta_" << self.importacion.publicacion
+    if self.importacion_id?
+      nombre = "#{self.id}_Gaceta_" << self.importacion.publicacion
       nombre << "_" << (I18n.l self.importacion.publicacion_fecha, :format => "%d-%b-%Y")
       nombre << "_" << self.representante_type << "_" << self.representante.nombre
+    else
+      nombre = "#{self.id}_busquedas_#{self.representante.nombre}"
     end
 
     nombre
@@ -85,6 +86,16 @@ class ReporteMarca < ActiveRecord::Base
     c.strip
   end
 
+  # Realiza la creación del reporte para un cruce o busqueda
+  def crear_reporte
+    if self.importacion_id?
+      rep = CruceReport.new
+      rep.to_pdf(self)
+    else
+      rep = BusquedaReport.new
+      rep.to_pdf(self)
+    end
+  end
 
 private
   # Extra de info para la carta
