@@ -187,8 +187,8 @@ ActiveRecord::Schema.define(:version => 20100902222847) do
     t.integer  "reporte_marca_id"
     t.integer  "marca_id"
     t.integer  "marca_foranea_id"
+    t.string   "busqueda"
     t.string   "comentario",       :limit => 800
-    t.boolean  "ignorada"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -211,6 +211,7 @@ ActiveRecord::Schema.define(:version => 20100902222847) do
   add_index "reporte_marcas", ["representante_type"], :name => "index_reporte_marcas_on_representante_type"
 
   create_table "representantes", :force => true do |t|
+    t.integer  "pais_id"
     t.string   "nombre"
     t.string   "email"
     t.string   "direccion"
@@ -220,11 +221,11 @@ ActiveRecord::Schema.define(:version => 20100902222847) do
     t.string   "pagina_web"
     t.string   "type"
     t.boolean  "valido"
+    t.boolean  "cliente",                  :default => false
+    t.string   "pais_codigo", :limit => 4
     t.string   "pais_nombre"
-    t.string   "pais_codigo"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "pais_id"
   end
 
   add_index "representantes", ["nombre"], :name => "index_representantes_on_nombre"
