@@ -2,9 +2,15 @@
 # author: Boris Barroso
 # email: boriscyber@gmail.com
 class ReporteMarcasController < ApplicationController
+  
   # GET /reporte_marcas
-  # GET /reporte_marcas.xml
   def index
+    @reporte_marcas = ReporteMarca.paginate(:include => :representante, :page => @page, :order => "updated_at DESC")
+  end
+
+  # GET /reporte_marcas/cruce
+  # GET /reporte_marcas.xml
+  def cruces
     params[:tipo] ||= :agentes
     @representantes = Consulta.representantes(params[:importacion_id], params[:tipo])
     @importacion = Importacion.find(params[:importacion_id])
@@ -16,9 +22,10 @@ class ReporteMarcasController < ApplicationController
     if request.xhr?
       render :partial => 'representantes'
     else
-      render :action => 'index'
+      render :action => 'cruces'
     end
   end
+
 
   # GET /reporte_marcas/1
   # GET /reporte_marcas/1.xml
@@ -35,7 +42,6 @@ class ReporteMarcasController < ApplicationController
   # GET /reporte_marcas/new
   def new
     @reporte_marca = ReporteMarca.nuevo_busqueda(:idioma => 'es', :consulta_ids => params[:consulta_ids])
-    params[:marca_ids].each{ |k,v| @reporte_marca.reporte_marca_detalles.build(:marca_id => v) }
   end
 
   # GET /reporte_marca/1/dowload
@@ -76,8 +82,8 @@ class ReporteMarcasController < ApplicationController
     if @reporte_marca.save
       redirect_to(@reporte_marca, :notice => 'Se ha salvado correctamente el reporte.')
     else
-      preparar_datos_cruce if @reporte_marca.importacion_id? 
-      render :action => "cruce"
+      action = preparar_datos
+      render :action => action
     end
   end
 
@@ -106,6 +112,19 @@ class ReporteMarcasController < ApplicationController
     end
   end
 private
+  # Prepara los datos para cuando se realiza un reporte de cruce o 
+  # un reporte de busquedas
+  # @
+  def preparar_datos
+    if @reporte_marca.importacion_id?
+      preparar_datos_cruce
+      'cruce'
+    else
+      'new'
+    end
+  end
+
+  # Prepara los datos para un cruce
   def preparar_datos_cruce
     p = params[:representante_id].nil? ? params[:reporte_marca] : params
     if 'Agente' == p[:representante_type]

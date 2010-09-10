@@ -1,24 +1,24 @@
-  <table class="decorated">
+<table class="decorated">
+  <tr>
+    <th><%= params[:tipo].to_s.capitalize %></th>
+    <th></th>
+  </tr>
+  <% @tipo = params[:tipo].to_s.singularize << "_id" %>
+  <% @representantes.each do |rep| %>
     <tr>
-      <th><%= params[:tipo].to_s.capitalize %></th>
-      <th></th>
+      <td><%= link_to rep, 
+        cruce_reporte_marcas_path(:representante_id => rep.id, 
+                                 :representante_type => params[:tipo].to_s.singularize.capitalize ,
+                                 :importacion_id => params[:importacion_id]) %></td>
+      <td>
+        <% if reporte_marca = @reportes.find { |v| v.representante_id == rep.id } %>
+          <%= link_to "ver", reporte_marca, :class => 'show' %>
+          <%= link_to "reporte", download_reporte_marca_path(reporte_marca), :class => 'pdf' %>
+          <%= link_to "editar", edit_reporte_marca_path(reporte_marca), :class => 'edit' %>
+          <%= link_to "borrar", reporte_marca, :class => 'delete' %>
+        <% end %>
+      </td>
     </tr>
-    <% @tipo = params[:tipo].to_s.singularize << "_id" %>
-    <% @representantes.each do |rep| %>
-      <tr>
-        <td><%= link_to rep, 
-          cruce_reporte_marcas_path(:representante_id => rep.id, 
-                                   :representante_type => params[:tipo].to_s.singularize.capitalize ,
-                                   :importacion_id => params[:importacion_id]) %></td>
-        <td>
-          <% if reporte_marca = @reportes.find { |v| v.representante_id == rep.id } %>
-            <%= link_to "ver", reporte_marca, :class => 'show' %>
-            <%= link_to "reporte", download_reporte_marca_path(reporte_marca), :class => 'pdf' %>
-            <%= link_to "editar", edit_reporte_marca_path(reporte_marca), :class => 'edit' %>
-            <%= link_to "borrar", reporte_marca, :class => 'delete' %>
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </table>
+  <% end %>
+</table>
 

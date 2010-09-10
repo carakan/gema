@@ -4,6 +4,7 @@
 class Representante < ActiveRecord::Base
   #before_validation :set_validar
   #before_save :strip_data
+  before_save :set_pais, :if => lambda{ |rep| rep.pais_id? }
 
   #has_and_belongs_to_many :agentes, :class_name => 'Representante',
   #  :association_foreign_key => :agente_id,
@@ -24,10 +25,15 @@ class Representante < ActiveRecord::Base
   validates_format_of :email, :with => Constants::EMAIL_REG, 
     :unless => lambda{ |r| r.email.blank? }
 
+  named_scope :order, :order => "nombre ASC"
+  named_scope :lista, { :select => "id, nombre, pais_codigo", :order => "nombre ASC" }
+
   attr_accessor :validar
 
+
+
   def to_s
-    nombre
+    %Q( #{ nombre } - ( #{ pais_codigo } ) )
   end
 
   # Retorna todos los titulares de las marcas seleccionadas
@@ -46,8 +52,7 @@ class Representante < ActiveRecord::Base
   def self.marcas_representantes(marca_ids, tipo )
     singular_id = "#{tipo.to_s.singularize}_id"
     marcas_representantes = Representante.find_by_sql( ["SELECT * FROM marcas_#{tipo.to_s} WHERE marca_id IN (?)", marca_ids] )
-    Representante.all(:select => "id, nombre", 
-                      :conditions => { :id => marcas_representantes.map(&singular_id.to_sym).uniq } )
+    Representante.all(:conditions => { :id => marcas_representantes.map(&singular_id.to_sym).uniq } )
   end
 
   # Busca en un array los representantes segun los ids 
@@ -61,11 +66,21 @@ class Representante < ActiveRecord::Base
              :limit => POSTS_SIZE, :order => 'created_at DESC' )
   end
 
+  # concatena los datos denormalizados de pais
+  def pais_datos
+    %Q(#{pais_codigo} - #{pais_nombre})
+  end
 
 private
   # Prepara el atributo validar
   def set_validar
     self.validar = true if validar.nil?
+  end
+
+  # Denormaliza los datos de país
+  def set_pais
+    self.pais_codigo = self.pais.codigo
+    self.pais_nombre = self.pais.nombre
   end
 
   #def strip_data

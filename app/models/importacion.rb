@@ -22,6 +22,11 @@ class Importacion < ActiveRecord::Base
     self.update_attributes(:cruces_pendientes => cruces) unless self.cruces_pendientes == cruces
   end
 
+  # Metodo para presentar una gaceta
+  def gaceta
+    %Q(gaceta #{publicacion} del #{I18n.l publicacion_fecha})
+  end
+
 private
 
   # Retorna la cantidad de cruces pendientes de una importacion

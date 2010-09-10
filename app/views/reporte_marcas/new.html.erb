@@ -2,7 +2,7 @@
 
 <% semantic_form_for(@reporte_marca) do |f| %>
 
-  <%= f.input :representante_id, :as => :hidden %>
+  <%= f.input :representante, :label => 'Cliente', :collection => Representante.lista %>
   <%= f.input :representante_type, :as => :hidden %>
 
   <p>
@@ -16,21 +16,24 @@
     </label>
   </p>
   <%= f.input :carta, :as => :text, :input_html => {:cols => 100} %>
+  <p class="inline-hints">
+    Si no escribe en el comentario la marca no sera seleccionada para el reporte
+  </p>
   <table class="decorated">
   	<tr>
-  		<th>Marca propia</th>
-  		<th>Marca agena</th>
+  		<th>Busqueda</th>
+  		<th>Marca encontrada</th>
   		<th>Comentario</th>
   	</tr>
     <% f.semantic_fields_for :reporte_marca_detalles do |rd| %>
       <tr>
         <td>
-          <%= rd.input :marca_id, :as => :hidden %>
-          <%= rd.input :marca_foranea_id, :as => :hidden %>
-          <%= render :partial => "marca_propia", :locals => { :marca => rd.object.marca_propia } %>
+          <%= rd.input :busqueda, :as => :hidden %>
+          <%= rd.object.busqueda %>
         </td>
         <td>
-          <%= render :partial => "marca_foranea", :locals => { :marca => rd.object.marca_foranea } %>
+          <%= rd.input :marca_id, :as => :hidden %>
+          <%= render :partial => "marca_foranea", :locals => { :marca => rd.object.marca_propia } %>
         </td>
         <td>
           <%= rd.input :comentario, :as => :text, :label => false, :input_html => {:cols => 60, :rows => 12} %>

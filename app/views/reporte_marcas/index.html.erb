@@ -1,25 +1,21 @@
-<div class="breadcrumps">
-  <%= link_to "Lista de importaciones", importaciones_path %> > Agentes y Títulares
-</div>
-<h1>Reportes imporatción <%= tipo_reporte @importacion %></h1>
+<h1>Reportes</h1>
 
-<div id="tabs">
-  <ul>
-    <li>
-      <a href="#agentes">Agentes</a>
-    </li>
-    <li>
-    <a href="<%= reporte_marcas_path(:tipo => 'titulares', :importacion_id => params[:importacion_id]) %>">Títulares</a>
-    </li>
-  </ul>
-  <div id="agentes">
-    <%= render "representantes" %>
-  </div>
-</div>
-
-
-<script type="text/javascript">
-  $(function() {
-      $('#tabs').tabs();
-  })
-</script>
+<table class="decorated nwl">
+	<tr>
+		<th>Reporte</th>
+		<th>Cliente</th>
+    <th>Fecha</th>
+    <th></th>
+	</tr>
+  <% @reporte_marcas.each do |r| %>
+    <tr>
+    	<td><%= reporte r %></td>
+      <td><%= r.representante %></td>
+    	<td><%= l r.updated_at %></td>
+      <td>
+        <%= links r %>
+        <%= link_to "descargar", download_reporte_marca_path(r), :class => 'pdf' %>
+      </td>
+    </tr>
+  <% end %>
+</table>

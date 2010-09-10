@@ -66,11 +66,11 @@
 
     <p>
       <label for="">Titulares</label>
-      <%= cambio @marca, :titular_ids_serial, @marca.titulares.map(&:nombre).join(", ") %>
+      <%= cambio @marca, :titular_ids_serial, @marca.titulares.join(", ") %>
     </p>
     <p>
       <label for="">Agentes</label>
-      <%= cambio @marca, :agente_ids_serial, @marca.agentes.map(&:nombre).join(", ") %>
+      <%= cambio @marca, :agente_ids_serial, @marca.agentes.join(", ") %>
     </p>
     <p>
       <label>Apoderado</label>

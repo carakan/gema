@@ -114,7 +114,7 @@ $(document).ready(->
     id = new Date().getTime().toString()
     $(this).attr('data-ajax_id', id)
 
-    div = createDialog( { 'title': getDataTitle( $(this).attr('href') ) } )
+    div = createDialog( { 'title': $(this).attr('data-title') } )
     $(div).load( $(this).attr("href"), (e)->
       #$(div).find('a[href*=/]').hide()
       $(div).find('a.new[href*=/], a.edit[href*=/], a.list[href*=/]').hide()

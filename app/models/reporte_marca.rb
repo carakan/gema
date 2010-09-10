@@ -12,7 +12,8 @@ class ReporteMarca < ActiveRecord::Base
   
   accepts_nested_attributes_for :reporte_marca_detalles
 
-  validates_presence_of :carta
+  validates_presence_of :carta, :representante_id
+  validates_associated :representante
 
   def self.buscar_representantes(imp_id)
     marcas = Consulta.all("marca_ids_serial", :conditions => { :importacion_id => imp_id } ).map(:marca_ids_serial)
@@ -54,14 +55,23 @@ class ReporteMarca < ActiveRecord::Base
     }
   end
 
-  # Construye un reporte a partir de busquedas realizadas
+  # Prepara el formulario para un reporte a partir de busquedas realizadas
   #   @param Hash
   #   @return ReporteMarca
   def self.nuevo_busqueda(params)
-    Consulta.all(:select => "consulta_detalles.marca_id", :unclude => :consulta_detalles)
+    detalles = ConsultaDetalle.all(:select => "consulta_detalles.marca_id, consultas.busqueda", 
+                                    :conditions => { :consulta_id => params[:consulta_ids] },
+                                    :include => :consulta)
+    reporte_marca = new(:idioma => params[:idioma])
+    detalles.each { |cd| 
+      reporte_marca.reporte_marca_detalles.build(:marca_id => cd.marca_id, :busqueda => cd.consulta.busqueda ) 
+    }
+    reporte_marca
   end
 
   # Carta base 
+  #   @param String ['es', 'en']
+  #   @return String
   def crear_carta(idiom = 'es')
     if 'es' == idiom
       c = <<-CARTA

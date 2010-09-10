@@ -13,7 +13,7 @@
 
 <p>
   <label>Pais:</label>
-  <%=h @representante.pais %>
+  <%=h @representante.pais_datos %>
 </p>
 
 <p>
@@ -41,7 +41,7 @@
 </p>
   <%= link_to 'Editar', edit_representante_path(@representante), :class =>'edit' %>
   <%= link_to 'Lista', representantes_path, :class =>'list' %>
-  <%= link_to "Nuevo contacto", new_contacto_path('data-title' => 'Crear contacto'), :class => 'new ajax' %>
+  <%= link_to "Nuevo contacto", new_contacto_path, 'data-title' => 'Crear contacto', :class => 'new ajax' %>
 </div>
 
 <div id="posts" class="posts" data-max_posts="<%= Representante::POSTS_SIZE %>">

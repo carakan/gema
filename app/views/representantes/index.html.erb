@@ -4,13 +4,11 @@
 
 <%= @will = will_paginate @representantes %>
 
-<table class="decorated">
+<table class="decorated nwl">
     <tr>
       <th><%= sort_order "Nombre", "representantes.nombre" %></th>
       <th><%= sort_order "País", "paises.nombre" %></th>
       <th>Direccion</th>
-      <!--<th>Telefono</th>
-      <th>Email</th> -->
       <th></th>
     </tr>
 

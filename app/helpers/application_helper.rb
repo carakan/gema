@@ -73,7 +73,7 @@ module ApplicationHelper
 
   # Para poder localizar la fecha
   def lo(data, options = {})
-    if data.is_a? Date or data.is_a? DateTime or data.is_a? Time
+    if[Date, Time, DateTime, ActiveSupport::TimeWithZone].include? data.class
       l data, options
     end
   end
