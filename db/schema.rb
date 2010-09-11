@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100902222847) do
+ActiveRecord::Schema.define(:version => 20100911015248) do
 
   create_table "adjuntos", :force => true do |t|
     t.string   "nombre"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(:version => 20100902222847) do
     t.string   "busqueda"
     t.string   "parametros",       :limit => 400
     t.string   "comentario",       :limit => 800
-    t.string   "marca_ids_serial",                :default => "--- []\n\n"
+    t.string   "marca_ids_serial",                                   :null => false
     t.integer  "importacion_id",                  :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -120,6 +120,7 @@ ActiveRecord::Schema.define(:version => 20100902222847) do
     t.string   "titular_ids_serial"
     t.string   "errores",                     :limit => 700
     t.string   "errores_manual",              :limit => 500
+    t.string   "instruccion"
   end
 
   add_index "marcas", ["activa"], :name => "index_marcas_on_activa"
@@ -200,9 +201,9 @@ ActiveRecord::Schema.define(:version => 20100902222847) do
     t.integer  "representante_id"
     t.string   "representante_type"
     t.integer  "importacion_id"
-    t.string   "carta",              :limit => 500
+    t.string   "carta",              :limit => 500, :null => false
     t.string   "reporte_pdf"
-    t.string   "idioma",             :limit => 4
+    t.string   "idioma",             :limit => 4,   :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -211,7 +212,6 @@ ActiveRecord::Schema.define(:version => 20100902222847) do
   add_index "reporte_marcas", ["representante_type"], :name => "index_reporte_marcas_on_representante_type"
 
   create_table "representantes", :force => true do |t|
-    t.integer  "pais_id"
     t.string   "nombre"
     t.string   "email"
     t.string   "direccion"
@@ -221,11 +221,11 @@ ActiveRecord::Schema.define(:version => 20100902222847) do
     t.string   "pagina_web"
     t.string   "type"
     t.boolean  "valido"
-    t.boolean  "cliente",                  :default => false
     t.string   "pais_codigo", :limit => 4
     t.string   "pais_nombre"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "pais_id"
   end
 
   add_index "representantes", ["nombre"], :name => "index_representantes_on_nombre"

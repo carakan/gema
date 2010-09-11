@@ -30,9 +30,9 @@ class Marca < ActiveRecord::Base
   has_many :consultas
   has_many :consulta_detalles
 
-  POSTS_SIZE = 2
+  POSTS_SIZE = 3
 
-  INSTRUCCION = ["Carta", "Teléfono", "Email"]
+  INSTRUCCIONES = ["Carta", "Teléfono", "Email"]
 
   #has_many :marcas_representantes#, :as => :representable
 

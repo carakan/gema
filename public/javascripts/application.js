@@ -138,20 +138,21 @@
       }
     };
     $.toByteSize = ($.fn.toByteSize = toByteSize);
-    setIframePostEvents = function(iframe) {
+    setIframePostEvents = function(iframe, created) {
       return (iframe.onload = function() {
         var html, posts, postsSize;
         html = $(iframe).contents().find('body').html();
-        if ($(iframe).contents().find('#post_show_iframe').length > 0) {
-          $('#posts>ul').prepend(html);
-          mark('#posts>ul>li:first');
-          posts = parseInt($('#posts>ul>li').length);
+        if (($(html).find('form').length <= 0) && created) {
+          $('#posts ul:first').prepend(html);
+          mark('#posts ul li:first');
+          posts = parseInt($('#posts ul:first>li').length);
           postsSize = parseInt($('#posts').attr("data-posts_size"));
           if (posts > postsSize) {
-            $('#posts>ul>li:last').remove();
+            $('#posts ul:first>li:last').remove();
           }
           return $('#create_post_dialog').dialog('close');
         } else {
+          created = true;
           return $('#create_post_dialog').html(html);
         }
       });
@@ -165,7 +166,7 @@
           'style': 'display:none;'
         })[0];
         $('body').append(iframe);
-        setIframePostEvents(iframe);
+        setIframePostEvents(iframe, false);
         div = createDialog({
           'id': 'create_post_dialog',
           'title': 'Crear comentario'

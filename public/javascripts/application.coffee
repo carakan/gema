@@ -145,25 +145,27 @@ $(document).ready(->
   $.toByteSize = $.fn.toByteSize = toByteSize
 
   #$.fn.nuevoPost = nuevoPost
-  setIframePostEvents = (iframe)->
+  setIframePostEvents = (iframe, created)->
     iframe.onload = ->
       html = $(iframe).contents().find('body').html()
-      if $(iframe).contents().find('#post_show_iframe').length > 0
-        $('#posts>ul').prepend(html)
-        mark('#posts>ul>li:first')
-        posts = parseInt($('#posts>ul>li').length)
+      if $(html).find('form').length <= 0 and created
+        $('#posts ul:first').prepend(html)
+        mark('#posts ul li:first')
+        posts = parseInt($('#posts ul:first>li').length)
         postsSize = parseInt($('#posts').attr("data-posts_size") )
         if(posts > postsSize)
-          $('#posts>ul>li:last').remove()
+          $('#posts ul:first>li:last').remove()
         $('#create_post_dialog').dialog('close')
       else
+        created = true
         $('#create_post_dialog').html(html)
 
+  # Metodos para poder hacer submit de formularios
   $('a.post').live('click', ->
     if $('iframe#post_iframe').length <= 0
       iframe = $('<iframe />').attr({ 'id': 'post_iframe', 'name': 'post_iframe', 'style': 'display:none;' })[0]
       $('body').append(iframe)
-      setIframePostEvents(iframe)
+      setIframePostEvents(iframe, false)
       div = createDialog({'id':'create_post_dialog', 'title': 'Crear comentario'})
     else
       div = $('#create_post_dialog').dialog("open").html("")
