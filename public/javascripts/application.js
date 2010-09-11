@@ -187,14 +187,13 @@
         'context': el,
         'data': data,
         'type': (data['_method'] || $(this).attr('method')),
-        'success': function(resp) {
+        'success': function(resp, status, xhr) {
           var id, p;
-          if ($(resp).find('form').length <= 0) {
+          if ($(resp).find('input:submit').length <= 0) {
             p = $(el).parents('div.ajax-modal');
             id = $(p).attr('data-ajax_id');
             $(p).dialog('destroy');
-            $(p).remove();
-            return $('body').trigger('ajax:completed', [id, resp]);
+            return $('body').trigger('ajax:complete', [resp]);
           } else {
             return $(el).parents('div.ajax-modal:first').html(resp);
           }

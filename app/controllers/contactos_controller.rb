@@ -28,7 +28,7 @@ class ContactosController < ApplicationController
   # GET /contactos/new
   # GET /contactos/new.xml
   def new
-    @contacto = Contacto.new
+    @contacto = Contacto.new(:representante_id => params[:representante_id])
 
     respond_to do |format|
       format.html # new.html.erb
@@ -48,7 +48,7 @@ class ContactosController < ApplicationController
 
     respond_to do |format|
       if @contacto.save
-        format.html { redirect_to(@contacto, :notice => 'Contacto was successfully created.') }
+        format.html { redirect_to(@contacto, :notice => 'Se ha creado el contacto.') }
         format.xml  { render :xml => @contacto, :status => :created, :location => @contacto }
       else
         format.html { render :action => "new" }

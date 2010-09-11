@@ -116,7 +116,6 @@ $(document).ready(->
 
     div = createDialog( { 'title': $(this).attr('data-title') } )
     $(div).load( $(this).attr("href"), (e)->
-      #$(div).find('a[href*=/]').hide()
       $(div).find('a.new[href*=/], a.edit[href*=/], a.list[href*=/]').hide()
     )
     e.stopPropagation()
@@ -190,13 +189,13 @@ $(document).ready(->
       'context':el
       'data':data
       'type': (data['_method'] || $(this).attr('method') )
-      'success': (resp)->
-        if $(resp).find('form').length <= 0
+      'success': (resp, status, xhr)->
+        if $(resp).find('input:submit').length <= 0
           p = $(el).parents('div.ajax-modal')
           id = $(p).attr('data-ajax_id')
           $(p).dialog('destroy')
-          $(p).remove()
-          $('body').trigger('ajax:completed', [id, resp])
+          #$(p).remove()
+          $('body').trigger('ajax:complete', [resp])
         else
           $(el).parents('div.ajax-modal:first').html(resp)
       'error': (resp)->

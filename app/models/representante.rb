@@ -18,6 +18,7 @@ class Representante < ActiveRecord::Base
   #has_many :posts, :order => 'created_at DESC'
   has_many :posts, :as => :postable, :dependent => :destroy
   has_many :reporte_marcas
+  has_many :contactos
 
   POSTS_SIZE = 2
   

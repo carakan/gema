@@ -6,43 +6,54 @@
 <h1>Cliente</h1>
 
 <div id="cliente">
-<p>
-  <label>Nombre:</label>
-  <%=h @representante.nombre %>
-</p>
+  <p>
+    <label>Nombre:</label>
+    <%=h @representante.nombre %>
+  </p>
 
-<p>
-  <label>Pais:</label>
-  <%=h @representante.pais_datos %>
-</p>
+  <p>
+    <label>Pais:</label>
+    <%=h @representante.pais_datos %>
+  </p>
 
-<p>
-  <label>Email:</label>
-  <%=h @representante.email %>
-</p>
-<p>
-  <label>Direccion:</label>
-  <%=h @representante.direccion %>
-</p>
+  <p>
+    <label>Email:</label>
+    <%=h @representante.email %>
+  </p>
+  <p>
+    <label>Direccion:</label>
+    <%=h @representante.direccion %>
+  </p>
 
-<p>
-  <label>Telefono:</label>
-  <%=h @representante.telefono %>
-</p>
-  
-<p>
-  <label>Fax:</label>
-  <%=h @representante.fax %>
-</p>
+  <p>
+    <label>Telefono:</label>
+    <%=h @representante.telefono %>
+  </p>
+    
+  <p>
+    <label>Fax:</label>
+    <%=h @representante.fax %>
+  </p>
 
-<p>
-  <label>Pagina web:</label>
-  <%=h @representante.pagina_web %>
-</p>
+  <p>
+    <label>Pagina web:</label>
+    <%=h @representante.pagina_web %>
+  </p>
   <%= link_to 'Editar', edit_representante_path(@representante), :class =>'edit' %>
   <%= link_to 'Lista', representantes_path, :class =>'list' %>
-  <%= link_to "Nuevo contacto", new_contacto_path, 'data-title' => 'Crear contacto', :class => 'new ajax' %>
+
+  <div id="contactos">
+    <h1 class="dark">Contactos</h1>
+    <% @representante.contactos.each do |contacto| %>
+      <div class="contacto">
+        <%= render :partial => "contactos/contacto", :locals => { :contacto => contacto } %>
+        <div class="clear"></div>
+      </div>  
+    <% end %>
+  </div>
+  <%= link_to "Nuevo contacto", new_contacto_path(:representante_id => @representante.id), 'data-title' => 'Crear contacto', :class => 'new ajax' %>
 </div>
+
 
 <div id="posts" class="posts" data-max_posts="<%= Representante::POSTS_SIZE %>">
   <div>
@@ -51,13 +62,17 @@
     <%= link_post @representante, 'new' %>
   </div>
 </div>
-
 <div style="clear:both"></div>
 
 <script type="text/javascript">
 $(document).ready(function() {
-  $('body').live("iframe:click",function() {
-    alert("cargo");
-  });
+    $('body').bind('ajax:complete', function(req, resp) {
+      html = $(resp).find('.response').html() + '<div class="clear"></div>';
+      div = $('<div/>').attr({
+        'class': 'contacto'
+      });
+      $('#contactos').append(div.html(html));
+      $.mark('#contactos>div.contacto:last');
+    })
 })
 </script>

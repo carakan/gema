@@ -1,4 +1,5 @@
 <div class="response">
+  <div class="half fl">
   <p>
     <label>Nombre:</label>
     <%=h @contacto.nombre %>
@@ -9,15 +10,18 @@
     <%=h @contacto.cargo %>
   </p>
 
-  <p>
-    <label>Teléfono:</label>
-    <%=h @contacto.telefono %>
-  </p>
+  </div>
+  <div class="half fl">
+    <p>
+      <label>Teléfono:</label>
+      <%=h @contacto.telefono %>
+    </p>
 
-  <p>
-    <label>Email:</label>
-    <%=h @contacto.email %>
-  </p>
+    <p>
+      <label>Email:</label>
+      <%=h @contacto.email %>
+    </p>
+  </div>
 </div>
 
 <%= link_to 'Editar', edit_contacto_path(@contacto), :class => 'edit' %> 

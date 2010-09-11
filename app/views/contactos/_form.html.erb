@@ -1,5 +1,5 @@
 <% semantic_form_for(@contacto) do |f| %>
-
+  <%= f.input :representante_id, :as => :hidden %>
   <%= f.input :nombre %>
   <%= f.input :cargo %>
   <%= f.input :telefono, :label => 'Teléfono' %>

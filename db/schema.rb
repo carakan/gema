@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(:version => 20100911015248) do
   end
 
   create_table "contactos", :force => true do |t|
+    t.integer "representante_id"
     t.string   "nombre"
     t.string   "cargo"
     t.string   "telefono"
