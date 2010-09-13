@@ -74,32 +74,26 @@ class Marca < ActiveRecord::Base
   validates_presence_of :estado
   validate :validar_errores_manual
 
-  default_scope :conditions => "marcas.parent_id = 0"
+  default_scope where("marcas.parent_id = 0")
 
   #named_scope :importados, lambda{ |fecha| 
   #  { :conditions => { :fecha_importacion => fecha} } 
   #}
 
-  named_scope :importado, lambda { |imp_id, nombre_marca| 
-    { 
-      :conditions => [ "marcas.importacion_id = ? AND marcas.nombre_minusculas LIKE ?", imp_id, "%#{nombre_marca.downcase}%" ], 
-      :order => "marcas.valido, marcas.propia DESC", 
-      :include => [:tipo_signo, :clase, :titulares] 
-    } 
+  scope :importado, lambda { |imp_id, nombre_marca| 
+    where("marcas.importacion_id = ? AND marcas.nombre_minusculas LIKE ?", imp_id, nombre_minusculas.downcase).
+    order("marcas.valido, marcas.propia DESC").
+    includes( :tipo_signo, :clase, :titulares )
   }
 
-  named_scope :importados_error, lambda { |fecha| 
-    { :conditions => { :fecha_importacion => fecha, :valido => false} } 
+  scope :importados_error, lambda { |fecha|
+    where(:fecha_impotacion => fecha, :valido => false)
   }
 
-  named_scope :cruce, lambda { |importacion_id, nombre_marca| 
-    { 
-      :conditions =>  [
-        "marcas.importacion_id = ? AND marcas.tipo_signo_id NOT IN (?) AND marcas.nombre_minusculas LIKE ?", 
-        importacion_id, TipoSigno.descartadas_cruce, "%#{nombre_marca.downcase}%"
-      ],
-      :include => [:tipo_signo, :clase, { :consultas => :usuario }, :titulares ]
-    }
+  scope :cruce, lambda { |importacion_id, nombre_marca| 
+    where("marcas.importacion_id = ? AND marcas.tipo_signo_id NOT IN (?) AND marcas.nombre_minusculas LIKE ?",
+      importacion_id, TipoSigno.descartadas_cruce, nombre_marca.downcase).
+    includes(:tipo_signo, :clase, { :consultas => :usuario }, :titulares)
   }
 
   # Configuracion de thinking-sphinx

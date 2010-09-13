@@ -1,89 +1,99 @@
+# encoding: utf-8
+# author: Boris Barroso
+# email: boriscyber@gmail.com
 ActionController::Routing::Routes.draw do |map|
-  map.resources :reporte_marcas, :collection => { :cruces => :get, :cruce => :get }, :member => { :download => :get }
+  resources :reporte_marcas do
+    collection do
+      get :cruces
+      get :curce
+    end
 
-  map.resources :contactos
+    member do
+      get :download
+    end
+  end
 
-  map.resources :consultas
+  resources :contactos
 
-  map.resources :importaciones, :collection => { :cruce => :get }, :member => { :descarga => :get, :reportes => :get }
+  resources :consultas
 
-  map.resources :adjuntos
+  resources :importaciones do
+    collection do
+      get :cruce
+    end
 
-  map.resources :posts
+    member do
+      get :descarga
+      get :reportes
+    end
+  end
 
-  map.resources :paises
+  resources :adjuntos
 
-  map.resources :tipo_marcas
+  resources :posts
 
-  map.resources :usuarios
+  resources :paises
 
-  map.resources :representantes, :member => { :create_post => :post, :show => :get }, :collection => { :buscar => :get }
+  resources :tipo_marcas
 
-  #map.resources :titulares, :collection => { :buscar => :get }
+  resources :usuarios
 
-  #map.resources :agentes, :collection => { :buscar => :get }
+  resources :representantes do
+    member do
+      get :create_post
+      get :show
+    end
 
-  map.resources :tipo_signos
+    collection do
+      get :buscar
+    end
+  end
 
-  map.resources :testes
+  resources :titulares do
+    collection do
+      get :buscar
+    end
+  end
 
-  map.resources :clases
+  resources :agentes do
+    collection do
+      get :buscar
+    end
+  end
 
-  map.resources :marcas, :member => { :create_post => :post, :ver => :get }
+  resources :tipo_signos
 
-  map.resources :solicitud_marcas
+  resources :testes
 
-  map.resources :lista_publicaciones
+  resources :clases
 
-  map.resources :busquedas, :collection => { :cruce => :get, :verificar_cruce => :get }
+  resources :marcas do
+    member do
+      post :create_post
+      get :ver
+    end
+  end
 
-  map.resources :solicitudes, :member => { :importado => :get }
+  resources :solicitud_marcas
 
-  # Plugin
-  map.resources :roles
+  resources :lista_publicaciones
 
-  # The priority is based upon order of creation: first created -> highest priority.
+  resources :busquedas do
+    collection do
+      get :cruce 
+      get :verificar_cruce
+    end
+  end
 
-  # Sample of regular route:
-  #   map.connect 'products/:id', :controller => 'catalog', :action => 'view'
-  # Keep in mind you can assign values other than :controller and :action
+  resources :solicitudes do
+    member { get :importado }
+  end
 
-  # Sample of named route:
-  #   map.purchase 'products/:id/purchase', :controller => 'catalog', :action => 'purchase'
-  # This route can be invoked with purchase_url(:id => product.id)
+  resources :roles
 
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   map.resources :products
+  resources :login
 
-  # Sample resource route with options:
-  #   map.resources :products, :member => { :short => :get, :toggle => :post }, :collection => { :sold => :get }
+  match 'logout' => 'login#destroy'
 
-  # Sample resource route with sub-resources:
-  #   map.resources :products, :has_many => [ :comments, :sales ], :has_one => :seller
-  
-  # Sample resource route with more complex sub-resources
-  #   map.resources :products do |products|
-  #     products.resources :comments
-  #     products.resources :sales, :collection => { :recent => :get }
-  #   end
-
-  # Sample resource route within a namespace:
-  #   map.namespace :admin do |admin|
-  #     # Directs /admin/products/* to Admin::ProductsController (app/controllers/admin/products_controller.rb)
-  #     admin.resources :products
-  #   end
-  # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
-
-  map.resources :login
-
-  map.logout '/logout', :controller => 'login', :action => 'destroy'
-
-  map.root :controller => "login", :action => 'new'
-  # See how all your routes lay out with "rake routes"
-
-  # Install the default routes as the lowest priority.
-  # Note: These default routes make all actions in every controller accessible via GET requests. You should
-  # consider removing or commenting them out if you're using named routes and resources.
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
+  root :to => 'login#new'
 end
