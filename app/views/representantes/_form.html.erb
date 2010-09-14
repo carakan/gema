@@ -1,5 +1,4 @@
 <% semantic_form_for @representante do |representante| %>
-
   <%= representante.input :pais, :as => :select, :collection => Pais.find(:all) %>
   <%= representante.input :nombre, :label => 'Nombre', :input_html => { :size => 70 } %>
   <%= representante.input :direccion, :label => 'Dirección', :as => :text, :input_html => { :rows => 3, :cols => 45 } %>
