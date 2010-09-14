@@ -39,23 +39,6 @@ ActionController::Routing::Routes.draw do |map|
   resources :usuarios
 
   resources :representantes do
-    member do
-      get :create_post
-      get :show
-    end
-
-    collection do
-      get :buscar
-    end
-  end
-
-  resources :titulares do
-    collection do
-      get :buscar
-    end
-  end
-
-  resources :agentes do
     collection do
       get :buscar
     end

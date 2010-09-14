@@ -15,7 +15,12 @@ gem 'rails', '3.0.0'
 
 # To use debugger
 gem 'mysql', '2.8.1'
-gem 'ruby-debug'
+if RUBY_VERSION == "1.8.7"
+  gem 'ruby-debug'
+elsif RUBY_VERSION == "1.9.2"
+  gem 'ruby-debug19'
+end
+
 gem 'formtastic'
 gem 'will_paginate', '~> 3.0.pre2'
 gem 'nokogiri'
