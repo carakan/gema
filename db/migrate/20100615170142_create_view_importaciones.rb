@@ -7,12 +7,10 @@ class CreateViewImportaciones < ActiveRecord::Migration
     GROUP BY importacion_id"
     execute(sql)
     # Errores
-    sql2 = Marca.send(:construct_finder_sql, 
-                      :select => "importacion_id, 0 AS total, COUNT(*) AS errores, estado",
-                      :conditions => ["valido = ? AND importado = ?", false, true], # No es necesario :parent_id => 0, por que hay un default scope
-                      :group => "marcas.importacion_id"
-                     )
-    sql = "CREATE VIEW view_importaciones_errores AS #{sql2}"
+    sql = Marca.select("importacion_id, 0 AS total, COUNT(*) AS errores, estado").
+                 where("valido = ? AND importado = ?", false, true). # No es necesario :parent_id => 0, por que hay un default scope
+                 group("marcas.importacion_id").to_sql
+    sql = "CREATE VIEW view_importaciones_errores AS #{sql}"
     execute(sql)
     # Vista final
     sql = "CREATE VIEW view_importaciones AS

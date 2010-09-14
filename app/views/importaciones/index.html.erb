@@ -28,7 +28,7 @@
     	<td><%= link_to fecha_hora(marca.try(:importacion).created_at, 'long'), marca.importacion %></td>
       <td><strong><%= marca.ver_estado %></strong></td>
       <td><%= marca.total %></td>
-      <td><%= marca.errores_listado %></td>
+      <td><%= marca.errores_listado.html_safe %></td>
       <td><%= cruce marca %></td>
       <td><%= link_to "reportes", cruces_reporte_marcas_path(:importacion_id => marca.importacion_id) %></td>
       <td><%= link_to "descargar", descarga_importacion_path(marca.importacion_id), :class => 'dowload' %></td>

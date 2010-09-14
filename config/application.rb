@@ -19,7 +19,8 @@ module Gema
     # config.autoload_paths += %W(#{config.root}/extras)
     config.autoload_paths << %Q(#{Rails.root}/app/reports)
     config.autoload_paths << %Q(#{Rails.root}/lib)
-    config.autoload_paths << %Q(#{Rails.root}/lib)
+    #config.autoload_paths << %Q(#{Rails.root}/lib/boot)
+    config.autoload_paths << %Q(#{Rails.root}/lib/mod_marca)
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
@@ -46,3 +47,4 @@ module Gema
     config.filter_parameters += [:password]
   end
 end
+Dir.glob("#{Rails.root}/lib/boot/*.rb").each{ |lib| require lib }
