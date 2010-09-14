@@ -9,7 +9,7 @@ module ApplicationHelper
   def links(klass, options={})
     ['edit', 'destroy'].inject([]) do |t, m|
       t << gema_method_path(m, klass)
-    end.join(" ")
+    end.join(" ").html_safe
   end
 
   # Set the method and link for  new, edit, destroy, show
