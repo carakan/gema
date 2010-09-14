@@ -1,10 +1,11 @@
-# This file is auto-generated from the current state of the database. Instead of editing this file, 
-# please use the migrations feature of Active Record to incrementally modify your database, and
-# then regenerate this schema definition.
+# This file is auto-generated from the current state of the database. Instead
+# of editing this file, please use the migrations feature of Active Record to
+# incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your database schema. If you need
-# to create the application database on another system, you should be using db:schema:load, not running
-# all the migrations from scratch. The latter is a flawed and unsustainable approach (the more migrations
+# Note that this schema.rb definition is the authoritative source for your
+# database schema. If you need to create the application database on another
+# system, you should be using db:schema:load, not running all the migrations
+# from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended to check this file into your version control system.
@@ -46,7 +47,7 @@ ActiveRecord::Schema.define(:version => 20100911015248) do
     t.string   "busqueda"
     t.string   "parametros",       :limit => 400
     t.string   "comentario",       :limit => 800
-    t.string   "marca_ids_serial",                                   :null => false
+    t.string   "marca_ids_serial",                :default => ""
     t.integer  "importacion_id",                  :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -54,7 +55,7 @@ ActiveRecord::Schema.define(:version => 20100911015248) do
   end
 
   create_table "contactos", :force => true do |t|
-    t.integer "representante_id"
+    t.integer  "representante_id"
     t.string   "nombre"
     t.string   "cargo"
     t.string   "telefono"
@@ -62,6 +63,8 @@ ActiveRecord::Schema.define(:version => 20100911015248) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "contactos", ["representante_id"], :name => "index_contactos_on_representante_id"
 
   create_table "importaciones", :force => true do |t|
     t.boolean  "completa"
@@ -99,7 +102,7 @@ ActiveRecord::Schema.define(:version => 20100911015248) do
     t.integer  "fila"
     t.datetime "fecha_importacion"
     t.boolean  "valido"
-    t.string   "cambios",                                     :default => "--- []\n\n"
+    t.string   "cambios",                                     :default => ""
     t.boolean  "importado",                                   :default => false
     t.string   "apoderado"
     t.string   "representante_empresarial"
@@ -202,9 +205,9 @@ ActiveRecord::Schema.define(:version => 20100911015248) do
     t.integer  "representante_id"
     t.string   "representante_type"
     t.integer  "importacion_id"
-    t.string   "carta",              :limit => 500, :null => false
+    t.string   "carta",              :limit => 500
     t.string   "reporte_pdf"
-    t.string   "idioma",             :limit => 4,   :null => false
+    t.string   "idioma",             :limit => 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -213,6 +216,7 @@ ActiveRecord::Schema.define(:version => 20100911015248) do
   add_index "reporte_marcas", ["representante_type"], :name => "index_reporte_marcas_on_representante_type"
 
   create_table "representantes", :force => true do |t|
+    t.integer  "pais_id"
     t.string   "nombre"
     t.string   "email"
     t.string   "direccion"
@@ -222,11 +226,11 @@ ActiveRecord::Schema.define(:version => 20100911015248) do
     t.string   "pagina_web"
     t.string   "type"
     t.boolean  "valido"
+    t.boolean  "cliente",                  :default => false
     t.string   "pais_codigo", :limit => 4
     t.string   "pais_nombre"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "pais_id"
   end
 
   add_index "representantes", ["nombre"], :name => "index_representantes_on_nombre"
