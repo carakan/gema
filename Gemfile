@@ -43,6 +43,6 @@ gem 'less'
 # end
 group :test do
   gem 'rspec-rails', '>=2.0.0.beta.22'
-  #gem 'steak', :git => 'git://github.com/cavalle/steak.git'
+  gem 'steak', :git => 'git://github.com/cavalle/steak.git'
   gem 'capybara'
 end

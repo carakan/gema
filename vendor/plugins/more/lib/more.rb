@@ -1,0 +1,1 @@
+require File.join(File.dirname(__FILE__), 'less', 'controller_extension') if Rails.env.development?
