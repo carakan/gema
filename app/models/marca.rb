@@ -81,7 +81,7 @@ class Marca < ActiveRecord::Base
   #}
 
   scope :importado, lambda { |imp_id, nombre_marca| 
-    where("marcas.importacion_id = ? AND marcas.nombre_minusculas LIKE ?", imp_id, "%#{ nombre_marca.downcase }%").
+    where("marcas.importacion_id = ? AND marcas.nombre_minusculas LIKE ?", imp_id, nombre_minusculas.downcase).
     order("marcas.valido, marcas.propia DESC").
     includes( :tipo_signo, :clase, :titulares )
   }
@@ -92,7 +92,7 @@ class Marca < ActiveRecord::Base
 
   scope :cruce, lambda { |importacion_id, nombre_marca| 
     where("marcas.importacion_id = ? AND marcas.tipo_signo_id NOT IN (?) AND marcas.nombre_minusculas LIKE ?",
-      importacion_id, TipoSigno.descartadas_cruce, nombre_marca.downcase).
+      importacion_id, TipoSigno.descartadas_cruce, "%#{ nombre_marca.downcase }%").
     includes(:tipo_signo, :clase, { :consultas => :usuario }, :titulares)
   }
 
@@ -232,9 +232,14 @@ class Marca < ActiveRecord::Base
   # Presenta un listtado de importaciones
   # acumuladas, desde la vista
   def self.view_importaciones(page = 1)
-    #Marca.table_name = 'view_importaciones'
-    Marca.find_by_sql("SELECT importacion_id, SUM(total) AS total, SUM(errores) AS errores, estado
-      FROM view_importaciones WHERE importacion_id > 0 GROUP BY importacion_id").paginate(:page => page)
+    Marca.table_name = 'view_importaciones'
+
+    Marca.send(:with_exclusive_scope) { 
+      Marca.paginate(:page => page, 
+                     :select => "importacion_id, SUM(total) AS total, SUM(errores) AS errores, estado",
+                     :conditions => [ "importacion_id > ?", 0 ],
+                     :group => "importacion_id")
+    }
   end
 
   # Devuelve los registros y el estado
@@ -339,7 +344,7 @@ class Marca < ActiveRecord::Base
 
   # Almacena los errores despues de que es fallida la validación
   def almacenar_errores
-    self.errores = self.errors.inject([]) { |arr, v| arr << [v.first.to_s.humanize, v.last]; arr }
+    self.errores = self.errors.inject([]) { |arr, v| arr << [v.first.humanize, v.last]; arr }
   end
 
   # Metodo simple para poder presentar errores serializados

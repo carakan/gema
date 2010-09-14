@@ -46,7 +46,7 @@ $(document).ready(->
     )
 
   # Presenta un tooltip
-  $('[alt]').live('mouseover mouseout', (e)->
+  $('[tooltip]').live('mouseover mouseout', (e)->
     div = '#tooltip'
     if($(this).hasClass('error') )
       div = '#tooltip-error'
@@ -57,7 +57,7 @@ $(document).ready(->
       $(div).css(
         'top': pos.top + 'px'
         'left': (e.clientX + 20) + 'px'
-      ).html( $(this).attr('alt') )
+      ).html( $(this).attr('tooltip') )
       $(div).show()
     else
       $(div).hide()

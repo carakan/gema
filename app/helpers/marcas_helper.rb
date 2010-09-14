@@ -46,9 +46,9 @@ module MarcasHelper
 
     if !klass.cambios.nil? and klass.cambios.include?(attr.to_s)
       if presentar.nil?
-        "<span class='cambio'>#{klass.send(attr)}</span>"
+        "<span class='cambio'>#{klass.send(attr)}</span>".html_safe
       else
-        "<span class='cambio'>#{presentar}</span>"
+        "<span class='cambio'>#{presentar}</span>".html_safe
       end
     else
       if presentar.nil?
@@ -97,7 +97,7 @@ module MarcasHelper
   # ademas de añadir la clase error
   def errores_marca(marca)
     unless marca.valido?
-      "class=\"error\" alt=\"#{ marca.presentar_errores }\""
+      "class=\"error\" tooltip=\"#{ marca.presentar_errores }\"".html_safe
     end
   end
 

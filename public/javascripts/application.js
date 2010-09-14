@@ -38,18 +38,18 @@
         return $(input).datepicker("setDate", new Date(year, month, day));
       });
     };
-    $('[alt]').live('mouseover mouseout', function(e) {
+    $('[tooltip]').live('mouseover mouseout', function(e) {
       var div, pos;
       div = '#tooltip';
-      if ($(this).hasClass('error')) {
+      if (($(this).hasClass('error'))) {
         div = '#tooltip-error';
-      }
-      if (e.type === 'mouseover') {
+      };
+      if ((e.type === 'mouseover')) {
         pos = $(this).position();
         $(div).css({
           'top': pos.top + 'px',
           'left': (e.clientX + 20) + 'px'
-        }).html($(this).attr('alt'));
+        }).html($(this).attr('tooltip'));
         return $(div).show();
       } else {
         return $(div).hide();
@@ -142,14 +142,14 @@
       return (iframe.onload = function() {
         var html, posts, postsSize;
         html = $(iframe).contents().find('body').html();
-        if (($(html).find('form').length <= 0) && created) {
+        if ($(html).find('form').length <= 0 && created) {
           $('#posts ul:first').prepend(html);
           mark('#posts ul li:first');
           posts = parseInt($('#posts ul:first>li').length);
           postsSize = parseInt($('#posts').attr("data-posts_size"));
-          if (posts > postsSize) {
+          if ((posts > postsSize)) {
             $('#posts ul:first>li:last').remove();
-          }
+          };
           return $('#create_post_dialog').dialog('close');
         } else {
           created = true;
@@ -207,7 +207,7 @@
     addDatePicker = function() {
       return $('input.date').each(function(i, el) {
         var d, id, input;
-        if (!$(el).hasClass('hasDate')) {
+        if ((!$(el).hasClass('hasDate'))) {
           input = document.createElement('input');
           $(input).attr({
             'type': 'text',
@@ -245,7 +245,7 @@
     $('a.delete').live("click", function(e) {
       var el, url;
       $(this).parents("tr:first, li:first").addClass('marked');
-      if (confirm('Esta seguro de borrar el item seleccionado')) {
+      if ((confirm('Esta seguro de borrar el item seleccionado'))) {
         url = $(this).attr('href');
         el = this;
         $.ajax({
@@ -278,7 +278,7 @@
     addDatePicker = function() {
       return $('input.date').each(function(i, el) {
         var d, id, input;
-        if (!$(el).hasClass('hasDate')) {
+        if ((!$(el).hasClass('hasDate'))) {
           input = document.createElement('input');
           $(input).attr({
             'type': 'text',
@@ -311,7 +311,7 @@
       $(selector).css({
         'background': 'rgb(255,255,' + val + ')'
       });
-      if (val >= 255) {
+      if ((val >= 255)) {
         $(selector).attr("style", "");
         return false;
       }
