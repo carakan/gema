@@ -39,7 +39,7 @@ module ApplicationHelper
   alias verdad valido
 
   def valido_img(val)
-    "<span class='#{val} pad-right-img'>#{valido val}</span>"
+    "<span class='#{val} pad-right-img'>#{valido val}</span>".html_safe
   end
 
   # localiza la fecha
