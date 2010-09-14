@@ -19,6 +19,7 @@ if RUBY_VERSION == "1.8.7"
   gem 'ruby-debug'
 elsif RUBY_VERSION == "1.9.2"
   gem 'ruby-debug19'
+  gem 'unicode_utils'
 end
 
 gem 'formtastic'
