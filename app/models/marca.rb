@@ -32,7 +32,7 @@ class Marca < ActiveRecord::Base
 
   POSTS_SIZE = 3
 
-  INSTRUCCIONES = ["Carta", "Teléfono", "Email"]
+  INSTRUCCIONES = ["Email","Carta", "Teléfono", "Fax", "Otro"]
 
   #has_many :marcas_representantes#, :as => :representable
 

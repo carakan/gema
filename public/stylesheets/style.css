@@ -122,6 +122,10 @@ form ol {
   padding: 0px;
   margin: 0px;
 }
+form ol ul.errors {
+  color: #ff0000;
+  font-size: 140%;
+}
 form ol li {
   list-style: none;
   padding: 0px;
@@ -150,6 +154,10 @@ form ol .in_half ul li {
 form {
   padding: 0px;
   margin: 0px;
+}
+form ul.errors {
+  color: #ff0000;
+  font-size: 140%;
 }
 form li {
   list-style: none;

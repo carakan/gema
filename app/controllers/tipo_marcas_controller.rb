@@ -51,6 +51,7 @@ class TipoMarcasController < ApplicationController
         format.html { redirect_to(@tipo_marca, :notice => 'El tipo de marca fue creado con exito.') }
         format.xml  { render :xml => @tipo_marca, :status => :created, :location => @tipo_marca }
       else
+    @tipo_marca.errors.add(:base, "Error crucial")
         format.html { render :action => "new" }
         format.xml  { render :xml => @tipo_marca.errors, :status => :unprocessable_entity }
       end

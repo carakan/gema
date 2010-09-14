@@ -1,9 +1,8 @@
 <% semantic_form_for(@tipo_marca) do |tm| %>
- 
-  <% tm.inputs do %>
+<%= tm.semantic_errors %>
     <%= tm.input :nombre, :label => 'Nombre' %>
-    <%= tm.input :descripcion, :label => 'Descripcion' %>
-  <% end %>
+    <%= tm.input :descripcion, :label => 'Descripcion', :as => :text %>
+
   <p>
     <%= tm.submit 'Salvar' %>
   </p>

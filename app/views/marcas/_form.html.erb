@@ -7,31 +7,18 @@
   <%= f.hidden_field :valido, :value => 1 %>
 
   <%= f.input :tipo_signo_id, :as => :hidden %>
+  <%= f.input :tipo_marca_id, :as => :hidden %>
+  <%= f.input :propia, :label => 'Marca propia' %>
+  <%= f.input :activa, :label => 'Marca activa' %>
   <li>
     <label for="">Tipo de signo</label>
     <%= @marca.tipo_signo %>
     <%= "<span class=\"error\">#{ @marca.errors.on(:tipo_signo_id) }</span>" %>
   </li>
 
-  <%= f.input :tipo_marca_id, :as => :hidden %>
-  <li>
-    <label for="">Tipo de marca</label>
-    <%= @marca.tipo_marca %>
-    <%= "<span class=\"error\">#{ @marca.errors.on(:tipo_marca_id) }</span>" %>
-  </li>
+  <%= f.input :tipo_marca,:colection => TipoMarca.find(:all), :label => "Tipo Marca" %>
 
-
-
-  <%= f.input :propia, :label => 'Marca propia' %>
-  <%= f.input :activa, :label => 'Marca activa' %>
   <%= f.input :nombre,:label => "Denominación",:tabindex => 3 %>
-  <%= f.input :tipo_marca,:colection => TipoMarca.find(:all), :label => "Tipo Signo" %>
-  <%= f.input :clase, :tabindex => 5 %>
-  <%= f.input :descripcion_imagen,:label => 'Descripcion diseño', :tabindex => 5 %>
-  <li>
-    <label for="">Tipo</label>
-    <%= @marca.tipo_signo %>
-  </li>
   <% if @marca.con_imagen? %>
     <li>
     <%= image_tag @marca.adjuntos.last.archivo.url(:mini), :class => 'mini' if @marca.adjuntos.size > 0 %>
@@ -45,6 +32,8 @@
     </li>
   <% end %>
 
+  <%= f.input :descripcion_imagen,:label => 'Descripcion diseño', :tabindex => 5 %>
+  <%= f.input :clase, :tabindex => 5 %>
   <%= f.input :productos, :label=>"Descripción productos/servicios", :as => :text, :input_html => { :rows => 10, :cols => 115 }, :tabindex => 7 %>
 
   <div class="in_half">
@@ -82,10 +71,22 @@
         </div> 
       </li> 
     </ol>
-  </div>
 
-  <%= f.input :apoderado, :tabindex => 11 %>
-  <%= f.input :representante_empresarial, :tabindex => 12 %>
+    <ol>
+      <li>
+        <ul>
+          <%= f.input :apoderado, :tabindex => 11 %>
+        </ul>
+      </li>
+    </ol> 
+    <ol>
+      <li>
+        <ul>
+          <%= f.input :representante_empresarial, :tabindex => 12 %>
+        </ul>
+      </li>
+    </ol> 
+  </div>
   <%= f.input :fecha_instruccion , :as => 'string', :input_html => { :class => 'date' } %>
   <%= f.input :instruccion, :collection => Marca::INSTRUCCIONES, :label => 'Tipo de instrucción' %>
   <%= f.input :estado, :collection => Marca.lista_estados , :tabindex => 10 %>
