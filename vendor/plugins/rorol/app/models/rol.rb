@@ -60,6 +60,14 @@ class Rol < ActiveRecord::Base
       end
     end
 
+    # Listado de rutas
+    def rutas
+      act = ActionDispatch::Routing::Routes.routes.first.requirements[:controller]
+      ActionDispatch::Routing::Routes.routes.map do |v|
+         "#{ v.requirements[:controller] }##{ v.requirements[:action]}"
+      end
+    end
+
     def hash_controladores_acciones
       list_controllers.map { |c| {:controlador => c.first, :acciones => c.last} }
     end
