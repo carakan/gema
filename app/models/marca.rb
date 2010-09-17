@@ -81,7 +81,7 @@ class Marca < ActiveRecord::Base
   #}
 
   scope :importado, lambda { |imp_id, nombre_marca| 
-    where("marcas.importacion_id = ? AND marcas.nombre_minusculas LIKE ?", imp_id, nombre_minusculas.downcase).
+    where("marcas.importacion_id = ? AND marcas.nombre_minusculas LIKE ?", imp_id, "%#{ nombre_marca.downcase }%").
     order("marcas.valido, marcas.propia DESC").
     includes( :tipo_signo, :clase, :titulares )
   }

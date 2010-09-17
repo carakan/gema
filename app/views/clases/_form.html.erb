@@ -1,8 +1,9 @@
-<% semantic_form_for(@clase) do |f| %>
-<%= f.semantic_errors %>
-    <%= f.input :codigo, :label => 'Código', :hint => 'Número de código' %>
-    <%= f.input :nombre, :label => 'Nombre' %>
-    <%= f.input :descripcion, :label => 'Descripción', :as => :text %>
+<%= semantic_form_for(@clase) do |f| %>
+  <%= f.semantic_errors %>
+
+  <%= f.input :codigo, :label => 'Código', :hint => 'Número de código' %>
+  <%= f.input :nombre, :label => 'Nombre' %>
+  <%= f.input :descripcion, :label => 'Descripción', :as => :text %>
 
   <p>
     <%= f.submit 'Salvar' %>

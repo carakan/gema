@@ -26,12 +26,10 @@ class Representante < ActiveRecord::Base
   validates_format_of :email, :with => Constants::EMAIL_REG, 
     :unless => lambda{ |r| r.email.blank? }
 
-  named_scope :order, :order => "nombre ASC"
-  named_scope :lista, { :select => "id, nombre, pais_codigo", :order => "nombre ASC" }
+  scope :order, order( "nombre ASC" )
+  scope :lista, select("id, nombre, pais_codigo").order("nombre ASC")
 
   attr_accessor :validar
-
-
 
   def to_s
     %Q( #{ nombre } - ( #{ pais_codigo } ) )

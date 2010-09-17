@@ -39,7 +39,7 @@
 
 <h2 class="dark">Resultados del cruce</h2>
 
-<% form_tag new_consulta_path, :method => 'get' do -%>
+<%= form_tag new_consulta_path, :method => 'get' do -%>
   <%= hidden_field_tag "clases", (1..45).to_a.join(",") %>
   <%= hidden_field_tag "busqueda", @marca.nombre %>
   <%= hidden_field_tag "page", @page %>

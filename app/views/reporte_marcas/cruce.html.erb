@@ -9,7 +9,7 @@
 <h2 class="dark">Gaceta <%= @importacion.publicacion %> del <%= l @importacion.publicacion_fecha %></h2>
 
 
-<% semantic_form_for(@reporte_marca) do |f| %>
+<%= semantic_form_for(@reporte_marca) do |f| %>
 
   <%= f.input :representante_id, :as => :hidden %>
   <%= f.input :representante_type, :as => :hidden %>
@@ -39,7 +39,7 @@
   	</tr>
     <% @marcas.each{ |v| f.object.reporte_marca_detalles.build(:marca_id => v.marca_id, :marca_foranea_id => v.consulta.marca_id) } if params[:reporte_marca].nil? %>
     <% @i = 0 %>
-    <% f.semantic_fields_for :reporte_marca_detalles do |rd| %>
+    <%= f.semantic_fields_for :reporte_marca_detalles do |rd| %>
       <tr>
         <td>
           <%= rd.input :marca_id, :as => :hidden %>

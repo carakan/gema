@@ -1,11 +1,11 @@
 # encoding: utf-8
 # author: Boris Barroso
 # email: boriscyber@gmail.com
-ActionController::Routing::Routes.draw do |map|
+Rails.application.routes.draw do
   resources :reporte_marcas do
     collection do
       get :cruces
-      get :curce
+      get :cruce
     end
 
     member do

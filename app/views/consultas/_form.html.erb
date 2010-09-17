@@ -1,4 +1,4 @@
-<% semantic_form_for(@consulta) do |f| %>
+<%= semantic_form_for(@consulta) do |f| %>
   <%= hidden_field_tag :page, @page %>
   <%= hidden_field_tag :marca_id, params[:marca_id] %>
   <%= hidden_field_tag :importacion_id, params[:importacion_id] %>
@@ -21,7 +21,7 @@
       <th>Agentes</th>
       <th>Titulares</th>
     </tr>
-    <% f.semantic_fields_for :consulta_detalles do |cd| %>
+    <%= f.semantic_fields_for :consulta_detalles do |cd| %>
       <tr>
         <td>
           <%= cd.hidden_field :marca_id %>

@@ -1,6 +1,6 @@
 <h1>Reporte <%= @representante %></h1>
 
-<% semantic_form_for(@reporte_marca) do |f| %>
+<%= semantic_form_for(@reporte_marca) do |f| %>
 
   <%= f.input :representante, :label => 'Cliente', :collection => Representante.lista %>
   <%= f.input :representante_type, :as => :hidden %>
@@ -25,7 +25,7 @@
   		<th>Marca encontrada</th>
   		<th>Comentario</th>
   	</tr>
-    <% f.semantic_fields_for :reporte_marca_detalles do |rd| %>
+    <%= f.semantic_fields_for :reporte_marca_detalles do |rd| %>
       <tr>
         <td>
           <%= rd.input :busqueda, :as => :hidden %>

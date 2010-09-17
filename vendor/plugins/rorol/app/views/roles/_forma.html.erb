@@ -1,4 +1,4 @@
-<% form_for @rol do |rol| %>
+<%= form_for @rol do |rol| %>
   <div>
     <%= rol.label :nombre, "Nombre" %>
     <%= rol.text_field :nombre %>  
@@ -9,7 +9,7 @@
 
   <ul>
   <% @num = 0 %>
-  <% rol.fields_for :permisos do |per| %>
+  <%= rol.fields_for :permisos do |per| %>
     <li>
       <%= per.hidden_field :controlador %>
       <h3><%= per.object.controlador.titleize %></h3>

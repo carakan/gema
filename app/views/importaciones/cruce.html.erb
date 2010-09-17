@@ -6,7 +6,7 @@
 <br />
 
 
-<% form_tag cruce_importaciones_path(:importacion_id => @importacion.id), :method => :get  do %>
+<%= form_tag cruce_importaciones_path(:importacion_id => @importacion.id), :method => :get  do %>
   <%= hidden_field_tag :importacion_id, params[:importacion_id] %>
   <%= text_field_tag :nombre_marca %>
   <%= submit_tag "Buscar" %>
