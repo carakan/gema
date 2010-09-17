@@ -1,6 +1,6 @@
 <%= stylesheet_link_tag 'facebook' %>
 
-<% semantic_form_for(@marca,:html => { :multipart => true } ) do |f| -%>
+<%= semantic_form_for(@marca,:html => { :multipart => true } ) do |f| -%>
   
   <%= hidden_field_tag "importacion_id", params[:importacion_id] unless params[:importacion_id].nil?  %>
 
@@ -23,11 +23,9 @@
     <li>
     <%= image_tag @marca.adjuntos.last.archivo.url(:mini), :class => 'mini' if @marca.adjuntos.size > 0 %>
       <% unless @marca.tipo_signo_id == 4 %>
-        <%# f.fields_for :adjuntos do |adj| %>
           <label for="">Imagen</label>
           <input type="file" name="marca[adjuntos_attributes][0][archivo]" size= "30" />
           <%# adj.file_field :archivo, :size => 30 %>
-        <%# end %>
       <% end %>
     </li>
   <% end %>

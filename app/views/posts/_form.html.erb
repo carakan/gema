@@ -1,11 +1,11 @@
-<% semantic_form_for(@post, :html => {:multipart => true, :target => 'post_iframe', :id => 'post_form'}) do |f| %>
+<%= semantic_form_for(@post, :html => {:multipart => true, :target => 'post_iframe', :id => 'post_form'}) do |f| %>
   <%= f.input :postable_id, :as => :hidden %>
   <%= f.input :postable_type, :as => :hidden %>
   <%= f.input :titulo, :label => 'Título', :input_html => { :size => 70 } %>
   <%= f.input :comentario, :as => :text, :label => 'Comentario', :input_html => {:cols => 70, :rows => 10} %>
   
   <div id="adjuntos">
-    <% f.semantic_fields_for :adjuntos do |adj| %>
+    <%= f.semantic_fields_for :adjuntos do |adj| %>
       <%= adj.input :archivo, :as => :file, :input_html => { :size => 60 } %>
     <% end %>
   </div>

@@ -47,7 +47,7 @@ class Marca < ActiveRecord::Base
     :association_foreign_key => :titular_id,
     :join_table => 'marcas_titulares'
 
-  def after_initialize
+  def self.after_initialize
     @con_historico = true
   end
 
@@ -233,13 +233,10 @@ class Marca < ActiveRecord::Base
   # acumuladas, desde la vista
   def self.view_importaciones(page = 1)
     Marca.table_name = 'view_importaciones'
-
-    Marca.send(:with_exclusive_scope) { 
-      Marca.paginate(:page => page, 
-                     :select => "importacion_id, SUM(total) AS total, SUM(errores) AS errores, estado",
-                     :conditions => [ "importacion_id > ?", 0 ],
-                     :group => "importacion_id")
-    }
+    
+    Marca.find_by_sql(["SELECT importacion_id, SUM( total ) AS total, SUM( errores ) AS errores, estado
+      FROM `view_importaciones`
+        WHERE (importacion_id > 0) GROUP BY importacion_id"]).paginate(:page => page)
   end
 
   # Devuelve los registros y el estado
