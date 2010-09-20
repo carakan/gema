@@ -165,14 +165,6 @@ ActiveRecord::Schema.define(:version => 20100911015248) do
     t.datetime "updated_at"
   end
 
-  create_table "permisos", :force => true do |t|
-    t.integer  "rol_id"
-    t.string   "controlador", :limit => 150
-    t.string   "acciones"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "posts", :force => true do |t|
     t.integer  "postable_id"
     t.string   "postable_type"
@@ -235,13 +227,6 @@ ActiveRecord::Schema.define(:version => 20100911015248) do
 
   add_index "representantes", ["nombre"], :name => "index_representantes_on_nombre"
   add_index "representantes", ["pais_id"], :name => "index_representantes_on_pais_id"
-
-  create_table "roles", :force => true do |t|
-    t.string   "nombre",      :limit => 100
-    t.string   "descripcion"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "tipo_marcas", :force => true do |t|
     t.string   "nombre",      :limit => 100
