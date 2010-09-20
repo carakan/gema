@@ -62,10 +62,9 @@ class Rol < ActiveRecord::Base
 
     # Listado de rutas
     def rutas
-      act = ActionDispatch::Routing::Routes.routes.first.requirements[:controller]
-      ActionDispatch::Routing::Routes.routes.map do |v|
-         "#{ v.requirements[:controller] }##{ v.requirements[:action]}"
-      end
+      ActionDispatch::Routing::Routes.routes.map { |r| [ r.requirements[:controller], r.requirements[:action] ]}.group_by do |v|
+        v.first
+      end.inject([]) { |arr, v| arr << { v.first => v.last.map(&:last) }; arr }
     end
 
     def hash_controladores_acciones
