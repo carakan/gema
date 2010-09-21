@@ -13,7 +13,7 @@
   <li>
     <label for="">Tipo de signo</label>
     <%= @marca.tipo_signo %>
-    <%= "<span class=\"error\">#{ @marca.errors.on(:tipo_signo_id) }</span>" %>
+    <%#= "<span class=\"error\">#{ @marca.errors.on(:tipo_signo_id) }</span>" %>
   </li>
 
   <%= f.input :tipo_marca,:colection => TipoMarca.find(:all), :label => "Tipo Marca" %>
@@ -30,7 +30,7 @@
     </li>
   <% end %>
 
-  <%= f.input :descripcion_imagen,:label => 'Descripcion diseño', :tabindex => 5 %>
+  <%= f.input :descripcion_imagen,:label => 'Descripcion diseño', :as => :text, :input_html => { :rows => 10, :cols => 115 }, :tabindex => 5 %>
   <%= f.input :clase, :tabindex => 5 %>
   <%= f.input :productos, :label=>"Descripción productos/servicios", :as => :text, :input_html => { :rows => 10, :cols => 115 }, :tabindex => 7 %>
 
@@ -94,7 +94,6 @@
     <%= f.label :estado_fecha, "Fecha hora solicitud" %>
     <%= f.datetime_select :estado_fecha %>
   </li>
-
   <%= f.input :numero_gaceta, :label => 'Número de gaceta' , :tabindex => 17  %>
   <%= f.input :numero_publicacion,:label => 'Número de publicación' , :tabindex => 15  %>
   <%= f.input :fecha_publicacion, :as => 'string', :input_html => {:tabindex => 16, :class => 'date' } %>
