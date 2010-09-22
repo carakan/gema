@@ -2,6 +2,7 @@
 # author: Boris Barroso
 # email: boriscyber@gmail.com
 require 'open-uri'
+#require 'fastercsv'
 
 namespace :gema do
   namespace :usuarios do
@@ -82,6 +83,99 @@ namespace :gema do
       end
     end
 
+  end
+
+        #m = Marca.new(
+        #  :id => r['id']
+        #  :parent_id => 0,
+        #  :tipo_signo_id => r['tipo_signo_id'],
+        #  :tipo_marca_id => r['tipo_marca_id'],
+        #  :clase_id => r['clase_id'],
+        #  :pais_id => r['pais_id'],
+        #  :numero_solicitud => r['numero_solicitud'],
+        #  :nombre => r['nombre'],
+        #  :nombre_minusculas => r['nombre'].downcase,
+        #  :numero_registro => r['numero_registro'],
+        #  :fecha_registro => r['fecha_registro'],
+        #  :numero_renovacion => r['numero_renovacion'],
+        #  :numero_publicacion => r['numero_publicacion'],
+        #  :fecha_publicacion => r['fecha_publicacion'],
+        #  :numero_gaceta => r['numero_gaceta'],
+        #  :activa => r['activa'].to_i == 1 ? true : false,
+        #  :propia => true
+        #)
+
+
+  desc 'path'
+  task 'path' do
+    p File.expand_path( File.join(File.dirname(__FILE__), '../..', 'tmp') )
+  end
+
+  namespace :importar do
+    desc "Importa las marcas desde un CSV"
+    task :marcas do
+
+      path = File.expand_path( File.join(File.dirname(__FILE__), '../..') ) #, 'tmp') )
+
+      d = Time.now
+      archivo = File.join(path, 'tmp/bdOrpanMarcas.csv')
+      csv = FasterCSV.read( archivo, :headers => true, :col_sep => '|')
+
+      columnas = ['id', 
+        'parent_id', 
+        'tipo_signo_id', 
+        'tipo_marca_id', 
+        'clase_id', 
+        'usuario_id',
+        #'pais_id', 
+        'numero_solicitud', 
+        'nombre', 
+        'nombre_minusculas', 
+        'numero_registro', 
+        'fecha_registro', 
+        'numero_renovacion', 
+        'numero_publicacion', 
+        'fecha_publicacion', 
+        'numero_gaceta', 
+        'activa', 
+        'propia']
+
+      sql = ""
+      sql_arr = []
+
+      csv.each do |r|
+        tmp = columnas.map do |col|
+          if col === 'nombre_minusculas'
+            "\"#{ r[col].downcase.cambiar_acentos }\"" unless r[col].nil?
+          elsif col === 'usuario_id'
+            1
+          elsif col =~ /.*id$/ or col == 'activa'
+            r[col].nil? ? 0 : r[col]
+          elsif col === 'propia'
+            1
+          else
+            "\"#{ r[col] }\""
+          end
+        end
+        sql_arr << "(#{tmp.join(",")})"
+
+        if sql_arr.size > 100
+          sql << "INSERT INTO marcas (#{columnas.join(",")}) VALUES #{ sql_arr.join(",\n") };\n"
+          sql_arr = []
+        end
+      end
+
+      if sql_arr.size > 0
+        sql << "INSERT INTO marcas (#{columnas.join(",")}) VALUES #{ sql_arr.join(",") };\n"
+      end
+
+      archivo = File.join( path, "tmp/marcas_#{d.to_i}.sql" )
+      f = File.new( archivo, 'w+' )
+      f.write(sql)
+      f.close
+      system("bzip2 #{archivo}")
+      p "Salvado en #{archivo}.bz2"
+    end
   end
 
 end
