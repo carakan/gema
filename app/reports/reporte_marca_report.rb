@@ -42,15 +42,15 @@ class ReporteMarcaReport < ReportBase
       <b>#{ marca.nombre }</b>
       Clase #{ marca.clase_id }
       #{ marca.tipo_signo }
-      <i>#{ I18n.l marca.estado_fecha, :format => :date }</i>
+      <i>#{ marca.estado_fecha.nil? ? '' : I18n.l(marca.estado_fecha, :format => :date) }</i>
       #{ marca.titulares.join(", ") }
       COM
     else
       <<-COM
       <b>#{ marca.nombre }</b>
       Class #{marca.clase_id}
-      #{ I18n.t marca.tipo_signo.nombre.cambiar_acentos.downcase }
-      <i>#{ I18n.l marca.estado_fecha, :format => :date }</i>
+      #{ marca.tipo_signo.nil? ? '' : I18n.t(marca.tipo_signo.nombre.cambiar_acentos.downcase) }
+      <i>#{ marca.estado_fecha.nil? ? '' : I18n.l( marca.estado_fecha, :format => :date) }</i>
       #{ marca.titulares.join(", ") }
       COM
     end

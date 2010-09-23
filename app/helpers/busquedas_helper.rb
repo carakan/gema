@@ -6,6 +6,8 @@ module BusquedasHelper
       when 2 then "Reemplazos"
       when 3 then "Fonética"
       when 4 then "División"
+      else
+        ""
     end
   end
 
@@ -14,6 +16,6 @@ module BusquedasHelper
   #  @param Array
   #  @return String
   def buscar_representante(representante_ids, representantes)
-    representante_ids.map { |_id| representantes[_id] }.join(", ")
+    representante_ids.map { |_id| representantes[_id] }.join(", ") unless representante_ids.blank?
   end
 end

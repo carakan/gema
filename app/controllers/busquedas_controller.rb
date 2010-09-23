@@ -41,6 +41,6 @@ class BusquedasController < ApplicationController
 private
   def preparar_representantes()
     representante_ids = ( @busqueda.map(&:agente_ids_serial) + @busqueda.map(&:titular_ids_serial) ).uniq
-    Representante.find( representante_ids ).inject({})  { |h,v| h[v.id] = v; h } 
+    Representante.where(:id => representante_ids ).inject({})  { |h,v| h[v.id] = v; h } 
   end
 end

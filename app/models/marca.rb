@@ -341,7 +341,7 @@ class Marca < ActiveRecord::Base
 
   # Almacena los errores despues de que es fallida la validación
   def almacenar_errores
-    self.errores = self.errors.inject([]) { |arr, v| arr << [v.first.humanize, v.last]; arr }
+    self.errores = self.errors.inject([]) { |arr, v| arr << [v.first.humanize, v.last ] if v.first.is_a? String; arr }
   end
 
   # Metodo simple para poder presentar errores serializados

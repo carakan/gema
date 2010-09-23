@@ -171,10 +171,15 @@ namespace :gema do
 
       archivo = File.join( path, "tmp/marcas_#{d.to_i}.sql" )
       f = File.new( archivo, 'w+' )
+      if RUBY_VERSION === '1.9.2'
+        sql = sql.force_encoding('ISO-8859-1').econde('utf-8')
+      end
+
       f.write(sql)
       f.close
       system("bzip2 #{archivo}")
       p "Salvado en #{archivo}.bz2"
+
     end
   end
 
