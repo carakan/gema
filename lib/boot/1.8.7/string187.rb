@@ -1,4 +1,4 @@
-Sctring.class_eval do
+String.class_eval do
   alias_method :old_upcase, :upcase
   def upcase
     self.gsub( /\303[\240-\277]/ ) do |match|

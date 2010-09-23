@@ -7,6 +7,7 @@ if RUBY_VERSION === '1.8.7'
 elsif RUBY_VERSION === '1.9.2'
   require File.join(File.dirname(__FILE__), '1.9.2/string192.rb')
 end
+
 String.class_eval do
 
   # Cambia acentos y dierisis
