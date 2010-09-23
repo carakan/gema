@@ -67,7 +67,7 @@ module ModMarca::RenovacionConcedida
         klass.almacenar_errores
         klass.activo = false
         klass.valido = false # Indica que no paso la validación
-        klass.save( false )
+        klass.save(:validate => false )
       end
 
       klass
@@ -82,7 +82,7 @@ module ModMarca::RenovacionConcedida
       unless klass.save
         klass.almacenar_errores
         klass.valido = false # Indica que no paso la validación
-        klass.save( false )
+        klass.save(:validate => false )
       end
 
       klass

@@ -92,7 +92,7 @@ module ModMarca::ListaPublicacion
       unless klass.save
         klass.valido = false # Indica que no paso la validación
         klass.almacenar_errores
-        klass.save( false )
+        klass.save(:validate => false )
       end
 
       klass
@@ -176,12 +176,13 @@ module ModMarca::ListaPublicacion
     # Crea un representante y lo relaciona
     def buscar_o_crear_titular(params)
       rep = Representante.find_by_nombre(params['NOMBRE DEL TITULAR'])
-      if rep
+      if rep and ! rep.cliente
         rep.update_attributes(:direccion => params['DIRECCION DEL TITULAR'])
       elsif not params['NOMBRE DEL TITULAR'].blank?
         rep = Representante.new(
           :nombre => params['NOMBRE DEL TITULAR'],
           :direccion => params['DIRECCION DEL TITULAR'],
+          :cliente => false,
           :pais_id => Pais.find_by_codigo(params['PAIS DEL TITULAR']).try(:id)
         )
         rep.save
@@ -228,7 +229,7 @@ module ModMarca::ListaPublicacion
         klass.almacenar_errores
         klass.activo = false
         klass.valido = false # Indica que no paso la validación
-        klass.save( false )
+        klass.save( :validate => false )
       end
 
       klass
@@ -243,7 +244,7 @@ module ModMarca::ListaPublicacion
       unless klass.save
         klass.almacenar_errores
         klass.valido = false # Indica que no paso la validación
-        klass.save( false )
+        klass.save( :validate => false )
       end
 
       klass

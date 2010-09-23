@@ -451,7 +451,7 @@ private
     params.delete(:id)
     m = self.class.new(params)
     self.changes.each{ |k, vals| m.send("#{k}=", vals.first) }
-    m.save(false)
+    m.save(:validate => false)
   end
 
   def set_cambios

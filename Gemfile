@@ -17,6 +17,7 @@ gem 'rails', '3.0.0'
 gem 'mysql', '2.8.1'
 if RUBY_VERSION == "1.8.7"
   gem 'ruby-debug'
+  gem 'fastercsv'
 elsif RUBY_VERSION == "1.9.2"
   gem 'ruby-debug19'
   gem 'unicode_utils'
@@ -33,7 +34,6 @@ gem 'roo'
 gem 'paperclip'
 gem 'prawn', '0.10.2'
 gem 'less'
-gem 'fastercsv'
 #, :git => 'git://github.com/sandal/prawn.git'
 
 # Bundle the extra gems:

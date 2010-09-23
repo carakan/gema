@@ -69,7 +69,7 @@ module ModMarca::SolicitudRenovacion
         klass.almacenar_errores
         klass.activo = false
         klass.valido = false # Indica que no paso la validación
-        klass.save( false )
+        klass.save(:validate => false )
       end
 
       klass
@@ -84,7 +84,7 @@ module ModMarca::SolicitudRenovacion
       unless klass.save
         klass.almacenar_errores
         klass.valido = false # Indica que no paso la validación
-        klass.save( false )
+        klass.save(:validate => false )
       end
 
       klass
