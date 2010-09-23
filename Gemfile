@@ -33,6 +33,7 @@ gem 'roo'
 gem 'paperclip'
 gem 'prawn', '0.10.2'
 gem 'less'
+gem 'fastercsv'
 #, :git => 'git://github.com/sandal/prawn.git'
 
 # Bundle the extra gems:
