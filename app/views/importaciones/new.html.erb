@@ -22,10 +22,10 @@
         </p>
       </li>
       <li class="date">
-      <%= f.input :publicacion_fecha, :as => :string, :label => 'Fecha gaceta', :input_html => { :class => 'date' } %>
       </li>
     <% end %>
-    <%= f.input :archivo, :as => :file, :label => "Archivo", :input_html => { :size => 60 } %>
+    <%= f.input :publicacion_fecha, :as => :string, :label => 'Fecha gaceta', :input_html => { :class => 'date' } %>
+    <%= f.input :archivo, :as => :file, :label => "Archivo", :input_html => { 'size' => '60' } %>
 
   </div>
 
@@ -33,3 +33,8 @@
 
   <%= f.submit "Importar" %>
 <% end %>
+<script type="text/javascript">
+  $( function() { 
+    $('#importacion_vacia_archivo').attr('size', 60); 
+  });
+</script>

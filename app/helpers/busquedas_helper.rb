@@ -1,3 +1,6 @@
+# encoding: utf-8
+# author: Boris Barroso
+# email: boriscyber@gmail.com
 module BusquedasHelper
   # Indica que tipo de resultado de fue encontrado "Exacta", "Reemplazos", etc.
   def tipo_busqueda(tipo)
