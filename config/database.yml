@@ -1,22 +1,25 @@
 development:
-  adapter: mysql
+  adapter: mysql2
   database: gema_development #db/development.sqlite3
+  encoding: utf8
   username: root
   password: demo123
   pool: 5
   timeout: 5000
 
 test:
-  adapter: mysql
+  adapter: mysql2
   database: gema_test #db/development.sqlite3
+  encoding: utf8
   username: root
   password: demo123
   pool: 5
   timeout: 5000
 
 production:
-  adapter: mysql
+  adapter: mysql2
   database: gema #db/development.sqlite3
+  encoding: utf8
   username: root
   password: demo123
   pool: 5
