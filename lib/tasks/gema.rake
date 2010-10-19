@@ -14,7 +14,8 @@ namespace :gema do
         rol.permisos.build(cont)
       end
       rol.save!
-      Usuario.create!(:nombre => 'Admin', :login => 'admin', :password => 'demo123', :password_confirmation => 'demo123', :rol_id => rol.id )
+      Usuario.create!(:nombre => 'Admin', :login => 'admin', :password => 'demo123', :password_confirmation => 'demo123',
+                      :email => 'admin@example.com', :rol_id => rol.id )
 
       puts "Se ha creado el usuario Admin con #{rol.nombre}"
     end

@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   include Rorol::Controllers::Helpers
 
   before_filter :set_page
-  before_filter :set_user_session, :if => :user_signed_in?
+  before_filter :set_user_session, :if => :usuario_signed_in?
 
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
@@ -17,16 +17,16 @@ class ApplicationController < ActionController::Base
 
 protected
   # Pregunta si el usuario esta logueado
-  def authenticate_user!
-    redirect_to new_login_url if session[:usuario].nil? or session[:usuario][:id].nil?
-  end
+  #def authenticate_user!
+  #  #redirect_to new_login_url if session[:usuario].nil? or session[:usuario][:id].nil?
+  #end
 
   # Indica si el usuario ha ingresado al sistema
-  def user_signed_in?
-    return false if session[:usuario].nil? or session[:usuario][:id].nil?
-    not session[:usuario][:id].nil?
-  end
-  helper_method :user_signed_in?
+  #def user_signed_in?
+  #  return false if session[:usuario].nil? or session[:usuario][:id].nil?
+  #  not session[:usuario][:id].nil?
+  #end
+  #helper_method :user_signed_in?
 
   # Ordena los parametros que son usados en orden eliminando los inecesarios
   # Retorna el parametro de orden ademas de la pagina para paginación
@@ -58,7 +58,12 @@ private
   end
 
   def set_user_session
-    UsuarioSession.current_user = session[:usuario]
+    UsuarioSession.current_user = current_usuario
+  end
+
+   # Overwriting the sign_out redirect path method
+  def after_sign_in_path_for(resource_or_scope)
+    set_user_session
   end
 
 end

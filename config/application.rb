@@ -44,7 +44,7 @@ module Gema
     config.encoding = "utf-8"
 
     # Configure sensitive parameters which will be filtered from the log file.
-    config.filter_parameters += [:password]
+    config.filter_parameters += [:password, :password_confirmation]
   end
 end
 Dir.glob("#{Rails.root}/lib/boot/*.rb").each{ |lib| require lib }

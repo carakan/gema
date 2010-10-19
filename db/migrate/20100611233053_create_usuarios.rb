@@ -1,13 +1,19 @@
 class CreateUsuarios < ActiveRecord::Migration
   def self.up
     create_table :usuarios do |t|
+      t.database_authenticatable :null => false
+      t.recoverable
+      t.rememberable
+      t.trackable
+
       t.string :nombre
       t.string :login, :limit => 16
-      t.string :email
-      t.string :password, :limit => 40
-      t.string :password_salt, :limit => 32 
+
       t.timestamps
     end
+    add_index :usuarios, :login,                :unique => true
+    add_index :usuarios, :email,                :unique => true
+    add_index :usuarios, :reset_password_token, :unique => true
   end
 
   def self.down
