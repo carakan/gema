@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.0'
+gem 'rails' #, '3.0.0'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -34,6 +34,8 @@ gem 'roo'
 gem 'paperclip'
 gem 'prawn', '0.10.2'
 gem 'less'
+gem 'devise'
+gem 'simple_form'
 #, :git => 'git://github.com/sandal/prawn.git'
 
 # Bundle the extra gems:
@@ -49,7 +51,7 @@ gem 'less'
 #   gem 'webrat'
 # end
 group :test do
-  gem 'rspec-rails', '>=2.0.0.beta.22'
-  gem 'steak', '>= 1.0.0.beta.1'
+  gem 'rspec-rails'
+  gem 'steak', '>= 1.0.0.rc.1'
   gem 'capybara'
 end
