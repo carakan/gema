@@ -10,7 +10,7 @@ class ReporteMarcaReport < ReportBase
     I18n.locale = :en if reporte_marca.idioma == 'en'
     
     logo_orpan
-    text "La Paz, #{I18n.l Date.today}\n\n"
+    text "La Paz, #{I18n.l Date.today, :format => :long}\n\n"
     
     text reporte_marca.carta << "\n\n"
     tabla(reporte_marca)
@@ -55,5 +55,4 @@ class ReporteMarcaReport < ReportBase
       COM
     end
   end
-
 end

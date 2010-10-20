@@ -115,6 +115,7 @@ class ReporteMarcasController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
 private
   # Prepara los datos para cuando se realiza un reporte de cruce o 
   # un reporte de busquedas
@@ -138,8 +139,8 @@ private
     end
     params[:representante_type] = p[:representante_type]
     
-    @representante = Representante.find(p[:representante_id])
-    @importacion = Importacion.find(p[:importacion_id])
+    @representante = Representante.find(p[:representante_id]) 
+    @importacion = Importacion.find(p[:importacion_id]) if p[:importacion_id]
     @marcas = Consulta.marcas_representante_cruce(p[:importacion_id], p[:representante_id], tipo )
   end
 end

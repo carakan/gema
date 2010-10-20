@@ -17,6 +17,7 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'agente', 'agentes'
   inflect.irregular 'post', 'posts'
   inflect.irregular 'marca_representante', 'marcas_representantes'
+  inflect.irregular 'reporte', 'reportes'
 #   inflect.plural /^(ox)$/i, '\1en'
 #   inflect.singular /^(ox)en/i, '\1'
 #  inflect.plural 'importar', 'importar' 

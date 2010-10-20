@@ -1,0 +1,15 @@
+%h1 Reportes
+
+%table
+  %tr
+    %th Texto en
+    %th Texto es
+  - for reporte in @reportes
+    %tr
+      %td= reporte.texto_en
+      %td= reporte.texto_es
+      %td= link_to 'Show', reporte
+      %td= link_to 'Edit', edit_reporte_path(reporte)
+      %td= link_to 'Destroy', reporte, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Reporte", new_reporte_path

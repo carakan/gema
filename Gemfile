@@ -23,6 +23,8 @@ elsif RUBY_VERSION == "1.9.2"
   gem 'unicode_utils'
 end
 
+gem "nifty-generators"
+gem "haml"
 gem 'formtastic'
 gem 'will_paginate', '~> 3.0.pre2'
 gem 'nokogiri'
@@ -53,3 +55,4 @@ group :test do
   gem 'steak', '>= 1.0.0.beta.1'
   gem 'capybara'
 end
+gem "mocha", :group => :test

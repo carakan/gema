@@ -209,43 +209,35 @@ form.in_half li {
   font-weight: bold;
 }
 .notice {
-  font-size: 1.2em;
+  font-size: 1.1em;
   margin: 0px 0px 15px;
-  border: 4px solid;
-  padding: 10px;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
+  border: 2px solid;
+  padding: 6px;
 }
 #flashNotice {
-  font-size: 1.2em;
+  font-size: 1.1em;
   margin: 0px 0px 15px;
-  border: 4px solid;
-  padding: 10px;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  color: #5bbf3b;
+  border: 2px solid;
+  padding: 6px;
+  color: #484848;
   border-color: #5bbf3b;
   background-color: #e4ffe4;
 }
 #flashError {
-  font-size: 1.2em;
+  font-size: 1.1em;
   margin: 0px 0px 15px;
-  border: 4px solid;
-  padding: 10px;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  color: #ff0000;
+  border: 2px solid;
+  padding: 6px;
+  color: #484848;
   border-color: #ff0000;
   background-color: #ffd8d8;
 }
 #flashWarning {
-  font-size: 1.2em;
+  font-size: 1.1em;
   margin: 0px 0px 15px;
-  border: 4px solid;
-  padding: 10px;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  color: #d0d02a;
+  border: 2px solid;
+  padding: 6px;
+  color: #484848;
   border-color: #ffff00;
   background-color: #ffffc5;
 }
