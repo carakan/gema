@@ -4,7 +4,7 @@
 #
 # Clase que realiza los reportes de una marca para los cruces
 class ReporteMarcaReport < ReportBase
-
+  attr_accessor :datos
   # metodo que crea el reporte
   def to_pdf(reporte_marca)
     I18n.locale = :en if reporte_marca.idioma == 'en'
@@ -29,6 +29,11 @@ class ReporteMarcaReport < ReportBase
       column(0).style(:width => 140)
       column(1).style(:width => 140)
     end
+  end
+
+  
+  def tabla
+    self.tabla(@datos)
   end
 
   # Metodos que deben ser sobreescritos

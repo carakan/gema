@@ -3,6 +3,7 @@ class CreateReportes < ActiveRecord::Migration
     create_table :reportes do |t|
       t.text :texto_en
       t.text :texto_es
+      t.string :nombre_clase
       t.timestamps
     end
   end

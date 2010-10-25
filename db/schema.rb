@@ -218,6 +218,7 @@ ActiveRecord::Schema.define(:version => 20101020162325) do
   create_table "reportes", :force => true do |t|
     t.text     "texto_en"
     t.text     "texto_es"
+    t.string   "nombre_clase"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

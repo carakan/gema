@@ -97,6 +97,18 @@ class ReporteMarca < ActiveRecord::Base
     end
   end
 
+  def crear_reporte_gen
+    Reporte.new(:texto_es => "La Paz 1 2010 **encabezado** aqui una descripcion y luego los datos **tabla** ")
+    
+    if self.importacion_id?
+      rep = CruceReport.new
+      rep.to_pdf(self)
+    else
+      rep = BusquedaReport.new
+      rep.to_pdf(self)
+    end
+  end
+
 private
   # Extra de info para la carta
   def carta_extra_info(idiom)
