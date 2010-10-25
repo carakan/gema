@@ -19,7 +19,7 @@ if RUBY_VERSION == "1.8.7"
   gem 'ruby-debug'
   gem 'fastercsv'
 elsif RUBY_VERSION == "1.9.2"
-  gem 'ruby-debug19'
+  gem 'ruby-debug19', :require => "ruby-debug"
   gem 'unicode_utils'
 end
 
@@ -54,5 +54,9 @@ group :test do
   gem 'rspec-rails', '>=2.0.0.beta.22'
   gem 'steak', '>= 1.0.0.beta.1'
   gem 'capybara'
+  gem "mocha"
+
+  gem 'spork', '0.8.4'
+
 end
-gem "mocha", :group => :test
+
