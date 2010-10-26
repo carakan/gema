@@ -16,7 +16,7 @@ class ReporteMarcasController < ApplicationController
     @importacion = Importacion.find(params[:importacion_id])
     tipo = params[:tipo].to_s.singularize.capitalize
     @reportes = ReporteMarca.all(:conditions => 
-      {:importacion_id => params[:importacion_id], :representante_type => tipo } 
+        {:importacion_id => params[:importacion_id], :representante_type => tipo }
     )
 
     if request.xhr?
@@ -49,8 +49,10 @@ class ReporteMarcasController < ApplicationController
   def download
     @reporte_marca = ReporteMarca.find(params[:id])
     if @reporte_marca
-      reporte, nombre_archivo = @reporte_marca.crear_reporte, @reporte_marca.crear_nombre_archivo
-      send_data reporte, :filename => "#{nombre_archivo}.pdf"
+      @report = Reporte.first()
+      reporte= @report.to_pdf(@reporte_marca)
+      # reporte, nombre_archivo = @reporte_marca.crear_reporte, @reporte_marca.crear_nombre_archivo
+      send_data reporte, :filename => "test.pdf"
     else
       raise "Error el reporte que solicito no existe"
     end
@@ -61,8 +63,8 @@ class ReporteMarcasController < ApplicationController
   def cruce
     preparar_datos_cruce
     @reporte_marca = ReporteMarca.new(:representante_id => params[:representante_id], 
-                                      :representante_type => params[:representante_type],
-                                      :importacion_id => params[:importacion_id], :idioma => 'es')
+      :representante_type => params[:representante_type],
+      :importacion_id => params[:importacion_id], :idioma => 'es')
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @reporte_marca }
@@ -116,7 +118,7 @@ class ReporteMarcasController < ApplicationController
     end
   end
   
-private
+  private
   # Prepara los datos para cuando se realiza un reporte de cruce o 
   # un reporte de busquedas
   # @

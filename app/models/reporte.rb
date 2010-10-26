@@ -1,10 +1,6 @@
 class Reporte < ActiveRecord::Base
-  attr_accessible :texto_en, :texto_es, :nombre_clase
 
   attr_accessor :variables, :texts
-  
-  # regular expresion for scan strings
-  # [\*\*[a-zA-Z]+\*\*]*
 
   REX_EXTRACT_DATA = /\S*(\*\*[a-zA-Z]+\*\*)\S*/
 
@@ -57,21 +53,22 @@ class Reporte < ActiveRecord::Base
     return result
   end
 
-  # generate report in podf
+  # generate report in pdf
   def to_pdf(data)
-    reporte = self.nombre_clase.constantize
-    reporte.datos = data
+    prepare_report
+    reporte = nombre_clase.constantize.new
+    reporte.dataset = data
     index = 0
     @texts.each do |text|
       reporte.text(text)
-      reporte.send(@variables[index])
+      reporte.send(@variables[index]) if @variables[index]
       index += 1
     end
     reporte.render
   end
 
-  def method_missing(method_sym, *arguments, &block)
-    # "[called #{method_sym}]"
-    "**#{method_sym}**"
-  end
+#  def method_missing(method_sym, *arguments, &block)
+#    # "[called #{method_sym}]"
+#    "**#{method_sym}**"
+#  end
 end

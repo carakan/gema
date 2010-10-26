@@ -6,6 +6,8 @@ class CreateReportes < ActiveRecord::Migration
       t.string :nombre_clase
       t.timestamps
     end
+
+    #Reporte.create(:texto_es =>"  **encabezado** La Paz xxxxxxx **tabla** blabla", :nombre_clase => "ReporteMarca")
   end
 
   def self.down

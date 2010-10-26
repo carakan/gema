@@ -2,6 +2,8 @@
 # author: Boris Barroso
 # email: boriscyber@gmail.com
 class ReportBase < Prawn::Document
+  attr_accessor :dataset
+
   def mini_ficha
     
   end
@@ -11,5 +13,9 @@ class ReportBase < Prawn::Document
       image "#{Rails.root}/public/images/logo-orpan.jpg", :vposition => -30, :fit => [100, 70]
     end
     stamp("logo_orpan")
+  end
+
+  def logoOrpan
+    logo_orpan
   end
 end
