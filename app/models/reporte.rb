@@ -60,7 +60,7 @@ class Reporte < ActiveRecord::Base
     reporte.dataset = data
     index = 0
     @texts.each do |text|
-      reporte.text(text)
+      reporte.text(text, :inline_format => true)
       reporte.send(@variables[index]) if @variables[index]
       index += 1
     end
