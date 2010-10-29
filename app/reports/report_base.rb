@@ -15,7 +15,7 @@ class ReportBase < Prawn::Document
     datos =<<-TR
 <font size=\"24\"><color rgb=\"#123456\">#{@marca.nombre}</color></font>
 <b>Clase #{@marca.clase_id}</b>
-<i><font size=\"15\">#{@marca.titulares.collect{|representante| "#{representante.nombre}\n"}.join(", ")}</font></i>
+<i><font size=\"13\">#{@marca.titulares.collect{|representante| "#{representante.nombre}\n"}.join(", ")}</font></i>
 <b>Número de solicitud:</b> #{@marca.numero_solicitud}
 <b>Fecha publicación:</b> #{I18n.l(@marca.fecha_publicacion, :format => :long) if @marca.fecha_publicacion}
 <b>Número publicación </b>#{@marca.numero_publicacion}
