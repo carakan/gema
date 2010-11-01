@@ -12,23 +12,21 @@ class ReportBase < Prawn::Document
       @observacion = "alguna observacion"
     end
 
-    datos =<<-TR
-<font size=\"24\"><color rgb=\"#123456\">#{@marca.nombre}</color></font>
-<b>Clase #{@marca.clase_id}</b>
-<i><font size=\"13\">#{@marca.titulares.collect{|representante| "#{representante.nombre}\n"}.join(", ")}</font></i>
-<b>Número de solicitud:</b> #{@marca.numero_solicitud}
-<b>Fecha publicación:</b> #{I18n.l(@marca.fecha_publicacion, :format => :long) if @marca.fecha_publicacion}
-<b>Número publicación </b>#{@marca.numero_publicacion}
-    TR
+    fecha_publicacion = "#{I18n.l(@marca.fecha_publicacion, :format => :long) if @marca.fecha_publicacion}"
+    marca_header = [I18n.t("nombre marca"), I18n.t("clase marca"), I18n.t("numero solicitud marca"),
+                    I18n.t("fecha publicacion marca"), I18n.t("numero publicacion marca"),
+                    I18n.t("titulares marca"), I18n.t("observaciones marca")]
+    marca_table = ["#{@marca.nombre}", "#{@marca.clase_id}", "#{@marca.numero_solicitud}", 
+                   "#{fecha_publicacion}", "#{@marca.numero_publicacion}",
+                   "#{@marca.titulares.collect{|representante| "#{representante.nombre}"}.join(", ")}", "#{@observacion}"]
 
-    descripcion =<<-TR
-<b>Observaciones</b>
-#{@observacion}
-    TR
+    data = [marca_header, marca_table]
 
-    data = [[datos, descripcion]]
-    table(data, :cell_style => {:borders => []}) do
-      rows(1..2).width = 200
+    table(data, :cell_style => {:border_width => 1}) do
+      row(0).style :background_color => 'f0f0f0'
+      row(0).style :"size" => 9
+      row(1).style :"size" => 9
+      rows(1..7).width = 150
       cells.style(:size => 10, :inline_format => true)
     end
   end

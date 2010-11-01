@@ -56,7 +56,7 @@ class Reporte < ActiveRecord::Base
   # generate report in pdf
   def to_pdf(data)
     prepare_report
-    reporte = nombre_clase.constantize.new
+    reporte = nombre_clase.constantize.new(:page_size => 'LEGAL', :page_layout => :landscape )
     reporte.dataset = data
     index = 0
     @texts.each do |text|
