@@ -22,9 +22,9 @@ class Rol < ActiveRecord::Base
     # es necesario verificar esto por que pueden cambiar sin aviso y se debe comparar
     # contra los valores que ya existen en permisos de un rol
     lista = [] # Variable para almacenar temporalmente los nuevos permisos
-    Rol.list_controllers.each do |cont|
+    Rol.routes.each do |cont|
       # Asignacion a dos variables para no confundirse
-      controller, actions = cont[0], cont[1]
+      controller, actions = cont.keys.first, cont.values.first
       # Busqueda del permiso con el mismo controlador
       permission = permissions.select{ |per| controller == per.controller }[0]
       if permission
@@ -38,7 +38,7 @@ class Rol < ActiveRecord::Base
         permission.actions = tmp
       else
         # Adición del nuevo controlador en caso de que no exista
-        self.permissions_attributes = [ { :controller => cont[0], :action => cont[1] } ]
+        self.permissions_attributes = [ { :controller => controller, :actions => actions } ]
       end
     end
   end
@@ -61,15 +61,14 @@ class Rol < ActiveRecord::Base
     end
 
     # Listado de rutas
-    def routes
+    def routes(allow = false)
       ActionDispatch::Routing::Routes.routes.map { |r| [ r.requirements[:controller], r.requirements[:action] ]}.group_by do |v|
         v.first
-      end.inject([]) { |arr, v| arr << { v.first => v.last.map(&:last).inject({}) { |h, val| h[val.to_sym] = false; h } }; arr }
+      end.inject([]) { |arr, v| arr << { v.first => v.last.map(&:last).inject({}) { |h, val| h[val.to_sym] = allow; h } }; arr }
     end
 
-    def hash_controllers_actions
-      routes.map { |c| { :controller => c.keys.first, :actions => c.values.first }  }
-      #list_controllers.map { |c| {:controlador => c.first, :acciones => c.last} }
+    def hash_controllers_actions(allow = false)
+      routes(allow).map { |c| { :controller => c.keys.first, :actions => c.values.first }  }
     end
 
   end

@@ -50,7 +50,7 @@ class RolesController < ApplicationController
 
 protected
   def verificar_permiso
-    #redirect_to busquedas_path unless Rol.find( UsuarioSession.current_user[:rol_id] ).nombre == "admin"
+    redirect_to busquedas_path unless Rol.find( UsuarioSession.current_user[:rol_id] ).name == "admin"
   end
 
 end

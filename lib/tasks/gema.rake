@@ -9,14 +9,14 @@ namespace :gema do
     desc "Creacion de usuario con privilegios con el plugin rorol"
     task :admin => :environment do
       rol = Rol.new(:name => 'admin', :description => 'Rol de administrador')
-      Rol.hash_controllers_actions.each do |cont|
-        cont[:actions] = cont[:actions].inject({}) { |h, v| h[v.first] = true ; h }
+      Rol.hash_controllers_actions(true).each do |cont|
         rol.permissions.build(cont)
       end
       rol.save!
-      Usuario.create!(:nombre => 'Admin', :login => 'admin', :password => 'demo123', :password_confirmation => 'demo123',
-                      :email => 'admin@example.com', :rol_id => rol.id )
-
+      usuario = Usuario.new(:nombre => 'Admin', :login => 'admin', :password => 'demo123', :password_confirmation => 'demo123',
+                      :email => 'admin@example.com' )
+      usuario.rol_id = rol.id
+      usuario.save
       puts "Se ha creado el usuario Admin con #{rol.name}"
     end
   end
