@@ -6,6 +6,7 @@ class Consulta < ActiveRecord::Base
   before_create :disminuir_cruces_pendientes, :if => :importacion_id? #lambda { |c| !!c.importacion.nil? }
   before_destroy :aumentar_cruces_pendientes, :if => :importacion_id?
   before_save :serializar_marca_ids
+  before_save :serializar_parametros
 
   belongs_to :marca
   belongs_to :usuario
@@ -139,5 +140,8 @@ private
     self.marca_ids_serial = self.consulta_detalles.map(&:marca_id)
   end
 
+  def serializar_parametros
+    self.parametros = self.parametros
+  end
 
 end
