@@ -2,7 +2,7 @@
 # author: Boris Barroso
 # email: boriscyber@gmail.com
 class ConsultasController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_usuario!
 
   before_filter :set_busqueda, :only => [:new, :create]
   before_filter :borrar_consulta, :only => [:new]  

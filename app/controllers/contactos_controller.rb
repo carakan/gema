@@ -2,7 +2,7 @@
 # author: Boris Barroso
 # email: boriscyber@gmail.com
 class ContactosController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_usuario!
   # GET /contactos
   # GET /contactos.xml
   def index
