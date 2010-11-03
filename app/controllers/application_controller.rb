@@ -66,4 +66,13 @@ private
     set_user_session
   end
 
+  def revisar_permiso!
+    permission = Permission.find_by_rol_id_and_controller( UsuarioSession.current_user[:rol_id], params[:controller] )
+
+    if permission
+      redirect_to "/" unless permission.actions[ params[:action].to_sym ]
+    else
+      redirect_to '/logout'
+    end
+  end
 end
