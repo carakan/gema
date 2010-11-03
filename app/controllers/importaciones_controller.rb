@@ -2,7 +2,7 @@
 # author: Boris Barroso
 # email: boriscyber@gmail.com
 class ImportacionesController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_usuario!
   # GET /importaciones
   # GET /importaciones.xml
   def index
