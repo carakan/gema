@@ -36,8 +36,23 @@ class ReporteMarcaReport < ReportBase
   end
 
   # Metodos que deben ser sobreescritos
-  def datos; end
-  def encabezado; end
+  # # REFACTOR!!!
+  def datos(reporte_marca)
+    reporte_marca.reporte_marca_detalles.inject([]) do |arr, det|
+      arr << [ det.marca_propia.nombre, det.marca_propia.tipo_marca.sigla, det.marca_propia.clase_id, det.comentario ] unless det.comentario.blank?
+      arr
+    end
+  end
+  # REFACTOR!!!
+  # Retorna un array con el encabezado de acuerdo a su idioma
+  def encabezado
+    if I18n.locale == :es
+      ["Signo vigilado", "Tipo", "Clase", "Comentarios"]
+    else
+      ["Own trademarks","", "Foreign trademark", "Comments"]
+    end
+  end
+
 
   # Prepara los datos para la marca
   def datos_marca(marca)
