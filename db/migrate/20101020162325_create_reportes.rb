@@ -4,6 +4,7 @@ class CreateReportes < ActiveRecord::Migration
       t.text :texto_en
       t.text :texto_es
       t.string :nombre_clase
+      t.string :clave, :limit => 20
       t.timestamps
     end
 

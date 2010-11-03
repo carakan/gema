@@ -49,10 +49,9 @@ class ReporteMarcasController < ApplicationController
   def download
     @reporte_marca = ReporteMarca.find(params[:id])
     if @reporte_marca
-      @report = Reporte.first()
-      reporte= @report.to_pdf(@reporte_marca)
-      # reporte, nombre_archivo = @reporte_marca.crear_reporte, @reporte_marca.crear_nombre_archivo
-      send_data reporte, :filename => "test.pdf"
+      @report = Reporte.find_by_clave("busqueda_report")
+      reporte, nombre_archivo = @report.to_pdf(@reporte_marca), @reporte_marca.crear_nombre_archivo
+      send_data reporte, :filename => "#{nombre_archivo}.pdf"
     else
       raise "Error el reporte que solicito no existe"
     end
