@@ -304,13 +304,13 @@ namespace :datos do
   desc "Ejecuta un SQL para importar las marcas"
   task :marcas_sql => :environment do
     Dir.chdir("#{Rails.root}/doc/archivos")
-    system("bunzip2 marcas.sql.bz2 -k")
-    archivo = File.read( 'marcas.sql' )
+    #system("bunzip2 marcas.sql.bz2 -k")
+    archivo = File.read( 'marcas_demo.sql' )
     archivo.split(";").each do |sql|
       ActiveRecord::Base.connection.execute( sql )
     end
 
-    File.delete( 'marcas.sql' )
+    #File.delete( 'marcas.sql' )
   end
 
 
