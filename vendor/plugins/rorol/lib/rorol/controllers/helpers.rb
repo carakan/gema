@@ -16,7 +16,6 @@ module Rorol
           rol_id = UsuarioSession.current_user[:rol_id]
           permission = Permission.find_by_rol_id_and_controller( rol_id, params[:controller] )
 
-          debugger
           if permission
             redirect_to "/" unless permissions.actions[ params[:action] ]
           else
