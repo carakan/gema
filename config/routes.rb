@@ -2,6 +2,8 @@
 # author: Boris Barroso
 # email: boriscyber@gmail.com
 Rails.application.routes.draw do
+  resources :reportes
+  
   resources :reporte_marcas do
     collection do
       get :cruces

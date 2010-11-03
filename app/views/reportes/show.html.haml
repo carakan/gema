@@ -1,0 +1,15 @@
+- title "Reporte"
+
+%p
+  %strong Texto En:
+  = @reporte.texto_en
+%p
+  %strong Texto Es:
+  = @reporte.texto_es
+
+%p
+  = link_to "Edit", edit_reporte_path(@reporte)
+  |
+  = link_to "Destroy", @reporte, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", reportes_path

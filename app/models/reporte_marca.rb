@@ -87,15 +87,17 @@ class ReporteMarca < ActiveRecord::Base
   end
 
   # Realiza la creación del reporte para un cruce o busqueda
-  def crear_reporte
-    if self.importacion_id?
-      rep = CruceReport.new
-      rep.to_pdf(self)
-    else
-      rep = BusquedaReport.new
-      rep.to_pdf(self)
-    end
-  end
+#  def crear_reporte
+#    if self.importacion_id?
+#      @report = Reporte.find_by_clave("busqueda_report")
+#      rep = CruceReport.new
+#      rep.to_pdf(self)
+#    else
+#      @report = Reporte.find_by_clave("cruce_report")
+#      rep = BusquedaReport.new
+#      rep.to_pdf(self)
+#    end
+#  end
 
 private
   # Extra de info para la carta

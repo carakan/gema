@@ -4,13 +4,12 @@
 #
 # Clase que realiza los reportes de una marca para los cruces
 class ReporteMarcaReport < ReportBase
-
   # metodo que crea el reporte
   def to_pdf(reporte_marca)
     I18n.locale = :en if reporte_marca.idioma == 'en'
     
     logo_orpan
-    text "La Paz, #{I18n.l Date.today}\n\n"
+    text "La Paz, #{I18n.l Date.today, :format => :long}\n\n"
     
     text reporte_marca.carta << "\n\n"
     tabla(reporte_marca)
@@ -31,9 +30,29 @@ class ReporteMarcaReport < ReportBase
     end
   end
 
+  
+  def tablaReporte
+    tabla(@dataset)
+  end
+
   # Metodos que deben ser sobreescritos
-  def datos; end
-  def encabezado; end
+  # # REFACTOR!!!
+  def datos(reporte_marca)
+    reporte_marca.reporte_marca_detalles.inject([]) do |arr, det|
+      arr << [ det.marca_propia.nombre, "#{det.marca_propia.tipo_marca.sigla if det.marca_propia.tipo_marca}", "#{det.marca_propia.clase_id}", det.comentario ] unless det.comentario.blank?
+      arr
+    end
+  end
+  # REFACTOR!!!
+  # Retorna un array con el encabezado de acuerdo a su idioma
+  def encabezado
+    if I18n.locale == :es
+      ["Signo vigilado", "Tipo", "Clase", "Comentarios"]
+    else
+      ["Own trademarks","", "Foreign trademark", "Comments"]
+    end
+  end
+
 
   # Prepara los datos para la marca
   def datos_marca(marca)
@@ -55,5 +74,4 @@ class ReporteMarcaReport < ReportBase
       COM
     end
   end
-
 end

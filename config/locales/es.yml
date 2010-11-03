@@ -1,4 +1,16 @@
 es:
+  "nombre marca": Nombre
+  "clase marca": Clase
+  "numero solicitud marca": Numero Solucitud
+  "fecha publicacion marca": Fecha Publicacion
+  "numero publicacion marca": Numero Publicacion
+  "titulares marca": Titulares
+  "observaciones marca": Observaciones
+  "tipo marca": Marca
+  "imagen marca": Diseno
+
+
+
   number:
     # Used in number_with_delimiter()
     # These are also the defaults for 'currency', 'percentage', 'precision', and 'human'

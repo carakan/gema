@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100911015248) do
+ActiveRecord::Schema.define(:version => 20101020162325) do
 
   create_table "adjuntos", :force => true do |t|
     t.string   "nombre"
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(:version => 20100911015248) do
     t.string   "busqueda"
     t.string   "parametros",       :limit => 400
     t.string   "comentario",       :limit => 800
-    t.string   "marca_ids_serial",                :default => ""
+    t.string   "marca_ids_serial",                :default => "[]"
     t.integer  "importacion_id",                  :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -102,7 +102,7 @@ ActiveRecord::Schema.define(:version => 20100911015248) do
     t.integer  "fila"
     t.datetime "fecha_importacion"
     t.boolean  "valido"
-    t.string   "cambios",                                     :default => ""
+    t.string   "cambios",                                     :default => "[]"
     t.boolean  "importado",                                   :default => false
     t.string   "apoderado"
     t.string   "representante_empresarial"
@@ -165,6 +165,14 @@ ActiveRecord::Schema.define(:version => 20100911015248) do
     t.datetime "updated_at"
   end
 
+  create_table "permisos", :force => true do |t|
+    t.integer  "rol_id"
+    t.string   "controlador", :limit => 150
+    t.string   "acciones"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "posts", :force => true do |t|
     t.integer  "postable_id"
     t.string   "postable_type"
@@ -207,6 +215,15 @@ ActiveRecord::Schema.define(:version => 20100911015248) do
   add_index "reporte_marcas", ["representante_id"], :name => "index_reporte_marcas_on_representante_id"
   add_index "reporte_marcas", ["representante_type"], :name => "index_reporte_marcas_on_representante_type"
 
+  create_table "reportes", :force => true do |t|
+    t.text     "texto_en"
+    t.text     "texto_es"
+    t.string   "nombre_clase"
+    t.string   "clave",        :limit => 20
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "representantes", :force => true do |t|
     t.integer  "pais_id"
     t.string   "nombre"
@@ -227,6 +244,13 @@ ActiveRecord::Schema.define(:version => 20100911015248) do
 
   add_index "representantes", ["nombre"], :name => "index_representantes_on_nombre"
   add_index "representantes", ["pais_id"], :name => "index_representantes_on_pais_id"
+
+  create_table "roles", :force => true do |t|
+    t.string   "nombre",      :limit => 100
+    t.string   "descripcion"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "tipo_marcas", :force => true do |t|
     t.string   "nombre",      :limit => 100

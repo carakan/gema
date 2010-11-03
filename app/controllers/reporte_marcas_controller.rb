@@ -16,7 +16,7 @@ class ReporteMarcasController < ApplicationController
     @importacion = Importacion.find(params[:importacion_id])
     tipo = params[:tipo].to_s.singularize.capitalize
     @reportes = ReporteMarca.all(:conditions => 
-      {:importacion_id => params[:importacion_id], :representante_type => tipo } 
+        {:importacion_id => params[:importacion_id], :representante_type => tipo }
     )
 
     if request.xhr?
@@ -49,7 +49,7 @@ class ReporteMarcasController < ApplicationController
   def download
     @reporte_marca = ReporteMarca.find(params[:id])
     if @reporte_marca
-      reporte, nombre_archivo = @reporte_marca.crear_reporte, @reporte_marca.crear_nombre_archivo
+      reporte, nombre_archivo = Reporte.crear_reporte(@reporte_marca), @reporte_marca.crear_nombre_archivo
       send_data reporte, :filename => "#{nombre_archivo}.pdf"
     else
       raise "Error el reporte que solicito no existe"
@@ -61,8 +61,8 @@ class ReporteMarcasController < ApplicationController
   def cruce
     preparar_datos_cruce
     @reporte_marca = ReporteMarca.new(:representante_id => params[:representante_id], 
-                                      :representante_type => params[:representante_type],
-                                      :importacion_id => params[:importacion_id], :idioma => 'es')
+      :representante_type => params[:representante_type],
+      :importacion_id => params[:importacion_id], :idioma => 'es')
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @reporte_marca }
@@ -115,7 +115,8 @@ class ReporteMarcasController < ApplicationController
       format.xml  { head :ok }
     end
   end
-private
+  
+  private
   # Prepara los datos para cuando se realiza un reporte de cruce o 
   # un reporte de busquedas
   # @
@@ -138,8 +139,8 @@ private
     end
     params[:representante_type] = p[:representante_type]
     
-    @representante = Representante.find(p[:representante_id])
-    @importacion = Importacion.find(p[:importacion_id])
+    @representante = Representante.find(p[:representante_id]) 
+    @importacion = Importacion.find(p[:importacion_id]) if p[:importacion_id]
     @marcas = Consulta.marcas_representante_cruce(p[:importacion_id], p[:representante_id], tipo )
   end
 end

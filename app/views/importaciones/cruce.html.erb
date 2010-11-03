@@ -40,7 +40,7 @@
         <% @consult = marca.cruce(@importacion.id) %>
         <td><%= marca.try(:titulares).map(&:nombre).join(",") %></td>
         <td><%= @consult.try(:usuario) %></td>
-        <td class="<%= @consult.try(:type) %>">
+        <td class="<%= @consult.class.to_s %>">
           <%= realizar_cruce(marca, @importacion, @consult.try(:id)) %>
           <%= ver_cruce (@consult) unless @consult.nil? %>
         </td>

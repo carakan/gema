@@ -1,0 +1,23 @@
+- form_for @reporte do |f|
+  %p
+    = f.label :clave
+    %br
+    = f.text_field :clave
+
+  %p
+    = f.label :nombre_clase
+    %br
+    = f.text_field :nombre_clase
+
+  %p
+    = f.label :texto_en
+    %br
+    = f.text_area :texto_en
+  %p
+    = f.label :texto_es
+    %br
+    = f.text_area :texto_es
+
+
+  %p
+    = f.submit
