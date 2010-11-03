@@ -1,3 +1,6 @@
+# encoding: utf-8
+# author: Boris Barroso
+# email: boriscyber@gmail.com
 module Rorol
   module Controllers
     module Helpers
@@ -11,10 +14,11 @@ module Rorol
         # Mucho cuidado con UsuarioSession usado para la verificacion
         def revisar_permiso!
           rol_id = UsuarioSession.current_user[:rol_id]
-          permiso = Permiso.find_by_rol_id_and_controlador( rol_id, params[:controller] )
+          permission = Permission.find_by_rol_id_and_controller( rol_id, params[:controller] )
 
-          if permiso
-            redirect_to "/" unless permiso.acciones[ params[:action] ]
+          debugger
+          if permission
+            redirect_to "/" unless permissions.actions[ params[:action] ]
           else
             redirect_to '/logout'
           end

@@ -10,7 +10,7 @@ class RolesController < ApplicationController
   end
 
   def new
-    @rol = Rol.new(:permisos_attributes => Rol.hash_controladores_acciones )
+    @rol = Rol.new(:permissions_attributes => Rol.hash_controllers_actions )
   end
 
   def show
@@ -28,7 +28,7 @@ class RolesController < ApplicationController
   end
 
   def edit
-    @rol = Rol.find(params[:id], :include => :permisos)
+    @rol = Rol.find(params[:id], :include => :permissions)
     # Metodos necesario para poder actualizar los roles y acciones nuevas o que hayan cambiado en los controladores
     @rol.actualizar
   end
@@ -50,7 +50,7 @@ class RolesController < ApplicationController
 
 protected
   def verificar_permiso
-    redirect_to busquedas_path unless Rol.find( UsuarioSession.current_user[:rol_id] ).nombre == "admin"
+    #redirect_to busquedas_path unless Rol.find( UsuarioSession.current_user[:rol_id] ).nombre == "admin"
   end
 
 end
