@@ -2,8 +2,14 @@
 # author: Boris Barroso
 # email: boriscyber@gmail.com
 Rails.application.routes.draw do
+
   resources :reportes
   
+  devise_for :usuarios do
+    get "/login" => "devise/sessions#new"
+    get "/logout" => "devise/sessions#destroy"
+  end
+
   resources :reporte_marcas do
     collection do
       get :cruces
@@ -76,9 +82,10 @@ Rails.application.routes.draw do
 
   resources :roles
 
-  resources :login
+  #resources :login
 
-  match 'logout' => 'login#destroy'
+  #match 'logout' => 'devise/sessions#sign_out'
 
-  root :to => 'login#new'
+  #root :to => 'login#new'
+  root :to => 'busquedas#index'
 end
