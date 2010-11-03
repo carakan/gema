@@ -165,10 +165,10 @@ ActiveRecord::Schema.define(:version => 20100911015248) do
     t.datetime "updated_at"
   end
 
-  create_table "permisos", :force => true do |t|
+  create_table "permissions", :force => true do |t|
     t.integer  "rol_id"
-    t.string   "controlador", :limit => 150
-    t.string   "acciones"
+    t.string   "controller", :limit => 150
+    t.string   "actions"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -237,8 +237,8 @@ ActiveRecord::Schema.define(:version => 20100911015248) do
   add_index "representantes", ["pais_id"], :name => "index_representantes_on_pais_id"
 
   create_table "roles", :force => true do |t|
-    t.string   "nombre",      :limit => 100
-    t.string   "descripcion"
+    t.string   "name",        :limit => 100
+    t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

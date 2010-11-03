@@ -2,17 +2,17 @@
 # author: Boris Barroso
 # email: boriscyber@gmail.com
 class Rol < ActiveRecord::Base
-  has_many :permisos, :dependent => :destroy
+  has_many :permissions, :dependent => :destroy
 
-  accepts_nested_attributes_for :permisos, :allow_destroy => true
+  accepts_nested_attributes_for :permissions, :allow_destroy => true
 
-  validates_presence_of :nombre
+  validates_presence_of :name
 
   cattr_reader :per_page
   @@per_page = 30
 
   def to_s
-    nombre
+    name
   end
 
   # Actualiza los valores de permisos basado en a lista de controladores
@@ -24,21 +24,21 @@ class Rol < ActiveRecord::Base
     lista = [] # Variable para almacenar temporalmente los nuevos permisos
     Rol.list_controllers.each do |cont|
       # Asignacion a dos variables para no confundirse
-      controlador, acciones = cont[0], cont[1]
+      controller, actions = cont[0], cont[1]
       # Busqueda del permiso con el mismo controlador
-      permiso = permisos.select{ |per| controlador == per.controlador }[0]
-      if permiso
+      permission = permissions.select{ |per| controller == per.controller }[0]
+      if permission
         tmp = {}
         # Iterar acciones del controlador no del permiso
-        acciones.each do |k,v|
-          tmp[k] = permiso.acciones[k] # Se asignara true si es que exite la accion en permisos y su valor sea true
+        actions.each do |k,v|
+          tmp[k] = permission.actions[k] # Se asignara true si es que exite la accion en permisos y su valor sea true
         end
         # asignacion de las acciones al permiso, esto por que puede ser
         # que se hayan cambiado las acciones del controlador y se tengan nuesvas acciones
-        permiso.acciones = tmp
+        permission.actions = tmp
       else
         # Adición del nuevo controlador en caso de que no exista
-        self.permisos_attributes = [ { :controlador => cont[0], :acciones => cont[1] } ]
+        self.permissions_attributes = [ { :controller => cont[0], :action => cont[1] } ]
       end
     end
   end
@@ -61,16 +61,18 @@ class Rol < ActiveRecord::Base
     end
 
     # Listado de rutas
-    def rutas
+    def routes
       ActionDispatch::Routing::Routes.routes.map { |r| [ r.requirements[:controller], r.requirements[:action] ]}.group_by do |v|
         v.first
-      end.inject([]) { |arr, v| arr << { v.first => v.last.map(&:last) }; arr }
+      end.inject([]) { |arr, v| arr << { v.first => v.last.map(&:last).inject({}) { |h, val| h[val.to_sym] = false; h } }; arr }
     end
 
-    def hash_controladores_acciones
-      list_controllers.map { |c| {:controlador => c.first, :acciones => c.last} }
+    def hash_controllers_actions
+      routes.map { |c| { :controller => c.keys.first, :actions => c.values.first }  }
+      #list_controllers.map { |c| {:controlador => c.first, :acciones => c.last} }
     end
 
   end
 
 end
+#{:controlador=>"adjuntos", :acciones=>{:create=>false, :destroy=>false, :edit=>false, :index=>false, :new=>false, :show=>false, :update=>false}}
