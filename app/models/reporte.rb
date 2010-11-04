@@ -4,6 +4,8 @@ class Reporte < ActiveRecord::Base
 
   REX_EXTRACT_DATA = /\S*(\*\*[a-zA-Z]+\*\*)\S*/
 
+  REX_EXTRACT_VARIABLES = /\S*(\{\{[a-zA-Z]+\}\})\S*/
+
   def extract_variables()
     self.texto_es.scan(Reporte::REX_EXTRACT_DATA).flatten
   end
@@ -14,9 +16,9 @@ class Reporte < ActiveRecord::Base
 
   def texto_i18n
     if I18n.locale == :es
-      self.texto_es
+      "  #{self.texto_es}"
     else
-      self.texto_en
+      "  #{self.texto_en}"
     end
   end
 
@@ -58,6 +60,7 @@ class Reporte < ActiveRecord::Base
     prepare_report
     reporte = nombre_clase.constantize.new(:page_size => 'LEGAL', :page_layout => :landscape )
     reporte.dataset = data
+    #reporte.marca = data
     index = 0
     @texts.each do |text|
       reporte.text(text, :inline_format => true)

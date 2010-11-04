@@ -23,20 +23,20 @@ class BusquedaVacia < Tableless
       if v.size > 20
         ['Todas las clases', v.join(',')]
       elsif v.size > 8 
-       ['34 al 45', v.join(',')]
+        ['34 al 45', v.join(',')]
       else
-       [v.join(', '), v.join(',')]
+        [v.join(', '), v.join(',')]
       end
     }
   end
 
   def self.label(clases)
-      if clases.size > 20
-        'Todas las clases'
-      elsif clases.size > 8 
-       '34 al 45'
-      else
-       clases.join(', ')
-      end
+    if clases.size > 20
+      'Todas las clases'
+    elsif clases.size > 8
+      '34 al 45'
+    else
+      clases.join(', ')
+    end
   end
 end
