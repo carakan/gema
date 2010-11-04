@@ -24,7 +24,6 @@ class Busqueda
     case 
     when letras.size <= 3
       include TresLetras
-    #when letras.size > 3
     end
 
     include BuscarPorGrupo
@@ -32,12 +31,17 @@ class Busqueda
     new(busqueda)
   end
 
+  # divide una palabra en un array con los caracteres de la busqueda,
+  # debido a que "palabra".size tiene problemas con caracteres utf-8
+  #   @param String
   def self.dividir_palabra(busq)
     letras = []
     busq.scan(/.{1}/) { |v| letras << v }
     letras
   end
 
+  # Crea expresiones regulares para la busqueda basado en la logitud de la palabra,
+  # para palabras con un numero par o impar de letras
   def expresiones_pares_impares
     par = ''
     impar = ''
@@ -54,7 +58,7 @@ class Busqueda
   end
 
   # Cambia en caracteres seguros para realizar las busqueda por
-  # expresión regular
+  # expresión regular, para que la BD no tenga problemas al crea el SQL
   def cambiar_caracter_especiales(chr)
     if Constants::SPECIAL_CHARS.include?( chr )
       "\\#{chr}"
@@ -63,10 +67,12 @@ class Busqueda
     end
   end
 
+  # retorna un array con dos caracteres al inicio y al final
   def silaba_inicio_fin
     [busqueda[0,2], busqueda[-2,2] ]
   end
 
+  # realiza las combinaciones para expresiones
   def expresiones
     #if busqueda.size > 3
       @expresiones[2] = combinaciones_palabra
@@ -179,7 +185,7 @@ class Busqueda
       CHAR_LENGTH(res.nombre_minusculas) - #{busqueda.size}) AS longitud_letras"
     sql << ", IF(res.id=#{params[:clase_id].to_i}, 0, 2) AS dist_clase_id" unless params[:clase_id].nil?
     sql = [ "#{sql} FROM" ]
-    sql << "(#{sql_exp.join("\n UNION \n")}) AS res"
+    sql << "(#{sql_exp.join(" UNION ")}) AS res"
     sql << condiciones_sql(params)
     sql << "GROUP BY res.id"
 
@@ -188,8 +194,10 @@ class Busqueda
     else
       sql << "ORDER BY res.pos, longitud_letras ASC"
     end
+    
+    #debugger
 
-    sql.join("\n")
+    sql.join(" ")
   end
 
   # SQl que busca la palabra exacata
