@@ -7,10 +7,13 @@ class MarcasController < ApplicationController
 
   def index
     nombre_marca = (params[:nombre_marca] || "")
+    cond = [ "nombre_minusculas LIKE ?", "%#{nombre_marca.downcase}%" ] 
     p = {
-      :include => [:clase, :tipo_signo, :titulares],
-      :conditions => [ "nombre_minusculas LIKE ?", "%#{nombre_marca.downcase}%" ],
-    }.merge(order_query_params("marcas.nombre"))
+      #:include => [:clase, :tipo_signo, :titulares],
+      :include => [:tipo_signo, :titulares],
+      :conditions => cond,
+    }.merge(order_query_params("marcas.nombre_minusculas"))
+
     @marcas = Marca.paginate(p)
   end
 
