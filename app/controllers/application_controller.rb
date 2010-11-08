@@ -70,7 +70,7 @@ private
     permission = Permission.find_by_rol_id_and_controller( UsuarioSession.current_user[:rol_id], params[:controller] )
 
     if permission
-      redirect_to "/" unless permission.actions[ params[:action].to_sym ]
+      redirect_to "/" unless permission.actions[ params[:action] ]
     else
       redirect_to '/logout'
     end

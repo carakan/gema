@@ -40,7 +40,7 @@ class BusquedasController < ApplicationController
 
 private
   def preparar_representantes()
-    representante_ids = ( @busqueda.map(&:agente_ids_serial) + @busqueda.map(&:titular_ids_serial) ).uniq
+    representante_ids = ( @busqueda.map(&:agente_ids_serial) + @busqueda.map(&:titular_ids_serial) ).flatten.uniq
     Representante.where(:id => representante_ids ).inject({})  { |h,v| h[v.id] = v; h } 
   end
 end
