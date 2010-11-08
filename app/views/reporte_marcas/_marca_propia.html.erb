@@ -2,4 +2,4 @@
 <br />
 Clase <%= marca.clase_id %><br />
 <%= marca.tipo_signo %><br />
-<i><%= l marca.estado_fecha, :format => :date %></i>
+<i><%= l(marca.estado_fecha, :format => :date) if marca.estado_fecha %></i>

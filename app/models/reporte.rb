@@ -60,6 +60,9 @@ class Reporte < ActiveRecord::Base
     prepare_report
     reporte = nombre_clase.constantize.new(:page_size => 'LEGAL', :page_layout => :landscape )
     reporte.dataset = data
+    if data.carta
+      reporte.observacion = data.carta
+    end
     #reporte.marca = data
     index = 0
     @texts.each do |text|
@@ -74,7 +77,9 @@ class Reporte < ActiveRecord::Base
   def self.crear_reporte(reporte_marca)
     if reporte_marca.importacion_id?
       report = Reporte.find_by_clave("cruce_report")
+      report.observacion = reporte_marca.carta
       report.to_pdf(reporte_marca)
+      
     else
       report = Reporte.find_by_clave("busqueda_report")
       report.to_pdf(reporte_marca)

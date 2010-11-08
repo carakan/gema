@@ -56,4 +56,6 @@ class ReportBase < Prawn::Document
   def logoOrpan
     logo_orpan
   end
+
+  
 end

@@ -19,4 +19,9 @@ class BusquedaReport < ReporteMarcaReport
       ["Search terms", "Trademarks", "Comments"]
     end
   end
+
+  def analisis
+    text("<b>Analisis</b>", :inline_format => true)
+    text(@observacion.to_s, :inline_format => true)
+  end
 end
