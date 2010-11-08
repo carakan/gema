@@ -65,10 +65,7 @@
       <td><%= marca.clase_id %></td>
       <td class="<%= marca.activa %>"></td>
       <td><%= marca.titulares.map(&:nombre).join(", ") %></td>
-      <td>
-        <%= link_to "editar", edit_marca_path(marca), :class => 'edit' %>
-        <%= link_to "borrar", marca_path(marca), :class => 'delete' %>
-      </td>
+      <td><%= links(marca) %></td>
     </tr>
   <% end %>
 </table>
