@@ -16,7 +16,7 @@ class ReportBase < Prawn::Document
     marca_header = [I18n.t("nombre marca"), I18n.t("tipo marca"), I18n.t("imagen marca"), I18n.t("clase marca"), I18n.t("numero solicitud marca"),
                     I18n.t("fecha publicacion marca"), I18n.t("numero publicacion marca"),
                     I18n.t("titulares marca"), I18n.t("observaciones marca")]
-    marca_table = ["#{@marca.nombre}", "#{@marca.tipo_marca.try(:signo) if @marca.tipo_marca}", "", "#{@marca.clase_id}", "#{@marca.numero_solicitud}",
+    marca_table = ["#{@marca.nombre}", "#{@marca.tipo_marca.try(:sigla) if @marca.tipo_marca}", "", "#{@marca.clase_id}", "#{@marca.numero_solicitud}",
                    "#{fecha_publicacion}", "#{@marca.numero_publicacion}",
                    "#{@marca.titulares.collect{|representante| "#{representante.nombre}"}.join(", ")}", "#{@observacion}"]
 
