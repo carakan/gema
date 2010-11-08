@@ -68,11 +68,11 @@
         <td>
           <input name="marcas[<%= b.id %>]" type="checkbox" id="marca<%= b.id %>" value="<%= b.id %>" />
         </td>
-      	<td><label for="marca<%= b.id %>"><%= b.nombre %></label></td>
+        <td><label for="marca<%= b.id %>"><span class="<%= b.propia! %>"><%= b.nombre %></span></label></td>
       	<td><%= b.clase_id %></td>
         <td><%= tipo_busqueda b.pos %>
-        <td><%= buscar_representante(b.agente_ids_serial, @representantes) %></td>
-        <td><%= buscar_representante(b.titular_ids_serial, @representantes) %></td>
+        <td><%= buscar_representante( b.agente_ids_serial, @representantes ) %></td>
+        <td><%= buscar_representante( b.titular_ids_serial, @representantes ) %></td>
         </td>
       </tr>
     <% end %>

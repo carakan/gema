@@ -32,7 +32,7 @@
 <br />
 <br />
 
-<% form_tag marcas_path, :method => :get  do %>
+<%= form_tag marcas_path, :method => :get  do %>
   <%= text_field_tag :nombre_marca, params[:nombre_marca] %>
   <%= submit_tag "Buscar" %>
 <% end %>
@@ -44,7 +44,7 @@
 
 <table class="decorated nwl">
 	<tr>
-    <th style="width:250px"><%= sort_order "Nombre", "marcas.nombre" %></th>
+    <th style="width:250px"><%= sort_order "Nombre", "marcas.nombre_minusculas" %></th>
     <th title="Signo propio"><%= sort_order "Pro.","marcas.propia" %></th>
 		<th>Estado</th>
     <th><%= sort_order "Tipo de signo", "tipo_signos.nombre" %></th>
@@ -62,13 +62,10 @@
       <td class="<%= marca.propia %>"></td>
     	<td><%= marca.ver_estado %></td>
       <td><%= marca.tipo_signo %></td>
-      <td><%= marca.clase.try(:codigo) %></td>
+      <td><%= marca.clase_id %></td>
       <td class="<%= marca.activa %>"></td>
       <td><%= marca.titulares.map(&:nombre).join(", ") %></td>
-      <td>
-        <%= link_to "editar", edit_marca_path(marca), :class => 'edit' %>
-        <%= link_to "borrar", marca_path(marca), :class => 'delete' %>
-      </td>
+      <td><%= links(marca) %></td>
     </tr>
   <% end %>
 </table>
