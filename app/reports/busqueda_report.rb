@@ -6,7 +6,7 @@
 class BusquedaReport < ReporteMarcaReport
   def datos(reporte_marca)
     reporte_marca.reporte_marca_detalles.inject([]) do |arr, det|
-      arr << [ det.busqueda, datos_marca(det.marca_propia), det.comentario ] unless det.comentario.blank?
+      arr << [ det.busqueda, datos_marca(det.marca_propia), det.comentario ]
       arr
     end
   end
