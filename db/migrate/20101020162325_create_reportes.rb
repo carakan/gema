@@ -14,9 +14,9 @@ class CreateReportes < ActiveRecord::Migration
 
 <b>REPORTE DE BÚSQUEDA</b>
 
-Denominación:     {{palabra_busqueda}}
-Clase (s) Int:    {{clase_en_busqueda}}
-Fecha:    {{fecha_reporte}}
+Denominación:     ++palabra_busqueda++
+Clase (s) Int:    ++clase_en_busqueda++
+Fecha:    ++fecha_reporte++
 
 Resultados
 
@@ -30,9 +30,9 @@ Resultados
 
 <b>SEARCH REPORT</b>
 
-Word:     {{palabra_busqueda}}
-Int. Class (es):    {{clase_en_busqueda}}
-Date (dd/mm/yy):    {{fecha_reporte}}
+Word:     ++palabra_busqueda++
+Int. Class (es):    ++clase_en_busqueda++
+Date (dd/mm/yy):    ++fecha_reporte++
 
 Results
 
