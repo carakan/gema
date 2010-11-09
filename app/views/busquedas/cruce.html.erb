@@ -52,7 +52,7 @@
 
     <table class="decorated .nolink" id="tabla-cruce">
       <tr>
-        <th><%= check_box_tag("select_all") %></th>
+        <th><% check_box_tag("select_all") %></th>
         <th>Nombre</th>
         <th>Clase</th>
         <th>Tipo de<br/> busqueda</th>
@@ -62,9 +62,9 @@
       <% @busqueda.each_with_index do |b, i| %>
         <tr>
           <td>
-            <input name="marcas[<%= i %>]" type="checkbox" id="marca<%= b.id %>" value="<%= b.id %>" data-tipo="<%= b.pos %>" />
+            <%= check_box_tag "marcas[#{i}]", b.id, @consulta_detalles.include?(b.id) %>
           </td>
-          <td><label for="marca<%= b.id %>"><%= b.nombre %></label></td>
+          <td><label for="marca<%= b.id %>" class="propia"><%= b.nombre %></label></td>
           <td><%= b.clase_id %></td>
           <td><%= tipo_busqueda b.pos %></td>
           <td><%= buscar_representante(b.agente_ids_serial, @representantes) %></td>
@@ -75,10 +75,10 @@
     </table>
 
     <br />
-    <%= submit_tag "Seleccionar", :id => 'seleccionar' %>
+    <%= submit_tag "Pre reporte", :id => 'seleccionar' %>
   <% end %>
 
-  <%= submit_tag "Descartar", :class => 'red', :id => 'descartar' if params[:importacion_id] %>
+  <%= submit_tag "Descartar todo", :class => 'red', :id => 'descartar' if params[:importacion_id] %>
 
 <% end %>
 <br />
