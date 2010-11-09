@@ -10,26 +10,40 @@ class CreateReportes < ActiveRecord::Migration
     end
 
     texto_busqueda_es =<<-RTM
-**logoOrpan**
-**fechaReporte**
+**logo_orpan**
 
-Datos de la Busqueda simple
+<b>REPORTE DE BÚSQUEDA</b>
 
-**tablaReporte**
+Denominación:     ++palabra_busqueda++
+Clase (s) Int:    ++clase_en_busqueda++
+Fecha:    ++fecha_reporte++
+
+Resultados
+
+**tabla_reporte**
+
+**analisis**
     RTM
 
     texto_busqueda_en =<<-RTM
-**logoOrpan**
-**fechaReporte**
+**logo_orpan**
 
-Data for simple search
+<b>SEARCH REPORT</b>
 
-**tablaReporte**
+Word:     ++palabra_busqueda++
+Int. Class (es):    ++clase_en_busqueda++
+Date (dd/mm/yy):    ++fecha_reporte++
+
+Results
+
+**tabla_reporte**
+
+**analisis**
     RTM
 
     texto_cruce_es =<<-RTM
-**logoOrpan**
-**fechaReporte**
+**logo_orpan**
+**fecha_reporte**
 
 Estimados Señores:
 
@@ -37,22 +51,22 @@ La presente es para informarles que en la edicion Nro
 
 Cruce de datos, 
 
-**miniFicha**
+**mini_ficha**
 
-**tablaReporte**
+**tabla_reporte**
       RTM
 
       texto_cruce_en =<<-RTM
-**logoOrpan**
-**fechaReporte**
+**logo_orpan**
+**fecha_reporte**
 
 Dear Sirs:
 
 On  , the following
 
-**miniFicha**
+**mini_ficha**
 
-**tablaReporte**
+**tabla_reporte**
       RTM
 
     Reporte.create(:texto_es => texto_busqueda_es, :texto_en => texto_busqueda_en, :nombre_clase => "BusquedaReport", :clave => "busqueda_report")

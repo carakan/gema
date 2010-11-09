@@ -42,7 +42,7 @@ class Consulta < ActiveRecord::Base
 
     m_ids = Consulta.find_by_sql(["SELECT marca_id, #{singular_id} FROM marcas_#{tipo} 
                                      WHERE #{singular_id} = ?", representante_id]
-            ).map(&:marca_id).flatten.uniq
+    ).map(&:marca_id).flatten.uniq
 
     ConsultaDetalle.all( 
       :conditions => ["consultas.importacion_id = ? AND consulta_detalles.marca_id IN (?)", importacion_id, m_ids],
@@ -71,7 +71,7 @@ class Consulta < ActiveRecord::Base
     tipo = ['agentes', 'titulares'].include?(tipo) ? tipo.to_sym : :agentes
     
     marca_ids = Consulta.all(:select => "id, marca_ids_serial",
-                 :conditions => { :importacion_id => importacion_id} 
+      :conditions => { :importacion_id => importacion_id}
     ).map(&:marca_ids_serial).flatten.compact.uniq
 
     Representante.marcas_representantes(marca_ids, tipo)
@@ -94,7 +94,7 @@ class Consulta < ActiveRecord::Base
       k = k.to_s
       self.consulta_detalles.build(
         :marca_id => params[:marcas][k],
-        :tipo => params[:tipos][k] 
+        :tipo => params[:tipos][k]
       )
     end
   end
@@ -110,11 +110,11 @@ class Consulta < ActiveRecord::Base
   #   @return Array
   def self.buscar_representantes(imp_id, tipo)
     marcas = Consulta.all(:select => 'consulta_detalles.marca_id', :conditions => { :importacion_id => imp_id }, 
-                 :include => :consulta_detalles ).map { |c| c.consulta_detalles.map(&:marca_id) }.flatten.uniq
+      :include => :consulta_detalles ).map { |c| c.consulta_detalles.map(&:marca_id) }.flatten.uniq
     Marca.find(marcas, :include => tipo, :order => "representantes.nombre ASC").map { |m| m.send(tipo) }.flatten.uniq
   end
 
-private
+  private
   def adicionar_usuario
     self.usuario_id = UsuarioSession.current_user[:id]
   end

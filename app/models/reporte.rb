@@ -1,17 +1,17 @@
 class Reporte < ActiveRecord::Base
+  attr_accessor :variables, :texts, :template
 
-  attr_accessor :variables, :texts
+  REX_EXTRACT_DATA = /\S*(\*\*[a-z_]+\*\*)\S*/
 
-  REX_EXTRACT_DATA = /\S*(\*\*[a-zA-Z]+\*\*)\S*/
+  REX_EXTRACT_VARIABLES = /\S*(\+\+[a-z_]+\+\+)\S*/
 
-  REX_EXTRACT_VARIABLES = /\S*(\{\{[a-zA-Z]+\}\})\S*/
-
-  def extract_variables()
-    self.texto_es.scan(Reporte::REX_EXTRACT_DATA).flatten
+  def extract_variables(pattern)
+    self.texto_es.scan(pattern).flatten
   end
 
-  def generate_variables()
-    @variables = self.extract_variables().collect{|variable| variable.delete("**")}
+  # 
+  def generate_variables(pattern, keys)
+    @variables = self.extract_variables(pattern).collect{|variable| variable.delete(keys)}
   end
 
   def texto_i18n
@@ -22,10 +22,18 @@ class Reporte < ActiveRecord::Base
     end
   end
 
-  def extract_text()
-    results = [self.texto_i18n]
+  def texto_i18n=(text)
+    if I18n.locale == :es
+      texto_es = text
+    else
+      texto_en = text
+    end
+  end
+
+  def extract_text(pattern)
+    results = [@template]
     results_temp = []
-    self.extract_variables().each do |variable|
+    self.extract_variables(pattern).each do |variable|
       count = 0
       results.each do |result|        
         results_temp[count] = result.split(variable)
@@ -36,31 +44,33 @@ class Reporte < ActiveRecord::Base
     @texts = results
   end
 
-  def prepare_report
-    extract_text
-    generate_variables
-  end
-
-
-  # simple case for html or text
-  def generate_report()
-    prepare_report
+  # Concats variables and prepare data and report for create pdf
+  def prepare_report(instancia, pattern = Reporte::REX_EXTRACT_DATA, keys = "**")
+    @template = texto_i18n
+    extract_text(REX_EXTRACT_VARIABLES)
+    generate_variables(REX_EXTRACT_VARIABLES, "++")
     result = ""
     index = 0
+
     @texts.each do |text|
       result << text
-      result << self.send(@variables[index])
+      result << instancia.send(@variables[index]) if @variables[index]
       index += 1
     end
-    return result
+    
+    @template = result
+    extract_text(pattern)
+    generate_variables(pattern, keys)
   end
 
   # generate report in pdf
   def to_pdf(data)
-    prepare_report
     reporte = nombre_clase.constantize.new(:page_size => 'LEGAL', :page_layout => :landscape )
+    prepare_report(reporte)
     reporte.dataset = data
-    #reporte.marca = data
+    if data.carta
+      reporte.observacion = data.carta
+    end
     index = 0
     @texts.each do |text|
       reporte.text(text, :inline_format => true)
@@ -74,7 +84,7 @@ class Reporte < ActiveRecord::Base
   def self.crear_reporte(reporte_marca)
     if reporte_marca.importacion_id?
       report = Reporte.find_by_clave("cruce_report")
-      report.to_pdf(reporte_marca)
+      report.to_pdf(reporte_marca)      
     else
       report = Reporte.find_by_clave("busqueda_report")
       report.to_pdf(reporte_marca)

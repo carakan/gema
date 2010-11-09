@@ -6,18 +6,18 @@
 <br />
 
 
-<%= form_tag cruce_importaciones_path(:importacion_id => @importacion.id), :method => :get  do %>
-  <%= hidden_field_tag :importacion_id, params[:importacion_id] %>
-  <%= text_field_tag :nombre_marca %>
-  <%= submit_tag "Buscar" %>
-<% end %>
-<%= link_to "Borra busqueda", cruce_importaciones_path(:importacion_id => @importacion.id), :class => 'fl' %>
+<p>
+  <%= form_tag cruce_importaciones_path(:importacion_id => @importacion.id), :method => :get  do %>
+    <%= hidden_field_tag :importacion_id, params[:importacion_id] %>
+    <%= text_field_tag :nombre_marca %>
+    <%= submit_tag "Buscar" %>
+  <% end %>
+  <%= link_to "Borra busqueda", cruce_importaciones_path(:importacion_id => @importacion.id), :class => 'fl' %>
+</p>
 
-<br />
-<br />
-<br />
-
-
+<br/>
+<br/>
+<div class="clear"></div>
 
 <%= @will = will_paginate @marcas %>
 

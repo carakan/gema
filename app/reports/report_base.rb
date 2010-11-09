@@ -4,7 +4,7 @@
 class ReportBase < Prawn::Document
   attr_accessor :dataset, :date_report, :name_person, :marca, :observacion
 
-  def miniFicha
+  def mini_ficha
     if @marca.nil?
       @marca = Marca.first
     end
@@ -39,11 +39,11 @@ class ReportBase < Prawn::Document
     end
   end
 
-  def fechaReporte
+  def fecha_reporte
     if @date_report.nil?
       @date_report = Date.today
     end
-    text "La Paz, #{I18n.l(@date_report, :format => :long)}"
+    "La Paz, #{I18n.l(@date_report, :format => :long)}"
   end
 
   def logo_orpan
@@ -51,9 +51,5 @@ class ReportBase < Prawn::Document
       image "#{Rails.root}/public/images/logo-orpan.jpg", :vposition => -30, :fit => [100, 100]
     end
     stamp("logo_orpan")
-  end
-
-  def logoOrpan
-    logo_orpan
   end
 end
