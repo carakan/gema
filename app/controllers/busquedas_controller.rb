@@ -16,16 +16,17 @@ class BusquedasController < ApplicationController
   end
 
   def cruce
-
     @marca = Marca.find(params[:marca_id])
     query = { :busqueda => @marca.nombre, :clases => (1..45).to_a.join(","), 
       :propia => true, :id => @marca.id, :clase_id => @marca.clase_id }
     @importacion = Importacion.find(params[:importacion_id])
+    
     @consulta = Consulta.find(params[:consulta_id]) unless params[:consulta_id].nil?
+    @consulta ? @consulta_detalles = @consulta.consulta_detalles.map(&:marca_id) : @consulta_detalles = []
 
     @busqueda = Busqueda.realizar_busqueda(query)
 
-    @representantes = preparar_representantes() # BusquedasController#preparar_representantes
+    @representantes = Busqueda.preparar_representantes(@busqueda)
     @busq = BusquedaVacia.new
   end
 
@@ -38,9 +39,4 @@ class BusquedasController < ApplicationController
     @busq = BusquedaVacia.new
   end
 
-private
-  def preparar_representantes()
-    representante_ids = ( @busqueda.map(&:agente_ids_serial) + @busqueda.map(&:titular_ids_serial) ).flatten.uniq
-    Representante.where(:id => representante_ids ).inject({})  { |h,v| h[v.id] = v; h } 
-  end
 end
