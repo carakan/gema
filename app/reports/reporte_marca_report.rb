@@ -31,7 +31,7 @@ class ReporteMarcaReport < ReportBase
   end
 
   
-  def tablaReporte
+  def tabla_reporte
     tabla(@dataset)
   end
 

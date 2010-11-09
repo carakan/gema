@@ -4,7 +4,7 @@
 class ReportBase < Prawn::Document
   attr_accessor :dataset, :date_report, :name_person, :marca, :observacion
 
-  def miniFicha
+  def mini_ficha
     if @marca.nil?
       @marca = Marca.first
     end
@@ -39,7 +39,7 @@ class ReportBase < Prawn::Document
     end
   end
 
-  def fechaReporte
+  def fecha_reporte
     if @date_report.nil?
       @date_report = Date.today
     end
@@ -52,10 +52,4 @@ class ReportBase < Prawn::Document
     end
     stamp("logo_orpan")
   end
-
-  def logoOrpan
-    logo_orpan
-  end
-
-  
 end

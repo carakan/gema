@@ -1,17 +1,16 @@
 class Reporte < ActiveRecord::Base
-
   attr_accessor :variables, :texts
 
-  REX_EXTRACT_DATA = /\S*(\*\*[a-zA-Z]+\*\*)\S*/
+  REX_EXTRACT_DATA = /\S*(\*\*[a-z_]+\*\*)\S*/
 
-  REX_EXTRACT_VARIABLES = /\S*(\{\{[a-zA-Z]+\}\})\S*/
+  REX_EXTRACT_VARIABLES = /\S*(\{\{[a-z_]+\}\})\S*/
 
-  def extract_variables()
-    self.texto_es.scan(Reporte::REX_EXTRACT_DATA).flatten
+  def extract_variables(pattern = Reporte::REX_EXTRACT_DATA)
+    self.texto_es.scan(pattern).flatten
   end
 
-  def generate_variables()
-    @variables = self.extract_variables().collect{|variable| variable.delete("**")}
+  def generate_variables(keys = "**")
+    @variables = self.extract_variables().collect{|variable| variable.delete(keys)}
   end
 
   def texto_i18n
@@ -63,7 +62,6 @@ class Reporte < ActiveRecord::Base
     if data.carta
       reporte.observacion = data.carta
     end
-    #reporte.marca = data
     index = 0
     @texts.each do |text|
       reporte.text(text, :inline_format => true)
@@ -77,9 +75,7 @@ class Reporte < ActiveRecord::Base
   def self.crear_reporte(reporte_marca)
     if reporte_marca.importacion_id?
       report = Reporte.find_by_clave("cruce_report")
-      report.observacion = reporte_marca.carta
-      report.to_pdf(reporte_marca)
-      
+      report.to_pdf(reporte_marca)      
     else
       report = Reporte.find_by_clave("busqueda_report")
       report.to_pdf(reporte_marca)
