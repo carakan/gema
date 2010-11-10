@@ -56,7 +56,7 @@ class ConsultasController < ApplicationController
       @consulta = Consulta.new(params[:consulta])
 
       if @consulta.save
-        redirect_to cruce_importaciones_url(:importacion_id => @consulta[:importacion_id], :page => @page), :notice => "Se ha almacenado el cruce"
+        redirect_to "/consultas/#{@consulta.id}?page=#{@page}", :notice => "Se ha almacenado el cruce"
       end
     else
       Consulta.descartar( params[:consulta] )

@@ -64,7 +64,7 @@
       	<td><%= cd.marca.try(:tipo_signo) %></td>
         <td><%= cd.marca.try(:clase) %></td>
         <td>
-          <%= tipo_busqueda cd.tipo %>
+          <%= tipo_busqueda cd.tipo_de_busqueda %>
         </td>
         <td>
           <%= cd.marca.agentes.join(", ") %>

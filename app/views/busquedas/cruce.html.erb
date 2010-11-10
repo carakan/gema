@@ -71,7 +71,9 @@
       <% @busqueda.each_with_index do |b, i| %>
         <tr>
           <td>
-            <%= check_box_tag "consulta[consulta_detalles_attributes][#{i}][marca_id]", b.id, @consulta_detalles.include?(b.id), 'data-tipo' => '' %>
+            <% @sel = @consulta_detalles.include?(b.id) %>
+            <%= hidden_field_tag "consulta[consulta_detalles_attributes][#{i}][tipo_de_busqueda]", b.pos if @sel %>
+            <%= check_box_tag "consulta[consulta_detalles_attributes][#{i}][marca_id]", b.id, @sel, 'data-tipo_de_busqueda' => b.pos %>
           </td>
           <td>
             <label for="consulta_consulta_detalles_attributes_<%= i %>_marca_id" class="propia"><%= b.nombre %></label>
@@ -119,21 +121,21 @@
       }
     });
     // Adicion de un hidden para todos los elementos seleccioandos
-    /*
     $('input:checkbox').click(function() {
       if( $(this).attr('checked') ) {
         var input = document.createElement('input');
+        var val = $(this).attr('data-tipo_de_busqueda');
+        var name = $(this).attr("name").replace(/\[marca_id\]/, "[tipo_de_busqueda]");
         $(input).attr({
-          'name': $(this).attr('name').replace(/marcas/, 'tipos'),
+          'name': name,
           'type': 'hidden',
-          'value': $(this).attr('data-tipo')
+          'value': val
         });
         $(this).after(input);
       }else {
         $(this).siblings('input:hidden').remove();
       }
     });
-    */  
   })(jQuery);
 
 </script>
