@@ -7,6 +7,7 @@ class Consulta < ActiveRecord::Base
   before_destroy :aumentar_cruces_pendientes, :if => :importacion_id?
   before_save :serializar_marca_ids
   before_save :serializar_parametros
+  before_save :borrar_consultas_anteriores
 
   belongs_to :marca
   belongs_to :usuario
@@ -17,10 +18,13 @@ class Consulta < ActiveRecord::Base
 
   validates_presence_of :comentario
 
+  attr_accessor :consulta_id
+
   serialize :parametros
   serialize :marca_ids_serial
 
   PARAMS = [:clases, :tipo_busqueda, :fecha_ini, :fecha_fin]
+
 
   # Convierte los parametros que se utilizaron en la busqueda
   # como las clases, rangos de fechas y otros a un hash
@@ -56,7 +60,6 @@ class Consulta < ActiveRecord::Base
       :parametros => convertir_parametros_a_hash(params).to_yaml,
       :busqueda => params[:busqueda]
     )
-
     klass.set_importacion_id(params)
     klass.set_marca_id(params)
 
@@ -89,12 +92,11 @@ class Consulta < ActiveRecord::Base
   # la busqueda y poder presentar
   def instanciar_marcas_detalles(params)
     @marca_ids ||= []
-    params[:marcas].keys.map(&:to_i).sort.each do |k|
+    params[:marcas].keys.sort.each do |k|
       # Array de marcas que mejora la velocidad para el listado
-      k = k.to_s
       self.consulta_detalles.build(
-        :marca_id => params[:marcas][k],
-        :tipo => params[:tipos][k]
+        :marca_id => params[:marcas][k]#,
+        #:tipo => params[:tipos][k]
       )
     end
   end
@@ -144,4 +146,10 @@ class Consulta < ActiveRecord::Base
     self.parametros = self.parametros
   end
 
+  # En caso de que en un cruce se realize una nueva consulta se borra las anteriores
+  def borrar_consultas_anteriores
+    unless self.importacion_id.blank?
+      Consulta.destroy(Consulta.where(:marca_id => self.marca_id).map(&:id) )
+    end
+  end
 end

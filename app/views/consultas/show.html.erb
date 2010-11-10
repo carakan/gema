@@ -1,10 +1,27 @@
+<% unless @consulta.importacion_id.nil? %>
+  <div class="breadcrumps">
+    <%= link_to "Lista de importaciones", importaciones_path %> > 
+    <%= link_to "Cruce", cruce_importaciones_path(:importacion_id =>  @consulta.importacion, :page => @page ) %> >
+    <%= @consulta.marca %>
+  </div>
+<% end %>
 <h1><%= titulo_consulta @consulta %></h1>
 
+<% if @consulta.importacion.nil? %>
+  <p class="links">
+    <%= link_to "Lista", consultas_path, :class => 'list' %>
+  </p>
+<% end %>
+
 <% unless @consulta.marca.nil? %>
-<p>
-  <label>Marca:</label>
-  <%=h @consulta.marca %>
-</p>
+  <% if @consulta.descartada?  -%>
+    <h3 class="red">Consulta descartada</h3>
+  <% end -%>
+
+  <p>
+    <label>Marca:</label>
+    <%=h @consulta.marca %>
+  </p>
 <% end %>
 
 <p>
@@ -42,12 +59,12 @@
     <% @consulta.consulta_detalles.each do |cd| %>
       <tr>
         <td>
-          <%= cd.try(:marca) %>
+          <span class="propia"><%= cd.try(:marca) %></span>
         </td>
       	<td><%= cd.marca.try(:tipo_signo) %></td>
         <td><%= cd.marca.try(:clase) %></td>
         <td>
-          <%= tipo_busqueda cd.tipo %>
+          <%= tipo_busqueda cd.tipo_de_busqueda %>
         </td>
         <td>
           <%= cd.marca.agentes.join(", ") %>
@@ -59,9 +76,3 @@
     <% end %>
   </table>
 
-  <br /><br />
-  <% unless @consulta.importacion.nil? %>
-    <%= link_to "Volver a importación", cruce_importaciones_path(:importacion_id =>  @consulta.importacion, :page => @page ), :class => 'back' %>
-  <% else %>
-    <%= link_to "Lista", consultas_path, :class => 'list' %>
-  <% end %>

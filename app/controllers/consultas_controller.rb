@@ -5,7 +5,7 @@ class ConsultasController < ApplicationController
   before_filter :authenticate_usuario!
 
   before_filter :set_busqueda, :only => [:new, :create]
-  before_filter :borrar_consulta, :only => [:new]  
+  #before_filter :borrar_consulta, :only => [:new]
   # GET /consultas
   # GET /consultas.xml
   def index
@@ -34,14 +34,9 @@ class ConsultasController < ApplicationController
   # GET /consultas/new
   # GET /consultas/new.xml
   def new
-    if params[:commit] == 'Descartar'
-      Consulta.descartar( params )
-      redirect_to cruce_importaciones_url(:importacion_id => params[:importacion_id], :page => @page), :notice => "Se ha descartado el cruce"
-      return
-    end
+    descartar_cruce if params[:commit] == 'Descartar'
 
     @consulta = Consulta.nueva(params)
-
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @consulta }
@@ -52,6 +47,23 @@ class ConsultasController < ApplicationController
   #def edit
   #  @consulta = Consulta.find(params[:id])
   #end
+
+  # POST /consultas/cruce
+  def cruce
+    @consulta = Consulta.new(params[:consulta])
+
+    if params[:commit] == "Salvar"
+      @consulta = Consulta.new(params[:consulta])
+
+      if @consulta.save
+        redirect_to "/consultas/#{@consulta.id}?page=#{@page}", :notice => "Se ha almacenado el cruce"
+      end
+    else
+      Consulta.descartar( params[:consulta] )
+      redirect_to cruce_importaciones_url(:importacion_id => @consulta[:importacion_id], :page => @page), :notice => "Se ha descartado el cruce"
+    end
+    #importacion_id=1&marca_id=36&page=1&consulta_id=6
+  end
 
   # POST /consultas
   # POST /consultas.xml
@@ -108,6 +120,12 @@ private
     elsif
       @busqueda = params[:consulta][:busqueda]
     end
+  end
+
+  def descartar_cruce
+    Consulta.descartar( params )
+    redirect_to cruce_importaciones_url(:importacion_id => params[:importacion_id], :page => @page), :notice => "Se ha descartado el cruce"
+    return
   end
 
   # Borra una consulta previamente realizada

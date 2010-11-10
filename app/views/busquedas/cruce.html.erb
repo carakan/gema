@@ -4,6 +4,10 @@
 
 <h1>"<%= @marca.nombre %>"</h1>
 
+<p>
+  <%= ver_cruce(@consulta, :class => 'ajax') unless params[:consulta_id].nil? %>
+</p>
+
 <a class="more" href="javascript:">Ver más</a>
 <div class="hidden">
   <div class="half fl" id="div1">
@@ -39,20 +43,25 @@
 
 <h2 class="dark">Resultados del cruce</h2>
 
-<%= form_tag new_consulta_path, :method => 'get' do -%>
-  <%= hidden_field_tag "clases", (1..45).to_a.join(",") %>
-  <%= hidden_field_tag "busqueda", @marca.nombre %>
+<%= semantic_form_for @con, :url => cruce_consultas_path do |f| -%>
+  <%= f.input :consulta_id, :as => :hidden %>
+  <%= f.input :busqueda, :as => :hidden, :as => :hidden %>
+  <%= f.input :parametros, :as => :hidden, :input_html => { :value => f.object.parametros.to_yaml } %>
+  <%= f.input :marca_id, :as => :hidden %>
+  <%= f.input :importacion_id, :as => :hidden %>
+
   <%= hidden_field_tag "page", @page %>
 
-  <%= hidden_field_tag "marca_id", params[:marca_id] %>
-  <%= hidden_field_tag "importacion_id", params[:importacion_id] unless params[:importacion_id].nil? %>
-  <%= hidden_field_tag "consulta_id", params[:consulta_id] unless params[:consulta_id].nil? %>
-
+  <%= f.input :comentario, :as => :text, :input_html => {:cols => 100} %>
+  <p>
+    <%= f.submit 'Salvar' unless @busqueda.blank? %>
+    <%= f.submit 'Descartar cruce', :class => 'red' unless @busqueda.blank? %>
+  </p>
   <% unless @busqueda.blank? %>
 
     <table class="decorated .nolink" id="tabla-cruce">
       <tr>
-        <th><% check_box_tag("select_all") %></th>
+        <th></th>
         <th>Nombre</th>
         <th>Clase</th>
         <th>Tipo de<br/> busqueda</th>
@@ -62,9 +71,13 @@
       <% @busqueda.each_with_index do |b, i| %>
         <tr>
           <td>
-            <%= check_box_tag "marcas[#{i}]", b.id, @consulta_detalles.include?(b.id) %>
+            <% @sel = @consulta_detalles.include?(b.id) %>
+            <%= hidden_field_tag "consulta[consulta_detalles_attributes][#{i}][tipo_de_busqueda]", b.pos if @sel %>
+            <%= check_box_tag "consulta[consulta_detalles_attributes][#{i}][marca_id]", b.id, @sel, 'data-tipo_de_busqueda' => b.pos %>
           </td>
-          <td><label for="marca<%= b.id %>" class="propia"><%= b.nombre %></label></td>
+          <td>
+            <label for="consulta_consulta_detalles_attributes_<%= i %>_marca_id" class="propia"><%= b.nombre %></label>
+          </td>
           <td><%= b.clase_id %></td>
           <td><%= tipo_busqueda b.pos %></td>
           <td><%= buscar_representante(b.agente_ids_serial, @representantes) %></td>
@@ -74,53 +87,54 @@
 
     </table>
 
-    <br />
-    <%= submit_tag "Pre reporte", :id => 'seleccionar' %>
   <% end %>
 
-  <%= submit_tag "Descartar todo", :class => 'red', :id => 'descartar' if params[:importacion_id] %>
-
+  <p>
+    <%= f.submit 'Salvar' unless @busqueda.blank? %>
+    <%= f.submit 'Descartar cruce', :class => 'red' unless @busqueda.blank? %>
+  </p>
 <% end %>
-<br />
-<br />
-<%= ver_cruce(@consulta, :class => 'ajax') unless params[:consulta_id].nil? %>
+
+
 <script type="text/javascript">
   (function($) {
-    $("#select_all").change(function(){
-      $("#tabla-cruce").find("td input:checkbox").click();
-    });
-    // Confirmacion de borrado de cruce y verificacion de nuevo cruce
-    $('#seleccionar').click(function(e) {
+
+    function validarForma() {
+      msg = "";
+      if($('#consulta_comentario').val().trim() == "") {
+        msg = "Debe ingresar un comentario";
+      }
       if ( $('input:checkbox:checked').length <= 0 ) {
-        alert('Debe seleccionar al menos una marca una marca');
-        return false;
-      }else{
-        if($('#consulta_id').length > 0) {
-          if( confirm('Esta seguro de borrar el anterior cruce realizado') ) {
-            return true
-          }else{
-            return false;
-          }
-        }else {
-          return true;
+        msg = "Debe seleccionar al menos una marca";
+      }
+      return msg;
+    }
+
+    $('input:submit').click(function(e) {
+      var target = e.target;
+      if($(target).val() == "Salvar") {
+        var msg = validarForma();
+        if(msg != "") {
+          alert(msg);
+          return false;
         }
       }
-    
     });
-
+    // Adicion de un hidden para todos los elementos seleccioandos
     $('input:checkbox').click(function() {
       if( $(this).attr('checked') ) {
         var input = document.createElement('input');
+        var val = $(this).attr('data-tipo_de_busqueda');
+        var name = $(this).attr("name").replace(/\[marca_id\]/, "[tipo_de_busqueda]");
         $(input).attr({
-          'name': $(this).attr('name').replace(/marcas/, 'tipos'),
+          'name': name,
           'type': 'hidden',
-          'value': $(this).attr('data-tipo')
+          'value': val
         });
         $(this).after(input);
       }else {
         $(this).siblings('input:hidden').remove();
       }
-      //$(this).siblings('input:hidden').attr('disabled', $(this).attr('checked') );
     });
   })(jQuery);
 
