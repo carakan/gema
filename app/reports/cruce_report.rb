@@ -13,4 +13,20 @@ class CruceReport < ReporteMarcaReport
       column(0..5).style(:width => 80)
     end
   end
+
+  def edicion_gaceta
+    "123"
+  end
+
+  def numero_gaceta
+    "123"
+  end
+
+  def fecha_gaceta
+    "123"
+  end
+
+  def analisis
+    text(@observacion.to_s, :inline_format => true)
+  end
 end
