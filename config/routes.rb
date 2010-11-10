@@ -23,7 +23,11 @@ Rails.application.routes.draw do
 
   resources :contactos
 
-  resources :consultas
+  resources :consultas do
+    collection do
+      post :cruce 
+    end
+  end
 
   resources :importaciones do
     collection do

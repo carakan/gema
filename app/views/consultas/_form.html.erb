@@ -2,6 +2,7 @@
   <%= hidden_field_tag :page, @page %>
   <%= hidden_field_tag :marca_id, params[:marca_id] %>
   <%= hidden_field_tag :importacion_id, params[:importacion_id] %>
+  <%= hidden_field_tag :consulta_id, params[:consulta_id] %>
 
   <%= f.input :busqueda, :as => :hidden %>
   <%= f.input :parametros, :value => f.object.parametros.to_yaml, :as => :hidden %>
