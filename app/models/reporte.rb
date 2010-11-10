@@ -65,7 +65,9 @@ class Reporte < ActiveRecord::Base
 
   # generate report in pdf
   def to_pdf(data)
-    reporte = nombre_clase.constantize.new(:page_size => 'LEGAL', :page_layout => :landscape )
+    reporte = nombre_clase.constantize.new(:page_size => 'LETTER', :page_layout => :landscape )
+    #reporte.number_pages "<page> de <total>", [reporte.bounds.right - 50, 0]
+    reporte.font_size 9
     prepare_report(reporte)
     reporte.dataset = data
     if data.carta
