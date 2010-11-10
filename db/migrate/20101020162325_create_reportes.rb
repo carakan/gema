@@ -43,30 +43,42 @@ Results
 
     texto_cruce_es =<<-RTM
 **logo_orpan**
-**fecha_reporte**
+++fecha_reporte++
 
-Estimados Señores:
+Estimados señores:
 
-La presente es para informarles que en la edicion Nro
-
-Cruce de datos, 
+La presente es para informarles que en la edicion Nro ++edicion_gaceta++ de la Gaceta Oficial de Bolivia Nro ++numero_gaceta++ puesta en circulación en fecha ++fecha_gaceta++ se ha publicado la siguiente solicitud de registro de signo distintivo
 
 **mini_ficha**
 
+que consideramos similar a la (s) siguientes marca (s) a nombre de <b>TITULAR</b>:
+
 **tabla_reporte**
+
+**analisis**
+
+Estaremos atentos a sus instrucciones sobre el particular.
+
+Cordiales saludos, 
       RTM
 
       texto_cruce_en =<<-RTM
 **logo_orpan**
-**fecha_reporte**
+++fecha_reporte++
 
 Dear Sirs:
 
-On  , the following
+On ++fecha_gaceta++, the following trademark application was published in the Bolivian Official Gazzette issue Nr. (número de la Gaceta) filed by TITULAR:
 
 **mini_ficha**
 
+Our watch service system has identified this application to be similar to the following trademark owned by TITULAR:
+
 **tabla_reporte**
+
+**analisis**
+
+Yours faithfully,
       RTM
 
     Reporte.create(:texto_es => texto_busqueda_es, :texto_en => texto_busqueda_en, :nombre_clase => "BusquedaReport", :clave => "busqueda_report")

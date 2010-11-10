@@ -2,13 +2,15 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  "nombre marca": Name
-  "clase marca": Class
+  "nombre marca": Trademark
+  "clase marca": Int. Class
   "numero solicitud marca": Numero Solucitud
   "fecha publicacion marca": Fecha Publicacion
   "numero publicacion marca": Numero Publicacion
   "titulares marca": Titulares
   "observaciones marca": Observations
+  "tipo marca": Type
+  "imagen marca": Diseno
 
   denominacion: "Denomination"
   figurativa: "Figurative"
