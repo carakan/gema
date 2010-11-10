@@ -25,8 +25,7 @@ class ReporteMarcaReport < ReportBase
     table( [ encabezado ] + data, :header => true, :width => 720) do
       row(0).style(:background_color => 'cccccc', :style => :bold)
       cells.style(:size => 8, :inline_format => true)
-      column(0).style(:width => 35)
-      column(1..5).style(:width => 100)
+      column(0..5).style(:width => 100)
     end
   end
 

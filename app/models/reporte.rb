@@ -65,8 +65,8 @@ class Reporte < ActiveRecord::Base
 
   # generate report in pdf
   def to_pdf(data)
+    I18n.locale = data.idioma
     reporte = nombre_clase.constantize.new(:page_size => 'LETTER', :page_layout => :landscape )
-    #reporte.number_pages "<page> de <total>", [reporte.bounds.right - 50, 0]
     reporte.font_size 9
     prepare_report(reporte)
     reporte.dataset = data
@@ -79,6 +79,7 @@ class Reporte < ActiveRecord::Base
       reporte.send(@variables[index]) if @variables[index]
       index += 1
     end
+    I18n.locale = :es
     reporte.render
   end
 
