@@ -10,49 +10,75 @@ class CreateReportes < ActiveRecord::Migration
     end
 
     texto_busqueda_es =<<-RTM
-**logoOrpan**
-**fechaReporte**
+**logo_orpan**
 
-Datos de la Busqueda simple
+<b>REPORTE DE BÚSQUEDA</b>
 
-**tablaReporte**
+Denominación:     ++palabra_busqueda++
+Clase (s) Int:    ++clase_en_busqueda++
+Fecha:    ++fecha_reporte++
+
+Resultados
+
+**tabla_reporte**
+
+**analisis**
     RTM
 
     texto_busqueda_en =<<-RTM
-**logoOrpan**
-**fechaReporte**
+**logo_orpan**
 
-Data for simple search
+<b>SEARCH REPORT</b>
 
-**tablaReporte**
+Word:     ++palabra_busqueda++
+Int. Class (es):    ++clase_en_busqueda++
+Date (dd/mm/yy):    ++fecha_reporte++
+
+Results
+
+**tabla_reporte**
+
+**analisis**
     RTM
 
     texto_cruce_es =<<-RTM
-**logoOrpan**
-**fechaReporte**
+**logo_orpan**
+++fecha_reporte++
 
-Estimados Señores:
+Estimados señores:
 
-La presente es para informarles que en la edicion Nro
+La presente es para informarles que en la edicion Nro ++edicion_gaceta++ de la Gaceta Oficial de Bolivia Nro ++numero_gaceta++ puesta en circulación en fecha ++fecha_gaceta++ se ha publicado la siguiente solicitud de registro de signo distintivo
 
-Cruce de datos, 
+**mini_ficha**
 
-**miniFicha**
+que consideramos similar a la (s) siguientes marca (s) a nombre de <b>TITULAR</b>:
 
-**tablaReporte**
+**tabla_reporte**
+
+**analisis**
+
+Estaremos atentos a sus instrucciones sobre el particular.
+
+Cordiales saludos, 
       RTM
 
       texto_cruce_en =<<-RTM
-**logoOrpan**
-**fechaReporte**
+**logo_orpan**
+++fecha_reporte++
 
 Dear Sirs:
 
-On  , the following
+On ++fecha_gaceta++, the following trademark application was published in the Bolivian Official Gazzette issue Nr. (número de la Gaceta) filed by TITULAR:
 
-**miniFicha**
+**mini_ficha**
 
-**tablaReporte**
+Our watch service system has identified this application to be similar to the following trademark owned by TITULAR:
+
+**tabla_reporte**
+
+**analisis**
+
+Yours faithfully,
       RTM
 
     Reporte.create(:texto_es => texto_busqueda_es, :texto_en => texto_busqueda_en, :nombre_clase => "BusquedaReport", :clave => "busqueda_report")

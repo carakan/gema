@@ -22,16 +22,15 @@ class ReporteMarcaReport < ReportBase
   # metodo que crea la tabla con las comparaciones
   def tabla(reporte_marca)
     data = datos(reporte_marca)
-    table( [ encabezado ] + data, :header => true, :width => 550) do
+    table( [ encabezado ] + data, :header => true, :width => 720) do
       row(0).style(:background_color => 'cccccc', :style => :bold)
-      cells.style(:size => 10, :inline_format => true)
-      column(0).style(:width => 140)
-      column(1).style(:width => 140)
+      cells.style(:size => 8, :inline_format => true)
+      column(0..5).style(:width => 100)
     end
   end
 
   
-  def tablaReporte
+  def tabla_reporte
     tabla(@dataset)
   end
 
@@ -56,22 +55,13 @@ class ReporteMarcaReport < ReportBase
 
   # Prepara los datos para la marca
   def datos_marca(marca)
-    if I18n.locale == :es
-      <<-COM
-      <b>#{ marca.nombre }</b>
-      Clase #{ marca.clase_id }
-      #{ marca.tipo_signo }
-      <i>#{ marca.estado_fecha.nil? ? '' : I18n.l(marca.estado_fecha, :format => :date) }</i>
-      #{ marca.titulares.join(", ") }
-      COM
-    else
-      <<-COM
-      <b>#{ marca.nombre }</b>
-      Class #{marca.clase_id}
-      #{ marca.tipo_signo.nil? ? '' : I18n.t(marca.tipo_signo.nombre.cambiar_acentos.downcase) }
-      <i>#{ marca.estado_fecha.nil? ? '' : I18n.l( marca.estado_fecha, :format => :date) }</i>
-      #{ marca.titulares.join(", ") }
-      COM
-    end
+    datos_array = []
+    datos_array[0] = "#{ marca.nombre }"
+    datos_array[1] = "#{ marca.tipo_signo }"
+    datos_array[2] = "#{ marca.clase_id }"
+    datos_array[3] = "#{ marca.numero_registro if marca.numero_registro }"
+    datos_array[4] = "#{ I18n.l(marca.estado_fecha, :format => :date) if marca.estado_fecha}"
+    datos_array[5] = "#{ marca.titulares.join(", ") }"
+    datos_array
   end
 end
