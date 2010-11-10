@@ -22,11 +22,10 @@ class ReporteMarcaReport < ReportBase
   # metodo que crea la tabla con las comparaciones
   def tabla(reporte_marca)
     data = datos(reporte_marca)
-    table( [ encabezado ] + data, :header => true, :width => 930) do
+    table( [ encabezado ] + data, :header => true, :width => 720) do
       row(0).style(:background_color => 'cccccc', :style => :bold)
-      cells.style(:size => 10, :inline_format => true)
-      column(0).style(:width => 40)
-      column(1..5).style(:width => 140)
+      cells.style(:size => 8, :inline_format => true)
+      column(0..5).style(:width => 100)
     end
   end
 

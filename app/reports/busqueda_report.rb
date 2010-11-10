@@ -28,10 +28,20 @@ class BusquedaReport < ReporteMarcaReport
   end
 
   def palabra_busqueda
-    "Busqueda"
+    "#{@dataset.reporte_marca_detalles.first.busqueda if @dataset}"
   end
 
   def clase_en_busqueda
     "Aca van las clases"
+  end
+
+  def tabla(reporte_marca)
+    data = datos(reporte_marca)
+    table( [ encabezado ] + data, :header => true, :width => 720) do
+      row(0).style(:background_color => 'cccccc', :style => :bold)
+      cells.style(:size => 8, :inline_format => true)
+      column(0).style(:width => 35)
+      column(1..5).style(:width => 100)
+    end
   end
 end
