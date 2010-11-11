@@ -1,4 +1,4 @@
-<h1>Busquedas realizadas</h1>
+<h1>Busquedas realizadas xxx</h1>
 
 <%= link_to "Nueva busqueda", busquedas_path, :class => 'new fl' %>
 <%# link_to "Nuevo reporte", new_reporte_marca_path, :class => 'new', :id => 'nuevo_reporte' %>
@@ -9,9 +9,11 @@
 <table class="decorated">
   <tr>
     <th>Busqueda</th>
-    <th>Usuario</th>
+    <th>Gerencia</th>
+    <th>Agente</th>
     <th>Fecha</th>
-    <th>Resultados</th>
+    <th>Seleccionados</th>
+    <th>Usuario</th>
     <th></th>
     <th></th>
   </tr>
@@ -20,9 +22,11 @@
     <tr>
 
       <td><%=h  link_to consulta.busqueda, consulta %></td>
-      <td><%=h consulta.usuario %></td>
+      <td></td>
+      <td></td>
       <td><%= l consulta.created_at, :format => :short %></td>
       <td><%=h consulta.consulta_detalles.size %></td>
+      <td><%=h consulta.usuario %></td>
       <td>
         <%= link_to 'Borrar', consulta, :class => 'delete' %>
       </td>

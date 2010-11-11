@@ -65,8 +65,8 @@
       <tr>
         <th></th>
         <th>Nombre | Clase | Tipo de busqueda</th>
-        <th>Agentes</th>
         <th>Titulares</th>
+        <th>Agentes</th>
         <th></th>
       </tr>
       </thead>
@@ -82,8 +82,8 @@
           <td>
             <label for="consulta_consulta_detalles_attributes_<%= i %>_marca_id" class="propia"><%= b.nombre %> | <%= b.clase_id %> | <%= tipo_busqueda b.pos %></label>
           </td>
-          <td><%= b.agentes.join(", ") %></td>
           <td><%= b.titulares.join(", ") %></td>
+          <td><%= b.agentes.join(", ") %></td>
           <td><%= link_to("Reporte") if selected %></td>
         </tr>
       <% end %>
