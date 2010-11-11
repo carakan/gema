@@ -122,7 +122,12 @@ class Busqueda
   #   @param Hash
   #   @return String
   def self.condiciones_sql(params)
-    clases = params[:clases].split(",").map(&:to_i)
+    if params[:clases].is_a? String
+      clases = params[:clases].split(",").map(&:to_i)
+    else
+      clases = params[:clases].keys.map(&:to_i)
+    end
+
     sql = [ "WHERE res.clase_id IN (#{clases.join(', ')})" ]
 
     params[:fecha_ini], params[:fecha_fin] = transformar_fechas(params)
