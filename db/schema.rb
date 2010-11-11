@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101110165018) do
+ActiveRecord::Schema.define(:version => 20101111133558) do
 
   create_table "adjuntos", :force => true do |t|
     t.string   "nombre"
@@ -210,6 +210,8 @@ ActiveRecord::Schema.define(:version => 20101110165018) do
     t.string   "idioma",             :limit => 4
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "consulta_id"
+    t.string   "busqueda"
   end
 
   add_index "reporte_marcas", ["representante_id"], :name => "index_reporte_marcas_on_representante_id"
