@@ -33,8 +33,8 @@
       	<td><%= buscar_tipo_signo cd.object.marca.tipo_signo_id %></td>
         <td><%= buscar_clase cd.object.marca.clase_id %></td>
         <td>
-          <%= cd.hidden_field :tipo %>
-          <%= tipo_busqueda cd.object.tipo %>
+          <%= cd.hidden_field :tipo_de_busqueda %>
+          <%= tipo_busqueda cd.object.tipo_de_busqueda %>
         </td>
         <td>
           <%= cd.object.marca.agentes.join(", ") %>
