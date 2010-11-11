@@ -530,6 +530,8 @@ a.less {
   background-position: right 50%;
 }
 .half { width: 49%; }
+._25 { width: 24%; }
+._20 { width: 19%; }
 .fl { float: left; }
 .third li { width: 33%; }
 .third div { width: 33%; }

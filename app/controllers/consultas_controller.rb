@@ -34,8 +34,6 @@ class ConsultasController < ApplicationController
   # GET /consultas/new
   # GET /consultas/new.xml
   def new
-    descartar_cruce if params[:commit] == 'Descartar'
-
     @consulta = Consulta.nueva(params)
     respond_to do |format|
       format.html # new.html.erb

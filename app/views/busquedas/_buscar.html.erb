@@ -1,35 +1,71 @@
+<style type="text/css">
+  div.clases_grupos label{
+    display: inline-block !important; 
+  }
+  .clases_grupos fieldset{ 
+    float: left; 
+    margin: 10px 5px;
+  }
+
+  .clases_grupos fieldset legend{ 
+    cursor: pointer;
+  }
+
+  #clases_seleccionadas{
+    height: 15px;
+    font-weight: bold;
+  }
+</style>
 <form action="/busquedas" method="get", id="form_buscar" >
-  </ br>
   <div style="clear:both"></div>
   <div style="clear:both"></div>
   <%= text_field_tag :busqueda, params[:busqueda], :size => 40 %>
 
   <div style="clear:both"></div>
 
-  <div class="half fl">
+  <div class="">
+    <ul id="botones">
+    	<li>
+    		<a href="javascript:" data-clases="1,2,4">1, 2 y 4</a>
+    	</li>
+    	<li>
+    		<a href="javascript:" data-clases="3,5,10,44">3, 5, 10 y 44</a>
+    	</li>
+    	<li>
+    		<a href="javascript:" data-clases="6,14">6 y 14</a>
+    	</li>
+    	<li>
+    		<a href="javascript:" data-clases="7,8,9,11,21">7, 8, 9, 11 y 21</a>
+    	</li>
+    	<li>
+    		<a href="javascript:" data-clases="17,19,20,22">17,19,20 y 22</a>
+    	</li>
+    	<li>
+    		<a href="javascript:" data-clases="18,25">18 y 25</a>
+    	</li>
+    	<li>
+    		<a href="javascript:" data-clases="22,23,24,25,26">22,23,24,25 y 26</a>
+    	</li>
+    	<li>
+    		<a href="javascript:" data-clases="29,30,31">29,30 y 31</a>
+    	</li>
+    	<li>
+    		<a href="javascript:" data-clases="32,33">32 y 33</a>
+    	</li>
+    </ul>
+
+    
+
     <label for="clases">Clases</label>
-    <select id="clases" name="clases">
-      <%= options_for_select(BusquedaVacia.options, params[:clases]) %>
-    </select>
+
+    <div class="clases_grupos">
+      <fieldset>
+        <legend>1, 2 y 4</legend>
+      </fieldset>
+
     <input id="oneclass" name="una_clase" type="input" value="" style="display:none"/>
   </div>
 
-
-  <div class="half fl">
-    <label for="">Tipo de busqueda</label>
-    <label for="">
-      <%= radio_button_tag "tipo_busqueda", "prev", params[:tipo_busqueda] == 'prev', :id => 'tipo_busqueda_prev' %>
-      Preventiva</label>
-    <label for="">
-      <%= radio_button_tag "tipo_busqueda", "prep", params[:tipo_busqueda] == 'prep', :id => 'tipo_busqueda_prep' %>
-      Prepublicación</label>
-
-    <div id="fechas" style="<%= "display:none" unless params[:tipo_busqueda] == "prep" %>">
-        <label for="">Fechas</label>
-        <input id="fecha_ini" name="fecha_ini" type="text" class="date" value="<%= params[:fecha_ini] %>" />
-        <input id="fecha_fin" name="fecha_fin" type="text" class="date" value="<%= params[:fecha_fin] %>" />
-    </div>
-  </div>
 
   <div style="clear:both"></div>
 
@@ -55,6 +91,34 @@ $(document).ready(function() {
       return true;
     }
   });
+
+  function mostrarClases() {
+    var html = $('.clases_grupos').find("input:checkbox").map(function(i, el) {
+      if($(el).attr("checked")) {
+        return 1 * $(el).val();
+      }
+    }).get();
+    $('#clases_seleccionadas').html(html.join(", "));
+  }
+
+  // Evento para los legend
+  $('.clases_grupos').find("legend").live('click', function() {
+    var fieldset = $(this).parent("fieldset");
+    if(fieldset.data('checked')) {
+      fieldset.find("input:checkbox").attr("checked", false);
+      fieldset.data("checked", false);
+    }else {
+      fieldset.find("input:checkbox").attr("checked", true);
+      fieldset.data("checked", true);
+    }
+    //mostrarClases();
+  });
+
+  // Evento para los checkbox
+  /*$('.clases_grupos').find("input:checkbox").live('click', function() {
+    mostrarClases();
+  });*/
+
 });
 </script>
 
