@@ -59,7 +59,9 @@
   </p>
   <% unless @busqueda.blank? %>
 
-    <table class="decorated .nolink" id="tabla-cruce">
+    <table class="decorated nolink tablesorter" id="tabla-cruce">
+      <thead>
+
       <tr>
         <th></th>
         <th>Nombre | Clase | Tipo de busqueda</th>
@@ -67,10 +69,13 @@
         <th>Titulares</th>
         <th></th>
       </tr>
+      </thead>
+
       <% @busqueda.each_with_index do |b, i| %>
         <% selected = @consulta_detalles.include?(b.id) %>
         <tr class="<%= "select" if selected %>">
           <td>
+            <%= selected ? 1 : 0 %>
             <%= hidden_field_tag "consulta[consulta_detalles_attributes][#{i}][tipo_de_busqueda]", b.pos if selected %>
             <%= check_box_tag "consulta[consulta_detalles_attributes][#{i}][marca_id]", b.id, selected, 'data-tipo_de_busqueda' => b.pos %>
           </td>
@@ -96,7 +101,7 @@
 
 <script type="text/javascript">
   (function($) {
-
+    $("#tabla-cruce").tablesorter();
     function validarForma() {
       msg = "";
       if($('#consulta_comentario').val().trim() == "") {
@@ -134,6 +139,8 @@
         $(this).siblings('input:hidden').remove();
       }
     });
+
+
   })(jQuery);
 
 </script>
