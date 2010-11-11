@@ -3,6 +3,7 @@
 <table class="decorated nwl">
 	<tr>
 		<th>Reporte</th>
+                <th></th>
 		<th>Cliente</th>
     <th>Fecha</th>
     <th></th>
@@ -10,6 +11,7 @@
   <% @reporte_marcas.each do |r| %>
     <tr>
     	<td><%= reporte r %></td>
+        <td><%= r.idioma %></td>
       <td><%= r.representante %></td>
     	<td><%= l r.updated_at %></td>
       <td>
