@@ -593,7 +593,6 @@ ul.menu li:hover ul {
   background: transparent url(../images/icons/attach.png) no-repeat;
   display: inline-block;
 }
-.propia { background-color: #e4ffe4; }
 .mime .png {
   padding-left: 16px;
   background: transparent url(../images/icons/picture.png) no-repeat top left;
@@ -681,3 +680,4 @@ a.desc {
 .breadcrumps a { font-weight: normal; }
 .ui-dialog .links { display: none; }
 .ui-dialog .breadcrumps { display: none; }
+#tabla-cruce tr.select { background-color: #c2e0ef; }

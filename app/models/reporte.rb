@@ -1,5 +1,5 @@
 class Reporte < ActiveRecord::Base
-  attr_accessor :variables, :texts, :template
+  attr_accessor :variables, :texts, :template, :engine_report
 
   REX_EXTRACT_DATA = /\S*(\*\*[a-z_]+\*\*)\S*/
 
@@ -63,34 +63,42 @@ class Reporte < ActiveRecord::Base
     generate_variables(pattern, keys)
   end
 
+  # Set the class report for generate
+  def self.set_instance(name_report)
+    template = Reporte.find_by_clave(name_report)
+    template.engine_report = template.nombre_clase.constantize.new(:page_size => 'LETTER', :page_layout => :landscape, :margin => [40, 50, 30, 60])
+    template.engine_report.font_size 9
+    template
+  end
+
   # generate report in pdf
   def to_pdf(data)
     I18n.locale = data.idioma
-    reporte = nombre_clase.constantize.new(:page_size => 'LETTER', :page_layout => :landscape )
-    reporte.font_size 9
-    prepare_report(reporte)
-    reporte.dataset = data
+    prepare_report(@engine_report)
+    @engine_report.dataset = data
     if data.carta
-      reporte.observacion = data.carta
+      @engine_report.observacion = data.carta
     end
     index = 0
     @texts.each do |text|
-      reporte.text(text, :inline_format => true)
-      reporte.send(@variables[index]) if @variables[index]
+      @engine_report.text(text, :inline_format => true)
+      @engine_report.send(@variables[index]) if @variables[index]
       index += 1
     end
     I18n.locale = :es
-    reporte.render
+    @engine_report.render
   end
 
   # Realiza la creación del reporte para un cruce o busqueda
   def self.crear_reporte(reporte_marca)
     if reporte_marca.importacion_id?
-      report = Reporte.find_by_clave("cruce_report")
-      report.to_pdf(reporte_marca)      
+      report = Reporte.set_instance("cruce_report")
+      report.engine_report.marcas = reporte_marca.reporte_marca_detalles.collect{|detalle| detalle.marca_foranea}
     else
-      report = Reporte.find_by_clave("busqueda_report")
-      report.to_pdf(reporte_marca)
+      report = Reporte.set_instance("busqueda_report")
+      report.engine_report.busqueda = reporte_marca.busqueda
+      report.engine_report.clases = reporte_marca.consulta.parametros[:clases].join(", ")
     end
+    report.to_pdf(reporte_marca)
   end
 end

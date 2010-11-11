@@ -4,6 +4,8 @@
 #
 # Clase que realiza los reportes de una marca para busquedas
 class BusquedaReport < ReporteMarcaReport
+  attr_accessor :busqueda, :clases
+
   def datos(reporte_marca)
     count = 1
     reporte_marca.reporte_marca_detalles.inject([]) do |arr, det|
@@ -16,9 +18,9 @@ class BusquedaReport < ReporteMarcaReport
   # Retorna un array con el encabezado de acuerdo a su idioma
   def encabezado
     if I18n.locale == :es
-      ["Nro.", "Signo", "Tipo", "Clase", "Numero", "Fecha", "Titular", "Observaciones"]
+      ["Nro.", "Signo", "Tipo", "Clase", "Numero", "Fecha", "Titular", "Observaciones"].collect{ |word| word.upcase}
     else
-      ["Nr.", "Sign", "Type", "Class", "Number", "Date", "Owner/Applicant",  "Observations"]
+      ["Nr.", "Sign", "Type", "Class", "Number", "Date", "Owner/Applicant",  "Observations"].collect{ |word| word.upcase}
     end
   end
 
@@ -28,20 +30,22 @@ class BusquedaReport < ReporteMarcaReport
   end
 
   def palabra_busqueda
-    "#{@dataset.reporte_marca_detalles.first.busqueda if @dataset}"
+    "<b>#{@busqueda if @busqueda}</b>"
   end
 
   def clase_en_busqueda
-    "Aca van las clases"
+    "<b>#{@clases if @clases}</b>"
   end
 
   def tabla(reporte_marca)
     data = datos(reporte_marca)
-    table( [ encabezado ] + data, :header => true, :width => 720) do
+    table( [ encabezado ] + data, :header => true, :width => 700) do
       row(0).style(:background_color => 'cccccc', :style => :bold)
       cells.style(:size => 8, :inline_format => true)
       column(0).style(:width => 35)
+      column(6).style(:width => 200)
       column(1..5).style(:width => 100)
+      column(3).style(:width => 60)
     end
   end
 end

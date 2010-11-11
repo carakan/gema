@@ -41,7 +41,7 @@ class ReporteMarcasController < ApplicationController
 
   # GET /reporte_marcas/new
   def new
-    @reporte_marca = ReporteMarca.nuevo_busqueda(:idioma => 'es', :consulta_ids => params[:consulta_ids])
+    @reporte_marca = ReporteMarca.nuevo_busqueda(:idioma => 'es', :consulta_id => params[:consulta_id])
   end
 
   # GET /reporte_marca/1/dowload

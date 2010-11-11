@@ -1,6 +1,2 @@
-<div class="breadcrumps">
-  <% @params = { :importacion_id => params[:importacion_id], :page => @page } %>
-  <%= link_to "Lista de importaciones", importaciones_path %> > <%= link_to "Cruce gaceta", cruce_importaciones_path(@params) %> > <%= link_to "Selección", cruce_busquedas_path(@params.merge(:marca_id => params[:marca_id]) ) %> > 
-</div>
 <h1>Busqueda "<%= @busqueda %>" <%= consulta_gaceta @consulta %></h1>
 <%= render :partial => 'form' %>

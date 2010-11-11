@@ -1,6 +1,7 @@
 <h1>Busquedas</h1>
 
 <div class="clear"></div>
+
 <div class="pad-tb">
   <%= render :partial => "buscar" %>
 </div>
@@ -11,8 +12,8 @@
 
 <% unless @busqueda.blank? %>
 
-  <%= form_tag new_consulta_path, :method => 'get' do -%>
-  <%= hidden_field_tag "clases", (1..45).to_a.join(",") %>
+  <%= form_tag new_consulta_path, :method => 'get', :id => 'seleccionar' do -%>
+  <%= hidden_field_tag "clases", params[:clases].keys.join(",") %>
   <%= hidden_field_tag "busqueda", params[:busqueda] %>
   <%= hidden_field_tag "tipo_busqueda", params[:tipo_busqueda] %>
   <% if params[:tipo_busqueda] == 'prep' %>
@@ -67,18 +68,18 @@
     }
     //$(this).siblings('input:hidden').attr('disabled', $(this).attr('checked') );
   });
-
-  $('#seleccionar').click(function(e) {
-    if ( $('input:checkbox:checked').length <= 0 ) {
-      alert('Debe seleccionar al menos una marca una marca');
+  
+  // Validación
+  $('#seleccionar').submit(function() {
+    if( $(this).find(':checkbox:checked').length > 0) {
+      return true;
+    }else{
+      alert("Debe seleccionar al menos una marca");
       return false;
     }
   });
-  // Controla rango de fechas
-  $('input#fecha_ini').change( function() {
-      alert('s');
-    //var val = $.datepicker.parseDate('yy-mm-dd', $('input#fecha_fin').val() );
-    //$('#fecha_fin').next().datepicker('option', { 'minDate': val } );
-  });
+  
+
+
 })(jQuery);
 </script>

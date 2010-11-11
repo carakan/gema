@@ -59,29 +59,32 @@
   </p>
   <% unless @busqueda.blank? %>
 
-    <table class="decorated .nolink" id="tabla-cruce">
+    <table class="decorated nolink tablesorter" id="tabla-cruce">
+      <thead>
+
       <tr>
         <th></th>
-        <th>Nombre</th>
-        <th>Clase</th>
-        <th>Tipo de<br/> busqueda</th>
+        <th>Nombre | Clase | Tipo de busqueda</th>
         <th>Agentes</th>
         <th>Titulares</th>
+        <th></th>
       </tr>
+      </thead>
+
       <% @busqueda.each_with_index do |b, i| %>
-        <tr>
+        <% selected = @consulta_detalles.include?(b.id) %>
+        <tr class="<%= "select" if selected %>">
           <td>
-            <% @sel = @consulta_detalles.include?(b.id) %>
-            <%= hidden_field_tag "consulta[consulta_detalles_attributes][#{i}][tipo_de_busqueda]", b.pos if @sel %>
-            <%= check_box_tag "consulta[consulta_detalles_attributes][#{i}][marca_id]", b.id, @sel, 'data-tipo_de_busqueda' => b.pos %>
+            <%= selected ? 1 : 0 %>
+            <%= hidden_field_tag "consulta[consulta_detalles_attributes][#{i}][tipo_de_busqueda]", b.pos if selected %>
+            <%= check_box_tag "consulta[consulta_detalles_attributes][#{i}][marca_id]", b.id, selected, 'data-tipo_de_busqueda' => b.pos %>
           </td>
           <td>
-            <label for="consulta_consulta_detalles_attributes_<%= i %>_marca_id" class="propia"><%= b.nombre %></label>
+            <label for="consulta_consulta_detalles_attributes_<%= i %>_marca_id" class="propia"><%= b.nombre %> | <%= b.clase_id %> | <%= tipo_busqueda b.pos %></label>
           </td>
-          <td><%= b.clase_id %></td>
-          <td><%= tipo_busqueda b.pos %></td>
-          <td><%= buscar_representante(b.agente_ids_serial, @representantes) %></td>
-          <td><%= buscar_representante(b.titular_ids_serial, @representantes) %></td>
+          <td><%= b.agentes.join(", ") %></td>
+          <td><%= b.titulares.join(", ") %></td>
+          <td><%= link_to("Reporte") if selected %></td>
         </tr>
       <% end %>
 
@@ -98,7 +101,7 @@
 
 <script type="text/javascript">
   (function($) {
-
+    $("#tabla-cruce").tablesorter();
     function validarForma() {
       msg = "";
       if($('#consulta_comentario').val().trim() == "") {
@@ -136,6 +139,8 @@
         $(this).siblings('input:hidden').remove();
       }
     });
+
+
   })(jQuery);
 
 </script>
