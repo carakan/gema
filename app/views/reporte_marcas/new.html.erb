@@ -4,7 +4,8 @@
 
   <%= f.input :representante, :label => 'Cliente', :collection => Representante.lista %>
   <%= f.input :representante_type, :as => :hidden %>
-
+  <%= f.input :consulta_id, :as => :hidden  %>
+  <%= f.input :busqueda, :as => :hidden  %>
   <p>
     <label for="reporte_marca_idioma_es">
       <%= f.radio_button :idioma, 'es' %>
@@ -15,8 +16,8 @@
       Ingles
     </label>
   </p>
-  <%= f.input :carta, :as => :text, :input_html => {:cols => 100} %>
-  <p class="inline-hints">
+  <%= f.input :carta, :as => :text, :input_html => {:cols => 100}, :label => "Analisis de la busqueda", :required => false %>
+  <p class="inline-hints" style="display: none;">
     Si no escribe en el comentario la marca no sera seleccionada para el reporte
   </p>
   <table class="decorated">
@@ -49,18 +50,18 @@
 <% end %>
 
 <script type="text/javascript">
-  $(function() {
+//  $(function() {
     // Idioma
-    $('input[name="reporte_marca[idioma]"]').click(function() {
-      var val = 'es' == $(this).val() ? carta_es : carta_en;
-      $('#reporte_marca_carta').val(val);
-    });
-    if( $('input[name="reporte_marca[idioma]"]').val() == 'es') {
-      $('#reporte_marca_carta').val(carta_es);
-    }else {
-      $('#reporte_marca_carta').val(carta_en);
-    }
-  });
+//    $('input[name="reporte_marca[idioma]"]').click(function() {
+//      var val = 'es' == $(this).val() ? carta_es : carta_en;
+//      $('#reporte_marca_carta').val(val);
+//    });
+//    if( $('input[name="reporte_marca[idioma]"]').val() == 'es') {
+//      $('#reporte_marca_carta').val(carta_es);
+//    }else {
+//      $('#reporte_marca_carta').val(carta_en);
+//    }
+//  });
   var carta_es = "<%= @reporte_marca.crear_carta %>";
   var carta_en = "<%= @reporte_marca.crear_carta('en') %>";
 </script>

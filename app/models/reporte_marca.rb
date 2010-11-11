@@ -6,6 +6,7 @@ class ReporteMarca < ActiveRecord::Base
 
   belongs_to :representante
   belongs_to :importacion
+  belongs_to :consulta
   has_many :reporte_marca_detalles, :dependent => :destroy
 
   IDIOMAS = [['Español', 'es'], ['Ingles', 'en']]
@@ -61,12 +62,16 @@ class ReporteMarca < ActiveRecord::Base
   #   @return ReporteMarca
   def self.nuevo_busqueda(params)
     detalles = ConsultaDetalle.all(:select => "consulta_detalles.marca_id, consultas.busqueda", 
-                                    :conditions => { :consulta_id => params[:consulta_ids] },
+                                    :conditions => { :consulta_id => params[:consulta_id] },
                                     :include => :consulta)
     reporte_marca = new(:idioma => params[:idioma])
+    carta = ""
     detalles.each { |cd| 
-      reporte_marca.reporte_marca_detalles.build(:marca_id => cd.marca_id, :busqueda => cd.consulta.busqueda ) 
+      reporte_marca.reporte_marca_detalles.build(:marca_id => cd.marca_id, :busqueda => cd.consulta.busqueda )
     }
+    reporte_marca.consulta_id = params[:consulta_id]
+    reporte_marca.carta = detalles.first.consulta.comentario if !detalles.empty? && detalles.first.consulta
+    reporte_marca.busqueda = detalles.first.consulta.busqueda if !detalles.empty? && detalles.first.consulta
     reporte_marca
   end
 
