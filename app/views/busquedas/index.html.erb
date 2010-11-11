@@ -1,6 +1,7 @@
 <h1>Busquedas</h1>
 
 <div class="clear"></div>
+
 <div class="pad-tb">
   <%= render :partial => "buscar" %>
 </div>
@@ -12,7 +13,7 @@
 <% unless @busqueda.blank? %>
 
   <%= form_tag new_consulta_path, :method => 'get' do -%>
-  <%= hidden_field_tag "clases", (1..45).to_a.join(",") %>
+  <%= hidden_field_tag "clases", params[:clases].keys.join(",") %>
   <%= hidden_field_tag "busqueda", params[:busqueda] %>
   <%= hidden_field_tag "tipo_busqueda", params[:tipo_busqueda] %>
   <% if params[:tipo_busqueda] == 'prep' %>

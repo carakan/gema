@@ -6,14 +6,17 @@ module ConsultasHelper
   end
   
   def presentar_parametro(consulta, param)
+    html = ""
     case param
       when :clases
-        '<label>Clases</label>' + BusquedaVacia.label(consulta.parametros[param])
+        html = "<label>Clases</label> #{ BusquedaVacia.label(consulta.parametros[param]) }"
       when :fecha_ini
-        "<label>Fecha inicial</label> #{ l Date.parse(consulta.parametros[param]) }"
+        html = "<label>Fecha inicial</label> #{ l Date.parse(consulta.parametros[param]) }"
       when :fecha_fin
-        "<label>Fecha final</label> #{ l Date.parse(consulta.parametros[param]) }"
+        html = "<label>Fecha final</label> #{ l Date.parse(consulta.parametros[param]) }"
     end
+
+    html.html_safe
   end
 
   def titulo_consulta(consulta)

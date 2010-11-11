@@ -27,8 +27,9 @@
     <%= f.semantic_fields_for :consulta_detalles do |cd| %>
       <tr>
         <td>
+          <% @css = cd.object.marca.propia ? "propia": "foranea" %>
           <%= cd.hidden_field :marca_id %>
-          <%= cd.object.marca %>
+          <span class="<%= @css %>"><%= cd.object.marca %></span>
         </td>
       	<td><%= buscar_tipo_signo cd.object.marca.tipo_signo_id %></td>
         <td><%= buscar_clase cd.object.marca.clase_id %></td>
