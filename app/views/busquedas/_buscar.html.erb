@@ -1,19 +1,43 @@
 <style type="text/css">
-  div.clases_grupos label{
+  #clases_grupos{
+    padding: 0px;
+    border:1px solid #676767;
+    margin: 10px 0px;
+  }
+  #clases_grupos label{
     display: inline-block !important; 
-  }
-  .clases_grupos fieldset{ 
-    float: left; 
-    margin: 10px 5px;
+    width: 6%;
+    height: 30px;
   }
 
-  .clases_grupos fieldset legend{ 
-    cursor: pointer;
+  ul#botones{
+    width: 150px;
+    float:left;
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
   }
-
-  #clases_seleccionadas{
-    height: 15px;
+  ul#botones li{
+    padding: 0px;
+    margin: 0px;
+  }
+  ul#botones li a{
+    width: 100%;
+    padding: 4px;
+    display:block;
+    text-decoration: none;
+    color: #FFF;
+    background-color: #2167CB;
+    border-bottom: 1px solid #FFF;
     font-weight: bold;
+  }
+  ul#botones li a.sel{
+    background-color: #5BBF3B;
+  }
+  #clases{
+    float: left;
+    width: 750px;
+    margin-left: 20px;
   }
 </style>
 <form action="/busquedas" method="get", id="form_buscar" >
@@ -23,7 +47,8 @@
 
   <div style="clear:both"></div>
 
-  <div class="">
+  <label for="">Clases</label>
+  <div id="clases_grupos">
     <ul id="botones">
     	<li>
     		<a href="javascript:" data-clases="1,2,4">1, 2 y 4</a>
@@ -38,36 +63,53 @@
     		<a href="javascript:" data-clases="7,8,9,11,21">7, 8, 9, 11 y 21</a>
     	</li>
     	<li>
-    		<a href="javascript:" data-clases="17,19,20,22">17,19,20 y 22</a>
+    		<a href="javascript:" data-clases="17,19,20,22">17, 19, 20 y 22</a>
     	</li>
     	<li>
     		<a href="javascript:" data-clases="18,25">18 y 25</a>
     	</li>
     	<li>
-    		<a href="javascript:" data-clases="22,23,24,25,26">22,23,24,25 y 26</a>
+    		<a href="javascript:" data-clases="22,23,24,25,26">22, 23, 24, 25 y 26</a>
     	</li>
     	<li>
-    		<a href="javascript:" data-clases="29,30,31">29,30 y 31</a>
+    		<a href="javascript:" data-clases="29,30,31">29, 30 y 31</a>
     	</li>
     	<li>
     		<a href="javascript:" data-clases="32,33">32 y 33</a>
     	</li>
+    	<li>
+    		<a href="javascript:" data-clases="<%= (1..45).to_a.join(",") %>" class="todas">Todas</a>
+    	</li>
     </ul>
 
-    
+    <div id="clases">
+      <% 4.times do |i| -%>
+        <div>
+          <% (1..10).each do |j| %>
+            <% @id = j + i * 10 %>
+            <label for="clases_<%= @id %>">
+              <% @val = !params[:clases] ? false : params[:clases][@id.to_s] ? true : false %>
+              <%= check_box_tag "clases[#{@id}]", @id, @val %>
+              <%= @id %>
+            </label>
+          <% end %>
+        </div>
+      <% end -%>
+      <% (41..45).each do |i| %>
+        <% @id = i %>
+        <label for="clases_<%= @id %>">
+          <% @val = !params[:clases] ? false : params[:clases][@id.to_s] ? true : false %>
+          <%= check_box_tag "clases[#{@id}]", @id, @val %>
+          <%= @id %>
+        </label>
+      <% end %>
+    </div>
 
-    <label for="clases">Clases</label>
 
-    <div class="clases_grupos">
-      <fieldset>
-        <legend>1, 2 y 4</legend>
-      </fieldset>
-
-    <input id="oneclass" name="una_clase" type="input" value="" style="display:none"/>
+    <div style="clear:both"></div>
   </div>
 
 
-  <div style="clear:both"></div>
 
   <input type="submit" value="Buscar" />
 </form>
@@ -83,6 +125,38 @@ $(document).ready(function() {
     }
   });
 
+  // Busca si existe el valor en el array
+  function include(arr, obj) {
+    for(var i=0; i<arr.length; i++) {
+      if (arr[i] == obj) return true;
+    }
+    return false;
+  }
+  window.include = include;
+
+  /**
+   * Marca los botones que estan seleccionados
+   */
+  function marcarBotones() {
+    var arr = $('#clases_grupos').find("input:checkbox:checked").map(function(i, el) { return el.value; }).get();
+
+    $('#botones').find('a').each(function(i, el) {
+        var clases = $(el).attr("data-clases").split(",");
+        var encontrado = true;
+        $(clases).each(function(index, elem) {
+          if(!include(arr, elem)) {
+            encontrado = false;
+            return;
+          }
+        });
+        if(encontrado) {
+          $(el).addClass("sel");
+        }else {
+          $(el).removeClass("sel");
+        }
+    });
+  }
+
   $('#form_buscar').submit(function() {
     if( $('#busqueda').val().trim() == '' ) {
       alert('Debe ingresar un termino de busqueda');
@@ -92,33 +166,22 @@ $(document).ready(function() {
     }
   });
 
-  function mostrarClases() {
-    var html = $('.clases_grupos').find("input:checkbox").map(function(i, el) {
-      if($(el).attr("checked")) {
-        return 1 * $(el).val();
-      }
-    }).get();
-    $('#clases_seleccionadas').html(html.join(", "));
-  }
+  $('#botones').find("a").live('click', function() {
+    var clases = $(this).attr("data-clases").split(",");
+    var val = !$(this).hasClass("sel");
 
-  // Evento para los legend
-  $('.clases_grupos').find("legend").live('click', function() {
-    var fieldset = $(this).parent("fieldset");
-    if(fieldset.data('checked')) {
-      fieldset.find("input:checkbox").attr("checked", false);
-      fieldset.data("checked", false);
-    }else {
-      fieldset.find("input:checkbox").attr("checked", true);
-      fieldset.data("checked", true);
-    }
-    //mostrarClases();
+    $(clases).each(function(i, el) {
+      $('#clases_' + el).attr("checked", val);
+    });
+    marcarBotones();
   });
 
-  // Evento para los checkbox
-  /*$('.clases_grupos').find("input:checkbox").live('click', function() {
-    mostrarClases();
-  });*/
+  $('#clases_grupos').find("input:checkbox").live('click', function() {
+    marcarBotones();
+  });
 
+  // Al iniciar
+  marcarBotones();
 });
 </script>
 
