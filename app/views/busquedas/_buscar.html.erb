@@ -157,15 +157,6 @@ $(document).ready(function() {
     });
   }
 
-  $('#form_buscar').submit(function() {
-    if( $('#busqueda').val().trim() == '' ) {
-      alert('Debe ingresar un termino de busqueda');
-      return false;
-    }else{
-      return true;
-    }
-  });
-
   $('#botones').find("a").live('click', function() {
     var clases = $(this).attr("data-clases").split(",");
     var val = !$(this).hasClass("sel");
@@ -182,6 +173,25 @@ $(document).ready(function() {
 
   // Al iniciar
   marcarBotones();
+
+  // Validacion para la busqueda
+  $('#form_buscar').submit(function() {
+    var txt = "";
+    if($('#clases_grupos').find(':checkbox:checked').length <= 0) {
+      txt += "Debe seleccionar al menos una clase para la busqueda\n";
+    }
+    if($('#busqueda').val().trim() == "") {
+      txt += "Debe ingresar un termino de busqueda";
+    }
+
+    if(txt != ""){
+      alert(txt);
+      return false;
+    }else{
+      return true;
+    }
+
+  });
 });
 </script>
 
