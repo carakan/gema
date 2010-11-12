@@ -14,7 +14,7 @@ namespace :gema do
       end
       rol.save!
       usuario = Usuario.new(:nombre => 'Admin', :login => 'admin', :password => 'demo123', :password_confirmation => 'demo123',
-                      :email => 'admin@example.com' )
+        :email => 'admin@example.com' )
       usuario.rol_id = rol.id
       usuario.save
       puts "Se ha creado el usuario Admin con #{rol.name}"
@@ -75,8 +75,8 @@ namespace :gema do
 
       UsuarioSession.current_user = Usuario.first
       YAML.load_file("#{Rails.root}/db/marcas_demo.yml").each do |m|
-      if m.marca == 'TOONIX'
-        m = Marca.create!(m)
+        if m.marca == 'TOONIX'
+          m = Marca.create!(m)
           m.titular_ids = [2]
         else
           m.titular_ids = [1]
@@ -86,25 +86,25 @@ namespace :gema do
 
   end
 
-        #m = Marca.new(
-        #  :id => r['id']
-        #  :parent_id => 0,
-        #  :tipo_signo_id => r['tipo_signo_id'],
-        #  :tipo_marca_id => r['tipo_marca_id'],
-        #  :clase_id => r['clase_id'],
-        #  :pais_id => r['pais_id'],
-        #  :numero_solicitud => r['numero_solicitud'],
-        #  :nombre => r['nombre'],
-        #  :nombre_minusculas => r['nombre'].downcase,
-        #  :numero_registro => r['numero_registro'],
-        #  :fecha_registro => r['fecha_registro'],
-        #  :numero_renovacion => r['numero_renovacion'],
-        #  :numero_publicacion => r['numero_publicacion'],
-        #  :fecha_publicacion => r['fecha_publicacion'],
-        #  :numero_gaceta => r['numero_gaceta'],
-        #  :activa => r['activa'].to_i == 1 ? true : false,
-        #  :propia => true
-        #)
+  #m = Marca.new(
+  #  :id => r['id']
+  #  :parent_id => 0,
+  #  :tipo_signo_id => r['tipo_signo_id'],
+  #  :tipo_marca_id => r['tipo_marca_id'],
+  #  :clase_id => r['clase_id'],
+  #  :pais_id => r['pais_id'],
+  #  :numero_solicitud => r['numero_solicitud'],
+  #  :nombre => r['nombre'],
+  #  :nombre_minusculas => r['nombre'].downcase,
+  #  :numero_registro => r['numero_registro'],
+  #  :fecha_registro => r['fecha_registro'],
+  #  :numero_renovacion => r['numero_renovacion'],
+  #  :numero_publicacion => r['numero_publicacion'],
+  #  :fecha_publicacion => r['fecha_publicacion'],
+  #  :numero_gaceta => r['numero_gaceta'],
+  #  :activa => r['activa'].to_i == 1 ? true : false,
+  #  :propia => true
+  #)
 
 
   desc 'path'
@@ -225,6 +225,17 @@ end
 
 
 namespace :datos do
+  desc 'Actualiza los datos de los agentes y titulares serializados'
+  task :agentes => :environment do
+    Marca.all.each do |marca|
+      if marca
+        marca.agente_ids_serial = marca.agente_ids
+        marca.titular_ids_serial = marca.titular_ids
+        marca.save(false)
+      end
+    end
+  end
+
   desc 'Crea datos de demo'
   task :demo => :environment do
     Representante.create!(:nombre => 'Karina Luna')
@@ -326,6 +337,6 @@ namespace :datos do
   task :marcas_prueba => :environment do
     UsuarioSession.current_user = Usuario.first
     Marca.create!(:nombre => 'VERDE VIV', :estado => 'sm', :numero_solicitud => '3492-2009',  :tipo_signo_id => 1,
-                  :estado_fecha => '2009-09-01', :apoderado => 'Fabiana Cunioli Pa', :clase_id => 38, :propia => true)
+      :estado_fecha => '2009-09-01', :apoderado => 'Fabiana Cunioli Pa', :clase_id => 38, :propia => true)
   end
 end

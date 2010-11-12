@@ -62,35 +62,52 @@
     <table class="decorated nolink tablesorter" id="tabla-cruce">
       <thead>
 
-      <tr>
-        <th></th>
-        <th>Nombre | Clase | Tipo de busqueda</th>
-        <th>Titulares</th>
-        <th>Agentes</th>
-        <th></th>
-      </tr>
+        <tr>
+          <th></th>
+          <th>Nombre | Clase | Tipo de busqueda</th>
+          <th>Titulares</th>
+          <th>Agentes</th>
+          <th></th>
+        </tr>
       </thead>
 
       <% titulares = @busqueda.first.titular_ids.sort %>
       <% agentes = @busqueda.first.agente_ids.sort %>
       <% count = 1 %>
-      
+
       <% @busqueda.each_with_index do |b, i| %>
-        <% if titulares == b.titular_ids.sort && agentes == b.agente_ids.sort && count == 1 %>
         <% selected = @consulta_detalles.include?(b.id) %>
-        <tr class="<%= "select" if selected %>">
-          <td>
-            <span class="mini"><%= selected ? 1 : 0 %></span>
-            <%= hidden_field_tag "consulta[consulta_detalles_attributes][#{i}][tipo_de_busqueda]", b.pos if selected %>
-            <%= check_box_tag "consulta[consulta_detalles_attributes][#{i}][marca_id]", b.id, selected, 'data-tipo_de_busqueda' => b.pos %>
-          </td>
-          <td>
-            <label for="consulta_consulta_detalles_attributes_<%= i %>_marca_id" class="propia"><%= b.nombre %> | <%= b.clase_id %> | <%= tipo_busqueda b.pos %></label>
-          </td>
-          <td><%= b.titulares.join(", ") %></td>
-          <td><%= b.agentes.join(", ") %></td>
-          <td><%= link_to("Reporte") if selected %></td>
-        </tr>
+        <% if titulares == b.titular_ids.sort && agentes == b.agente_ids.sort && count == 1 %>
+          <tr class="<%= "select" if selected %>">
+            <td>
+              <span class="mini"><%= selected ? 1 : 0 %></span>
+              <%= hidden_field_tag "consulta[consulta_detalles_attributes][#{i}][tipo_de_busqueda]", b.pos if selected %>
+              <%= check_box_tag "consulta[consulta_detalles_attributes][#{i}][marca_id]", b.id, selected, 'data-tipo_de_busqueda' => b.pos %>
+            </td>
+            <td>
+              <label for="consulta_consulta_detalles_attributes_<%= i %>_marca_id" class="propia"><%= b.nombre %> | <%= b.clase_id %> | <%= tipo_busqueda b.pos %></label>
+            </td>
+            <td><%= b.titulares.join(", ") %></td>
+            <td><%= b.agentes.join(", ") %></td>
+            <td><%= text_field_tag :observaciones %></td>
+            <td><%= link_to("Reporte") if selected %></td>
+          </tr>
+          <% count += 1 %>
+        <% else %>
+          <tr class="<%= "select" if selected %>">
+            <td>
+              <span class="mini"><%= selected ? 1 : 0 %></span>
+              <%= hidden_field_tag "consulta[consulta_detalles_attributes][#{i}][tipo_de_busqueda]", b.pos if selected %>
+              <%= check_box_tag "consulta[consulta_detalles_attributes][#{i}][marca_id]", b.id, selected, 'data-tipo_de_busqueda' => b.pos %>
+            </td>
+            <td>
+              <label for="consulta_consulta_detalles_attributes_<%= i %>_marca_id" class="propia"><%= b.nombre %> | <%= b.clase_id %> | <%= tipo_busqueda b.pos %></label>
+            </td>
+            <td><%= b.titulares.join(", ") %></td>
+            <td><%= b.agentes.join(", ") %></td>
+            <td></td>
+            <td><%= link_to("Reporte") if selected %></td>
+          </tr>
         <% end %>
       <% end %>
 
