@@ -350,6 +350,11 @@ class Marca < ActiveRecord::Base
     arr.join("<br />")
   end
 
+  # Aumenta los numeros necesarios para buscar el numero de solicitud
+  def self.digitos_numero_solicitud(numero)
+    num, anio = numero.split("-")
+    "#{ "0" * (5 - num.size) }#{num}-#{anio}"
+  end
 
   # Realiza una comparación de los datos que se importan Vs. los que se encuentran
   # en la base de datos, de lo contrario retorna una instancia
@@ -361,7 +366,8 @@ class Marca < ActiveRecord::Base
     if params[:numero_solicitud].nil?
       marca = Marca.find_by_numero_registro(params[:numero_registro])
     else
-      marca = Marca.find_by_numero_solicitud(params[:numero_solicitud])
+      params[:numero_solicitud] = digitos_numero_solicitud(params[:numero_solicitud])
+      marca = Marca.find_by_numero_solicitud(params[:numero_solicitud] )
     end
     
     if marca.nil?

@@ -88,7 +88,6 @@ module ModMarca::PDF
       self.pdf_dir = File.dirname(pdf_archivo)
     end
 
-
     # Elimina el directorio en el cual se creo el archivo
     def borrar_directorio_pdf(pdf)
       FileUtils.remove_dir( File.dirname(pdf) )
