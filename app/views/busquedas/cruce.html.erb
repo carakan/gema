@@ -59,26 +59,31 @@
   </p>
   <% unless @busqueda.blank? %>
 
-    <table class="decorated .nolink" id="tabla-cruce">
+    <table class="decorated nolink tablesorter" id="tabla-cruce">
+      <thead>
+
       <tr>
         <th></th>
         <th>Nombre | Clase | Tipo de busqueda</th>
-        <th>Agentes</th>
         <th>Titulares</th>
+        <th>Agentes</th>
         <th></th>
       </tr>
+      </thead>
+
       <% @busqueda.each_with_index do |b, i| %>
         <% selected = @consulta_detalles.include?(b.id) %>
         <tr class="<%= "select" if selected %>">
           <td>
+            <%= selected ? 1 : 0 %>
             <%= hidden_field_tag "consulta[consulta_detalles_attributes][#{i}][tipo_de_busqueda]", b.pos if selected %>
             <%= check_box_tag "consulta[consulta_detalles_attributes][#{i}][marca_id]", b.id, selected, 'data-tipo_de_busqueda' => b.pos %>
           </td>
           <td>
             <label for="consulta_consulta_detalles_attributes_<%= i %>_marca_id" class="propia"><%= b.nombre %> | <%= b.clase_id %> | <%= tipo_busqueda b.pos %></label>
           </td>
-          <td><%= b.agentes.join(", ") %></td>
           <td><%= b.titulares.join(", ") %></td>
+          <td><%= b.agentes.join(", ") %></td>
           <td><%= link_to("Reporte") if selected %></td>
         </tr>
       <% end %>
@@ -96,7 +101,7 @@
 
 <script type="text/javascript">
   (function($) {
-
+    $("#tabla-cruce").tablesorter();
     function validarForma() {
       msg = "";
       if($('#consulta_comentario').val().trim() == "") {
@@ -136,6 +141,8 @@
         $(this).parents("tr").removeClass('select');
       }
     });
+
+
   })(jQuery);
 
 </script>
