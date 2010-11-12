@@ -40,7 +40,7 @@ class RepresentantesController < ApplicationController
   # GET /representantes/new
   # GET /representantes/new.xml
   def new
-    @representante = Representante.new
+    @representante = Representante.new(:cliente => true)
 
     respond_to do |format|
       format.html # new.html.erb
