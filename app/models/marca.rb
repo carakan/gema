@@ -366,7 +366,8 @@ class Marca < ActiveRecord::Base
     if params[:numero_solicitud].nil?
       marca = Marca.find_by_numero_registro(params[:numero_registro])
     else
-      marca = Marca.find_by_numero_solicitud(digitos_numero_solicitud(params[:numero_solicitud]) )
+      params[:numero_solicitud] = digitos_numero_solicitud(params[:numero_solicitud])
+      marca = Marca.find_by_numero_solicitud(params[:numero_solicitud] )
     end
     
     if marca.nil?
