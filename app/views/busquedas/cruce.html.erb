@@ -71,11 +71,16 @@
       </tr>
       </thead>
 
+      <% titulares = @busqueda.first.titular_ids.sort %>
+      <% agentes = @busqueda.first.agente_ids.sort %>
+      <% count = 1 %>
+      
       <% @busqueda.each_with_index do |b, i| %>
+        <% if titulares == b.titular_ids.sort && agentes == b.agente_ids.sort && count == 1 %>
         <% selected = @consulta_detalles.include?(b.id) %>
         <tr class="<%= "select" if selected %>">
           <td>
-            <%= selected ? 1 : 0 %>
+            <span class="mini"><%= selected ? 1 : 0 %></span>
             <%= hidden_field_tag "consulta[consulta_detalles_attributes][#{i}][tipo_de_busqueda]", b.pos if selected %>
             <%= check_box_tag "consulta[consulta_detalles_attributes][#{i}][marca_id]", b.id, selected, 'data-tipo_de_busqueda' => b.pos %>
           </td>
@@ -86,6 +91,7 @@
           <td><%= b.agentes.join(", ") %></td>
           <td><%= link_to("Reporte") if selected %></td>
         </tr>
+        <% end %>
       <% end %>
 
     </table>

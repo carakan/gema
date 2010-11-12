@@ -681,3 +681,4 @@ a.desc {
 .ui-dialog .links { display: none; }
 .ui-dialog .breadcrumps { display: none; }
 #tabla-cruce tr.select { background-color: #c2e0ef; }
+#tabla-cruce span.mini { font-size: 1px; }

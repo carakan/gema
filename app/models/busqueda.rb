@@ -114,8 +114,9 @@ class Busqueda
   # Funcion que se invoca desde el controlador para realizar busquedas
   def self.realizar_busqueda(params)
     b = buscar(params[:busqueda])
-
-    Marca.find_by_sql(crear_sql(b.expresiones, params) )
+    result = Marca.find_by_sql(crear_sql(b.expresiones, params) )
+    # debugger
+    result
   end
 
   # Adiciona las condiciones sql necesarias
