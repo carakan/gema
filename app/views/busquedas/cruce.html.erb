@@ -61,23 +61,26 @@
 
     <table class="decorated nolink tablesorter" id="tabla-cruce">
       <thead>
-
         <tr>
           <th></th>
-          <th>Nombre | Clase | Tipo de busqueda</th>
+          <th>Nombre</th>
+          <th title="Tipo de signo">Tipo</th>
+          <th title="Clase">Cla</th>
+          <th>Numero</th>
+          <th>Fecha</th>
           <th>Titulares</th>
           <th>Agentes</th>
           <th></th>
         </tr>
       </thead>
 
-      <% titulares = @busqueda.first.titular_ids.sort %>
-      <% agentes = @busqueda.first.agente_ids.sort %>
+      <% titulares = @busqueda.first.titular_ids_serial %>
+      <% agentes = @busqueda.first.agente_ids_serial %>
       <% count = 1 %>
 
       <% @busqueda.each_with_index do |b, i| %>
         <% selected = @consulta_detalles.include?(b.id) %>
-        <% if titulares == b.titular_ids.sort && agentes == b.agente_ids.sort && count == 1 %>
+        <% if titulares == b.titular_ids_serial && agentes == b.agente_ids_serial %>
           <tr class="<%= "select" if selected %>">
             <td>
               <span class="mini"><%= selected ? 1 : 0 %></span>
@@ -94,20 +97,9 @@
           </tr>
           <% count += 1 %>
         <% else %>
-          <tr class="<%= "select" if selected %>">
-            <td>
-              <span class="mini"><%= selected ? 1 : 0 %></span>
-              <%= hidden_field_tag "consulta[consulta_detalles_attributes][#{i}][tipo_de_busqueda]", b.pos if selected %>
-              <%= check_box_tag "consulta[consulta_detalles_attributes][#{i}][marca_id]", b.id, selected, 'data-tipo_de_busqueda' => b.pos %>
-            </td>
-            <td>
-              <label for="consulta_consulta_detalles_attributes_<%= i %>_marca_id" class="propia"><%= b.nombre %> | <%= b.clase_id %> | <%= tipo_busqueda b.pos %></label>
-            </td>
-            <td><%= b.titulares.join(", ") %></td>
-            <td><%= b.agentes.join(", ") %></td>
-            <td></td>
-            <td><%= link_to("Reporte") if selected %></td>
-          </tr>
+          <% titulares = b.titular_ids_serial %>
+          <% agentes = b.agente_ids_serial %>
+          <% redo %>
         <% end %>
       <% end %>
 
