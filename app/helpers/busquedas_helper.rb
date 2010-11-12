@@ -34,4 +34,9 @@ module BusquedasHelper
         marca.numero_solicitud
     end
   end
+
+  # presentar fecha de la marca
+  def fecha_marca
+
+  end
 end
