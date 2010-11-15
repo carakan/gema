@@ -1,6 +1,6 @@
 <% unless @consulta.importacion_id.nil? %>
   <div class="breadcrumps">
-    <%= link_to "Lista de importaciones", importaciones_path %> > 
+    <%= link_to "Lista de importaciones", importaciones_path %> >
     <%= link_to "Cruce", cruce_importaciones_path(:importacion_id =>  @consulta.importacion, :page => @page ) %> >
     <%= @consulta.marca %>
   </div>
@@ -46,35 +46,37 @@
   <% end %>
 <% end %>
 
-  <h2 class="dark">Marcas que coinciden</h2>
-  <table class="decorated">
-  	<tr>
-  		<th>Marca</th>
-  		<th>Tipo de Signo</th>
-  		<th>Clase</th>
-      <th>Tipo de<br />busqueda</th>
-      <th>Agentes</th>
-      <th>Titulares</th>
+<h2 class="dark">Marcas que coinciden</h2>
+<table class="decorated">
+  <tr>
+    <th>Marca</th>
+    <th>Tipo de Signo</th>
+    <th>Clase</th>
+    <th>Tipo de<br />busqueda</th>
+    <th>Agentes</th>
+    <th>Titulares</th>
+  </tr>
+  <% @consulta.consulta_detalles.each do |cd| %>
+    <tr>
+      <td>
+        <span class="propia"><%= cd.try(:marca) %></span>
+      </td>
+      <td><%= cd.marca.try(:tipo_signo) %></td>
+      <td><%= cd.marca.try(:clase) %></td>
+      <td>
+        <%= tipo_busqueda cd.tipo_de_busqueda %>
+      </td>
+      <td>
+        <%= cd.marca.agentes.join(", ") %>
+      </td>
+      <td>
+        <%= cd.marca.titulares.join(", ") %>
+      </td>
     </tr>
-    <% @consulta.consulta_detalles.each do |cd| %>
-      <tr>
-        <td>
-          <span class="propia"><%= cd.try(:marca) %></span>
-        </td>
-      	<td><%= cd.marca.try(:tipo_signo) %></td>
-        <td><%= cd.marca.try(:clase) %></td>
-        <td>
-          <%= tipo_busqueda cd.tipo_de_busqueda %>
-        </td>
-        <td>
-          <%= cd.marca.agentes.join(", ") %>
-        </td>
-        <td>
-          <%= cd.marca.titulares.join(", ") %>
-        </td>
-      </tr>
-    <% end %>
-  </table>
-  <p>
+  <% end %>
+</table>
+<% if !@consulta.marca_id %>
+<p>
   <%= link_to 'Reporte', new_reporte_marca_path(:consulta_id => @consulta.id) %>
 </p>
+<% end  %>

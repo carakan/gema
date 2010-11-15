@@ -187,7 +187,7 @@ class Busqueda
 
     busqueda = params[:busqueda].downcase.cambiar_acentos
     sql = "SELECT res.id, res.nombre, res.pos, res.clase_id, res.propia, res.activa, res.tipo_signo_id, res.agente_ids_serial, res.titular_ids_serial,
-      res.numero_solicitud, res.numero_publicacion, res.numero_registro, res.numero_renovacion, res.estado, res.numero_solicitud_renovacion "
+      res.numero_solicitud, res.numero_publicacion, res.numero_registro, res.numero_renovacion, res.estado, res.numero_solicitud_renovacion, res.estado_fecha "
     sql << ", IF(#{busqueda.size}>CHAR_LENGTH(res.nombre_minusculas), #{busqueda.size} - CHAR_LENGTH(res.nombre_minusculas),
       CHAR_LENGTH(res.nombre_minusculas) - #{busqueda.size}) AS longitud_letras"
     sql << ", IF(res.id=#{params[:clase_id].to_i}, 0, 2) AS dist_clase_id" unless params[:clase_id].nil?
@@ -207,16 +207,19 @@ class Busqueda
     sql.join(" ")
   end
 
+  def self.sql_select(pos)
+    "SELECT id, nombre, nombre_minusculas, clase_id, #{pos} AS pos, propia, activa, estado, agente_ids_serial, titular_ids_serial,
+     numero_solicitud, numero_publicacion, numero_registro, numero_renovacion, tipo_signo_id, numero_solicitud_renovacion, estado_fecha
+      FROM marcas"
+  end
+
   # SQl que busca la palabra exacata
   #   @param String
   #   @param Integer
   #   @return String
   def self.sql_exacto(bus, pos)
     ActiveRecord::Base.send(:sanitize_sql_array, 
-      [ "SELECT id, nombre, nombre_minusculas, clase_id, #{pos} AS pos, propia, activa, estado_fecha, agente_ids_serial, titular_ids_serial,
-        numero_solicitud, numero_publicacion, numero_registro, numero_renovacion, tipo_signo_id, estado, numero_solicitud_renovacion
-        FROM marcas WHERE parent_id = 0 AND nombre_minusculas = '%s'", bus
-      ]
+      [ "#{sql_select(pos)} WHERE parent_id = 0 AND nombre_minusculas = '%s'", bus ]
     )
   end
 
@@ -225,9 +228,7 @@ class Busqueda
   #   @param Integer
   #   @return String
   def self.sql_exp_reg(arr, pos)
-    sql = "SELECT id, nombre, nombre_minusculas, clase_id, #{pos} AS pos, propia, activa, estado_fecha, agente_ids_serial, titular_ids_serial,
-      numero_solicitud, numero_publicacion, numero_registro, numero_renovacion, tipo_signo_id, estado, numero_solicitud_renovacion
-      FROM marcas WHERE parent_id = 0 AND ("
+    sql = "#{sql_select(pos)} WHERE parent_id = 0 AND ("
     sql << arr.map{ 
       |v| ActiveRecord::Base.send(:sanitize_sql_array, [ "nombre_minusculas REGEXP '%s'", v ] )
     }.join(" OR ")
@@ -239,9 +240,7 @@ class Busqueda
   #   @param Integer
   #   @return String
   def self.sql_variaciones(arr, pos)
-    sql = "SELECT id, nombre, nombre_minusculas, clase_id, #{pos} AS pos, propia, activa, estado_fecha, agente_ids_serial, titular_ids_serial,
-      numero_solicitud, numero_publicacion, numero_registro, numero_renovacion, tipo_signo_id, estado, numero_solicitud_renovacion
-      FROM marcas WHERE parent_id = 0 AND ("
+    sql = "#{sql_select(pos)} WHERE parent_id = 0 AND ("
     sql << arr.map{ |v| 
       ActiveRecord::Base.send(:sanitize_sql_array, ["nombre_minusculas LIKE '%s'", "%#{v}%"] ) 
     }.join(" OR ")

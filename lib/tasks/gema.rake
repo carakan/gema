@@ -227,13 +227,24 @@ end
 namespace :datos do
   desc 'Actualiza los datos de los agentes y titulares serializados'
   task :agentes => :environment do
-    Marca.all.each do |marca|
-      if marca
+    cont = 0
+    cont_procesed = 0
+    puts "Atencion esta es una tarea muy larga, que puede durar varios minutos"
+    marcas = Marca.all(:order => "propia DESC", :conditions => {:propia => true})
+    puts "se encontraron #{marcas.size} marcas"
+    marcas.each do |marca|
+      if marca && marca.agente_ids_serial.class != Array && marca.titular_ids_serial.class != Array
         marca.agente_ids_serial = marca.agente_ids
         marca.titular_ids_serial = marca.titular_ids
         marca.save(false)
+        cont_procesed += 1
+      end
+      cont  += 1
+      if cont % 100 == 0
+        puts "Con #{cont_procesed} registros procesados de #{cont} vistos"
       end
     end
+    puts "Tarea finalizada #{cont_procesed} registros procesados de #{cont} vistos"
   end
 
   desc 'Crea datos de demo'
