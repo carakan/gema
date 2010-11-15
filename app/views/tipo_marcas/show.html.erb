@@ -1,3 +1,7 @@
+<p class="links">
+<%= link_to 'Editar', edit_tipo_marca_path(@tipo_marca), :class => 'edit' %> |
+<%= link_to 'Lista', tipo_marcas_path, :class => 'list' %>
+</p>
 <p>
   <b>Nombre:</b>
   <%=h @tipo_marca.nombre %>
@@ -7,7 +11,3 @@
   <b>Descripcion:</b>
   <%=h @tipo_marca.descripcion %>
 </p>
-
-
-<%= link_to 'Editar', edit_tipo_marca_path(@tipo_marca), :class => 'edit' %> |
-<%= link_to 'Lista', tipo_marcas_path, :class => 'list' %>

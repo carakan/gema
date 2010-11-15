@@ -1,3 +1,8 @@
+<p class="links">
+<%= link_to 'Editar', edit_tipo_signo_path(@tipo_signos), :class => 'edit' %> |
+<%= link_to 'Lista', tipo_signos_path, :class => 'list' %>
+</p>
+
 <p>
   <b>Sigla:</b>
   <%=h @tipo_signos.sigla %>
@@ -7,7 +12,3 @@
   <b>Nombre:</b>
   <%=h @tipo_signos.nombre %>
 </p>
-
-
-<%= link_to 'Editar', edit_tipo_signo_path(@tipo_signos), :class => 'edit' %> |
-<%= link_to 'Lista', tipo_signos_path, :class => 'list' %>

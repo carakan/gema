@@ -4,7 +4,10 @@
 </style>
 
 <h1>Cliente</h1>
-
+<p class="links">
+  <%= link_to 'Editar', edit_representante_path(@representante), :class =>'edit' %>
+  <%= link_to 'Lista', representantes_path, :class =>'list' %>
+</p>
 <div id="cliente">
   <p>
     <label>Nombre:</label>
@@ -39,8 +42,7 @@
     <label>Pagina web:</label>
     <%=h @representante.pagina_web %>
   </p>
-  <%= link_to 'Editar', edit_representante_path(@representante), :class =>'edit' %>
-  <%= link_to 'Lista', representantes_path, :class =>'list' %>
+
 
   <div id="contactos">
     <h1 class="dark">Contactos</h1>
