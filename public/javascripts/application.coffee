@@ -340,6 +340,7 @@ $(document).ready(->
   iniciar = ->
     transformarDateSelect()
     addDatePicker()
+    #$('select.ufd').ufd()
 
   iniciar()
 )
