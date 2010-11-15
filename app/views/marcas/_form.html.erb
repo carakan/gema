@@ -1,4 +1,5 @@
 <%= stylesheet_link_tag 'facebook' %>
+<%= javascript_include_tag 'jquery.fcbkcomplete' %>
 
 <%= semantic_form_for(@marca,:html => { :multipart => true } ) do |f| -%>
   
@@ -52,6 +53,10 @@
       </li> 
     </ol>
 
+
+    <%= label_tag "marca_titular_ids", "Titulares" %>
+    <%= select_tag "marca[titular_ids][]", [] %>
+    <!---
     <ol>  
       <li id="titular-auto" class="input-text"> 
         <label for="titular_ids">Titulares</label>
@@ -68,6 +73,7 @@
         </div> 
       </li> 
     </ol>
+    -->
 
     <ol>
       <li>
@@ -123,18 +129,25 @@
 
 <div style="clear:both"></div>
 
-<%= javascript_include_tag 'fcbkcomplete' %>
 
 <script type="text/javascript">
 
 $(document).ready(function() {
 
+  $("#marca_titular_ids_").fcbkcomplete({
+    json_url: "/representantes/buscar",
+    filter_hide: true,
+    filter_selected: true,
+    newel: false
+  });
 
-  $.facebooklist('#titular_ids', '#ul-titulares', '#titulares-list', 
+
+
+  /*$.facebooklist('#titular_ids', '#ul-titulares', '#titulares-list', 
      { url:'/representantes/buscar.json', cache:0 }, 10, { userfilter: 1, casesensetive: 0 } );
 
   $.facebooklist('#agente_ids', '#ul-agentes', '#agentes-list', 
-    { url:'/representantes/buscar.json', cache:0 }, 10, { userfilter: 1, casesensetive: 0 } );
+    { url:'/representantes/buscar.json', cache:0 }, 10, { userfilter: 1, casesensetive: 0 } );*/
 
 
   $('.error_manual a').click(function(){
