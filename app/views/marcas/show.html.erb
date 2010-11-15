@@ -9,6 +9,10 @@
 
 <h1>Marca</h1>
 
+<p class="links">
+  <%= link_to 'Editar', edit_marca_path(@marca), :class =>'edit'%> 
+  <%= link_to 'Lista', marcas_path, :class =>'list' %>
+</p>
 
 <div id="marca">
     <p>
@@ -102,8 +106,6 @@
     </p>
  
 
-<%= link_to 'Editar', edit_marca_path(@marca), :class =>'edit'%> 
-<%= link_to 'Lista', marcas_path, :class =>'list' %>
   <hr />
   <h1 class="dark">Historial de modificaciones</h1>
 

@@ -28,6 +28,7 @@ class Representante < ActiveRecord::Base
 
   scope :order, order( "nombre ASC" )
   scope :lista, select("id, nombre, pais_codigo").order("nombre ASC")
+  scope :clientes, where(:cliente => true)
 
   attr_accessor :validar
 
