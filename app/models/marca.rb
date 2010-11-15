@@ -6,7 +6,7 @@ class Marca < ActiveRecord::Base
   #before_save :set_propia
   before_save :quitar_comillas
   before_save :set_minusculas
-  before_save :adicionar_usuario
+  before_create :adicionar_usuario
   before_save :set_agentes_titulares, :if => lambda { |m| m.parent_id == 0 }
   before_save :llenar_productos, :if => lambda { |m| m.productos.blank? }
 
@@ -82,8 +82,8 @@ class Marca < ActiveRecord::Base
 
   scope :importado, lambda { |imp_id, nombre_marca| 
     where("marcas.importacion_id = ? AND marcas.nombre_minusculas LIKE ?", imp_id, "%#{ nombre_marca.downcase }%").
-    order("marcas.valido, marcas.propia DESC").
-    includes( :tipo_signo, :clase, :titulares )
+      order("marcas.valido, marcas.propia DESC").
+      includes( :tipo_signo, :clase, :titulares )
   }
 
   scope :importados_error, lambda { |fecha|
@@ -93,7 +93,7 @@ class Marca < ActiveRecord::Base
   scope :cruce, lambda { |importacion_id, nombre_marca| 
     where("marcas.importacion_id = ? AND marcas.tipo_signo_id NOT IN (?) AND marcas.nombre_minusculas LIKE ?",
       importacion_id, TipoSigno.descartadas_cruce, "%#{ nombre_marca.downcase }%").
-    includes(:tipo_signo, :clase, { :consultas => :usuario }, :titulares)
+      includes(:tipo_signo, :clase, { :consultas => :usuario }, :titulares)
   }
 
   # Configuracion de thinking-sphinx
@@ -173,28 +173,28 @@ class Marca < ActiveRecord::Base
   # Realiza la inclusion de modulos de acuerdo al estado
   def self.set_include_estado(estado)
     case estado
-      when 'sm'
-        include ModMarca::Solicitud
-      when 'lp'
-        include ModMarca::ListaPublicacion
-      when 'lr'
-        include ModMarca::ListaRegistro
-      when 'sr'
-        include ModMarca::SolicitudRenovacion
-      when 'rc'
-        include ModMarca::RenovacionConcedida
+    when 'sm'
+      include ModMarca::Solicitud
+    when 'lp'
+      include ModMarca::ListaPublicacion
+    when 'lr'
+      include ModMarca::ListaRegistro
+    when 'sr'
+      include ModMarca::SolicitudRenovacion
+    when 'rc'
+      include ModMarca::RenovacionConcedida
     end
   end
 
   # Realiza la inclusion de modulos de acuerdo al tipo_signo
   def self.set_include_tipo_signo(signo)
     case signo
-      when 1
-        include ModMarca::Denominacion
-      when 2
-        include ModMarca::Etiqueta
-      when 3
-        include ModMarca::Figurativa
+    when 1
+      include ModMarca::Denominacion
+    when 2
+      include ModMarca::Etiqueta
+    when 3
+      include ModMarca::Figurativa
     end
   end
 
@@ -297,7 +297,7 @@ class Marca < ActiveRecord::Base
 
   def adicionar_errores(klass)
     klass.errors.each do |k, v|
-     self.errors.add(k, v)
+      self.errors.add(k, v)
     end
   end
 
@@ -336,7 +336,7 @@ class Marca < ActiveRecord::Base
   #   @return array
   def ultimos_posts()
     Post.all(:conditions => { :postable_id => self.id, :postable_type => 'Marca' }, 
-             :limit => POSTS_SIZE, :order => 'created_at DESC' )
+      :limit => POSTS_SIZE, :order => 'created_at DESC' )
   end
 
   # Almacena los errores despues de que es fallida la validación
@@ -404,7 +404,7 @@ class Marca < ActiveRecord::Base
     txt.gsub(/^(\342\200\234|"|\342\200\235)(.*)(\342\200\235|"|\342\200\234)$/, '\2').strip
   end
 
-protected
+  protected
   #########################################################
   # Metodos que ayudan para la extraccion de datos de Excel
 
@@ -437,7 +437,7 @@ protected
   end
 
 
-private
+  private
 
   def quitar_comillas
     self.nombre = Marca.quitar_comillas(self.nombre)

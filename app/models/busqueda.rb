@@ -115,7 +115,7 @@ class Busqueda
   def self.realizar_busqueda(params)
     b = buscar(params[:busqueda])
     result = Marca.find_by_sql(crear_sql(b.expresiones, params) )
-    # debugger
+    #result.sort! { |a,b| a.agente_ids_serial.sort <=> b.agente_ids_serial.sort }
     result
   end
 
