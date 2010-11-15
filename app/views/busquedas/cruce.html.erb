@@ -61,49 +61,70 @@
 
     <table class="decorated nolink tablesorter" id="tabla-cruce">
       <thead>
-
-      <tr>
-        <th></th>
-        <th>Nombre</th>
-        <th title="Tipo de signo">Tipo</th>
-        <th title="Clase">Cla</th>
-        <th>Numero</th>
-        <th>Fecha</th>
-        <th>Titulares</th>
-        <th>Agentes</th>
-        <th></th>
-      </tr>
+        <tr>
+          <th></th>
+          <th>Nombre</th>
+          <th title="Tipo de signo">Tipo</th>
+          <th title="Clase">Cla</th>
+          <th>Numero</th>
+          <th>Fecha</th>
+          <th>Agentes</th>
+          <th>Titulares</th>
+          <th>Observaciones</th>
+          <th></th>
+        </tr>
       </thead>
 
-      <% titulares = @busqueda.first.titular_ids.sort %>
-      <% agentes = @busqueda.first.agente_ids.sort %>
+      <% titulares = @busqueda.first.titular_ids_serial.sort %>
+      <% agentes = @busqueda.first.agente_ids_serial.sort %>
       <% count = 1 %>
-      
+      <% marcas_selected = [] %>
       <% @busqueda.each_with_index do |b, i| %>
         <% selected = @consulta_detalles.include?(b.id) %>
-        <tr class="<%= "select" if selected %>">
-          <td>
-            <span class="mini"><%= selected ? 1 : 0 %></span>
-            <%= hidden_field_tag "consulta[consulta_detalles_attributes][#{i}][tipo_de_busqueda]", b.pos if selected %>
-            <%= check_box_tag "consulta[consulta_detalles_attributes][#{i}][marca_id]", b.id, selected, 'data-tipo_de_busqueda' => b.pos %>
-          </td>
-          <td>
-            <label for="consulta_consulta_detalles_attributes_<%= i %>_marca_id" class="propia"><%= b.nombre %></label>
-          </td>
-          <td><%= b.tipo_signo.sigla %></td>
-          <td><%= b.clase_id %></td>
-          <td><%= numero_marca(b) %></td>
-          <td><%= lo(b.estado_fecha, :format => "%d %b, %Y") %></td>
-          <td><%= b.titulares.join(", ") %></td>
-          <td><%= b.agentes.join(", ") %></td>
-          <td><%= link_to("Reporte") if selected %></td>
-        </tr>
+        <% if titulares == b.titular_ids_serial.sort && agentes == b.agente_ids_serial.sort %>
+          <% if count == 1 %>
+            <form action="/" method="get">
+          <% end %>
+          <tr class="<%= "select" if selected %>">
+            <td>
+              <% if count == 1 %>
+                <span class="mini"><%= selected ? 1 : 0 %></span>
+                <%= hidden_field_tag "consulta[consulta_detalles_attributes][#{i}][tipo_de_busqueda]", b.pos if selected %>
+                <%= check_box_tag "consulta[consulta_detalles_attributes][#{i}][marca_id]", b.id, selected, 'data-tipo_de_busqueda' => b.pos %>
+              <% end %>
+            </td>
+            <td>
+              <label for="consulta_consulta_detalles_attributes_<%= i %>_marca_id" class="propia"><%= b.nombre %></label>
+            </td>
+            <td><%= b.tipo_signo.sigla if b.tipo_signo %></td>
+            <td><%= b.clase_id %></td>
+            <td><%= numero_marca(b) %></td>
+            <td><%= lo(b.estado_fecha, :format => "%d %b, %Y") %></td>
+            <td><%= b.agentes.join(", ") %></td>
+            <td><%= b.titulares.join(", ") %></td>
+            <% if count == 1 %>
+              <td><%= text_field_tag :observaciones %></td>
+              <td><%= submit_tag("Reporte") %></td>
+              <% else %>
+              <td colspan="2"></td>
+            <% end %>
+          </tr>
+          <% count += 1 %>
+          <% marcas_selected << b.id  %>
+        <% else %>
+          <% marcas_selected.each do |marca| %>
+            <%= hidden_field_tag("marca_ids[]", marca) %>
+          <% end %>
+          </form>
+          <% titulares = b.titular_ids_serial.sort %>
+          <% agentes = b.agente_ids_serial.sort %>
+          <% count = 1 %>
+          <% marcas_selected = []  %>
+          <% redo %>
+        <% end %>
       <% end %>
-
     </table>
-
   <% end %>
-
   <p>
     <%= f.submit 'Salvar' unless @busqueda.blank? %>
     <%= f.submit 'Descartar cruce', :class => 'red' unless @busqueda.blank? %>

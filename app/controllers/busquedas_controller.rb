@@ -26,6 +26,8 @@ class BusquedasController < ApplicationController
     
     @busqueda = Busqueda.realizar_busqueda(query)
 
+    @busqueda.sort! { |a, b| [a.agente_ids_serial.sort, a.titular_ids_serial.sort] <=> [b.agente_ids_serial.sort, b.titular_ids_serial.sort]  }
+
     query[:clases] = (1..45).to_a
     @con = Consulta.new(:consulta_id => params[:consulta_id], :busqueda => @marca.nombre, :parametros => query, 
                        :importacion_id => params[:importacion_id], :marca_id => params[:marca_id])
