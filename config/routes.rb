@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :reporte_marcas do
     collection do
       get :cruces
-      get :cruce
+      post :cruce
     end
 
     member do

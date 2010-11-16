@@ -2,7 +2,7 @@
 # author: Boris Barroso
 # email: boriscyber@gmail.com
 class ReporteMarcasController < ApplicationController
-  
+  protect_from_forgery :except => :cruce
   # GET /reporte_marcas
   def index
     @reporte_marcas = ReporteMarca.paginate(:include => :representante, :page => @page, :order => "updated_at DESC")

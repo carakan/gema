@@ -1,39 +1,28 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" >
-<head>
-  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-  <meta name="csrf-token" content="<%= form_authenticity_token() %>" />
-
-  <title>ORPAN - GEMA</title>
-  <%= stylesheet_link_tag 'style', 'jquery-ui-1.8.1.custom.css', 'ufd-base', 'ufd', :cache => 'styles' %>
-
-  <%= javascript_include_tag 'jquery-1.4.2.min', 'jquery-ui-1.8.1.custom.min', 'jquery.ui.datepicker-es', 'jquery.ui.ufd.min', "tablesorter", 'application',  :cache => 'js' %>
-
-</head>
-<body>
-  
-<div id="debug-error" style="display:none; width: 640px; height: 480px; overflow: auto; z-index: 10000"></div> 
-
-<div id="wrapper" class="container_12">
-  <!--Tooltips-->
-  <div id="tooltip-error" class="tooltip" style="display:none"></div>
-  <div id="tooltip" class="tooltip" style="display:none"></div>
-
-  <%= render :partial => "layouts/header" %>
-
-
-  <%= render :partial => "layouts/menu" %>
-  <div style="clear:both"></div>
-  <div id="cont">
-    <%= render :partial => "layouts/notice" %>
-
-    <%= yield %>
-    <div class="clear"></div>
-  </div>
-  <div class="clear"></div>
-</div>
-
-</body>
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta name="csrf-token" content="<%= form_authenticity_token() %>" />
+    <title>ORPAN - GEMA</title>
+    <%= stylesheet_link_tag 'style', 'jquery-ui-1.8.1.custom.css', 'ufd-base', 'ufd', :cache => 'styles' %>
+    <%= javascript_include_tag 'jquery-1.4.2.min', 'jquery-ui-1.8.1.custom.min', 'jquery.ui.datepicker-es', 'jquery.ui.ufd.min', "tablesorter", "post", 'application',  :cache => 'js' %>
+  </head>
+  <body>
+    <div id="debug-error" style="display:none; width: 640px; height: 480px; overflow: auto; z-index: 10000"></div>
+    <div id="wrapper" class="container_12">
+      <!--Tooltips-->
+      <div id="tooltip-error" class="tooltip" style="display:none"></div>
+      <div id="tooltip" class="tooltip" style="display:none"></div>
+      <%= render :partial => "layouts/header" %>
+      <%= render :partial => "layouts/menu" %>
+      <div style="clear:both"></div>
+      <div id="cont">
+        <%= render :partial => "layouts/notice" %>
+        <%= yield %>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+  </body>
 </html>
