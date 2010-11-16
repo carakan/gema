@@ -3,7 +3,6 @@
 # email: boriscyber@gmail.com
 class MarcasController < ApplicationController
   before_filter :revisar_permiso!
-  before_filter :add_params_agentes_titulares
 
   def index
     nombre_marca = (params[:nombre_marca] || "")
@@ -20,8 +19,7 @@ class MarcasController < ApplicationController
   def new
     @tipo = params[:tipo]
     @a = params[:a]
-#    @tipo_marca = params[:tipo_marca]
-    @marca = Marca.new(:estado_fecha => Date.today, :tipo_signo_id => TipoSigno.find_by_sigla(params[:tipo]).id)#, :tipo_marca_id => TipoMarca.find_by_sigla(params[:tipo_marca]).id)
+    @marca = Marca.new(:estado_fecha => Date.today, :tipo_signo_id => TipoSigno.find_by_sigla(params[:tipo]).id, :estado => 'pp', :propia => true, :activa => true)
   end
 
   def edit
@@ -80,14 +78,6 @@ class MarcasController < ApplicationController
   end
 
   private
-
-  # Adiciona parametros para agentes y titulares
-  def add_params_agentes_titulares
-    if ['update', 'create'].include?(params[:action])
-      params[:marca][:agente_ids] = params[:agente_ids]
-      params[:marca][:titular_ids] = params[:titular_ids]
-    end
-  end
 
   def redireccionar_udpate(marca)
     unless params[:importacion_id].nil?

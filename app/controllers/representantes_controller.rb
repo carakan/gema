@@ -104,10 +104,7 @@ class RepresentantesController < ApplicationController
     #else
     #  @data  = lambda { |v| { :id => v.id, :cliente => v.cliente, :label => v.to_s } }
     #end
-    @representantes = Representante.all(:conditions => ["nombre LIKE ?", "%#{busq}%"], :limit => 100)
-    render :text => @representantes.map{ |a| 
-      propia = a.cliente? ? "propia": "foranea"
-      txt = "<span class=\"#{propia}\">#{a.nombre}</span>"
-      { :value => a.id, :key => txt } }.to_json 
+    @clientes = Representante.clientes.where("nombre LIKE ?", "%#{busq}%").limit(50)
+    render :text => @clientes.map{ |c| { :value => c.id, :key => c.to_s } }.to_json 
   end
 end
