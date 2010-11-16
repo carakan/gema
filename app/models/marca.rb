@@ -47,7 +47,11 @@ class Marca < ActiveRecord::Base
     :association_foreign_key => :titular_id,
     :join_table => 'marcas_titulares'
 
-  def self.after_initialize
+  #def self.after_initialize
+  #  @con_historico = true
+  #end
+
+  def after_initialize
     @con_historico = true
   end
 
@@ -173,6 +177,8 @@ class Marca < ActiveRecord::Base
   # Realiza la inclusion de modulos de acuerdo al estado
   def self.set_include_estado(estado)
     case estado
+    when 'pp'
+      include ModMarca::PendientePresentacion
     when 'sm'
       include ModMarca::Solicitud
     when 'lp'
@@ -452,12 +458,17 @@ class Marca < ActiveRecord::Base
   end
 
 
+  # metodo para crear historico de una marca
   def crear_historico
-    params = self.class.column_names.inject({}){ |hash, col| hash[col] = self.send(col); hash }.merge(:parent_id => self.id)
-    params.delete(:id)
-    m = self.class.new(params)
-    self.changes.each{ |k, vals| m.send("#{k}=", vals.first) }
-    m.save(:validate => false)
+    #debugger
+    #params = self.class.column_names.inject({}){ |hash, col| hash[col] = self.send(col); hash }.merge(:parent_id => self.id)
+    #params.delete(:id)
+    #m = self.class.new(params)
+    #self.changes.each{ |k, vals| m.send("#{k}=", vals.first) }
+    dup = self.dup
+    dup.parent_id = self.id
+    dup.id = nil
+    dup.save(:validate => false)
   end
 
   def set_cambios

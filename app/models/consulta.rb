@@ -12,6 +12,7 @@ class Consulta < ActiveRecord::Base
   belongs_to :marca
   belongs_to :usuario
   belongs_to :importacion
+  belongs_to :representante
 
   has_many :consulta_detalles, :dependent => :destroy
   accepts_nested_attributes_for :consulta_detalles
@@ -61,7 +62,8 @@ class Consulta < ActiveRecord::Base
   def self.nueva(params)
     klass = new(
       :parametros => convertir_parametros_a_hash(params).to_yaml,
-      :busqueda => params[:busqueda]
+      :busqueda => params[:busqueda],
+      :representante_id => params[:representante_id]
     )
     klass.set_importacion_id(params)
     klass.set_marca_id(params)

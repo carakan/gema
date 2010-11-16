@@ -1,8 +1,7 @@
 <%= stylesheet_link_tag 'facebook' %>
-<%= javascript_include_tag 'jquery.fcbkcomplete' %>
+<%= javascript_include_tag 'jquery.fcbkcomplete.min' %>
 
-<%= semantic_form_for(@marca,:html => { :multipart => true } ) do |f| -%>
-  
+<%= simple_form_for(@marca,:html => { :multipart => true } ) do |f| -%>
   <%= hidden_field_tag "importacion_id", params[:importacion_id] unless params[:importacion_id].nil?  %>
 
   <%= f.hidden_field :valido, :value => 1 %>
@@ -10,13 +9,14 @@
   <%= f.input :tipo_signo_id, :as => :hidden %>
   <%= f.input :propia, :label => 'Marca propia' %>
   <%= f.input :activa, :label => 'Marca activa' %>
+
   <li>
     <label for="">Tipo de signo</label>
     <%= @marca.tipo_signo %>
     <%#= "<span class=\"error\">#{ @marca.errors.on(:tipo_signo_id) }</span>" %>
   </li>
 
-  <%= f.input :tipo_marca%>
+  <%= f.association :tipo_marca%>
 
   <%= f.input :nombre,:label => "Denominación",:tabindex => 3 %>
   <% if @marca.con_imagen? %>
@@ -31,65 +31,31 @@
   <% end %>
 
   <%= f.input :descripcion_imagen,:label => 'Descripcion diseño', :as => :text, :input_html => { :rows => 10, :cols => 115 }, :tabindex => 5 %>
-  <%= f.input :clase, :tabindex => 5 %>
+  <%= f.association :clase, :tabindex => 5 %>
   <%= f.input :productos, :label=>"Descripción productos/servicios", :as => :text, :input_html => { :rows => 10, :cols => 115 }, :tabindex => 7 %>
 
-  <div class="in_half">
     <%= link_to 'Nuevo cliente', new_representante_path('data-title' => 'Crear cliente'), :class => 'new ajax' %>
-    <ol>  
-      <li id="agente-auto" class="input-text">
-        <label for="agente_ids">Agentes</label>
-        <ul id="ul-agentes" style="display:none"> 
-          <% @marca.agentes.each do |a| %>
-            <li rel="<%= a.id %>"><%= a.nombre %></li>
-          <% end %>
-        </ul> 
-        <input type="text" value="" id="agente_ids" tabindex="8"/>
-        <div id="agentes-list" class="facebook-auto"> 
-          <div class="default">Escriba el nombre de un agente</div>  
-          <ul class="feed">
-          </ul>
-        </div> 
-      </li> 
-    </ol>
 
+    <li style="position:relative;width:440px;float:left;margin-right: 10px">
+      <%= label_tag "marca_agente_ids_", "Agentes" %>
+      <%= f.collection_select :agente_ids, Representante.find(f.object.agente_ids), :id, :to_s, {}, {:multiple => true} %>
+    </li>
 
-    <%= label_tag "marca_titular_ids", "Titulares" %>
-    <%= select_tag "marca[titular_ids][]", [] %>
-    <!---
-    <ol>  
-      <li id="titular-auto" class="input-text"> 
-        <label for="titular_ids">Titulares</label>
-        <ul id="ul-titulares" style="display:none"> 
-          <% @marca.titulares.each do |t| %>
-            <li rel="<%= t.id %>"><%= t.nombre %></li>
-          <% end %>
-        </ul> 
-        <input type="text" value="" id="titular_ids" tabindex="9" /> 
-        <div id="titulares-list" class="facebook-auto"> 
-          <div class="default">Escriba el nombre de un titular</div>  
-          <ul class="feed">
-          </ul>
-        </div> 
-      </li> 
-    </ol>
-    -->
+    <li style="position:relative;width:440px;float:left">
+      <%= label_tag "marca_titular_ids_", "Titulares" %>
+      <%= f.collection_select :titular_ids, Representante.find(f.object.titular_ids), :id, :to_s, {}, {:multiple => true} %>
+    </li>
 
-    <ol>
-      <li>
-        <ul>
-          <%= f.input :apoderado, :tabindex => 11 %>
-        </ul>
-      </li>
-    </ol> 
-    <ol>
-      <li>
-        <ul>
-          <%= f.input :representante_empresarial, :tabindex => 12 %>
-        </ul>
-      </li>
-    </ol> 
-  </div>
+    <div class="clear"></div>
+    <li>
+        <%= f.input :apoderado, :tabindex => 11 %>
+    </li>
+    <li>
+        <%= f.input :representante_empresarial, :tabindex => 12 %>
+    </li>
+
+    <div class="clear"></div>
+
   <%= f.input :fecha_instruccion , :as => 'string', :input_html => { :class => 'date' } %>
   <%= f.input :instruccion, :collection => Marca::INSTRUCCIONES, :label => 'Tipo de instrucción' %>
   <%= f.input :estado, :collection => Marca.lista_estados , :tabindex => 10 %>
@@ -133,21 +99,23 @@
 <script type="text/javascript">
 
 $(document).ready(function() {
+  // Para que pueda adicionar el plugin de facebook los elementos seleccioandos
+  $("#marca_agente_ids").find('option').addClass('selected');
+  $("#marca_titular_ids").find('option').addClass('selected');
 
-  $("#marca_titular_ids_").fcbkcomplete({
+  // Plugin facebook
+  $("#marca_agente_ids").fcbkcomplete({
     json_url: "/representantes/buscar",
     filter_hide: true,
     filter_selected: true,
     newel: false
   });
-
-
-
-  /*$.facebooklist('#titular_ids', '#ul-titulares', '#titulares-list', 
-     { url:'/representantes/buscar.json', cache:0 }, 10, { userfilter: 1, casesensetive: 0 } );
-
-  $.facebooklist('#agente_ids', '#ul-agentes', '#agentes-list', 
-    { url:'/representantes/buscar.json', cache:0 }, 10, { userfilter: 1, casesensetive: 0 } );*/
+  $("#marca_titular_ids").fcbkcomplete({
+    json_url: "/representantes/buscar",
+    filter_hide: true,
+    filter_selected: true,
+    newel: false
+  });
 
 
   $('.error_manual a').click(function(){

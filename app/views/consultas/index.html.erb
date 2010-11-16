@@ -23,7 +23,7 @@
 
       <td><%=h  link_to consulta.busqueda, consulta %></td>
       <td></td>
-      <td></td>
+      <td><%= consulta.representante %></td>
       <td><%= l consulta.created_at, :format => :short %></td>
       <td><%=h consulta.consulta_detalles.size %></td>
       <td><%=h consulta.usuario %></td>
