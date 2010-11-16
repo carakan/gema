@@ -3,4 +3,178 @@
 </div>
 <h1>Nuevo signo - <%= @a %> </h1> 
 
-<%= render :partial => "form" %>
+<%#= render :partial => "form" %>
+<%= stylesheet_link_tag 'facebook' %>
+<%= javascript_include_tag 'jquery.fcbkcomplete' %>
+
+<%= semantic_form_for(@marca,:html => { :multipart => true } ) do |f| -%>
+  
+  <%= hidden_field_tag "importacion_id", params[:importacion_id] unless params[:importacion_id].nil?  %>
+
+  <%= f.hidden_field :valido, :value => 1 %>
+
+  <%= f.input :propia, :label => 'Marca propia' %>
+  <%= f.input :activa, :label => 'Marca activa' %>
+  <%= f.input :tipo_signo, :label => 'Tipo signo'%>
+<!--  <li>
+    <label for="">Tipo de signo</label>
+    <%#= @marca.tipo_signo %>
+    <%#= "<span class=\"error\">#{ @marca.errors.on(:tipo_signo_id) }</span>" %>
+    </li>-->
+
+  <%= f.input :tipo_marca%>
+
+  <%= f.input :nombre,:label => "Denominación",:tabindex => 3 %>
+  <% if @marca.con_imagen? %>
+    <li>
+    <%= image_tag @marca.adjuntos.last.archivo.url(:mini), :class => 'mini' if @marca.adjuntos.size > 0 %>
+      <% unless @marca.tipo_signo_id == 4 %>
+          <label for="">Imagen</label>
+          <input type="file" name="marca[adjuntos_attributes][0][archivo]" size= "30" />
+          <%# adj.file_field :archivo, :size => 30 %>
+      <% end %>
+    </li>
+  <% end %>
+
+  <%= f.input :descripcion_imagen,:label => 'Descripcion diseño', :as => :text, :input_html => { :rows => 10, :cols => 115 }, :tabindex => 5 %>
+  <%= f.input :clase, :tabindex => 5 %>
+  <%= f.input :productos, :label=>"Descripción productos/servicios", :as => :text, :input_html => { :rows => 10, :cols => 115 }, :tabindex => 7 %>
+
+  <div class="in_half">
+    <%= link_to 'Nuevo cliente', new_representante_path('data-title' => 'Crear cliente'), :class => 'new ajax' %>
+    <ol>  
+      <li id="agente-auto" class="input-text">
+        <label for="agente_ids">Agentes</label>
+        <ul id="ul-agentes" style="display:none"> 
+          <% @marca.agentes.each do |a| %>
+            <li rel="<%= a.id %>"><%= a.nombre %></li>
+          <% end %>
+        </ul> 
+        <input type="text" value="" id="agente_ids" tabindex="8"/>
+        <div id="agentes-list" class="facebook-auto"> 
+          <div class="default">Escriba el nombre de un agente</div>  
+          <ul class="feed">
+          </ul>
+        </div> 
+      </li> 
+    </ol>
+
+
+    <%= label_tag "marca_titular_ids", "Titulares" %>
+    <%= select_tag "marca[titular_ids][]", [] %>
+    <!---
+    <ol>  
+      <li id="titular-auto" class="input-text"> 
+        <label for="titular_ids">Titulares</label>
+        <ul id="ul-titulares" style="display:none"> 
+          <% @marca.titulares.each do |t| %>
+            <li rel="<%= t.id %>"><%= t.nombre %></li>
+          <% end %>
+        </ul> 
+        <input type="text" value="" id="titular_ids" tabindex="9" /> 
+        <div id="titulares-list" class="facebook-auto"> 
+          <div class="default">Escriba el nombre de un titular</div>  
+          <ul class="feed">
+          </ul>
+        </div> 
+      </li> 
+    </ol>
+    -->
+
+    <ol>
+      <li>
+        <ul>
+          <%= f.input :apoderado, :tabindex => 11 %>
+        </ul>
+      </li>
+    </ol> 
+    <ol>
+      <li>
+        <ul>
+          <%= f.input :representante_empresarial, :tabindex => 12 %>
+        </ul>
+      </li>
+    </ol> 
+  </div>
+  <%= f.input :fecha_instruccion , :as => 'string', :input_html => { :class => 'date' } %>
+  <%= f.input :instruccion, :collection => Marca::INSTRUCCIONES, :label => 'Tipo de instrucción' %>
+  <%= f.input :estado, :collection => Marca.lista_estados , :tabindex => 10 %>
+
+  <% unless @marca.errores_manual.blank? %>
+    <h3 class="error">Existen errores de comparación</h3>
+
+    <% @marca.errores_manual.try(:each) do |k, v| %>
+      <div class="error_manual erro error">
+        <div>
+          <%= hidden_field_tag "marca[errores_manual][#{k}]", v  %>
+          <%= k.to_s.humanize %>: <%= v %>
+          <a href="javascript:;">borrar</a>
+        </div>
+      </div>
+    <% end %>
+    <p class="inline-hints">
+      Debe borrar los errores para que pueda validar el signo al salvar
+    </p>
+  <% end %>
+
+  <div style="clear:both; height: 30px"></div>
+  <%= f.submit "Salvar" , :tabindex => 21  %>
+<% end -%>
+
+<div style="clear:both"></div>
+
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+  $("#marca_titular_ids_").fcbkcomplete({
+    json_url: "/representantes/buscar",
+    filter_hide: true,
+    filter_selected: true,
+    newel: false
+  });
+
+
+
+  /*$.facebooklist('#titular_ids', '#ul-titulares', '#titulares-list', 
+     { url:'/representantes/buscar.json', cache:0 }, 10, { userfilter: 1, casesensetive: 0 } );
+
+  $.facebooklist('#agente_ids', '#ul-agentes', '#agentes-list', 
+    { url:'/representantes/buscar.json', cache:0 }, 10, { userfilter: 1, casesensetive: 0 } );*/
+
+
+  $('.error_manual a').click(function(){
+    $(this).parents("div:first").remove();
+    verificarErrorresManuales();
+  });
+
+  if( $('#marca_tipo_marca_id').val() == "1" ) {
+    $('#marca_clase_id option').each( function(i, el) {
+      if( parseInt( $(el).val() ) >= 35) {
+        $(el).remove();
+      }
+    });
+  }
+
+  if( $('#marca_tipo_marca_id').val() == "4" ) {
+    $('#marca_clase_id option').each( function(i, el) {
+      if( parseInt( $(el).val() ) <= 34) {
+        $(el).remove();
+      }
+    });
+  }
+
+  if ($('#marca_tipo_signo_id').val() == "2"){
+    $('#marca_nombre').val("Diseño").hide().after("<span>Diseño</span>");
+  }
+  
+  if ($('#marca_tipo_signo_id').val() == "1"){
+    $('#marca_descripcion_imagen_input').hide();
+  }
+
+});
+
+
+  
+</script>
