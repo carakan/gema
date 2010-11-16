@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails' #, '3.0.0'
+gem 'rails', '>=3.0.2'
 
 gem 'mysql2' #, '2.8.1'
 if RUBY_VERSION == "1.8.7"
@@ -29,7 +29,7 @@ gem 'simple_form'
 
 group :test do
   gem 'rspec-rails'
-  gem 'steak', '>= 1.0.0.rc.1'
+  gem 'steak', '>= 1.0.0.rc.2'
   gem 'capybara'
   gem 'mocha'
   gem 'spork', '0.8.4'

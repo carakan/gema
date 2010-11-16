@@ -4,12 +4,12 @@ module MarcasHelper
 
     pres = presentar_campo_por_tipo(klass, campo)
     if label_campos[campo].nil?
-      %Q( <label>#{campo.humanize}</label> #{ pres } )
+      %Q( <label>#{campo.humanize}</label> #{ pres } ).html_safe
     else
       hash = label_campos[campo]
       pres = klass.send(hash[:field])
       pres = pres.join(", ") if pres.is_a? Array
-      %Q( <label>#{hash[:label]}</label> #{ pres } )
+      %Q( <label>#{hash[:label]}</label> #{ pres } ).html_safe
     end
   end
 

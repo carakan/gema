@@ -95,6 +95,7 @@ label {
   color: #484848;
   margin: 3px 0px;
 }
+.boolean label { display: inline-block; }
 .input { padding: 4px; }
 .i { margin: 12px 4px; }
 div#cont {
