@@ -375,7 +375,7 @@ class Marca < ActiveRecord::Base
       params[:numero_solicitud] = digitos_numero_solicitud(params[:numero_solicitud])
       marca = Marca.find_by_numero_solicitud(params[:numero_solicitud] )
     end
-    
+  
     if marca.nil?
       return Marca.new(params)
     elsif !(marca.propia)
@@ -442,6 +442,12 @@ class Marca < ActiveRecord::Base
     c.id unless c.nil?
   end
 
+  # Realiza la busqueda de una clase por su codigo
+  #   @param
+  def self.buscar_titular_id(titular_nombre)
+    titular = Representante.find_by_nombre(titular_nombre)
+    titular.id unless titular.nil?
+  end
 
   private
 
