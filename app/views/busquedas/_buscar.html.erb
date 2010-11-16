@@ -1,3 +1,6 @@
+<%= stylesheet_link_tag 'facebook' %>
+<%= javascript_include_tag 'jquery.fcbkcomplete.min' %>
+
 <style type="text/css">
   #clases_grupos{
     padding: 0px;
@@ -39,23 +42,24 @@
     width: 750px;
     margin-left: 20px;
   }
+
+
 </style>
 <form action="/busquedas" method="get", id="form_buscar" >
   <div style="clear:both"></div>
   <div style="clear:both"></div>
   <div class="half fl">
+    <%= label_tag "busqueda", "Busqueda" %>
     <%= text_field_tag :busqueda, params[:busqueda], :size => 40 %>
   </div>
 
   <div class="half fl">
-    <%= label_tag "representante_id", "Cliente" %>
-    <%= select_tag "representante_id", options_for_select Representante.lista_clientes %>
+    <%= label_tag "clientes", "Cliente" %>
+    <%= hidden_field_tag "representante_id", params[:representante_id] %>
+    <%= select_tag "clientes", [] %>
   </div>
   
-
-
-
-  <div style="clear:both"></div>
+  <div class="clear"></div>
 
   <label for="">Clases</label>
   <div id="clases_grupos">
@@ -201,6 +205,27 @@ $(document).ready(function() {
       return true;
     }
 
+  });
+
+  var clientes = <%= Representante.clientes.map { |v| { :id => v.id, :label => v.nombre } }.to_json.html_safe %>;
+
+  // Clientes
+  /*$('#clientes').autocomplete({
+    'source': clientes,
+    'select': function(e, ui) {
+      var val = $(ui).autocomplete("option").get()[0];
+      $('#representante_id').val(val.item.id);
+    }
+  })
+  .data("autocomplete")._rederItem, function(ul, item) {
+    return ""
+  });*/
+
+  $("#clientes").fcbkcomplete({
+    json_url: "/representantes/buscar",
+    filter_hide: true,
+    filter_selected: true,
+    newel: false
   });
 });
 </script>

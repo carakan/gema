@@ -78,13 +78,11 @@
       <% titulares = @busqueda.first.titular_ids_serial.sort %>
       <% agentes = @busqueda.first.agente_ids_serial.sort %>
       <% count = 1 %>
+      <% count_grupos = 1 %>
       <% marcas_selected = [] %>
       <% @busqueda.each_with_index do |b, i| %>
         <% selected = @consulta_detalles.include?(b.id) %>
         <% if titulares == b.titular_ids_serial.sort && agentes == b.agente_ids_serial.sort %>
-          <% if count == 1 %>
-            <form action="/" method="get">
-          <% end %>
           <tr class="<%= "select" if selected %>">
             <td>
               <% if count == 1 %>
@@ -103,23 +101,21 @@
             <td><%= b.agentes.join(", ") %></td>
             <td><%= b.titulares.join(", ") %></td>
             <% if count == 1 %>
-              <td><%= text_field_tag :observaciones %></td>
-              <td><%= submit_tag("Reporte") %></td>
-              <% else %>
+              <td><%= text_field_tag "observaciones_#{count_grupos}" %></td>
+              <td><%= link_to("Reporte", "/", :class => "reporte", :grupo => count_grupos) %></td>
+            <% else %>
               <td colspan="2"></td>
             <% end %>
           </tr>
           <% count += 1 %>
           <% marcas_selected << b.id  %>
         <% else %>
-          <% marcas_selected.each do |marca| %>
-            <%= hidden_field_tag("marca_ids[]", marca) %>
-          <% end %>
-          </form>
+          <%= hidden_field_tag("marca_ids_#{count_grupos}", marcas_selected.join(",")) %>
           <% titulares = b.titular_ids_serial.sort %>
           <% agentes = b.agente_ids_serial.sort %>
           <% count = 1 %>
           <% marcas_selected = []  %>
+          <% count_grupos += 1 %>
           <% redo %>
         <% end %>
       <% end %>
@@ -134,7 +130,16 @@
 
 <script type="text/javascript">
   (function($) {
-    $("#tabla-cruce").tablesorter();
+    // $("#tabla-cruce").tablesorter();
+    $("table a.reporte").click(function(e){
+      e.stopPropagation();
+      e.preventDefault();
+      enlace = $(this);
+      marcas = $("#marca_ids_" + enlace.attr("grupo")).val();
+      observaciones = $("#observaciones_" + enlace.attr("grupo")).val();
+      window.location = "/?marca_ids=" + marcas + "observaciones=" + observaciones;
+    });
+    
     function validarForma() {
       msg = "";
       if($('#consulta_comentario').val().trim() == "") {
