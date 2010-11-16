@@ -8,7 +8,6 @@
                 .attr("method", "post")
                 .attr("action", url);
             $.each(params, function(name, value) {
-                console.debug(name, value);
                 $("<input type='hidden'>")
                     .attr("name", name)
                     .attr("value", value)

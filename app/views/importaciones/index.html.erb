@@ -2,11 +2,11 @@
 
 <ul class="menu">
   <li>
-  <a href="javascript:" class="new">Importar&nbsp;<span class="more"></span></a>
+    <a href="javascript:" class="new">Importar&nbsp;<span class="more"></span></a>
     <ul>
-    <% Marca.lista_estados.each do |nombre, tipo| %>
-      <li><%= link_to nombre, new_importacion_path(:tipo => tipo) %></li>
-    <% end %>
+      <% Marca.lista_estados.each do |nombre, tipo| %>
+        <li><%= link_to nombre, new_importacion_path(:tipo => tipo) %></li>
+      <% end %>
     </ul>
   </li>
 </ul>
@@ -14,23 +14,21 @@
 <br />
 <br />
 <table class="decorated">
-	<tr>
-		<th>Fecha</th>
-		<th>Tipo</th>
+  <tr>
+    <th>Fecha</th>
+    <th>Tipo</th>
     <th>Total</th>
     <th>Errores</th>
     <th>Cruce</th>
-    <th title="Reportes para agentes y títulares">Reportes</th>
     <th>Descargas</th>
-	</tr>
+  </tr>
   <%- @marcas.each do |marca| -%>
     <tr>
-    	<td><%= link_to fecha_hora(marca.try(:importacion).created_at, 'long'), marca.importacion %></td>
+      <td><%= link_to fecha_hora(marca.try(:importacion).created_at, 'long'), marca.importacion %></td>
       <td><strong><%= marca.ver_estado %></strong></td>
       <td><%= marca.total %></td>
       <td><%= marca.errores_listado.html_safe %></td>
       <td><%= cruce marca %></td>
-      <td><%= link_to "reportes", cruces_reporte_marcas_path(:importacion_id => marca.importacion_id) %></td>
       <td><%= link_to "descargar", descarga_importacion_path(marca.importacion_id), :class => 'dowload' %></td>
     </tr>
   <%- end -%>
