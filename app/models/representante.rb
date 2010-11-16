@@ -45,6 +45,16 @@ class Representante < ActiveRecord::Base
     find_by_sql( ["SELECT agente_id FROM marcas_agentes WHERE marca_id IN (?)", marca_ids ] ).map(&:agente_id).uniq
   end
 
+  def ultimos_posts()
+    Post.all(:conditions => { :postable_id => self.id, :postable_type => 'Representante' }, 
+             :limit => POSTS_SIZE, :order => 'created_at DESC' )
+  end
+
+  # concatena los datos denormalizados de pais
+  def pais_datos
+    %Q(#{pais_codigo} - #{pais_nombre})
+  end
+
   # Retorna un Hash con la lista de representantes todos los representantes "clientes" buscando en las marcas
   #   @param Array
   #   @param Symbol => [ :agentes, :titulares ]
@@ -61,14 +71,9 @@ class Representante < ActiveRecord::Base
     representante_ids.map { |v| @reps[v] }
   end
 
-  def ultimos_posts()
-    Post.all(:conditions => { :postable_id => self.id, :postable_type => 'Representante' }, 
-             :limit => POSTS_SIZE, :order => 'created_at DESC' )
-  end
-
-  # concatena los datos denormalizados de pais
-  def pais_datos
-    %Q(#{pais_codigo} - #{pais_nombre})
+  # Listado de clientes para opciones
+  def self.lista_clientes
+    clientes.map { |v| [v.nombre, v.id] }
   end
 
 private

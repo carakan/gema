@@ -97,9 +97,17 @@ class RepresentantesController < ApplicationController
     end
   end
 
-  def buscar
+  def buscar()
     busq = params[:tag]
+    #if params[:clientes]
+    #  @data = lambda { |v| { :id => v.id, :cliente => v.cliente, :label => v.to_s } }
+    #else
+    #  @data  = lambda { |v| { :id => v.id, :cliente => v.cliente, :label => v.to_s } }
+    #end
     @representantes = Representante.all(:conditions => ["nombre LIKE ?", "%#{busq}%"], :limit => 100)
-    render :text => @representantes.map{ |a| {:caption => a.nombre, :value => a.id} }.to_json 
+    render :text => @representantes.map{ |a| 
+      propia = a.cliente? ? "propia": "foranea"
+      txt = "<span class=\"#{propia}\">#{a.nombre}</span>"
+      { :value => a.id, :key => txt } }.to_json 
   end
 end
