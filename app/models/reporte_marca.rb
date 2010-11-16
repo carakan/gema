@@ -7,14 +7,17 @@ class ReporteMarca < ActiveRecord::Base
   belongs_to :representante
   belongs_to :importacion
   belongs_to :consulta
+  belongs_to :marca_foranea, :class_name => "Marca"
   has_many :reporte_marca_detalles, :dependent => :destroy
 
   IDIOMAS = [['Español', 'es'], ['Ingles', 'en']]
   
   accepts_nested_attributes_for :reporte_marca_detalles
 
-  validates_presence_of :carta, :representante_id
-  validates_associated :representante
+  validates_presence_of :carta
+  # validates_associated :representante
+
+  serialize :marca_ids_serial
 
   def self.buscar_representantes(imp_id)
     marcas = Consulta.all("marca_ids_serial", :conditions => { :importacion_id => imp_id } ).map(:marca_ids_serial)

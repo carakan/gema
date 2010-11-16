@@ -5,8 +5,11 @@
 </div>
 
 <h1>Crear Reporte cruce</h1>
-<h2 class="dark"><%= params[:representante_type] %>: <%= @representante %></h2>
 <h2 class="dark">Gaceta <%= @importacion.publicacion %> del <%= l @importacion.publicacion_fecha %></h2>
+<h4 class="dark">Agentes</h4>
+<%= @marcas.first.agentes.join(", ") %>
+<h4 class="dark">Titulares</h4>
+<%= @marcas.first.titulares.join(", ") %>
 
 
 <%= semantic_form_for(@reporte_marca) do |f| %>
@@ -14,6 +17,9 @@
   <%= f.input :representante_id, :as => :hidden %>
   <%= f.input :representante_type, :as => :hidden %>
   <%= f.input :importacion_id, :as => :hidden %>
+  <%= hidden_field_tag :marca_ids, @marca_ids.join(",") %>
+<%= hidden_field_tag :marca_foranea,  @marca.id %>
+<%= hidden_field_tag :importacion_id,  @importacion.id %>
   <%= hidden_field_tag "_reporte_marca", 1 unless ReporteMarca.buscar_en_cruce(params).nil? %>
 
   <p>
@@ -37,7 +43,7 @@
   		<th>Marca agena</th>
   		<th>Comentario</th>
   	</tr>
-    <% @marcas.each{ |v| f.object.reporte_marca_detalles.build(:marca_id => v.marca_id, :marca_foranea_id => v.consulta.marca_id) } if params[:reporte_marca].nil? %>
+    <% @marcas.each{ |v| f.object.reporte_marca_detalles.build(:marca_id => v.id, :marca_foranea_id => params[:marca_foranea]) } if params[:reporte_marca].nil? %>
     <% @i = 0 %>
     <%= f.semantic_fields_for :reporte_marca_detalles do |rd| %>
       <tr>

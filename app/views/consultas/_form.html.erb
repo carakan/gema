@@ -4,6 +4,11 @@
   <%= hidden_field_tag :importacion_id, params[:importacion_id] %>
   <%= hidden_field_tag :consulta_id, params[:consulta_id] %>
 
+
+  <label for="">Cliente</label>
+  <%= @consulta.representante %>
+
+  <%= f.input :representante_id, :as => :hidden %>
   <%= f.input :busqueda, :as => :hidden %>
   <%= f.input :parametros, :value => f.object.parametros.to_yaml, :as => :hidden %>
   <%= f.input :importacion_id, :as => :hidden %>

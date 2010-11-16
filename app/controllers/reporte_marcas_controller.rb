@@ -2,7 +2,7 @@
 # author: Boris Barroso
 # email: boriscyber@gmail.com
 class ReporteMarcasController < ApplicationController
-  
+  protect_from_forgery :except => :cruce
   # GET /reporte_marcas
   def index
     @reporte_marcas = ReporteMarca.paginate(:include => :representante, :page => @page, :order => "updated_at DESC")
@@ -60,9 +60,7 @@ class ReporteMarcasController < ApplicationController
   # GET /reporte_marcas/new.xml
   def cruce
     preparar_datos_cruce
-    @reporte_marca = ReporteMarca.new(:representante_id => params[:representante_id], 
-      :representante_type => params[:representante_type],
-      :importacion_id => params[:importacion_id], :idioma => 'es')
+    @reporte_marca = ReporteMarca.new(:importacion_id => params[:importacion_id], :idioma => 'es')
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @reporte_marca }
@@ -72,9 +70,6 @@ class ReporteMarcasController < ApplicationController
   # GET /reporte_marcas/1/edit
   def edit
     @reporte_marca = ReporteMarca.find(params[:id])
-    [:representante_type, :representante_id, :importacion_id].each do |param|
-      params[param] = @reporte_marca.send(param)
-    end
     preparar_datos_cruce
   end
 
@@ -82,10 +77,15 @@ class ReporteMarcasController < ApplicationController
   # POST /reporte_marcas.xml
   def create
     @reporte_marca = ReporteMarca.new(params[:reporte_marca])
+    preparar_datos_cruce
+    @reporte_marca.marca_ids_serial = @marca_ids
+    @reporte_marca.marca_foranea_id = @marca.id
 
     if @reporte_marca.save
       redirect_to(@reporte_marca, :notice => 'Se ha salvado correctamente el reporte.')
+      flash[:notice] = "Se guardo el reporte"
     else
+      flash[:notice] = "No se pudo guardar los datos"
       action = preparar_datos
       render :action => action
     end
@@ -131,16 +131,9 @@ class ReporteMarcasController < ApplicationController
 
   # Prepara los datos para un cruce
   def preparar_datos_cruce
-    p = params[:representante_id].nil? ? params[:reporte_marca] : params
-    if 'Agente' == p[:representante_type]
-      tipo = :agentes
-    else
-      tipo = :titulares
-    end
-    params[:representante_type] = p[:representante_type]
-    
-    @representante = Representante.find(p[:representante_id]) 
-    @importacion = Importacion.find(p[:importacion_id]) if p[:importacion_id]
-    @marcas = Consulta.marcas_representante_cruce(p[:importacion_id], p[:representante_id], tipo )
+    @marca_ids = params[:marca_ids].split(",").collect{|id| id.to_i} if params[:marca_ids]
+    @importacion = Importacion.find(params[:importacion_id] ) if params[:importacion_id]
+    @marcas = Marca.all(:conditions => {:id => @marca_ids})
+    @marca = Marca.find(params[:marca_foranea]) if params[:marca_foranea]
   end
 end

@@ -26,7 +26,7 @@ $(document).ready(->
 
   # Transforma un campo dateselect de rails a uno de jQueryUI
   transformarDateSelect = ->
-    $('li.date, div.date').each((i, el)->
+    $('li.date, div.date, li.datetime, div.datetime').each((i, el)->
       # Ocultar los campos
       input = document.createElement('input')
       $(input).attr({ 'class': 'date-transform', 'type': 'text'})

@@ -19,6 +19,7 @@ class Representante < ActiveRecord::Base
   has_many :posts, :as => :postable, :dependent => :destroy
   has_many :reporte_marcas
   has_many :contactos
+  has_many :consultas
 
   POSTS_SIZE = 2
   
