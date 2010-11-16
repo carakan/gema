@@ -138,6 +138,13 @@ form ol p.inline-hints {
   color: #676767;
   margin: 0px;
   font-style: italic;
+  display: block;
+}
+form ol .hint {
+  color: #676767;
+  margin: 0px;
+  font-style: italic;
+  display: block;
 }
 form ol li.error input { border: 1px solid #ff0000; }
 form ol li.error select { border: 1px solid #ff0000; }
@@ -171,6 +178,13 @@ form p.inline-hints {
   color: #676767;
   margin: 0px;
   font-style: italic;
+  display: block;
+}
+form .hint {
+  color: #676767;
+  margin: 0px;
+  font-style: italic;
+  display: block;
 }
 form li.error input { border: 1px solid #ff0000; }
 form li.error select { border: 1px solid #ff0000; }

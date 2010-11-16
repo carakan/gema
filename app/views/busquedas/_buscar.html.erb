@@ -1,6 +1,3 @@
-<%= stylesheet_link_tag 'facebook' %>
-<%= javascript_include_tag 'jquery.fcbkcomplete.min' %>
-
 <style type="text/css">
   #clases_grupos{
     padding: 0px;
@@ -50,15 +47,20 @@
   <div style="clear:both"></div>
   <div class="half fl">
     <%= label_tag "busqueda", "Busqueda" %>
+    <label for="busqueda"></label>
     <%= text_field_tag :busqueda, params[:busqueda], :size => 40 %>
   </div>
 
   <div class="half fl">
-    <%= label_tag "clientes", "Cliente" %>
-    <%= hidden_field_tag "representante_id", params[:representante_id] %>
-    <%= select_tag "clientes", [] %>
+    <label for="cliente" style="width:50px;display:inline-block">Cliente:</label>
+    <span class='representante_id'><%= Representante.find(params[:representante_id]).to_s unless params[:representante_id].nil? %></span>
+    <%= hidden_field_tag 'representante_id' %>
+    <p class="hint">escriba para poder seleccionar el cliente</p>
+    <%= text_field_tag "cliente", params[:cliente], :size => 40 %>
   </div>
   
+  <input type="submit" value="Buscar" />
+
   <div class="clear"></div>
 
   <label for="">Clases</label>
@@ -125,7 +127,6 @@
 
 
 
-  <input type="submit" value="Buscar" />
 </form>
 
 <script type="text/javascript">
@@ -197,7 +198,9 @@ $(document).ready(function() {
     if($('#busqueda').val().trim() == "") {
       txt += "Debe ingresar un termino de busqueda";
     }
-
+    if($('#representante_id').val().trim() == "") {
+      txt += "Debe seleccionar un cliente";
+    }
     if(txt != ""){
       alert(txt);
       return false;
@@ -210,23 +213,15 @@ $(document).ready(function() {
   var clientes = <%= Representante.clientes.map { |v| { :id => v.id, :label => v.nombre } }.to_json.html_safe %>;
 
   // Clientes
-  /*$('#clientes').autocomplete({
-    'source': clientes,
+  $('#cliente').autocomplete({
+    'source': '/representantes/buscar',
     'select': function(e, ui) {
       var val = $(ui).autocomplete("option").get()[0];
       $('#representante_id').val(val.item.id);
+      $('span.representante_id').html(val.item.label);
     }
-  })
-  .data("autocomplete")._rederItem, function(ul, item) {
-    return ""
-  });*/
-
-  $("#clientes").fcbkcomplete({
-    json_url: "/representantes/buscar",
-    filter_hide: true,
-    filter_selected: true,
-    newel: false
   });
+
 });
 </script>
 

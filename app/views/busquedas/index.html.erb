@@ -7,20 +7,28 @@
 </div>
 
 <% unless params[:busqueda].nil? %>
-  <h1 class="dark"><%= @busqueda.size %> resultados para la busqueda "<%= params[:busqueda] %>"</h1>
+  <hr />
+
+  <h1 class="dark">Resultados</h1>
+
+  <h2 class="dark"><%= @busqueda.size %> resultados para la busqueda "<%= params[:busqueda] %>"</h2>
 <% end %>
 
 <% unless @busqueda.blank? %>
 
+  
   <%= form_tag new_consulta_path, :method => 'get', :id => 'seleccionar' do -%>
   <%= hidden_field_tag "clases", params[:clases].keys.join(",") %>
   <%= hidden_field_tag "busqueda", params[:busqueda] %>
   <%= hidden_field_tag "tipo_busqueda", params[:tipo_busqueda] %>
+  <%= hidden_field_tag "representante_id", params[:representante_id] %>
   <% if params[:tipo_busqueda] == 'prep' %>
     <%= hidden_field_tag "fecha_ini", params[:fecha_ini]  %>
     <%= hidden_field_tag "fecha_fin", params[:fecha_fin] %>
   <% end %>
 
+  <label for="">Cliente</label>
+  <span><%= Representante.find(params[:representante_id]) %></span>
 
   <table class="decorated">
   	<tr>
