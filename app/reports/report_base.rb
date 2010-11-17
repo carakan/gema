@@ -46,6 +46,8 @@ class ReportBase < Prawn::Document
       @marcas.each do |marca|
         image(marca.adjuntos.first.archivo.url(:mini), :at => [the_x + 210, the_y - 20], :fit => [50, 50]) if !marca.adjuntos.empty?
       end
+      t.column(1..3).style(:width => 50)
+      t.column(8).style(:width => 250)
     end
   end
 

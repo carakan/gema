@@ -51,11 +51,9 @@ class Marca < ActiveRecord::Base
   #  @con_historico = true
   #end
 
-  def after_initialize
-    @con_historico = true
-  end
-
+  # Indica si se debe crear historico
   def con_historico?
+    @con_historico = true if @con_historico.nil?
     @con_historico
   end
 
@@ -100,13 +98,6 @@ class Marca < ActiveRecord::Base
       includes(:tipo_signo, :clase, { :consultas => :usuario }, :titulares)
   }
 
-  # Configuracion de thinking-sphinx
-  #define_index do
-  #  indexes nombre_minusculas
-  #  indexes nombre
-
-  #  has clase_id, created_at, updated_at
-  #end
 
   TIPOS = {
     'pp' => 'Pendiente de presentación',
@@ -460,11 +451,6 @@ class Marca < ActiveRecord::Base
 
   # metodo para crear historico de una marca
   def crear_historico
-    #debugger
-    #params = self.class.column_names.inject({}){ |hash, col| hash[col] = self.send(col); hash }.merge(:parent_id => self.id)
-    #params.delete(:id)
-    #m = self.class.new(params)
-    #self.changes.each{ |k, vals| m.send("#{k}=", vals.first) }
     dup = self.dup
     dup.parent_id = self.id
     dup.id = nil

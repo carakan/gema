@@ -12,7 +12,7 @@
   </div>
 
   <% if devise_mapping.rememberable? -%>
-    <p><%= f.check_box :remember_me %> <%= f.label :remember_me, 'Recordarme' %></p>
+    <p><%= f.check_box :remember_me %> <%= f.label :remember_me, 'Recordarme', :style => 'display:inline-block' %></p>
   <% end -%>
 
   <p><%= f.submit "Ingresar" %></p>

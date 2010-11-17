@@ -18,7 +18,7 @@ class MarcasController < ApplicationController
 
   def new
     @tipo = params[:tipo]
-    @a = params[:a]
+    @tipo_signo = params[:a]
     @marca = Marca.new(:estado_fecha => Date.today, :tipo_signo_id => TipoSigno.find_by_sigla(params[:tipo]).id, :estado => 'pp', :propia => true, :activa => true)
   end
 

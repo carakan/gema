@@ -102,7 +102,7 @@
             <td><%= b.titulares.join(", ") %></td>
             <% if count == 1 %>
               <td><%= text_field_tag "observaciones_#{count_grupos}" %></td>
-              <td><%= link_to("Reporte",  cruce_reporte_marcas_path( :importacion_id => @importacion.id), :grupo => count_grupos, :class => "reporte")  %></td>
+              <td><%= link_to("Reporte",  cruce_reporte_marcas_path( :importacion_id => @importacion.id, :marca_foranea => @marca.id), :grupo => count_grupos, :class => "reporte") if selected %></td>
             <% else %>
               <td colspan="2"></td>
             <% end %>
@@ -137,7 +137,6 @@
       enlace = $(this);
       marcas = $("#marca_ids_" + enlace.attr("grupo")).val();
       observaciones = $("#observaciones_" + enlace.attr("grupo")).val();
-      console.debug(marcas, observaciones);
       $.postGo(enlace.attr("href"), {"marca_ids" : marcas, "observaciones" : observaciones});
     });
     
@@ -162,6 +161,7 @@
         }
       }
     });
+    
     // Adicion de un hidden para todos los elementos seleccioandos
     $('input:checkbox').click(function() {
       if( $(this).attr('checked') ) {
