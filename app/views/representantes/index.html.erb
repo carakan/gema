@@ -14,9 +14,9 @@
 
 <% @representantes.each do |representante| %>
   <tr>
-    <td><%=h link_to representante.nombre, representante, :class => cliente_propio(representante) %></td>
-   <td><%=h representante.pais %></td>
-   <td><%=h representante.direccion %></td>
+    <td><%= link_to representante.nombre, representante, :class => cliente_propio(representante) %></td>
+    <td><%= representante.pais_datos %></td>
+   <td><%= representante.direccion %></td>
    <td>
      <%= links(representante) %>
    </td>
