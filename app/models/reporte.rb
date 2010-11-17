@@ -6,7 +6,7 @@ class Reporte < ActiveRecord::Base
   REX_EXTRACT_VARIABLES = /\S*(\+\+[a-z_]+\+\+)\S*/
 
   def extract_variables(pattern)
-    self.texto_es.scan(pattern).flatten
+    @template.scan(pattern).flatten
   end
 
   # 
@@ -51,7 +51,6 @@ class Reporte < ActiveRecord::Base
     generate_variables(REX_EXTRACT_VARIABLES, "++")
     result = ""
     index = 0
-
     @texts.each do |text|
       result << text
       result << instancia.send(@variables[index]) if @variables[index]
@@ -94,6 +93,8 @@ class Reporte < ActiveRecord::Base
     if reporte_marca.importacion_id?
       report = Reporte.set_instance("cruce_report")
       report.engine_report.marcas = [reporte_marca.marca_foranea]
+      report.engine_report.titulares = Marca.first(:conditions => {:id => reporte_marca.marca_ids_serial}).titulares.join(", ")
+      report.engine_report.importacion = reporte_marca.importacion
     else
       report = Reporte.set_instance("busqueda_report")
       report.engine_report.busqueda = reporte_marca.busqueda
