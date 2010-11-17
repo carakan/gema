@@ -28,9 +28,8 @@ class ReporteMarca < ActiveRecord::Base
     if self.importacion_id?
       nombre = "#{self.id}_Gaceta_" << self.importacion.publicacion
       nombre << "_" << (I18n.l self.importacion.publicacion_fecha, :format => "%d-%b-%Y")
-      nombre << "_" << self.representante_type << "_" << self.representante.nombre
     else
-      nombre = "#{self.id}_busquedas_#{self.representante.nombre}"
+      nombre = "#{self.id}_busquedas"
     end
 
     nombre

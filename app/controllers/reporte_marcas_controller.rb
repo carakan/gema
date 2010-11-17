@@ -59,8 +59,8 @@ class ReporteMarcasController < ApplicationController
   # GET /reporte_marcas/new
   # GET /reporte_marcas/new.xml
   def cruce
-    preparar_datos_cruce
     @reporte_marca = ReporteMarca.new(:importacion_id => params[:importacion_id], :idioma => 'es')
+    preparar_datos_cruce
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @reporte_marca }
@@ -78,8 +78,7 @@ class ReporteMarcasController < ApplicationController
   def create
     @reporte_marca = ReporteMarca.new(params[:reporte_marca])
     preparar_datos_cruce
-    @reporte_marca.marca_ids_serial = @marca_ids
-    @reporte_marca.marca_foranea_id = @marca.id
+
 
     if @reporte_marca.save
       redirect_to(@reporte_marca, :notice => 'Se ha salvado correctamente el reporte.')
@@ -135,5 +134,10 @@ class ReporteMarcasController < ApplicationController
     @importacion = Importacion.find(params[:importacion_id] ) if params[:importacion_id]
     @marcas = Marca.all(:conditions => {:id => @marca_ids})
     @marca = Marca.find(params[:marca_foranea]) if params[:marca_foranea]
+
+    if @marca && @marca_ids
+      @reporte_marca.marca_ids_serial = @marca_ids
+      @reporte_marca.marca_foranea_id = @marca.id
+    end
   end
 end

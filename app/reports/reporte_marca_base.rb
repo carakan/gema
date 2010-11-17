@@ -3,7 +3,7 @@
 # email: boriscyber@gmail.com
 #
 # Clase que realiza los reportes de una marca para los cruces
-class ReporteMarcaReport < ReportBase
+class ReporteMarcaBase < ReportBase
   # metodo que crea el reporte
   def to_pdf(reporte_marca)
     I18n.locale = :en if reporte_marca.idioma == 'en'

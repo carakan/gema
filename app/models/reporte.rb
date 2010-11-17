@@ -93,7 +93,7 @@ class Reporte < ActiveRecord::Base
   def self.crear_reporte(reporte_marca)
     if reporte_marca.importacion_id?
       report = Reporte.set_instance("cruce_report")
-      report.engine_report.marcas = reporte_marca.reporte_marca_detalles.collect{|detalle| detalle.marca_foranea}
+      report.engine_report.marcas = [reporte_marca.marca_foranea]
     else
       report = Reporte.set_instance("busqueda_report")
       report.engine_report.busqueda = reporte_marca.busqueda

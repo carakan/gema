@@ -3,7 +3,7 @@
 # email: boriscyber@gmail.com
 #
 # Clase que realiza los reportes de una marca para los cruces
-class CruceReport < ReporteMarcaReport
+class CruceReport < ReporteMarcaBase
   # metodo que crea la tabla con las comparaciones
   def tabla(reporte_marca)
     data = datos(reporte_marca)
