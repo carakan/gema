@@ -107,12 +107,12 @@ class Marca < ActiveRecord::Base
     'lr' => 'Lista de Registro',
     'sr' => 'Solicitud de Renovación',
     'rc' => 'Renovaciones Concedidas'
-  })
+  }
 
 
   ESTADOS = TIPOS
 
-  SIGNOS = ActiveSupport::OrderedHash.new.merge({
+  SIGNOS = {
     'sigden' => 'Marcas Denomainativas',
     'sigfig' => 'Marcas Figurativas',
     'sigmix' => 'Marcas Mixtas',
@@ -120,7 +120,7 @@ class Marca < ActiveRecord::Base
     'signcd' => 'Nombre Comercial Denominativo',
     'signcm' => 'Nombre Comercial Mixto',
     'siglc' => 'Lema Comercial'
-  })
+  }
 
   # Modulo base para la importacion desde excel
   include ModMarca::Excel
