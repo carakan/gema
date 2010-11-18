@@ -23,7 +23,7 @@
   <% if @marca.con_imagen? %>
     <li>
     <%= image_tag @marca.adjuntos.last.archivo.url(:mini), :class => 'mini' if @marca.adjuntos.size > 0 %>
-      <% unless @marca.tipo_signo_id == 4 %>
+      <% unless @marca.try(:tipo_signo_id) == 4 %>
           <label for="">Imagen</label>
           <input type="file" name="marca[adjuntos_attributes][0][archivo]" size= "30" />
           <%# adj.file_field :archivo, :size => 30 %>
@@ -59,7 +59,8 @@
 
   <%= f.input :fecha_instruccion , :as => 'string', :input_html => { :class => 'date' } %>
   <%= f.input :instruccion, :collection => Marca::INSTRUCCIONES, :label => 'Tipo de instrucción' %>
-  <%= f.input :estado, :collection => Marca.lista_estados , :tabindex => 10 %>
+  <%#= f.input :estado, :collection => Marca.lista_estados , :tabindex => 10 %>
+  <%= f.association :marca_estado %>
   <%= f.input :numero_solicitud , :tabindex => 13  %>
   <%# f.input :estado_fecha, :label => 'Fecha solicitud',:as => :string, :input_html => {:tabindex => 14, :class => 'date' } %>
   <li class="date">

@@ -80,8 +80,8 @@
       <% count = 1 %>
       <% count_grupos = 1 %>
       <% marcas_selected = [] %>
+      <% selected = @consulta_detalles.include?(@busqueda.first.id) %>
       <% @busqueda.each_with_index do |b, i| %>
-        <% selected = @consulta_detalles.include?(b.id) %>
         <% if titulares == b.titular_ids_serial.sort && agentes == b.agente_ids_serial.sort %>
           <tr class="<%= "select" if selected %>">
             <td>
@@ -116,6 +116,7 @@
           <% count = 1 %>
           <% marcas_selected = []  %>
           <% count_grupos += 1 %>
+          <% selected = @consulta_detalles.include?(b.id) %>
           <% redo %>
         <% end %>
       <% end %>

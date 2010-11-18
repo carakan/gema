@@ -13,18 +13,18 @@ class ReportBase < Prawn::Document
       @observacion = "alguna observacion"
     end
 
-    marca_header = [I18n.t("nombre marca"), I18n.t("tipo marca"), I18n.t("imagen marca"), I18n.t("clase marca"), I18n.t("numero solicitud marca"),
-      I18n.t("fecha publicacion marca"), I18n.t("numero publicacion marca"),
+    marca_header = [I18n.t("nombre marca"), I18n.t("tipo marca"), I18n.t("imagen marca"), I18n.t("clase marca"),
+      I18n.t("fecha solicitud marca"), I18n.t("numero publicacion marca"),
       I18n.t("titulares marca"), I18n.t("observaciones marca")]
 
     marcas_table = []
     count = 0
     @marcas.each do |marca|
-      fecha_publicacion = "#{I18n.l(marca.try(:fecha_publicacion), :format => :long) if marca.fecha_publicacion}"
+      fecha_solicitud = "#{I18n.l(marca.try(:estado_fecha), :format => :long)}"
 
-      marcas_table[count] = ["#{marca.nombre}", "#{marca.tipo_marca.try(:sigla) if marca.tipo_marca}", "", "#{marca.clase_id}", "#{marca.numero_solicitud}",
-        "#{fecha_publicacion}", "#{marca.numero_publicacion}",
-        "#{marca.titulares.collect{|representante| "#{representante.nombre}"}.join(", ")}", "#{@observacion}"]
+      marcas_table[count] = ["#{marca.nombre}", "#{marca.tipo_signo.try(:sigla) if marca.tipo_signo}", "", "#{marca.clase_id}", "#{fecha_solicitud}",
+        "#{marca.numero_publicacion}",
+        "#{marca.titulares.collect{|representante| "#{representante.nombre}"}.join(", ")}", "#{marca.productos}"]
       count += 1
     end
 
@@ -42,12 +42,15 @@ class ReportBase < Prawn::Document
       the_x = t.cells[1,2].x
       the_y = t.cells[1,2].y
 
-      t.cells[1,1].content = "\n"
       @marcas.each do |marca|
-        image(marca.adjuntos.first.archivo.url(:mini), :at => [the_x + 210, the_y - 20], :fit => [50, 50]) if !marca.adjuntos.empty?
+        image("#{Rails.public_path}/#{marca.adjuntos.first.archivo.url(:mini)}" , :at => [the_x + 135, the_y - 25], :fit => [80, 80]) if !marca.adjuntos.empty?
       end
-      t.column(1..3).style(:width => 50)
-      t.column(8).style(:width => 250)
+      t.column(0).style(:width => 130)
+      t.column(1..3).style(:width => 35)
+      t.column(4).style(:width => 80)
+      t.column(5).style(:width => 50)
+      t.column(2).style(:width => 100)
+      t.column(7).style(:width => 300)
     end
   end
 

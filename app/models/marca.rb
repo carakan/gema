@@ -100,7 +100,7 @@ class Marca < ActiveRecord::Base
 
 
   TIPOS = {
-    'pp' => 'Pendiente de presentación',
+    #'pp' => 'Pendiente de presentación',
     'sm' => 'Solicitud de Marca',
     'lp' => 'Lista de publicación',
     'lr' => 'Lista de Registro',
@@ -168,8 +168,8 @@ class Marca < ActiveRecord::Base
   # Realiza la inclusion de modulos de acuerdo al estado
   def self.set_include_estado(estado)
     case estado
-    when 'pp'
-      include ModMarca::PendientePresentacion
+    #when 'pp'
+    #  include ModMarca::PendientePresentacion
     when 'sm'
       include ModMarca::Solicitud
     when 'lp'
@@ -203,7 +203,8 @@ class Marca < ActiveRecord::Base
   # Presenta una lista que puede ser usada en
   # formularios de seleccion multiple
   def self.lista_estados
-    orden = ['pp', 'sm' ,'lp', 'lr', 'sr', 'rc']
+    #orden = ['pp', 'sm' ,'lp', 'lr', 'sr', 'rc']
+    orden = ['sm' ,'lp', 'lr', 'sr', 'rc']
     orden.inject([]) { |arr, val| arr << [TIPOS[val], val] }
   end
 
