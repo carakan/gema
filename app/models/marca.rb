@@ -100,7 +100,6 @@ class Marca < ActiveRecord::Base
   }
 
 
-<<<<<<< HEAD
   TIPOS = {
     #'pp' => 'Pendiente de presentación',
     'sm' => 'Solicitud de Marca',
