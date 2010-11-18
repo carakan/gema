@@ -5,10 +5,11 @@
   <%= hidden_field_tag "importacion_id", params[:importacion_id] unless params[:importacion_id].nil?  %>
 
   <%= f.hidden_field :valido, :value => 1 %>
-  <%= f.input :tipo_signo_id, :as => :hidden %>
 
   <%= f.input :propia, :label => 'Marca propia' %>
   <%= f.input :activa, :label => 'Marca activa' %>
+
+  <%= f.input :tipo_signo_id, :as => :hidden %>
   <%= f.association :tipo_signo, :input_html => {:disabled => true} %>
 
   <!--<li>
@@ -17,7 +18,7 @@
     <%#= "<span class=\"error\">#{ @marca.errors.on(:tipo_signo_id) }</span>" %>
     </li>-->
 
-  <%= f.association :tipo_marca%>
+  <%= f.association :tipo_marca %>
 
   <%= f.input :nombre,:label => "Denominación",:tabindex => 3 %>
   <% if @marca.con_imagen? %>
@@ -68,10 +69,10 @@
   </li>
   <%= f.input :numero_gaceta, :label => 'Número de gaceta' , :tabindex => 17  %>
   <%= f.input :numero_publicacion,:label => 'Número de publicación' , :tabindex => 15  %>
-  <%= f.input :fecha_publicacion, :as => 'string', :input_html => {:tabindex => 16, :class => 'date' } %>
+  <%= f.input :fecha_publicacion, :as => 'string', :input_html => { :tabindex => 16, :class => 'date' } %>
 
   <%= f.input :numero_registro,:label => 'Número de registro' , :tabindex => 18 %>
-  <%= f.input :fecha_registro, :as => 'string', :input_html => {:tabindex => 19, :class => 'date'  } %>
+  <%= f.input :fecha_registro, :as => 'string', :input_html => { :tabindex => 19, :class => 'date'  } %>
 
   <% unless @marca.errores_manual.blank? %>
     <h3 class="error">Existen errores de comparación</h3>
@@ -81,7 +82,7 @@
         <div>
           <%= hidden_field_tag "marca[errores_manual][#{k}]", v  %>
           <%= k.to_s.humanize %>: <%= v %>
-          <a href="javascript:;">borrar</a>
+          <a href="javascript:">borrar</a>
         </div>
       </div>
     <% end %>
