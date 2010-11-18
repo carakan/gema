@@ -164,7 +164,7 @@ class Marca < ActiveRecord::Base
   # Metodo que permite realizar las importaciones
   #   @param Hash params Parametros que se recibe de el formulario
   def self.importar(params)
-    params[:marca_estado_id] = MarcaEstado.buscar_estado(params[:estado])
+    #params[:marca_estado_id] = MarcaEstado.buscar_estado(params[:estado])
     set_include_estado(params[:tipo])
     importar_archivo(params)
   end

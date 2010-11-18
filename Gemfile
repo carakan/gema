@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '>=3.0.2'
+gem 'rails', '3.0.0'
 
 gem 'mysql2' #, '2.8.1'
 if RUBY_VERSION == "1.8.7"
