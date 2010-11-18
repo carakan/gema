@@ -1,14 +1,20 @@
-<% semantic_form_for @representante do |representante| %>
-  <%= representante.input :cliente, :as => :radio, :label => "Cliente propio" %>
-  <%= representante.input :pais, :as => :select, :collection => Pais.find(:all) %>
-  <%= representante.input :nombre, :label => 'Nombre', :input_html => { :size => 70 } %>
-  <%= representante.input :direccion, :label => 'Dirección', :as => :text, :input_html => { :rows => 3, :cols => 45 } %>
-  <%= representante.input :email, :label => 'Email central' %>
-  <%= representante.input :telefono, :label => 'Teléfono' %>
-  <%= representante.input :fax, :label => 'Fax' %>
-  <%= representante.input :pagina_web, :label => 'Página web' %>
+<% simple_form_for @representante do |f| %>
+  <%= f.input :cliente, :as => :radio, :label => "Cliente propio" %>
+  <%= f.association :pais %>
+  <div class="clear"></div>
+  <%= f.input :nombre, :label => 'Nombre', :input_html => { :size => 70 } %>
+  <%= f.input :direccion, :label => 'Dirección', :as => :text, :input_html => { :rows => 3, :cols => 45 } %>
+  <div class="clear"></div>
+  <%= f.input :email, :label => 'Email central' %>
+  <%= f.input :telefono, :label => 'Teléfono' %>
+  <div class="clear"></div>
+  <%= f.input :fax, :label => 'Fax' %>
+  <%= f.input :pagina_web, :label => 'Página web' %>
+  <div class="clear"></div>
+  <%= f.input :postal %>
+  <%= f.input :division %>
 <p>
-<%=  representante.submit 'Salvar' %>
+<%=  f.submit 'Salvar' %>
 </p>
 <% end %>
    

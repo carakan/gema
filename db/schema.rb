@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101116155041) do
+ActiveRecord::Schema.define(:version => 20101118125619) do
 
   create_table "adjuntos", :force => true do |t|
     t.string   "nombre"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(:version => 20101116155041) do
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "relacionamiento"
   end
 
   add_index "contactos", ["representante_id"], :name => "index_contactos_on_representante_id"
@@ -247,6 +248,8 @@ ActiveRecord::Schema.define(:version => 20101116155041) do
     t.string   "pais_nombre"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "division"
+    t.string   "postal"
   end
 
   add_index "representantes", ["nombre"], :name => "index_representantes_on_nombre"
