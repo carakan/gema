@@ -276,7 +276,7 @@ class Marca < ActiveRecord::Base
   # @return Marca.new o clase heredada
   def self.crear_instancia(params)
 #    unless ESTADOS.inlcude? params[:estado]
-    unless ESTADOS.inlcude? params[:estado]
+    unless ESTADOS.include? params[:estado]
       return Marca.new(params)
     end
 
@@ -295,9 +295,9 @@ class Marca < ActiveRecord::Base
   # Metodo para poder realizar actualizaciones
   # que pueda cambiar la clse y el estado
   def update_marca(params)
-    unless Marca::ESTADOS.include? self.estado
-      return self.valid?
-    end
+    #unless Marca::ESTADOS.include? self.estado
+    #  return self.valid?
+    #end
     self.class.set_include_estado(params[:estado])
     params[:valido] = true
     self.update_attributes(params)
