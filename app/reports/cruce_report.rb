@@ -50,6 +50,7 @@ class CruceReport < ReporteMarcaBase
     datos_array[2] = "#{ marca.clase_id }"
     datos_array[3] = "#{ marca.numero_registro if marca.numero_registro }"
     datos_array[4] = "#{ I18n.l(marca.estado_fecha, :format => :date) if marca.estado_fecha}"
+    datos_array[5] = "#{ marca.productos }"
     datos_array
   end
 end

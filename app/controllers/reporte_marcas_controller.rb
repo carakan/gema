@@ -130,6 +130,11 @@ class ReporteMarcasController < ApplicationController
 
   # Prepara los datos para un cruce
   def preparar_datos_cruce
+    if !@reporte_marca.importacion_id.nil?
+      if !@reporte_marca.new_record?
+        @importacion = @reporte_marca.importacion
+      end
+    end
     @marca_ids = params[:marca_ids].split(",").collect{|id| id.to_i} if params[:marca_ids]
     @importacion = Importacion.find(params[:importacion_id] ) if params[:importacion_id]
     @marcas = Marca.all(:conditions => {:id => @marca_ids})
