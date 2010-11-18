@@ -29,7 +29,9 @@ namespace :gema do
     'renpad' => 'Renovada/pendiente de aviso y despacho',
     'renad' => 'Renovada/avisada despachada',
     'c' => 'Caduca',
-    'i' => 'Inactiva'}.each { |k, v| MarcaEstado.create(:abreviacion => k, :nombre => v) }
+    'i' => 'Inactiva'}.each {|k, v| MarcaEstado.create(:abreviacion => k, :nombre => v) }
+
+      puts "Se ha creado estados "
   end
 
   namespace :usuarios do

@@ -1,6 +1,11 @@
 # encoding: utf-8
 class MarcaEstado < ActiveRecord::Base
   has_many :marcas
+  validates_presence_of :nombre
+
+  def to_s
+    nombre
+  end
 
   # busca el estado que se relaciona con la importacion
   def self.buscar_estado(estado)

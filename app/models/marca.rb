@@ -110,6 +110,7 @@ class Marca < ActiveRecord::Base
   }
 
 
+#  ESTADOS = TIPOS
   ESTADOS = TIPOS
 
   SIGNOS = {
@@ -274,6 +275,7 @@ class Marca < ActiveRecord::Base
   # @param Marca o modelo heredado Indica si se debe unir con los atributos de la clase
   # @return Marca.new o clase heredada
   def self.crear_instancia(params)
+#    unless ESTADOS.inlcude? params[:estado]
     unless ESTADOS.inlcude? params[:estado]
       return Marca.new(params)
     end
