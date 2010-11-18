@@ -22,6 +22,10 @@
       <%=h @contacto.email %>
     </p>
   </div>
+  <div class="half fl">
+    <label for="">Relacionamiento</label>
+    <%= @contacto.relacionamiento %>
+  </div>
 </div>
 
 <%= link_to 'Editar', edit_contacto_path(@contacto), :class => 'edit' %> 
