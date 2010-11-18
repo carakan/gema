@@ -33,6 +33,7 @@ class MarcasController < ApplicationController
 
   def create
     @marca = Marca.crear_instancia(params[:marca])
+
     if @marca.save
       redirect_to @marca, :notice => 'Se ha salvado correctamente'
     else

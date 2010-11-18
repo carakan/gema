@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101116155041) do
+ActiveRecord::Schema.define(:version => 20101118160003) do
 
   create_table "adjuntos", :force => true do |t|
     t.string   "nombre"
@@ -82,6 +82,13 @@ ActiveRecord::Schema.define(:version => 20101116155041) do
     t.datetime "updated_at"
   end
 
+  create_table "marca_estados", :force => true do |t|
+    t.string   "nombre"
+    t.string   "abreviacion", :limit => 15
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "marcas", :force => true do |t|
     t.integer  "parent_id",                                  :default => 0
     t.integer  "usuario_id"
@@ -128,6 +135,7 @@ ActiveRecord::Schema.define(:version => 20101116155041) do
     t.string   "errores",                     :limit => 700
     t.string   "errores_manual",              :limit => 500
     t.string   "instruccion"
+    t.integer  "marca_estado_id"
   end
 
   add_index "marcas", ["activa"], :name => "index_marcas_on_activa"

@@ -23,6 +23,7 @@ class Marca < ActiveRecord::Base
   belongs_to :usuario
   #belongs_to :pais
   belongs_to :importacion
+  belongs_to :marca_estado
 
   has_many :posts, :as => :postable, :order => 'created_at DESC'
   has_many :adjuntos, :as => :adjuntable, :dependent => :destroy
@@ -99,6 +100,7 @@ class Marca < ActiveRecord::Base
   }
 
 
+<<<<<<< HEAD
   TIPOS = {
     #'pp' => 'Pendiente de presentación',
     'sm' => 'Solicitud de Marca',
@@ -106,11 +108,12 @@ class Marca < ActiveRecord::Base
     'lr' => 'Lista de Registro',
     'sr' => 'Solicitud de Renovación',
     'rc' => 'Renovaciones Concedidas'
-  }
+  })
+
 
   ESTADOS = TIPOS
 
-  SIGNOS = {
+  SIGNOS = ActiveSupport::OrderedHash.new.merge({
     'sigden' => 'Marcas Denomainativas',
     'sigfig' => 'Marcas Figurativas',
     'sigmix' => 'Marcas Mixtas',
@@ -118,7 +121,7 @@ class Marca < ActiveRecord::Base
     'signcd' => 'Nombre Comercial Denominativo',
     'signcm' => 'Nombre Comercial Mixto',
     'siglc' => 'Lema Comercial'
-  }
+  })
 
   # Modulo base para la importacion desde excel
   include ModMarca::Excel
@@ -161,6 +164,7 @@ class Marca < ActiveRecord::Base
   # Metodo que permite realizar las importaciones
   #   @param Hash params Parametros que se recibe de el formulario
   def self.importar(params)
+    params[:marca_estado_id] = MarcaEstado.buscar_estado(params[:estado])
     set_include_estado(params[:tipo])
     importar_archivo(params)
   end
@@ -206,6 +210,7 @@ class Marca < ActiveRecord::Base
     #orden = ['pp', 'sm' ,'lp', 'lr', 'sr', 'rc']
     orden = ['sm' ,'lp', 'lr', 'sr', 'rc']
     orden.inject([]) { |arr, val| arr << [TIPOS[val], val] }
+    #orden.inject([]) { |arr, val| arr << [TIPOS[val], val] }
   end
 
   def self.lista_tiposignos
@@ -270,9 +275,12 @@ class Marca < ActiveRecord::Base
   # @param Marca o modelo heredado Indica si se debe unir con los atributos de la clase
   # @return Marca.new o clase heredada
   def self.crear_instancia(params)
+    unless ESTADOS.inlcude? params[:estado]
+      return Marca.new(params)
+    end
+
     set_include_estado(params[:estado])
     set_include_tipo_signo(params[:tipo_signo_id])
-    #set_include_propia(params[:propia]) 
     new(params)
   end
 
@@ -286,8 +294,10 @@ class Marca < ActiveRecord::Base
   # Metodo para poder realizar actualizaciones
   # que pueda cambiar la clse y el estado
   def update_marca(params)
+    unless Marca::ESTADOS.include? self.estado
+      return self.valid?
+    end
     self.class.set_include_estado(params[:estado])
-    #set_include_tipo_signo(params[:tipo_signo_id])
     params[:valido] = true
     self.update_attributes(params)
   end

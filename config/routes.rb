@@ -3,6 +3,8 @@
 # email: boriscyber@gmail.com
 Rails.application.routes.draw do
 
+  resources :marca_estados
+
   resources :reportes
   
   devise_for :usuarios do
