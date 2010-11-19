@@ -38,7 +38,7 @@ class CruceReport < ReporteMarcaBase
     if I18n.locale == :es
       ["Signo vigilado", "Tipo", "Clase", "Numero", "Fecha", "Comentarios"]
     else
-      ["Own trademarks","", "Foreign trademark", "Pub. Number", "Date", "Comments"]
+      ["Own trademarks", "Type", "Class", "Pub. Number", "Date", "Comments"]
     end
   end
 
@@ -52,5 +52,12 @@ class CruceReport < ReporteMarcaBase
     datos_array[4] = "#{ I18n.l(marca.estado_fecha, :format => :date) if marca.estado_fecha}"
     datos_array[5] = "#{ marca.productos }"
     datos_array
+  end
+
+    def datos(reporte_marca)
+    reporte_marca.reporte_marca_detalles.inject([]) do |arr, det|
+      arr << datos_marca(det.marca_propia)
+      arr
+    end
   end
 end

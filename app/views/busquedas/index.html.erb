@@ -1,93 +1,82 @@
 <h1>Busquedas</h1>
-
 <div class="clear"></div>
-
 <div class="pad-tb">
   <%= render :partial => "buscar" %>
 </div>
-
 <% unless params[:busqueda].nil? %>
   <hr />
-
   <h1 class="dark">Resultados</h1>
-
   <h2 class="dark"><%= @busqueda.size %> resultados para la busqueda "<%= params[:busqueda] %>"</h2>
 <% end %>
 
 <% unless @busqueda.blank? %>
-
-  
   <%= form_tag new_consulta_path, :method => 'get', :id => 'seleccionar' do -%>
-  <%= hidden_field_tag "clases", params[:clases].keys.join(",") %>
-  <%= hidden_field_tag "busqueda", params[:busqueda] %>
-  <%= hidden_field_tag "tipo_busqueda", params[:tipo_busqueda] %>
-  <%= hidden_field_tag "representante_id", params[:representante_id] %>
-  <% if params[:tipo_busqueda] == 'prep' %>
-    <%= hidden_field_tag "fecha_ini", params[:fecha_ini]  %>
-    <%= hidden_field_tag "fecha_fin", params[:fecha_fin] %>
-  <% end %>
-
-  <label for="">Cliente</label>
-  <span><%= Representante.find(params[:representante_id]) %></span>
-
-  <table class="decorated">
-  	<tr>
-      <th></th>
-  		<th>Nombre</th>
-  		<th>Clase</th>
-      <th>Tipo de<br/> busqueda</th>
-      <th>Agentes</th>
-      <th>Titulares</th>
-  	</tr>
-    <% @busqueda.each do |b| %>
-      <tr>
-        <td>
-          <input name="marcas[<%= b.id %>]" type="checkbox" id="marca<%= b.id %>" value="<%= b.id %>" />
-        </td>
-        <td><label for="marca<%= b.id %>"><span class="<%= b.propia! %>"><%= b.nombre %></span></label></td>
-      	<td><%= b.clase_id %></td>
-        <td><%= tipo_busqueda b.pos %>
-        <td><%= buscar_representante( b.agente_ids_serial, @representantes ) %></td>
-        <td><%= buscar_representante( b.titular_ids_serial, @representantes ) %></td>
-        </td>
-      </tr>
+    <%= hidden_field_tag "clases", params[:clases].keys.join(",") %>
+    <%= hidden_field_tag "busqueda", params[:busqueda] %>
+    <%= hidden_field_tag "tipo_busqueda", params[:tipo_busqueda] %>
+    <%= hidden_field_tag "representante_id", params[:representante_id] %>
+    <% if params[:tipo_busqueda] == 'prep' %>
+      <%= hidden_field_tag "fecha_ini", params[:fecha_ini]  %>
+      <%= hidden_field_tag "fecha_fin", params[:fecha_fin] %>
     <% end %>
-
-  </table>
-
-  <%= submit_tag "Seleccionar", :id => 'seleccionar' %>
-
+    <label for="">Cliente</label>
+    <span><%= Representante.find(params[:representante_id]) %></span>
+    <table class="decorated">
+      <tr>
+        <th></th>
+        <th>Nombre</th>
+        <th>Cl.</th>
+        <th>Tipo</th>
+        <th>Nro</th>
+        <th>Fecha</th>
+        <th>Titulares</th>
+        <th>Agentes</th>
+      </tr>
+      <% @busqueda.each do |marca| %>
+        <tr>
+          <td>
+            <input name="marcas[<%= marca.id %>]" type="checkbox" id="marca<%= marca.id %>" value="<%= marca.id %>" />
+          </td>
+          <td><label for="marca<%= marca.id %>"><span class="<%= marca.propia! %>"><%= marca.nombre %></span></label></td>
+          <td><%= marca.clase_id %></td>
+          <td><%= marca.tipo_marca.sigla %></td>
+          <td><%= marca.numero_publicacion %></td>
+          <td><%= marca.fecha_publicacion %></td>
+          <td><%= tipo_busqueda marca.pos %>
+          <td><%= buscar_representante( marca.titular_ids_serial, @representantes ) %></td>
+          <td><%= buscar_representante( marca.agente_ids_serial, @representantes ) %></td>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+    <%= submit_tag "Seleccionar", :id => 'seleccionar' %>
   <% end %>
-
 <% end %>
 <script type="text/javascript">
-(function($) {
-  $('input:checkbox').click(function() {
-    if( $(this).attr('checked') ) {
-      var input = document.createElement('input');
-      $(input).attr({ 
-        'name': $(this).attr('name').replace(/marcas/, 'tipos'),
-        'type': 'hidden',
-        'value': $(this).attr('data-tipo')
-      });
-      $(this).after(input);
-    }else {
-      $(this).siblings('input:hidden').remove();
-    }
-    //$(this).siblings('input:hidden').attr('disabled', $(this).attr('checked') );
-  });
+  (function($) {
+    $('input:checkbox').click(function() {
+      if( $(this).attr('checked') ) {
+        var input = document.createElement('input');
+        $(input).attr({
+          'name': $(this).attr('name').replace(/marcas/, 'tipos'),
+          'type': 'hidden',
+          'value': $(this).attr('data-tipo')
+        });
+        $(this).after(input);
+      }else {
+        $(this).siblings('input:hidden').remove();
+      }
+      //$(this).siblings('input:hidden').attr('disabled', $(this).attr('checked') );
+    });
   
-  // Validación
-  $('#seleccionar').submit(function() {
-    if( $(this).find(':checkbox:checked').length > 0) {
-      return true;
-    }else{
-      alert("Debe seleccionar al menos una marca");
-      return false;
-    }
-  });
-  
-
-
-})(jQuery);
+    // Validación
+    $('#seleccionar').submit(function() {
+      if( $(this).find(':checkbox:checked').length > 0) {
+        return true;
+      }else{
+        alert("Debe seleccionar al menos una marca");
+        return false;
+      }
+    });
+  })(jQuery);
 </script>
