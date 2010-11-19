@@ -1,0 +1,18 @@
+<p class="links">
+  <%= link_to 'Editar', edit_marca_estado_path(@marca_estado), :class => 'edit' %>
+  <%= link_to 'Lista', marca_estados_path, :class => 'show' %>
+</p>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Nombre:</b>
+  <%= @marca_estado.nombre %>
+</p>
+
+<p>
+  <b>Abreviacion:</b>
+  <%= @marca_estado.abreviacion %>
+</p>
+
+

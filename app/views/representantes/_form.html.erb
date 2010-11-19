@@ -1,5 +1,5 @@
 <% simple_form_for @representante do |f| %>
-  <%= f.input :cliente, :as => :radio, :label => "Cliente propio" %>
+  <%= f.input :cliente, :label => "Cliente propio" %>
   <%= f.association :pais %>
   <div class="clear"></div>
   <%= f.input :nombre, :label => 'Nombre', :input_html => { :size => 70 } %>

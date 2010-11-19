@@ -23,6 +23,7 @@ class Marca < ActiveRecord::Base
   belongs_to :usuario
   #belongs_to :pais
   belongs_to :importacion
+  belongs_to :marca_estado
 
   has_many :posts, :as => :postable, :order => 'created_at DESC'
   has_many :adjuntos, :as => :adjuntable, :dependent => :destroy
@@ -100,7 +101,7 @@ class Marca < ActiveRecord::Base
 
 
   TIPOS = {
-    'pp' => 'Pendiente de presentación',
+    #'pp' => 'Pendiente de presentación',
     'sm' => 'Solicitud de Marca',
     'lp' => 'Lista de publicación',
     'lr' => 'Lista de Registro',
@@ -108,6 +109,8 @@ class Marca < ActiveRecord::Base
     'rc' => 'Renovaciones Concedidas'
   }
 
+
+#  ESTADOS = TIPOS
   ESTADOS = TIPOS
 
   SIGNOS = {
@@ -161,6 +164,7 @@ class Marca < ActiveRecord::Base
   # Metodo que permite realizar las importaciones
   #   @param Hash params Parametros que se recibe de el formulario
   def self.importar(params)
+    #params[:marca_estado_id] = MarcaEstado.buscar_estado(params[:estado])
     set_include_estado(params[:tipo])
     importar_archivo(params)
   end
@@ -168,8 +172,8 @@ class Marca < ActiveRecord::Base
   # Realiza la inclusion de modulos de acuerdo al estado
   def self.set_include_estado(estado)
     case estado
-    when 'pp'
-      include ModMarca::PendientePresentacion
+    #when 'pp'
+    #  include ModMarca::PendientePresentacion
     when 'sm'
       include ModMarca::Solicitud
     when 'lp'
@@ -203,8 +207,10 @@ class Marca < ActiveRecord::Base
   # Presenta una lista que puede ser usada en
   # formularios de seleccion multiple
   def self.lista_estados
-    orden = ['pp', 'sm' ,'lp', 'lr', 'sr', 'rc']
+    #orden = ['pp', 'sm' ,'lp', 'lr', 'sr', 'rc']
+    orden = ['sm' ,'lp', 'lr', 'sr', 'rc']
     orden.inject([]) { |arr, val| arr << [TIPOS[val], val] }
+    #orden.inject([]) { |arr, val| arr << [TIPOS[val], val] }
   end
 
   def self.lista_tiposignos
@@ -269,9 +275,13 @@ class Marca < ActiveRecord::Base
   # @param Marca o modelo heredado Indica si se debe unir con los atributos de la clase
   # @return Marca.new o clase heredada
   def self.crear_instancia(params)
+#    unless ESTADOS.inlcude? params[:estado]
+    unless ESTADOS.include? params[:estado]
+      return Marca.new(params)
+    end
+
     set_include_estado(params[:estado])
     set_include_tipo_signo(params[:tipo_signo_id])
-    #set_include_propia(params[:propia]) 
     new(params)
   end
 
@@ -285,8 +295,10 @@ class Marca < ActiveRecord::Base
   # Metodo para poder realizar actualizaciones
   # que pueda cambiar la clse y el estado
   def update_marca(params)
+    #unless Marca::ESTADOS.include? self.estado
+    #  return self.valid?
+    #end
     self.class.set_include_estado(params[:estado])
-    #set_include_tipo_signo(params[:tipo_signo_id])
     params[:valido] = true
     self.update_attributes(params)
   end
