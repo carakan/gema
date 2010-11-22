@@ -6,7 +6,7 @@
 <% unless params[:busqueda].nil? %>
   <hr />
   <h1 class="dark">Resultados</h1>
-  <h2 class="dark"><%= @busqueda.size %> resultados para la busqueda "<%= params[:busqueda] %>"</h2>
+<h2 class="dark"><%= @busqueda.size %> RESULTADOS para la busqueda <%= params[:busqueda].upcase %> en las clases <%= params[:clases].keys.join(",") %><% unless params[:representante_id].blank? %> para el cliente <%= Representante.find(params[:representante_id]) %> <% end %></h2>
 <% end %>
 
 <% unless @busqueda.blank? %>
@@ -19,8 +19,8 @@
       <%= hidden_field_tag "fecha_ini", params[:fecha_ini]  %>
       <%= hidden_field_tag "fecha_fin", params[:fecha_fin] %>
     <% end %>
-    <label for="">Cliente</label>
-    <span><%= Representante.find(params[:representante_id]) %></span>
+<!--    <label for="">Cliente</label>
+<span><%#= Representante.find(params[:representante_id]) %></span>-->
     <table class="decorated">
       <tr>
         <th></th>
@@ -37,12 +37,11 @@
           <td>
             <input name="marcas[<%= marca.id %>]" type="checkbox" id="marca<%= marca.id %>" value="<%= marca.id %>" />
           </td>
-          <td><label for="marca<%= marca.id %>"><span class="<%= marca.propia! %>"><%= marca.nombre %></span></label></td>
+          <td><label for="marca<%= marca.id %>"><span class="<%= marca.propia! %>"><%= link_to marca.nombre, marca_path(marca), :class => :ajax%></span></label></td>
           <td><%= marca.clase_id %></td>
-          <td><%= marca.tipo_marca.sigla %></td>
-          <td><%= marca.numero_publicacion %></td>
-          <td><%= marca.fecha_publicacion %></td>
-          <td><%= tipo_busqueda marca.pos %>
+          <td><%= marca.tipo_signo.sigla if marca.tipo_signo %></td>
+          <td><%= numero_marca(marca)%></td>
+          <td><%=  lo(fecha_marca(marca), :format => "%d %b, %Y") %></td>
           <td><%= buscar_representante( marca.titular_ids_serial, @representantes ) %></td>
           <td><%= buscar_representante( marca.agente_ids_serial, @representantes ) %></td>
           </td>
