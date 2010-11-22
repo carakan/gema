@@ -258,7 +258,6 @@ ActiveRecord::Schema.define(:version => 20101118160003) do
     t.datetime "updated_at"
     t.string   "division"
     t.string   "postal"
-    t.string   "gerencia"
   end
 
   add_index "representantes", ["nombre"], :name => "index_representantes_on_nombre"

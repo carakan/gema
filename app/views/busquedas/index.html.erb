@@ -39,7 +39,7 @@
           </td>
           <td><label for="marca<%= marca.id %>"><span class="<%= marca.propia! %>"><%= marca.nombre %></span></label></td>
           <td><%= marca.clase_id %></td>
-          <td><%= marca.tipo_marca.sigla %></td>
+          <td><%= marca.tipo_signo.try(:sigla) %></td>
           <td><%= marca.numero_publicacion %></td>
           <td><%= marca.fecha_publicacion %></td>
           <td><%= tipo_busqueda marca.pos %>
