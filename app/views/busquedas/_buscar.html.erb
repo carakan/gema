@@ -9,7 +9,6 @@
     width: 6%;
     height: 30px;
   }
-
   ul#botones{
     width: 150px;
     float:left;
@@ -39,8 +38,6 @@
     width: 750px;
     margin-left: 20px;
   }
-
-
 </style>
 <form action="/busquedas" method="get", id="form_buscar" >
   <div style="clear:both"></div>
@@ -53,16 +50,12 @@
 
   <div class="half fl">
     <label for="cliente" style="width:50px;display:inline-block">Cliente:</label>
-    <span class='representante_id'><%= Representante.find(params[:representante_id]).to_s unless params[:representante_id].nil? %></span>
-    <%= hidden_field_tag 'representante_id' %>
+    <span class='representante_id'><%= Representante.find(params[:representante_id]).to_s rescue "" %></span>
+    <%= hidden_field_tag 'representante_id', params[:representante_id] %>
     <p class="hint">escriba para poder seleccionar el cliente</p>
     <%= text_field_tag "cliente", params[:cliente], :size => 40 %>
   </div>
-  
-  <input type="submit" value="Buscar" />
-
   <div class="clear"></div>
-
   <label for="">Clases</label>
   <div id="clases_grupos">
     <ul id="botones">
@@ -121,12 +114,9 @@
       <% end %>
     </div>
 
-
     <div style="clear:both"></div>
   </div>
-
-
-
+  <input type="submit" value="Buscar" />
 </form>
 
 <script type="text/javascript">
