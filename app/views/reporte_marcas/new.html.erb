@@ -2,7 +2,15 @@
 
 <%= semantic_form_for(@reporte_marca) do |f| %>
 
-  <%= f.input :representante, :label => 'Cliente', :collection => Representante.lista %>
+  <%# f.input :representante, :label => 'Cliente', :collection => Representante.lista %>
+  <% if @reporte_marca.representante_id %>
+    <%= f.hidden_field :representante_id %>
+    <label for="">Cliente</label>
+    <%= @reporte_marca.representante %>
+  <% else %>
+    <label for="">No selecciono ningún cliente</label>
+  <% end %>
+
   <%= f.input :representante_type, :as => :hidden %>
   <%= f.input :consulta_id, :as => :hidden  %>
   <%= f.input :busqueda, :as => :hidden  %>
