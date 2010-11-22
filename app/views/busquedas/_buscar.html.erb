@@ -49,8 +49,8 @@
   </div>
 
   <div class="half fl">
-    <label for="cliente" style="width:50px;display:inline-block">Cliente:</label>
-    <span class='representante_id'><%= Representante.find(params[:representante_id]).to_s rescue "" %></span>
+    <label for="cliente" style="width:50px;display:none;">Cliente:</label>
+    <span class='representante_id' style="display:none;"><%= Representante.find(params[:representante_id]).to_s rescue "" %></span>
     <%= hidden_field_tag 'representante_id', params[:representante_id] %>
     <p class="hint">escriba para poder seleccionar el cliente</p>
     <%= text_field_tag "cliente", params[:cliente], :size => 40 %>
@@ -212,6 +212,12 @@ $(document).ready(function() {
     }
   });
 
+  $('#cliente').change(function(event){
+    if($(this).val() == ""){
+      $('#representante_id').val(null);
+      $('span.representante_id').html("");
+    }
+  });
 });
 </script>
 
