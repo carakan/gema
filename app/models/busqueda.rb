@@ -187,7 +187,7 @@ class Busqueda
     end
 
     busqueda = params[:busqueda].downcase.cambiar_acentos
-    sql = "SELECT res.id, res.nombre, res.pos, res.clase_id, res.propia, res.activa, res.tipo_signo_id, res.agente_ids_serial, res.titular_ids_serial,
+    sql = "SELECT res.id, res.nombre, res.pos, res.clase_id, res.propia, res.activa, res.tipo_signo_id, res.agente_ids_serial, res.titular_ids_serial, res.fecha_publicacion,
       res.numero_solicitud, res.numero_publicacion, res.numero_registro, res.numero_renovacion, res.estado, res.numero_solicitud_renovacion, res.estado_fecha "
     sql << ", IF(#{busqueda.size}>CHAR_LENGTH(res.nombre_minusculas), #{busqueda.size} - CHAR_LENGTH(res.nombre_minusculas),
       CHAR_LENGTH(res.nombre_minusculas) - #{busqueda.size}) AS longitud_letras"
@@ -209,7 +209,7 @@ class Busqueda
   end
 
   def self.sql_select(pos)
-    "SELECT id, nombre, nombre_minusculas, clase_id, #{pos} AS pos, propia, activa, estado, agente_ids_serial, titular_ids_serial,
+    "SELECT id, nombre, nombre_minusculas, clase_id, #{pos} AS pos, propia, activa, estado, agente_ids_serial, titular_ids_serial, fecha_publicacion,
      numero_solicitud, numero_publicacion, numero_registro, numero_renovacion, tipo_signo_id, numero_solicitud_renovacion, estado_fecha
       FROM marcas"
   end

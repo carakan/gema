@@ -33,7 +33,7 @@ table.decorated th a {
   color: #ffffc5;
   text-decoration: none;
 }
-table.decorated th { padding: 6px 10px; text-align: center; }
+table.decorated th { padding: 6px 10px; text-align: center; text-transform: uppercase; }
 table.decorated th li { margin: 0px; }
 table.decorated td { padding: 6px 10px; }
 table.decorated td li { margin: 0px; }

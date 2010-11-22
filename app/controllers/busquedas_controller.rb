@@ -11,7 +11,8 @@ class BusquedasController < ApplicationController
     if params[:busqueda]
       @busqueda = Busqueda.realizar_busqueda(params)
       @representantes = Busqueda.preparar_representantes(@busqueda)
-      @consulta = Consulta.new(:busqueda => params[:busqueda])
+      # Crea una nueva busqueda con los parametros de la busqueda
+      @consulta = Consulta.nueva(params)
     end
 
     @busq = BusquedaVacia.new

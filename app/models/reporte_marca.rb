@@ -66,7 +66,7 @@ class ReporteMarca < ActiveRecord::Base
     detalles = ConsultaDetalle.all(:select => "consulta_detalles.marca_id, consultas.busqueda", 
                                     :conditions => { :consulta_id => params[:consulta_id] },
                                     :include => :consulta)
-    reporte_marca = new(:idioma => params[:idioma])
+    reporte_marca = new(:idioma => params[:idioma], :representante_id => params[:representante_id])
     carta = ""
     detalles.each { |cd| 
       reporte_marca.reporte_marca_detalles.build(:marca_id => cd.marca_id, :busqueda => cd.consulta.busqueda )

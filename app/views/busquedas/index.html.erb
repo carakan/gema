@@ -6,21 +6,18 @@
 <% unless params[:busqueda].nil? %>
   <hr />
   <h1 class="dark">Resultados</h1>
-<h2 class="dark"><%= @busqueda.size %> RESULTADOS para la busqueda <%= params[:busqueda].upcase %> en las clases <%= params[:clases].keys.join(",") %><% unless params[:representante_id].blank? %> para el cliente <%= Representante.find(params[:representante_id]) %> <% end %></h2>
+<h2 class="dark"><%= @busqueda.size %> RESULTADOS para la busqueda <%= params[:busqueda].upcase %> en las clases <% if params[:clases].count < 45%><%= params[:clases].keys.join(",") %> <% else %><%= "1 a la 45" %><% end %> <% unless params[:representante_id].blank? %> para el cliente <%= Representante.find(params[:representante_id]) %> <% end %></h2>
 <% end %>
 
 <% unless @busqueda.blank? %>
-  <%= form_tag new_consulta_path, :method => 'get', :id => 'seleccionar' do -%>
-    <%= hidden_field_tag "clases", params[:clases].keys.join(",") %>
-    <%= hidden_field_tag "busqueda", params[:busqueda] %>
-    <%= hidden_field_tag "tipo_busqueda", params[:tipo_busqueda] %>
-    <%= hidden_field_tag "representante_id", params[:representante_id] %>
-    <% if params[:tipo_busqueda] == 'prep' %>
-      <%= hidden_field_tag "fecha_ini", params[:fecha_ini]  %>
-      <%= hidden_field_tag "fecha_fin", params[:fecha_fin] %>
-    <% end %>
+  <%= form_for @consulta do |f| -%>
+    <%= f.hidden_field :parametros %>
+    <%= f.hidden_field :representante_id %>
+    <%= f.hidden_field :busqueda %>
+
 <!--    <label for="">Cliente</label>
-<span><%#= Representante.find(params[:representante_id]) %></span>-->
+<span><%#= f.object.representante %></span>-->
+
     <table class="decorated">
       <tr>
         <th></th>
@@ -32,10 +29,10 @@
         <th>Titulares</th>
         <th>Agentes</th>
       </tr>
-      <% @busqueda.each do |marca| %>
+      <% @busqueda.each_with_index do |marca, index| %>
         <tr>
           <td>
-            <input name="marcas[<%= marca.id %>]" type="checkbox" id="marca<%= marca.id %>" value="<%= marca.id %>" />
+            <%= check_box_tag "consulta_detalles_attributes_#{marca.id}", 1, false, 'data-index' => index %>
           </td>
           <td><label for="marca<%= marca.id %>"><span class="<%= marca.propia! %>"><%= link_to marca.nombre, marca_path(marca), :class => :ajax%></span></label></td>
           <td><%= marca.clase_id %></td>
@@ -44,32 +41,30 @@
           <td><%=  lo(fecha_marca(marca), :format => "%d %b, %Y") %></td>
           <td><%= buscar_representante( marca.titular_ids_serial, @representantes ) %></td>
           <td><%= buscar_representante( marca.agente_ids_serial, @representantes ) %></td>
-          </td>
         </tr>
       <% end %>
     </table>
-    <%= submit_tag "Seleccionar", :id => 'seleccionar' %>
+    <%= submit_tag "Crear pre reporte", :id => 'seleccionar' %>
   <% end %>
 <% end %>
 <script type="text/javascript">
   (function($) {
     $('input:checkbox').click(function() {
       if( $(this).attr('checked') ) {
-        var input = document.createElement('input');
-        $(input).attr({
-          'name': $(this).attr('name').replace(/marcas/, 'tipos'),
+        var id = $(this).attr("name").replace(/^[a-z_]+([0-9]+)$/,"$1");
+        var index = $(this).attr('data-index');
+        $('<input/>').attr({
+          'name': 'consulta[consulta_detalles_attributes][' + index + '][marca_id]',
           'type': 'hidden',
-          'value': $(this).attr('data-tipo')
-        });
-        $(this).after(input);
+          'value': id
+        }).insertAfter(this);
       }else {
         $(this).siblings('input:hidden').remove();
       }
-      //$(this).siblings('input:hidden').attr('disabled', $(this).attr('checked') );
     });
   
     // Validación
-    $('#seleccionar').submit(function() {
+    $('#new_consulta').submit(function() {
       if( $(this).find(':checkbox:checked').length > 0) {
         return true;
       }else{
