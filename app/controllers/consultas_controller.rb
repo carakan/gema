@@ -67,7 +67,6 @@ class ConsultasController < ApplicationController
   # POST /consultas.xml
   def create
     @consulta = Consulta.new(params[:consulta])
-
     unless @consulta.importacion.nil?
       notice = "Se ha almacenado la consulta del cruce"
       uri = cruce_importaciones_url(:importacion_id => @consulta.importacion.id, :page => @page)

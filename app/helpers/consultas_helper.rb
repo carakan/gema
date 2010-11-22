@@ -11,9 +11,9 @@ module ConsultasHelper
       when :clases
         html = "<label>Clases</label> #{ BusquedaVacia.label(consulta.parametros[param]) }"
       when :fecha_ini
-        html = "<label>Fecha inicial</label> #{ l Date.parse(consulta.parametros[param]) }"
+        html = "<label>Fecha inicial</label> #{ l Date.parse(consulta.parametros[param]) }" if consulta.parametros[param]
       when :fecha_fin
-        html = "<label>Fecha final</label> #{ l Date.parse(consulta.parametros[param]) }"
+        html = "<label>Fecha final</label> #{ l Date.parse(consulta.parametros[param]) }" if consulta.parametros[param]
     end
 
     html.html_safe
