@@ -100,9 +100,9 @@
             <td><%= lo(b.estado_fecha, :format => "%d %b, %Y") %></td>
             <td><%= b.agentes.join(", ") %></td>
             <td><%= b.titulares.join(", ") %></td>
-            <% if count == 1 %>
+            <% if count == 1 && selected %>
               <td><%= text_field_tag "observaciones_#{count_grupos}" %></td>
-              <td><%= link_to("Reporte",  cruce_reporte_marcas_path( :importacion_id => @importacion.id, :marca_foranea => @marca.id), :grupo => count_grupos, :class => "reporte") if selected %></td>
+              <td><%= link_to("Reporte",  cruce_reporte_marcas_path( :importacion_id => @importacion.id, :marca_foranea => @marca.id), :grupo => count_grupos, :class => "reporte") %></td>
             <% else %>
               <td colspan="2"></td>
             <% end %>

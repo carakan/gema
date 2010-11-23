@@ -1,0 +1,19 @@
+<table class="decorated">
+	<tr>
+		<th class="_200">Busqueda</th>
+		<th class="_200">Marca encontrada</th>
+		<th>Comentario</th>
+	</tr>
+  <% @reporte_marca.reporte_marca_detalles.each do |rd|  %>
+  <tr>
+    <td>
+      <%= rd.busqueda %>
+    </td>
+    <td>
+      <%= render :partial => "marca_foranea", :locals => { :marca => rd.marca_propia } %>
+    </td>
+    <td><%= rd.comentario %></td>
+  </tr>
+  <% end %>
+</table>
+

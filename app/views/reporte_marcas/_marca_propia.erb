@@ -1,0 +1,5 @@
+<strong><%= link_to marca.nombre, ver_marca_path(marca), :class => 'ajax', 'data-title' => 'Ver marca' %></strong>
+<br />
+Clase <%= marca.clase_id %><br />
+<%= marca.tipo_signo %><br />
+<i><%= l(marca.estado_fecha, :format => :date) if marca.estado_fecha %></i>

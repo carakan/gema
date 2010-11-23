@@ -89,6 +89,6 @@
         }
       });
   });
-  var carta_es = "<%= @reporte_marca.crear_carta %>";
-  var carta_en = "<%= @reporte_marca.crear_carta('en') %>";
+  var carta_es = "<%= params[:observaciones] %>";
+  var carta_en = "<%= params[:observaciones] %>";
 </script>
