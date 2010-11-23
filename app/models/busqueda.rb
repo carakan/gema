@@ -6,6 +6,7 @@
 # en una busqueda
 class Busqueda
 
+  PARAMS = [:clases, :tipo_busqueda, :fecha_ini, :fecha_fin]
   attr_reader :busqueda
 
   include BusquedaCambio

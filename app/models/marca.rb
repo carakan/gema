@@ -453,7 +453,9 @@ class Marca < ActiveRecord::Base
   end
 
   def adicionar_usuario
+    if UsuarioSession.current_user 
     self.usuario_id = UsuarioSession.current_user[:id]
+    end
   end
 
   def set_minusculas

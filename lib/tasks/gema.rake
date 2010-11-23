@@ -263,8 +263,9 @@ namespace :datos do
     puts "se encontraron #{marcas.size} marcas"
     marcas.each do |marca|
       if marca && marca.agente_ids_serial.class != Array && marca.titular_ids_serial.class != Array
-        marca.agente_ids_serial = marca.agente_ids
-        marca.titular_ids_serial = marca.titular_ids
+        marca.agente_ids_serial = marca.agente_ids if marca.agentes.count > 0
+        marca.titular_ids_serial = marca.titular_ids if marca.titulares.count > 0
+
         marca.save(false)
         cont_procesed += 1
       end
