@@ -42,9 +42,10 @@
           <td><%= marca.clase_id %></td>
           <td><%= marca.tipo_signo.try(:sigla) %></td>
           <td><%= marca.numero_publicacion %></td>
-          <td><%= marca.fecha_publicacion %></td>
+          <td><%= lo marca.fecha_publicacion %></td>
           <td><%= buscar_representante( marca.titular_ids_serial, @representantes ) %></td>
           <td><%= buscar_representante( marca.agente_ids_serial, @representantes ) %></td>
+          <td><%= tipo_busqueda marca.pos %></td>
         </tr>
       <% end %>
     </table>
