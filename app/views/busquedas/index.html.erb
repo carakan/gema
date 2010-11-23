@@ -41,6 +41,7 @@
           <td><%=  lo(fecha_marca(marca), :format => "%d %b, %Y") %></td>
           <td><%= buscar_representante( marca.titular_ids_serial, @representantes ) %></td>
           <td><%= buscar_representante( marca.agente_ids_serial, @representantes ) %></td>
+          <td><%= tipo_busqueda marca.pos %></td>
         </tr>
       <% end %>
     </table>
