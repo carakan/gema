@@ -3,7 +3,7 @@
 # email: boriscyber@gmail.com
 #
 # Clase que realiza los reportes de una marca para los cruces
-class ReporteMarcaReport < ReportBase
+class ReporteMarcaBase < ReportBase
   # metodo que crea el reporte
   def to_pdf(reporte_marca)
     I18n.locale = :en if reporte_marca.idioma == 'en'
@@ -37,8 +37,9 @@ class ReporteMarcaReport < ReportBase
   # Metodos que deben ser sobreescritos
   # # REFACTOR!!!
   def datos(reporte_marca)
+    count = 1
     reporte_marca.reporte_marca_detalles.inject([]) do |arr, det|
-      arr << [ det.marca_propia.nombre, "#{det.marca_propia.tipo_marca.sigla if det.marca_propia.tipo_marca}", "#{det.marca_propia.clase_id}", det.comentario ] unless det.comentario.blank?
+      arr << [ datos_marca(det.marca_propia), det.comentario ].flatten
       arr
     end
   end
@@ -46,9 +47,9 @@ class ReporteMarcaReport < ReportBase
   # Retorna un array con el encabezado de acuerdo a su idioma
   def encabezado
     if I18n.locale == :es
-      ["Signo vigilado", "Tipo", "Clase", "Comentarios"]
+      ["Signo vigilado", "Tipo", "Clase", "Numero", "Fecha", "Titulares", "Comentarios"]
     else
-      ["Own trademarks","", "Foreign trademark", "Comments"]
+      ["Own trademarks","", "Foreign trademark", "Pub. Number", "Date", "Owner's", "Comments"]
     end
   end
 

@@ -28,9 +28,8 @@ class ReporteMarca < ActiveRecord::Base
     if self.importacion_id?
       nombre = "#{self.id}_Gaceta_" << self.importacion.publicacion
       nombre << "_" << (I18n.l self.importacion.publicacion_fecha, :format => "%d-%b-%Y")
-      nombre << "_" << self.representante_type << "_" << self.representante.nombre
     else
-      nombre = "#{self.id}_busquedas_#{self.representante.nombre}"
+      nombre = "#{self.id}_busquedas"
     end
 
     nombre
@@ -67,7 +66,7 @@ class ReporteMarca < ActiveRecord::Base
     detalles = ConsultaDetalle.all(:select => "consulta_detalles.marca_id, consultas.busqueda", 
                                     :conditions => { :consulta_id => params[:consulta_id] },
                                     :include => :consulta)
-    reporte_marca = new(:idioma => params[:idioma])
+    reporte_marca = new(:idioma => params[:idioma], :representante_id => params[:representante_id])
     carta = ""
     detalles.each { |cd| 
       reporte_marca.reporte_marca_detalles.build(:marca_id => cd.marca_id, :busqueda => cd.consulta.busqueda )

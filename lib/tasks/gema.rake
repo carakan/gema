@@ -5,6 +5,35 @@ require 'open-uri'
 #require 'fastercsv'
 
 namespace :gema do
+
+  desc "Crea estado_marcas"
+  task :marca_estados => :environment do
+    {'pp' => 'Pendiente de presentación',
+    'ppub' => 'Pendiente de publicación',
+    'ppubno' => 'Pendiente de publicación/no observada',
+    'ppubo' => 'Pendiente de publicación/observada',
+    'ppubpdoc' => 'Pendiente de publicación/presentar documentación',
+    'ppubl' => 'Pendiente de publicación/litigio',
+    'pubpo' => 'Publicada/en periodo de oposición',
+    'eopnd' => 'En oposición/pendiente notificación demanda',
+    'per' => 'Pendiente de exámen de registrabilidad',
+    'dipr' => 'Denegada inpugnación pendiente resolución',
+    'dpi' => 'Denegada periodo de inpugnación',
+    'rpecr' => 'Registrada/pendiente extención certificado de registro',
+    'rpad' => 'Registrada/pendiente de aviso y despacho',
+    'rad' => 'Registrada/avisada y despachada',
+    'rpir' => 'Registrada/pendiente de intrucción renovación',
+    'rppsr' => 'Registrada/pendiente presentación solicitud renovación',
+    'rpcr' => 'Registrada pendiente de conceción renovación',
+    'renpecr' => 'Renovada/pendiente de extensión certificado de renovación',
+    'renpad' => 'Renovada/pendiente de aviso y despacho',
+    'renad' => 'Renovada/avisada despachada',
+    'c' => 'Caduca',
+    'i' => 'Inactiva'}.each {|k, v| MarcaEstado.create(:abreviacion => k, :nombre => v) }
+
+      puts "Se ha creado estados "
+  end
+
   namespace :usuarios do
     desc "Creacion de usuario con privilegios con el plugin rorol"
     task :admin => :environment do
@@ -234,8 +263,9 @@ namespace :datos do
     puts "se encontraron #{marcas.size} marcas"
     marcas.each do |marca|
       if marca && marca.agente_ids_serial.class != Array && marca.titular_ids_serial.class != Array
-        marca.agente_ids_serial = marca.agente_ids
-        marca.titular_ids_serial = marca.titular_ids
+        marca.agente_ids_serial = marca.agente_ids if marca.agentes.count > 0
+        marca.titular_ids_serial = marca.titular_ids if marca.titulares.count > 0
+
         marca.save(false)
         cont_procesed += 1
       end

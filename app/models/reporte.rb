@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Reporte < ActiveRecord::Base
   attr_accessor :variables, :texts, :template, :engine_report
 
@@ -6,7 +8,7 @@ class Reporte < ActiveRecord::Base
   REX_EXTRACT_VARIABLES = /\S*(\+\+[a-z_]+\+\+)\S*/
 
   def extract_variables(pattern)
-    self.texto_es.scan(pattern).flatten
+    @template.scan(pattern).flatten
   end
 
   # 
@@ -51,7 +53,6 @@ class Reporte < ActiveRecord::Base
     generate_variables(REX_EXTRACT_VARIABLES, "++")
     result = ""
     index = 0
-
     @texts.each do |text|
       result << text
       result << instancia.send(@variables[index]) if @variables[index]
@@ -67,8 +68,25 @@ class Reporte < ActiveRecord::Base
   def self.set_instance(name_report)
     template = Reporte.find_by_clave(name_report)
     template.engine_report = template.nombre_clase.constantize.new(:page_size => 'LETTER', :page_layout => :landscape, :margin => [40, 50, 30, 60])
+
     template.engine_report.font_size 9
     template
+  end
+
+  def print_bottom
+    template.engine_report.font_size 7
+    message =<<-EOF
+      · Formato números de solicitud: SM-0000-00 / Formato números de publicación: 111111 / Formato números de registro: 22222-C /
+    EOF
+    template.engine_report.number_pages message, [template.engine_report.bounds.right - 680, 13]
+    message =<<-EOF
+      Formato números de solicitud de renovación: SR-0000-00 / Formato números de renovación: 33333-A
+    EOF
+    template.engine_report.number_pages message, [template.engine_report.bounds.right - 675, 0]
+    message =<<-EOF
+      · Las fechas se refieren a fecha de presentación de la solicitud o concesión del último registro o renovación.
+    EOF
+    template.engine_report.number_pages message, [template.engine_report.bounds.right - 680, -13]
   end
 
   # generate report in pdf
@@ -93,7 +111,9 @@ class Reporte < ActiveRecord::Base
   def self.crear_reporte(reporte_marca)
     if reporte_marca.importacion_id?
       report = Reporte.set_instance("cruce_report")
-      report.engine_report.marcas = reporte_marca.reporte_marca_detalles.collect{|detalle| detalle.marca_foranea}
+      report.engine_report.marcas = [reporte_marca.marca_foranea]
+      report.engine_report.titulares = Marca.first(:conditions => {:id => reporte_marca.marca_ids_serial}).titulares.join(", ")
+      report.engine_report.importacion = reporte_marca.importacion
     else
       report = Reporte.set_instance("busqueda_report")
       report.engine_report.busqueda = reporte_marca.busqueda

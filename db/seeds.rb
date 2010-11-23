@@ -37,3 +37,30 @@ puts "Se han creado  los tipos de marca base"
 paises = YAML.load_file(File.join(Rails.root, 'db/paises.yml'))
 paises.each{ |v| Pais.create!(v) }
 puts "Se han creado los paises base"
+
+marca_estados =
+   {'pp' => 'Pendiente de presentación',
+    'ppub' => 'Pendiente de publicación',
+    'ppubno' => 'Pendiente de publicación/no observada',
+    'ppubo' => 'Pendiente de publicación/observada',
+    'ppubpdoc' => 'Pendiente de publicación/presentar documentación',
+    'ppubl' => 'Pendiente de publicación/litigio',
+    'pubpo' => 'Publicada/en periodo de oposición',
+    'eopnd' => 'En oposición/pendiente notificación demanda',
+    'per' => 'Pendiente de exámen de registrabilidad',
+    'dipr' => 'Denegada inpugnación pendiente resolución',
+    'dpi' => 'Denegada periodo de inpugnación',
+    'rpecr' => 'Registrada/pendiente extención certificado de registro',
+    'rpad' => 'Registrada/pendiente de aviso y despacho',
+    'rad' => 'Registrada/avisada y despachada',
+    'rpir' => 'Registrada/pendiente de intrucción renovación',
+    'rppsr' => 'Registrada/pendiente presentación solicitud renovación',
+    'rpcr' => 'Registrada pendiente de conceción renovación',
+    'renpecr' => 'Renovada/pendiente de extensión certificado de renovación',
+    'renpad' => 'Renovada/pendiente de aviso y despacho',
+    'renad' => 'Renovada/avisada despachada',
+    'c' => 'Caduca',
+    'i' => 'Inactiva'}
+marca_estados.each {|k, v| MarcaEstado.create(:abreviacion => k, :nombre => v) }
+puts "Se han creado los estados base"
+

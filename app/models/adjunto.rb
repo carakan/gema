@@ -33,13 +33,7 @@ class Adjunto < ActiveRecord::Base
   end
 
 private
-  #def set_tipo
 
-    #if self.adjuntable_type == 'Marca'
-      #self.adjuntable.con_historico = false
-      #self.adjuntable.update_attribute( 'archivo_adjunto', self.archivo.url(:mini) )
-    #end
-  #end
  # metodo que actualiza el archivo de la marca
   def set_marca_archivo
     if self.adjuntable_type == 'Marca'

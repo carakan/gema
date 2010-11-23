@@ -80,8 +80,8 @@
       <% count = 1 %>
       <% count_grupos = 1 %>
       <% marcas_selected = [] %>
+      <% selected = @consulta_detalles.include?(@busqueda.first.id) %>
       <% @busqueda.each_with_index do |b, i| %>
-        <% selected = @consulta_detalles.include?(b.id) %>
         <% if titulares == b.titular_ids_serial.sort && agentes == b.agente_ids_serial.sort %>
           <tr class="<%= "select" if selected %>">
             <td>
@@ -100,9 +100,9 @@
             <td><%= lo(b.estado_fecha, :format => "%d %b, %Y") %></td>
             <td><%= b.agentes.join(", ") %></td>
             <td><%= b.titulares.join(", ") %></td>
-            <% if count == 1 %>
+            <% if count == 1 && selected %>
               <td><%= text_field_tag "observaciones_#{count_grupos}" %></td>
-              <td><%= link_to("Reporte",  cruce_reporte_marcas_path( :importacion_id => @importacion.id, :marca_foranea => @marca.id), :grupo => count_grupos, :class => "reporte") if selected %></td>
+              <td><%= link_to("Reporte",  cruce_reporte_marcas_path( :importacion_id => @importacion.id, :marca_foranea => @marca.id), :grupo => count_grupos, :class => "reporte") %></td>
             <% else %>
               <td colspan="2"></td>
             <% end %>
@@ -116,6 +116,7 @@
           <% count = 1 %>
           <% marcas_selected = []  %>
           <% count_grupos += 1 %>
+          <% selected = @consulta_detalles.include?(b.id) %>
           <% redo %>
         <% end %>
       <% end %>
@@ -161,6 +162,7 @@
         }
       }
     });
+    
     // Adicion de un hidden para todos los elementos seleccioandos
     $('input:checkbox').click(function() {
       if( $(this).attr('checked') ) {

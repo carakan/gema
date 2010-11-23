@@ -6,23 +6,25 @@
 
   <%= f.hidden_field :valido, :value => 1 %>
 
-  <%= f.input :tipo_signo_id, :as => :hidden %>
   <%= f.input :propia, :label => 'Marca propia' %>
   <%= f.input :activa, :label => 'Marca activa' %>
 
-  <li>
-    <label for="">Tipo de signo</label>
-    <%= @marca.tipo_signo %>
-    <%#= "<span class=\"error\">#{ @marca.errors.on(:tipo_signo_id) }</span>" %>
-  </li>
+  <%= f.input :tipo_signo_id, :as => :hidden %>
+  <%= f.association :tipo_signo, :input_html => {:disabled => true} %>
 
-  <%= f.association :tipo_marca%>
+  <!--<li>
+    <label for="">Tipo de signo</label>
+    <%#= @marca.tipo_signo %>
+    <%#= "<span class=\"error\">#{ @marca.errors.on(:tipo_signo_id) }</span>" %>
+    </li>-->
+
+  <%= f.association :tipo_marca %>
 
   <%= f.input :nombre,:label => "Denominación",:tabindex => 3 %>
   <% if @marca.con_imagen? %>
     <li>
     <%= image_tag @marca.adjuntos.last.archivo.url(:mini), :class => 'mini' if @marca.adjuntos.size > 0 %>
-      <% unless @marca.tipo_signo_id == 4 %>
+      <% unless @marca.try(:tipo_signo_id) == 4 %>
           <label for="">Imagen</label>
           <input type="file" name="marca[adjuntos_attributes][0][archivo]" size= "30" />
           <%# adj.file_field :archivo, :size => 30 %>
@@ -58,7 +60,10 @@
 
   <%= f.input :fecha_instruccion , :as => 'string', :input_html => { :class => 'date' } %>
   <%= f.input :instruccion, :collection => Marca::INSTRUCCIONES, :label => 'Tipo de instrucción' %>
+  
   <%= f.input :estado, :collection => Marca.lista_estados , :tabindex => 10 %>
+
+  <%= f.association :marca_estado %>
   <%= f.input :numero_solicitud , :tabindex => 13  %>
   <%# f.input :estado_fecha, :label => 'Fecha solicitud',:as => :string, :input_html => {:tabindex => 14, :class => 'date' } %>
   <li class="date">
@@ -67,10 +72,10 @@
   </li>
   <%= f.input :numero_gaceta, :label => 'Número de gaceta' , :tabindex => 17  %>
   <%= f.input :numero_publicacion,:label => 'Número de publicación' , :tabindex => 15  %>
-  <%= f.input :fecha_publicacion, :as => 'string', :input_html => {:tabindex => 16, :class => 'date' } %>
+  <%= f.input :fecha_publicacion, :as => 'string', :input_html => { :tabindex => 16, :class => 'date' } %>
 
   <%= f.input :numero_registro,:label => 'Número de registro' , :tabindex => 18 %>
-  <%= f.input :fecha_registro, :as => 'string', :input_html => {:tabindex => 19, :class => 'date'  } %>
+  <%= f.input :fecha_registro, :as => 'string', :input_html => { :tabindex => 19, :class => 'date'  } %>
 
   <% unless @marca.errores_manual.blank? %>
     <h3 class="error">Existen errores de comparación</h3>
@@ -80,7 +85,7 @@
         <div>
           <%= hidden_field_tag "marca[errores_manual][#{k}]", v  %>
           <%= k.to_s.humanize %>: <%= v %>
-          <a href="javascript:;">borrar</a>
+          <a href="javascript:">borrar</a>
         </div>
       </div>
     <% end %>
@@ -131,7 +136,7 @@ $(document).ready(function() {
     });
   }
 
-  if( $('#marca_tipo_marca_id').val() == "4" ) {
+  if( $('#marca_tipo_marca_id').val() == "2" ) {
     $('#marca_clase_id option').each( function(i, el) {
       if( parseInt( $(el).val() ) <= 34) {
         $(el).remove();
@@ -145,6 +150,7 @@ $(document).ready(function() {
   
   if ($('#marca_tipo_signo_id').val() == "1"){
     $('#marca_descripcion_imagen_input').hide();
+    $('#marca_descripcion_imagen').val(" Descripcion diseño").hide();
   }
 
 });

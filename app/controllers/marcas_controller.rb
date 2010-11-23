@@ -18,7 +18,7 @@ class MarcasController < ApplicationController
 
   def new
     @tipo = params[:tipo]
-    @a = params[:a]
+    @tipo_signo = params[:a]
     @marca = Marca.new(:estado_fecha => Date.today, :tipo_signo_id => TipoSigno.find_by_sigla(params[:tipo]).id, :estado => 'pp', :propia => true, :activa => true)
   end
 
@@ -33,6 +33,7 @@ class MarcasController < ApplicationController
 
   def create
     @marca = Marca.crear_instancia(params[:marca])
+
     if @marca.save
       redirect_to @marca, :notice => 'Se ha salvado correctamente'
     else

@@ -2,11 +2,11 @@ es:
   "nombre marca": Nombre
   "clase marca": Clase
   "numero solicitud marca": Numero Solucitud
-  "fecha publicacion marca": Fecha Publicacion
-  "numero publicacion marca": Numero Publicacion
+  "fecha solicitud marca": Fecha Solicitud
+  "numero publicacion marca": Publicacion
   "titulares marca": Titulares
-  "observaciones marca": Observaciones
-  "tipo marca": Marca
+  "observaciones marca": Descripcion de productos/servicios
+  "tipo marca": Tipo
   "imagen marca": Diseno
 
 

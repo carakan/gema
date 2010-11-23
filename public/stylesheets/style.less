@@ -60,6 +60,7 @@ table.decorated{
     color:@white;
     background: @dark url(../images/bg_tr_tabs_tab.png) repeat-x scroll 0 50%;
     border-right: 1px solid @dark;
+    text-align: center;
     a{
       color: @light_yellow;
       text-decoration: none;
@@ -69,13 +70,13 @@ table.decorated{
   /*  border: 1px solid @border_color_table;*/
     padding: 6px 10px;
     li{ margin: 0px; }
+    text-align: center;
   }
   td{ vertical-align: top; }
   /*th:last-child{ width:110px; }*/
   /*th.last{ width:110px; }*/
   a.edit, a.delete{
     display: inline-block;
-    text-indent: -9999em !important;
   }
 }
 table.nwl{
@@ -153,7 +154,7 @@ label{
   color: @dark;
   margin: 3px 0px;
 }
-.boolean{
+.boolean, .radio{
   label{
     display: inline-block;
   }

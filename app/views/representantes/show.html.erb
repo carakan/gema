@@ -15,6 +15,10 @@
   </p>
 
   <p>
+    <label for="">Cliente:</label>
+    <%= valido_img @representante.cliente %>
+  </p>
+  <p>
     <label>Pais:</label>
     <%=h @representante.pais_datos %>
   </p>
@@ -43,6 +47,15 @@
     <%=h @representante.pagina_web %>
   </p>
 
+  <p>
+    <label for="">Postal</label>
+    <%= @representante.postal %>
+  </p>
+
+  <p>
+    <label for="">Division</label>
+    <%= @representante.division %>
+  </p>
 
   <div id="contactos">
     <h1 class="dark">Contactos</h1>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101116155041) do
+ActiveRecord::Schema.define(:version => 20101118160003) do
 
   create_table "adjuntos", :force => true do |t|
     t.string   "nombre"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(:version => 20101116155041) do
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "relacionamiento"
   end
 
   add_index "contactos", ["representante_id"], :name => "index_contactos_on_representante_id"
@@ -78,6 +79,13 @@ ActiveRecord::Schema.define(:version => 20101116155041) do
     t.integer  "archivo_file_size"
     t.integer  "cruces_pendientes",               :default => -1
     t.integer  "usuario_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "marca_estados", :force => true do |t|
+    t.string   "nombre"
+    t.string   "abreviacion", :limit => 15
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -128,6 +136,7 @@ ActiveRecord::Schema.define(:version => 20101116155041) do
     t.string   "errores",                     :limit => 700
     t.string   "errores_manual",              :limit => 500
     t.string   "instruccion"
+    t.integer  "marca_estado_id"
   end
 
   add_index "marcas", ["activa"], :name => "index_marcas_on_activa"
@@ -247,6 +256,8 @@ ActiveRecord::Schema.define(:version => 20101116155041) do
     t.string   "pais_nombre"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "division"
+    t.string   "postal"
   end
 
   add_index "representantes", ["nombre"], :name => "index_representantes_on_nombre"

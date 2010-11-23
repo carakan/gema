@@ -3,7 +3,7 @@
 # email: boriscyber@gmail.com
 #
 # Clase que realiza los reportes de una marca para busquedas
-class BusquedaReport < ReporteMarcaReport
+class BusquedaReport < ReporteMarcaBase
   attr_accessor :busqueda, :clases
 
   def datos(reporte_marca)

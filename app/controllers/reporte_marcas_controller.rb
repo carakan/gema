@@ -41,7 +41,8 @@ class ReporteMarcasController < ApplicationController
 
   # GET /reporte_marcas/new
   def new
-    @reporte_marca = ReporteMarca.nuevo_busqueda(:idioma => 'es', :consulta_id => params[:consulta_id])
+    @consulta = Consulta.find(params[:consulta_id])
+    @reporte_marca = ReporteMarca.nuevo_busqueda(:idioma => 'es', :consulta_id => params[:consulta_id], :representante_id => @consulta.representante_id)
   end
 
   # GET /reporte_marca/1/dowload
@@ -49,8 +50,17 @@ class ReporteMarcasController < ApplicationController
   def download
     @reporte_marca = ReporteMarca.find(params[:id])
     if @reporte_marca
-      reporte, nombre_archivo = Reporte.crear_reporte(@reporte_marca), @reporte_marca.crear_nombre_archivo
-      send_data reporte, :filename => "#{nombre_archivo}.pdf"
+      nombre_archivo = @reporte_marca.crear_nombre_archivo
+      respond_to do |format|
+        format.html do
+          reporte = Reporte.crear_reporte(@reporte_marca)
+          send_data reporte, :filename => "#{nombre_archivo}.pdf"
+        end
+        format.xls do
+          reporte = render_to_string(:partial => "tabla_busqueda")
+          send_data reporte, :filename => "#{nombre_archivo}.xls"
+        end
+      end
     else
       raise "Error el reporte que solicito no existe"
     end
@@ -59,8 +69,8 @@ class ReporteMarcasController < ApplicationController
   # GET /reporte_marcas/new
   # GET /reporte_marcas/new.xml
   def cruce
-    preparar_datos_cruce
     @reporte_marca = ReporteMarca.new(:importacion_id => params[:importacion_id], :idioma => 'es')
+    preparar_datos_cruce
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @reporte_marca }
@@ -78,8 +88,7 @@ class ReporteMarcasController < ApplicationController
   def create
     @reporte_marca = ReporteMarca.new(params[:reporte_marca])
     preparar_datos_cruce
-    @reporte_marca.marca_ids_serial = @marca_ids
-    @reporte_marca.marca_foranea_id = @marca.id
+
 
     if @reporte_marca.save
       redirect_to(@reporte_marca, :notice => 'Se ha salvado correctamente el reporte.')
@@ -131,9 +140,19 @@ class ReporteMarcasController < ApplicationController
 
   # Prepara los datos para un cruce
   def preparar_datos_cruce
+    if !@reporte_marca.importacion_id.nil?
+      if !@reporte_marca.new_record?
+        @importacion = @reporte_marca.importacion
+      end
+    end
     @marca_ids = params[:marca_ids].split(",").collect{|id| id.to_i} if params[:marca_ids]
     @importacion = Importacion.find(params[:importacion_id] ) if params[:importacion_id]
     @marcas = Marca.all(:conditions => {:id => @marca_ids})
     @marca = Marca.find(params[:marca_foranea]) if params[:marca_foranea]
+
+    if @marca && @marca_ids
+      @reporte_marca.marca_ids_serial = @marca_ids
+      @reporte_marca.marca_foranea_id = @marca.id
+    end
   end
 end

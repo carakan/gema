@@ -1,0 +1,22 @@
+<%= simple_form_for(@marca_estado) do |f| %>
+  <% if @marca_estado.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@marca_estado.errors.count, "error") %> prohibited this marca_estado from being saved:</h2>
+
+      <ul>
+      <% @marca_estado.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="inputs">
+    <%= f.input :nombre %>
+    <%= f.input :abreviacion %>
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

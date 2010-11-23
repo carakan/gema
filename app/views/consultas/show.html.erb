@@ -1,4 +1,4 @@
-<% unless @consulta.importacion_id.nil? %>
+<% if @consulta.importacion_id > 0 %>
   <div class="breadcrumps">
     <%= link_to "Lista de importaciones", importaciones_path %> >
     <%= link_to "Cruce", cruce_importaciones_path(:importacion_id =>  @consulta.importacion, :page => @page ) %> >
@@ -40,7 +40,7 @@
 
 <p>
   <label>Busqueda:</label>
-  <%=h @consulta.busqueda %>
+ <%=h @consulta.busqueda %>
 </p>
 <% if @consulta.importacion.nil? %>
   <% Consulta::PARAMS.each do |param| %>
@@ -52,7 +52,7 @@
 
 <h2 class="dark">Marcas que coinciden</h2>
 <table class="decorated">
-  <tr>
+  <tr align="center">
     <th>Marca</th>
     <th>Tipo de Signo</th>
     <th>Clase</th>

@@ -1,9 +1,12 @@
-<% semantic_form_for(@contacto) do |f| %>
+<% simple_form_for(@contacto) do |f| %>
   <%= f.input :representante_id, :as => :hidden %>
   <%= f.input :nombre %>
+  <div class="clear"></div>
   <%= f.input :cargo %>
   <%= f.input :telefono, :label => 'Teléfono' %>
+  <div class="clear"></div>
   <%= f.input :email %>
+  <%= f.input :relacionamiento %>
   <p>
     <%= f.submit 'Salvar' %>
   </p>

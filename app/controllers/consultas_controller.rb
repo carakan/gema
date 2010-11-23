@@ -54,7 +54,7 @@ class ConsultasController < ApplicationController
       @consulta = Consulta.new(params[:consulta])
 
       if @consulta.save
-        redirect_to "/consultas/#{@consulta.id}?page=#{@page}", :notice => "Se ha almacenado el cruce"
+        redirect_to "/busquedas/cruce/?consulta_id=#{@consulta.id}&importacion_id=#{@consulta.importacion_id}&marca_id=#{@consulta.marca_id}page=#{@page}", :notice => "Se ha almacenado el cruce"
       end
     else
       Consulta.descartar( params[:consulta] )
@@ -67,7 +67,6 @@ class ConsultasController < ApplicationController
   # POST /consultas.xml
   def create
     @consulta = Consulta.new(params[:consulta])
-
     unless @consulta.importacion.nil?
       notice = "Se ha almacenado la consulta del cruce"
       uri = cruce_importaciones_url(:importacion_id => @consulta.importacion.id, :page => @page)

@@ -9,7 +9,6 @@
     width: 6%;
     height: 30px;
   }
-
   ul#botones{
     width: 150px;
     float:left;
@@ -39,8 +38,6 @@
     width: 750px;
     margin-left: 20px;
   }
-
-
 </style>
 <form action="/busquedas" method="get", id="form_buscar" >
   <div style="clear:both"></div>
@@ -52,17 +49,13 @@
   </div>
 
   <div class="half fl">
-    <label for="cliente" style="width:50px;display:inline-block">Cliente:</label>
-    <span class='representante_id'><%= Representante.find(params[:representante_id]).to_s unless params[:representante_id].nil? %></span>
-    <%= hidden_field_tag 'representante_id' %>
-    <p class="hint">escriba para poder seleccionar el cliente</p>
+    <label for="cliente">Cliente:</label>
+    <span class='representante_id' style="display:none;"><%= Representante.find(params[:representante_id]).to_s unless params[:representante_id].blank? %></span>
+    <%= hidden_field_tag 'representante_id', params[:representante_id] %>
     <%= text_field_tag "cliente", params[:cliente], :size => 40 %>
+    <p class="hint">escriba para poder seleccionar el cliente</p>
   </div>
-  
-  <input type="submit" value="Buscar" />
-
   <div class="clear"></div>
-
   <label for="">Clases</label>
   <div id="clases_grupos">
     <ul id="botones">
@@ -98,6 +91,7 @@
     	</li>
     </ul>
 
+
     <div id="clases">
       <% 4.times do |i| -%>
         <div>
@@ -121,11 +115,10 @@
       <% end %>
     </div>
 
-
     <div style="clear:both"></div>
   </div>
 
-
+    <input type="submit" value="Buscar" />
 
 </form>
 
@@ -198,9 +191,9 @@ $(document).ready(function() {
     if($('#busqueda').val().trim() == "") {
       txt += "Debe ingresar un termino de busqueda";
     }
-    if($('#representante_id').val().trim() == "") {
-      txt += "Debe seleccionar un cliente";
-    }
+    //if($('#representante_id').val().trim() == "") {
+    //  txt += "Debe seleccionar un cliente";
+    //}
     if(txt != ""){
       alert(txt);
       return false;
@@ -222,6 +215,12 @@ $(document).ready(function() {
     }
   });
 
+  $('#cliente').change(function(event){
+    if($(this).val() == ""){
+      $('#representante_id').val(null);
+      $('span.representante_id').html("");
+    }
+  });
 });
 </script>
 

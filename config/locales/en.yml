@@ -4,11 +4,10 @@
 en:
   "nombre marca": Trademark
   "clase marca": Int. Class
-  "numero solicitud marca": Numero Solucitud
-  "fecha publicacion marca": Fecha Publicacion
-  "numero publicacion marca": Numero Publicacion
-  "titulares marca": Titulares
-  "observaciones marca": Observations
+  "fecha solicitud marca": Date
+  "numero publicacion marca": Number
+  "titulares marca": Owner's
+  "observaciones marca": Product service description
   "tipo marca": Type
   "imagen marca": Diseno
 

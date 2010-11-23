@@ -226,7 +226,13 @@ module ModMarca::PDF
       dir = File.join( pdf_path, Time.now.to_i.to_s )
       FileUtils.mkdir(dir)
       path = "#{ dir }/#{ archivo.original_filename }"
-      FileUtils.mv( archivo.path, path )
+
+      if Rails.version >= "3.0.3"
+        FileUtils.mv( archivo.tempfile.path, path )
+      else
+        FileUtils.mv( archivo.path, path )
+      end
+
       path
     end
 

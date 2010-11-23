@@ -17,7 +17,7 @@ class Consulta < ActiveRecord::Base
   has_many :consulta_detalles, :dependent => :destroy
   accepts_nested_attributes_for :consulta_detalles
 
-  validates_presence_of :comentario
+  #validates_presence_of :comentario
 
   attr_accessor :consulta_id
 
@@ -33,7 +33,7 @@ class Consulta < ActiveRecord::Base
     #if params[:clases].is_a? String
     #else
     #end
-    hash = { :clases => params[:clases].split(",").map(&:to_i) }
+    hash = { :clases => params[:clases].keys.map(&:to_i) }
     [:tipo_busqueda, :fecha_ini, :fecha_fin].each do |v|
       hash[v] = params[v]
     end
@@ -67,8 +67,7 @@ class Consulta < ActiveRecord::Base
     )
     klass.set_importacion_id(params)
     klass.set_marca_id(params)
-
-    klass.instanciar_marcas_detalles(params)
+    #klass.instanciar_marcas_detalles(params)
 
     klass
   end

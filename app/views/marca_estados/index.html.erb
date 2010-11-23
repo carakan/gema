@@ -1,0 +1,25 @@
+<h1>Marca estados</h1>
+
+<p class="links">
+<%= link_to 'Nueva Marca estado', new_marca_estado_path, :class => 'new' %>
+</p>
+
+<table class="decorated nwl">
+  <tr>
+    <th>Nombre</th>
+    <th>Abreviacion</th>
+    <th></th>
+  </tr>
+
+<% @marca_estadoses.each do |marca_estado| %>
+  <tr>
+    <td><%= link_to marca_estado.nombre, marca_estado %></td>
+    <td><%= marca_estado.abreviacion %></td>
+    <td>
+      <%= links(marca_estado) %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+
