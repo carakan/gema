@@ -35,9 +35,11 @@ module MarcasHelper
 
   # Indica si hay cambio en el campo
   def cambio(klass, attr, presentar = nil)
-    attr = attr.to_s.gsub(/(.*)_id$/, '\1') if !!(attr.to_s =~ /.*_id$/)
+    #attr = attr.to_s.gsub(/(.*)_id$/, '\1') if !!(attr.to_s =~ /.*_id$/)
     if presentar.nil? and [true, false].include?( klass[attr] )
       presentar = valido(klass[attr])
+    elsif !presentar and attr.to_s =~ /.*_id$/
+      presentar = klass.send(attr.to_s.gsub(/_id$/, ''))
     end
     
     if [Date, Time, DateTime, ActiveSupport::TimeWithZone ].include? klass.send(attr).class
