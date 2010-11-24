@@ -171,7 +171,10 @@ class Marca < ActiveRecord::Base
 
   # Realiza la inclusion de modulos de acuerdo al estado que marca estado tenga
   def self.set_include_estado(estado)
-    if m = MarcaEstado.find(estado)
+    m = MarcaEstado.find_by_abreviacion(estado)
+    if m.nil?
+      m = MarcaEstado.buscar_estado(estado)
+      m = MarcaEstado.find(m)
       include m.modulo.constantize
     else
       params[:marca_estado_id] = nil
