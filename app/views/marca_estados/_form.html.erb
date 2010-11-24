@@ -11,10 +11,9 @@
     </div>
   <% end %>
 
-  <div class="inputs">
-    <%= f.input :nombre %>
-    <%= f.input :abreviacion %>
-  </div>
+  <%= f.input :nombre %>
+  <%= f.input :abreviacion %>
+  <%= f.input :modulo, :collection => MarcaEstado.listar_modulos %>
 
   <div class="actions">
     <%= f.button :submit %>

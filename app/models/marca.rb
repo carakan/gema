@@ -74,7 +74,7 @@ class Marca < ActiveRecord::Base
   serialize :errores_manual
 
 
-  validates_presence_of :estado
+  validates_presence_of :marca_estado_id
   validate :validar_errores_manual
 
   default_scope where("marcas.parent_id = 0")
@@ -169,22 +169,25 @@ class Marca < ActiveRecord::Base
     importar_archivo(params)
   end
 
-  # Realiza la inclusion de modulos de acuerdo al estado
+  # Realiza la inclusion de modulos de acuerdo al estado que marca estado tenga
   def self.set_include_estado(estado)
-    case estado
-    #when 'pp'
-    #  include ModMarca::PendientePresentacion
-    when 'sm'
-      include ModMarca::Solicitud
-    when 'lp'
-      include ModMarca::ListaPublicacion
-    when 'lr'
-      include ModMarca::ListaRegistro
-    when 'sr'
-      include ModMarca::SolicitudRenovacion
-    when 'rc'
-      include ModMarca::RenovacionConcedida
+    if m = MarcaEstado.find(estado)
+      include m.modulo.constantize
+    else
+      params[:marca_estado_id] = nil
     end
+    #case estado
+    #when 'sm'
+    #  include ModMarca::Solicitud
+    #when 'lp'
+    #  include ModMarca::ListaPublicacion
+    #when 'lr'
+    #  include ModMarca::ListaRegistro
+    #when 'sr'
+    #  include ModMarca::SolicitudRenovacion
+    #when 'rc'
+    #  include ModMarca::RenovacionConcedida
+    #end
   end
 
   # Realiza la inclusion de modulos de acuerdo al tipo_signo
@@ -276,11 +279,11 @@ class Marca < ActiveRecord::Base
   # @return Marca.new o clase heredada
   def self.crear_instancia(params)
 #    unless ESTADOS.inlcude? params[:estado]
-    unless ESTADOS.include? params[:estado]
-      return Marca.new(params)
-    end
+    #unless ESTADOS.include? params[:estado]
+    #  return Marca.new(params)
+    #end
 
-    set_include_estado(params[:estado])
+    set_include_estado(params[:marca_estado])
     set_include_tipo_signo(params[:tipo_signo_id])
     new(params)
   end
@@ -298,7 +301,7 @@ class Marca < ActiveRecord::Base
     #unless Marca::ESTADOS.include? self.estado
     #  return self.valid?
     #end
-    self.class.set_include_estado(params[:estado])
+    self.class.set_include_estado(params[:marca_estado_id])
     params[:valido] = true
     self.update_attributes(params)
   end
@@ -412,6 +415,34 @@ class Marca < ActiveRecord::Base
   def self.quitar_comillas(txt)
     txt.gsub(/^(\342\200\234|"|\342\200\235)(.*)(\342\200\235|"|\342\200\234)$/, '\2').strip
   end
+
+
+    # presenta de acuerdo al estado
+  def numero_marca
+    case self.estado
+      when "sm" then self.numero_solicitud
+      when "lp" then self.numero_publicacion
+      when "lr" then self.numero_registro
+      when "sr" then self.numero_solicitud_renovacion
+      when "rc" then self.numero_renovacion
+      else
+        self.numero_solicitud
+    end
+  end
+
+  # presentar fecha de la marca
+  def fecha_marca
+    case self.estado
+      when "sm" then self.estado_fecha
+      when "lp" then self.estado_fecha
+      when "lr" then self.fecha_registro
+      when "sr" then self.fecha_solicitud_renovacion
+      when "rc" then self.fecha_renovacion
+      else
+        self.estado_fecha
+    end
+  end
+
 
   protected
   #########################################################

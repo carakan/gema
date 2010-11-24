@@ -58,7 +58,7 @@ class ReporteMarcasController < ApplicationController
         end
         format.xls do
           reporte = render_to_string(:partial => "tabla_busqueda")
-          send_data reporte, :filename => "#{nombre_archivo}.xls"
+          send_data reporte, :filename => "#{nombre_archivo}.xls", :type => 'application/vnd.ms-excel; charset=utf-8'
         end
       end
     else
