@@ -1,5 +1,5 @@
 # encoding: utf-8
-module ArrayOrder
+module ModMarca::ArrayOrder
   def self.included(klass)
     send(:include, InstanceMethods)
   end

@@ -1,7 +1,17 @@
 # encoding: utf-8
 class MarcaEstado < ActiveRecord::Base
   has_many :marcas
+
+  # lista los modulos en lib/mod_marca
+  def self.listar_modulos
+    Dir.chdir("#{Rails.root}/lib")
+    Dir.glob("mod_marca/*.rb").map { |v| v.slice(0, v.size - 3).classify }
+  end
+
+  MODULOS = MarcaEstado.listar_modulos
+
   validates_presence_of :nombre
+  validates_inclusion_of :modulo, :in => MODULOS
 
   def to_s
     nombre
@@ -17,4 +27,5 @@ class MarcaEstado < ActiveRecord::Base
     when 'rc' then MarcaEstado.find_by_abreviacion('renpecr').id
     end
   end
+
 end
