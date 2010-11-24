@@ -1,7 +1,7 @@
 <div class="breadcrumps">
-  <%= link_to 'Lista de signos', marcas_path, :class =>'list' %> > Nuevo signo <%= @tipo_signo %>
+  <%= link_to 'Lista de signos', marcas_path, :class =>'list' %> > Nuevo signo <%= params[:tipo_signo] %> 
 </div>
-<h1>Nuevo signo - <%= @tipo_signo %> </h1> 
+<h1>Nuevo signo - <%= params[:tipo_signo] %> </h1> 
 
 <%#= render :partial => "form" %>
 <%= stylesheet_link_tag 'facebook' %>
@@ -42,7 +42,13 @@
 
   <div class="in_half">
     <%= link_to 'Nuevo cliente', new_representante_path('data-title' => 'Crear cliente'), :class => 'new ajax' %>
-    <ol>  
+    <ol>
+      <li>
+      <ul><%= label_tag "marca_agente_ids", "Agentes" %>
+        <%= select_tag "marca[agente_ids][]", [] %></ul>
+      </li>
+    </ol>
+<!--   <ol>  
       <li id="agente-auto" class="input-text">
         <label for="agente_ids">Agentes</label>
         <ul id="ul-agentes" style="display:none"> 
@@ -57,13 +63,15 @@
           </ul>
         </div> 
       </li> 
+    </ol>-->
+    <ol>
+      <li>
+        <ul><%= label_tag "marca_titular_ids", "Titulares" %>
+        <%= select_tag "marca[titular_ids][]", [] %></ul>
+      </li>
     </ol>
 
-
-    <%= label_tag "marca_titular_ids", "Titulares" %>
-    <%= select_tag "marca[titular_ids][]", [] %>
-    <!---
-    <ol>  
+<!--    <ol>  
       <li id="titular-auto" class="input-text"> 
         <label for="titular_ids">Titulares</label>
         <ul id="ul-titulares" style="display:none"> 
@@ -78,8 +86,7 @@
           </ul>
         </div> 
       </li> 
-    </ol>
-    -->
+    </ol>-->
 
     <ol>
       <li>
@@ -135,14 +142,12 @@ $(document).ready(function() {
     newel: false
   });
 
-
-
-  /*$.facebooklist('#titular_ids', '#ul-titulares', '#titulares-list', 
-     { url:'/representantes/buscar.json', cache:0 }, 10, { userfilter: 1, casesensetive: 0 } );
-
-  $.facebooklist('#agente_ids', '#ul-agentes', '#agentes-list', 
-    { url:'/representantes/buscar.json', cache:0 }, 10, { userfilter: 1, casesensetive: 0 } );*/
-
+  $("#marca_agente_ids_").fcbkcomplete({
+    json_url: "/representantes/buscar",
+    filter_hide: true,
+    filter_selected: true,
+    newel: false
+  });
 
   $('.error_manual a').click(function(){
     $(this).parents("div:first").remove();
