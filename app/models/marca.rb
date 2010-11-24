@@ -416,6 +416,34 @@ class Marca < ActiveRecord::Base
     txt.gsub(/^(\342\200\234|"|\342\200\235)(.*)(\342\200\235|"|\342\200\234)$/, '\2').strip
   end
 
+
+    # presenta de acuerdo al estado
+  def numero_marca
+    case self.estado
+      when "sm" then self.numero_solicitud
+      when "lp" then self.numero_publicacion
+      when "lr" then self.numero_registro
+      when "sr" then self.numero_solicitud_renovacion
+      when "rc" then self.numero_renovacion
+      else
+        self.numero_solicitud
+    end
+  end
+
+  # presentar fecha de la marca
+  def fecha_marca
+    case self.estado
+      when "sm" then self.estado_fecha
+      when "lp" then self.estado_fecha
+      when "lr" then self.fecha_registro
+      when "sr" then self.fecha_solicitud_renovacion
+      when "rc" then self.fecha_renovacion
+      else
+        self.estado_fecha
+    end
+  end
+
+
   protected
   #########################################################
   # Metodos que ayudan para la extraccion de datos de Excel
