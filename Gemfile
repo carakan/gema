@@ -30,7 +30,7 @@ gem 'simple_form'
 
 group :test do
   gem 'rspec-rails'
-  gem 'steak', '>= 1.0.0.rc.2'
+  gem 'steak', '>= 1.0.0'
   gem 'capybara'
   gem 'mocha'
   gem 'spork', '0.8.4'

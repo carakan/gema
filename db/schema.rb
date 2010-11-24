@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101118160003) do
+ActiveRecord::Schema.define(:version => 20101124143205) do
 
   create_table "adjuntos", :force => true do |t|
     t.string   "nombre"
@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(:version => 20101118160003) do
     t.string   "abreviacion", :limit => 15
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "modulo"
   end
 
   create_table "marcas", :force => true do |t|
@@ -258,6 +259,7 @@ ActiveRecord::Schema.define(:version => 20101118160003) do
     t.datetime "updated_at"
     t.string   "division"
     t.string   "postal"
+    t.string   "gerencia"
   end
 
   add_index "representantes", ["nombre"], :name => "index_representantes_on_nombre"

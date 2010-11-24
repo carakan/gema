@@ -63,6 +63,8 @@
   
   <%= f.input :estado, :collection => Marca.lista_estados , :tabindex => 10 %>
 
+  <%= f.association :estado, :collection => Marca.lista_estados , :tabindex => 10 %>
+
   <%= f.association :marca_estado %>
   <%= f.input :numero_solicitud , :tabindex => 13  %>
   <%# f.input :estado_fecha, :label => 'Fecha solicitud',:as => :string, :input_html => {:tabindex => 14, :class => 'date' } %>
