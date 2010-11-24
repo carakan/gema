@@ -187,20 +187,22 @@ class Busqueda
     end
 
     busqueda = params[:busqueda].downcase.cambiar_acentos
-    sql = "SELECT res.id, res.nombre, res.pos, res.clase_id, res.propia, res.activa, res.tipo_signo_id, res.agente_ids_serial, res.titular_ids_serial, res.fecha_publicacion,
-      res.numero_solicitud, res.numero_publicacion, res.numero_registro, res.numero_renovacion, res.estado, res.numero_solicitud_renovacion, res.estado_fecha "
+    sql = "SELECT res.id, res.nombre, res.pos, res.clase_id, res.propia, res.activa, res.tipo_signo_id, res.agente_ids_serial, 
+      res.titular_ids_serial, res.fecha_publicacion, res.numero_solicitud, res.numero_publicacion, 
+      res.numero_registro, res.numero_renovacion, res.estado, res.numero_solicitud_renovacion, res.estado_fecha, res.exacto"
     sql << ", IF(#{busqueda.size}>CHAR_LENGTH(res.nombre_minusculas), #{busqueda.size} - CHAR_LENGTH(res.nombre_minusculas),
       CHAR_LENGTH(res.nombre_minusculas) - #{busqueda.size}) AS longitud_letras"
     sql << ", IF(res.id=#{params[:clase_id].to_i}, 0, 2) AS dist_clase_id" unless params[:clase_id].nil?
     sql = [ "#{sql} FROM" ]
     sql << "(#{sql_exp.join(" UNION ")}) AS res"
     sql << condiciones_sql(params)
-    sql << "GROUP BY res.id"
+    #sql << "GROUP BY res.clase_id, res.id"
+    sql << "AND res.tipo_signo_id NOT IN (2)"
 
     unless params[:clase_id].nil?
       sql << "ORDER BY res.pos, dist_clase_id, longitud_letras ASC"
     else
-      sql << "ORDER BY res.pos, longitud_letras ASC"
+      sql << "ORDER BY res.exacto, res.clase_id, res.pos, longitud_letras ASC"
     end
     
     #debugger
@@ -208,10 +210,10 @@ class Busqueda
     sql.join(" ")
   end
 
-  def self.sql_select(pos)
+  def self.sql_select(pos, exacto = 1)
     "SELECT id, nombre, nombre_minusculas, clase_id, #{pos} AS pos, propia, activa, estado, agente_ids_serial, titular_ids_serial, fecha_publicacion,
-     numero_solicitud, numero_publicacion, numero_registro, numero_renovacion, tipo_signo_id, numero_solicitud_renovacion, estado_fecha
-      FROM marcas"
+     numero_solicitud, numero_publicacion, numero_registro, numero_renovacion, tipo_signo_id, numero_solicitud_renovacion, estado_fecha, #{exacto} AS exacto
+     FROM marcas"
   end
 
   # SQl que busca la palabra exacata
@@ -220,7 +222,7 @@ class Busqueda
   #   @return String
   def self.sql_exacto(bus, pos)
     ActiveRecord::Base.send(:sanitize_sql_array, 
-      [ "#{sql_select(pos)} WHERE parent_id = 0 AND nombre_minusculas = '%s'", bus ]
+      [ "#{sql_select(pos, 0)} WHERE parent_id = 0 AND nombre_minusculas = '%s'", bus ]
     )
   end
 
