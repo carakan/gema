@@ -6,7 +6,10 @@
     <th class="_200">Clase</th>
     <th class="_200">Numero</th>
     <th class="_200">Fecha</th>
-    <th class="_200">Titulares</th>
+    <% if show_titulares %>
+      <th class="_200">Titulares</th>
+      <th class="_200">Agentes</th>
+    <% end %>
     <th>Comentario</th>
   </tr>
   <% @reporte_marca.reporte_marca_detalles.each do |rd|  %>
@@ -19,7 +22,10 @@
       <td><%= rd.marca_propia.clase_id %></td>
       <td><%= rd.marca_propia.numero_marca %></td>
       <td><%= rd.marca_propia.fecha_marca %></td>
-      <td><%= rd.marca_propia.titulares.join(", ") %></td>
+      <% if show_titulares %>
+        <td><%= rd.marca_propia.titulares.join(", ") %></td>
+        <td><%= rd.marca_propia.agentes.join(", ") %></td>
+      <% end %>
       <td><%= rd.comentario %></td>
     </tr>
   <% end %>

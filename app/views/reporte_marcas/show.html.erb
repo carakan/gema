@@ -4,7 +4,7 @@
 
 <% if @reporte_marca.importacion_id? %>
   <div class="breadcrumps">
-    <%= link_to "Lista de importaciones", importaciones_path %> > 
+    <%= link_to "Lista de importaciones", importaciones_path %> >
     <%= link_to "Agentes y Títulares", cruces_reporte_marcas_path(:importacion_id => @reporte_marca.importacion_id) %>
     > Reporte
   </div>
@@ -25,12 +25,12 @@
   <label for="">Carta</label>
   <%= @reporte_marca.carta %>
 </p>
-<%= render :partial => ( @reporte_marca.importacion_id? ? "tabla_cruce" : "tabla_busqueda" ) %>
+<%= render :partial => ( @reporte_marca.importacion_id? ? "tabla_cruce" : "tabla_busqueda" ), :locals => {:show_titulares => false} %>
 
 <br />
 
 
-  <%= link_to 'Editar', edit_reporte_marca_path(@reporte_marca), :class => 'edit' %>
+<%= link_to 'Editar', edit_reporte_marca_path(@reporte_marca), :class => 'edit' %>
 <% if @reporte_marca.importacion_id? %>
   <%= link_to 'lista', reporte_marcas_path(:importacion_id => @reporte_marca.importacion_id), :class => 'list' %>
 <% else %>
