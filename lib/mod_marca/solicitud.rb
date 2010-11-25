@@ -29,6 +29,7 @@ module ModMarca::Solicitud
         :apoderado => 'C',
         :nombre => 'E',
         :tipo_signo_id => 'F',
+        :titular_ids => 'D',
         :clase_id => 'G'
       }
     end
@@ -76,7 +77,6 @@ module ModMarca::Solicitud
     def buscar_o_crear_marca(fila, fecha_imp)
       comp = [:apoderado, :tipo_signo_id, :clase_id, :nombre]
       klass = buscar_comparar_o_nuevo(get_excel_params(fila, fecha_imp), comp )
-
       # Salva correctamente o sino con errores
       unless klass.save
         klass.almacenar_errores
@@ -87,6 +87,20 @@ module ModMarca::Solicitud
       klass
     end
 
+    # Crea un representante y lo relaciona
+    def buscar_o_crear_titular(params)
+      rep = Representante.find_by_nombre(params[:titular_ids])
+      unless rep.blank?
+        rep = Representante.new(
+          :nombre => params[:titular_ids],
+          :direccion => params[''],
+          :cliente => false,
+          :pais_id => Pais.find_by_codigo(params['XX']).try(:id)
+        )
+        rep.save
+      end
+      rep.id
+    end
 
     # Obitiene los datos de la fila del excel
     # y retorna un array
@@ -108,7 +122,8 @@ module ModMarca::Solicitud
       params[:numero_solicitud] = preparar_numero_solicitud(params[:numero_solicitud])
       params[:tipo_signo_id] = buscar_tipo_signo_id(params[:tipo_signo_id])
       params[:clase_id] = buscar_clase_id(params[:clase_id])
-
+      params[:titular_ids] = buscar_o_crear_titular(buscar_titular_id(params[:titular_ids]))
+      
       params
     end
 
