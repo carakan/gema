@@ -152,9 +152,9 @@ class Marca < ActiveRecord::Base
 
   # Transforma los errores en un Hash que puede ser utilizado para JSON
   def hashify_errors
-    self.errors.map(&:first).uniq.inject({}) { |h, v| 
+    self.errors.map(&:first).uniq.inject({}) { |h, v|
       h[v] = (self.errors[v].is_a?(Array) ) ? self.errors[v].join(', ') : self.errors[v]
-      h 
+      h
     }
   end
 
@@ -171,8 +171,8 @@ class Marca < ActiveRecord::Base
     if ESTADOS.include? estado
       mod = MarcaEstado.buscar_estado(estado)
     else
-      m = MarcaEstado.find_by_abreviacion(estado)
-      raise "Error, debe incluir estado" unless m
+      m = MarcaEstado.find(estado)
+      raise "Error, debe incluir estado válido" unless m
       mod = m.modulo.constantize
     end
     include mod
@@ -201,7 +201,6 @@ class Marca < ActiveRecord::Base
     #orden = ['pp', 'sm' ,'lp', 'lr', 'sr', 'rc']
     orden = ['sm' ,'lp', 'lr', 'sr', 'rc']
     orden.inject([]) { |arr, val| arr << [TIPOS[val], val] }
-    #orden.inject([]) { |arr, val| arr << [TIPOS[val], val] }
   end
 
   def self.lista_tiposignos
@@ -212,7 +211,7 @@ class Marca < ActiveRecord::Base
   def self.buscar(*args)
     options = args.extract_options!
     params = options.delete(:params)
-    
+
     unless params['propia'].nil?
       options = options.merge( :conditions => { :propia => convert_boolean(params['propia']) } )
     else
@@ -227,7 +226,7 @@ class Marca < ActiveRecord::Base
   # acumuladas, desde la vista
   def self.view_importaciones(page = 1)
     Marca.table_name = 'view_importaciones'
-    
+
     Marca.find_by_sql(["SELECT importacion_id, SUM( total ) AS total, SUM( errores ) AS errores, estado
       FROM `view_importaciones`
         WHERE (importacion_id > 0) GROUP BY importacion_id"]).paginate(:page => page)
@@ -339,15 +338,20 @@ class Marca < ActiveRecord::Base
       :limit => POSTS_SIZE, :order => 'created_at DESC' )
   end
 
-  # Almacena los errores despues de que es fallida la validación
+  # Almacena los errores despues de que es fallida la validación (usado para importaciones)
   def almacenar_errores
-    self.errores = self.errors.inject([]) { |arr, v| arr << [v.first.humanize, v.last ] if v.first.is_a? String; arr }
+    self.errores = self.errors #.inject([]) { |arr, v| arr << [v.first.humanize, v.last ] if v.first.is_a? String; arr }
   end
 
   # Metodo simple para poder presentar errores serializados
   def presentar_errores
-    arr = self.errores.inject([]) { |arr, v| arr << "<strong>#{v.first}</strong>: #{v.last}" }
-    arr.join("<br />")
+    self.errores.keys.map do |k|
+      if self.errores[k].is_a? Array
+        self.errores[k].map { |v| "#{k.to_s.humanize}: #{v}" }
+      else
+        "#{k.to_s.humanize}: #{self.errores[k]}"
+      end
+    end.flatten.join("<br/>")
   end
 
   # Aumenta los numeros necesarios para buscar el numero de solicitud
@@ -369,7 +373,7 @@ class Marca < ActiveRecord::Base
       params[:numero_solicitud] = digitos_numero_solicitud(params[:numero_solicitud])
       marca = Marca.find_by_numero_solicitud(params[:numero_solicitud] )
     end
-  
+
     if marca.nil?
       return Marca.new(params)
     elsif !(marca.propia)
@@ -398,7 +402,6 @@ class Marca < ActiveRecord::Base
     e2 = act.size <= 50 ? act : act[0,50] + '...'
     "tiene un valor diferente: #{e2}"
   end
-
 
   def self.quitar_comillas(txt)
     txt.gsub(/^(\342\200\234|"|\342\200\235)(.*)(\342\200\235|"|\342\200\234)$/, '\2').strip

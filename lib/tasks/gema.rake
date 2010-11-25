@@ -6,34 +6,6 @@ require 'open-uri'
 
 namespace :gema do
 
-  desc "Crea estado_marcas"
-  task :marca_estados => :environment do
-    {'pp' => 'Pendiente de presentación',
-    'ppub' => 'Pendiente de publicación',
-    'ppubno' => 'Pendiente de publicación/no observada',
-    'ppubo' => 'Pendiente de publicación/observada',
-    'ppubpdoc' => 'Pendiente de publicación/presentar documentación',
-    'ppubl' => 'Pendiente de publicación/litigio',
-    'pubpo' => 'Publicada/en periodo de oposición',
-    'eopnd' => 'En oposición/pendiente notificación demanda',
-    'per' => 'Pendiente de exámen de registrabilidad',
-    'dipr' => 'Denegada inpugnación pendiente resolución',
-    'dpi' => 'Denegada periodo de inpugnación',
-    'rpecr' => 'Registrada/pendiente extención certificado de registro',
-    'rpad' => 'Registrada/pendiente de aviso y despacho',
-    'rad' => 'Registrada/avisada y despachada',
-    'rpir' => 'Registrada/pendiente de intrucción renovación',
-    'rppsr' => 'Registrada/pendiente presentación solicitud renovación',
-    'rpcr' => 'Registrada pendiente de conceción renovación',
-    'renpecr' => 'Renovada/pendiente de extensión certificado de renovación',
-    'renpad' => 'Renovada/pendiente de aviso y despacho',
-    'renad' => 'Renovada/avisada despachada',
-    'c' => 'Caduca',
-    'i' => 'Inactiva'}.each {|k, v| MarcaEstado.create(:abreviacion => k, :nombre => v) }
-
-      puts "Se ha creado estados "
-  end
-
   namespace :usuarios do
     desc "Creacion de usuario con privilegios con el plugin rorol"
     task :admin => :environment do
@@ -244,8 +216,8 @@ namespace :db do
     Rake::Task["db:drop"].execute
     Rake::Task["db:create"].execute
     Rake::Task["db:migrate"].execute
-    Rake::Task["db:seed"].execute
     Rake::Task["db:migrate:rorol"].execute
+    Rake::Task["db:seed"].execute
     Rake::Task["gema:usuarios:admin"].execute
     Dir.glob("#{Rails.root}/public/system/*").each { |f| FileUtils.rm_rf(f) }
   end
