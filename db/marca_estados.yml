@@ -1,0 +1,133 @@
+--- 
+- abreviacion: pp
+  created_at: 2010-11-18 18:39:03 Z
+  id: 1
+  modulo: ModMarca::PendientePresentacion
+  nombre: "Pendiente de presentaci\xC3\xB3n"
+  updated_at: 2010-11-24 19:58:00 Z
+- abreviacion: ppub
+  created_at: 2010-11-18 18:39:03 Z
+  id: 2
+  modulo: ModMarca::Solicitud
+  nombre: "Pendiente de publicaci\xC3\xB3n"
+  updated_at: 2010-11-24 19:58:17 Z
+- abreviacion: ppubno
+  created_at: 2010-11-18 18:39:03 Z
+  id: 3
+  modulo: ModMarca::Solicitud
+  nombre: "Pendiente de publicaci\xC3\xB3n/no observada"
+  updated_at: 2010-11-24 19:58:30 Z
+- abreviacion: ppubo
+  created_at: 2010-11-18 18:39:03 Z
+  id: 4
+  modulo: ModMarca::Solicitud
+  nombre: "Pendiente de publicaci\xC3\xB3n/observada"
+  updated_at: 2010-11-24 19:58:39 Z
+- abreviacion: ppubpdoc
+  created_at: 2010-11-18 18:39:03 Z
+  id: 5
+  modulo: ModMarca::Solicitud
+  nombre: "Pendiente de publicaci\xC3\xB3n/presentar documentaci\xC3\xB3n"
+  updated_at: 2010-11-24 19:58:52 Z
+- abreviacion: ppubl
+  created_at: 2010-11-18 18:39:03 Z
+  id: 6
+  modulo: ModMarca::Solicitud
+  nombre: "Pendiente de publicaci\xC3\xB3n/litigio"
+  updated_at: 2010-11-24 19:59:08 Z
+- abreviacion: pubpo
+  created_at: 2010-11-18 18:39:03 Z
+  id: 7
+  modulo: ModMarca::ListaPublicacion
+  nombre: "Publicada/en periodo de oposici\xC3\xB3n"
+  updated_at: 2010-11-24 19:59:19 Z
+- abreviacion: eopnd
+  created_at: 2010-11-18 18:39:03 Z
+  id: 8
+  modulo: ModMarca::ListaPublicacion
+  nombre: "En oposici\xC3\xB3n/pendiente notificaci\xC3\xB3n demanda"
+  updated_at: 2010-11-24 19:59:35 Z
+- abreviacion: per
+  created_at: 2010-11-18 18:39:03 Z
+  id: 9
+  modulo: ModMarca::ListaPublicacion
+  nombre: "Pendiente de ex\xC3\xA1men de registrabilidad"
+  updated_at: 2010-11-24 19:59:47 Z
+- abreviacion: dipr
+  created_at: 2010-11-18 18:39:03 Z
+  id: 10
+  modulo: ModMarca::ListaPublicacion
+  nombre: "Denegada inpugnaci\xC3\xB3n pendiente resoluci\xC3\xB3n"
+  updated_at: 2010-11-24 20:00:03 Z
+- abreviacion: dpi
+  created_at: 2010-11-18 18:39:03 Z
+  id: 11
+  modulo: ModMarca::ListaPublicacion
+  nombre: "Denegada periodo de inpugnaci\xC3\xB3n"
+  updated_at: 2010-11-24 20:00:15 Z
+- abreviacion: rpecr
+  created_at: 2010-11-18 18:39:03 Z
+  id: 12
+  modulo: ModMarca::ListaRegistro
+  nombre: "Registrada/pendiente extenci\xC3\xB3n certificado de registro"
+  updated_at: 2010-11-24 20:00:32 Z
+- abreviacion: rpad
+  created_at: 2010-11-18 18:39:03 Z
+  id: 13
+  modulo: ModMarca::ListaRegistro
+  nombre: Registrada/pendiente de aviso y despacho
+  updated_at: 2010-11-24 20:00:42 Z
+- abreviacion: rad
+  created_at: 2010-11-18 18:39:03 Z
+  id: 14
+  modulo: ModMarca::ListaRegistro
+  nombre: Registrada/avisada y despachada
+  updated_at: 2010-11-24 20:00:51 Z
+- abreviacion: rpir
+  created_at: 2010-11-18 18:39:03 Z
+  id: 15
+  modulo: ModMarca::ListaRegistro
+  nombre: "Registrada/pendiente de intrucci\xC3\xB3n renovaci\xC3\xB3n"
+  updated_at: 2010-11-24 20:01:01 Z
+- abreviacion: rppsr
+  created_at: 2010-11-18 18:39:03 Z
+  id: 16
+  modulo: ModMarca::ListaRegistro
+  nombre: "Registrada/pendiente presentaci\xC3\xB3n solicitud renovaci\xC3\xB3n"
+  updated_at: 2010-11-24 20:01:17 Z
+- abreviacion: rpcr
+  created_at: 2010-11-18 18:39:03 Z
+  id: 17
+  modulo: ModMarca::ListaRegistro
+  nombre: "Registrada pendiente de conceci\xC3\xB3n renovaci\xC3\xB3n"
+  updated_at: 2010-11-24 20:01:36 Z
+- abreviacion: renpecr
+  created_at: 2010-11-18 18:39:03 Z
+  id: 18
+  modulo: ModMarca::RenovacionConcedida
+  nombre: "Renovada/pendiente de extensi\xC3\xB3n certificado de renovaci\xC3\xB3n"
+  updated_at: 2010-11-24 20:01:48 Z
+- abreviacion: renpad
+  created_at: 2010-11-18 18:39:03 Z
+  id: 19
+  modulo: ModMarca::RenovacionConcedida
+  nombre: Renovada/pendiente de aviso y despacho
+  updated_at: 2010-11-24 20:01:58 Z
+- abreviacion: renad
+  created_at: 2010-11-18 18:39:04 Z
+  id: 20
+  modulo: ModMarca::RenovacionConcedida
+  nombre: Renovada/avisada despachada
+  updated_at: 2010-11-24 20:02:08 Z
+- abreviacion: c
+  created_at: 2010-11-18 18:39:04 Z
+  id: 21
+  modulo: 
+  nombre: Caduca
+  updated_at: 2010-11-18 18:39:04 Z
+- abreviacion: i
+  created_at: 2010-11-18 18:39:04 Z
+  id: 22
+  modulo: 
+  nombre: Inactiva
+  updated_at: 2010-11-18 18:39:04 Z
