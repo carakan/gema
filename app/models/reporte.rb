@@ -68,25 +68,25 @@ class Reporte < ActiveRecord::Base
   def self.set_instance(name_report)
     template = Reporte.find_by_clave(name_report)
     template.engine_report = template.nombre_clase.constantize.new(:page_size => 'LETTER', :page_layout => :landscape, :margin => [40, 50, 30, 60])
-
+    template.print_bottom()
     template.engine_report.font_size 9
     template
   end
 
   def print_bottom
-    template.engine_report.font_size 7
+    self.engine_report.font_size 7
     message =<<-EOF
       · Formato números de solicitud: SM-0000-00 / Formato números de publicación: 111111 / Formato números de registro: 22222-C /
     EOF
-    template.engine_report.number_pages message, [template.engine_report.bounds.right - 680, 13]
+    self.engine_report.number_pages message, [self.engine_report.bounds.right - 680, 13]
     message =<<-EOF
       Formato números de solicitud de renovación: SR-0000-00 / Formato números de renovación: 33333-A
     EOF
-    template.engine_report.number_pages message, [template.engine_report.bounds.right - 675, 0]
+    self.engine_report.number_pages message, [self.engine_report.bounds.right - 675, 0]
     message =<<-EOF
       · Las fechas se refieren a fecha de presentación de la solicitud o concesión del último registro o renovación.
     EOF
-    template.engine_report.number_pages message, [template.engine_report.bounds.right - 680, -13]
+    self.engine_report.number_pages message, [self.engine_report.bounds.right - 680, -13]
   end
 
   # generate report in pdf
@@ -117,7 +117,7 @@ class Reporte < ActiveRecord::Base
     else
       report = Reporte.set_instance("busqueda_report")
       report.engine_report.busqueda = reporte_marca.busqueda
-      report.engine_report.clases = reporte_marca.consulta.parametros[:clases].join(", ")
+      report.engine_report.clases = reporte_marca.consulta.parametros[:clases]
     end
     report.to_pdf(reporte_marca)
   end

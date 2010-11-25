@@ -30,11 +30,15 @@ class BusquedaReport < ReporteMarcaBase
   end
 
   def palabra_busqueda
-    "<b>#{@busqueda if @busqueda}</b>"
+    "<b>#{@busqueda.upcase if @busqueda}</b>"
   end
 
   def clase_en_busqueda
-    "<b>#{@clases if @clases}</b>"
+    if @clases.length < 45
+      "<b>#{@clases.join(", ")}</b>"
+    else
+      "<b>Todas</b>"
+    end
   end
 
   def tabla(reporte_marca)

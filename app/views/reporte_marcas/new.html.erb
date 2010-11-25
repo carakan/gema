@@ -2,13 +2,17 @@
 
 <%= semantic_form_for(@reporte_marca) do |f| %>
 
-  <%# f.input :representante, :label => 'Cliente', :collection => Representante.lista %>
   <% if @reporte_marca.representante_id %>
     <%= f.hidden_field :representante_id %>
     <label for="">Cliente</label>
     <%= @reporte_marca.representante %>
   <% else %>
-    <label for="">No selecciono ningún cliente</label>
+    <label for="">Busqueda</label>
+    <%= @consulta.busqueda %>
+    <% if @consulta.representante %>
+      <label for="">Representante</label>
+      <%= @consulta.representante %>
+    <% end %>
   <% end %>
 
   <%= f.input :representante_type, :as => :hidden %>
@@ -29,47 +33,35 @@
     Si no escribe en el comentario la marca no sera seleccionada para el reporte
   </p>
   <table class="decorated">
-  	<tr>
-  		<th>Busqueda</th>
-  		<th>Marca encontrada</th>
-  		<th>Comentario</th>
-  	</tr>
+    <tr>
+      <th>Busqueda</th>
+      <th>Signo</th>
+      <th>Tipo</th>
+      <th>Clase</th>
+      <th>Numero</th>
+      <th>Fecha</th>
+      <th>Comentario</th>
+    </tr>
     <%= f.semantic_fields_for :reporte_marca_detalles do |rd| %>
       <tr>
         <td>
           <%= rd.input :busqueda, :as => :hidden %>
           <%= rd.object.busqueda %>
-        </td>
-        <td>
           <%= rd.input :marca_id, :as => :hidden %>
-          <%= render :partial => "marca_foranea", :locals => { :marca => rd.object.marca_propia } %>
         </td>
+        <%= render :partial => "marca_foranea", :locals => { :marca => rd.object.marca_propia } %>
         <td>
-          <%= rd.input :comentario, :as => :text, :label => false, :input_html => {:cols => 60, :rows => 12} %>
+          <%= rd.input :comentario, :as => :text, :label => false, :input_html => {:cols => 50, :rows => 12} %>
         </td>
       </tr>
     <% end %>
   </table>
-
-  
   <p>
     <%= f.submit 'Salvar' %>
   </p>
 <% end %>
 
 <script type="text/javascript">
-//  $(function() {
-    // Idioma
-//    $('input[name="reporte_marca[idioma]"]').click(function() {
-//      var val = 'es' == $(this).val() ? carta_es : carta_en;
-//      $('#reporte_marca_carta').val(val);
-//    });
-//    if( $('input[name="reporte_marca[idioma]"]').val() == 'es') {
-//      $('#reporte_marca_carta').val(carta_es);
-//    }else {
-//      $('#reporte_marca_carta').val(carta_en);
-//    }
-//  });
   var carta_es = "<%= @reporte_marca.crear_carta %>";
   var carta_en = "<%= @reporte_marca.crear_carta('en') %>";
 </script>
