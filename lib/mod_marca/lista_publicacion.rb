@@ -67,7 +67,7 @@ module ModMarca::ListaPublicacion
       @importacion.id
     end
 
-    
+ 
     ############################################################
     # Metodos para realizar la importacion desde un PDF
     ############################################################ 
@@ -115,7 +115,7 @@ module ModMarca::ListaPublicacion
     #   @param hoja
     #   @return Marca
     def get_pdf_params(params, hoja)
-      { 
+      {
         :activa => true,
         :valido => true, 
         :fila => hoja, 
