@@ -216,8 +216,8 @@ namespace :db do
     Rake::Task["db:drop"].execute
     Rake::Task["db:create"].execute
     Rake::Task["db:migrate"].execute
-    Rake::Task["db:seed"].execute
     Rake::Task["db:migrate:rorol"].execute
+    Rake::Task["db:seed"].execute
     Rake::Task["gema:usuarios:admin"].execute
     Dir.glob("#{Rails.root}/public/system/*").each { |f| FileUtils.rm_rf(f) }
   end

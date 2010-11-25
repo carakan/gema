@@ -36,9 +36,9 @@ puts "Se han creado  los tipos de marca base"
 #TipoMarca.create!(:nombre => 'Solicitud Marca', :sigla => 'SM.')
 paises = YAML.load_file(File.join(Rails.root, 'db/paises.yml'))
 paises.each{ |v| Pais.create!(v) }
-puts "Se han creado los paises base"
+puts "Se han creado los paises"
 
 YAML.load_file(File.join(Rails.root, 'db/marca_estados.yml')).each do |v|
   MarcaEstado.create!(v)
 end
-puts "Se han creado los estados base"
+puts "Se ha creado marca estados"
