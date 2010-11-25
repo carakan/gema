@@ -19,7 +19,7 @@ en:
   date:
     formats:
       default: "%b %d, %Y"
-      short: "%b %d"
+      short: "%b %d %Y"
       long: "%B %d of %Y"
   time:
     formats:

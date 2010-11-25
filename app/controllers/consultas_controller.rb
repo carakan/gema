@@ -10,9 +10,9 @@ class ConsultasController < ApplicationController
   # GET /consultas.xml
   def index
     @consultas = Consulta.paginate( :page => @oage, 
-                    :conditions => { :importacion_id => 0 }, 
-                    :include => [ :consulta_detalles, :usuario],
-                    :order => "consultas.created_at DESC" )
+      :conditions => { :importacion_id => 0 },
+      :include => [ :consulta_detalles, :usuario],
+      :order => "consultas.created_at DESC" )
 
     respond_to do |format|
       format.html # index.html.erb
@@ -67,15 +67,15 @@ class ConsultasController < ApplicationController
   # POST /consultas.xml
   def create
     @consulta = Consulta.new(params[:consulta])
-    unless @consulta.importacion.nil?
-      notice = "Se ha almacenado la consulta del cruce"
-      uri = cruce_importaciones_url(:importacion_id => @consulta.importacion.id, :page => @page)
-    else
-      notice = "Se ha almacenado la consulta"
-      uri = @consulta
-    end
 
     if @consulta.save
+      unless @consulta.importacion.nil?
+        notice = "Se ha almacenado la consulta del cruce"
+        uri = cruce_importaciones_url(:importacion_id => @consulta.importacion.id, :page => @page)
+      else
+        notice = "Se ha almacenado la consulta"
+        uri = new_reporte_marca_url(:consulta_id => @consulta.id)
+      end
       redirect_to uri, :notice => notice
     else
       render :action => "new"
@@ -110,7 +110,7 @@ class ConsultasController < ApplicationController
   #  end
   #end
 
-private
+  private
   def set_busqueda
     if params[:busqueda]
       @busqueda = params[:busqueda]
