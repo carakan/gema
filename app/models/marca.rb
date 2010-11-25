@@ -101,7 +101,6 @@ class Marca < ActiveRecord::Base
 
 
   TIPOS = {
-    #'pp' => 'Pendiente de presentación',
     'sm' => 'Solicitud de Marca',
     'lp' => 'Lista de publicación',
     'lr' => 'Lista de Registro',
@@ -109,8 +108,6 @@ class Marca < ActiveRecord::Base
     'rc' => 'Renovaciones Concedidas'
   }
 
-
-#  ESTADOS = TIPOS
   ESTADOS = TIPOS
 
   SIGNOS = {
@@ -171,26 +168,14 @@ class Marca < ActiveRecord::Base
 
   # Realiza la inclusion de modulos de acuerdo al estado que marca estado tenga
   def self.set_include_estado(estado)
-    m = MarcaEstado.find_by_abreviacion(estado)
-    if m.nil?
-      m = MarcaEstado.buscar_estado(estado)
-      m = MarcaEstado.find(m)
-      include m.modulo.constantize
+    if ESTADOS.include? estado
+      mod = MarcaEstado.buscar_estado(estado)
     else
-      params[:marca_estado_id] = nil
+      m = MarcaEstado.find_by_abreviacion(estado)
+      raise "Error, debe incluir estado" unless m
+      mod = m.modulo.constantize
     end
-    #case estado
-    #when 'sm'
-    #  include ModMarca::Solicitud
-    #when 'lp'
-    #  include ModMarca::ListaPublicacion
-    #when 'lr'
-    #  include ModMarca::ListaRegistro
-    #when 'sr'
-    #  include ModMarca::SolicitudRenovacion
-    #when 'rc'
-    #  include ModMarca::RenovacionConcedida
-    #end
+    include mod
   end
 
   # Realiza la inclusion de modulos de acuerdo al tipo_signo
