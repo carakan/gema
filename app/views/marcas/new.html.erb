@@ -105,7 +105,7 @@
   </div>
   <%= f.input :fecha_instruccion , :as => 'string', :input_html => { :class => 'date' } %>
   <%= f.input :instruccion, :collection => Marca::INSTRUCCIONES, :label => 'Tipo de instrucción' %>
-  <%= f.input :estado, :collection => Marca.lista_estados , :tabindex => 10 %>
+  <%= f.association :marca_estado, :tabindex => 10, :label => 'estado' %>
 
   <% unless @marca.errores_manual.blank? %>
     <h3 class="error">Existen errores de comparación</h3>
