@@ -4,16 +4,15 @@
 
 <h1>"<%= @marca.nombre %>"</h1>
 
-<p>
-  <%= ver_cruce(@consulta, :class => 'ajax') unless params[:consulta_id].nil? %>
+<!--<p>
+  <%#= ver_cruce(@consulta, :class => 'ajax') unless params[:consulta_id].nil? %>
 </p>
 
-<a class="more" href="javascript:">Ver más</a>
-<div class="hidden">
+<a class="more" href="javascript:">Ver más</a>-->
+<div>
   <div class="half fl" id="div1">
     <p>
-      <label>Clase:</label>
-      <%= @marca.clase_id %>
+      <label>Clase: <%= @marca.clase_id %></label>
     </p>
     <p>
       <label> Nº solicitud </label>
@@ -37,10 +36,13 @@
       <label>Titulares:</label>
       <%= @marca.titulares.join(", ") %>
     </p>
-  </div>
-  <%= link_to "Ver marca", ver_marca_path(@marca), :class => 'ajax show' %>
 </div>
+  <%#= link_to "Ver marca", ver_marca_path(@marca), :class => 'ajax show' %>
+<!--  </div>-->
 
+  <div class="clear"></div>
+  <div class="clear"></div>
+  <div class="clear"></div>
 <h2 class="dark">Resultados del cruce</h2>
 
 <%= semantic_form_for @con, :url => cruce_consultas_path do |f| -%>
@@ -54,7 +56,7 @@
 
   <%= f.input :comentario, :as => :text, :input_html => {:cols => 100} %>
   <p>
-    <%= f.submit 'Salvar' unless @busqueda.blank? %>
+    <%= f.submit 'Pre reporte' unless @busqueda.blank? %>
     <%= f.submit 'Descartar cruce', :class => 'red' unless @busqueda.blank? %>
   </p>
   <% unless @busqueda.blank? %>
@@ -123,7 +125,7 @@
     </table>
   <% end %>
   <p>
-    <%= f.submit 'Salvar' unless @busqueda.blank? %>
+    <%= f.submit 'Pre reporte' unless @busqueda.blank? %>
     <%= f.submit 'Descartar cruce', :class => 'red' unless @busqueda.blank? %>
   </p>
 <% end %>

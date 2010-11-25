@@ -1,4 +1,4 @@
-<h1>Reporte <%= @representante %></h1>
+<h1>Reporte busqueda <%#= @representante %></h1>
 
 <%= semantic_form_for(@reporte_marca) do |f| %>
 
@@ -7,11 +7,15 @@
     <label for="">Cliente</label>
     <%= @reporte_marca.representante %>
   <% else %>
-    <label for="">Busqueda</label>
-    <%= @consulta.busqueda %>
+    <label for="">Denominación:</label>
+    <h2><%= @consulta.busqueda.upcase %></h2>
+   
+    <label for="">Clase(s) Int:</label>
+    <h2><%= @consulta.parametros[:clases].join(',')%></h2>
+   
     <% if @consulta.representante %>
       <label for="">Representante</label>
-      <%= @consulta.representante %>
+      <h2><%= @consulta.representante %></h2>
     <% end %>
   <% end %>
 
@@ -37,7 +41,7 @@
       <th>Busqueda</th>
       <th>Signo</th>
       <th>Tipo</th>
-      <th>Clase</th>
+      <th>Cl</th>
       <th>Numero</th>
       <th>Fecha</th>
       <th>Comentario</th>
@@ -51,13 +55,13 @@
         </td>
         <%= render :partial => "marca_foranea", :locals => { :marca => rd.object.marca_propia } %>
         <td>
-          <%= rd.input :comentario, :as => :text, :label => false, :input_html => {:cols => 50, :rows => 12} %>
+          <%= rd.input :comentario, :as => :text, :label => false, :input_html => {:cols => 35, :rows => 6} %>
         </td>
       </tr>
     <% end %>
   </table>
   <p>
-    <%= f.submit 'Salvar' %>
+    <%= f.submit 'Generar reporte' %>
   </p>
 <% end %>
 
