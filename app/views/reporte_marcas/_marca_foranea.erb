@@ -1,5 +1,5 @@
 <td><%= link_to marca.nombre, ver_marca_path( marca ), :class => 'ajax', 'data-title' => 'Ver marca' %></td>
-<td><%= marca.tipo_signo %></td>
+<td><%= marca.tipo_signo.sigla if marca.tipo_signo %></td>
 <td><%= marca.clase_id %></td>
 <td><%= marca.numero_marca %></td>
-<td><%= marca.fecha_marca %></td>
+<td><%= I18n.l(marca.fecha_marca, :format => :short) if marca.fecha_marca %></td>

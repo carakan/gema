@@ -1,12 +1,14 @@
 <div class="breadcrumps">
-  <%= link_to "Lista de importaciones", importaciones_path %> > 
+  <%= link_to "Lista de importaciones", importaciones_path %> >
   <%= link_to "Agentes y Títulares", reporte_marcas_path(:importacion_id => params[:importacion_id]) %>
   > Reporte
 </div>
 
-<h1>Editar reporte cruce</h1>
-<h2 class="dark"><%= params[:representante_type] %>: <%= @representante %></h2>
-<h2 class="dark">Gaceta <%= @importacion.publicacion %> del <%= l @importacion.publicacion_fecha %></h2>
+<% if @reporte_marca.importacion_id %>
+  <h1>Editar reporte cruce</h1>
+  <h2 class="dark"><%= params[:representante_type] %>: <%= @representante %></h2>
+  <h2 class="dark">Gaceta <%= @importacion.publicacion %> del <%= l @importacion.publicacion_fecha %></h2>
+<% end %>
 
 
 <%= semantic_form_for(@reporte_marca) do |f| %>
@@ -31,12 +33,14 @@
     Si no escribe en el comentario la marca no sera seleccionada para reporte
   </p>
   <table class="decorated">
-  	<tr>
-  		<th>Marca propia</th>
-  		<th>Marca agena</th>
-  		<th>Comentario</th>
-  	</tr>
-    <%# @marcas.each{ |v| f.object.reporte_marca_detalles.build(:marca_id => v.marca_id, :marca_foranea_id => v.consulta.marca_id) } if params[:reporte_marca].nil? %>
+    <tr>
+      <th>Marca propia</th>
+      <% if @reporte_marca.importacion_id %>
+        <th>Marca agena</th>
+      <% end %>
+      <th>Comentario</th>
+    </tr>
+  <%# @marcas.each{ |v| f.object.reporte_marca_detalles.build(:marca_id => v.marca_id, :marca_foranea_id => v.consulta.marca_id) } if params[:reporte_marca].nil? %>
     <% @i = 0 %>
     <%= f.semantic_fields_for :reporte_marca_detalles do |rd| %>
       <tr>
@@ -45,9 +49,11 @@
           <%= rd.input :marca_foranea_id, :as => :hidden %>
           <%= render :partial => "marca_propia", :locals => { :marca => rd.object.marca_propia } %>
         </td>
-        <td>
-          <%= render :partial => "marca_foranea", :locals => { :marca => rd.object.marca_foranea } %>
-        </td>
+        <% if @reporte_marca.importacion_id %>
+          <td>
+            <%= render :partial => "marca_foranea", :locals => { :marca => rd.object.marca_foranea } %>
+          </td>
+        <% end %>
         <td>
           <%= rd.input :comentario, :as => :text, :label => false, :input_html => {:cols => 60, :rows => 12} %>
         </td>
@@ -62,30 +68,30 @@
 
 <script type="text/javascript">
   $(function() {
-      // Idioma
-      $('input[name="reporte_marca[idioma]"]').click(function() {
-        var val = 'es' == $(this).val() ? carta_es : carta_en;
-        $('#reporte_marca_carta').val(val);
-      });
-      if( $('input[name="reporte_marca[idioma]"]').val() == 'es') {
-        $('#reporte_marca_carta').val(carta_es);
-      }else {
-        $('#reporte_marca_carta').val(carta_en);
-      }
+    // Idioma
+    $('input[name="reporte_marca[idioma]"]').click(function() {
+      var val = 'es' == $(this).val() ? carta_es : carta_en;
+      $('#reporte_marca_carta').val(val);
+    });
+    if( $('input[name="reporte_marca[idioma]"]').val() == 'es') {
+      $('#reporte_marca_carta').val(carta_es);
+    }else {
+      $('#reporte_marca_carta').val(carta_en);
+    }
 
-      // Habilitar desabilitar
-      /*$('input:checkbox').click(function() {
+    // Habilitar desabilitar
+    /*$('input:checkbox').click(function() {
         $(this).parents("tr:first").find("td textarea").attr("disabled", !$(this).attr("checked"));
       });*/
-      // Formulario
-      $('form').submit(function() {
-        /*if( $('input:checkbox[checked]').length <= 0 ) {
+    // Formulario
+    $('form').submit(function() {
+      /*if( $('input:checkbox[checked]').length <= 0 ) {
           alert("Debe seleccionar al menos una marca");
           return false;
         }else{
           return true;
         }*/
-      });
+    });
   });
 
   var carta_es = "<%= @reporte_marca.crear_carta %>";

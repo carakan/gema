@@ -4,7 +4,7 @@
 <%= semantic_form_for( @marca_vacia, :url => importaciones_path, :html => { :multipart => true } ) do |f| %>
   <%= hidden_field_tag('tipo', params[:tipo]) %>
 
-  <div> 
+  <div>
     <div class="hide-field">
       <%= f.label :tipo, "&nbsp;" %>
       <%= f.text_field :tipo %>
@@ -12,19 +12,21 @@
 
     <% if params[:tipo] == 'lp' %>
       <li>
-       <%= f.input :publicacion, :as => :string, :label => 'Gaceta' %>
+        <%= f.input :publicacion, :as => :string, :label => 'Gaceta' %>
       </li>
       <li>
         <%= f.label :formato_fecha, "Formato de la fecha en el PDF" %>
         <%= f.select :formato_fecha, ImportacionVacia::FORMATOS_FECHA %>
         <p class="inline-hints">
-        El sistema reconocera automaticamente el separador "/" o "-"
+          El sistema reconocera automaticamente el separador "/" o "-"
         </p>
       </li>
       <li class="date">
       </li>
     <% end %>
     <%= f.input :publicacion_fecha, :as => :string, :label => 'Fecha gaceta', :input_html => { :class => 'date' } %>
+    <%= f.input :fecha_limite, :as => :string, :label => 'Fecha limite gaceta', :input_html => { :class => 'date' } %>
+    <%= f.input :fecha_limite_orpan, :as => :string, :label => 'Fecha limite gaceta (ORPAN)', :input_html => { :class => 'date' } %>
     <%= f.input :archivo, :as => :file, :label => "Archivo", :input_html => { 'size' => '60' } %>
 
   </div>

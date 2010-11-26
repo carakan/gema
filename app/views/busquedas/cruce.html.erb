@@ -4,11 +4,6 @@
 
 <h1>"<%= @marca.nombre %>"</h1>
 
-<!--<p>
-  <%#= ver_cruce(@consulta, :class => 'ajax') unless params[:consulta_id].nil? %>
-</p>
-
-<a class="more" href="javascript:">Ver más</a>-->
 <div>
   <div class="half fl" id="div1">
     <p>
@@ -36,13 +31,14 @@
       <label>Titulares:</label>
       <%= @marca.titulares.join(", ") %>
     </p>
+  </div>
 </div>
-  <%#= link_to "Ver marca", ver_marca_path(@marca), :class => 'ajax show' %>
+<%#= link_to "Ver marca", ver_marca_path(@marca), :class => 'ajax show' %>
 <!--  </div>-->
 
-  <div class="clear"></div>
-  <div class="clear"></div>
-  <div class="clear"></div>
+<div class="clear"></div>
+<div class="clear"></div>
+<div class="clear"></div>
 <h2 class="dark">Resultados del cruce</h2>
 
 <%= semantic_form_for @con, :url => cruce_consultas_path do |f| -%>
@@ -51,16 +47,12 @@
   <%= f.input :parametros, :as => :hidden, :input_html => { :value => f.object.parametros.to_yaml } %>
   <%= f.input :marca_id, :as => :hidden %>
   <%= f.input :importacion_id, :as => :hidden %>
-
   <%= hidden_field_tag "page", @page %>
-
-  <%= f.input :comentario, :as => :text, :input_html => {:cols => 100} %>
   <p>
     <%= f.submit 'Pre reporte' unless @busqueda.blank? %>
     <%= f.submit 'Descartar cruce', :class => 'red' unless @busqueda.blank? %>
   </p>
   <% unless @busqueda.blank? %>
-
     <table class="decorated nolink tablesorter" id="tabla-cruce">
       <thead>
         <tr>
@@ -129,7 +121,6 @@
     <%= f.submit 'Descartar cruce', :class => 'red' unless @busqueda.blank? %>
   </p>
 <% end %>
-
 
 <script type="text/javascript">
   (function($) {

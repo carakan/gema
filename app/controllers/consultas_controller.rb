@@ -5,9 +5,7 @@ class ConsultasController < ApplicationController
   before_filter :authenticate_usuario!
 
   before_filter :set_busqueda, :only => [:new, :create]
-  #before_filter :borrar_consulta, :only => [:new]
-  # GET /consultas
-  # GET /consultas.xml
+
   def index
     @consultas = Consulta.paginate( :page => @oage, 
       :conditions => { :importacion_id => 0 },
@@ -50,7 +48,7 @@ class ConsultasController < ApplicationController
   def cruce
     @consulta = Consulta.new(params[:consulta])
 
-    if params[:commit] == "Salvar"
+    if params[:commit] == "Pre reporte"
       @consulta = Consulta.new(params[:consulta])
 
       if @consulta.save
@@ -67,7 +65,7 @@ class ConsultasController < ApplicationController
   # POST /consultas.xml
   def create
     @consulta = Consulta.new(params[:consulta])
-
+    
     if @consulta.save
       unless @consulta.importacion.nil?
         notice = "Se ha almacenado la consulta del cruce"
@@ -125,8 +123,5 @@ class ConsultasController < ApplicationController
     return
   end
 
-  # Borra una consulta previamente realizada
-  def borrar_consulta
-    Consulta.find(params[:consulta_id]).destroy unless params[:consulta_id].nil?
-  end
+
 end

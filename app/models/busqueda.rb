@@ -205,7 +205,7 @@ class Busqueda
       sql << "ORDER BY res.exacto, res.clase_id, res.pos, longitud_letras ASC"
     end
 
-    sql << "GROUP BY res.id"
+    # sql << "GROUP BY res.id"
 
     sql.join(" ")
   end

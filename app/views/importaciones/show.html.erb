@@ -1,6 +1,6 @@
 <h1>Importacion</h1>
 <div class="clear"></div>
-<h2 class="dark"><%= gaceta @importacion %> <%= fecha_hora @importacion.created_at %> </h2>
+<h2 class="dark"><%= gaceta @importacion %> <%= fecha_hora @importacion.created_at %>: Fecha limite <%= fecha_hora @importacion.fecha_limite %> </h2>
 
 
 <% form_tag importacion_path(@importacion), :method => :get  do %>
@@ -13,30 +13,30 @@
 
 
 <table class="decorated nwf nwl">
-	<tr>
-		<th>Marca</th>
+  <tr>
+    <th>Marca</th>
     <th>Numero<br />Solicitud</th>
-		<th>Tipo Signo</th>
-		<th>Clase</th>
+    <th>Tipo Signo</th>
+    <th>Clase</th>
     <th>Titulares</th>
     <th></th>
     <% @marcas.each do |marca| %>
       <% tr_error marca %>
-      <tr>
-        <td <%= errores_marca(marca) %>><%= link_to marca.nombre, ver_marca_path(marca), :class => "ajax #{marca.propia!} #{marca.valido!}" %></td>
-        <td><%= marca.numero_solicitud %></td>
-        <td><%= marca.tipo_signo %></td>
-        <td><%= marca.clase_id %></td>
-        <td><%= marca.try(:titulares).map(&:nombre).join(",") %></td>
+    <tr>
+      <td <%= errores_marca(marca) %>><%= link_to marca.nombre, ver_marca_path(marca), :class => "ajax #{marca.propia!} #{marca.valido!}" %></td>
+      <td><%= marca.numero_solicitud %></td>
+      <td><%= marca.tipo_signo %></td>
+      <td><%= marca.clase_id %></td>
+      <td><%= marca.try(:titulares).map(&:nombre).join(",") %></td>
 
-        <td>
-          <%= link_to "editar", edit_marca_path(marca, :importacion_id => @importacion.id), :class => 'edit' %>
-          <%= link_to "borrar", marca, :class => 'delete' %>
-        </td>
-      </tr>
-    <% end %>
+      <td>
+        <%= link_to "editar", edit_marca_path(marca, :importacion_id => @importacion.id), :class => 'edit' %>
+        <%= link_to "borrar", marca, :class => 'delete' %>
+      </td>
+    </tr>
+  <% end %>
 
-	</tr>
+</tr>
 </table>
 
 <%= will_paginate @marcas %>

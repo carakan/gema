@@ -152,7 +152,7 @@ class Consulta < ActiveRecord::Base
 
   # En caso de que en un cruce se realize una nueva consulta se borra las anteriores
   def borrar_consultas_anteriores
-    unless self.importacion_id.blank?
+    unless self.importacion.nil?
       Consulta.destroy(Consulta.where(:marca_id => self.marca_id).map(&:id) )
     end
   end
