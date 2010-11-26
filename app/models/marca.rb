@@ -9,6 +9,7 @@ class Marca < ActiveRecord::Base
   before_create :adicionar_usuario
   before_save :set_agentes_titulares, :if => lambda { |m| m.parent_id == 0 }
   before_save :llenar_productos, :if => lambda { |m| m.productos.blank? }
+  before_validation :set_marca_estado_id, :id => lambda { |m| m.marca_estado_id.nil? }
 
   # Numero de palabras
   #before_save lambda { |m| m.numero_palabras = m.nombre_minusculas.strip.split(/\s/).size } 
@@ -40,7 +41,7 @@ class Marca < ActiveRecord::Base
   #include HasManyRight
   #has_many_right :agentes, :representante, :marca_representante, :representable
   #has_many_right :titulares, :representante ,:marca_representante, :representable
-  
+
   has_and_belongs_to_many :agentes, :class_name => 'Representante',
     :association_foreign_key => :agente_id,
     :join_table => 'marcas_agentes'
@@ -351,7 +352,7 @@ class Marca < ActiveRecord::Base
       else
         "#{k.to_s.humanize}: #{self.errores[k]}"
       end
-    end.flatten.join("<br/>")
+    end.join("\n")
   end
 
   # Aumenta los numeros necesarios para buscar el numero de solicitud
@@ -536,4 +537,14 @@ class Marca < ActiveRecord::Base
     self.productos = self.clase.descripcion unless self.clase.nil?
   end
 
+  # Usado en caso de importación para asignar el marca_estado_id de una marca
+  def set_marca_estado_id
+    case self.estado
+      when 'sm' then self.marca_estado_id = 1
+      when 'lp' then self.marca_estado_id = 7
+      when 'lr' then self.marca_estado_id = 12
+      when 'rc' then self.marca_estado_id = 18
+      when 'sr' then self.marca_estado_id = 16
+    end
+  end
 end
