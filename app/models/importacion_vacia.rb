@@ -9,6 +9,7 @@ class ImportacionVacia < Tableless
   column :publicacion
   column :publicacion_fecha
   column :fecha_limite
+  column :fecha_limite_orpan
   column :tipo
 
   validates_inclusion_of :tipo, :in => Marca::TIPOS.keys, :message => 'Tipo inexistente'

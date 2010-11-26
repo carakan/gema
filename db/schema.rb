@@ -72,16 +72,17 @@ ActiveRecord::Schema.define(:version => 20101126154347) do
 
   create_table "importaciones", :force => true do |t|
     t.boolean  "completa"
-    t.string   "publicacion",       :limit => 30
+    t.string   "publicacion",        :limit => 30
     t.date     "publicacion_fecha"
     t.string   "tipo"
     t.string   "archivo_file_name"
     t.integer  "archivo_file_size"
-    t.integer  "cruces_pendientes",               :default => -1
+    t.integer  "cruces_pendientes",                :default => -1
     t.integer  "usuario_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "fecha_limite"
+    t.datetime "fecha_limite_orpan"
   end
 
   create_table "marca_estados", :force => true do |t|

@@ -18,6 +18,10 @@ class CruceReport < ReporteMarcaBase
     end
   end
 
+  def fecha_limite
+    ""
+  end
+
   def edicion_gaceta
     @importacion.publicacion
   end
