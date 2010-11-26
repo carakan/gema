@@ -48,7 +48,7 @@ class ConsultasController < ApplicationController
   def cruce
     @consulta = Consulta.new(params[:consulta])
 
-    if params[:commit] == "Salvar"
+    if params[:commit] == "Pre reporte"
       @consulta = Consulta.new(params[:consulta])
 
       if @consulta.save

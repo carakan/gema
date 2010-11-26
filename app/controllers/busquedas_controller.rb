@@ -22,7 +22,7 @@ class BusquedasController < ApplicationController
   def cruce
     @marca = Marca.find(params[:marca_id])
     query = { :busqueda => @marca.nombre, :clases => (1..45).to_a.join(","), 
-      :propia => true, :id => @marca.id, :clase_id => @marca.clase_id }
+      :propia => true, :id => @marca.id, :clase_id => @marca.clase_id, :tipo => :cruce }
     @importacion = Importacion.find(params[:importacion_id])
     
     @busqueda = Busqueda.realizar_busqueda(query)
