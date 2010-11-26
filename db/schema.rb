@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101124143205) do
+ActiveRecord::Schema.define(:version => 20101126154347) do
 
   create_table "adjuntos", :force => true do |t|
     t.string   "nombre"
@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(:version => 20101124143205) do
     t.integer  "usuario_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "fecha_limite"
   end
 
   create_table "marca_estados", :force => true do |t|
@@ -92,7 +93,7 @@ ActiveRecord::Schema.define(:version => 20101124143205) do
   end
 
   create_table "marcas", :force => true do |t|
-    t.integer  "parent_id",                                   :default => 0
+    t.integer  "parent_id",                                  :default => 0
     t.integer  "usuario_id"
     t.integer  "tipo_signo_id"
     t.integer  "tipo_marca_id"
@@ -100,27 +101,27 @@ ActiveRecord::Schema.define(:version => 20101124143205) do
     t.integer  "pais_id"
     t.string   "numero_solicitud",            :limit => 40
     t.string   "nombre"
-    t.string   "numero_registro",                             :default => ""
+    t.string   "numero_registro",                            :default => ""
     t.date     "fecha_registro"
-    t.string   "numero_renovacion",                           :default => ""
-    t.string   "productos",                   :limit => 1024, :default => ""
-    t.string   "estado",                                      :default => ""
+    t.string   "numero_renovacion",                          :default => ""
+    t.text     "productos"
+    t.string   "estado",                                     :default => ""
     t.datetime "estado_fecha"
     t.string   "estado_serial"
-    t.string   "numero_publicacion",                          :default => ""
-    t.string   "numero_gaceta",                               :default => ""
-    t.string   "lema",                                        :default => ""
+    t.string   "numero_publicacion",                         :default => ""
+    t.string   "numero_gaceta",                              :default => ""
+    t.string   "lema",                                       :default => ""
     t.date     "fecha_publicacion"
     t.integer  "fila"
     t.datetime "fecha_importacion"
     t.boolean  "valido"
-    t.string   "cambios",                                     :default => "[]"
-    t.boolean  "importado",                                   :default => false
+    t.string   "cambios",                                    :default => "[]"
+    t.boolean  "importado",                                  :default => false
     t.string   "apoderado"
     t.string   "representante_empresarial"
     t.integer  "importacion_id"
-    t.boolean  "activa",                                      :default => true
-    t.string   "archivo_adjunto",                             :default => ""
+    t.boolean  "activa",                                     :default => true
+    t.string   "archivo_adjunto",                            :default => ""
     t.datetime "fecha_solicitud_renovacion"
     t.string   "numero_solicitud_renovacion", :limit => 40
     t.date     "fecha_renovacion"
@@ -129,8 +130,8 @@ ActiveRecord::Schema.define(:version => 20101124143205) do
     t.string   "descripcion_imagen"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "anterior",                                    :default => false
-    t.boolean  "propia",                                      :default => false
+    t.boolean  "anterior",                                   :default => false
+    t.boolean  "propia",                                     :default => false
     t.string   "nombre_minusculas"
     t.string   "agente_ids_serial"
     t.string   "titular_ids_serial"
