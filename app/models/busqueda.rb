@@ -204,8 +204,8 @@ class Busqueda
     else
       sql << "ORDER BY res.exacto, res.clase_id, res.pos, longitud_letras ASC"
     end
-    
-    #debugger
+
+    sql << "GROUP BY res.id"
 
     sql.join(" ")
   end
