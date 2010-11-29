@@ -57,7 +57,11 @@ class ReporteMarcasController < ApplicationController
           send_data reporte, :filename => "#{nombre_archivo}.pdf"
         end
         format.xls do
-          reporte = render_to_string(:partial => "tabla_busqueda", :locals => {:show_titulares => true})
+          if @reporte_marca.importacion_id
+            reporte = render_to_string(:partial => "tabla_cruce", :locals => {:show_titulares => true})
+          else
+            reporte = render_to_string(:partial => "tabla_busqueda", :locals => {:show_titulares => true})
+          end
           send_data reporte, :filename => "#{nombre_archivo}.xls", :type => 'application/vnd.ms-excel; charset=utf-8'
         end
       end

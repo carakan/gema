@@ -1,3 +1,4 @@
+# encoding: utf-8
 class AddDateInImportations < ActiveRecord::Migration
   def self.up
     change_table :importaciones do |t|

@@ -14,12 +14,16 @@ class CruceReport < ReporteMarcaBase
       cells.style(:size => 8, :inline_format => true)
       column(0..5).style(:width => 80)
       column(0).style(:width => 120)
-      column(5).style(:width => 250)
+      column(5).style(:width => 300)
     end
   end
 
-  def fecha_limite
-    ""
+  def fecha_vencimiento
+    "#{I18n.l(@importacion.fecha_limite, :format => :long) if @importacion.fecha_limite}"
+  end
+
+  def fecha_vencimiento_orpan
+    "#{I18n.l(@importacion.fecha_limite_orpan, :format => :long) if @importacion.fecha_limite_orpan}"
   end
 
   def edicion_gaceta
@@ -58,7 +62,7 @@ class CruceReport < ReporteMarcaBase
     datos_array
   end
 
-    def datos(reporte_marca)
+  def datos(reporte_marca)
     reporte_marca.reporte_marca_detalles.inject([]) do |arr, det|
       arr << datos_marca(det.marca_propia)
       arr

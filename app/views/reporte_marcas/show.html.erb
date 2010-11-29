@@ -30,10 +30,6 @@
 
 
 <%= link_to 'Editar', edit_reporte_marca_path(@reporte_marca), :class => 'edit' %>
-<% if @reporte_marca.importacion_id? %>
-  <%= link_to 'lista', reporte_marcas_path(:importacion_id => @reporte_marca.importacion_id), :class => 'list' %>
-<% else %>
-  <%= link_to 'lista', reporte_marcas_path, :class => 'list' %>
-  <%= link_to "Descargar reporte .xls", download_reporte_marca_path(@reporte_marca, :format => "xls"), :class => 'pdf' %>
-<% end %>
+<%= link_to 'lista', reporte_marcas_path, :class => 'list' %>
+<%= link_to "Descargar reporte .xls", download_reporte_marca_path(@reporte_marca, :format => "xls"), :class => 'pdf' %>
 <%= link_to "Descargar reporte", download_reporte_marca_path(@reporte_marca), :class => 'pdf' %>
