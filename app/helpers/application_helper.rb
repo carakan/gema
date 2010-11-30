@@ -58,7 +58,9 @@ module ApplicationHelper
     else
       format = '%d %B de %Y a hrs. %H:%I'
     end
-    l fec, :format => format
+    if [Date, Time, DateTime, ActiveSupport::TimeWithZone].include? fec.class
+      l fec, :format => format
+    end
   end
 
   def sort_order(title, field, options = {})

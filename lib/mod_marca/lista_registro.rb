@@ -39,7 +39,7 @@ module ModMarca::ListaRegistro
       fecha_imp = DateTime.now.strftime("%Y-%m-%d %H:%I:%S")
       importar_excel(archivo)
       fila = 3 # Fila inicial que comienza el excel
-      @importacion = Importacion.create!(:archivo => archivo)
+      @importacion = Importacion.create!(:archivo => archivo, :fecha_limite => params[:fecha_limite], :fecha_limite_orpan => params[:fecha_limite_orpan] )
 
       Marca.transaction do
         for fila in ( 3..(@excel.last_row) )
