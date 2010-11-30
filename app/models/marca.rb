@@ -398,6 +398,8 @@ class Marca < ActiveRecord::Base
       marca = Marca.find_by_numero_solicitud(params[:numero_solicitud] )
     end
 
+    params[:titular_ids] = [ params[:titular_ids] ].flatten.compact
+
     if marca.nil?
       return Marca.new(params)
     elsif !(marca.propia)
@@ -505,7 +507,7 @@ class Marca < ActiveRecord::Base
   end
 
   def adicionar_usuario
-    if UsuarioSession.current_user 
+    if UsuarioSession.current_user
     self.usuario_id = UsuarioSession.current_user[:id]
     end
   end

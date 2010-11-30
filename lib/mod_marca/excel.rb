@@ -7,7 +7,7 @@ module ModMarca
       base.send(:include, InstanceMethods)
       base.send(:extend, ClassMethods)
     end
-    
+
     module InstanceMethods
     end
 

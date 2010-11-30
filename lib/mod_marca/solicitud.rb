@@ -40,7 +40,7 @@ module ModMarca::Solicitud
       fecha_imp = DateTime.now.strftime("%Y-%m-%d %H:%I:%S")
       importar_excel(archivo)
       fila = 3 # Fila inicial que comienza el excel
-      @importacion = Importacion.create!(:archivo => archivo)
+      @importacion = Importacion.create!(:archivo => archivo, :fecha_limite => params[:fecha_limite], :fecha_limite_orpan => params[:fecha_limite_orpan] )
 
       Marca.transaction do
         for fila in ( 3..(@excel.last_row) )
@@ -90,14 +90,12 @@ module ModMarca::Solicitud
     # Crea un representante y lo relaciona
     def buscar_o_crear_titular(params)
       rep = Representante.find_by_nombre(params[:titular_ids])
-      unless rep.blank?
+      if rep.blank?
         rep = Representante.new(
           :nombre => params[:titular_ids],
-          :direccion => params[''],
-          :cliente => false,
-          :pais_id => Pais.find_by_codigo(params['XX']).try(:id)
+          :cliente => false
         )
-        rep.save
+        rep.save(:validate => false)
       end
       rep.id
     end
@@ -122,8 +120,8 @@ module ModMarca::Solicitud
       params[:numero_solicitud] = preparar_numero_solicitud(params[:numero_solicitud])
       params[:tipo_signo_id] = buscar_tipo_signo_id(params[:tipo_signo_id])
       params[:clase_id] = buscar_clase_id(params[:clase_id])
-      params[:titular_ids] = buscar_o_crear_titular(buscar_titular_id(params[:titular_ids]))
-      
+      params[:titular_ids] = buscar_o_crear_titular(params)
+
       params
     end
 
