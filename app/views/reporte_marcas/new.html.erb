@@ -8,14 +8,12 @@
     <%= @reporte_marca.representante %>
   <% else %>
     <label for="">Denominación:</label>
-    <h2><%= @consulta.busqueda.upcase %></h2>
+    <h2><%= @reporte_marca.busqueda.upcase %></h2>
    
-    <label for="">Clase(s) Int:</label>
-    <h2><%= @consulta.parametros[:clases].join(',')%></h2>
    
-    <% if @consulta.representante %>
+    <% if @reporte_marca.representante %>
       <label for="">Representante</label>
-      <h2><%= @consulta.representante %></h2>
+      <h2><%= @reporte_marca.representante %></h2>
     <% end %>
   <% end %>
 
