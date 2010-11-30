@@ -114,6 +114,9 @@
           <% redo %>
         <% end %>
       <% end %>
+      <% if !marcas_selected.empty? %>
+        <%= hidden_field_tag("marca_ids_#{count_grupos}", marcas_selected.join(",")) %>
+      <% end %>
     </table>
   <% end %>
   <p>
