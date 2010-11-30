@@ -76,8 +76,8 @@ class Busqueda
   # realiza las combinaciones para expresiones
   def expresiones
     #if busqueda.size > 3
-      @expresiones[2] = combinaciones_palabra
-      @expresiones[3] = expresiones_pares_impares
+    @expresiones[2] = combinaciones_palabra
+    @expresiones[3] = expresiones_pares_impares
     #end
 
     # divide en subgrupos la palabra "BuscarPorGrupo"
@@ -175,14 +175,14 @@ class Busqueda
     sql_exp = []
     expresiones.each do |pos, exp|
       case pos
-        when 1
-          sql_exp << sql_exacto(exp.first, pos)
-        when 2
-          sql_exp << sql_variaciones(exp, pos)
-        when 3
-          sql_exp << sql_exp_reg(exp, pos)
-        when 4
-          sql_exp << sql_variaciones(exp, pos)
+      when 1
+        sql_exp << sql_exacto(exp.first, pos)
+      when 2
+        sql_exp << sql_variaciones(exp, pos)
+      when 3
+        sql_exp << sql_exp_reg(exp, pos)
+      when 4
+        sql_exp << sql_variaciones(exp, pos)
       end
     end
 
@@ -190,24 +190,24 @@ class Busqueda
     sql = "SELECT res.id, res.nombre, res.pos, res.clase_id, res.propia, res.activa, res.tipo_signo_id, res.agente_ids_serial, 
       res.titular_ids_serial, res.fecha_publicacion, res.numero_solicitud, res.numero_publicacion, 
       res.numero_registro, res.numero_renovacion, res.estado, res.numero_solicitud_renovacion, res.estado_fecha, res.exacto"
-    sql << ", IF(#{busqueda.size}>CHAR_LENGTH(res.nombre_minusculas), #{busqueda.size} - CHAR_LENGTH(res.nombre_minusculas),
+      sql << ", IF(#{busqueda.size}>CHAR_LENGTH(res.nombre_minusculas), #{busqueda.size} - CHAR_LENGTH(res.nombre_minusculas),
       CHAR_LENGTH(res.nombre_minusculas) - #{busqueda.size}) AS longitud_letras"
-    sql << ", IF(res.id=#{params[:clase_id].to_i}, 0, 2) AS dist_clase_id" unless params[:clase_id].nil?
-    sql = [ "#{sql} FROM" ]
-    sql << "(#{sql_exp.join(" UNION ")}) AS res"
-    sql << condiciones_sql(params)
-    #sql << "GROUP BY res.clase_id, res.id"
-    sql << "AND res.tipo_signo_id NOT IN (2)"
+      sql << ", IF(res.id=#{params[:clase_id].to_i}, 0, 2) AS dist_clase_id" unless params[:clase_id].nil?
+      sql = [ "#{sql} FROM" ]
+      sql << "(#{sql_exp.join(" UNION ")}) AS res"
+      sql << condiciones_sql(params)
+      sql << "GROUP BY res.clase_id, res.id" if params[:clase_id]
+      sql << "AND res.tipo_signo_id NOT IN (2)"
 
-    unless params[:clase_id].nil?
-      sql << "ORDER BY res.pos, dist_clase_id, longitud_letras ASC"
-    else
-      sql << "ORDER BY res.exacto, res.clase_id, res.pos, longitud_letras ASC"
-    end
+      unless params[:clase_id].nil?
+        sql << "ORDER BY res.pos, dist_clase_id, longitud_letras ASC"
+      else
+        sql << "ORDER BY res.exacto, res.clase_id, res.pos, longitud_letras ASC"
+      end
 
-    # sql << "GROUP BY res.id"
+      # sql << "GROUP BY res.id"
 
-    sql.join(" ")
+      sql.join(" ")
   end
 
   def self.sql_select(pos, exacto = 1)
@@ -222,8 +222,8 @@ class Busqueda
   #   @return String
   def self.sql_exacto(bus, pos)
     ActiveRecord::Base.send(:sanitize_sql_array, 
-      [ "#{sql_select(pos, 0)} WHERE parent_id = 0 AND nombre_minusculas = '%s'", bus ]
-    )
+                            [ "#{sql_select(pos, 0)} WHERE parent_id = 0 AND nombre_minusculas = '%s'", bus ]
+                           )
   end
 
   # SQl con expresion regular
@@ -235,7 +235,7 @@ class Busqueda
     sql << arr.map{ 
       |v| ActiveRecord::Base.send(:sanitize_sql_array, [ "nombre_minusculas REGEXP '%s'", v ] )
     }.join(" OR ")
-   sql << ")"
+    sql << ")"
   end
 
   # Crea variaciones de la busqueda (palabra)
@@ -247,7 +247,7 @@ class Busqueda
     sql << arr.map{ |v| 
       ActiveRecord::Base.send(:sanitize_sql_array, ["nombre_minusculas LIKE '%s'", "%#{v}%"] ) 
     }.join(" OR ")
-   sql << ")"
+    sql << ")"
   end
 
   # Metodo para poder preparar un listado de representantes
