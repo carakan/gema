@@ -33,7 +33,7 @@
 <br />
 
 <%= form_tag marcas_path, :method => :get  do %>
-  <%= text_field_tag :nombre_marca, params[:nombre_marca] %>
+  <%= text_field_tag :search, params[:search] %>
   <%= submit_tag "Buscar" %>
 <% end %>
 <%= link_to "Borra busqueda", marcas_path %>

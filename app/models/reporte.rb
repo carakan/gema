@@ -67,7 +67,7 @@ class Reporte < ActiveRecord::Base
   # Set the class report for generate
   def self.set_instance(name_report)
     template = Reporte.find_by_clave(name_report)
-    template.engine_report = template.nombre_clase.constantize.new(:page_size => 'LETTER', :page_layout => :landscape, :margin => [40, 50, 30, 60])
+    template.engine_report = template.nombre_clase.constantize.new(:page_size => 'LETTER', :page_layout => :landscape, :margin => [40, 50, 40, 60])
     template.print_bottom()
     template.engine_report.font_size 9
     template
@@ -78,15 +78,15 @@ class Reporte < ActiveRecord::Base
     message =<<-EOF
       · Formato números de solicitud: SM-0000-00 / Formato números de publicación: 111111 / Formato números de registro: 22222-C /
     EOF
-    self.engine_report.number_pages message, [self.engine_report.bounds.right - 680, 13]
+    self.engine_report.number_pages message, [self.engine_report.bounds.right - 680, 5]
     message =<<-EOF
       Formato números de solicitud de renovación: SR-0000-00 / Formato números de renovación: 33333-A
     EOF
-    self.engine_report.number_pages message, [self.engine_report.bounds.right - 675, 0]
+    self.engine_report.number_pages message, [self.engine_report.bounds.right - 676, -5]
     message =<<-EOF
       · Las fechas se refieren a fecha de presentación de la solicitud o concesión del último registro o renovación.
     EOF
-    self.engine_report.number_pages message, [self.engine_report.bounds.right - 680, -13]
+    self.engine_report.number_pages message, [self.engine_report.bounds.right - 680, -15]
   end
 
   # generate report in pdf

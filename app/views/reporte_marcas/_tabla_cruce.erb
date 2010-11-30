@@ -1,0 +1,17 @@
+<table class="decorated">
+  <tr style="background-color: #000; color: #fff">
+    <th class="_200">Marca propia</th>
+    <th class="_200" colspan="5">Marca ajena</th>
+    <th>Comentario</th>
+  </tr>
+  <% @reporte_marca.reporte_marca_detalles.each do |rd|  %>
+    <tr>
+      <td>
+        <% @marca = rd.marca_propia %>
+        <%= render :partial => "marca_propia", :locals => { :marca => rd.marca_foranea } %>
+      </td>
+      <%= render :partial => "marca_foranea", :locals => { :marca => rd.marca_propia } %>
+      <td><%= rd.comentario %></td>
+    </tr>
+  <% end %>
+</table>

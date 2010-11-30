@@ -159,6 +159,28 @@ class Marca < ActiveRecord::Base
     }
   end
 
+  # Metodo para mejorar la paginacion debido a que el metodo de will paginate es lento
+  def self.paginacion(options = {})
+    search = options[:search] || ""
+    order, direction = set_order_by(options)
+    @marcas = Marca.where("marcas.nombre LIKE ? OR marcas.numero_solicitud LIKE ?", "%#{search}%", "%#{search}%").includes(:tipo_signo, :titulares)
+    @marcas.send(:extend, ModMarca::Paginacion)
+    @marcas.crear_paginacion(options).order("#{order} #{direction}")
+  end
+
+  # Metodo para poder presentar con corden
+  def self.set_order_by(options = {})
+    direction = options[:direction] || "ASC"
+    direction = ["ASC", "DESC"].include?(direction.upcase) ? options[:direction] : "ASC"
+
+    if ["marcas.propia", "marcas.nombre_minusculas", "tipo_signos_nombre", "marcas.activa"].include? options[:order]
+      order = options[:order]
+    else
+      order = "marcas.nombre_minusculas"
+    end
+    [order, direction]
+  end
+
   # Metodo que permite realizar las importaciones
   #   @param Hash params Parametros que se recibe de el formulario
   def self.importar(params)

@@ -1,5 +1,5 @@
 <div class="breadcrumps">
-  <%= link_to "Lista de importaciones", importaciones_path %> > 
+  <%= link_to "Lista de importaciones", importaciones_path %> >
   <%= link_to "Agentes y Títulares", cruces_reporte_marcas_path(:importacion_id => params[:importacion_id]) %>
   > Reporte
 </div>
@@ -18,8 +18,8 @@
   <%= f.input :representante_type, :as => :hidden %>
   <%= f.input :importacion_id, :as => :hidden %>
   <%= hidden_field_tag :marca_ids, @marca_ids.join(",") %>
-<%= hidden_field_tag :marca_foranea,  @marca.id %>
-<%= hidden_field_tag :importacion_id,  @importacion.id %>
+  <%= hidden_field_tag :marca_foranea,  @marca.id %>
+  <%= hidden_field_tag :importacion_id,  @importacion.id %>
   <%= hidden_field_tag "_reporte_marca", 1 unless ReporteMarca.buscar_en_cruce(params).nil? %>
 
   <p>
@@ -32,17 +32,18 @@
       Ingles
     </label>
   </p>
-  <%= f.input :carta, :as => :text, :input_html => {:cols => 100, :rows => 7, :disabled => true} %>
+  <%= f.hidden_field :carta %>
+  <%= params[:observaciones] %>
 
   <p class="inline-hints">
     Si no escribe en el comentario la marca no sera seleccionada para el reporte
   </p>
   <table class="decorated">
-  	<tr>
-  		<th>Marca propia</th>
-  		<th>Marca agena</th>
-  		<th>Comentario</th>
-  	</tr>
+    <tr>
+      <th>Marca propia</th>
+      <th>Marca agena</th>
+      <th>Comentario</th>
+    </tr>
     <% @marcas.each{ |v| f.object.reporte_marca_detalles.build(:marca_id => v.id, :marca_foranea_id => params[:marca_foranea]) } if params[:reporte_marca].nil? %>
     <% @i = 0 %>
     <%= f.semantic_fields_for :reporte_marca_detalles do |rd| %>
@@ -56,7 +57,7 @@
           <%= render :partial => "marca_foranea", :locals => { :marca => rd.object.marca_foranea } %>
         </td>
         <td>
-          <%= rd.input :comentario, :as => :text, :label => false, :input_html => {:cols => 60, :rows => 12} %>
+          <%= rd.input :comentario, :as => :text, :label => false, :input_html => {:cols => 40, :rows => 8} %>
         </td>
       </tr>
       <% @i += 1 %>
@@ -69,25 +70,25 @@
 
 <script type="text/javascript">
   $(function() {
-      // Idioma
-      $('input[name="reporte_marca[idioma]"]').click(function() {
-        var val = 'es' == $(this).val() ? carta_es : carta_en;
-        $('#reporte_marca_carta').val(val);
-      });
-      if( $('input[name="reporte_marca[idioma]"]').val() == 'es') {
-        $('#reporte_marca_carta').val(carta_es);
-      }else {
-        $('#reporte_marca_carta').val(carta_en);
-      }
+    // Idioma
+    $('input[name="reporte_marca[idioma]"]').click(function() {
+      var val = 'es' == $(this).val() ? carta_es : carta_en;
+      $('#reporte_marca_carta').val(val);
+    });
+    if( $('input[name="reporte_marca[idioma]"]').val() == 'es') {
+      $('#reporte_marca_carta').val(carta_es);
+    }else {
+      $('#reporte_marca_carta').val(carta_en);
+    }
 
-      // Formulario
-      $('form').submit(function() {
-        if( $('#_reporte_marca').length > 0 ) {
-          if(confirm("Esta seguro de borrar el reporte anterior para crear uno nuevo?") ) {
-            return true;
-          } else { return false; }
-        }
-      });
+    // Formulario
+    $('form').submit(function() {
+      if( $('#_reporte_marca').length > 0 ) {
+        if(confirm("Esta seguro de borrar el reporte anterior para crear uno nuevo?") ) {
+          return true;
+        } else { return false; }
+      }
+    });
   });
   var carta_es = "<%= params[:observaciones] %>";
   var carta_en = "<%= params[:observaciones] %>";

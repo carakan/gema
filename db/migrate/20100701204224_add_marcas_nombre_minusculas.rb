@@ -1,3 +1,4 @@
+# encoding: utf-8
 class AddMarcasNombreMinusculas < ActiveRecord::Migration
   def self.up
     add_column :marcas, :nombre_minusculas, :string
