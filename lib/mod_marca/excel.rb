@@ -20,8 +20,8 @@ module ModMarca
       def crear_excel(archivo, tmp_dir)
         verificar_validez_archivo(archivo)
 
-        @excel_path = File.join( Rails.root, tmp_dir, File.basename( archivo.path ) + '.xls' )
-        FileUtils.mv( archivo.path, @excel_path )
+        @excel_path = File.join( Rails.root, tmp_dir, File.basename( archivo.tempfile.path ) + '.xls' )
+        FileUtils.mv( archivo.tempfile.path, @excel_path )
         @excel = ::Excel.new(@excel_path)
       end
 
