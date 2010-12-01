@@ -24,7 +24,7 @@ class BusquedasController < ApplicationController
     query = { :busqueda => @marca.nombre, :clases => (1..45).to_a.join(","), 
       :propia => true, :id => @marca.id, :clase_id => @marca.clase_id, :tipo => :cruce }
     @importacion = Importacion.find(params[:importacion_id])
-    
+
     @busqueda = Busqueda.realizar_busqueda(query)
 
     @busqueda.sort! { |a, b| [a.agente_ids_serial.sort, a.titular_ids_serial.sort] <=> [b.agente_ids_serial.sort, b.titular_ids_serial.sort]  }

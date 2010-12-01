@@ -198,16 +198,37 @@ class Busqueda
       sql << condiciones_sql(params)
       sql << "GROUP BY res.clase_id, res.id" if params[:clase_id]
       sql << "AND res.tipo_signo_id NOT IN (2)"
+      sql << condiciones_representante(params) # busqueda por agente o titular
 
       unless params[:clase_id].nil?
         sql << "ORDER BY res.pos, dist_clase_id, longitud_letras ASC"
       else
         sql << "ORDER BY res.exacto, res.clase_id, res.pos, longitud_letras ASC"
       end
-
       # sql << "GROUP BY res.id"
 
       sql.join(" ")
+  end
+
+  # Busqueda por agente o titular
+  def self.condiciones_representante(params)
+    if params[:representante] == 'agente' and params[:representante_id]
+      marcas = Representante.find_by_sql("SELECT * FROM marcas_agentes WHERE agente_id = #{params[:representante_id].to_i}").map(&:marca_id)
+      if marcas.any?
+        " AND res.id IN (#{marcas.join(", ")})"
+      else
+        " AND res.id IN (0)"
+      end
+    elsif params[:representante] == 'titular' and params[:representante_id]
+      marcas = Representante.find_by_sql("SELECT * FROM marcas_titulares WHERE titular_id = #{params[:representante_id].to_i}").map(&:marca_id)
+      if marcas.any?
+        " AND res.id IN (#{marcas.join(", ")})"
+      else
+        " AND res.id IN (0)"
+      end
+    else
+      ""
+    end
   end
 
   def self.sql_select(pos, exacto = 1)
