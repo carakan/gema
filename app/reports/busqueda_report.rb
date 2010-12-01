@@ -18,9 +18,9 @@ class BusquedaReport < ReporteMarcaBase
   # Retorna un array con el encabezado de acuerdo a su idioma
   def encabezado
     if I18n.locale == :es
-      ["Nro.", "Signo", "Tipo", "Clase", "Numero", "Fecha", "Titular", "Observaciones"].collect{ |word| word.upcase}
+      ["Nro.", "Signo", "Tipo", "Cl.", "Numero", "Fecha", "Titular", "Observaciones"].collect{ |word| word.upcase}
     else
-      ["Nr.", "Sign", "Type", "Class", "Number", "Date", "Owner/Applicant",  "Observations"].collect{ |word| word.upcase}
+      ["Nr.", "Sign", "Type", "Cl.", "Number", "Date", "Owner/Applicant",  "Observations"].collect{ |word| word.upcase}
     end
   end
 
@@ -48,8 +48,9 @@ class BusquedaReport < ReporteMarcaBase
       cells.style(:size => 8, :inline_format => true)
       column(0).style(:width => 35)
       column(6).style(:width => 200)
+      column(7).style(:width => 300)
       column(1..5).style(:width => 100)
-      column(3).style(:width => 60)
+      column(2..3).style(:width => 60)
     end
   end
 end

@@ -54,7 +54,7 @@ class CruceReport < ReporteMarcaBase
   def datos_marca(marca)
     datos_array = []
     datos_array[0] = "#{ marca.nombre }"
-    datos_array[1] = "#{ marca.tipo_signo }"
+    datos_array[1] = "#{ marca.tipo_signo.sigla if marca.tipo_signo }"
     datos_array[2] = "#{ marca.clase_id }"
     datos_array[3] = "#{ marca.numero_registro if marca.numero_registro }"
     datos_array[4] = "#{ I18n.l(marca.estado_fecha, :format => :short) if marca.estado_fecha}"
