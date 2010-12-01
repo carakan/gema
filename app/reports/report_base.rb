@@ -20,7 +20,7 @@ class ReportBase < Prawn::Document
     marcas_table = []
     count = 0
     @marcas.each do |marca|
-      fecha_solicitud = "#{I18n.l(marca.try(:estado_fecha), :format => :long)}"
+      fecha_solicitud = "#{I18n.l(marca.estado_fecha, :format => :long) if marca.estado_fecha}"
 
       marcas_table[count] = ["#{marca.nombre}", "#{marca.tipo_signo.try(:sigla) if marca.tipo_signo}", "", "#{marca.clase_id}", "#{fecha_solicitud}",
         "#{marca.numero_publicacion}",
