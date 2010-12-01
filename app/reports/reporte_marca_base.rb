@@ -58,7 +58,7 @@ class ReporteMarcaBase < ReportBase
   def datos_marca(marca)
     datos_array = []
     datos_array[0] = "#{ marca.nombre }"
-    datos_array[1] = "#{ marca.tipo_signo }"
+    datos_array[1] = "#{ marca.tipo_signo.sigla if marca.tipo_signo }"
     datos_array[2] = "#{ marca.clase_id }"
     datos_array[3] = "#{ marca.numero_marca }"
     datos_array[4] = "#{ I18n.l(marca.fecha_marca, :format => :date) if marca.fecha_marca}"
