@@ -197,11 +197,8 @@ class Busqueda
       sql << "(#{sql_exp.join(" UNION ")}) AS res"
       sql << condiciones_sql(params)
       sql << "AND res.tipo_signo_id NOT IN (2)"
-<<<<<<< HEAD
       sql << "GROUP BY res.clase_id, res.id" #if params[:clase_id]
-=======
       sql << condiciones_representante(params) # busqueda por agente o titular
->>>>>>> 11f8de22b25ad9ad5fc1f69ed403d2602c571296
 
       unless params[:clase_id].nil?
         sql << "ORDER BY res.pos, dist_clase_id, longitud_letras ASC"
