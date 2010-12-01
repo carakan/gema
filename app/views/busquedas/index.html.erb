@@ -6,7 +6,16 @@
 <% unless params[:busqueda].nil? %>
   <hr />
   <h1 class="dark">Resultados</h1>
-<h2 class="dark"><%= @busqueda.size %> RESULTADOS para la busqueda <%= params[:busqueda].upcase %> en las clases <% if params[:clases].count < 45%><%= params[:clases].keys.join(",") %> <% else %><%= "1 a la 45" %><% end %> <% unless params[:representante_id].blank? %> para el cliente <%= Representante.find(params[:representante_id]) %> <% end %></h2>
+<h2 class="dark">
+<%= @busqueda.size %> RESULTADOS para la busqueda <%= params[:busqueda].upcase %> en las clases 
+  <% if params[:clases].count < 45%>
+    <%= params[:clases].keys.join(",") %>
+  <% else %>
+    <%= "1 a la 45" %>
+  <% end %> 
+    <% unless params[:representante_id].blank? %> para el cliente <%= Representante.find(params[:representante_id]) %>
+  <% end %>
+</h2>
 <% end %>
 
 <% unless @busqueda.blank? %>

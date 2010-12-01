@@ -425,7 +425,8 @@ class Marca < ActiveRecord::Base
   end
 
   def self.error_manual_comparacion(act)
-    e2 = act.size <= 50 ? act : act[0,50] + '...'
+    e2 = ""
+    e2 = act.size <= 50 ? act : act[0,50] + '...' unless act.nil?
     "tiene un valor diferente: #{e2}"
   end
 
