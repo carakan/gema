@@ -2,21 +2,6 @@
 
 <%= semantic_form_for(@reporte_marca) do |f| %>
 
-  <% if @reporte_marca.representante_id %>
-    <%= f.hidden_field :representante_id %>
-    <label for="">Cliente</label>
-    <%= @reporte_marca.representante %>
-  <% else %>
-    <label for="">Denominación:</label>
-    <h2><%= @reporte_marca.busqueda.upcase %></h2>
-   
-   
-    <% if @reporte_marca.representante %>
-      <label for="">Representante</label>
-      <h2><%= @reporte_marca.representante %></h2>
-    <% end %>
-  <% end %>
-
   <%= f.input :representante_type, :as => :hidden %>
   <%= f.input :consulta_id, :as => :hidden  %>
   <%= f.input :busqueda, :as => :hidden  %>

@@ -1,6 +1,6 @@
 <table class="decorated">
   <tr style="background-color: #000; color: #fff">
-    <th class="_200" style="padding: 4px;">Busqueda</th>
+    <!--<th class="_200" style="padding: 4px;">Busqueda</th>-->
     <th class="_200">Signo</th>
     <th class="_200">Tipo</th>
     <th class="_200">Clase</th>
@@ -14,9 +14,9 @@
   </tr>
   <% @reporte_marca.reporte_marca_detalles.each do |rd|  %>
     <tr>
-      <td>
-        <%= rd.busqueda %>
-      </td>
+      <!--<td>
+        <%#= rd.busqueda %>
+      </td>-->
       <td><%= rd.marca_propia.nombre %></td>
       <td><%= rd.marca_propia.tipo_signo %></td>
       <td><%= rd.marca_propia.clase_id %></td>
