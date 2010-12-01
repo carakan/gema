@@ -30,15 +30,15 @@
 	<tr>
     <%= '<th>Fila</th>' if @mostra_fila %>
 		<th>Marca</th>
-		<th>Tipo Signo</th>
-		<th>Clase</th>
+		<th>Tipo</th>
+		<th>Cl</th>
     <th>Titulares</th>
     <th>Usuario</th>
     <th>Cruzar</th>
     <% @marcas.each do |marca| %>
       <tr>
         <td <%= errores_marca(marca) %>>
-          <span class="<%= marca.propia! %>"><%= marca.nombre %></span>
+          <span class="<%= marca.propia! %>"><%= link_to marca.nombre, marca_path(marca), :class => :ajax%></span>
         </td>
         <td><%= marca.tipo_signo %></td>
         <td><%= marca.clase_id %></td>

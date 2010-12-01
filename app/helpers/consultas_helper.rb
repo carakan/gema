@@ -9,7 +9,7 @@ module ConsultasHelper
     html = ""
     case param
       when :clases
-        html = "<label>Clases</label> #{ BusquedaVacia.label(consulta.parametros[param]) }"
+        html = "<label>Clases</label> <h2>#{ BusquedaVacia.label(consulta.parametros[param]) }</h2>"
       when :fecha_ini
         html = "<label>Fecha inicial</label> #{ l Date.parse(consulta.parametros[param]) }" if consulta.parametros[param]
       when :fecha_fin

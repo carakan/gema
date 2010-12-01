@@ -692,3 +692,5 @@ a.desc {
 .ui-dialog .breadcrumps { display: none; }
 #tabla-cruce tr.select { background-color: #dcdcdc; }
 #tabla-cruce span.mini { font-size: 1px; }
+div#izquierda{ float: left; margin:10px;}
+div#derecha{ float: right; width:50%; margin:10px;}
