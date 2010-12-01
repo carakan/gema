@@ -5,7 +5,7 @@
     <%= @consulta.marca %>
   </div>
 <% end %>
-<h1><%= titulo_consulta @consulta %></h1>
+<h1><%#= titulo_consulta @consulta %></h1>
 
 <% if @consulta.importacion.nil? %>
   <p class="links">
@@ -15,67 +15,75 @@
 
 <% unless @consulta.marca.nil? %>
   <% if @consulta.descartada?  -%>
-    <h3 class="red">Consulta descartada</h3>
+       <h3 class="red">Consulta descartada</h3>
   <% end -%>
-
   <p>
     <label>Marca:</label>
     <%=h @consulta.marca %>
   </p>
 <% end %>
 
-<p>
-  <label for="">Cliente</label>
-  <%= @consulta.representante %>
-</p>
-<p>
-  <label>Usuario:</label>
-  <%=h @consulta.usuario %>
-</p>
-<p>
-  <label for="">Comentario</label>
-  <%=h @consulta.comentario %>
-</p>
-
-
-<p>
-  <label>Busqueda:</label>
- <%=h @consulta.busqueda %>
-</p>
-<% if @consulta.importacion.nil? %>
-  <% Consulta::PARAMS.each do |param| %>
-    <p>
-      <%= presentar_parametro @consulta, param unless @consulta.parametros[param].nil? %>
-    </p>
+<h1> Datos de la búsqueda</h3>
+<div id="izquierda">
+  <p>
+    <label for="">Cliente</label>
+    <h2><%= @consulta.representante %></h2>
+  </p>
+  
+  <p>
+    <label>Busqueda:</label>
+    <h2><%=h @consulta.busqueda.upcase %></h2>
+  </p>
+  
+  <% if @consulta.importacion.nil? %>
+    <% Consulta::PARAMS.each do |param| %>
+      <p>
+        <%= presentar_parametro @consulta, param unless @consulta.parametros[param].nil? %>
+      </p>
+    <% end %>
   <% end %>
-<% end %>
+</div>
+<div id="derecha">
+  <p>
+    <label for="">Comentario</label>
+    <h2><%debugger%><%=h @consulta.comentario %></h2>
+  </p>
 
-<h2 class="dark">Marcas que coinciden</h2>
+ 
+  <p>
+    <label>Usuario:</label>
+    <h2><%=h @consulta.usuario %></h2>
+  </p>
+</div>
+<div style="clear:both"></div>
+
+<h1>Marcas que coinciden</h2>
 <table class="decorated">
   <tr align="center">
     <th>Marca</th>
-    <th>Tipo de Signo</th>
     <th>Clase</th>
-    <th>Tipo de<br />busqueda</th>
-    <th>Agentes</th>
+    <th>Tipo</th>
+    <th>Nro</th>
+    <th>Fecha</th>
     <th>Titulares</th>
+    <th>Agentes</th>
   </tr>
   <% @consulta.consulta_detalles.each do |cd| %>
     <tr>
       <td>
         <span class="propia"><%= cd.try(:marca) %></span>
       </td>
+      <td><%= cd.marca.try(:clase_id) %></td>
       <td><%= cd.marca.try(:tipo_signo) %></td>
-      <td><%= cd.marca.try(:clase) %></td>
+      <td><%#= numero_marca(cd)%></td>
+      <td><%#= lo(fecha_marca(cd), :format => "%d %b, %Y") %></td>
       <td>
-        <%= tipo_busqueda cd.tipo_de_busqueda %>
+        <%= cd.marca.titulares.join(", ") %>
       </td>
       <td>
         <%= cd.marca.agentes.join(", ") %>
       </td>
-      <td>
-        <%= cd.marca.titulares.join(", ") %>
-      </td>
+
     </tr>
   <% end %>
 </table>

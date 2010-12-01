@@ -196,8 +196,8 @@ class Busqueda
       sql = [ "#{sql} FROM" ]
       sql << "(#{sql_exp.join(" UNION ")}) AS res"
       sql << condiciones_sql(params)
-      sql << "GROUP BY res.clase_id, res.id" if params[:clase_id]
       sql << "AND res.tipo_signo_id NOT IN (2)"
+      sql << "GROUP BY res.clase_id, res.id" #if params[:clase_id]
 
       unless params[:clase_id].nil?
         sql << "ORDER BY res.pos, dist_clase_id, longitud_letras ASC"
