@@ -292,8 +292,7 @@ class Marca < ActiveRecord::Base
     #unless ESTADOS.include? params[:estado]
     #  return Marca.new(params)
     #end
-
-    set_include_estado(params[:marca_estado])
+    set_include_estado(params[:marca_estado_id])
     set_include_tipo_signo(params[:tipo_signo_id])
     new(params)
   end
@@ -399,7 +398,6 @@ class Marca < ActiveRecord::Base
     end
 
     params[:titular_ids] = [ params[:titular_ids] ].flatten.compact
-
     if marca.nil?
       return Marca.new(params)
     elsif !(marca.propia)
@@ -436,7 +434,8 @@ class Marca < ActiveRecord::Base
 
 
     # presenta de acuerdo al estado
-  def numero_marca
+  def numero_marca(marca)
+    debugger
     case self.estado
       when "sm" then self.numero_solicitud
       when "lp" then self.numero_publicacion
