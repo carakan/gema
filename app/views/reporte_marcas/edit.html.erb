@@ -1,6 +1,6 @@
 <div class="breadcrumps">
   <%= link_to "Lista de importaciones", importaciones_path %> >
-  <%= link_to "Agentes y Títulares", reporte_marcas_path(:importacion_id => params[:importacion_id]) %>
+  <%= link_to "Reportes realizados", reporte_marcas_path(:importacion_id => params[:importacion_id]) %>
   > Reporte
 </div>
 
@@ -8,6 +8,8 @@
   <h1>Editar reporte cruce</h1>
   <h2 class="dark"><%= params[:representante_type] %>: <%= @representante %></h2>
   <h2 class="dark">Gaceta <%= @importacion.publicacion %> del <%= l @importacion.publicacion_fecha %></h2>
+<% else %>
+  <h1>Editar reporte de búsqueda</h1>
 <% end %>
 
 
@@ -30,7 +32,6 @@
   <%= f.input :carta, :as => :text, :input_html => {:cols => 100, :rows => 7} %>
 
   <p class="inline-hints">
-    Si no escribe en el comentario la marca no sera seleccionada para reporte
   </p>
   <table class="decorated">
     <tr>

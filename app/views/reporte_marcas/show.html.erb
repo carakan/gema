@@ -5,26 +5,35 @@
 <% if @reporte_marca.importacion_id? %>
   <div class="breadcrumps">
     <%= link_to "Lista de importaciones", importaciones_path %> >
-    <%= link_to "Agentes y Títulares", cruces_reporte_marcas_path(:importacion_id => @reporte_marca.importacion_id) %>
+    <%= link_to "Reportes realizados", cruces_reporte_marcas_path(:importacion_id => @reporte_marca.importacion_id) %>
     > Reporte
   </div>
 <% end %>
 
-<h1>Vista preliminar del reporte</h1>
+<h1>Datos del reporte</h1>
 <% if @reporte_marca.importacion_id? %>
   <h2 class="dark">Gaceta <%= @importacion.publicacion %> del <%= l @importacion.publicacion_fecha %></h2>
 <% end %>
-
+  
+  <% if @reporte_marca.representante_id %>
+    <%= f.hidden_field :representante_id %>
+      <label for="">Cliente</label>
+      <h2><%= @reporte_marca.representante %></h2>
+  <% end %>
+<p>
+  <label for="">Denominación: </label>
+  <h2><%= @reporte_marca.busqueda.upcase %></h2>
+</p>
 <p>
   <label for="">Idioma</label>
-  <%= @reporte_marca.idioma! %>
+  <h2><%= @reporte_marca.idioma! %></h2>
 </p>
 
 <p>
-  <label for="">Carta</label>
-  <%= @reporte_marca.carta %>
+  <label for="">Análisis</label>
+  <h2><%= @reporte_marca.carta %></h2>
 </p>
-<%= render :partial => ( @reporte_marca.importacion_id? ? "tabla_cruce" : "tabla_busqueda" ), :locals => {:show_titulares => false} %>
+<%= render :partial => ( @reporte_marca.importacion_id? ? "tabla_cruce" : "tabla_busqueda" ), :locals => {:show_titulares => true} %>
 
 <br />
 
