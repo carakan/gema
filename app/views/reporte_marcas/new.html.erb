@@ -43,19 +43,7 @@
       <th>Fecha</th>
       <th>Comentario</th>
     </tr>
-    <%= f.semantic_fields_for :reporte_marca_detalles do |rd| %>
-      <tr>
-        <td>
-          <%= rd.input :busqueda, :as => :hidden %>
-          <%= rd.object.busqueda %>
-          <%= rd.input :marca_id, :as => :hidden %>
-        </td>
-        <%= render :partial => "marca_foranea", :locals => { :marca => rd.object.marca_propia } %>
-        <td>
-          <%= rd.input :comentario, :as => :text, :label => false, :input_html => {:cols => 35, :rows => 6} %>
-        </td>
-      </tr>
-    <% end %>
+    <%= render :partial => "form", :locals => {:f => f} %>
   </table>
   <p>
     <%= f.submit 'Generar reporte' %>
