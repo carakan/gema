@@ -35,67 +35,18 @@
   </p>
   <table class="decorated">
     <tr>
-      <th>Marca propia</th>
       <% if @reporte_marca.importacion_id %>
-        <th>Marca agena</th>
+        <th>Marca propia</th>
+        <th colspan="5">Marca agena</th>
+      <% else %>
+        <th>Busqueda</th>
+        <th colspan="5">Marca</th>
       <% end %>
       <th>Comentario</th>
     </tr>
-  <%# @marcas.each{ |v| f.object.reporte_marca_detalles.build(:marca_id => v.marca_id, :marca_foranea_id => v.consulta.marca_id) } if params[:reporte_marca].nil? %>
-    <% @i = 0 %>
-    <%= f.semantic_fields_for :reporte_marca_detalles do |rd| %>
-      <tr>
-        <td>
-          <%= rd.input :marca_id, :as => :hidden %>
-          <%= rd.input :marca_foranea_id, :as => :hidden %>
-          <%= render :partial => "marca_propia", :locals => { :marca => rd.object.marca_propia } %>
-        </td>
-        <% if @reporte_marca.importacion_id %>
-          <td>
-            <%= render :partial => "marca_foranea", :locals => { :marca => rd.object.marca_foranea } %>
-          </td>
-        <% end %>
-        <td>
-          <%= rd.input :comentario, :as => :text, :label => false, :input_html => {:cols => 40, :rows => 8} %>
-        </td>
-      </tr>
-      <% @i += 1 %>
-    <% end %>
+     <%= render :partial => "form", :locals => {:f => f} %>
   </table>
   <p>
     <%= f.submit 'Salvar' %>
   </p>
 <% end %>
-
-<script type="text/javascript">
-  $(function() {
-    // Idioma
-    $('input[name="reporte_marca[idioma]"]').click(function() {
-      var val = 'es' == $(this).val() ? carta_es : carta_en;
-      $('#reporte_marca_carta').val(val);
-    });
-    if( $('input[name="reporte_marca[idioma]"]').val() == 'es') {
-      $('#reporte_marca_carta').val(carta_es);
-    }else {
-      $('#reporte_marca_carta').val(carta_en);
-    }
-
-    // Habilitar desabilitar
-    /*$('input:checkbox').click(function() {
-        $(this).parents("tr:first").find("td textarea").attr("disabled", !$(this).attr("checked"));
-      });*/
-    // Formulario
-    $('form').submit(function() {
-      /*if( $('input:checkbox[checked]').length <= 0 ) {
-          alert("Debe seleccionar al menos una marca");
-          return false;
-        }else{
-          return true;
-        }*/
-    });
-  });
-
-  var carta_es = "<%= @reporte_marca.crear_carta %>";
-  var carta_en = "<%= @reporte_marca.crear_carta('en') %>";
-
-</script>

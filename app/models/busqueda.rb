@@ -199,6 +199,7 @@ class Busqueda
       sql << condiciones_representante(params) # busqueda por agente o titular
       sql << "AND res.tipo_signo_id NOT IN (2)"
       sql << "GROUP BY res.clase_id, res.id" #if params[:clase_id]
+      sql << condiciones_representante(params) # busqueda por agente o titular
 
       unless params[:clase_id].nil?
         sql << "ORDER BY res.pos, dist_clase_id, longitud_letras ASC"
