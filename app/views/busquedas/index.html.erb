@@ -20,8 +20,10 @@
 
 <% unless @busqueda.blank? %>
   <%= form_for @consulta do |f| -%>
-    <%= f.hidden_field :parametros %>
     <%= f.hidden_field :representante_id %>
+    <label for="">Cliente</label>
+    <input type="text" id="cliente_id" size="40" />
+    <%= f.hidden_field :parametros %>
     <%= f.hidden_field :busqueda %>
 
     <table class="decorated resultados">
@@ -83,6 +85,15 @@
       }
     });
 
+
+    $('#cliente_id').autocomplete({
+      'source': '/representantes/buscar',
+      'select': function(e, ui) {
+        var val = $(ui).autocomplete("option").get()[0];
+        $('#consulta_representante_id').val(val.item.id);
+        //$('span.representante_id').html(val.item.label);
+      }
+    });
 
     $('table.resultados').fixedtableheader();
   })(jQuery);
