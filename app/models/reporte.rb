@@ -117,7 +117,7 @@ class Reporte < ActiveRecord::Base
     else
       report = Reporte.set_instance("busqueda_report")
       report.engine_report.busqueda = reporte_marca.busqueda
-      report.engine_report.clases = reporte_marca.consulta.parametros[:clases]
+      report.engine_report.clases = reporte_marca.consulta.parametros[:clases] if reporte_marca.consulta
     end
     report.to_pdf(reporte_marca)
   end

@@ -19,11 +19,13 @@
     <%= f.hidden_field :representante_id %>
       <label for="">Cliente</label>
       <h2><%= @reporte_marca.representante %></h2>
-  <% end %>
+    <% end %>
+<% if !@reporte_marca.importacion_id? %>
 <p>
   <label for="">Denominación: </label>
   <h2><%= @reporte_marca.busqueda.upcase %></h2>
 </p>
+<% end %>
 <p>
   <label for="">Idioma</label>
   <h2><%= @reporte_marca.idioma! %></h2>
