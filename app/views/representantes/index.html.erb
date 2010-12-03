@@ -2,12 +2,18 @@
 
 <%= link_to 'Nuevo cliente', new_representante_path, :class => 'new' %>
 
-<%= @will = will_paginate @representantes %>
 
+<%= form_tag "/representantes", :method => 'get' do %>
+  <%= text_field_tag "search", params[:search] %>
+  <%= hidden_field_tag "cliente", 'true' if params[:cliente] %>
+  <input type="submit" value="Buscar" />
+<% end %>
+
+<%= @will = will_paginate @representantes %>
 <table class="decorated nwl">
     <tr>
-      <th><%= sort_order "Nombre", "representantes.nombre" %></th>
-      <th><%= sort_order "País", "paises.nombre" %></th>
+      <th>Nombre</th>
+      <th>País</th>
       <th>Direccion</th>
       <th></th>
     </tr>

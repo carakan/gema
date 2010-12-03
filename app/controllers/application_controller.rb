@@ -41,7 +41,7 @@ protected
   def order_by_params( order , direction = 'asc')
     direction = ['asc', 'desc'].include?(params[:direction]) ? params[:direction] : direction
     order = params[:order] || order
-    order = ActiveRecord::Base.sanitize("#{order} #{direction}")
+    order = "#{order} #{direction}"
   end
 
   def convert_keys_to_sym(h)
