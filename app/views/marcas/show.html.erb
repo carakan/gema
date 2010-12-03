@@ -13,9 +13,7 @@
 </p>
 
 <div id="izquierda">
-    <p>
-      <h1><%= cambio @marca ,:nombre %></h1>
-    </p>
+    <h1><%= cambio @marca ,:nombre %></h1>
     
     <div class="detalles">  
       <p>
@@ -37,13 +35,13 @@
     </p>
 
     <p>
-      <label for="">Tipo Marca</label>
-      <%= cambio @marca, :tipo_marca_id, @marca.tipo_marca %>
+      <label for="">Tipo signo</label>
+      <%= cambio @marca ,:tipo_signo_id %>
     </p>
 
     <p>
-      <label for="">Tipo signo</label>
-      <%= cambio @marca ,:tipo_signo_id %>
+      <label for="">Tipo Marca</label>
+      <%= cambio @marca, :tipo_marca_id, @marca.tipo_marca %>
     </p>
 
     <p>
@@ -102,16 +100,21 @@
   </div>
 
   <div id="derecha">
+  <% unless @marca.archivo_adjunto.blank? %>
+    <p>
+      <%= cambio @marca, :archivo_adjunto, image_tag( @marca.adjuntos.last.archivo.url(:mini), :class => 'mini' ) unless @marca.archivo_adjunto.blank? %>
+    </p>
+    <p>
+      <label for="">Descripcion de la imagen</label>
+      <%= cambio @marca ,:descripcion_imagen %>
+    </p>
+   <% end %>
+    
     <p>
       <label for="">Estado</label>
       <%= cambio @marca ,:marca_estado_id %>
     </p>
-    <p>
-      <label for="">Imagen</label>
-      <%= cambio @marca, :archivo_adjunto, image_tag( @marca.adjuntos.last.archivo.url(:mini), :class => 'mini' ) unless @marca.archivo_adjunto.blank? %>
-    </p>
-
-
+    
     <p>
       <label for="">Titulares</label>
       <%= cambio @marca, :titular_ids_serial, @marca.titulares.join(", ") %>
@@ -129,21 +132,48 @@
       <%= cambio @marca, :representante_empresarial %>
     </p>
     <p>
+      <label for="">Fecha de publicación</label>
+      <%= cambio @marca ,:fecha_publicacion %>
+    </p>
+  
+    <p>
       <label for="">Número de gaceta</label>
       <%= cambio @marca ,:numero_gaceta %>
     </p>
+  
     <p>
       <label for="">Número de publicación</label>
       <%= cambio @marca ,:numero_publicacion %>
-    </p>
-    <p>
-      <label for="">Fecha de publicación</label>
-      <%= cambio @marca ,:fecha_publicacion %>
     </p>
 
     <p>
       <label for="">Fecha registro</label>
       <%= cambio @marca ,:fecha_registro %>
+    </p>
+
+    <p>
+      <label for="">Número de registro</label>
+      <%= cambio @marca ,:numero_registro %>
+    </p>
+  
+    <p>
+      <label for="">Fecha solicitud renovación</label>
+      <%= cambio @marca ,:fecha_solicitud_renovacion %>
+    </p>
+
+    <p>
+      <label for="">Número solicitud renovación</label>
+      <%= cambio @marca ,:numero_solicitud_renovacion %>
+    </p>
+    
+    <p>
+      <label for="">Fecha renovación</label>
+      <%= cambio @marca ,:fecha_renovacion %>
+    </p>
+
+    <p>
+      <label for="">Número renovación</label>
+      <%= cambio @marca ,:numero_renovacion %>
     </p>
     <p>
       <label for="">Productos</label>

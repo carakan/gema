@@ -66,8 +66,6 @@ module ModMarca::ListaPublicacion
 
       @importacion.id
     end
-
- 
     ############################################################
     # Metodos para realizar la importacion desde un PDF
     ############################################################ 
