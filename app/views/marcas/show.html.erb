@@ -7,57 +7,69 @@
   <%= link_to 'Lista de marcas', marcas_path, :class =>'list' %> > Marca
 </div>
 
-<h1>Marca</h1>
-
 <p class="links">
   <%= link_to 'Editar', edit_marca_path(@marca), :class =>'edit'%> 
   <%= link_to 'Lista', marcas_path, :class =>'list' %>
 </p>
 
-<div id="marca">
-    <p>
-      <label for="">Propia</label>
-      <%= cambio @marca ,:propia, valido_img(@marca.propia) %><br/>
-    </p>
+<div id="contenido">
+  <div class="izquierda">
+    <h1><%= cambio @marca ,:nombre %></h1>
     
-    <p>
-      <label for="">Activa</label>
-      <%= cambio @marca ,:activa, valido_img(@marca.activa) %><br/>
-    </p>
+    <div class="detalles">  
+      <p>
+        <label for="">Propia</label>
+        <h3><%= cambio @marca ,:propia, valido_img(@marca.propia) %><br/></h3>
+      </p>
+    </div>
 
-    <p>
-      <label for="">Denominación</label>
-      <%= cambio @marca ,:nombre %>
-    </p>
-    <p>
-      <label for="">Imagen</label>
-      <%= cambio @marca, :archivo_adjunto, image_tag( @marca.adjuntos.last.archivo.url(:mini), :class => 'mini' ) unless @marca.archivo_adjunto.blank? %>
-    </p>
+    <div class="detalles">
+      <p>
+        <label for="">Activa</label>
+        <h3><%= cambio @marca ,:activa, valido_img(@marca.activa) %><br/></h3>
+      </p>
+    </div>
 
-    <p>
-      <label for="">Estado</label>
-      <%= cambio @marca ,:marca_estado_id %>
-    </p>
-    <p>
-      <label for="">Tipo Marca</label>
-      <%= cambio @marca, :tipo_marca_id, @marca.tipo_marca %>
-    </p>
-    <p>
-      <label for="">Tipo signo</label>
-      <%= cambio @marca ,:tipo_signo_id %>
-    </p>
     <p>
       <label for="">Clase</label>
       <%= cambio @marca ,:clase %>
     </p>
-   <p>
+
+    <p>
+      <label for="">Tipo signo</label>
+      <%= cambio @marca ,:tipo_signo_id %>
+    </p>
+
+    <p>
+      <label for="">Tipo Marca</label>
+      <%= cambio @marca, :tipo_marca_id, @marca.tipo_marca %>
+    </p>
+
+    <p>
+      <label for="">Tipo de instrucción</label>
+      <%= cambio @marca, :instruccion %>
+    </p>
+
+    <p>
+      <label for="">Fecha de instrucción</label>
+      <%= cambio @marca, :fecha_instruccion %>
+    </p>
+ 
+    <p>
+      <label for="">Fecha solicitud</label>
+      <%= cambio @marca ,:estado_fecha %>
+    </p>
+
+    <p>
       <label for="">Numero Solicitud</label>
       <%= cambio @marca ,:numero_solicitud %>
     </p>
+
     <p>
-      <label for="">Fecha</label>
-      <%= cambio @marca ,:estado_fecha %>
+      <label for="">Descripción de productos/servicios</label>
+      <%= cambio @marca ,:productos %>
     </p>
+
     <p>
       <label for="">Fecha de modificación</label>
       <%= l @marca.updated_at %>
@@ -68,6 +80,25 @@
       <%= cambio @marca, :usuario_id %>
     </p>
 
+
+  </div>
+
+  <div class="derecha">
+  <% unless @marca.archivo_adjunto.blank? %>
+    <p>
+      <%= cambio @marca, :archivo_adjunto, image_tag( @marca.adjuntos.last.archivo.url(:mini), :class => 'mini' ) unless @marca.archivo_adjunto.blank? %>
+    </p>
+    <p>
+      <label for="">Descripcion de la imagen</label>
+      <%= cambio @marca ,:descripcion_imagen %>
+    </p>
+   <% end %>
+    
+    <p>
+      <label for="">Estado</label>
+      <%= cambio @marca ,:marca_estado_id %>
+    </p>
+    
     <p>
       <label for="">Titulares</label>
       <%= cambio @marca, :titular_ids_serial, @marca.titulares.join(", ") %>
@@ -81,37 +112,65 @@
       <%= cambio @marca, :apoderado %>
     </p>
     <p>
-      <label for="">Tipo de instrucción</label>
-      <%= cambio @marca, :instruccion %>
-    </p>
-    <p>
-      <label for="">Número de gaceta</label>
-      <%= cambio @marca ,:numero_gaceta %>
-    </p>
-    <p>
-      <label for="">Número de publicación</label>
-      <%= cambio @marca ,:numero_publicacion %>
+      <label>Representante Empresarial</label>
+      <%= cambio @marca, :representante_empresarial %>
     </p>
     <p>
       <label for="">Fecha de publicación</label>
       <%= cambio @marca ,:fecha_publicacion %>
     </p>
+  
     <p>
-      <label for="">Productos</label>
-      <%= cambio @marca ,:productos %>
+      <label for="">Número de gaceta</label>
+      <%= cambio @marca ,:numero_gaceta %>
     </p>
+  
+    <p>
+      <label for="">Número de publicación</label>
+      <%= cambio @marca ,:numero_publicacion %>
+    </p>
+
     <p>
       <label for="">Fecha registro</label>
       <%= cambio @marca ,:fecha_registro %>
     </p>
- 
 
-  <hr />
-  <h1 class="dark">Historial de modificaciones</h1>
+    <p>
+      <label for="">Número de registro</label>
+      <%= cambio @marca ,:numero_registro %>
+    </p>
+  
+    <p>
+      <label for="">Fecha solicitud renovación</label>
+      <%= cambio @marca ,:fecha_solicitud_renovacion %>
+    </p>
+
+    <p>
+      <label for="">Número solicitud renovación</label>
+      <%= cambio @marca ,:numero_solicitud_renovacion %>
+    </p>
+    
+    <p>
+      <label for="">Fecha renovación</label>
+      <%= cambio @marca ,:fecha_renovacion %>
+    </p>
+
+    <p>
+      <label for="">Número renovación</label>
+      <%= cambio @marca ,:numero_renovacion %>
+    </p>
+
+ </div>
+
+  <div class="clear"></div>
+  
+  <div class=izquierda> 
+    <hr />
+    <h1 class="dark">Historial de modificaciones</h1>
 
 
-  <% @cambios = @marca.cambios %>
-  <% @marca.historial.each do |marca| %>
+    <% @cambios = @marca.cambios %>
+    <% @marca.historial.each do |marca| %>
 
     <% @cambios.delete('usuario_id') %>
     <p>
@@ -119,24 +178,22 @@
     </p>
 
     <% @cambios.each do |campo| %>
-      <p>
-      <%= presentar_campo_historial( marca, campo ) %>
-      </p>
+        <p>
+          <%= presentar_campo_historial( marca, campo ) %>
+        </p>
+      <% end %>
+
+      <hr />
+      <% @cambios = marca.cambios %>
     <% end %>
+  </div>
 
-    <hr />
-    <% @cambios = marca.cambios %>
-
-  <% end %>
-  <div class="clear"></div>
-</div>
-
-
-<div id="posts" class="posts" data-posts_size="<%= Marca::POSTS_SIZE %>">
-  <div>
-    <h2 class="title">Ultimos comentarios  123</h2>
-    <%= render :partial => "posts/posts", :locals => { :posts => @marca.ultimos_posts } %>
-    <%= link_post @marca, 'index' %>
-    <%= link_post @marca, 'new' %>
+  <div class="derecha" class="posts" data-posts_size="<%= Marca::POSTS_SIZE %>">
+    <div>
+      <h2 class="title">Ultimos comentarios  123</h2>
+        <%= render :partial => "posts/posts", :locals => { :posts => @marca.ultimos_posts } %>
+        <%= link_post @marca, 'index' %>
+        <%= link_post @marca, 'new' %>
+    </div>
   </div>
 </div>

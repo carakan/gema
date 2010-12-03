@@ -66,8 +66,6 @@ module ModMarca::ListaPublicacion
 
       @importacion.id
     end
-
- 
     ############################################################
     # Metodos para realizar la importacion desde un PDF
     ############################################################ 
@@ -129,14 +127,13 @@ module ModMarca::ListaPublicacion
         :numero_solicitud => params['NUMERO DE SOLICITUD'].gsub(/(\s|\302\240)/, ''),
         :estado_fecha => convertir_fecha_solicitud( params['FECHA DE SOLICITUD'] ), # Esta es la Fecha de solicitud
         :clase_id => Clase.find_by_codigo(params['CLASE INTERNACIONAL']).try(:id),
-        :tipo_signo_id => buscar_tipo_signo( params['TIPO DE SIGNO'] ),
-        :tipo_marca_id => buscar_tipo_marca( params['TIPO DE MARCA'] ),
+        :tipo_signo_id => buscar_tipo_signo( params['TIPO DE SIGNO'], params['TIPO DE MARCA']),
+        :tipo_marca_id => buscar_tipo_marca( params['TIPO DE SIGNO'], params['TIPO DE MARCA']),
         :titular_ids => [buscar_o_crear_titular(params)].compact,
         :apoderado => params['NOMBRE DEL APODERADO'],
         :productos => params['PRODUCTOS'],
         :importacion_id => @importacion.id
       }
-
     end
 
     def convertir_fecha_solicitud(fec)
@@ -165,12 +162,14 @@ module ModMarca::ListaPublicacion
       end
     end
 
-    def buscar_tipo_signo( sig )
-      TipoSigno.find_by_nombre_or_sigla(sig, sig).try(:id)
+    def buscar_tipo_signo(signo,marca)
+      tipo = validacion_signo_senapi_orpan(signo,marca)
+      TipoSigno.find_by_nombre_or_sigla(tipo, tipo).try(:id)
     end
 
-    def buscar_tipo_marca(tip)
-      TipoMarca.find_by_nombre(tip).try(:id)
+    def buscar_tipo_marca(signo, marca)
+      tipo = validacion_marca_senapi_orpan(signo,marca)
+      TipoMarca.find_by_nombre(tipo).try(:id)
     end
 
     # Crea un representante y lo relaciona
@@ -190,7 +189,49 @@ module ModMarca::ListaPublicacion
       rep.id
     end
 
+    def validacion_signo_senapi_orpan(signo,marca)
+      s = 'Otro'
+      if (signo == 'Denominación')
+        s = 'Marca Denominativa'
+        if (marca == 'Nombre Comercial')
+          s = 'Nombre Comercial Denominativo'
+        elsif (marca == 'Rótulo Comercial')
+          s = 'Nombre Comercial Denominativo'
+        elsif (marca == 'Lema Comercial')
+          s = 'Lema Comercial'
+        end
+       
+      elsif signo == 'Mixta'
+        if marca =='Nombre Comercial'
+          s = 'Nombre Comercial Mixto'
+        elsif 
+          s = 'Marca Mixta'
+        end
 
+      elsif (signo == 'Figurativa')
+        s = 'Marca Figurativa'
+         
+      elsif (signo == 'Tridimensional')
+        s = 'Marca Tridimensional'
+      end
+      
+      s
+    end 
+
+    def validacion_marca_senapi_orpan(signo,marca)
+      m = 'Otro'
+      if (marca == 'Marca Producto')
+        m = 'Marca Producto'
+      elsif (marca == 'Marca Servicio')
+        m = 'Marca Servicio'
+        elsif (marca == 'Marca Colectiva')
+          m = 'Marca Colectiva'
+        else (marca == 'Marca de Certificación')
+          m = 'Marca de Certificación'
+      end
+
+      m
+    end 
 
     ############################################################
     # Metodos para realizar la importacion desde un Excel

@@ -9,13 +9,14 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Major.create(:name => 'Daley', :city => cities.first)
 
-TipoSigno.create!(:nombre => 'Denominación', :sigla => 'Den.' )
-TipoSigno.create!(:nombre => 'Figurativa', :sigla => 'Fig.' )
-TipoSigno.create!(:nombre => 'Mixta', :sigla => 'Mix.' )
-TipoSigno.create!(:nombre => 'Tridimensional', :sigla => 'Tri.' )
-TipoSigno.create!(:nombre => 'Etiqueta', :sigla => 'Eti.' )
-TipoSigno.create!(:nombre => 'Logotipo', :sigla => 'Log.' )
-TipoSigno.create!(:nombre => 'Envase', :sigla => 'Env.' )
+TipoSigno.create!(:nombre => 'Marca Denominativa', :sigla => 'MD' )
+TipoSigno.create!(:nombre => 'Marca Figurativa', :sigla => 'MF' )
+TipoSigno.create!(:nombre => 'Marca Mixta', :sigla => 'MM' )
+TipoSigno.create!(:nombre => 'Marca Tridimensional', :sigla => 'MT' )
+TipoSigno.create!(:nombre => 'Nombre Comercial Denominativo', :sigla => 'NCD' )
+TipoSigno.create!(:nombre => 'Nombre Comercial Mixto', :sigla => 'NCM' )
+TipoSigno.create!(:nombre => 'Lema Comercial', :sigla => 'LC' )
+TipoSigno.create!(:nombre => 'Otro', :sigla => 'OT' )
 puts "Se han creado los tipos de signo base"
 
 # Rake::Task["importar:clases"].execute
@@ -25,12 +26,11 @@ clases.each{ |attr| Clase.create!(attr) }
 puts "Se han creado los clases base"
 
 #TipoMarca.create!(:nombre => 'Denominación', :sigla => 'DN.')
-TipoMarca.create!(:nombre => 'Marca Producto', :sigla => 'MP.')
-TipoMarca.create!(:nombre => 'Marca Servicio', :sigla => 'MS.')
-TipoMarca.create!(:nombre => 'Lema Comercial', :sigla => 'LC.')
-TipoMarca.create!(:nombre => 'Nombre Comercial', :sigla => 'NC.')
-TipoMarca.create!(:nombre => 'Rótulo Comercial', :sigla => 'RC.')
-TipoMarca.create!(:nombre => 'Marca de Certificación', :sigla => 'MC.')
+TipoMarca.create!(:nombre => 'Marca Producto', :sigla => 'MP')
+TipoMarca.create!(:nombre => 'Marca Servicio', :sigla => 'MS')
+TipoMarca.create!(:nombre => 'Marca Colectiva', :sigla => 'MCO')
+TipoMarca.create!(:nombre => 'Marca de Certificación', :sigla => 'MCE')
+TipoMarca.create!(:nombre => 'Otro', :sigla => 'OT')
 puts "Se han creado  los tipos de marca base"
 
 #TipoMarca.create!(:nombre => 'Solicitud Marca', :sigla => 'SM.')

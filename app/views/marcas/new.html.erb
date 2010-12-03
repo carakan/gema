@@ -12,10 +12,11 @@
   <%= hidden_field_tag "importacion_id", params[:importacion_id] unless params[:importacion_id].nil?  %>
 
   <%= f.hidden_field :valido, :value => 1 %>
+  <%#= f.hidden_field :tipo_signo %>
 
   <%= f.input :propia, :label => 'Marca propia' %>
   <%= f.input :activa, :label => 'Marca activa' %>
-  <%= f.input :tipo_signo, :label => 'Tipo signo', :input_html => {:disabled => true}%>
+  <%= f.input :tipo_signo, :label => 'Tipo signo'%>
 <!--  <li>
     <label for="">Tipo de signo</label>
     <%#= @marca.tipo_signo %>

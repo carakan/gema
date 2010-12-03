@@ -9,9 +9,15 @@ body {
   font-family: arial, helvetica, freesans, clean, sans-serif;
   font-size: 78%;
 }
-body, p, ol, ul {
+body,p, ol, ul {
   font-family: arial, helvetica, freesans, clean, sans-serif;
   line-height: 18px;
+}
+
+h1{
+  font-family: arial, helvetica, freesans, clean, sans-serif;
+  font-size:25px; 
+  font-weight: bold;
 }
 a {
   color: #2167cb;
@@ -84,6 +90,7 @@ input.num {
 legend { font-weight: bold; }
 label {
   vertical-align: top;
+  font-size: 13px;
   font-weight: bold;
   display: block;
   color: #484848;
@@ -692,5 +699,22 @@ a.desc {
 .ui-dialog .breadcrumps { display: none; }
 #tabla-cruce tr.select { background-color: #dcdcdc; }
 #tabla-cruce span.mini { font-size: 1px; }
-div#izquierda{ float: left; margin:10px;}
-div#derecha{ float: right; width:50%; margin:10px;}
+div#contenido{float:left; width: 100%;}
+div#contenido .izquierda{ float: left; margin:10px;width: 40%;}
+div#contenido .derecha{ float: right; width:50%; margin:10px;}
+.izquierda .detalles{ float:left; width: 50%;}
+div#contenido p{
+  font-family: arial, helvetica, freesans, clean, sans-serif;
+  font-size:15px; 
+  line-height: 18px;
+  font-weight: bold;
+}
+div#contenido label {
+  vertical-align: top;
+  font-size: 13px;
+  font-weight: normal;
+  line-height: 18px;
+  display: inline;
+  color: #484848;
+  margin: 3px 0px;
+}
