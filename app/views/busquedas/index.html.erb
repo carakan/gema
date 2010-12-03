@@ -24,17 +24,19 @@
     <%= f.hidden_field :representante_id %>
     <%= f.hidden_field :busqueda %>
 
-    <table class="decorated">
-      <tr>
-        <th></th>
-        <th>Nombre</th>
-        <th>Cl.</th>
-        <th>Tipo</th>
-        <th>Nro</th>
-        <th>Fecha</th>
-        <th>Titulares</th>
-        <th>Agentes</th>
-      </tr>
+    <table class="decorated resultados">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Nombre</th>
+          <th>Cl.</th>
+          <th>Tipo</th>
+          <th>Nro</th>
+          <th>Fecha</th>
+          <th>Titulares</th>
+          <th>Agentes</th>
+        </tr>
+      </thead>
       <% @busqueda.each_with_index do |marca, index| %>
         <tr>
           <td>
@@ -47,13 +49,14 @@
           <td><%= lo(fecha_marca(marca), :format => "%d %b, %Y") %></td>
           <td><%= buscar_representante( marca.titular_ids_serial, @representantes ) %></td>
           <td><%= buscar_representante( marca.agente_ids_serial, @representantes ) %></td>
-          <td><%= tipo_busqueda marca.pos %></td>
+          <!--<td><%= tipo_busqueda marca.pos %></td>-->
         </tr>
       <% end %>
     </table>
     <%= submit_tag "Crear pre reporte", :id => 'seleccionar' %>
   <% end %>
 <% end %>
+
 <script type="text/javascript">
   (function($) {
     $('input:checkbox').click(function() {
@@ -69,7 +72,7 @@
         $(this).siblings('input:hidden').remove();
       }
     });
-  
+
     // Validación
     $('#new_consulta').submit(function() {
       if( $(this).find(':checkbox:checked').length > 0) {
@@ -79,5 +82,8 @@
         return false;
       }
     });
+
+
+    $('table.resultados').fixedtableheader();
   })(jQuery);
 </script>
