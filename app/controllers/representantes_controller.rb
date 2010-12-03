@@ -6,8 +6,9 @@ class RepresentantesController < ApplicationController
   # GET /representantes
   # GET /representantes.xml
   def index
-    @representantes = Representante.paginate( order_query_params("nombre") )
-
+    @representantes = Representante
+    @representantes = @representantes.where(:cliente => true) if params[:cliente]
+    @representantes = @representantes.includes(:pais).order(order_by_params("representantes.nombre")).paginate( :page => @page )
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @representantes }

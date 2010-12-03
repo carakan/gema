@@ -73,7 +73,7 @@ module ApplicationHelper
         css = direction = 'asc'
       end
     end
-    url = { :controller => params[:controller], :action => params[:action], :order => field, :direction => direction }
+    url = params.merge(:order => field, :direction => direction)
     link_to title, url, :class => css
   end
 
