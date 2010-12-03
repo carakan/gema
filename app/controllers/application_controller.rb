@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
-  
+
   layout lambda{ |controller| controller.request.xhr? ? false : "application" } 
 
   # Scrub sensitive parameters from your log
@@ -37,10 +37,17 @@ protected
     { :order => "#{params[:order]} #{params[:direction]}", :page => @page }
   end
 
+  # Funcion de para ordenamiento
+  def order_by_params( order , direction = 'asc')
+    direction = ['asc', 'desc'].include?(params[:direction]) ? params[:direction] : direction
+    order = params[:order] || order
+    order = "#{order} #{direction}"
+  end
+
   def convert_keys_to_sym(h)
     h.keys.map(&:to_sym).zip(h.values).inject({}) { |h, v| h[v.first] = v.last; h }
   end
-  
+
 
   # Si es AJAX presenta OK, sino redirecciona
   def redirect_ajax(klass, notice)

@@ -12,7 +12,8 @@
   <%= link_to 'Lista', marcas_path, :class =>'list' %>
 </p>
 
-<div id="izquierda">
+<div id="contenido">
+  <div class="izquierda">
     <h1><%= cambio @marca ,:nombre %></h1>
     
     <div class="detalles">  
@@ -53,15 +54,20 @@
       <label for="">Fecha de instrucción</label>
       <%= cambio @marca, :fecha_instruccion %>
     </p>
+ 
+    <p>
+      <label for="">Fecha solicitud</label>
+      <%= cambio @marca ,:estado_fecha %>
+    </p>
 
     <p>
       <label for="">Numero Solicitud</label>
       <%= cambio @marca ,:numero_solicitud %>
     </p>
- 
+
     <p>
-      <label for="">Fecha solicitud</label>
-      <%= cambio @marca ,:estado_fecha %>
+      <label for="">Descripción de productos/servicios</label>
+      <%= cambio @marca ,:productos %>
     </p>
 
     <p>
@@ -75,31 +81,9 @@
     </p>
 
 
-  <hr />
-  <h1 class="dark">Historial de modificaciones</h1>
-
-
-  <% @cambios = @marca.cambios %>
-  <% @marca.historial.each do |marca| %>
-
-    <% @cambios.delete('usuario_id') %>
-    <p>
-      Modificado por <strong><%= marca.usuario %></strong> en fecha: <em><%= l marca.updated_at, :format => "%d, %B %Y %H:%M" %></em>
-    </p>
-
-    <% @cambios.each do |campo| %>
-      <p>
-      <%= presentar_campo_historial( marca, campo ) %>
-      </p>
-    <% end %>
-
-    <hr />
-    <% @cambios = marca.cambios %>
-
-  <% end %>
   </div>
 
-  <div id="derecha">
+  <div class="derecha">
   <% unless @marca.archivo_adjunto.blank? %>
     <p>
       <%= cambio @marca, :archivo_adjunto, image_tag( @marca.adjuntos.last.archivo.url(:mini), :class => 'mini' ) unless @marca.archivo_adjunto.blank? %>
@@ -175,23 +159,41 @@
       <label for="">Número renovación</label>
       <%= cambio @marca ,:numero_renovacion %>
     </p>
-    <p>
-      <label for="">Productos</label>
-      <%= cambio @marca ,:productos %>
-    </p>
-
 
  </div>
 
-
   <div class="clear"></div>
+  
+  <div class=izquierda> 
+    <hr />
+    <h1 class="dark">Historial de modificaciones</h1>
 
 
-<div id="posts" class="posts" data-posts_size="<%= Marca::POSTS_SIZE %>">
-  <div>
-    <h2 class="title">Ultimos comentarios  123</h2>
-    <%= render :partial => "posts/posts", :locals => { :posts => @marca.ultimos_posts } %>
-    <%= link_post @marca, 'index' %>
-    <%= link_post @marca, 'new' %>
+    <% @cambios = @marca.cambios %>
+    <% @marca.historial.each do |marca| %>
+
+    <% @cambios.delete('usuario_id') %>
+    <p>
+      Modificado por <strong><%= marca.usuario %></strong> en fecha: <em><%= l marca.updated_at, :format => "%d, %B %Y %H:%M" %></em>
+    </p>
+
+    <% @cambios.each do |campo| %>
+        <p>
+          <%= presentar_campo_historial( marca, campo ) %>
+        </p>
+      <% end %>
+
+      <hr />
+      <% @cambios = marca.cambios %>
+    <% end %>
+  </div>
+
+  <div class="derecha" class="posts" data-posts_size="<%= Marca::POSTS_SIZE %>">
+    <div>
+      <h2 class="title">Ultimos comentarios  123</h2>
+        <%= render :partial => "posts/posts", :locals => { :posts => @marca.ultimos_posts } %>
+        <%= link_post @marca, 'index' %>
+        <%= link_post @marca, 'new' %>
+    </div>
   </div>
 </div>

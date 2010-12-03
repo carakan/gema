@@ -96,8 +96,8 @@ class Marca < ActiveRecord::Base
 
   scope :cruce, lambda { |importacion_id, nombre_marca| 
     where("marcas.importacion_id = ? AND marcas.tipo_signo_id NOT IN (?) AND marcas.nombre_minusculas LIKE ?",
-      importacion_id, TipoSigno.descartadas_cruce, "%#{ nombre_marca.downcase }%").
-      includes(:tipo_signo, :clase, { :consultas => :usuario }, :titulares)
+          importacion_id, TipoSigno.descartadas_cruce, "%#{ nombre_marca.downcase }%").
+          includes(:tipo_signo, :clase, { :consultas => :usuario }, :titulares)
   }
 
 
@@ -288,7 +288,7 @@ class Marca < ActiveRecord::Base
   # @param Marca o modelo heredado Indica si se debe unir con los atributos de la clase
   # @return Marca.new o clase heredada
   def self.crear_instancia(params)
-#    unless ESTADOS.inlcude? params[:estado]
+    #    unless ESTADOS.inlcude? params[:estado]
     #unless ESTADOS.include? params[:estado]
     #  return Marca.new(params)
     #end
@@ -357,7 +357,7 @@ class Marca < ActiveRecord::Base
   #   @return array
   def ultimos_posts()
     Post.all(:conditions => { :postable_id => self.id, :postable_type => 'Marca' }, 
-      :limit => POSTS_SIZE, :order => 'created_at DESC' )
+             :limit => POSTS_SIZE, :order => 'created_at DESC' )
   end
 
   # Almacena los errores despues de que es fallida la validación (usado para importaciones)
@@ -433,31 +433,30 @@ class Marca < ActiveRecord::Base
   end
 
 
-    # presenta de acuerdo al estado
-  def numero_marca(marca)
-    debugger
-    case self.estado
-      when "sm" then self.numero_solicitud
-      when "lp" then self.numero_publicacion
-      when "lr" then self.numero_registro
-      when "sr" then self.numero_solicitud_renovacion
-      when "rc" then self.numero_renovacion
-      else
-        self.numero_solicitud
-    end
+  # presenta de acuerdo al estado
+  def numero_marca
+    fecha_numero_marca[:numero]
+  end
+
+  def fecha_numero_marca
+    if self.numero_renovacion
+      return {:numero => self.numero_renovacion, :fecha => self.fecha_renovacion}
+    elsif self.numero_solicitud_renovacion
+      return {:numero => self.numero_solicitud_renovacion, :fecha => self.fecha_solicitud_renovacion}
+    elsif self.numero_registro
+      return {:numero => self.numero_registro, :fecha => self.fecha_registro}
+    elsif self.numero_numero_publicacion
+      return {:numero => self.numero_publicacion, :fecha => self.estado_fecha}
+    elsif self.numero_numero_solicitud
+      return {:numero => self.numero_solicitud, :fecha => self.estado_fecha}
+    else
+      return {:numero => nil, :fecha => self.estado_fecha}
+    end  
   end
 
   # presentar fecha de la marca
   def fecha_marca
-    case self.estado
-      when "sm" then self.estado_fecha
-      when "lp" then self.estado_fecha
-      when "lr" then self.fecha_registro
-      when "sr" then self.fecha_solicitud_renovacion
-      when "rc" then self.fecha_renovacion
-      else
-        self.estado_fecha
-    end
+    fecha_numero_marca[:fecha]
   end
 
 
@@ -471,7 +470,7 @@ class Marca < ActiveRecord::Base
   def self.preparar_numero_solicitud(num)
     num.gsub(/\s/, '').gsub(/–/, '-') unless num.nil?
   end
-  
+
   def self.preparar_numero_solicitud_renovacion(num)
     num.gsub(/\s/, '').gsub(/–/, '-') unless num.nil?
   end
@@ -508,7 +507,7 @@ class Marca < ActiveRecord::Base
 
   def adicionar_usuario
     if UsuarioSession.current_user
-    self.usuario_id = UsuarioSession.current_user[:id]
+      self.usuario_id = UsuarioSession.current_user[:id]
     end
   end
 
@@ -565,11 +564,11 @@ class Marca < ActiveRecord::Base
   # Usado en caso de importación para asignar el marca_estado_id de una marca
   def set_marca_estado_id
     case self.estado
-      when 'sm' then self.marca_estado_id = 1
-      when 'lp' then self.marca_estado_id = 7
-      when 'lr' then self.marca_estado_id = 12
-      when 'rc' then self.marca_estado_id = 18
-      when 'sr' then self.marca_estado_id = 16
+    when 'sm' then self.marca_estado_id = 1
+    when 'lp' then self.marca_estado_id = 7
+    when 'lr' then self.marca_estado_id = 12
+    when 'rc' then self.marca_estado_id = 18
+    when 'sr' then self.marca_estado_id = 16
     end
   end
 end
