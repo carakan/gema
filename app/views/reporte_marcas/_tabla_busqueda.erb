@@ -3,7 +3,7 @@
     <!--<th class="_200" style="padding: 4px;">Busqueda</th>-->
     <th class="_200">Signo</th>
     <th class="_200">Tipo</th>
-    <th class="_200">Clase</th>
+    <th class="_200">Cl</th>
     <th class="_200">Numero</th>
     <th class="_200">Fecha</th>
     <% if show_titulares %>
@@ -18,7 +18,7 @@
         <%#= rd.busqueda %>
       </td>-->
       <td><%= rd.marca_propia.nombre %></td>
-      <td><%= rd.marca_propia.tipo_signo %></td>
+      <td><%= rd.marca_propia.tipo_signo.sigla if rd.marca_propia.tipo_signo %></td>
       <td><%= rd.marca_propia.clase_id %></td>
       <td><%= rd.marca_propia.numero_marca %></td>
       <td><%= rd.marca_propia.fecha_marca %></td>

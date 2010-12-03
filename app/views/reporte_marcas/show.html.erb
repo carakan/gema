@@ -19,13 +19,11 @@
     <%= f.hidden_field :representante_id %>
       <label for="">Cliente</label>
       <h2><%= @reporte_marca.representante %></h2>
-    <% end %>
-<% if !@reporte_marca.importacion_id? %>
+  <% end %>
 <p>
   <label for="">Denominación: </label>
   <h2><%= @reporte_marca.busqueda.upcase %></h2>
 </p>
-<% end %>
 <p>
   <label for="">Idioma</label>
   <h2><%= @reporte_marca.idioma! %></h2>
@@ -42,5 +40,5 @@
 
 <%= link_to 'Editar', edit_reporte_marca_path(@reporte_marca), :class => 'edit' %>
 <%= link_to 'lista', reporte_marcas_path, :class => 'list' %>
-<%= link_to "Descargar reporte .xls", download_reporte_marca_path(@reporte_marca, :format => "xls"), :class => 'pdf' %>
+<%= link_to "Descargar reporte .xls", download_reporte_marca_path(@reporte_marca, :format => "xls"), :class => 'xls' %>
 <%= link_to "Descargar reporte", download_reporte_marca_path(@reporte_marca), :class => 'pdf' %>

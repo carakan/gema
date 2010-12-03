@@ -16,8 +16,8 @@
   <tr>
     <th>Marca</th>
     <th>Numero<br />Solicitud</th>
-    <th>Tipo Signo</th>
-    <th>Clase</th>
+    <th>Tipo</th>
+    <th>Cl</th>
     <th>Titulares</th>
     <th></th>
     <% @marcas.each do |marca| %>
@@ -25,7 +25,7 @@
     <tr>
       <td <%= errores_marca(marca) %>><%= link_to marca.nombre, ver_marca_path(marca), :class => "ajax #{marca.propia!} #{marca.valido!}" %></td>
       <td><%= marca.numero_solicitud %></td>
-      <td><%= marca.tipo_signo %></td>
+      <td><%= marca.tipo_signo.sigla if marca.tipo_signo %></td>
       <td><%= marca.clase_id %></td>
       <td><%= marca.try(:titulares).map(&:nombre).join(",") %></td>
 

@@ -18,6 +18,7 @@ h1{
   font-family: arial, helvetica, freesans, clean, sans-serif;
   font-size:25px; 
   font-weight: bold;
+  line-height: 25px;
 }
 a {
   color: #2167cb;
@@ -496,6 +497,12 @@ a.pdf {
   background: transparent url(../images/icons/page_white_acrobat.png) no-repeat top left;
   padding-left: 18px;
 }
+a.xls{
+  background: transparent url(../images/icons/page_excel.png) no-repeat top left;
+  padding-left: 18px;
+}
+
+
 a.back {
   background: transparent url(../images/icons/arrow_left.png) no-repeat top left;
   padding-left: 18px;
