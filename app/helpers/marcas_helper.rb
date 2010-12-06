@@ -1,3 +1,4 @@
+# encoding: utf-8
 module MarcasHelper
   # Presenta los campos con su label
   def presentar_campo_historial(klass, campo)
@@ -11,6 +12,10 @@ module MarcasHelper
       pres = pres.join(", ") if pres.is_a? Array
       %Q( <label>#{hash[:label]}</label> #{ pres } ).html_safe
     end
+  end
+
+  def ver_estado(estado)
+    Marca::ESTADOS[estado]
   end
 
   def presentar_campo_por_tipo(klass, campo)
@@ -41,7 +46,7 @@ module MarcasHelper
     elsif !presentar and attr.to_s =~ /.*_id$/
       presentar = klass.send(attr.to_s.gsub(/_id$/, ''))
     end
-    
+
     if [Date, Time, DateTime, ActiveSupport::TimeWithZone ].include? klass.send(attr).class
       presentar = l(klass.send(attr))
     end
@@ -63,12 +68,12 @@ module MarcasHelper
 
   def buscar_clase(clase_id)
     @clases ||= Clase.all(:select => "id, nombre, codigo")
-    
+ 
     unless clase_id.nil?
       @clases.find { |v| v.id == clase_id }
     end
   end
-  
+
   def buscar_tipo_signo(tipo_signo_id)
     @signos ||= TipoSigno.all(:select => 'id, nombre')
 
@@ -76,7 +81,7 @@ module MarcasHelper
       @signos.find { |v| v.id == tipo_signo_id }
     end
   end
-  
+
   # Presenta un tr indicando si es propia y presentado
   # los errores dependiendo si se elija la opcion error
   # para presentar
@@ -91,7 +96,7 @@ module MarcasHelper
       css << ' error'
       alt << %Q(alt="#{marca.presentar_errores}")
     end
-    
+
     "<tr class=\"#{css}\" #{alt}>"
   end
 

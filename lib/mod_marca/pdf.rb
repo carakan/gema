@@ -32,16 +32,13 @@ module ModMarca::PDF
       @lista_seleccionada = pdf_parametros[@seccion]
       rango = crear_rango()
 
-      # Transaccion para la importacion de datos
-      Marca.transaction do
-        rango.each do |num|
-          arr = extraer_datos_html(crear_nombre_archivo_html(num), num )
-          # Metodo utilizado para actualizar en la clase
-          arr.each do |params|
-            # crear_instancia_pdf  se encuentra en el archivo lista_publicacion
-            # lib/mod_marca/lista_publicacion.rb
-            m = crear_marca_pdf(params, num)
-          end
+      rango.each do |num|
+        arr = extraer_datos_html(crear_nombre_archivo_html(num), num )
+        # Metodo utilizado para actualizar en la clase
+        arr.each do |params|
+          # crear_instancia_pdf  se encuentra en el archivo lista_publicacion
+          # lib/mod_marca/lista_publicacion.rb
+          m = crear_marca_pdf(params, num)
         end
       end
 

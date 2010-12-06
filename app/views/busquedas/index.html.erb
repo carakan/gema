@@ -47,8 +47,8 @@
           <td><label for="marca<%= marca.id %>"><span class="<%= marca.propia! %>"><%= link_to marca.nombre, marca_path(marca), :class => :ajax%></span></label></td>
           <td><%= marca.clase_id %></td>
           <td><%= marca.tipo_signo.sigla if marca.tipo_signo %></td>
-          <td><%#= marca.numero_marca %></td>
-          <td><%#= lo(marca.fecha_marca, :format => "%d %b, %Y") %></td>
+          <td><%= marca.numero_marca %></td>
+          <td><%= lo(marca.fecha_marca, :format => "%d %b, %Y") if marca.fecha_marca %></td>
           <td><%= buscar_representante( marca.titular_ids_serial, @representantes ) %></td>
           <td><%= buscar_representante( marca.agente_ids_serial, @representantes ) %></td>
           <!--<td><%= tipo_busqueda marca.pos %></td>-->
