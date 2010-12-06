@@ -40,16 +40,16 @@ module ModMarca::Solicitud
       fecha_imp = DateTime.now.strftime("%Y-%m-%d %H:%I:%S")
       importar_excel(archivo)
       fila = 3 # Fila inicial que comienza el excel
-      @importacion = Importacion.create!(:archivo => archivo, :fecha_limite => params[:fecha_limite], :fecha_limite_orpan => params[:fecha_limite_orpan] )
+      Importacion.transaction do
+        @importacion = Importacion.create!(:archivo => archivo, :fecha_limite => params[:fecha_limite], :fecha_limite_orpan => params[:fecha_limite_orpan], :tipo => params[:tipo] )
 
-      Marca.transaction do
         for fila in ( 3..(@excel.last_row) )
           # valida de que no este vacio
           break if @excel.cell(fila, 1).blank? && @excel.cell(fila, 2).blank?
           klass = buscar_o_crear_marca(fila, fecha_imp)
         end
-      end
 
+      end
       File.delete(@excel_path)
 
       @importacion.id

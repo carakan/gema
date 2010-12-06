@@ -374,7 +374,7 @@ class Marca < ActiveRecord::Base
       else
         "#{k.to_s.humanize}: #{self.errores[k]}"
       end
-    end.join("\n")
+    end.join("<br/>")
   end
 
   # Aumenta los numeros necesarios para buscar el numero de solicitud

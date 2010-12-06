@@ -6,7 +6,7 @@ class ImportacionesController < ApplicationController
   # GET /importaciones
   # GET /importaciones.xml
   def index
-    @marcas = Marca.view_importaciones( @page )
+    @importaciones = Importacion.includes(:marcas).order("importaciones.created_at DESC").paginate(:page => @page)
   end
 
 
@@ -33,7 +33,7 @@ class ImportacionesController < ApplicationController
     end
   end
 
-  
+
   # Presenta el listado de una importacion realizada
   def show
     @importacion = Importacion.find(params[:id])

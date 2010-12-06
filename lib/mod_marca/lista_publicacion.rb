@@ -50,19 +50,21 @@ module ModMarca::ListaPublicacion
       @fecha_imp = DateTime.now.strftime("%Y-%m-%d %H:%I:%S")
       @formato_fecha = params.delete(:formato_fecha)
 
-      @importacion = Importacion.create!(params)
+      Importacion.transaction do
+        @importacion = Importacion.create!(params)
 
-      extension, cont_type = [ File.extname( archivo.original_filename ).downcase, archivo.content_type ]
+        extension, cont_type = [ File.extname( archivo.original_filename ).downcase, archivo.content_type ]
 
-      if extension == '.xls'# and cont_type == 'application/vnd.ms-excel'
-        importar_archivo_excel(archivo)
-      elsif extension == '.pdf'# and cont_type == 'application/pdf'
-        include ModMarca::PDF
-        importar_pdf(archivo, obtener_path_parametros_pdf)
-      else
-        raise "Existio un error debe seleccionar un archivo PDF o Excel"
+        if extension == '.xls'# and cont_type == 'application/vnd.ms-excel'
+          importar_archivo_excel(archivo)
+        elsif extension == '.pdf'# and cont_type == 'application/pdf'
+          include ModMarca::PDF
+          importar_pdf(archivo, obtener_path_parametros_pdf)
+        else
+          raise "Existio un error debe seleccionar un archivo PDF o Excel"
+        end
       end
-      @importacion.update_attributes(:completa => true)
+      #@importacion.update_attributes(:completa => true)
 
       @importacion.id
     end
@@ -168,7 +170,7 @@ module ModMarca::ListaPublicacion
     end
 
     def buscar_tipo_marca(signo, marca)
-      tipo = validacion_marca_senapi_orpan(signo,marca)
+      tipo = validacion_marca_senapi_orpan(signo, marca)
       TipoMarca.find_by_nombre(tipo).try(:id)
     end
 
@@ -189,9 +191,9 @@ module ModMarca::ListaPublicacion
       rep.id
     end
 
-    def validacion_signo_senapi_orpan(signo,marca)
+    def validacion_signo_senapi_orpan(signo, marca)
       s = 'Otro'
-      if (signo == 'Denominación')
+      if signo == 'Denominación'
         s = 'Marca Denominativa'
         if (marca == 'Nombre Comercial')
           s = 'Nombre Comercial Denominativo'
@@ -200,23 +202,23 @@ module ModMarca::ListaPublicacion
         elsif (marca == 'Lema Comercial')
           s = 'Lema Comercial'
         end
-       
+
       elsif signo == 'Mixta'
         if marca =='Nombre Comercial'
           s = 'Nombre Comercial Mixto'
-        elsif 
+        else
           s = 'Marca Mixta'
         end
 
-      elsif (signo == 'Figurativa')
+      elsif signo == 'Figurativa'
         s = 'Marca Figurativa'
-         
+
       elsif (signo == 'Tridimensional')
         s = 'Marca Tridimensional'
       end
-      
+
       s
-    end 
+    end
 
     def validacion_marca_senapi_orpan(signo,marca)
       m = 'Otro'
@@ -231,7 +233,7 @@ module ModMarca::ListaPublicacion
       end
 
       m
-    end 
+    end
 
     ############################################################
     # Metodos para realizar la importacion desde un Excel

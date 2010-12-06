@@ -9,15 +9,9 @@ body {
   font-family: arial, helvetica, freesans, clean, sans-serif;
   font-size: 78%;
 }
-body,p, ol, ul {
+body, p, ol, ul {
   font-family: arial, helvetica, freesans, clean, sans-serif;
   line-height: 18px;
-}
-
-h1{
-  font-family: arial, helvetica, freesans, clean, sans-serif;
-  font-size:25px; 
-  font-weight: bold;
 }
 a {
   color: #2167cb;
@@ -34,14 +28,21 @@ table.decorated th {
   color: #ffffff;
   background: #484848 url(../images/bg_tr_tabs_tab.png) repeat-x scroll 0 50%;
   border-right: 1px solid #484848;
+  text-align: center;
 }
 table.decorated th a {
   color: #ffffc5;
   text-decoration: none;
 }
-table.decorated th { padding: 6px 10px; text-align: center; text-transform: uppercase; }
+table.decorated th {
+  padding: 6px 10px;
+  text-align: center;
+}
 table.decorated th li { margin: 0px; }
-table.decorated td { padding: 6px 10px; }
+table.decorated td {
+  padding: 6px 10px;
+  text-align: center;
+}
 table.decorated td li { margin: 0px; }
 table.decorated td { vertical-align: top; }
 table.decorated a.edit { display: inline-block; }
@@ -90,7 +91,6 @@ input.num {
 legend { font-weight: bold; }
 label {
   vertical-align: top;
-  font-size: 13px;
   font-weight: bold;
   display: block;
   color: #484848;
@@ -699,22 +699,3 @@ a.desc {
 .ui-dialog .breadcrumps { display: none; }
 #tabla-cruce tr.select { background-color: #dcdcdc; }
 #tabla-cruce span.mini { font-size: 1px; }
-div#contenido{float:left; width: 100%;}
-div#contenido .izquierda{ float: left; margin:10px;width: 40%;}
-div#contenido .derecha{ float: right; width:50%; margin:10px;}
-.izquierda .detalles{ float:left; width: 50%;}
-div#contenido p{
-  font-family: arial, helvetica, freesans, clean, sans-serif;
-  font-size:15px; 
-  line-height: 18px;
-  font-weight: bold;
-}
-div#contenido label {
-  vertical-align: top;
-  font-size: 13px;
-  font-weight: normal;
-  line-height: 18px;
-  display: inline;
-  color: #484848;
-  margin: 3px 0px;
-}
