@@ -15,27 +15,23 @@
   <h2 class="dark">Gaceta <%= @importacion.publicacion %> del <%= l @importacion.publicacion_fecha %></h2>
 <% end %>
 <div id="contenido">
-  <div class="izquierda">
-    <div class="detalles"> 
       <% if @reporte_marca.representante_id %>
         <%= f.hidden_field :representante_id %>
         <label for="">Cliente</label>
-        <h3><%= @reporte_marca.representante %></h3>
+        <%= @reporte_marca.representante %>
       <% end %>
       <p>
         <label for="">Denominación: </label>
-        <h3><%= @reporte_marca.busqueda.upcase %></h3>
+        <%= @reporte_marca.busqueda.upcase %>
       </p>
       <p>
-        <label for="">Idioma</label>
-        <h3><%= @reporte_marca.idioma! %></h3>
+        <label for="">Idioma:</label>
+        <%= @reporte_marca.idioma! %>
       </p>
       <p>
-        <label for="">Análisis</label>
-        <h3><%= @reporte_marca.carta %></h3>
+        <label for="">Análisis:</label>
+        <%= @reporte_marca.carta %>
       </p>
-    </div>
-  </div>
 </div>
 <%= render :partial => ( @reporte_marca.importacion_id? ? "tabla_cruce" : "tabla_busqueda" ), :locals => {:show_titulares => true} %>
 
