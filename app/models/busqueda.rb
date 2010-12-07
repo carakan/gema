@@ -219,14 +219,14 @@ class Busqueda
       if marcas.any?
         " AND res.id IN (#{marcas.join(", ")})"
       else
-        " AND res.id IN (0)"
+        " AND res.id IN (-1)"
       end
     elsif params[:representante] == 'titular' and params[:representante_id]
       marcas = Representante.find_by_sql("SELECT * FROM marcas_titulares WHERE titular_id = #{params[:representante_id].to_i}").map(&:marca_id)
       if marcas.any?
         " AND res.id IN (#{marcas.join(", ")})"
       else
-        " AND res.id IN (0)"
+        " AND res.id IN (-1)"
       end
     else
       ""
