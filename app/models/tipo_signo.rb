@@ -14,9 +14,15 @@ class TipoSigno < ActiveRecord::Base
     nombre
   end
 
+  # Retorna un hash con todos las siglas tipo signo
+  def self.hash_siglas
+    Hash[ TipoSigno.all.map { |t| [t.id, t.sigla ] } ]
+  end
+
   # ids de marcas descartadas para el cruce
   #   @return Array
   def self.descartadas_cruce
-    ['Figurativa', 'Tridimensional'].map{ |v| find_by_nombre(v).try(:id) }
+    #['Figurativa', 'Tridimensional'].map{ |v| find_by_nombre(v).try(:id) }
+    [2, 4]
   end
 end

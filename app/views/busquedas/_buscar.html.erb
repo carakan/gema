@@ -51,12 +51,11 @@
   <div class="half fl">
     Bucar por
     <label for="representante_agente">
-      <%= radio_button_tag "representante", "agente", params[:representante] == "agente" %> Agente
+      <%= check_box_tag "representante[]", "agente", params[:representante] ? params[:representante].include?("agente") : false, :id => "representante_agente" %> Agente
     </label>
     <label for="representante_titular">
-      <%= radio_button_tag "representante", "titular", params[:representante] == "titular" %> Titular
+      <%= check_box_tag "representante[]", "titular", params[:representante] ? params[:representante].include?("titular") : false, :id => "representante_titular" %> Titular
     </label>
-    <span class='representante_id'><%= Representante.find(params[:representante_id]).to_s unless params[:representante_id].blank? %></span>
     <%= hidden_field_tag 'representante_id', params[:representante_id] %>
     <%= text_field_tag "cliente", params[:cliente], :size => 40 %>
     <p class="hint">escriba para poder seleccionar el cliente</p>
