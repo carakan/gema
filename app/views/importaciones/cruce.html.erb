@@ -55,8 +55,9 @@
 </table>
 
 <script type="text/javascript">
-    $('table.resultados').fixedtableheader();
-  })(jQuery);
+  $(function() {
+    $('table.decorated').fixedtableheader();
+  });
 </script>
 
 <%= @will %>
