@@ -60,7 +60,7 @@
 <% end %>
 
 <script type="text/javascript">
-  (function($) {
+  $(function() {
     $('.resultados input:checkbox').click(function() {
       if( $(this).attr('checked') ) {
         var id = $(this).attr("name").replace(/^[a-z_]+([0-9]+)$/,"$1");
@@ -96,5 +96,5 @@
     });
 
     $('table.resultados').fixedtableheader();
-  })(jQuery);
+  });
 </script>
