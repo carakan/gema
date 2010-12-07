@@ -216,6 +216,9 @@ class Busqueda
   def self.condiciones_representante(params)
     representantes = []
     marcas = []
+
+    return "" if params[:representante].nil?
+
     ['agente', 'titular'].each { |v| representantes << v if params[:representante].include?(v) }
     if representantes.any? and params[:representante_id]
       representantes.each do |rep|
