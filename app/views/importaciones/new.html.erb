@@ -10,6 +10,7 @@
       <%= f.text_field :tipo %>
     </div>
 
+    <% label_fecha = 'Fecha' %>
     <% if params[:tipo] == 'lp' %>
       <li>
         <%= f.input :publicacion, :as => :string, :label => 'Gaceta' %>
@@ -23,10 +24,12 @@
       </li>
       <li class="date">
       </li>
+      <%= f.input :fecha_limite, :as => :string, :label => 'Fecha limite gaceta', :input_html => { :class => 'date' } %>
+      <%= f.input :fecha_limite_orpan, :as => :string, :label => 'Fecha limite gaceta (ORPAN)', :input_html => { :class => 'date' } %>
+      <% label_fecha = 'Fecha gaceta' %>
     <% end %>
-    <%= f.input :publicacion_fecha, :as => :string, :label => 'Fecha gaceta', :input_html => { :class => 'date' } %>
-    <%= f.input :fecha_limite, :as => :string, :label => 'Fecha limite gaceta', :input_html => { :class => 'date' } %>
-    <%= f.input :fecha_limite_orpan, :as => :string, :label => 'Fecha limite gaceta (ORPAN)', :input_html => { :class => 'date' } %>
+
+    <%= f.input :publicacion_fecha, :as => :string, :label => label_fecha, :input_html => { :class => 'date' } %>
     <%= f.input :archivo, :as => :file, :label => "Archivo", :input_html => { 'size' => '60' } %>
 
   </div>
