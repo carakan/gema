@@ -27,6 +27,10 @@ class Importacion < ActiveRecord::Base
     %Q(gaceta #{publicacion} del #{I18n.l publicacion_fecha})
   end
 
+  def gaceta?
+    self.tipo == "lp"
+  end
+
 private
 
   # Retorna la cantidad de cruces pendientes de una importacion

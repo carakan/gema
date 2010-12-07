@@ -1,0 +1,119 @@
+<h2 class="dark">Resultados de la importacion</h2>
+
+<% unless @busqueda.blank? %>
+  <table class="decorated nolink tablesorter" id="tabla-cruce">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Nombre</th>
+        <th title="Tipo de signo">Tipo</th>
+        <th title="Clase">Cla</th>
+        <th>Numero</th>
+        <th>Fecha</th>
+        <th>Agentes</th>
+        <th>Titulares</th>
+        <th>Observaciones</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <% titulares = @busqueda.first.titular_ids_serial.sort %>
+    <% agentes = @busqueda.first.agente_ids_serial.sort %>
+    <% count = 1 %>
+    <% count_grupos = 1 %>
+    <% marcas_selected = [] %>
+    <% selected = true %>
+    <% @busqueda.each_with_index do |b, i| %>
+      <% if titulares == b.titular_ids_serial.sort && agentes == b.agente_ids_serial.sort %>
+        <tr >
+          <td>
+
+          </td>
+          <td>
+            <label for="consulta_consulta_detalles_attributes_<%= i %>_marca_id" class="propia"><%= b.nombre %></label>
+          </td>
+          <td><%= b.tipo_signo.sigla if b.tipo_signo %></td>
+          <td><%= b.clase_id %></td>
+          <td><%= numero_marca(b) %></td>
+          <td><%= lo(b.estado_fecha, :format => "%d %b, %Y") %></td>
+          <td><%= b.agentes.join(", ") %></td>
+          <td><%= b.titulares.join(", ") %></td>
+          <% if count == 1 && selected %>
+            <td><%= link_to("Reporte", "/listas/reporte", :grupo => count_grupos, :class => "reporte") %></td>
+          <% else %>
+            <td colspan="2"></td>
+          <% end %>
+        </tr>
+        <% count += 1 %>
+        <% marcas_selected << b.id  %>
+      <% else %>
+        <%= hidden_field_tag("marca_ids_#{count_grupos}", marcas_selected.join(",")) %>
+        <% titulares = b.titular_ids_serial.sort %>
+        <% agentes = b.agente_ids_serial.sort %>
+        <% count = 1 %>
+        <% marcas_selected = []  %>
+        <% count_grupos += 1 %>
+        <% selected = true %>
+        <% redo %>
+      <% end %>
+    <% end %>
+    <% if !marcas_selected.empty? %>
+      <%= hidden_field_tag("marca_ids_#{count_grupos}", marcas_selected.join(",")) %>
+    <% end %>
+  </table>
+<% end %>
+
+<script type="text/javascript">
+  (function($) {
+   // $("#tabla-cruce").tablesorter();
+   $("table a.reporte").click(function(e){
+     e.stopPropagation();
+     e.preventDefault();
+     enlace = $(this);
+     marcas = $("#marca_ids_" + enlace.attr("grupo")).val();
+     $.postGo(enlace.attr("href"), {"marca_ids" : marcas});
+     });
+
+   function validarForma() {
+   msg = "";
+   if($('#consulta_comentario').val().trim() == "") {
+   msg = "Debe ingresar un comentario";
+   }
+   if ( $('input:checkbox:checked').length <= 0 ) {
+   msg = "Debe seleccionar al menos una marca";
+   }
+   return msg;
+   }
+
+   $('input:submit').click(function(e) {
+       var target = e.target;
+       if($(target).val() == "Salvar") {
+       var msg = validarForma();
+       if(msg != "") {
+       alert(msg);
+       return false;
+       }
+       }
+       });
+
+   // Adicion de un hidden para todos los elementos seleccioandos
+   $('input:checkbox').click(function() {
+       if( $(this).attr('checked') ) {
+       var input = document.createElement('input');
+       var val = $(this).attr('data-tipo_de_busqueda');
+       var name = $(this).attr("name").replace(/\[marca_id\]/, "[tipo_de_busqueda]");
+       $(input).attr({
+         'name': name,
+         'type': 'hidden',
+         'value': val
+         });
+       $(this).after(input);
+       $(this).parents("tr").addClass('select');
+       }else {
+       $(this).siblings('input:hidden').remove();
+       $(this).parents("tr").removeClass('select');
+       }
+       });
+  })(jQuery);
+
+</script>
