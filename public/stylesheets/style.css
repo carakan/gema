@@ -35,6 +35,7 @@ table.decorated th {
   background: #484848 url(../images/bg_tr_tabs_tab.png) repeat-x scroll 0 50%;
   border-right: 1px solid #484848;
   text-align: center;
+  text-transform: uppercase;
 }
 table.decorated th a {
   color: #ffffc5;

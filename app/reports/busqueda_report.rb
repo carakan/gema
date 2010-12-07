@@ -44,7 +44,7 @@ class BusquedaReport < ReporteMarcaBase
   def tabla(reporte_marca)
     data = datos(reporte_marca)
     table( [ encabezado ] + data, :header => true, :width => 700) do
-      row(0).style(:background_color => 'cccccc', :style => :bold)
+      row(0).style(:background_color => 'cccccc', :style => :bold, :align => :center)
       cells.style(:size => 8, :inline_format => true)
       column(0).style(:width => 35)
       column(6).style(:width => 200)
