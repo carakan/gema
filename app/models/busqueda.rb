@@ -214,17 +214,16 @@ class Busqueda
 
   # Busqueda por agente o titular
   def self.condiciones_representante(params)
-    if params[:representante] == 'agente' and params[:representante_id]
-      marcas = Representante.find_by_sql("SELECT * FROM marcas_agentes WHERE agente_id = #{params[:representante_id].to_i}").map(&:marca_id)
-      if marcas.any?
-        " AND res.id IN (#{marcas.join(", ")})"
-      else
-        " AND res.id IN (-1)"
+    representantes = []
+    marcas = []
+    ['agente', 'titular'].each { |v| representantes << v if params[:representante].include?(v) }
+    if representantes.any? and params[:representante_id]
+      representantes.each do |rep|
+        marcas += Representante.find_by_sql("SELECT * FROM marcas_#{rep.pluralize} WHERE #{rep}_id = #{params[:representante_id].to_i}").map(&:marca_id)
       end
-    elsif params[:representante] == 'titular' and params[:representante_id]
-      marcas = Representante.find_by_sql("SELECT * FROM marcas_titulares WHERE titular_id = #{params[:representante_id].to_i}").map(&:marca_id)
+
       if marcas.any?
-        " AND res.id IN (#{marcas.join(", ")})"
+        " AND res.id IN (#{marcas.uniq.compact.join(", ")})"
       else
         " AND res.id IN (-1)"
       end
