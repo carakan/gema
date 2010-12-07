@@ -439,15 +439,15 @@ class Marca < ActiveRecord::Base
   end
 
   def fecha_numero_marca
-    if self.numero_renovacion
+    if self.numero_renovacion && !self.numero_renovacion.blank?
       return {:numero => self.numero_renovacion, :fecha => self.fecha_renovacion}
-    elsif self.numero_solicitud_renovacion
+    elsif self.numero_solicitud_renovacion && !self.numero_solicitud_renovacion.blank?
       return {:numero => self.numero_solicitud_renovacion, :fecha => self.fecha_solicitud_renovacion}
-    elsif self.numero_registro
+    elsif self.numero_registro && !self.numero_registro.blank?
       return {:numero => self.numero_registro, :fecha => self.fecha_registro}
-    elsif self.numero_numero_publicacion
+    elsif self.numero_publicacion && !self.numero_publicacion.blank?
       return {:numero => self.numero_publicacion, :fecha => self.estado_fecha}
-    elsif self.numero_numero_solicitud
+    elsif self.numero_solicitud && !self.numero_solicitud.blank?
       return {:numero => self.numero_solicitud, :fecha => self.estado_fecha}
     else
       return {:numero => nil, :fecha => self.estado_fecha}
