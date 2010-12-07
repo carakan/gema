@@ -190,14 +190,20 @@ class Marca < ActiveRecord::Base
   end
 
   # Realiza la inclusion de modulos de acuerdo al estado que marca estado tenga
-  def self.set_include_estado(estado)
+  def self.set_include_estado(klass, estado)
     if ESTADOS.include? estado
       mod = MarcaEstado.buscar_estado(estado)
     else
-      m = MarcaEstado.find(estado)
-      raise "Error, debe incluir estado válido" unless m
-      mod = m.modulo.constantize
+      begin
+        m = MarcaEstado.find(estado)
+        mod = m.modulo.constantize
+      rescue
+        mod = false
+        return klass.errors.add(:marca_estado_id, "Debe seleccionar un estado")
+      end
+      #raise "Error, debe incluir estado válido" unless m
     end
+
     include mod
   end
 
@@ -288,13 +294,10 @@ class Marca < ActiveRecord::Base
   # @param Marca o modelo heredado Indica si se debe unir con los atributos de la clase
   # @return Marca.new o clase heredada
   def self.crear_instancia(params)
-    #    unless ESTADOS.inlcude? params[:estado]
-    #unless ESTADOS.include? params[:estado]
-    #  return Marca.new(params)
-    #end
-    set_include_estado(params[:marca_estado_id])
+    klass = new(params)
+    set_include_estado(klass, params[:marca_estado_id])
     set_include_tipo_signo(params[:tipo_signo_id])
-    new(params)
+    klass
   end
 
   def set_include_propia(propia)
@@ -307,10 +310,8 @@ class Marca < ActiveRecord::Base
   # Metodo para poder realizar actualizaciones
   # que pueda cambiar la clse y el estado
   def update_marca(params)
-    #unless Marca::ESTADOS.include? self.estado
-    #  return self.valid?
-    #end
-    self.class.set_include_estado(params[:marca_estado_id])
+    params[:errores_manual] = {} if params[:errores_manual].nil?
+    self.class.set_include_estado(self, params[:marca_estado_id])
     params[:valido] = true
     self.update_attributes(params)
   end
