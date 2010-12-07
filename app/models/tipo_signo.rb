@@ -17,6 +17,7 @@ class TipoSigno < ActiveRecord::Base
   # ids de marcas descartadas para el cruce
   #   @return Array
   def self.descartadas_cruce
-    ['Figurativa', 'Tridimensional'].map{ |v| find_by_nombre(v).try(:id) }
+    #['Figurativa', 'Tridimensional'].map{ |v| find_by_nombre(v).try(:id) }
+    [2, 4]
   end
 end
