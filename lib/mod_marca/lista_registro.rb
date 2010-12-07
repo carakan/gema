@@ -16,7 +16,7 @@ module ModMarca::ListaRegistro
       validates_presence_of :nombre, :estado_fecha, 
         :tipo_signo_id, :clase_id, :numero_registro, :fecha_registro
       validates_format_of :numero_solicitud, :with => /^\d+-\d{4}$/
-      validates_format_of :numero_registro, :with => /^\d+-\C$/
+      validates_format_of :numero_registro, :with => /^\d+-C$/
       validates_uniqueness_of :numero_solicitud, :scope => :parent_id
     end
 

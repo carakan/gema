@@ -445,9 +445,9 @@ class Marca < ActiveRecord::Base
       return {:numero => self.numero_solicitud_renovacion, :fecha => self.fecha_solicitud_renovacion}
     elsif self.numero_registro
       return {:numero => self.numero_registro, :fecha => self.fecha_registro}
-    elsif self.numero_numero_publicacion
+    elsif self.numero_publicacion
       return {:numero => self.numero_publicacion, :fecha => self.estado_fecha}
-    elsif self.numero_numero_solicitud
+    elsif self.numero_solicitud
       return {:numero => self.numero_solicitud, :fecha => self.estado_fecha}
     else
       return {:numero => nil, :fecha => self.estado_fecha}
