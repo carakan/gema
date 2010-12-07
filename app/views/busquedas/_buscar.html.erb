@@ -56,7 +56,6 @@
     <label for="representante_titular">
       <%= check_box_tag "representante[]", "titular", params[:representante].include?("titular"), :id => "representante_titular" %> Titular
     </label>
-    <span class='representante_id'><%= Representante.find(params[:representante_id]).to_s unless params[:representante_id].blank? %></span>
     <%= hidden_field_tag 'representante_id', params[:representante_id] %>
     <%= text_field_tag "cliente", params[:cliente], :size => 40 %>
     <p class="hint">escriba para poder seleccionar el cliente</p>
