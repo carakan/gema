@@ -94,7 +94,7 @@ class Marca < ActiveRecord::Base
     where(:fecha_impotacion => fecha, :valido => false)
   }
 
-  scope :cruce, lambda { |importacion_id, nombre_marca| 
+  scope :cruce, lambda { |importacion_id, nombre_marca|
     where("marcas.importacion_id = ? AND marcas.tipo_signo_id NOT IN (?) AND marcas.nombre_minusculas LIKE ?",
           importacion_id, TipoSigno.descartadas_cruce, "%#{ nombre_marca.downcase }%").
           includes(:tipo_signo, :clase, { :consultas => :usuario }, :titulares)
