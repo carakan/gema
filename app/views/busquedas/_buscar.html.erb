@@ -51,10 +51,10 @@
   <div class="half fl">
     Bucar por
     <label for="representante_agente">
-      <%= check_box_tag "representante[]", "agente", params[:representante].include?("agente"), :id => "representante_agente" %> Agente
+      <%= check_box_tag "representante[]", "agente", params[:representante] ? params[:representante].include?("agente") : false, :id => "representante_agente" %> Agente
     </label>
     <label for="representante_titular">
-      <%= check_box_tag "representante[]", "titular", params[:representante].include?("titular"), :id => "representante_titular" %> Titular
+      <%= check_box_tag "representante[]", "titular", params[:representante] ? params[:representante].include?("titular") : false, :id => "representante_titular" %> Titular
     </label>
     <%= hidden_field_tag 'representante_id', params[:representante_id] %>
     <%= text_field_tag "cliente", params[:cliente], :size => 40 %>
