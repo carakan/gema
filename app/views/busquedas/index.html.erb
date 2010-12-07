@@ -61,7 +61,7 @@
 
 <script type="text/javascript">
   (function($) {
-    $('input:checkbox').click(function() {
+    $('.resultados input:checkbox').click(function() {
       if( $(this).attr('checked') ) {
         var id = $(this).attr("name").replace(/^[a-z_]+([0-9]+)$/,"$1");
         var index = $(this).attr('data-index');
