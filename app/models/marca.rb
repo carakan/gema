@@ -151,6 +151,7 @@ class Marca < ActiveRecord::Base
     valido? ? "" : "error"
   end
 
+
   # Transforma los errores en un Hash que puede ser utilizado para JSON
   def hashify_errors
     self.errors.map(&:first).uniq.inject({}) { |h, v|
