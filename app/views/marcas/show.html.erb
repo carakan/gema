@@ -188,9 +188,10 @@
     <% end %>
   </div>
 
-  <div class="derecha" class="posts" data-posts_size="<%= Marca::POSTS_SIZE %>">
+  <div class="derecha" data-posts_size="<%= Marca::POSTS_SIZE %>">
+    <hr />
     <div>
-      <h2 class="title">Ultimos comentarios  123</h2>
+      <h2 class="title">Ultimos comentarios</h2>
         <%= render :partial => "posts/posts", :locals => { :posts => @marca.ultimos_posts } %>
         <%= link_post @marca, 'index' %>
         <%= link_post @marca, 'new' %>

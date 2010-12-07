@@ -47,8 +47,8 @@
     <th style="width:250px"><%= sort_order "Nombre", "marcas.nombre_minusculas" %></th>
     <th title="Signo propio"><%= sort_order "Pro.","marcas.propia" %></th>
 		<th>Estado</th>
-    <th><%= sort_order "Tipo de signo", "tipo_signos.nombre" %></th>
-    <th>Clase</th>
+    <th><%= sort_order "Tipo", "tipo_signos.nombre" %></th>
+    <th>Cl</th>
     <th title="Signo activo"><%= sort_order "Act.", "marcas.activa" %></th>
     <th>Titulares</th>
     <th class="last"></th>
@@ -61,7 +61,7 @@
       </td>
       <td class="<%= marca.propia %>"></td>
       <td><span title="<%= marca.ver_estado %>"><%= marca.estado %></span></td>
-      <td><%= marca.tipo_signo %></td>
+      <td><% unless marca.tipo_signo.nil?%><%= marca.tipo_signo.sigla %><%end%></td>
       <td><%= marca.clase_id %></td>
       <td class="<%= marca.activa %>"></td>
       <td><%= marca.titulares.map(&:nombre).join(", ") %></td>

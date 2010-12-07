@@ -40,7 +40,7 @@
         <td <%= errores_marca(marca) %>>
           <span class="<%= marca.propia! %>"><%= link_to marca.nombre, marca_path(marca), :class => :ajax%></span>
         </td>
-        <td><%= marca.tipo_signo %></td>
+        <td><%= marca.tipo_signo.sigla if marca.tipo_signo %></td>
         <td><%= marca.clase_id %></td>
         <% @consult = marca.cruce(@importacion.id) %>
         <td><%= marca.try(:titulares).map(&:nombre).join(",") %></td>
@@ -53,6 +53,11 @@
 
 	</tr>
 </table>
+
+<script type="text/javascript">
+    $('table.resultados').fixedtableheader();
+  })(jQuery);
+</script>
 
 <%= @will %>
 

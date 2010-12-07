@@ -1,4 +1,4 @@
-<td><%= link_to marca.nombre, ver_marca_path( marca ), :class => 'ajax', 'data-title' => 'Ver marca' %></td>
+<td><span class="<%= marca.propia! %>"><%= link_to marca.nombre, marca_path(marca), :class => :ajax%></span></td>
 <td><%= marca.tipo_signo.sigla if marca.tipo_signo %></td>
 <td><%= marca.clase_id %></td>
 <td><%= marca.numero_marca %></td>
