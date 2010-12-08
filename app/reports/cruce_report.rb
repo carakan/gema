@@ -44,7 +44,7 @@ class CruceReport < ReporteMarcaBase
 
   def encabezado
     if I18n.locale == :es
-      ["Signo vigilado", "Tipo", "Clase", "Numero", "Fecha", "Comentarios"]
+      ["Signo vigilado", "Tipo", "Clase", "Número", "Fecha", "Comentarios"]
     else
       ["Own trademarks", "Type", "Class", "Pub. Number", "Date", "Comments"]
     end

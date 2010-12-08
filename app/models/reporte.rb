@@ -119,7 +119,6 @@ class Reporte < ActiveRecord::Base
       report.engine_report.busqueda = reporte_marca.busqueda
       report.engine_report.clases = reporte_marca.consulta.parametros[:clases] if reporte_marca.consulta
     end
-    yield
     report.to_pdf(reporte_marca)
   end
 end
