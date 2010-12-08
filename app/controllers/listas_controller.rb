@@ -17,7 +17,12 @@ class ListasController < ApplicationController
   def reporte
     respond_to do |format|
       format.html do
-        reporte = Reporte.crear_reporte(@reporte_marca)
+        reporte = Reporte.crear_reporte(@reporte_marca) do
+          report = Reporte.set_instance("cruce_report")
+          report.engine_report.marcas = [reporte_marca.marca_foranea]
+          report.engine_report.titulares = Marca.first(:conditions => {:id => reporte_marca.marca_ids_serial}).titulares.join(", ")
+          report.engine_report.importacion = reporte_marca.importacion
+        end
         send_data reporte, :filename => "#{nombre_archivo}.pdf"
       end
       format.xls do

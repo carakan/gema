@@ -58,7 +58,7 @@ class Reporte < ActiveRecord::Base
       result << instancia.send(@variables[index]) if @variables[index]
       index += 1
     end
-    
+
     @template = result
     extract_text(pattern)
     generate_variables(pattern, keys)
@@ -109,17 +109,20 @@ class Reporte < ActiveRecord::Base
 
   # Realiza la creación del reporte para un cruce o busqueda
   def self.crear_reporte(reporte_marca)
-    if reporte_marca.importacion_id?
-      report = Reporte.set_instance("cruce_report")
-      report.engine_report.marcas = [reporte_marca.marca_foranea]
-      report.engine_report.titulares = Marca.first(:conditions => {:id => reporte_marca.marca_ids_serial}).titulares.join(", ")
-      report.engine_report.importacion = reporte_marca.importacion
+    if reporte_marca
+      if reporte_marca.importacion_id?
+        report = Reporte.set_instance("cruce_report")
+        report.engine_report.marcas = [reporte_marca.marca_foranea]
+        report.engine_report.titulares = Marca.first(:conditions => {:id => reporte_marca.marca_ids_serial}).titulares.join(", ")
+        report.engine_report.importacion = reporte_marca.importacion
+      else
+        report = Reporte.set_instance("busqueda_report")
+        report.engine_report.busqueda = reporte_marca.busqueda
+        report.engine_report.clases = reporte_marca.consulta.parametros[:clases] if reporte_marca.consulta
+      end
     else
-      report = Reporte.set_instance("busqueda_report")
-      report.engine_report.busqueda = reporte_marca.busqueda
-      report.engine_report.clases = reporte_marca.consulta.parametros[:clases] if reporte_marca.consulta
+      yield
     end
-    yield
     report.to_pdf(reporte_marca)
   end
 end
