@@ -84,6 +84,11 @@ module ApplicationHelper
     end
   end
 
+  # Presenta el error
+  def view_error(f, attr)
+    "<span class=\"error\">#{f.object.errors[attr].join(", ")}</span>".html_safe if f.object.errors[attr]
+  end
+
   def last_importation
     importacion = Importacion.last(:conditions => {:tipo => "lp"})
     link_to("Reporte lista publicacion", lista_path(importacion))

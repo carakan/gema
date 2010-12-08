@@ -75,7 +75,7 @@ class Marca < ActiveRecord::Base
   serialize :errores_manual
 
 
-  validates_presence_of :marca_estado_id
+  validates_presence_of :marca_estado_id, :nombre, :tipo_signo_id, :clase_id
   validate :validar_errores_manual
 
   default_scope where("marcas.parent_id = 0")

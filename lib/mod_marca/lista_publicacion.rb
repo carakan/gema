@@ -18,8 +18,7 @@ module ModMarca::ListaPublicacion
     # Define las validaciones y filtros que se deben aplicar a la clase
     def set_validations_and_filters
       # validaciones
-      validates_presence_of :nombre, :estado_fecha, :numero_publicacion, 
-        :tipo_signo_id, :clase_id
+      validates_presence_of :estado_fecha, :numero_publicacion
       validates_format_of :numero_solicitud, :with => /^\d+-\d{4}$/
       validates_uniqueness_of :numero_solicitud, :scope => :parent_id
 

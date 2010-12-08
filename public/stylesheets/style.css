@@ -206,6 +206,7 @@ form.in_half li {
   margin-left: 3px;
 }
 .error { color: #ff0000; }
+span.error { display: block; }
 .errorExplanation {
   color: #ff0000;
   border: 2px solid #ff0000;
