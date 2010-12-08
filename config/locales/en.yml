@@ -9,7 +9,7 @@ en:
   "titulares marca": Owner's
   "observaciones marca": Product service description
   "tipo marca": Type
-  "imagen marca": Diseno
+  "imagen marca": Design
 
   denominacion: "Denomination"
   figurativa: "Figurative"
@@ -20,7 +20,7 @@ en:
     formats:
       default: "%b %d, %Y"
       short: "%b %d %Y"
-      long: "%B %d of %Y"
+      long: "%B %e, %Y"
   time:
     formats:
       date: "%B %d, %Y"

@@ -61,7 +61,7 @@ class ReporteMarcaBase < ReportBase
     datos_array[1] = "#{ marca.tipo_signo.sigla if marca.tipo_signo }"
     datos_array[2] = "#{ marca.clase_id }"
     datos_array[3] = "#{ marca.numero_marca }"
-    datos_array[4] = "#{ I18n.l(marca.fecha_marca, :format => :short) if marca.fecha_marca}"
+    datos_array[4] = "#{ I18n.l(marca.fecha_marca.to_date, :format => :short) if marca.fecha_marca}"
     datos_array[5] = "#{ marca.titulares.join(", ") }"
     datos_array
   end
