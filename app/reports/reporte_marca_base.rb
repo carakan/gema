@@ -23,7 +23,7 @@ class ReporteMarcaBase < ReportBase
   def tabla(reporte_marca)
     data = datos(reporte_marca)
     table( [ encabezado ] + data, :header => true, :width => 720) do
-      row(0).style(:background_color => 'cccccc', :style => :bold)
+      row(0).style( :background_color => 'cccccc', :style => :bold, :align => :center, :valign => :center)
       cells.style(:size => 8, :inline_format => true)
       column(0..5).style(:width => 100)
     end

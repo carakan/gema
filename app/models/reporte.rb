@@ -90,12 +90,16 @@ class Reporte < ActiveRecord::Base
   end
 
   # generate report in pdf
-  def to_pdf(data)
-    I18n.locale = data.idioma
+  def to_pdf(data = nil)
+    if data
+      I18n.locale = data.idioma
+    end
     prepare_report(@engine_report)
-    @engine_report.dataset = data
-    if data.carta
-      @engine_report.observacion = data.carta
+    if data
+      @engine_report.dataset = data
+      if data.carta
+        @engine_report.observacion = data.carta
+      end
     end
     index = 0
     @texts.each do |text|
@@ -108,7 +112,7 @@ class Reporte < ActiveRecord::Base
   end
 
   # Realiza la creación del reporte para un cruce o busqueda
-  def self.crear_reporte(reporte_marca)
+  def self.crear_reporte(reporte_marca = nil)
     if reporte_marca
       if reporte_marca.importacion_id?
         report = Reporte.set_instance("cruce_report")
@@ -120,9 +124,9 @@ class Reporte < ActiveRecord::Base
         report.engine_report.busqueda = reporte_marca.busqueda
         report.engine_report.clases = reporte_marca.consulta.parametros[:clases] if reporte_marca.consulta
       end
+      report.to_pdf(reporte_marca)
     else
       yield
     end
-    report.to_pdf(reporte_marca)
   end
 end

@@ -39,7 +39,7 @@
           <td><%= b.agentes.join(", ") %></td>
           <td><%= b.titulares.join(", ") %></td>
           <% if count == 1 && selected %>
-            <td><%= link_to("Reporte", "/listas/reporte", :grupo => count_grupos, :class => "reporte") %></td>
+            <td><%= link_to("Reporte", "/listas/reporte?importacion=#{@importacion.id}", :grupo => count_grupos, :class => "reporte") %></td>
           <% else %>
             <td colspan="2"></td>
           <% end %>

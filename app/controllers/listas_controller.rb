@@ -15,15 +15,19 @@ class ListasController < ApplicationController
   end
 
   def reporte
+    marca_ids = params[:marca_ids].split(",") 
+    marcas = Marca.find(marca_ids)
+    importacion = Importacion.find(params[:importacion])
     respond_to do |format|
       format.html do
-        reporte = Reporte.crear_reporte(@reporte_marca) do
-          report = Reporte.set_instance("cruce_report")
-          report.engine_report.marcas = [reporte_marca.marca_foranea]
-          report.engine_report.titulares = Marca.first(:conditions => {:id => reporte_marca.marca_ids_serial}).titulares.join(", ")
-          report.engine_report.importacion = reporte_marca.importacion
+        reporte = Reporte.crear_reporte() do
+          report = Reporte.set_instance("lista_publicacion")
+          report.engine_report.marcas = marcas
+          report.engine_report.titulares = Marca.first(:conditions => {:id => marca_ids}).titulares.join(", ")
+          report.engine_report.importacion = importacion
+          report.to_pdf()
         end
-        send_data reporte, :filename => "#{nombre_archivo}.pdf"
+        send_data reporte, :filename => "lista_publicacion.pdf"
       end
       format.xls do
         if @reporte_marca.importacion_id
