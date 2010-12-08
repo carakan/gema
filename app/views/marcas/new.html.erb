@@ -41,69 +41,23 @@
   <%= f.input :clase, :tabindex => 5 %>
   <%= f.input :productos, :label=>"Descripción productos/servicios", :as => :text, :input_html => { :rows => 10, :cols => 115 }, :tabindex => 7 %>
 
-  <div class="in_half">
-    <%= link_to 'Nuevo cliente', new_representante_path('data-title' => 'Crear cliente'), :class => 'new ajax' %>
-    <ol>
-      <li>
-      <ul><%= label_tag "marca_agente_ids", "Agentes" %>
-        <%= select_tag "marca[agente_ids][]", [] %></ul>
-      </li>
-    </ol>
-<!--   <ol>  
-      <li id="agente-auto" class="input-text">
-        <label for="agente_ids">Agentes</label>
-        <ul id="ul-agentes" style="display:none"> 
-          <% @marca.agentes.each do |a| %>
-            <li rel="<%= a.id %>"><%= a.nombre %></li>
-          <% end %>
-        </ul> 
-        <input type="text" value="" id="agente_ids" tabindex="8"/>
-        <div id="agentes-list" class="facebook-auto"> 
-          <div class="default">Escriba el nombre de un agente</div>  
-          <ul class="feed">
-          </ul>
-        </div> 
-      </li> 
-    </ol>-->
-    <ol>
-      <li>
-        <ul><%= label_tag "marca_titular_ids", "Titulares" %>
-        <%= select_tag "marca[titular_ids][]", [] %></ul>
-      </li>
-    </ol>
+  <%= link_to 'Nuevo cliente', new_representante_path('data-title' => 'Crear cliente'), :class => 'new ajax' %>
+  <div class="clear"></div>
+  <li class="fl half">
+    <%= label_tag "marca_agente_ids", "Agentes" %>
+    <%= select_tag "marca[agente_ids][]", [] %>
+    <%= view_error(f, :agente_ids) %>
+  </li>
 
-<!--    <ol>  
-      <li id="titular-auto" class="input-text"> 
-        <label for="titular_ids">Titulares</label>
-        <ul id="ul-titulares" style="display:none"> 
-          <% @marca.titulares.each do |t| %>
-            <li rel="<%= t.id %>"><%= t.nombre %></li>
-          <% end %>
-        </ul> 
-        <input type="text" value="" id="titular_ids" tabindex="9" /> 
-        <div id="titulares-list" class="facebook-auto"> 
-          <div class="default">Escriba el nombre de un titular</div>  
-          <ul class="feed">
-          </ul>
-        </div> 
-      </li> 
-    </ol>-->
+  <li class="fl half">
+    <%= label_tag "marca_titular_ids", "Titulares" %>
+    <%= select_tag "marca[titular_ids][]", [] %>
+    <%= view_error(f, :titular_ids) %>
+  </li>
+  <div class="clear"></div>
 
-    <ol>
-      <li>
-        <ul>
-          <%= f.input :apoderado, :tabindex => 11 %>
-        </ul>
-      </li>
-    </ol> 
-    <ol>
-      <li>
-        <ul>
-          <%= f.input :representante_empresarial, :tabindex => 12 %>
-        </ul>
-      </li>
-    </ol> 
-  </div>
+  <%= f.input :apoderado, :tabindex => 11, :wrapper_html => {:class => 'fl half'} %>
+  <%= f.input :representante_empresarial, :tabindex => 12, :wrapper_html => {:class => 'fl half'} %>
   <%= f.input :fecha_instruccion , :as => 'string', :input_html => { :class => 'date' } %>
   <%= f.input :instruccion, :collection => Marca::INSTRUCCIONES, :label => 'Tipo de instrucción' %>
   <%= f.input :marca_estado, :tabindex => 10, :label => 'Estado' %>

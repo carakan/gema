@@ -84,6 +84,11 @@ module ApplicationHelper
     end
   end
 
+  # Presenta el error
+  def view_error(f, attr)
+    "<span class=\"error\">#{f.object.errors[attr].join(", ")}</span>".html_safe if f.object.errors[attr]
+  end
+
 end
 WillPaginate::ViewHelpers.pagination_options[:previous_label] = '<<'
 WillPaginate::ViewHelpers.pagination_options[:next_label] = '>>'
