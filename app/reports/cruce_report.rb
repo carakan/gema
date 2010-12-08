@@ -10,7 +10,7 @@ class CruceReport < ReporteMarcaBase
   def tabla(reporte_marca)
     data = datos(reporte_marca)
     table( [ encabezado ] + data, :header => true) do
-      row(0).style(:background_color => 'cccccc', :style => :bold)
+      row(0).style( :background_color => 'cccccc', :style => :bold, :align => :center, :valign => :center)
       cells.style(:size => 8, :inline_format => true)
       column(0..5).style(:width => 80)
       column(0).style(:width => 120)
@@ -44,7 +44,7 @@ class CruceReport < ReporteMarcaBase
 
   def encabezado
     if I18n.locale == :es
-      ["Signo vigilado", "Tipo", "Clase", "Numero", "Fecha", "Comentarios"]
+      ["Signo vigilado", "Tipo", "Clase", "Número", "Fecha", "Comentarios"]
     else
       ["Own trademarks", "Type", "Class", "Pub. Number", "Date", "Comments"]
     end

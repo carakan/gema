@@ -34,7 +34,6 @@
         <%= @reporte_marca.carta %>
       </p>
     <% else %>
-      <h2 class="dark">Datos de la marca publicada</h2>
       <p>
         <label>Denominación:</label>
         <%= @reporte_marca.marca_foranea.nombre.upcase %>
@@ -52,11 +51,11 @@
         <%= @reporte_marca.marca_foranea.clase_id %>
       </p>
       <p>
-        <label>Numero solicitud:</label>
+        <label>Número solicitud:</label>
         <%= @reporte_marca.marca_foranea.numero_solicitud %>
       </p>
       <p>
-        <label>Numero publicaciópn:</label>
+        <label>Número publicación:</label>
         <%= @reporte_marca.marca_foranea.numero_publicacion %>
       </p>
 

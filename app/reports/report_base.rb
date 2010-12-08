@@ -28,15 +28,13 @@ class ReportBase < Prawn::Document
       count += 1
     end
 
-    data = [marca_header, marcas_table.flatten]
+    data = [marca_header] + marcas_table
 
     the_x = 0
     the_y = 0
 
     table(data, :cell_style => {:border_width => 1}) do |t|
-      t.row(0).style :background_color => 'f0f0f0'
-      t.row(0).style :"size" => 9
-      t.row(1).style :"size" => 9
+      t.row(0).style :background_color => 'cccccc', :style => :bold, :align => :center, :valign => :center
       t.rows(1..7).width = 120
       t.cells.style(:size => 8, :inline_format => true)
       the_x = t.cells[1,2].x
