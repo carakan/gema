@@ -23,7 +23,7 @@
     <% @marcas.each do |marca| %>
       <% tr_error marca %>
     <tr>
-      <td <%= errores_marca(marca) %>><%= link_to marca.nombre, ver_marca_path(marca), :class => "ajax #{marca.propia!} #{marca.valido!}" %></td>
+      <td <%= errores_marca(marca) %>><%= link_to marca.nombre, marca_path(marca), :class => "ajax #{marca.propia!} #{marca.valido!}" %></td>
       <td><%= marca.numero_solicitud %></td>
       <td><%= marca.tipo_signo.sigla if marca.tipo_signo %></td>
       <td><%= marca.clase_id %></td>

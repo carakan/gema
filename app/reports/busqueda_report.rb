@@ -18,14 +18,14 @@ class BusquedaReport < ReporteMarcaBase
   # Retorna un array con el encabezado de acuerdo a su idioma
   def encabezado
     if I18n.locale == :es
-      ["Nro.", "Signo", "Tipo", "Cl.", "Numero", "Fecha", "Titular", "Observaciones"].collect{ |word| word.upcase}
+      ["Nro.", "Signo", "Tipo", "Cl.", "Número", "Fecha", "Titular", "Observaciones"].collect{ |word| word.upcase}
     else
-      ["Nr.", "Sign", "Type", "Cl.", "Number", "Date", "Owner/Applicant",  "Observations"].collect{ |word| word.upcase}
+      ["Nr.", "Sign", "Type", "Class", "Number", "Date", "Owner/Applicant",  "Observations"].collect{ |word| word.upcase}
     end
   end
 
   def analisis
-    text("<b>Analisis</b>", :inline_format => true)
+    text("<b>Análisis</b>", :inline_format => true)
     text(@observacion.to_s, :inline_format => true)
   end
 
@@ -44,7 +44,7 @@ class BusquedaReport < ReporteMarcaBase
   def tabla(reporte_marca)
     data = datos(reporte_marca)
     table( [ encabezado ] + data, :header => true, :width => 700) do
-      row(0).style(:background_color => 'cccccc', :style => :bold)
+      row(0).style(:background_color => 'cccccc', :style => :bold, :align => :center)
       cells.style(:size => 8, :inline_format => true)
       column(0).style(:width => 35)
       column(6).style(:width => 200)

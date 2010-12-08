@@ -14,26 +14,54 @@
 <% if @reporte_marca.importacion_id? %>
   <h2 class="dark">Gaceta <%= @importacion.publicacion %> del <%= l @importacion.publicacion_fecha %></h2>
 <% end %>
-  
-  <% if @reporte_marca.representante_id %>
-    <%= f.hidden_field :representante_id %>
-      <label for="">Cliente</label>
-      <h2><%= @reporte_marca.representante %></h2>
-  <% end %>
-<p>
-  <label for="">Denominación: </label>
-  <h2><%= @reporte_marca.busqueda.upcase %></h2>
-</p>
-<p>
-  <label for="">Idioma</label>
-  <h2><%= @reporte_marca.idioma! %></h2>
-</p>
+<div id="contenido">
+  <% if @importacion.nil? %>
+      <% if @reporte_marca.representante_id %>
+        <%= f.hidden_field :representante_id %>
+        <label for="">Cliente</label>
+        <%= @reporte_marca.representante %>
+      <% end %>
+      <p>
+      <label for="">Denominación: </label>
+        <%= @reporte_marca.busqueda.upcase if @reporte_marca.busqueda%>
+      </p>
+      <p>
+        <label for="">Idioma:</label>
+        <%= @reporte_marca.idioma! %>
+      </p>
+      <p>
+        <label for="">Análisis:</label>
+        <%= @reporte_marca.carta %>
+      </p>
+    <% else %>
+      <p>
+        <label>Denominación:</label>
+        <%= @reporte_marca.marca_foranea.nombre.upcase %>
+      </p>
+      <p>
+        <label>Tipo signo:</label>
+        <%= @reporte_marca.marca_foranea.tipo_signo %>
+      </p>
+      <p>
+        <label>Tipo marca:</label>
+        <%= @reporte_marca.marca_foranea.tipo_marca %>
+      </p>
+      <p>
+        <label>Clase:</label>
+        <%= @reporte_marca.marca_foranea.clase_id %>
+      </p>
+      <p>
+        <label>Número solicitud:</label>
+        <%= @reporte_marca.marca_foranea.numero_solicitud %>
+      </p>
+      <p>
+        <label>Número publicación:</label>
+        <%= @reporte_marca.marca_foranea.numero_publicacion %>
+      </p>
 
-<p>
-  <label for="">Análisis</label>
-  <h2><%= @reporte_marca.carta %></h2>
-</p>
-<%= render :partial => ( @reporte_marca.importacion_id? ? "tabla_cruce" : "tabla_busqueda" ), :locals => {:show_titulares => true} %>
+    <% end %>
+</div>
+<%= render :partial => ( @reporte_marca.importacion_id? ? "tabla_cruce" : "tabla_busqueda" ), :locals => {:show_titulares => false} %>
 
 <br />
 
