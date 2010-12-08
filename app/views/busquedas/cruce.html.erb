@@ -2,15 +2,16 @@
   <%= link_to "Lista de importaciones", importaciones_path %> > <%= link_to "Cruce gaceta", cruce_importaciones_path(:importacion_id => params[:importacion_id], :page => @page) %> > Selección
 </div>
 
-<h1>"<%= @marca.nombre %>"</h1>
 
-<div>
-  <div class="half fl" id="div1">
+<div id="contenido">
+<h1>"<%= @marca.nombre %>"</h1>
+  <div class="izquierda">
     <p>
-      <label>Clase: <%= @marca.clase_id %></label>
+    <label>Clase: </label>
+    <%= @marca.clase_id %>
     </p>
     <p>
-      <label> Nº solicitud </label>
+      <label> Nº solicitud:</label>
       <%= @marca.numero_solicitud %>
     </p>
     <p>
@@ -18,13 +19,13 @@
       <%= @marca.numero_publicacion %>
     </p>
   </div>
-  <div class="half fl" id="div2">
+  <div class="derecha">
     <p>
       <label for="">Tipo: </label>
       <%= @marca.tipo_signo %>
     </p>
     <p>
-      <label for="">Fecha solicitud</label>
+      <label for="">Fecha solicitud:</label>
       <%= lo @marca.estado_fecha %>
     </p>
     <p>
