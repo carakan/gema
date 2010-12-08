@@ -84,6 +84,10 @@ module ApplicationHelper
     end
   end
 
+  def last_importation
+    importacion = Importacion.last(:conditions => {:tipo => "lp"})
+    link_to("Reporte lista publicacion", lista_path(importacion))
+  end
 end
 WillPaginate::ViewHelpers.pagination_options[:previous_label] = '<<'
 WillPaginate::ViewHelpers.pagination_options[:next_label] = '>>'
