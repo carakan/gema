@@ -8,7 +8,11 @@
       var d;
       fecha = $.datepicker.parseDate($.datepicker._defaults.dateFormat, fecha);
       d = [fecha.getFullYear(), fecha.getMonth() + 1, fecha.getDate()];
-      return 'string' === tipo ? d.join("-") : d;
+      if ('string' === tipo) {
+        return d.join("-");
+      } else {
+        return d;
+      }
     };
     setFechaDateSelect = function(el) {
       var fecha;
@@ -41,10 +45,10 @@
     $('[tooltip]').live('mouseover mouseout', function(e) {
       var div, pos;
       div = '#tooltip';
-      if (($(this).hasClass('error'))) {
+      if ($(this).hasClass('error')) {
         div = '#tooltip-error';
-      };
-      if ((e.type === 'mouseover')) {
+      }
+      if (e.type === 'mouseover') {
         pos = $(this).position();
         $(div).css({
           'top': pos.top + 'px',
@@ -77,7 +81,11 @@
       });
     });
     getDataTitle = function(uri) {
-      return /data-title=/.test(uri) ? uri.match(/^.*(data-title=)([^&]+).*$/)[2].replace(/\+/g, ' ') : '';
+      if (/data-title=/.test(uri)) {
+        return uri.match(/^.*(data-title=)([^&]+).*$/)[2].replace(/\+/g, ' ');
+      } else {
+        return '';
+      }
     };
     createDialog = function(params) {
       var div;
@@ -97,8 +105,8 @@
       }).addClass('ajax-modal').css({
         'z-index': 1000
       });
-      delete (params['id']);
-      delete (params['title']);
+      delete params['id'];
+      delete params['title'];
       $(div).dialog(params);
       return div;
     };
@@ -119,27 +127,28 @@
       dec = dec || 2;
       return Math.round(val * Math.pow(10, dec)) / Math.pow(10, dec);
     };
-    $.roundVal = ($.fn.roundVal = roundVal);
+    $.roundVal = $.fn.roundVal = roundVal;
     toByteSize = function(bytes) {
-      if (true === (bytes < 1024)) {
-        return bytes + " bytes";
-      } else if (true === (bytes < Math.pow(1024, 2))) {
-        return roundVal(bytes / Math.pow(1024, 1)) + " Kb";
-      } else if (true === (bytes < Math.pow(1024, 3))) {
-        return roundVal(bytes / Math.pow(1024, 2)) + " MB";
-      } else if (true === (bytes < Math.pow(1024, 4))) {
-        return roundVal(bytes / Math.pow(1024, 3)) + " GB";
-      } else if (true === (bytes < Math.pow(1024, 5))) {
-        return roundVal(bytes / Math.pow(1024, 4)) + " TB";
-      } else if (true === (bytes < Math.pow(1024, 6))) {
-        return roundVal(bytes / Math.pow(1024, 5)) + " PB";
-      } else {
-        return roundVal(bytes / Math.pow(1024, 6)) + " EB";
+      switch (true) {
+        case bytes < 1024:
+          return bytes + " bytes";
+        case bytes < Math.pow(1024, 2):
+          return roundVal(bytes / Math.pow(1024, 1)) + " Kb";
+        case bytes < Math.pow(1024, 3):
+          return roundVal(bytes / Math.pow(1024, 2)) + " MB";
+        case bytes < Math.pow(1024, 4):
+          return roundVal(bytes / Math.pow(1024, 3)) + " GB";
+        case bytes < Math.pow(1024, 5):
+          return roundVal(bytes / Math.pow(1024, 4)) + " TB";
+        case bytes < Math.pow(1024, 6):
+          return roundVal(bytes / Math.pow(1024, 5)) + " PB";
+        default:
+          return roundVal(bytes / Math.pow(1024, 6)) + " EB";
       }
     };
-    $.toByteSize = ($.fn.toByteSize = toByteSize);
+    $.toByteSize = $.fn.toByteSize = toByteSize;
     setIframePostEvents = function(iframe, created) {
-      return (iframe.onload = function() {
+      return iframe.onload = function() {
         var html, posts, postsSize;
         html = $(iframe).contents().find('body').html();
         if ($(html).find('form').length <= 0 && created) {
@@ -147,15 +156,15 @@
           mark('#posts ul li:first');
           posts = parseInt($('#posts ul:first>li').length);
           postsSize = parseInt($('#posts').attr("data-posts_size"));
-          if ((posts > postsSize)) {
+          if (posts > postsSize) {
             $('#posts ul:first>li:last').remove();
-          };
+          }
           return $('#create_post_dialog').dialog('close');
         } else {
           created = true;
           return $('#create_post_dialog').html(html);
         }
-      });
+      };
     };
     $('a.post').live('click', function() {
       var div, iframe;
@@ -186,7 +195,7 @@
         'cache': false,
         'context': el,
         'data': data,
-        'type': (data['_method'] || $(this).attr('method')),
+        'type': data['_method'] || $(this).attr('method'),
         'success': function(resp, status, xhr) {
           var id, p;
           if ($(resp).find('input:submit').length <= 0) {
@@ -207,7 +216,7 @@
     addDatePicker = function() {
       return $('input.date').each(function(i, el) {
         var d, id, input;
-        if ((!$(el).hasClass('hasDate'))) {
+        if (!$(el).hasClass('hasDate')) {
           input = document.createElement('input');
           $(input).attr({
             'type': 'text',
@@ -237,7 +246,11 @@
     $('ul.menu>li').live('mouseover mouseout', function(e) {
       var $span;
       $span = $(this).find('.more, .less');
-      return (e.type === 'mouseover') ? $span.removeClass('more').addClass('less') : $span.removeClass('less').addClass('more');
+      if (e.type === 'mouseover') {
+        return $span.removeClass('more').addClass('less');
+      } else {
+        return $span.removeClass('less').addClass('more');
+      }
     });
     $('input.date').live('change', function() {
       return $(this).prev('input').val(parsearFecha($(this).val(), 'string'));
@@ -245,7 +258,7 @@
     $('a.delete').live("click", function(e) {
       var el, url;
       $(this).parents("tr:first, li:first").addClass('marked');
-      if ((confirm('Esta seguro de borrar el item seleccionado'))) {
+      if (confirm('Esta seguro de borrar el item seleccionado')) {
         url = $(this).attr('href');
         el = this;
         $.ajax({
@@ -270,15 +283,15 @@
       var params;
       params = {};
       $(elem).find('input, select, textarea').each(function(i, el) {
-        return (params[$(el).attr('name')] = $(el).val());
+        return params[$(el).attr('name')] = $(el).val();
       });
       return params;
     };
-    $.serializeFormElements = ($.fn.serializeFormElements = serializeFormElements);
+    $.serializeFormElements = $.fn.serializeFormElements = serializeFormElements;
     addDatePicker = function() {
       return $('input.date').each(function(i, el) {
         var d, id, input;
-        if ((!$(el).hasClass('hasDate'))) {
+        if (!$(el).hasClass('hasDate')) {
           input = document.createElement('input');
           $(input).attr({
             'type': 'text',
@@ -311,7 +324,7 @@
       $(selector).css({
         'background': 'rgb(255,255,' + val + ')'
       });
-      if ((val >= 255)) {
+      if (val >= 255) {
         $(selector).attr("style", "");
         return false;
       }
@@ -320,11 +333,11 @@
         return mark(selector, velocity, val);
       }, velocity);
     };
-    $.mark = ($.fn.mark = mark);
+    $.mark = $.fn.mark = mark;
     iniciar = function() {
       transformarDateSelect();
       return addDatePicker();
     };
     return iniciar();
   });
-})();
+}).call(this);
