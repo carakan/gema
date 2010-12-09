@@ -56,7 +56,7 @@ class ReportBase < Prawn::Document
     if @date_report.nil?
       @date_report = Date.today
     end
-    "La Paz, #{I18n.l(@date_report, :format => :long)}"
+    "#{I18n.l(@date_report, :format => :long)}"
   end
 
   def logo_orpan

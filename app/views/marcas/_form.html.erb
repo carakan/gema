@@ -135,7 +135,7 @@ $(document).ready(function() {
 
 
   // Funcion que habilita las clases
-  $('#marca_tipo_marca_id').bind('change, keyup', function() {
+  $('#marca_tipo_marca_id').bind('change, focusout', function() {
       $('#marca_clase_id').find('option').show();
       switch($(this).val()) {
         case '1':
@@ -147,7 +147,7 @@ $(document).ready(function() {
       }
   });
 
-  $('#marca_tipo_signo_id').bind('change, keyup', function() {
+  $('#marca_tipo_signo_id').bind('change, focusout', function() {
       if(($(this).val() * 1) > 4) {
         $('#marca_tipo_marca_id').val('5');
       }
