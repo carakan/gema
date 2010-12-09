@@ -45,13 +45,13 @@
   <div class="clear"></div>
   <li class="fl half">
     <%= label_tag "marca_agente_ids", "Agentes" %>
-    <%= select_tag "marca[agente_ids][]", [] %>
+    <%= facebook_select(f, :agente_ids) %>
     <%= view_error(f, :agente_ids) %>
   </li>
 
   <li class="fl half">
     <%= label_tag "marca_titular_ids", "Titulares" %>
-    <%= select_tag "marca[titular_ids][]", [] %>
+    <%= facebook_select(f, :titular_ids) %>
     <%= view_error(f, :titular_ids) %>
   </li>
   <div class="clear"></div>
@@ -90,14 +90,17 @@
 
 $(document).ready(function() {
 
-  $("#marca_titular_ids_").fcbkcomplete({
+  $("#marca_agente_ids").find('option').addClass('selected');
+  $("#marca_titular_ids").find('option').addClass('selected');
+
+  $("#marca_titular_ids").fcbkcomplete({
     json_url: "/representantes/buscar",
     filter_hide: true,
     filter_selected: true,
     newel: false
   });
 
-  $("#marca_agente_ids_").fcbkcomplete({
+  $("#marca_agente_ids").fcbkcomplete({
     json_url: "/representantes/buscar",
     filter_hide: true,
     filter_selected: true,

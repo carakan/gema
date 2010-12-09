@@ -5,6 +5,11 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
 
+  def facebook_select(f, attr)
+    at = attr.to_s.gsub(/_id.*$/, '').pluralize
+    f.select attr, f.object.send(at.to_sym).map { |v| [v.to_s, v.id] }, {}, {:multiple => true }
+  end
+
   # Creates the links show, edit, destroy
   def links(klass, options={})
     ['edit', 'destroy'].inject([]) do |t, m|
