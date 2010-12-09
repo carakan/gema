@@ -81,6 +81,11 @@
   <%= f.input :numero_registro,:label => 'Número de registro' , :tabindex => 18 %>
   <%= f.input :fecha_registro, :as => 'string', :input_html => { :tabindex => 19, :class => 'date'  } %>
 
+  <%= f.input :numero_solicitud_renovacion,:label => 'Número de solicitud renovación' , :tabindex => 18 %>
+  <%= f.input :fecha_solicitud_renovacion, :as => 'string', :input_html => { :tabindex => 19, :class => 'date'  } %>
+
+  <%= f.input :numero_renovacion,:label => 'Número de renovación' , :tabindex => 18 %>
+  <%= f.input :fecha_renovacion, :as => 'string', :input_html => { :tabindex => 19, :class => 'date'  } %>
   <% unless @marca.errores_manual.blank? %>
     <h3 class="error">Existen errores de comparación</h3>
 
