@@ -39,7 +39,12 @@
           <td><%= b.agentes.join(", ") %></td>
           <td><%= b.titulares.join(", ") %></td>
           <% if count == 1 && selected %>
-            <td><%= link_to("Reporte", "/listas/reporte?importacion=#{@importacion.id}", :grupo => count_grupos, :class => "reporte") %></td>
+            <td>
+              <%= link_to("Reporte", "/listas/reporte?importacion=#{@importacion.id}", :grupo => count_grupos, :class => "reporte") %>
+              <br/>
+              ES<%= radio_button_tag "language_#{count_grupos}", "es", true %>
+              EN<%= radio_button_tag "language_#{count_grupos}", "en", false %>
+            </td>
           <% else %>
             <td colspan="2"></td>
           <% end %>
@@ -71,7 +76,8 @@
      e.preventDefault();
      enlace = $(this);
      marcas = $("#marca_ids_" + enlace.attr("grupo")).val();
-     $.postGo(enlace.attr("href"), {"marca_ids" : marcas});
+     lang = $("input[name=language_"+ enlace.attr("grupo") +"]:checked").val()
+     $.postGo(enlace.attr("href"), {"marca_ids" : marcas, "lang":lang});
      });
 
    function validarForma() {
