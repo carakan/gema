@@ -111,7 +111,7 @@ $(document).ready(function() {
 
 
   // Funcion que habilita las clases
-  $('#marca_tipo_marca_id').bind('change, keyup', function() {
+  $('#marca_tipo_marca_id').live('change, focusout', function() {
       $('#marca_clase_id').find('option').show();
       switch($(this).val()) {
         case '1':
@@ -123,7 +123,7 @@ $(document).ready(function() {
       }
   });
 
-  $('#marca_tipo_signo_id').bind('change, keyup', function() {
+  $('#marca_tipo_signo_id').live('change, focusout', function() {
       if(($(this).val() * 1) > 4) {
         $('#marca_tipo_marca_id').val('5');
       }
@@ -135,6 +135,7 @@ $(document).ready(function() {
 
   if ($('#marca_tipo_signo_id').val() == "1"){
     $('#marca_descripcion_imagen_input').hide();
+    $('#marca_descripcion_imagen').val(" Descripcion diseño").hide();
   }
 
 });
