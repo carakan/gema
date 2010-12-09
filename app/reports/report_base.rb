@@ -20,10 +20,10 @@ class ReportBase < Prawn::Document
     marcas_table = []
     count = 0
     @marcas.each do |marca|
-      fecha_solicitud = "#{I18n.l(marca.estado_fecha, :format => :long) if marca.estado_fecha}"
+      fecha_solicitud = "#{I18n.l(marca.fecha_marca.to_date, :format => :long) if marca.fecha_marca}"
 
       marcas_table[count] = ["#{marca.nombre}", "#{marca.tipo_signo.try(:sigla) if marca.tipo_signo}", "", "#{marca.clase_id}", "#{fecha_solicitud}",
-        "#{marca.numero_publicacion}",
+        "#{marca.numero_marca}",
         "#{marca.titulares.collect{|representante| "#{representante.nombre}"}.join(", ")}", "#{marca.productos}"]
       count += 1
     end
@@ -56,7 +56,7 @@ class ReportBase < Prawn::Document
     if @date_report.nil?
       @date_report = Date.today
     end
-    "La Paz, #{I18n.l(@date_report, :format => :short)}"
+    "La Paz, #{I18n.l(@date_report, :format => :long)}"
   end
 
   def logo_orpan
