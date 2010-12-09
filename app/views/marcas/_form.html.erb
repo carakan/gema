@@ -38,16 +38,19 @@
 
     <%= link_to 'Nuevo cliente', new_representante_path('data-title' => 'Crear cliente'), :class => 'new ajax' %>
 
-    <li style="position:relative;width:440px;float:left;margin-right: 10px">
-      <%= label_tag "marca_agente_ids_", "Agentes" %>
-      <%= f.collection_select :agente_ids, Representante.find(f.object.agente_ids), :id, :to_s, {}, {:multiple => true} %>
+    <div class="clear"></div>
+
+    <li class="fl half">
+      <%= label_tag "marca_agente_ids", "Agentes" %>
+      <%= facebook_select(f, :agente_ids) %>
+      <%= view_error(f, :agente_ids) %>
     </li>
 
-    <li style="position:relative;width:440px;float:left">
-      <%= label_tag "marca_titular_ids_", "Titulares" %>
-      <%= f.collection_select :titular_ids, Representante.find(f.object.titular_ids), :id, :to_s, {}, {:multiple => true} %>
+    <li class="fl half">
+      <%= label_tag "marca_titular_ids", "Titulares" %>
+      <%= facebook_select(f, :titular_ids) %>
+      <%= view_error(f, :titular_ids) %>
     </li>
-
     <div class="clear"></div>
     <li>
         <%= f.input :apoderado, :tabindex => 11 %>
@@ -109,14 +112,15 @@ $(document).ready(function() {
   $("#marca_agente_ids").find('option').addClass('selected');
   $("#marca_titular_ids").find('option').addClass('selected');
 
-  // Plugin facebook
-  $("#marca_agente_ids").fcbkcomplete({
+
+  $("#marca_titular_ids").fcbkcomplete({
     json_url: "/representantes/buscar",
     filter_hide: true,
     filter_selected: true,
     newel: false
   });
-  $("#marca_titular_ids").fcbkcomplete({
+
+  $("#marca_agente_ids").fcbkcomplete({
     json_url: "/representantes/buscar",
     filter_hide: true,
     filter_selected: true,
@@ -131,7 +135,7 @@ $(document).ready(function() {
 
 
   // Funcion que habilita las clases
-  $('#marca_tipo_marca_id').bind('change, keyup', function() {
+  $('#marca_tipo_marca_id').bind('change, focusout', function() {
       $('#marca_clase_id').find('option').show();
       switch($(this).val()) {
         case '1':
@@ -143,7 +147,7 @@ $(document).ready(function() {
       }
   });
 
-  $('#marca_tipo_signo_id').bind('change, keyup', function() {
+  $('#marca_tipo_signo_id').bind('change, focusout', function() {
       if(($(this).val() * 1) > 4) {
         $('#marca_tipo_marca_id').val('5');
       }

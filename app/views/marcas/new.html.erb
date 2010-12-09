@@ -45,13 +45,13 @@
   <div class="clear"></div>
   <li class="fl half">
     <%= label_tag "marca_agente_ids", "Agentes" %>
-    <%= select_tag "marca[agente_ids][]", [] %>
+    <%= facebook_select(f, :agente_ids) %>
     <%= view_error(f, :agente_ids) %>
   </li>
 
   <li class="fl half">
     <%= label_tag "marca_titular_ids", "Titulares" %>
-    <%= select_tag "marca[titular_ids][]", [] %>
+    <%= facebook_select(f, :titular_ids) %>
     <%= view_error(f, :titular_ids) %>
   </li>
   <div class="clear"></div>
@@ -90,14 +90,17 @@
 
 $(document).ready(function() {
 
-  $("#marca_titular_ids_").fcbkcomplete({
+  $("#marca_agente_ids").find('option').addClass('selected');
+  $("#marca_titular_ids").find('option').addClass('selected');
+
+  $("#marca_titular_ids").fcbkcomplete({
     json_url: "/representantes/buscar",
     filter_hide: true,
     filter_selected: true,
     newel: false
   });
 
-  $("#marca_agente_ids_").fcbkcomplete({
+  $("#marca_agente_ids").fcbkcomplete({
     json_url: "/representantes/buscar",
     filter_hide: true,
     filter_selected: true,
@@ -111,7 +114,7 @@ $(document).ready(function() {
 
 
   // Funcion que habilita las clases
-  $('#marca_tipo_marca_id').bind('change, keyup', function() {
+  $('#marca_tipo_marca_id').live('change, focusout', function() {
       $('#marca_clase_id').find('option').show();
       switch($(this).val()) {
         case '1':
@@ -123,7 +126,7 @@ $(document).ready(function() {
       }
   });
 
-  $('#marca_tipo_signo_id').bind('change, keyup', function() {
+  $('#marca_tipo_signo_id').live('change, focusout', function() {
       if(($(this).val() * 1) > 4) {
         $('#marca_tipo_marca_id').val('5');
       }
@@ -135,6 +138,7 @@ $(document).ready(function() {
 
   if ($('#marca_tipo_signo_id').val() == "1"){
     $('#marca_descripcion_imagen_input').hide();
+    $('#marca_descripcion_imagen').val(" Descripcion diseño").hide();
   }
 
 });

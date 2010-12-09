@@ -162,6 +162,7 @@
 
  </div>
 
+</div>
   <div class="clear"></div>
   
   <div class=izquierda> 
@@ -188,13 +189,10 @@
     <% end %>
   </div>
 
-  <div class="derecha" data-posts_size="<%= Marca::POSTS_SIZE %>">
-    <hr />
-    <div>
+    <div id="posts" data-posts_size="<%= Marca::POSTS_SIZE %>" style="float:right;">
       <h2 class="title">Ultimos comentarios</h2>
         <%= render :partial => "posts/posts", :locals => { :posts => @marca.ultimos_posts } %>
         <%= link_post @marca, 'index' %>
         <%= link_post @marca, 'new' %>
     </div>
   </div>
-</div>
