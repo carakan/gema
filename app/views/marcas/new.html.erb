@@ -29,15 +29,13 @@
   <% if @marca.con_imagen? %>
     <li>
     <%= image_tag @marca.adjuntos.last.archivo.url(:mini), :class => 'mini' if @marca.adjuntos.size > 0 and @marca.id %>
-      <% unless @marca.tipo_signo_id == 4 %>
-          <label for="">Imagen</label>
-          <input type="file" name="marca[adjuntos_attributes][0][archivo]" size= "30" />
+        <label for="">Imagen</label>
+        <input type="file" name="marca[adjuntos_attributes][0][archivo]" size= "30" />
           <%# adj.file_field :archivo, :size => 30 %>
-      <% end %>
     </li>
+    <%= f.input :descripcion_imagen,:label => 'Descripcion diseño', :as => :text, :input_html => { :rows => 10, :cols => 115 }, :tabindex => 5 %>
   <% end %>
 
-  <%= f.input :descripcion_imagen,:label => 'Descripcion diseño', :as => :text, :input_html => { :rows => 10, :cols => 115 }, :tabindex => 5 %>
   <%= f.input :clase, :tabindex => 5 %>
   <%= f.input :productos, :label=>"Descripción productos/servicios", :as => :text, :input_html => { :rows => 10, :cols => 115 }, :tabindex => 7 %>
 
@@ -136,10 +134,6 @@ $(document).ready(function() {
     $('#marca_nombre').val("Diseño").hide().after("<span>Diseño</span>");
   }
 
-  if ($('#marca_tipo_signo_id').val() == "1"){
-    $('#marca_descripcion_imagen_input').hide();
-    $('#marca_descripcion_imagen').val(" Descripcion diseño").hide();
-  }
 
 });
 

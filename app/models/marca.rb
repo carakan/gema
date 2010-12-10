@@ -137,7 +137,7 @@ class Marca < ActiveRecord::Base
   end
 
   def con_imagen?
-    [2, 3, 4].include? self.tipo_signo_id
+    [2, 3, 4, 6].include? self.tipo_signo_id
   end
 
   def ver_fila
@@ -370,6 +370,7 @@ class Marca < ActiveRecord::Base
 
   # Metodo simple para poder presentar errores serializados
   def presentar_errores
+    return unless self.errores.is_a? Hash
     return unless self.errores.any?
     self.errores.keys.map do |k|
       if self.errores[k].is_a? Array
