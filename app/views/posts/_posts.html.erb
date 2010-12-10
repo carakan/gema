@@ -11,7 +11,7 @@
         <ul>
           <% p.adjuntos.each do |a| %>
             <li class="mime">
-            <%= link_to "<strong>#{ a.archivo_file_name }</strong> (#{ a.archivo_file_size.to_byte_size})".html_safe, a.archivo.url, :class => a.tipo %>
+            <%= link_to "<strong>#{ a.archivo_file_name }</strong> (#{ a.archivo_file_size.to_byte_size})".html_safe, a, :class => a.tipo %>
             </li>
           <% end %>
         </ul>
