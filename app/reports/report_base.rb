@@ -40,8 +40,10 @@ class ReportBase < Prawn::Document
       the_x = t.cells[1,2].x
       the_y = t.cells[1,2].y
 
+      a = 0
       @marcas.each do |marca|
-        image("#{Rails.public_path}#{marca.adjuntos.first.archivo.url(:mini)}" , :at => [the_x + 135, the_y - 25], :fit => [80, 80]) if !marca.adjuntos.empty?
+        image("#{Rails.public_path}#{marca.adjuntos.first.archivo.url(:mini)}" , :at => [the_x + 135, the_y - 25 - a], :fit => [80, 80]) if !marca.adjuntos.empty?
+        a = a+40
       end
       t.column(0).style(:width => 130)
       t.column(1..3).style(:width => 35)
