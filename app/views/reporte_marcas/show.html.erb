@@ -16,49 +16,49 @@
 <% end %>
 <div id="contenido">
   <% if @importacion.nil? %>
-      <% if @reporte_marca.tipo_reporte == ReporteMarca::TIPO["Cruce"] %>
-        <%= f.hidden_field :representante_id %>
-        <label for="">Cliente</label>
-        <%= @reporte_marca.representante %>
-      <% end %>
-      <p>
-      <label for="">Denominación: </label>
-        <%= @reporte_marca.busqueda.upcase if @reporte_marca.busqueda%>
-      </p>
-      <p>
-        <label for="">Idioma:</label>
-        <%= @reporte_marca.idioma! %>
-      </p>
-      <p>
-        <label for="">Análisis:</label>
-        <%= @reporte_marca.carta %>
-      </p>
-    <% elsif @reporte_marca.tipo_reporte == ReporteMarca::TIPO["Busqueda"] %>
-      <p>
-        <label>Denominación:</label>
-        <%= @reporte_marca.marca_foranea.nombre.upcase %>
-      </p>
-      <p>
-        <label>Tipo signo:</label>
-        <%= @reporte_marca.marca_foranea.tipo_signo %>
-      </p>
-      <p>
-        <label>Tipo marca:</label>
-        <%= @reporte_marca.marca_foranea.tipo_marca %>
-      </p>
-      <p>
-        <label>Clase:</label>
-        <%= @reporte_marca.marca_foranea.clase_id %>
-      </p>
-      <p>
-        <label>Número solicitud:</label>
-        <%= @reporte_marca.marca_foranea.numero_solicitud %>
-      </p>
-      <p>
-        <label>Número publicación:</label>
-        <%= @reporte_marca.marca_foranea.numero_publicacion %>
-      </p>
+    <% if @reporte_marca.tipo_reporte == ReporteMarca::TIPO["Cruce"] %>
+      <%= f.hidden_field :representante_id %>
+      <label for="">Cliente</label>
+      <%= @reporte_marca.representante %>
     <% end %>
+    <p>
+      <label for="">Denominación: </label>
+      <%= @reporte_marca.busqueda.upcase if @reporte_marca.busqueda%>
+    </p>
+    <p>
+      <label for="">Idioma:</label>
+      <%= @reporte_marca.idioma! %>
+    </p>
+    <p>
+      <label for="">Análisis:</label>
+      <%= @reporte_marca.carta %>
+    </p>
+  <% elsif @reporte_marca.tipo_reporte == ReporteMarca::TIPO["Busqueda"] %>
+    <p>
+      <label>Denominación:</label>
+      <%= @reporte_marca.marca_foranea.nombre.upcase %>
+    </p>
+    <p>
+      <label>Tipo signo:</label>
+      <%= @reporte_marca.marca_foranea.tipo_signo %>
+    </p>
+    <p>
+      <label>Tipo marca:</label>
+      <%= @reporte_marca.marca_foranea.tipo_marca %>
+    </p>
+    <p>
+      <label>Clase:</label>
+      <%= @reporte_marca.marca_foranea.clase_id %>
+    </p>
+    <p>
+      <label>Número solicitud:</label>
+      <%= @reporte_marca.marca_foranea.numero_solicitud %>
+    </p>
+    <p>
+      <label>Número publicación:</label>
+      <%= @reporte_marca.marca_foranea.numero_publicacion %>
+    </p>
+  <% end %>
 </div>
 <% if @reporte_marca.tipo_reporte != ReporteMarca::TIPO["Lista Publicacion"] %>
   <%= render :partial => ( @reporte_marca.importacion_id? ? "tabla_cruce" : "tabla_busqueda" ), :locals => {:show_titulares => false} %>
@@ -66,8 +66,9 @@
 
 <br />
 
-
-<%= link_to 'Editar', edit_reporte_marca_path(@reporte_marca), :class => 'edit' %>
+<% if @reporte_marca.tipo_reporte != ReporteMarca::TIPO["Lista Publicacion"] %>
+  <%= link_to 'Editar', edit_reporte_marca_path(@reporte_marca), :class => 'edit' %>
+<% end %>
 <%= link_to 'lista', reporte_marcas_path, :class => 'list' %>
 <% if @reporte_marca.tipo_reporte != ReporteMarca::TIPO["Lista Publicacion"] %>
   <%= link_to "Descargar reporte .xls", download_reporte_marca_path(@reporte_marca, :format => "xls"), :class => 'xls' %>
