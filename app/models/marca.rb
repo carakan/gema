@@ -370,6 +370,7 @@ class Marca < ActiveRecord::Base
 
   # Metodo simple para poder presentar errores serializados
   def presentar_errores
+    return unless self.errores.is_a? Hash
     return unless self.errores.any?
     self.errores.keys.map do |k|
       if self.errores[k].is_a? Array
