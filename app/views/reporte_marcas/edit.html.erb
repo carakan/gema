@@ -37,7 +37,7 @@
         <label for="">Análisis:</label>
         <%= @reporte_marca.carta %>
       </p>
-    <% else %>
+    <% elsif @reporte_marca.tipo_reporte == ReporteMarca::TIPO["Busqueda"] %>
       <p>
         <label>Denominación:</label>
         <%= @reporte_marca.marca_foranea.nombre.upcase %>

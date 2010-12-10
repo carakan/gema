@@ -21,9 +21,10 @@
 <% unless @busqueda.blank? %>
   <%= form_for @consulta do |f| -%>
     <%= f.hidden_field :representante_id %>
-    <label for="">Cliente</label>
-    <input type="text" id="cliente_id" size="40" />
-    <%= f.hidden_field :parametros %>
+  
+    <!-- <label for="">Cliente</label> -->
+    <!-- <input type="text" id="cliente_id" size="40" /> -->
+     <%= f.hidden_field :parametros %> 
     <%= f.hidden_field :busqueda %>
 
     <table class="decorated resultados">
