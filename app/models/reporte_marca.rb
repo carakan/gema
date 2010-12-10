@@ -2,7 +2,7 @@
 # author: Boris Barroso
 # email: boriscyber@gmail.com
 class ReporteMarca < ActiveRecord::Base
-  before_create :destruir_anteriores, :if => lambda { |r| r.importacion_id? }
+  # before_create :destruir_anteriores, :if => lambda { |r| r.importacion_id? }
 
   belongs_to :representante
   belongs_to :importacion
@@ -78,6 +78,7 @@ class ReporteMarca < ActiveRecord::Base
     reporte_marca.consulta_id = params[:consulta_id]
     reporte_marca.carta = detalles.first.consulta.comentario if !detalles.empty? && detalles.first.consulta
     reporte_marca.busqueda = detalles.first.consulta.busqueda if !detalles.empty? && detalles.first.consulta
+    reporte_marca.tipo_reporte = ReporteMarca::TIPO["Busqueda"]
     reporte_marca
   end
 

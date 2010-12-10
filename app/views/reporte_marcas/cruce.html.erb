@@ -13,6 +13,7 @@
   <%= f.input :representante_id, :as => :hidden %>
   <%= f.input :representante_type, :as => :hidden %>
   <%= f.input :importacion_id, :as => :hidden %>
+  <%= f.input :tipo_reporte, :as => :hidden %>
   <%= hidden_field_tag :marca_ids, @marca_ids.join(",") %>
   <%= hidden_field_tag :marca_foranea,  @marca.id %>
   <%= hidden_field_tag :importacion_id,  @importacion.id %>

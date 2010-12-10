@@ -34,7 +34,7 @@ class BusquedaReport < ReporteMarcaBase
   end
 
   def clase_en_busqueda
-    if @clases.length < 45
+    if @clases && @clases.length < 45
       "<b>#{@clases.join(", ")}</b>"
     else
       "<b>Todas</b>"

@@ -73,7 +73,7 @@ class ReporteMarcasController < ApplicationController
   # GET /reporte_marcas/new
   # GET /reporte_marcas/new.xml
   def cruce
-    @reporte_marca = ReporteMarca.new(:importacion_id => params[:importacion_id], :idioma => 'es')
+    @reporte_marca = ReporteMarca.new(:importacion_id => params[:importacion_id], :idioma => 'es', :tipo_reporte => ReporteMarca::TIPO["Cruce"])
     preparar_datos_cruce
     respond_to do |format|
       format.html # new.html.erb
