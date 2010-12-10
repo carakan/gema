@@ -62,7 +62,8 @@ class ReporteMarcasController < ApplicationController
           else
             reporte = render_to_string(:partial => "tabla_busqueda", :locals => {:show_titulares => true})
           end
-          send_data reporte, :filename => "#{nombre_archivo}.xls", :type => 'application/vnd.ms-excel;',:encoding => 'utf-8'
+
+          send_data reporte.encode('ISO-8859-1'), :filename => "#{nombre_archivo}.xls", :type => 'application/vnd.ms-excel;', :encoding => 'utf-8'
         end
       end
     else
