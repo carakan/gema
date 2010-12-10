@@ -13,7 +13,11 @@
       <th class="_200" colspan="7"><%= @reporte_marca.carta %></th>
     </tr>
     <tr>
-      <th class="_200" colspan="8"><%= @reporte_marca.carta %></th>
+      <th class="_200" >Fecha</th>
+      <th class="_200" colspan="7"><%= l(@reporte_marca.created_at) %></th>
+    </tr>
+    <tr>
+      <th class="_200" colspan="8"><%= l(@reporte_marca.created_at) %></th>
     </tr>
   <% end %>
   <tr style="background-color: #000; color: #fff">
