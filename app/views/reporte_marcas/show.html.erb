@@ -38,6 +38,7 @@
       <%= @reporte_marca.carta %>
     </p>
   <% elsif @reporte_marca.for_cruce? || @reporte_marca.for_solicitud? %>
+    <% unless @reporte_marca.nil? %>
     <p>
       <label>Denominación:</label>
       <%= @reporte_marca.marca_foranea.nombre.upcase %>
@@ -62,6 +63,7 @@
       <label>Número publicación:</label>
       <%= @reporte_marca.marca_foranea.numero_publicacion %>
     </p>
+   <% end %>
   <% end %>
 </div>
 <% if !@reporte_marca.for_lista_publicacion? %>
