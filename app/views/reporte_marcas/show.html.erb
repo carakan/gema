@@ -16,8 +16,7 @@
 <% end %>
 <div id="contenido">
   <% if @importacion.nil? %>
-    <% if @reporte_marca.tipo_reporte == ReporteMarca::TIPO["Cruce"] %>
-      <%= f.hidden_field :representante_id %>
+    <% if @reporte_marca.tipo_reporte == ReporteMarca::TIPO["Busqueda"] && @reporte_marca.representante %>
       <label for="">Cliente</label>
       <%= @reporte_marca.representante %>
     <% end %>
@@ -33,7 +32,7 @@
       <label for="">Análisis:</label>
       <%= @reporte_marca.carta %>
     </p>
-  <% elsif @reporte_marca.tipo_reporte == ReporteMarca::TIPO["Busqueda"] %>
+  <% elsif @reporte_marca.tipo_reporte == ReporteMarca::TIPO["Cruce"] %>
     <p>
       <label>Denominación:</label>
       <%= @reporte_marca.marca_foranea.nombre.upcase %>
