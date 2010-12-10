@@ -14,7 +14,8 @@ class ReporteMarca < ActiveRecord::Base
   TIPO = {
     "Busqueda" => 0 ,
     "Cruce" => 1,
-    "Lista Publicacion" => 2
+    "Lista Publicacion" => 2,
+    "Solicitud Marca" => 3
   }
   
   accepts_nested_attributes_for :reporte_marca_detalles
@@ -30,14 +31,34 @@ class ReporteMarca < ActiveRecord::Base
 
   # Crea el nombre de archivo para el pdf
   def crear_nombre_archivo
-    if self.importacion_id?
+    if self.for_cruce?
       nombre = "#{self.id}_Gaceta_" << self.importacion.publicacion
       nombre << "_" << (I18n.l self.importacion.publicacion_fecha, :format => "%d-%b-%Y")
+    elsif self.for_solicitud?
+      nombre = "solicitud"
     else
       nombre = "#{self.id}_busquedas"
     end
     nombre
   end
+
+  ###
+  def for_lista_publicacion?
+    self.tipo_reporte == TIPO["Lista Publicacion"]
+  end
+
+  def for_busqueda?
+    self.tipo_reporte == TIPO["Busqueda"]
+  end
+
+  def for_cruce?
+    self.tipo_reporte == TIPO["Cruce"]
+  end
+
+  def for_solicitud?
+    self.tipo_reporte == TIPO["Solicitud Marca"]
+  end
+  ###
 
   # Retorna el nombre del idioma en base a la abreviación que fue almacenada en la BD
   def idioma!

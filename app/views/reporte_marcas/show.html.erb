@@ -11,8 +11,8 @@
 <% end %>
 
 <h1>Datos del reporte</h1>
-<% if @reporte_marca.importacion_id? %>
-  <h2 class="dark">Gaceta <%= @importacion.publicacion %> del <%= l @importacion.publicacion_fecha %></h2>
+<% if @reporte_marca.for_cruce? %>
+  <h2 class="dark">Gaceta <%= @importacion.publicacion %> del <%=  l(@importacion.publicacion_fecha) if @importacion.publicacion_fecha %></h2>
 <% end %>
 <div id="contenido">
   <% if @importacion.nil? %>
@@ -32,7 +32,7 @@
       <label for="">Análisis:</label>
       <%= @reporte_marca.carta %>
     </p>
-  <% elsif @reporte_marca.tipo_reporte == ReporteMarca::TIPO["Cruce"] %>
+  <% elsif @reporte_marca.for_cruce? || @reporte_marca.for_solicitud? %>
     <p>
       <label>Denominación:</label>
       <%= @reporte_marca.marca_foranea.nombre.upcase %>
@@ -59,7 +59,7 @@
     </p>
   <% end %>
 </div>
-<% if @reporte_marca.tipo_reporte != ReporteMarca::TIPO["Lista Publicacion"] %>
+<% if !@reporte_marca.for_lista_publicacion? %>
   <%= render :partial => ( @reporte_marca.importacion_id? ? "tabla_cruce" : "tabla_busqueda" ), :locals => {:show_titulares => false} %>
 <% end %>
 
@@ -69,7 +69,7 @@
   <%= link_to 'Editar', edit_reporte_marca_path(@reporte_marca), :class => 'edit' %>
 <% end %>
 <%= link_to 'lista', reporte_marcas_path, :class => 'list' %>
-<% if @reporte_marca.tipo_reporte != ReporteMarca::TIPO["Lista Publicacion"] %>
+<% if @reporte_marca.for_cruce? || @reporte_marca.for_busqueda? %>
   <%= link_to "Descargar reporte .xls", download_reporte_marca_path(@reporte_marca, :format => "xls"), :class => 'xls' %>
 <% end %>
 <%= link_to "Descargar reporte", download_reporte_marca_path(@reporte_marca), :class => 'pdf' %>

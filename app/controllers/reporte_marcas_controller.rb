@@ -62,7 +62,6 @@ class ReporteMarcasController < ApplicationController
           else
             reporte = render_to_string(:partial => "tabla_busqueda", :locals => {:show_titulares => true})
           end
-
           send_data reporte.encode('ISO-8859-1'), :filename => "#{nombre_archivo}.xls", :type => 'application/vnd.ms-excel;', :encoding => 'utf-8'
         end
       end
@@ -74,7 +73,13 @@ class ReporteMarcasController < ApplicationController
   # GET /reporte_marcas/new
   # GET /reporte_marcas/new.xml
   def cruce
-    @reporte_marca = ReporteMarca.new(:importacion_id => params[:importacion_id], :idioma => 'es', :tipo_reporte => ReporteMarca::TIPO["Cruce"])
+    @importacion = Importacion.find(params[:importacion_id])
+    if @importacion.tipo == "lp"
+      tipo = ReporteMarca::TIPO["Cruce"]
+    elsif
+      tipo = ReporteMarca::TIPO["Solicitud Marca"]
+    end
+    @reporte_marca = ReporteMarca.new(:importacion_id => @importacion.id, :idioma => 'es', :tipo_reporte => tipo)
     preparar_datos_cruce
     respond_to do |format|
       format.html # new.html.erb
