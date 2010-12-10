@@ -100,6 +100,7 @@ class Marca < ActiveRecord::Base
           includes(:tipo_signo, :clase, { :consultas => :usuario }, :titulares)
   }
 
+  scope :propias, where(:propia => true)
 
   TIPOS = {
     'sm' => 'Solicitud de Marca',

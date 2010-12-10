@@ -90,10 +90,8 @@ class Reporte < ActiveRecord::Base
   end
 
   # generate report in pdf
-  def to_pdf(data = nil)
-    if data
+  def to_pdf(data)
       I18n.locale = data.idioma
-    end
     prepare_report(@engine_report)
     if data
       @engine_report.dataset = data
@@ -112,21 +110,23 @@ class Reporte < ActiveRecord::Base
   end
 
   # Realiza la creación del reporte para un cruce o busqueda
-  def self.crear_reporte(reporte_marca = nil)
-    if reporte_marca
-      if reporte_marca.importacion_id?
-        report = Reporte.set_instance("cruce_report")
-        report.engine_report.marcas = [reporte_marca.marca_foranea]
-        report.engine_report.titulares = Marca.first(:conditions => {:id => reporte_marca.marca_ids_serial}).titulares.join(", ")
-        report.engine_report.importacion = reporte_marca.importacion
-      else
-        report = Reporte.set_instance("busqueda_report")
-        report.engine_report.busqueda = reporte_marca.busqueda
-        report.engine_report.clases = reporte_marca.consulta.parametros[:clases] if reporte_marca.consulta
-      end
-      report.to_pdf(reporte_marca)
-    else
-      yield
+  def self.crear_reporte(reporte_marca)
+    if reporte_marca.tipo_reporte == ReporteMarca::TIPO["Cruce"]
+      report = Reporte.set_instance("cruce_report")
+      report.engine_report.marcas = [reporte_marca.marca_foranea]
+      report.engine_report.titulares = Marca.first(:conditions => {:id => reporte_marca.marca_ids_serial}).titulares.join(", ")
+      report.engine_report.importacion = reporte_marca.importacion
+    elsif reporte_marca.tipo_reporte == ReporteMarca::TIPO["Busqueda"]
+      report = Reporte.set_instance("busqueda_report")
+      report.engine_report.busqueda = reporte_marca.busqueda
+      report.engine_report.clases = reporte_marca.consulta.parametros[:clases] if reporte_marca.consulta
+    elsif reporte_marca.tipo_reporte == ReporteMarca::TIPO["Lista Publicacion"]
+      report = Reporte.set_instance("lista_publicacion")
+      marcas = Marca.find(reporte_marca.marca_ids_serial)
+      report.engine_report.marcas = marcas
+      report.engine_report.titulares = marcas.first.titulares.join(", ")
+      report.engine_report.importacion = reporte_marca.importacion
     end
+    report.to_pdf(reporte_marca)
   end
 end

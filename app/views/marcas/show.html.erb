@@ -1,6 +1,7 @@
 <style type="text/css">
   #marca{ width: 54%; float: left;}
-  #posts{ width: 44%; float: left; background-color: #EFEFEF; }
+  #posts{ width: 50%; float: right; background-color: #EFEFEF; margin: 15px;}
+  #posts p {font-style: normal;}
 </style>
 
 <div class="breadcrumps">
@@ -162,13 +163,11 @@
 
  </div>
 
-</div>
   <div class="clear"></div>
   
-  <div class=izquierda> 
+  <div class="izquierda"> 
     <hr />
     <h1 class="dark">Historial de modificaciones</h1>
-
 
     <% @cambios = @marca.cambios %>
     <% @marca.historial.each do |marca| %>
@@ -188,11 +187,12 @@
       <% @cambios = marca.cambios %>
     <% end %>
   </div>
-
-    <div id="posts" data-posts_size="<%= Marca::POSTS_SIZE %>" style="float:right;">
+      <hr />
+    <div id="posts" data-posts_size="<%= Marca::POSTS_SIZE %>">
       <h2 class="title">Ultimos comentarios</h2>
         <%= render :partial => "posts/posts", :locals => { :posts => @marca.ultimos_posts } %>
         <%= link_post @marca, 'index' %>
         <%= link_post @marca, 'new' %>
     </div>
   </div>
+</div>

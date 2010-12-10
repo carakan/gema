@@ -11,10 +11,15 @@ class ReporteMarca < ActiveRecord::Base
   has_many :reporte_marca_detalles, :dependent => :destroy
 
   IDIOMAS = [['Español', 'es'], ['Ingles', 'en']]
+  TIPO = {
+    "Busqueda" => 0 ,
+    "Cruce" => 1,
+    "Lista Publicacion" => 2
+  }
   
   accepts_nested_attributes_for :reporte_marca_detalles
 
-  validates_presence_of :carta
+  # validates_presence_of :carta
   # validates_associated :representante
 
   serialize :marca_ids_serial
@@ -31,7 +36,6 @@ class ReporteMarca < ActiveRecord::Base
     else
       nombre = "#{self.id}_busquedas"
     end
-
     nombre
   end
 
@@ -131,5 +135,4 @@ private
   def destruir_anteriores
     self.class.destroy_all( self.class.condiciones_buscar_cruce(self.attributes.convert_keys_to_sym) )
   end
-
 end
