@@ -91,7 +91,7 @@ class Reporte < ActiveRecord::Base
 
   # generate report in pdf
   def to_pdf(data)
-      I18n.locale = data.idioma
+    I18n.locale = data.idioma
     prepare_report(@engine_report)
     if data
       @engine_report.dataset = data
@@ -111,8 +111,12 @@ class Reporte < ActiveRecord::Base
 
   # Realiza la creación del reporte para un cruce o busqueda
   def self.crear_reporte(reporte_marca)
-    if reporte_marca.tipo_reporte == ReporteMarca::TIPO["Cruce"]
-      report = Reporte.set_instance("cruce_report")
+    if reporte_marca.for_cruce? || reporte_marca.for_solicitud?
+      if reporte_marca.for_cruce? 
+        report = Reporte.set_instance("cruce_report")
+      elsif reporte_marca.for_solicitud?
+        report = Reporte.set_instance("solicitud_marca")
+      end
       report.engine_report.marcas = [reporte_marca.marca_foranea]
       report.engine_report.titulares = Marca.first(:conditions => {:id => reporte_marca.marca_ids_serial}).titulares.join(", ")
       report.engine_report.importacion = reporte_marca.importacion

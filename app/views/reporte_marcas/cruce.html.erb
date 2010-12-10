@@ -6,7 +6,7 @@
 
 <!--<h1>Crear Reporte cruce</h1>-->
 
-<h2> Reporte de cruce: Gaceta <%= @importacion.publicacion %> del <%= l @importacion.publicacion_fecha %></h2>
+<h2> Reporte de cruce: Gaceta <%= @importacion.publicacion %> del <%= l(@importacion.publicacion_fecha) if @importacion.publicacion_fecha %></h2>
 <hr/>
 <%= semantic_form_for(@reporte_marca) do |f| %>
 
