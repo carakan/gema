@@ -37,7 +37,8 @@
         <label for="">Análisis:</label>
         <%= @reporte_marca.carta %>
       </p>
-    <% elsif @reporte_marca.tipo_reporte == ReporteMarca::TIPO["Busqueda"] %>
+    <% elsif @reporte_marca.for_cruce? || @reporte_marca.for_solicitud? %>
+      <% unless @reporte_marca.marca_foranea.nil? %>
       <p>
         <label>Denominación:</label>
         <%= @reporte_marca.marca_foranea.nombre.upcase %>
@@ -62,7 +63,7 @@
         <label>Número publicación:</label>
         <%= @reporte_marca.marca_foranea.numero_publicacion %>
       </p>
-
+      <% end %>
     <% end %>
 </div>
 <div class="derecha">
