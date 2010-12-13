@@ -9,7 +9,6 @@ class BusquedasController < ApplicationController
     @busqueda = []
     params[:tipo_busqueda] = 'prev' if params[:tipo_busqueda].nil?
     if params[:busqueda]
-      params.delete(:representante_id)
       @busqueda = Busqueda.realizar_busqueda(params)
       @representantes = Busqueda.preparar_representantes(@busqueda)
       # Crea una nueva busqueda con los parametros de la busqueda

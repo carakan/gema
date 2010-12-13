@@ -5,6 +5,7 @@
   <%= f.input :representante_type, :as => :hidden %>
   <%= f.input :consulta_id, :as => :hidden  %>
   <%= f.input :busqueda, :as => :hidden  %>
+  <%= f.input :tipo_reporte, :as => :hidden  %>
   <p>
     <label for="reporte_marca_idioma_es">
       <%= f.radio_button :idioma, 'es' %>
@@ -16,11 +17,8 @@
     </label>
   </p>
   <%= f.input :carta, :as => :text, :input_html => {:cols => 100}, :label => "Analisis de la busqueda" %>
-  <p class="inline-hints" style="display: none;">
-  </p>
   <table class="decorated">
     <tr>
-      <th>Busqueda</th>
       <th>Signo</th>
       <th>Tipo</th>
       <th>Cl</th>

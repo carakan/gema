@@ -5,13 +5,14 @@
       <h3><%= p.titulo %></h3>
       Por <strong><%= p.usuario %></strong><br /> 
       <em><%= l p.created_at, :format => "%d, %B %Y %H:%M" %></em>
+      <h4><%= p.categoria %></h4>
       <p>
         <%= p.comentario %>
       </p>
         <ul>
           <% p.adjuntos.each do |a| %>
             <li class="mime">
-            <%= link_to "<strong>#{ a.archivo_file_name }</strong> (#{ a.archivo_file_size.to_byte_size})".html_safe, adjunto_path(a), :class => a.tipo %>
+            <%= link_to "<strong>#{ a.archivo_file_name }</strong> (#{ a.archivo_file_size.to_byte_size})".html_safe, a, :class => a.tipo %>
             </li>
           <% end %>
         </ul>

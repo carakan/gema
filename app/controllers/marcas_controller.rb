@@ -9,22 +9,17 @@ class MarcasController < ApplicationController
   end
 
   def new
-    @tipo = params[:tipo]
-    @marca = Marca.new(:estado_fecha => Date.today, :tipo_signo_id => TipoSigno.find_by_sigla(params[:tipo]).id, :propia => true, :activa => true)
+    @marca = Marca.new(:estado_fecha => Date.today, :tipo_signo_id => TipoSigno.find_by_sigla(params[:tipo]).id, :propia => true, :activa => true, :marca_estado_id => 1)
   end
 
   def edit
     @marca = Marca.find(params[:id])
-    unless params[:importacion_id].nil?
-      Marca.set_include_estado(@marca.estado)
-    end
     @marca.valid?
   end
 
 
   def create
     @marca = Marca.crear_instancia(params[:marca])
-
     if @marca.save
       redirect_to @marca, :notice => 'Se ha salvado correctamente'
     else

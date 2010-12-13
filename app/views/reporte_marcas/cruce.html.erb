@@ -1,63 +1,95 @@
 <div class="breadcrumps">
   <%= link_to "Lista de importaciones", importaciones_path %> >
-  <%= link_to "Agentes y Títulares", cruces_reporte_marcas_path(:importacion_id => params[:importacion_id]) %>
+  <%= link_to "Reportes realizados", cruces_reporte_marcas_path(:importacion_id => params[:importacion_id]) %>
   > Reporte
 </div>
 
-<h1>Crear Reporte cruce</h1>
-<h2 class="dark">Gaceta <%= @importacion.publicacion %> del <%= l @importacion.publicacion_fecha %></h2>
-<h4 class="dark">Agentes</h4>
-<%= @marcas.first.agentes.join(", ") %>
-<h4 class="dark">Titulares</h4>
-<%= @marcas.first.titulares.join(", ") %>
+<!--<h1>Crear Reporte cruce</h1>-->
 
-
+<h2> Reporte de cruce: Gaceta <%= @importacion.publicacion %> del <%= l(@importacion.publicacion_fecha) if @importacion.publicacion_fecha %></h2>
+<hr/>
 <%= semantic_form_for(@reporte_marca) do |f| %>
 
   <%= f.input :representante_id, :as => :hidden %>
   <%= f.input :representante_type, :as => :hidden %>
   <%= f.input :importacion_id, :as => :hidden %>
+  <%= f.input :tipo_reporte, :as => :hidden %>
   <%= hidden_field_tag :marca_ids, @marca_ids.join(",") %>
   <%= hidden_field_tag :marca_foranea,  @marca.id %>
   <%= hidden_field_tag :importacion_id,  @importacion.id %>
   <%= hidden_field_tag "_reporte_marca", 1 unless ReporteMarca.buscar_en_cruce(params).nil? %>
+<div id="contenido">
+  <div class="izquierda">
+  <h2 class="dark">Datos de la marca publicada</h2>
+    <p>
+      <label>Denominación:</label>
+      <%= @marca.nombre.upcase %>
+    </p>
 
-  <p>
-    <label for="reporte_marca_idioma_es">
-      <%= f.radio_button :idioma, 'es' %>
-      Español
-    </label>
-    <label for="reporte_marca_idioma_en">
-      <%= f.radio_button :idioma, 'en' %>
-      Ingles
-    </label>
-  </p>
-  <%= f.hidden_field :carta %>
-  <%= params[:observaciones] %>
+    <p>
+      <label>Tipo:</label>
+      <%= @marca.tipo_signo.sigla %>
+    </p>
+    
+    <p>
+      <label>Clase:</label>
+      <%= @marca.clase_id%>
+    </p>
+    <p>
+      <label>Numero solicitud:</label>
+      <%= @marca.numero_solicitud %>
+    </p>
+    <p>
+      <label>Numero publicación:</label>
+      <%= @marca.numero_publicacion %>
+    </p>
+    <p>
+      <label>Titular:</label>
+      <%= @marca.titulares.join(", ") %>
+    </p>
+  </div>
+  <div class="derecha">
+  <h2 class="dark">Datos para el reporte</h2>
+    <h4 class="dark">Agentes</h4>
+    <%= @marcas.first.agentes.join(", ") %>
+    <h4 class="dark">Titulares</h4>
+    <%= @marcas.first.titulares.join(", ") %>
 
-  <p class="inline-hints">
-    Si no escribe en el comentario la marca no sera seleccionada para el reporte
-  </p>
+    <p>
+      <label for="reporte_marca_idioma_es">
+        <%= f.radio_button :idioma, 'es' %>
+        Español
+      </label>
+      <label for="reporte_marca_idioma_en">
+        <%= f.radio_button :idioma, 'en' %>
+        Ingles
+      </label>
+    </p>
+    <p>
+      <Label>Análisis:</label>
+      <%= f.hidden_field :carta %>
+      <%= params[:observaciones] %>
+    </p>
+  </div>
   <table class="decorated">
     <tr>
-      <th>Marca propia</th>
-      <th>Marca agena</th>
+      <th>Denominación</th>
+      <th>Tipo signo</th>
+      <th>Tipo Marca</th>
+      <th>Cl</th>
+      <th>Numero</th>
+      <th>Fecha</th>
       <th>Comentario</th>
     </tr>
     <% @marcas.each{ |v| f.object.reporte_marca_detalles.build(:marca_id => v.id, :marca_foranea_id => params[:marca_foranea]) } if params[:reporte_marca].nil? %>
     <% @i = 0 %>
     <%= f.semantic_fields_for :reporte_marca_detalles do |rd| %>
       <tr>
-        <td>
           <%= rd.input :marca_id, :as => :hidden %>
           <%= rd.input :marca_foranea_id, :as => :hidden %>
           <%= render :partial => "marca_propia", :locals => { :marca => rd.object.marca_propia } %>
-        </td>
         <td>
-          <%= render :partial => "marca_foranea", :locals => { :marca => rd.object.marca_foranea } %>
-        </td>
-        <td>
-          <%= rd.input :comentario, :as => :text, :label => false, :input_html => {:cols => 40, :rows => 8} %>
+          <%= rd.input :comentario, :as => :text, :label => false, :input_html => {:cols => 30, :rows => 5} %>
         </td>
       </tr>
       <% @i += 1 %>

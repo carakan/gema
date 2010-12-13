@@ -1,7 +1,28 @@
 %tr
-  %td{:colspan => 5}= "Gaceta " + @reporte_marca.importacion.publicacion + " del " +  l(@reporte_marca.importacion.publicacion_fecha)
+  %td Fecha Importacion
+  %td{:colspan => 6}= "Gaceta " + @reporte_marca.importacion.publicacion + " del #{l(@reporte_marca.importacion.publicacion_fecha) if @reporte_marca.importacion.publicacion_fecha}"
+
 %tr
-  %td{:colspan => 5} Carta
+  %td{:colspan => 7} Datos de la Marca
+
 %tr
-  %td{:colspan => 5}= @reporte_marca.carta
+  %td Denominacion
+  %td Tipo signo
+  %td Tipo Marca
+  %td Cl
+  %td Numero
+  %td Fecha
+
+%tr
+  %td= @reporte_marca.marca_foranea.nombre
+  %td= @reporte_marca.marca_foranea.tipo_signo
+  %td= @reporte_marca.marca_foranea.tipo_marca
+  %td= @reporte_marca.marca_foranea.clase_id
+  %td= @reporte_marca.marca_foranea.numero_marca
+  %td= @reporte_marca.marca_foranea.fecha_marca
+
+%tr
+  %td Carta
+  %td{:colspan => 6}= @reporte_marca.carta
+
 

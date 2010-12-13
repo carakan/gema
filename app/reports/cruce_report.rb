@@ -10,7 +10,7 @@ class CruceReport < ReporteMarcaBase
   def tabla(reporte_marca)
     data = datos(reporte_marca)
     table( [ encabezado ] + data, :header => true) do
-      row(0).style(:background_color => 'cccccc', :style => :bold)
+      row(0).style( :background_color => 'cccccc', :style => :bold, :align => :center, :valign => :center)
       cells.style(:size => 8, :inline_format => true)
       column(0..5).style(:width => 80)
       column(0).style(:width => 120)
@@ -19,11 +19,11 @@ class CruceReport < ReporteMarcaBase
   end
 
   def fecha_vencimiento
-    "#{I18n.l(@importacion.fecha_limite, :format => :long) if @importacion.fecha_limite}"
+    "#{I18n.l(@importacion.fecha_limite.to_date, :format => :long) if @importacion.fecha_limite}"
   end
 
   def fecha_vencimiento_orpan
-    "#{I18n.l(@importacion.fecha_limite_orpan, :format => :long) if @importacion.fecha_limite_orpan}"
+    "#{I18n.l(@importacion.fecha_limite_orpan.to_date, :format => :long) if @importacion.fecha_limite_orpan}"
   end
 
   def edicion_gaceta
@@ -35,7 +35,7 @@ class CruceReport < ReporteMarcaBase
   end
 
   def fecha_gaceta
-    "#{I18n.l(@importacion.publicacion_fecha, :format => :long)}"
+    "#{I18n.l(@importacion.publicacion_fecha.to_date, :format => :long) if @importacion.publicacion_fecha}"
   end
 
   def analisis
@@ -44,27 +44,27 @@ class CruceReport < ReporteMarcaBase
 
   def encabezado
     if I18n.locale == :es
-      ["Signo vigilado", "Tipo", "Clase", "Numero", "Fecha", "Comentarios"]
+      ["Signo vigilado", "Tipo", "Clase", "Número", "Fecha", "Obsevaciones"]
     else
-      ["Own trademarks", "Type", "Class", "Pub. Number", "Date", "Comments"]
+      ["Own trademarks", "Type", "Class", "Pub. Number", "Date", "Observations"]
     end
   end
 
   # Prepara los datos para la marca
-  def datos_marca(marca)
+  def datos_marca(reporte_marca = nil)
     datos_array = []
-    datos_array[0] = "#{ marca.nombre }"
-    datos_array[1] = "#{ marca.tipo_signo.sigla if marca.tipo_signo }"
-    datos_array[2] = "#{ marca.clase_id }"
-    datos_array[3] = "#{ marca.numero_registro if marca.numero_registro }"
-    datos_array[4] = "#{ I18n.l(marca.estado_fecha, :format => :short) if marca.estado_fecha}"
-    datos_array[5] = "#{ marca.productos }"
+    datos_array[0] = "#{ reporte_marca.marca_propia.nombre }"
+    datos_array[1] = "#{ reporte_marca.marca_propia.tipo_signo.sigla if reporte_marca.marca_propia.tipo_signo }"
+    datos_array[2] = "#{ reporte_marca.marca_propia.clase_id }"
+    datos_array[3] = "#{ reporte_marca.marca_propia.numero_marca if reporte_marca.marca_propia.numero_marca }"
+    datos_array[4] = "#{ I18n.l(reporte_marca.marca_propia.fecha_marca.to_date, :format => :short) if reporte_marca.marca_propia.fecha_marca}"
+    datos_array[5] = "#{ reporte_marca.comentario }"
     datos_array
   end
 
   def datos(reporte_marca)
-    reporte_marca.reporte_marca_detalles.inject([]) do |arr, det|
-      arr << datos_marca(det.marca_propia)
+    reporte_marca.reporte_marca_detalles.inject([]) do |arr, reporte_marca|
+      arr << datos_marca(reporte_marca)
       arr
     end
   end

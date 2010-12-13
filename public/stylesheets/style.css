@@ -13,10 +13,9 @@ body, p, ol, ul {
   font-family: arial, helvetica, freesans, clean, sans-serif;
   line-height: 18px;
 }
-
-h1{
+h1 {
   font-family: arial, helvetica, freesans, clean, sans-serif;
-  font-size:25px; 
+  font-size: 25px;
   font-weight: bold;
   line-height: 25px;
 }
@@ -36,19 +35,20 @@ table.decorated th {
   background: #484848 url(../images/bg_tr_tabs_tab.png) repeat-x scroll 0 50%;
   border-right: 1px solid #484848;
   text-align: center;
+  text-transform: uppercase;
 }
 table.decorated th a {
   color: #ffffc5;
   text-decoration: none;
 }
 table.decorated th {
+  border: 0px solid #ffffff;
   padding: 6px 10px;
-  text-align: center;
 }
 table.decorated th li { margin: 0px; }
 table.decorated td {
+  border: 0px solid #ffffff;
   padding: 6px 10px;
-  text-align: center;
 }
 table.decorated td li { margin: 0px; }
 table.decorated td { vertical-align: top; }
@@ -212,6 +212,7 @@ form.in_half li {
   margin-left: 3px;
 }
 .error { color: #ff0000; }
+span.error { display: block; }
 .errorExplanation {
   color: #ff0000;
   border: 2px solid #ff0000;
@@ -503,12 +504,10 @@ a.pdf {
   background: transparent url(../images/icons/page_white_acrobat.png) no-repeat top left;
   padding-left: 18px;
 }
-a.xls{
+a.xls {
   background: transparent url(../images/icons/page_excel.png) no-repeat top left;
   padding-left: 18px;
 }
-
-
 a.back {
   background: transparent url(../images/icons/arrow_left.png) no-repeat top left;
   padding-left: 18px;
@@ -712,13 +711,27 @@ a.desc {
 .ui-dialog .breadcrumps { display: none; }
 #tabla-cruce tr.select { background-color: #dcdcdc; }
 #tabla-cruce span.mini { font-size: 1px; }
-div#contenido{float:left; width: 100%;}
-div#contenido .izquierda{ float: left; margin:10px;width: 40%;}
-div#contenido .derecha{ float: right; width:50%; margin:10px;}
-.izquierda .detalles{ float:left; width: 50%;}
-div#contenido p{
+div#contenido {
+  float: left;
+  width: 100%;
+}
+div#contenido .izquierda {
+  float: left;
+  margin: 10px;
+  width: 40%;
+}
+div#contenido .derecha {
+  float: right;
+  width: 50%;
+  margin: 10px;
+}
+.izquierda .detalles {
+  float: left;
+  width: 50%;
+}
+div#contenido p {
   font-family: arial, helvetica, freesans, clean, sans-serif;
-  font-size:15px; 
+  font-size: 15px;
   line-height: 18px;
   font-weight: bold;
 }

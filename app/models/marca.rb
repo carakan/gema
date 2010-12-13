@@ -75,7 +75,7 @@ class Marca < ActiveRecord::Base
   serialize :errores_manual
 
 
-  validates_presence_of :marca_estado_id
+  validates_presence_of :marca_estado_id, :nombre, :tipo_signo_id, :clase_id
   validate :validar_errores_manual
 
   default_scope where("marcas.parent_id = 0")
@@ -94,12 +94,13 @@ class Marca < ActiveRecord::Base
     where(:fecha_impotacion => fecha, :valido => false)
   }
 
-  scope :cruce, lambda { |importacion_id, nombre_marca| 
+  scope :cruce, lambda { |importacion_id, nombre_marca|
     where("marcas.importacion_id = ? AND marcas.tipo_signo_id NOT IN (?) AND marcas.nombre_minusculas LIKE ?",
           importacion_id, TipoSigno.descartadas_cruce, "%#{ nombre_marca.downcase }%").
           includes(:tipo_signo, :clase, { :consultas => :usuario }, :titulares)
   }
 
+  scope :propias, where(:propia => true)
 
   TIPOS = {
     'sm' => 'Solicitud de Marca',
@@ -136,7 +137,7 @@ class Marca < ActiveRecord::Base
   end
 
   def con_imagen?
-    [2, 3, 4].include? self.tipo_signo_id
+    [2, 3, 4, 6].include? self.tipo_signo_id
   end
 
   def ver_fila
@@ -150,6 +151,7 @@ class Marca < ActiveRecord::Base
   def valido!
     valido? ? "" : "error"
   end
+
 
   # Transforma los errores en un Hash que puede ser utilizado para JSON
   def hashify_errors
@@ -185,19 +187,25 @@ class Marca < ActiveRecord::Base
   #   @param Hash params Parametros que se recibe de el formulario
   def self.importar(params)
     #params[:marca_estado_id] = MarcaEstado.buscar_estado(params[:estado])
-    set_include_estado(params[:tipo])
+    set_include_estado(Marca.new, params[:tipo])
     importar_archivo(params)
   end
 
   # Realiza la inclusion de modulos de acuerdo al estado que marca estado tenga
-  def self.set_include_estado(estado)
+  def self.set_include_estado(klass, estado)
     if ESTADOS.include? estado
       mod = MarcaEstado.buscar_estado(estado)
     else
-      m = MarcaEstado.find(estado)
-      raise "Error, debe incluir estado válido" unless m
-      mod = m.modulo.constantize
+      begin
+        m = MarcaEstado.find(estado)
+        mod = m.modulo.constantize
+      rescue
+        mod = false
+        return klass.errors.add(:marca_estado_id, "Debe seleccionar un estado")
+      end
+      #raise "Error, debe incluir estado válido" unless m
     end
+
     include mod
   end
 
@@ -288,13 +296,10 @@ class Marca < ActiveRecord::Base
   # @param Marca o modelo heredado Indica si se debe unir con los atributos de la clase
   # @return Marca.new o clase heredada
   def self.crear_instancia(params)
-    #    unless ESTADOS.inlcude? params[:estado]
-    #unless ESTADOS.include? params[:estado]
-    #  return Marca.new(params)
-    #end
-    set_include_estado(params[:marca_estado_id])
+    klass = new(params)
+    set_include_estado(klass, params[:marca_estado_id])
     set_include_tipo_signo(params[:tipo_signo_id])
-    new(params)
+    klass
   end
 
   def set_include_propia(propia)
@@ -307,10 +312,8 @@ class Marca < ActiveRecord::Base
   # Metodo para poder realizar actualizaciones
   # que pueda cambiar la clse y el estado
   def update_marca(params)
-    #unless Marca::ESTADOS.include? self.estado
-    #  return self.valid?
-    #end
-    self.class.set_include_estado(params[:marca_estado_id])
+    params[:errores_manual] = {} if params[:errores_manual].nil?
+    self.class.set_include_estado(self, params[:marca_estado_id])
     params[:valido] = true
     self.update_attributes(params)
   end
@@ -367,6 +370,7 @@ class Marca < ActiveRecord::Base
 
   # Metodo simple para poder presentar errores serializados
   def presentar_errores
+    return unless self.errores.is_a? Hash
     return unless self.errores.any?
     self.errores.keys.map do |k|
       if self.errores[k].is_a? Array
@@ -439,15 +443,15 @@ class Marca < ActiveRecord::Base
   end
 
   def fecha_numero_marca
-    if self.numero_renovacion
+    if self.numero_renovacion && !self.numero_renovacion.blank?
       return {:numero => self.numero_renovacion, :fecha => self.fecha_renovacion}
-    elsif self.numero_solicitud_renovacion
+    elsif self.numero_solicitud_renovacion && !self.numero_solicitud_renovacion.blank?
       return {:numero => self.numero_solicitud_renovacion, :fecha => self.fecha_solicitud_renovacion}
-    elsif self.numero_registro
+    elsif self.numero_registro && !self.numero_registro.blank?
       return {:numero => self.numero_registro, :fecha => self.fecha_registro}
-    elsif self.numero_publicacion
+    elsif self.numero_publicacion && !self.numero_publicacion.blank?
       return {:numero => self.numero_publicacion, :fecha => self.estado_fecha}
-    elsif self.numero_solicitud
+    elsif self.numero_solicitud && !self.numero_solicitud.blank?
       return {:numero => self.numero_solicitud, :fecha => self.estado_fecha}
     else
       return {:numero => nil, :fecha => self.estado_fecha}

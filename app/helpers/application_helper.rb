@@ -4,7 +4,12 @@
 #
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
-  
+
+  def facebook_select(f, attr)
+    at = attr.to_s.gsub(/_id.*$/, '').pluralize
+    f.select attr, f.object.send(at.to_sym).map { |v| [v.to_s, v.id] }, {}, {:multiple => true }
+  end
+
   # Creates the links show, edit, destroy
   def links(klass, options={})
     ['edit', 'destroy'].inject([]) do |t, m|
@@ -84,6 +89,15 @@ module ApplicationHelper
     end
   end
 
+  # Presenta el error
+  def view_error(f, attr)
+    "<span class=\"error\">#{f.object.errors[attr].join(", ")}</span>".html_safe if f.object.errors[attr]
+  end
+
+  def last_importation
+    importacion = Importacion.last(:conditions => {:tipo => "lp"})
+    link_to("Reporte lista publicacion", lista_path(importacion))
+  end
 end
 WillPaginate::ViewHelpers.pagination_options[:previous_label] = '<<'
 WillPaginate::ViewHelpers.pagination_options[:next_label] = '>>'

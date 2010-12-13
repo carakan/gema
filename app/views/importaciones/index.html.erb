@@ -22,6 +22,7 @@
     <th>Total</th>
     <th>Errores</th>
     <th>Cruce</th>
+    <th>Reportes</th>
     <th>Descargas</th>
   </tr>
   <%- @importaciones.each do |imp| -%>
@@ -31,6 +32,7 @@
       <td><%= imp.marcas.size %></td>
       <td class="error"><%= imp.marcas.where(:valido => false).size %></td>
       <td><%= link_to "Cruce", cruce_importaciones_path(:importacion_id => imp.id) %></td>
+      <td><%= link_to("Aviso publicación", lista_path(imp.id)) if imp.gaceta? %></td>
       <td><%= link_to "descargar", descarga_importacion_path(imp.id), :class => 'dowload' %></td>
     </tr>
   <%- end -%>

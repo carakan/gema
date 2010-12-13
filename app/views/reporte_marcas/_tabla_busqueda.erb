@@ -1,4 +1,25 @@
 <table class="decorated">
+  <% if show_titulares %>
+    <tr>
+      <th class="_200" >Denominacion</th>
+      <th class="_200" colspan="7"><%= @reporte_marca.busqueda.upcase %></th>
+    </tr>
+    <tr>
+      <th class="_200" >Idioma</th>
+      <th class="_200" colspan="7"><%= @reporte_marca.idioma! %></th>
+    </tr>
+    <tr>
+      <th class="_200" >Analisis</th>
+      <th class="_200" colspan="7"><%= @reporte_marca.carta %></th>
+    </tr>
+    <tr>
+      <th class="_200" >Fecha</th>
+      <th class="_200" colspan="7"><%= l(@reporte_marca.created_at) %></th>
+    </tr>
+    <tr>
+      <th class="_200" colspan="8"><%= l(@reporte_marca.created_at) %></th>
+    </tr>
+  <% end %>
   <tr style="background-color: #000; color: #fff">
     <!--<th class="_200" style="padding: 4px;">Busqueda</th>-->
     <th class="_200">Signo</th>
@@ -15,9 +36,9 @@
   <% @reporte_marca.reporte_marca_detalles.each do |rd|  %>
     <tr>
       <!--<td>
-        <%#= rd.busqueda %>
+  <%#= rd.busqueda %>
       </td>-->
-      <td><%= rd.marca_propia.nombre %></td>
+      <td><span class="<%= rd.marca_propia.propia! %>"><%= link_to rd.marca_propia.nombre, marca_path(rd.marca_propia), :class => :ajax%></span></td>
       <td><%= rd.marca_propia.tipo_signo.sigla if rd.marca_propia.tipo_signo %></td>
       <td><%= rd.marca_propia.clase_id %></td>
       <td><%= rd.marca_propia.numero_marca %></td>

@@ -47,6 +47,12 @@ body, p, ol, ul{
   font-family: arial,helvetica,freesans,clean,sans-serif;
   line-height: 18px;
 }
+h1{
+  font-family: arial, helvetica, freesans, clean, sans-serif;
+  font-size:25px; 
+  font-weight: bold;
+  line-height: 25px;
+}
 a { color: @blue; text-decoration: underline; cursor: pointer; }
 a:hover { text-decoration: none; }
 
@@ -61,16 +67,16 @@ table.decorated{
     background: @dark url(../images/bg_tr_tabs_tab.png) repeat-x scroll 0 50%;
     border-right: 1px solid @dark;
     text-align: center;
+    text-transform: uppercase;
     a{
       color: @light_yellow;
       text-decoration: none;
     }
   }
   th, td{
-  /*  border: 1px solid @border_color_table;*/
+    border: 0px solid @white;
     padding: 6px 10px;
     li{ margin: 0px; }
-    text-align: center;
   }
   td{ vertical-align: top; }
   /*th:last-child{ width:110px; }*/
@@ -239,6 +245,9 @@ form.in_half li{
 }
 .error{
   color: @red;
+}
+span.error{
+  display: block;
 }
 
 .errorExplanation{
@@ -571,6 +580,10 @@ a.pdf{
   background: transparent url(../images/icons/page_white_acrobat.png) no-repeat top left;
   padding-left: @icon_pad;
 }
+a.xls{
+  background: transparent url(../images/icons/page_excel.png) no-repeat top left;
+  padding-left: 18px;
+}
 a.back{
   background: transparent url(../images/icons/arrow_left.png) no-repeat top left;
   padding-left: @icon_pad;
@@ -861,5 +874,23 @@ a.desc{
 #tabla-cruce span.mini{
   font-size: 1px;
 }
-
+div#contenido{float:left; width: 100%;}
+div#contenido .izquierda{ float: left; margin:10px;width: 40%;}
+div#contenido .derecha{ float: right; width:50%; margin:10px;}
+.izquierda .detalles{ float:left; width: 50%;}
+div#contenido p {
+  font-family: arial, helvetica, freesans, clean, sans-serif;
+  font-size:15px; 
+  line-height: 18px;
+  font-weight: bold;
+}
+div#contenido label {
+  vertical-align: top;
+  font-size: 13px;
+  font-weight: normal;
+  line-height: 18px;
+  display: inline;
+  color: #484848;
+  margin: 3px 0px;
+}
 

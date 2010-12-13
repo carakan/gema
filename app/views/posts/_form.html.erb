@@ -2,6 +2,7 @@
   <%= f.input :postable_id, :as => :hidden %>
   <%= f.input :postable_type, :as => :hidden %>
   <%= f.input :titulo, :label => 'Título', :input_html => { :size => 70 } %>
+  <%= f.input :categoria, :label => 'Categoría', :input_html => { :size => 70 } %>
   <%= f.input :comentario, :as => :text, :label => 'Comentario', :input_html => {:cols => 70, :rows => 10} %>
   
   <div id="adjuntos">
@@ -37,7 +38,7 @@ $(document).ready(function() {
   $('#post_form').submit(function() {
     var valid = true;
     var str = $('#post_titulo').val().trim();
-    
+
     if( str.length < 4 ) {
       valid = false;
       if($('#post_titulo').siblings("p").length <= 0)
@@ -49,12 +50,12 @@ $(document).ready(function() {
       if($('#post_comentario').siblings("p").length <= 0)
         $('#post_comentario').after('<p class="inline-errors">No debe estar en blanco y debe tener al menos 4 caracteres</span>');
     }
-    
+
     if( !valid )
       alert('Corrija los errores en el formulario');
 
     return valid;
-   
+
   });
 });
 </script>

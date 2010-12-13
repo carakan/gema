@@ -73,7 +73,11 @@ Rails.application.routes.draw do
 
   resources :solicitud_marcas
 
-  resources :lista_publicaciones
+  resources :listas do
+    collection do
+      post :reporte
+    end
+  end
 
   resources :busquedas do
     collection do

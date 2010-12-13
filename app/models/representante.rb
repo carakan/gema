@@ -22,10 +22,10 @@ class Representante < ActiveRecord::Base
   has_many :consultas
 
   POSTS_SIZE = 2
-  
+
   validates_presence_of :nombre
-  validates_format_of :email, :with => Constants::EMAIL_REG, 
-    :unless => lambda{ |r| r.email.blank? }
+  validates :email, :presence => {:if => :cliente?}, :email => {:if => lambda { |c| !c.email.blank? } }
+  validates_presence_of :telefono, :direccion, :fax, :if => :cliente?
 
   scope :order, order( "nombre ASC" )
   scope :lista, select("id, nombre, pais_codigo").order("nombre ASC")

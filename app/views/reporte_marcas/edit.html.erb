@@ -6,7 +6,6 @@
 
 <% if @reporte_marca.importacion_id %>
   <h1>Editar reporte cruce</h1>
-  <h2 class="dark"><%= params[:representante_type] %>: <%= @representante %></h2>
   <h2 class="dark">Gaceta <%= @importacion.publicacion %> del <%= l @importacion.publicacion_fecha %></h2>
 <% else %>
   <h1>Editar reporte de búsqueda</h1>
@@ -18,7 +17,56 @@
   <%= f.input :representante_id, :as => :hidden %>
   <%= f.input :representante_type, :as => :hidden %>
   <%= f.input :importacion_id, :as => :hidden %>
-
+<div id="contenido">
+  <div class="izquierda">
+  <% if @importacion.nil? %>
+      <% if @reporte_marca.representante_id %>
+        <%= f.hidden_field :representante_id %>
+        <label for="">Cliente</label>
+        <%= @reporte_marca.representante %>
+      <% end %>
+      <p>
+      <label for="">Denominación: </label>
+        <%= @reporte_marca.busqueda.upcase if @reporte_marca.busqueda%>
+      </p>
+      <p>
+        <label for="">Idioma:</label>
+        <%= @reporte_marca.idioma! %>
+      </p>
+      <p>
+        <label for="">Análisis:</label>
+        <%= @reporte_marca.carta %>
+      </p>
+    <% elsif @reporte_marca.for_cruce? || @reporte_marca.for_solicitud? %>
+      <% unless @reporte_marca.marca_foranea.nil? %>
+      <p>
+        <label>Denominación:</label>
+        <%= @reporte_marca.marca_foranea.nombre.upcase %>
+      </p>
+      <p>
+        <label>Tipo signo:</label>
+        <%= @reporte_marca.marca_foranea.tipo_signo %>
+      </p>
+      <p>
+        <label>Tipo marca:</label>
+        <%= @reporte_marca.marca_foranea.tipo_marca %>
+      </p>
+      <p>
+        <label>Clase:</label>
+        <%= @reporte_marca.marca_foranea.clase_id %>
+      </p>
+      <p>
+        <label>Número solicitud:</label>
+        <%= @reporte_marca.marca_foranea.numero_solicitud %>
+      </p>
+      <p>
+        <label>Número publicación:</label>
+        <%= @reporte_marca.marca_foranea.numero_publicacion %>
+      </p>
+      <% end %>
+    <% end %>
+</div>
+<div class="derecha">
   <p>
     <label for="reporte_marca_idioma_es">
       <%= f.radio_button :idioma, 'es' %>
@@ -29,21 +77,19 @@
       Ingles
     </label>
   </p>
-  <%= f.input :carta, :as => :text, :input_html => {:cols => 100, :rows => 7} %>
-
-  <p class="inline-hints">
-  </p>
+  <%= f.input :carta, :as => :text, :label => 'Análisis  ', :input_html => {:cols => 45, :rows => 7} %>
+</div>
+</div>
+<div style="clear:both"></div>
   <table class="decorated">
     <tr>
       <% if @reporte_marca.importacion_id %>
-        <th>Marca propia</th>
         <th>Nombre</th>
         <th>Tipo</th>
         <th>Cl</th>
         <th>Numero</th>
         <th>Fecha</th>
       <% else %>
-        <th>Busqueda</th>
         <th>Nombre</th>
         <th>Tipo</th>
         <th>Cl</th>

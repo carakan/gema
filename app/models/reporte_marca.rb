@@ -2,7 +2,7 @@
 # author: Boris Barroso
 # email: boriscyber@gmail.com
 class ReporteMarca < ActiveRecord::Base
-  before_create :destruir_anteriores, :if => lambda { |r| r.importacion_id? }
+  # before_create :destruir_anteriores, :if => lambda { |r| r.importacion_id? }
 
   belongs_to :representante
   belongs_to :importacion
@@ -11,10 +11,16 @@ class ReporteMarca < ActiveRecord::Base
   has_many :reporte_marca_detalles, :dependent => :destroy
 
   IDIOMAS = [['Español', 'es'], ['Ingles', 'en']]
+  TIPO = {
+    "Busqueda" => 0 ,
+    "Cruce" => 1,
+    "Lista Publicacion" => 2,
+    "Solicitud Marca" => 3
+  }
   
   accepts_nested_attributes_for :reporte_marca_detalles
 
-  validates_presence_of :carta
+  # validates_presence_of :carta
   # validates_associated :representante
 
   serialize :marca_ids_serial
@@ -25,15 +31,34 @@ class ReporteMarca < ActiveRecord::Base
 
   # Crea el nombre de archivo para el pdf
   def crear_nombre_archivo
-    if self.importacion_id?
+    if self.for_cruce?
       nombre = "#{self.id}_Gaceta_" << self.importacion.publicacion
       nombre << "_" << (I18n.l self.importacion.publicacion_fecha, :format => "%d-%b-%Y")
+    elsif self.for_solicitud?
+      nombre = "solicitud"
     else
       nombre = "#{self.id}_busquedas"
     end
-
     nombre
   end
+
+  ###
+  def for_lista_publicacion?
+    self.tipo_reporte == TIPO["Lista Publicacion"]
+  end
+
+  def for_busqueda?
+    self.tipo_reporte == TIPO["Busqueda"]
+  end
+
+  def for_cruce?
+    self.tipo_reporte == TIPO["Cruce"]
+  end
+
+  def for_solicitud?
+    self.tipo_reporte == TIPO["Solicitud Marca"]
+  end
+  ###
 
   # Retorna el nombre del idioma en base a la abreviación que fue almacenada en la BD
   def idioma!
@@ -74,6 +99,7 @@ class ReporteMarca < ActiveRecord::Base
     reporte_marca.consulta_id = params[:consulta_id]
     reporte_marca.carta = detalles.first.consulta.comentario if !detalles.empty? && detalles.first.consulta
     reporte_marca.busqueda = detalles.first.consulta.busqueda if !detalles.empty? && detalles.first.consulta
+    reporte_marca.tipo_reporte = ReporteMarca::TIPO["Busqueda"]
     reporte_marca
   end
 
@@ -131,5 +157,4 @@ private
   def destruir_anteriores
     self.class.destroy_all( self.class.condiciones_buscar_cruce(self.attributes.convert_keys_to_sym) )
   end
-
 end

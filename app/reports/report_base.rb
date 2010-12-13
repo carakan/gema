@@ -20,30 +20,30 @@ class ReportBase < Prawn::Document
     marcas_table = []
     count = 0
     @marcas.each do |marca|
-      fecha_solicitud = "#{I18n.l(marca.estado_fecha, :format => :long) if marca.estado_fecha}"
+      fecha_solicitud = "#{I18n.l(marca.fecha_marca.to_date, :format => :long) if marca.fecha_marca}"
 
       marcas_table[count] = ["#{marca.nombre}", "#{marca.tipo_signo.try(:sigla) if marca.tipo_signo}", "", "#{marca.clase_id}", "#{fecha_solicitud}",
-        "#{marca.numero_publicacion}",
+        "#{marca.numero_marca}",
         "#{marca.titulares.collect{|representante| "#{representante.nombre}"}.join(", ")}", "#{marca.productos}"]
       count += 1
     end
 
-    data = [marca_header, marcas_table.flatten]
+    data = [marca_header] + marcas_table
 
     the_x = 0
     the_y = 0
 
     table(data, :cell_style => {:border_width => 1}) do |t|
-      t.row(0).style :background_color => 'f0f0f0'
-      t.row(0).style :"size" => 9
-      t.row(1).style :"size" => 9
+      t.row(0).style :background_color => 'cccccc', :style => :bold, :align => :center, :valign => :center
       t.rows(1..7).width = 120
       t.cells.style(:size => 8, :inline_format => true)
       the_x = t.cells[1,2].x
       the_y = t.cells[1,2].y
 
+      a = 0
       @marcas.each do |marca|
-        image("#{Rails.public_path}/#{marca.adjuntos.first.archivo.url(:mini)}" , :at => [the_x + 135, the_y - 25], :fit => [80, 80]) if !marca.adjuntos.empty?
+        image("#{Rails.public_path}#{marca.adjuntos.first.archivo.url(:mini)}" , :at => [the_x + 135, the_y - 25 - a], :fit => [80, 80]) if !marca.adjuntos.empty?
+        a = a+40
       end
       t.column(0).style(:width => 130)
       t.column(1..3).style(:width => 35)
@@ -58,7 +58,7 @@ class ReportBase < Prawn::Document
     if @date_report.nil?
       @date_report = Date.today
     end
-    "La Paz, #{I18n.l(@date_report, :format => :short)}"
+    "#{I18n.l(@date_report, :format => :long)}"
   end
 
   def logo_orpan

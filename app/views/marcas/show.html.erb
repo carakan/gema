@@ -1,6 +1,7 @@
 <style type="text/css">
   #marca{ width: 54%; float: left;}
-  #posts{ width: 44%; float: left; background-color: #EFEFEF; }
+  #posts{ width: 50%; float: right; background-color: #EFEFEF; margin: 15px;}
+  #posts p {font-weight: normal !important;}
 </style>
 
 <div class="breadcrumps">
@@ -15,7 +16,7 @@
 <div id="contenido">
   <div class="izquierda">
     <h1><%= cambio @marca ,:nombre %></h1>
-    
+
     <div class="detalles">  
       <p>
         <label for="">Propia</label>
@@ -35,6 +36,10 @@
       <%= cambio @marca ,:clase %>
     </p>
 
+    <p>
+      <label for="">Descripción de productos/servicios</label>
+      <%= cambio @marca ,:productos %>
+    </p>
     <p>
       <label for="">Tipo signo</label>
       <%= cambio @marca ,:tipo_signo_id %>
@@ -65,10 +70,6 @@
       <%= cambio @marca ,:numero_solicitud %>
     </p>
 
-    <p>
-      <label for="">Descripción de productos/servicios</label>
-      <%= cambio @marca ,:productos %>
-    </p>
 
     <p>
       <label for="">Fecha de modificación</label>
@@ -93,12 +94,12 @@
       <%= cambio @marca ,:descripcion_imagen %>
     </p>
    <% end %>
-    
+
     <p>
       <label for="">Estado</label>
       <%= cambio @marca ,:marca_estado_id %>
     </p>
-    
+
     <p>
       <label for="">Titulares</label>
       <%= cambio @marca, :titular_ids_serial, @marca.titulares.join(", ") %>
@@ -112,19 +113,19 @@
       <%= cambio @marca, :apoderado %>
     </p>
     <p>
-      <label>Representante Empresarial</label>
-      <%= cambio @marca, :representante_empresarial %>
+      <label>Domicilio Titular</label>
+      <%= cambio @marca, :domicilio_titular %>
     </p>
     <p>
       <label for="">Fecha de publicación</label>
       <%= cambio @marca ,:fecha_publicacion %>
     </p>
-  
+
     <p>
       <label for="">Número de gaceta</label>
       <%= cambio @marca ,:numero_gaceta %>
     </p>
-  
+
     <p>
       <label for="">Número de publicación</label>
       <%= cambio @marca ,:numero_publicacion %>
@@ -139,7 +140,7 @@
       <label for="">Número de registro</label>
       <%= cambio @marca ,:numero_registro %>
     </p>
-  
+
     <p>
       <label for="">Fecha solicitud renovación</label>
       <%= cambio @marca ,:fecha_solicitud_renovacion %>
@@ -149,7 +150,7 @@
       <label for="">Número solicitud renovación</label>
       <%= cambio @marca ,:numero_solicitud_renovacion %>
     </p>
-    
+
     <p>
       <label for="">Fecha renovación</label>
       <%= cambio @marca ,:fecha_renovacion %>
@@ -163,16 +164,16 @@
  </div>
 
   <div class="clear"></div>
-  
-  <div class=izquierda> 
+
+  <div class="izquierda"> 
     <hr />
     <h1 class="dark">Historial de modificaciones</h1>
-
 
     <% @cambios = @marca.cambios %>
     <% @marca.historial.each do |marca| %>
 
     <% @cambios.delete('usuario_id') %>
+    <% @cambios.delete('errores_manual') %>
     <p>
       Modificado por <strong><%= marca.usuario %></strong> en fecha: <em><%= l marca.updated_at, :format => "%d, %B %Y %H:%M" %></em>
     </p>
@@ -187,10 +188,8 @@
       <% @cambios = marca.cambios %>
     <% end %>
   </div>
-
-  <div class="derecha" data-posts_size="<%= Marca::POSTS_SIZE %>">
-    <hr />
-    <div>
+      <hr />
+    <div id="posts" data-posts_size="<%= Marca::POSTS_SIZE %>">
       <h2 class="title">Ultimos comentarios</h2>
         <%= render :partial => "posts/posts", :locals => { :posts => @marca.ultimos_posts } %>
         <%= link_post @marca, 'index' %>

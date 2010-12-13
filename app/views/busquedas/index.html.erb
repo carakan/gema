@@ -21,9 +21,10 @@
 <% unless @busqueda.blank? %>
   <%= form_for @consulta do |f| -%>
     <%= f.hidden_field :representante_id %>
-    <label for="">Cliente</label>
-    <input type="text" id="cliente_id" size="40" />
-    <%= f.hidden_field :parametros %>
+  
+    <!-- <label for="">Cliente</label> -->
+    <!-- <input type="text" id="cliente_id" size="40" /> -->
+     <%= f.hidden_field :parametros %> 
     <%= f.hidden_field :busqueda %>
 
     <table class="decorated resultados">
@@ -46,7 +47,7 @@
           </td>
           <td><label for="marca<%= marca.id %>"><span class="<%= marca.propia! %>"><%= link_to marca.nombre, marca_path(marca), :class => :ajax%></span></label></td>
           <td><%= marca.clase_id %></td>
-          <td><%= marca.tipo_signo.sigla if marca.tipo_signo %></td>
+          <td><%= tipo_signo_sigla(marca.tipo_signo_id) %></td>
           <td><%= marca.numero_marca %></td>
           <td><%= lo(marca.fecha_marca, :format => "%d %b, %Y") if marca.fecha_marca %></td>
           <td><%= buscar_representante( marca.titular_ids_serial, @representantes ) %></td>
@@ -60,8 +61,8 @@
 <% end %>
 
 <script type="text/javascript">
-  (function($) {
-    $('input:checkbox').click(function() {
+  $(function() {
+    $('.resultados input:checkbox').live("click", function() {
       if( $(this).attr('checked') ) {
         var id = $(this).attr("name").replace(/^[a-z_]+([0-9]+)$/,"$1");
         var index = $(this).attr('data-index');
@@ -96,5 +97,5 @@
     });
 
     $('table.resultados').fixedtableheader();
-  })(jQuery);
+  });
 </script>

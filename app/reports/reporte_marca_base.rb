@@ -9,7 +9,7 @@ class ReporteMarcaBase < ReportBase
     I18n.locale = :en if reporte_marca.idioma == 'en'
     
     logo_orpan
-    text "La Paz, #{I18n.l Date.today, :format => :long}\n\n"
+    text "#{I18n.l Date.today, :format => :long}\n\n"
     
     text reporte_marca.carta << "\n\n"
     tabla(reporte_marca)
@@ -23,7 +23,7 @@ class ReporteMarcaBase < ReportBase
   def tabla(reporte_marca)
     data = datos(reporte_marca)
     table( [ encabezado ] + data, :header => true, :width => 720) do
-      row(0).style(:background_color => 'cccccc', :style => :bold)
+      row(0).style( :background_color => 'cccccc', :style => :bold, :align => :center, :valign => :center)
       cells.style(:size => 8, :inline_format => true)
       column(0..5).style(:width => 100)
     end
@@ -61,7 +61,7 @@ class ReporteMarcaBase < ReportBase
     datos_array[1] = "#{ marca.tipo_signo.sigla if marca.tipo_signo }"
     datos_array[2] = "#{ marca.clase_id }"
     datos_array[3] = "#{ marca.numero_marca }"
-    datos_array[4] = "#{ I18n.l(marca.fecha_marca, :format => :short) if marca.fecha_marca}"
+    datos_array[4] = "#{ I18n.l(marca.fecha_marca.to_date, :format => :short) if marca.fecha_marca}"
     datos_array[5] = "#{ marca.titulares.join(", ") }"
     datos_array
   end
