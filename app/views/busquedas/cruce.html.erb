@@ -6,32 +6,58 @@
 <div id="contenido">
 <h1>"<%= @marca.nombre %>"</h1>
   <div class="izquierda">
-    <p>
-    <label>Clase: </label>
-    <%= @marca.clase_id %>
-    </p>
-    <p>
+    <div class="subizq">
+      <label>Clase: </label>
+    </div>
+
+    <div class="subder">
+      <label class="remarcado"><%= @marca.clase_id %></label>
+    </div>
+    <div style="clear:both"></div>
+
+    <div class="subizq">
       <label> Nº solicitud:</label>
-      <%= @marca.numero_solicitud %>
-    </p>
-    <p>
+    </div>
+
+    <div class="subder">
+      <label class="remarcado"><%= @marca.numero_solicitud %></label>
+    </div>
+    <div style="clear:both"></div>
+    
+    <div class="subizq">
       <label>Nº publicación:</label>
-      <%= @marca.numero_publicacion %>
-    </p>
+    </div>
+    <div class="subder">
+      <label class="remarcado"><%= @marca.numero_publicacion %></label>
+    </div>
   </div>
+  
   <div class="derecha">
-    <p>
+    <div class="subizq">
       <label for="">Tipo: </label>
-      <%= @marca.tipo_signo %>
-    </p>
-    <p>
+    </div>
+
+    <div class="subder">
+      <label class="remarcado"><%= @marca.tipo_signo %></label>
+    </div>
+    <div style="clear:both"></div>
+
+    <div class="subizq">
       <label for="">Fecha solicitud:</label>
-      <%= lo @marca.estado_fecha %>
-    </p>
-    <p>
+    </div>
+
+    <div class="subder">
+      <label class="remarcado"><%= lo @marca.estado_fecha %></label>
+    </div>
+    <div style="clear:both"></div>
+
+    <div class="subizq">
       <label>Titulares:</label>
-      <%= @marca.titulares.join(", ") %>
-    </p>
+    </div>
+
+    <div class="subder">
+      <label class="remarcado"><%= @marca.titulares.join(", ") %></label>
+    </div>
   </div>
 </div>
 <%#= link_to "Ver marca", ver_marca_path(@marca), :class => 'ajax show' %>
