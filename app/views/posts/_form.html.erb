@@ -1,8 +1,8 @@
 <%= semantic_form_for(@post, :html => {:multipart => true, :target => 'post_iframe', :id => 'post_form'}) do |f| %>
   <%= f.input :postable_id, :as => :hidden %>
   <%= f.input :postable_type, :as => :hidden %>
-  <%= f.input :titulo, :label => 'Título', :input_html => { :size => 70 } %>
   <%= f.input :categoria, :label => 'Categoría', :input_html => { :size => 70 } %>
+  <%= f.input :titulo, :label => 'Título', :input_html => { :size => 70 } %>
   <%= f.input :comentario, :as => :text, :label => 'Comentario', :input_html => {:cols => 70, :rows => 10} %>
   
   <div id="adjuntos">

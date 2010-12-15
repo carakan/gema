@@ -16,6 +16,16 @@
 <div id="contenido">
   <div class="izquierda">
     <h1><%= cambio @marca ,:nombre %></h1>
+  </div>
+  
+  <div class="derecha">
+    <% unless @marca.archivo_adjunto.blank? %>
+      <%= cambio @marca, :archivo_adjunto, image_tag( @marca.adjuntos.last.archivo.url(:mini), :class => 'mini' ) unless @marca.archivo_adjunto.blank? %>
+    <% end %>
+  </div>
+  <div style="clear:both"></div>
+
+  <div class="izquierda">
 
     <div class="subizq">
       <label for="">Propia:</label>
@@ -126,20 +136,15 @@
   </div>
 
   <div class="derecha">
-  <% unless @marca.archivo_adjunto.blank? %>
     <div class="subizq">
-      <%= cambio @marca, :archivo_adjunto, image_tag( @marca.adjuntos.last.archivo.url(:mini), :class => 'mini' ) unless @marca.archivo_adjunto.blank? %>
-    </div>
-    <div style="clear:both"></div>
-
-    <div class="subizq">
-      <label for="">Descripcion de la imagen:</label>
+      <% unless @marca.archivo_adjunto.blank? %>
+        <label for="">Descripcion de la imagen:</label>
     </div>
 
     <div class="subder">
       <label class="remarcado"><%= cambio @marca ,:descripcion_imagen %></label>
+      <% end %>
     </div>
-  <% end %>
     <div style="clear:both"></div>
 
     <div class="subizq">
@@ -159,16 +164,16 @@
       <label class="remarcado"><%= cambio @marca, :titular_ids_serial, @marca.titulares.join(", ") %></label>
     </div>
     <div style="clear:both"></div>
-    
-    <div class="subizq"> 
-      <label for="">Agentes:</label>
+  
+    <div class="subizq">  
+      <label>Domicilio Titular:</label>
     </div>
 
     <div class="subder">
-      <label class="remarcado"><%= cambio @marca, :agente_ids_serial, @marca.agentes.join(", ") %></label>
+      <label class="remarcado"><%= cambio @marca, :domicilio_titular %></label>
     </div>
-    <div style="clear:both"></div>
-    
+    <div style="clear:both"></div> 
+
     <div class="subizq">
       <label>Apoderado:</label>
     </div>
@@ -177,13 +182,13 @@
       <label class="remarcado"><%= cambio @marca, :apoderado %></label>
     </div>
     <div style="clear:both"></div>
-    
-    <div class="subizq">  
-      <label>Domicilio Titular:</label>
+
+    <div class="subizq"> 
+      <label for="">Agentes:</label>
     </div>
 
     <div class="subder">
-      <label class="remarcado"><%= cambio @marca, :domicilio_titular %></label>
+      <label class="remarcado"><%= cambio @marca, :agente_ids_serial, @marca.agentes.join(", ") %></label>
     </div>
     <div style="clear:both"></div>
 

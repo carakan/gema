@@ -75,10 +75,7 @@
   <%= f.input :marca_id, :as => :hidden %>
   <%= f.input :importacion_id, :as => :hidden %>
   <%= hidden_field_tag "page", @page %>
-  <p>
-    <%= f.submit 'Pre reporte' unless @busqueda.blank? %>
-    <%= f.submit 'Descartar cruce', :class => 'red' unless @busqueda.blank? %>
-  </p>
+
   <% unless @busqueda.blank? %>
     <table class="decorated nolink tablesorter" id="tabla-cruce">
       <thead>
