@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101210173730) do
+ActiveRecord::Schema.define(:version => 20101213170041) do
 
   create_table "adjuntos", :force => true do |t|
     t.string   "nombre"
@@ -140,6 +140,7 @@ ActiveRecord::Schema.define(:version => 20101210173730) do
     t.string   "errores_manual",              :limit => 500
     t.string   "instruccion"
     t.integer  "marca_estado_id"
+    t.string   "domicilio_titular"
   end
 
   add_index "marcas", ["activa"], :name => "index_marcas_on_activa"
@@ -198,6 +199,7 @@ ActiveRecord::Schema.define(:version => 20101210173730) do
     t.boolean  "adjuntos",                      :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "categoria"
   end
 
   add_index "posts", ["postable_id"], :name => "index_posts_on_postable_id"
