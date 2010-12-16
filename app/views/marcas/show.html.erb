@@ -1,6 +1,6 @@
 <style type="text/css">
-  #marca{ width: 45%; float: left;}
-  #posts{ width: 45%; float: right; background-color: #EFEFEF; margin: 15px;}
+  #marca{ width: 90%; float: left; margin: 15px;}
+  #posts{ width: 90%; float: left; background-color: #EFEFEF; margin: 15px;}
   #posts p {font-weight: normal !important;}
 </style>
 
@@ -8,18 +8,20 @@
   <%= link_to 'Lista de marcas', marcas_path, :class =>'list' %> > Marca
 </div>
 
-<p class="links">
+<div id="abm">
   <%= link_to 'Editar', edit_marca_path(@marca), :class =>'edit'%> 
   <%= link_to 'Lista', marcas_path, :class =>'list' %>
-</p>
+</div>
 
 <div id="contenido">
   <div class="izquierda">
-    <h1><%= cambio @marca ,:nombre %></h1>
+      <label for="">Signo</label>
+      <label class="remarcado"><h1><%= cambio @marca ,:nombre %></h1></label>
   </div>
   
   <div class="derecha">
     <% unless @marca.archivo_adjunto.blank? %>
+    <label for="">Imagen</label>
       <%= cambio @marca, :archivo_adjunto, image_tag( @marca.adjuntos.last.archivo.url(:mini), :class => 'mini' ) unless @marca.archivo_adjunto.blank? %>
     <% end %>
   </div>
@@ -152,7 +154,7 @@
     </div>
 
     <div class="subder">
-      <label class="remarcado"><%= cambio @marca ,:marca_estado_id %></label>
+      <label class="atencion"><%= cambio @marca ,:marca_estado_id %></label>
     </div>
     <div style="clear:both"></div>
 
@@ -271,11 +273,27 @@
     <div class="subder">
       <label class="remarcado"><%= cambio @marca ,:numero_renovacion %></label>
     </div>
+    <div style="clear:both"></div>
+
+    <div class="subizq">
+      <label for="">Id Marca:</label>
+    </div>
+
+    <div class="subder">
+      <label class="remarcado"><%= cambio @marca ,:id %></label>
+    </div>
  </div>
 
   <div class="clear"></div>
 
-    <hr />
+  <hr />
+  <div id="posts" data-posts_size="<%= Marca::POSTS_SIZE %>">
+    <h2 class="title">Ultimos comentarios</h2>
+      <%= render :partial => "posts/posts", :locals => { :posts => @marca.ultimos_posts } %>
+      <%= link_post @marca, 'index' %>
+      <%= link_post @marca, 'new' %>
+  </div>
+
   <div id="marca"> 
     <h1 class="dark">Historial de modificaciones</h1>
 
@@ -297,12 +315,5 @@
       <hr />
       <% @cambios = marca.cambios %>
     <% end %>
-  </div>
-    <div id="posts" data-posts_size="<%= Marca::POSTS_SIZE %>">
-      <h2 class="title">Ultimos comentarios</h2>
-        <%= render :partial => "posts/posts", :locals => { :posts => @marca.ultimos_posts } %>
-        <%= link_post @marca, 'index' %>
-        <%= link_post @marca, 'new' %>
     </div>
-  </div>
 </div>
