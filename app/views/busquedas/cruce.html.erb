@@ -1,14 +1,18 @@
+<style>
+  .group-select{
+    border-top: 3px solid #9E9E9E !important;
+  }
+</style>
 <div class="breadcrumps">
   <%= link_to "Lista de importaciones", importaciones_path %> > <%= link_to "Cruce gaceta", cruce_importaciones_path(:importacion_id => params[:importacion_id], :page => @page) %> > Selección
 </div>
 
-
 <div id="contenido">
-<h1>"<%= @marca.nombre %>"</h1>
+  <h1>"<%= @marca.nombre %>"</h1>
   <div class="izquierda">
     <p>
-    <label>Clase: </label>
-    <%= @marca.clase_id %>
+      <label>Clase: </label>
+      <%= @marca.clase_id %>
     </p>
     <p>
       <label> Nº solicitud:</label>
@@ -57,7 +61,9 @@
     <table class="decorated nolink tablesorter" id="tabla-cruce">
       <thead>
         <tr>
-          <th></th>
+          <% unless params[:reporte] %>
+            <th></th>
+          <% end %>
           <th>Nombre</th>
           <th title="Tipo de signo">Tipo</th>
           <th title="Clase">Cl</th>
@@ -65,45 +71,57 @@
           <th>Fecha</th>
           <th>Agentes</th>
           <th>Titulares</th>
-          <th>Observaciones</th>
-          <th></th>
+          <% if params[:reporte] %>
+            <th colspan="2">Observaciones</th>
+            <th></th>
+          <% end %>
         </tr>
       </thead>
-
       <% titulares = @busqueda.first.titular_ids_serial.sort %>
       <% agentes = @busqueda.first.agente_ids_serial.sort %>
       <% count = 1 %>
       <% count_grupos = 1 %>
       <% marcas_selected = [] %>
-      <% selected = @consulta_detalles.include?(@busqueda.first.id) %>
+      <% group_selected = true %>
       <% @busqueda.each_with_index do |b, i| %>
         <% if titulares == b.titular_ids_serial.sort && agentes == b.agente_ids_serial.sort %>
-          <tr class="<%= "select" if selected %>">
-            <td>
-              <% if count == 1 %>
-                <span class="mini"><%= selected ? 1 : 0 %></span>
-                <%= hidden_field_tag "consulta[consulta_detalles_attributes][#{i}][tipo_de_busqueda]", b.pos if selected %>
-                <%= check_box_tag "consulta[consulta_detalles_attributes][#{i}][marca_id]", b.id, selected, 'data-tipo_de_busqueda' => b.pos %>
+          <% selected = @consulta_detalles.include?(b.id) %>
+          <% if !(params[:reporte] && !selected) %>
+            <tr class="<%= "select" if selected %> <%= "group-select" if group_selected %>">
+              <% unless params[:reporte] %>
+                <td>
+                  <span class="mini"><%= selected ? 1 : 0 %></span>
+                  <%= hidden_field_tag "consulta[consulta_detalles_attributes][#{i}][tipo_de_busqueda]", b.pos if selected %>
+                  <%= check_box_tag "consulta[consulta_detalles_attributes][#{i}][marca_id]", b.id, selected, 'data-tipo_de_busqueda' => b.pos %>
+                </td>
               <% end %>
-            </td>
-            <td>
-              <label for="consulta_consulta_detalles_attributes_<%= i %>_marca_id" class="propia"><%= link_to b.nombre, marca_path(b), :class => :ajax%></label>
-            </td>
-            <td><%= b.tipo_signo.sigla if b.tipo_signo %></td>
-            <td><%= b.clase_id %></td>
-            <td><%= b.numero_marca %></td>
-            <td><%= lo(b.fecha_marca, :format => "%d %b, %Y") if b.fecha_marca %></td>
-            <td><%= b.agentes.join(", ") %></td>
-            <td><%= b.titulares.join(", ") %></td>
-            <% if count == 1 && selected %>
-              <td><%= text_field_tag "observaciones_#{count_grupos}" %></td>
-              <td><%= link_to("Reporte",  cruce_reporte_marcas_path( :importacion_id => @importacion.id, :marca_foranea => @marca.id), :grupo => count_grupos, :class => "reporte") %></td>
-            <% else %>
-              <td colspan="2"></td>
-            <% end %>
-          </tr>
+              <td>
+                <label for="consulta_consulta_detalles_attributes_<%= i %>_marca_id" class="propia"><%= link_to b.nombre, marca_path(b), :class => :ajax%></label>
+              </td>
+              <td><%= b.tipo_signo.sigla if b.tipo_signo %></td>
+              <td><%= b.clase_id %></td>
+              <td><%= b.numero_marca %></td>
+              <td><%= lo(b.fecha_marca, :format => "%d %b, %Y") if b.fecha_marca %></td>
+              <td><%= b.agentes.join(", ") %></td>
+              <td><%= b.titulares.join(", ") %></td>
+              <% if params[:reporte] %>
+                <td><%= text_area_tag "observaciones_#{b.id}_#{count_grupos}", "", :size => "10x3" %></td>
+                <% if group_selected %>
+                  <td><%= text_area_tag "observaciones_#{count_grupos}", "", :size => "10x3" %></td>
+                  <td>
+                    Es <%= radio_button_tag "language_#{count_grupos}", "es", true %> En <%= radio_button_tag "language_#{count_grupos}", "en", false %><br/>
+                    <%= link_to("Reporte pdf", cruce_reporte_marcas_path( :importacion_id => @importacion.id, :marca_foranea => @marca.id), :grupo => count_grupos, :class => "reporte") %>
+                    <%= link_to("Reporte xls", cruce_reporte_marcas_path( :importacion_id => @importacion.id, :marca_foranea => @marca.id), :grupo => count_grupos, :class => "reporte") %>
+                  </td>
+                <% else %>
+                  <td colspan="3"></td>
+                <% end %>
+              <% end %>
+            </tr>
+            <% group_selected = false %>
+            <% marcas_selected << b.id  %>
+          <% end %>
           <% count += 1 %>
-          <% marcas_selected << b.id  %>
         <% else %>
           <%= hidden_field_tag("marca_ids_#{count_grupos}", marcas_selected.join(",")) %>
           <% titulares = b.titular_ids_serial.sort %>
@@ -111,7 +129,7 @@
           <% count = 1 %>
           <% marcas_selected = []  %>
           <% count_grupos += 1 %>
-          <% selected = @consulta_detalles.include?(b.id) %>
+          <% group_selected = true %>
           <% redo %>
         <% end %>
       <% end %>
@@ -133,11 +151,22 @@
       e.stopPropagation();
       e.preventDefault();
       enlace = $(this);
-      marcas = $("#marca_ids_" + enlace.attr("grupo")).val();
+      marcas = $("#marca_ids_" + enlace.attr("grupo")).val().split(",");
       observaciones = $("#observaciones_" + enlace.attr("grupo")).val();
+      mensajes = [];
+
+      result = {}
+      $(marcas).each(function(index, data){
+        console.debug(index, data);
+        result["hola_"+index] = data;
+      });
+
+      $.each(function(element, marcas){
+        mensajes 
+      })
       $.postGo(enlace.attr("href"), {"marca_ids" : marcas, "observaciones" : observaciones});
     });
-    
+
     function validarForma() {
       msg = "";
       if($('#consulta_comentario').val().trim() == "") {
@@ -159,7 +188,7 @@
         }
       }
     });
-    
+
     // Adicion de un hidden para todos los elementos seleccioandos
     $('input:checkbox').click(function() {
       if( $(this).attr('checked') ) {

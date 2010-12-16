@@ -52,7 +52,7 @@ class ConsultasController < ApplicationController
       @consulta = Consulta.new(params[:consulta])
 
       if @consulta.save
-        redirect_to "/busquedas/cruce/?consulta_id=#{@consulta.id}&importacion_id=#{@consulta.importacion_id}&marca_id=#{@consulta.marca_id}page=#{@page}", :notice => "Se ha almacenado el cruce"
+        redirect_to "/busquedas/cruce/?reporte=true&consulta_id=#{@consulta.id}&importacion_id=#{@consulta.importacion_id}&marca_id=#{@consulta.marca_id}page=#{@page}", :notice => "Se ha almacenado el cruce"
       end
     else
       Consulta.descartar( params[:consulta] )

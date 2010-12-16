@@ -709,6 +709,10 @@ a.desc {
 .breadcrumps a { font-weight: normal; }
 .ui-dialog .links { display: none; }
 .ui-dialog .breadcrumps { display: none; }
+#tabla-cruce tr {
+  border-right: 2px solid #9e9e9e;
+  border-left: 2px solid #9e9e9e;
+}
 #tabla-cruce tr.select { background-color: #dcdcdc; }
 #tabla-cruce span.mini { font-size: 1px; }
 div#contenido {
