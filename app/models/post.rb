@@ -12,7 +12,7 @@ class Post < ActiveRecord::Base
   accepts_nested_attributes_for :adjuntos, :reject_if => lambda { |a| a[:archivo].blank? }
 
   validates_presence_of :titulo, :comentario
-
+  CATEGORIA_POST = ["Renovaciones","Inscripciones cambios titular, domicilio y licencias", "Litigios", "Otro"]
 private
   def adicionar_usuario
     self.usuario_id = UsuarioSession.current_user[:id]
