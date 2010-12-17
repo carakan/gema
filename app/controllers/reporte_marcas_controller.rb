@@ -79,11 +79,13 @@ class ReporteMarcasController < ApplicationController
     elsif
       tipo = ReporteMarca::TIPO["Solicitud Marca"]
     end
-    @reporte_marca = ReporteMarca.new(:importacion_id => @importacion.id, :idioma => 'es', :tipo_reporte => tipo)
+    @reporte_marca = ReporteMarca.new(:importacion_id => @importacion.id, :idioma => params[:language], :tipo_reporte => tipo, :carta => params[:observaciones])
     preparar_datos_cruce
+    @reporte_marca.save!
     respond_to do |format|
-      format.html # new.html.erb
+      format.html { redirect_to download_reporte_marca_url(@reporte_marca) }
       format.xml  { render :xml => @reporte_marca }
+      format.xls { redirect_to download_reporte_marca_url(@reporte_marca, :format => "xls") }
     end
   end
 
@@ -167,5 +169,12 @@ class ReporteMarcasController < ApplicationController
       @reporte_marca.marca_ids_serial = @marca_ids
       @reporte_marca.marca_foranea_id = @marca.id
     end
+
+    result = []
+
+    @marcas.each {|marca|  result << {
+        :marca_id => marca.id, :comentario => params["observaciones_#{marca.id}"]
+      }}
+    @reporte_marca.reporte_marca_detalles_attributes = result
   end
 end
