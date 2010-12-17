@@ -17,6 +17,7 @@
 
 <table class="decorated">
   <tr>
+    <th>Gaceta</th>
     <th>Fecha</th>
     <th>Tipo</th>
     <th>Total</th>
@@ -27,6 +28,7 @@
   </tr>
   <%- @importaciones.each do |imp| -%>
     <tr>
+      <td><%= imp.publicacion if imp.publicacion %></td>
       <td><%= link_to fecha_hora(imp.created_at, 'long'), imp %></td>
       <td><strong><%= ver_estado imp.tipo %></strong></td>
       <td><%= imp.marcas.size %></td>

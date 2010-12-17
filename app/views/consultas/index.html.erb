@@ -8,6 +8,7 @@
 
 <table class="decorated">
   <tr>
+    <th>Id</th>
     <th>Busqueda</th>
     <th>Gerencia</th>
     <th>Agente</th>
@@ -21,6 +22,7 @@
   <% @consultas.each do |consulta| %>
     <tr>
 
+      <td><%= consulta.id %></td>
       <td><%=h  link_to consulta.busqueda, consulta %></td>
       <td><%= consulta.representante.gerencia if consulta.representante %></td>
       <td><%= consulta.representante %></td>
