@@ -8,6 +8,8 @@
 </div>
 
 <div id="contenido">
+  <div class="scroll">
+  <%#= render :partial => "marcas/show" %>
   <h1>"<%= @marca.nombre %>"</h1>
   <div class="izquierda">
 
@@ -64,6 +66,7 @@
       <label class="remarcado"><%= @marca.titulares.join(", ") %></label>
     </div>
   </div>
+ </div>
 </div>
 <%#= link_to "Ver marca", ver_marca_path(@marca), :class => 'ajax show' %>
 <!--  </div>-->

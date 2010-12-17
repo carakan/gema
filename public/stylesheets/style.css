@@ -793,3 +793,9 @@ div#abm {
   width: 100%;
   text-align: right;
 }
+div#contenido .scroll {
+  float: left;
+  width: 100%;
+  height: 200px;
+  overflow: scroll;
+}
