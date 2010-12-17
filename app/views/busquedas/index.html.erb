@@ -5,9 +5,7 @@
 </div>
 <% unless params[:busqueda].nil? %>
   <hr />
-  <h1 class="dark">Resultados</h1>
-<h2 class="dark">
-<%= @busqueda.size %> RESULTADOS para la busqueda <%= params[:busqueda].upcase %> en las clases 
+  <h2 class="dark"><%= params[:busqueda].upcase %> tubo <%= @busqueda.size %> resultados en las clases
   <% if params[:clases].count < 45%>
     <%= params[:clases].keys.join(",") %>
   <% else %>
@@ -17,27 +15,27 @@
   <% end %>
 </h2>
 <% end %>
-
 <% unless @busqueda.blank? %>
   <%= form_for @consulta do |f| -%>
     <%= f.hidden_field :representante_id %>
   
     <!-- <label for="">Cliente</label> -->
     <!-- <input type="text" id="cliente_id" size="40" /> -->
-     <%= f.hidden_field :parametros %> 
+    <%= f.hidden_field :parametros %> 
     <%= f.hidden_field :busqueda %>
-
+ <div id="contenido">
+  <div class="scroll">
     <table class="decorated resultados">
       <thead>
         <tr>
-          <th></th>
-          <th>Nombre</th>
-          <th>Cl.</th>
-          <th>Tipo</th>
-          <th>Nro</th>
-          <th>Fecha</th>
-          <th>Titulares</th>
-          <th>Agentes</th>
+          <th style="width: 10px;"></th>
+          <th style="width: 250px;">Nombre</th>
+          <th style="width: 15px;">Cl.</th>
+          <th style="width: 15px;">Tipo</th>
+          <th style="width: 55px;">Nro</th>
+          <th style="width: 40px;">Fecha</th>
+          <th style="width: 175px;">Titulares</th>
+          <th style="width: 175px;">Agentes</th>
         </tr>
       </thead>
       <% @busqueda.each_with_index do |marca, index| %>
@@ -56,9 +54,11 @@
         </tr>
       <% end %>
     </table>
-    <%= submit_tag "Crear pre reporte", :id => 'seleccionar' %>
+   </div>
+ </div>
+      <%= submit_tag "Crear pre reporte", :id => 'seleccionar' %>
+   <% end %>
   <% end %>
-<% end %>
 
 <script type="text/javascript">
   $(function() {
@@ -96,6 +96,5 @@
       }
     });
 
-    $('table.resultados').fixedtableheader();
   });
 </script>

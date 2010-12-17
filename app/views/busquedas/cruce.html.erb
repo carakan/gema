@@ -8,65 +8,90 @@
 </div>
 
 <div id="contenido">
-  <div class="scroll">
-  <%#= render :partial => "marcas/show" %>
-  <h1>"<%= @marca.nombre %>"</h1>
-  <div class="izquierda">
-
-    <div class="subizq">
-      <label>Clase: </label>
-    </div>
-
-    <div class="subder">
-      <label class="remarcado"><%= @marca.clase_id %></label>
-    </div>
-    <div style="clear:both"></div>
-
-    <div class="subizq">
-      <label> Nº solicitud:</label>
-    </div>
-
-    <div class="subder">
-      <label class="remarcado"><%= @marca.numero_solicitud %></label>
-    </div>
-    <div style="clear:both"></div>
-    
-    <div class="subizq">
-      <label>Nº publicación:</label>
-    </div>
-    <div class="subder">
-      <label class="remarcado"><%= @marca.numero_publicacion %></label>
-    </div>
+ <div class="izquierda">
+      <label for="">Signo</label>
+      <label class="remarcado"><h1><%= cambio @marca ,:nombre %></h1></label>
   </div>
   
   <div class="derecha">
+    <% unless @marca.archivo_adjunto.blank? %>
+    <label for="">Imagen</label>
+      <%= cambio @marca, :archivo_adjunto, image_tag( @marca.adjuntos.last.archivo.url(:mini), :class => 'mini' ) unless @marca.archivo_adjunto.blank? %>
+    <% end %>
+  </div>
+  <div style="clear:both"></div>
+
+  <div class="izquierda">
     <div class="subizq">
-      <label for="">Tipo: </label>
+      <label for="">Clase:</label>
     </div>
+    
     <div class="subder">
-      <label class="remarcado"><%= @marca.tipo_signo %></label>
+      <label class="remarcado"><%= cambio @marca ,:clase %></label>
     </div>
     <div style="clear:both"></div>
 
+    <div class="subizq">
+      <label for="">Tipo Marca:</label>
+    </div>
+    
+    <div class="subder">
+      <label class="remarcado"><%= cambio @marca, :tipo_marca_id, @marca.tipo_marca %></label>
+    </div>
+    <div style="clear:both"></div>
+   
     <div class="subizq">
       <label for="">Fecha solicitud:</label>
     </div>
 
     <div class="subder">
-      <label class="remarcado"><%= lo @marca.estado_fecha %></label>
+      <label class="remarcado"><%= cambio @marca ,:estado_fecha %></label>
     </div>
     <div style="clear:both"></div>
 
     <div class="subizq">
-      <label>Titulares:</label>
+      <label for="">Numero Solicitud:</label>
     </div>
 
     <div class="subder">
-      <label class="remarcado"><%= @marca.titulares.join(", ") %></label>
+      <label class="remarcado"><%= cambio @marca ,:numero_solicitud %></label>
     </div>
+    <div style="clear:both"></div>
   </div>
- </div>
-</div>
+
+  <div class="derecha">
+    <div class="subizq">
+      <label for="">Tipo signo:</label>
+    </div>
+
+    <div class="subder">
+      <label class="remarcado"<%= cambio @marca ,:tipo_signo_id %></label>
+    </div>
+    <div style="clear:both"></div>
+
+    <div class="subizq">
+      <label for="">Titulares:</label>
+    </div>
+
+    <div class="subder">
+      <label class="remarcado"><%= cambio @marca, :titular_ids_serial, @marca.titulares.join(", ") %></label>
+    </div>
+    <div style="clear:both"></div>
+
+    <div class="subizq">
+      <label>Apoderado:</label>
+    </div>
+
+    <div class="subder">
+      <label class="remarcado"><%= cambio @marca, :apoderado %></label>
+    </div>
+    <div style="clear:both"></div>
+  </div>
+
+
+  <!--<div class="scroll">
+  <%#= render :partial => "/marcas/mostrar" %>
+</div>-->
 <%#= link_to "Ver marca", ver_marca_path(@marca), :class => 'ajax show' %>
 <!--  </div>-->
 
@@ -83,6 +108,7 @@
   <%= f.input :importacion_id, :as => :hidden %>
   <%= hidden_field_tag "page", @page %>
 
+  <div class="scroll">
   <% unless @busqueda.blank? %>
     <table class="decorated nolink tablesorter" id="tabla-cruce">
       <thead>
@@ -103,6 +129,7 @@
           <% end %>
         </tr>
       </thead>
+      
       <% titulares = @busqueda.first.titular_ids_serial.sort %>
       <% agentes = @busqueda.first.agente_ids_serial.sort %>
       <% count = 1 %>
@@ -135,9 +162,9 @@
                 <% if group_selected %>
                   <td><%= text_area_tag "observaciones_#{count_grupos}", "", :size => "10x3" %></td>
                   <td>
-                    Es <%= radio_button_tag "language_#{count_grupos}", "es", true %> En <%= radio_button_tag "language_#{count_grupos}", "en", false %><br/>
-                    <%= link_to("Reporte pdf", cruce_reporte_marcas_path( :importacion_id => @importacion.id, :marca_foranea => @marca.id), :grupo => count_grupos, :class => "reporte") %>
-                    <%= link_to("Reporte xls", cruce_reporte_marcas_path(:format => "xls", :importacion_id => @importacion.id, :marca_foranea => @marca.id), :grupo => count_grupos, :class => "reporte") %>
+                    Es <%= radio_button_tag "language_#{count_grupos}", "es", true %> <br/>En <%= radio_button_tag "language_#{count_grupos}", "en", false %><br/>
+                    <%= link_to("Reporte", cruce_reporte_marcas_path( :importacion_id => @importacion.id, :marca_foranea => @marca.id), :grupo => count_grupos, :class => "pdf") %>
+                    <%= link_to("Reporte", cruce_reporte_marcas_path(:format => "xls", :importacion_id => @importacion.id, :marca_foranea => @marca.id), :grupo => count_grupos, :class => "xls") %>
                   </td>
                 <% else %>
                   <td colspan="3"></td>
@@ -164,11 +191,13 @@
       <% end %>
     </table>
   <% end %>
+  </div>
   <p>
     <%= f.submit 'Pre reporte' unless @busqueda.blank? %>
     <%= f.submit 'Descartar cruce', :class => 'red' unless @busqueda.blank? %>
   </p>
 <% end %>
+</div>
 
 <script type="text/javascript">
   (function($) {
