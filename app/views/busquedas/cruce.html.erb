@@ -10,13 +10,6 @@
 <div id="contenido">
   <h1>"<%= @marca.nombre %>"</h1>
   <div class="izquierda">
-<<<<<<< HEAD
-    <p>
-      <label>Clase: </label>
-      <%= @marca.clase_id %>
-    </p>
-    <p>
-=======
     <div class="subizq">
       <label>Clase: </label>
     </div>
@@ -27,7 +20,6 @@
     <div style="clear:both"></div>
 
     <div class="subizq">
->>>>>>> 138abc4e3533225c4c4d70cba83db341138253be
       <label> Nº solicitud:</label>
     </div>
 
@@ -48,7 +40,6 @@
     <div class="subizq">
       <label for="">Tipo: </label>
     </div>
-
     <div class="subder">
       <label class="remarcado"><%= @marca.tipo_signo %></label>
     </div>
@@ -136,13 +127,13 @@
               <td><%= b.agentes.join(", ") %></td>
               <td><%= b.titulares.join(", ") %></td>
               <% if params[:reporte] %>
-                <td><%= text_area_tag "observaciones_#{b.id}_#{count_grupos}", "", :size => "10x3" %></td>
+                <td><%= text_area_tag "observaciones_#{b.id}", "", :size => "10x3" %></td>
                 <% if group_selected %>
                   <td><%= text_area_tag "observaciones_#{count_grupos}", "", :size => "10x3" %></td>
                   <td>
                     Es <%= radio_button_tag "language_#{count_grupos}", "es", true %> En <%= radio_button_tag "language_#{count_grupos}", "en", false %><br/>
                     <%= link_to("Reporte pdf", cruce_reporte_marcas_path( :importacion_id => @importacion.id, :marca_foranea => @marca.id), :grupo => count_grupos, :class => "reporte") %>
-                    <%= link_to("Reporte xls", cruce_reporte_marcas_path( :importacion_id => @importacion.id, :marca_foranea => @marca.id), :grupo => count_grupos, :class => "reporte") %>
+                    <%= link_to("Reporte xls", cruce_reporte_marcas_path(:format => "xls", :importacion_id => @importacion.id, :marca_foranea => @marca.id), :grupo => count_grupos, :class => "reporte") %>
                   </td>
                 <% else %>
                   <td colspan="3"></td>
@@ -183,19 +174,16 @@
       e.preventDefault();
       enlace = $(this);
       marcas = $("#marca_ids_" + enlace.attr("grupo")).val().split(",");
-      observaciones = $("#observaciones_" + enlace.attr("grupo")).val();
-      mensajes = [];
-
+      
       result = {}
       $(marcas).each(function(index, data){
-        console.debug(index, data);
-        result["hola_"+index] = data;
+        result["observaciones_"+data] = $("#observaciones_" + data).val();
       });
-
-      $.each(function(element, marcas){
-        mensajes 
-      })
-      $.postGo(enlace.attr("href"), {"marca_ids" : marcas, "observaciones" : observaciones});
+      result["marca_ids"] = marcas;
+      result["observaciones"] = $("#observaciones_" + enlace.attr("grupo")).val();
+      result["language"] = $("input[name=language_"+ enlace.attr("grupo") +"]:checked").val();
+      
+      $.postGo(enlace.attr("href"), result);
     });
 
     function validarForma() {
