@@ -24,8 +24,7 @@
     <%= f.hidden_field :parametros %> 
     <%= f.hidden_field :busqueda %>
  <div id="contenido">
-  <div class="scroll">
-    <table class="decorated resultados">
+    <table class="decorated nolink tablesorter" id="tabla-cruce">
       <thead>
         <tr>
           <th style="width: 10px;"></th>
@@ -38,7 +37,9 @@
           <th style="width: 175px;">Agentes</th>
         </tr>
       </thead>
-      <% @busqueda.each_with_index do |marca, index| %>
+      <tbody>
+        <% @busqueda.each_with_index do*/ |marca, index| %>
+
         <tr>
           <td>
             <%= check_box_tag "consulta_detalles_attributes_#{marca.id}", 1, false, 'data-index' => index %>
@@ -53,12 +54,13 @@
           <!--<td><%= tipo_busqueda marca.pos %></td>-->
         </tr>
       <% end %>
+      </tbody>
     </table>
-   </div>
       <%= submit_tag "Crear pre reporte", :id => 'seleccionar' %>
    <% end %>
   <% end %>
- </div>
+</div>
+
 <script type="text/javascript">
   $(function() {
     $('.resultados input:checkbox').live("click", function() {

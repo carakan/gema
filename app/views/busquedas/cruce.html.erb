@@ -8,7 +8,7 @@
 </div>
 
 <div id="contenido">
- <div class="izquierda">
+  <div class="izquierda">
       <label for="">Signo</label>
       <label class="remarcado"><h1><%= cambio @marca ,:nombre %></h1></label>
   </div>
@@ -85,7 +85,6 @@
     <div class="subder">
       <label class="remarcado"><%= cambio @marca, :apoderado %></label>
     </div>
-    <div style="clear:both"></div>
   </div>
 
 
@@ -108,7 +107,6 @@
   <%= f.input :importacion_id, :as => :hidden %>
   <%= hidden_field_tag "page", @page %>
 
-  <div class="scroll">
   <% unless @busqueda.blank? %>
     <table class="decorated nolink tablesorter" id="tabla-cruce">
       <thead>
@@ -129,7 +127,8 @@
           <% end %>
         </tr>
       </thead>
-      
+
+      <tbody>      
       <% titulares = @busqueda.first.titular_ids_serial.sort %>
       <% agentes = @busqueda.first.agente_ids_serial.sort %>
       <% count = 1 %>
@@ -163,8 +162,8 @@
                   <td><%= text_area_tag "observaciones_#{count_grupos}", "", :size => "10x3" %></td>
                   <td>
                     Es <%= radio_button_tag "language_#{count_grupos}", "es", true %> <br/>En <%= radio_button_tag "language_#{count_grupos}", "en", false %><br/>
-                    <%= link_to("Reporte", cruce_reporte_marcas_path( :importacion_id => @importacion.id, :marca_foranea => @marca.id), :grupo => count_grupos, :class => "pdf") %>
-                    <%= link_to("Reporte", cruce_reporte_marcas_path(:format => "xls", :importacion_id => @importacion.id, :marca_foranea => @marca.id), :grupo => count_grupos, :class => "xls") %>
+                    <%= link_to("Reporte", cruce_reporte_marcas_path( :importacion_id => @importacion.id, :marca_foranea => @marca.id), :grupo => count_grupos, :class => "reporte pdf") %>
+                    <%= link_to("Reporte", cruce_reporte_marcas_path(:format => "xls", :importacion_id => @importacion.id, :marca_foranea => @marca.id), :grupo => count_grupos, :class => "reporte xls") %>
                   </td>
                 <% else %>
                   <td colspan="3"></td>
@@ -191,8 +190,9 @@
       <% end %>
     </table>
   <% end %>
-  </div>
+    </tbody>
   <p>
+
     <%= f.submit 'Pre reporte' unless @busqueda.blank? %>
     <%= f.submit 'Descartar cruce', :class => 'red' unless @busqueda.blank? %>
   </p>

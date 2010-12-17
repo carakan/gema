@@ -77,6 +77,6 @@
 <% end %>
 <%= link_to 'lista', reporte_marcas_path, :class => 'list' %>
 <% if @reporte_marca.for_cruce? || @reporte_marca.for_busqueda? %>
-  <%= link_to "Descargar reporte .xls", download_reporte_marca_path(@reporte_marca, :format => "xls"), :class => 'xls' %>
+  <%= link_to "Reporte", download_reporte_marca_path(@reporte_marca, :format => "xls"), :class => 'xls' %>
 <% end %>
-<%= link_to "Descargar reporte", download_reporte_marca_path(@reporte_marca), :class => 'pdf' %>
+<%= link_to "Reporte", download_reporte_marca_path(@reporte_marca), :class => 'pdf' %>

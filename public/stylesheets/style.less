@@ -58,10 +58,9 @@ a { color: @blue; text-decoration: underline; cursor: pointer; }
 a:hover { text-decoration: none; }
 
 table.decorated{
-  border-collapse: collapse;
   border-bottom: 1px solid @grey;
   tr{
-    border-top: 1px solid @table_border_color;
+    border-bottom: 1px solid @table_border_color;
   }
   th{
     color:@white;
@@ -870,7 +869,12 @@ a.desc{
   .links{ display: none }
   .breadcrumps{ display: none }
 }
-#tabla-cruce tr{
+#tabla-cruce tbody{
+  height: 350px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+#tabla-cruce tbody tr{
   border-right: 2px solid #9E9E9E;
   border-left: 2px solid #9E9E9E;
 }
@@ -881,8 +885,8 @@ a.desc{
   font-size: 1px;
 }
 div#contenido{float:left; width: 100%;}
-div#contenido .izquierda{ float: left; margin:0px; width: 45%;}
-div#contenido .derecha{ float: right; width:45%; margin:10px;}
+div#contenido .izquierda{ float: left; width: 45%;}
+div#contenido .derecha{ float: right; width:45%;}
 .izquierda .detalles{ float:left; width: 50%;}
 .izquierda .subizq{
   float:left;
@@ -938,15 +942,22 @@ div#contenido label.atencion {
   margin: 3px 0px;
 }
 div#abm {float:left; width:100%; text-align: right;}
-div#contenido .scroll{float:left; width: 100%; height:350px; overflow-y: scroll;
+/*div#contenido .scroll{float:left; width: 100%; height:350px; overflow-y: scroll;
   overflow-x: hidden;}
 div#contenido .scroll .tablafija{
+  border: solid #66CC99;
+  border-width: 0px 1px 1px 0px;
   width: 100%;
   height: 350px;
   overflow-y: scroll;
   overflow-x: hidden;
 }
-div#contenido .scroll .tablafija thead tr{
-  width: 100%;
-  position: absolute;
+div#contenido .tablafija tbody{
+  height: 350px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
+div#contenido .tablafija tbody tr{
+  border: solid #66CC99;
+  border-width: 0px 1px 1px 0px;
+}*/
