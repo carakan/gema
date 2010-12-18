@@ -520,6 +520,10 @@ span.foranea, a.foranea {
   background: transparent url(../images/icons/blank.png) no-repeat top left;
   padding-left: 18px;
 }
+span.resaltado {
+  color: #0055aa;
+  font-size: 22px;
+}
 .delete-l {
   background-image: url(../images/icons/delete.png);
   background-position: middle left;

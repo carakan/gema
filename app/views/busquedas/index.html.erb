@@ -5,7 +5,7 @@
 </div>
 <% unless params[:busqueda].nil? %>
   <hr />
-  <h2 class="dark"><%= params[:busqueda].upcase %> tubo <%= @busqueda.size %> resultados en las clases
+  <h2 class="dark"><span class="resaltado"><%= params[:busqueda].upcase %></span> tuvo <%= @busqueda.size %> resultados en las clases
   <% if params[:clases].count < 45%>
     <%= params[:clases].keys.join(",") %>
   <% else %>
@@ -38,7 +38,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @busqueda.each_with_index do*/ |marca, index| %>
+        <% @busqueda.each_with_index do |marca, index| %>
 
         <tr>
           <td>
