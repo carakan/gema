@@ -70,10 +70,10 @@
   <%= f.association :marca_estado, :tabindex => 10, :label => 'estado' %>
 
   <%= f.input :numero_solicitud , :tabindex => 13  %>
-  <%# f.input :estado_fecha, :label => 'Fecha solicitud',:as => :string, :input_html => {:tabindex => 14, :class => 'date' } %>
+  <%# f.input :fecha_solicitud, :label => 'Fecha solicitud',:as => :string, :input_html => {:tabindex => 14, :class => 'date' } %>
   <li class="date">
-    <%= f.label :estado_fecha, "Fecha hora solicitud" %>
-    <%= f.datetime_select :estado_fecha %>
+    <%= f.label :fecha_solicitud, "Fecha hora solicitud" %>
+    <%= f.datetime_select :fecha_solicitud %>
   </li>
   <%= f.input :numero_gaceta, :label => 'Número de gaceta' , :tabindex => 17  %>
   <%= f.input :numero_publicacion,:label => 'Número de publicación' , :tabindex => 15  %>

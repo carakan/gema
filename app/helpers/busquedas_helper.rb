@@ -38,13 +38,13 @@ module BusquedasHelper
   # presentar fecha de la marca
   def fecha_marca(marca)
     case marca.estado
-      when "sm" then marca.estado_fecha
-      when "lp" then marca.estado_fecha
+      when "sm" then marca.fecha_solicitud
+      when "lp" then marca.fecha_solicitud
       when "lr" then marca.fecha_registro
       when "sr" then marca.fecha_solicitud_renovacion
       when "rc" then marca.fecha_renovacion
       else
-        marca.estado_fecha
+        marca.fecha_solicitud
     end
   end
 end

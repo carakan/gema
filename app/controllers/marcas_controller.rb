@@ -9,7 +9,7 @@ class MarcasController < ApplicationController
   end
 
   def new
-    @marca = Marca.new(:estado_fecha => Date.today, :tipo_signo_id => TipoSigno.find_by_sigla(params[:tipo]).id, :propia => true, :activa => true, :marca_estado_id => 1)
+    @marca = Marca.new(:fecha_solicitud => Date.today, :tipo_signo_id => TipoSigno.find_by_sigla(params[:tipo]).id, :propia => true, :activa => true, :marca_estado_id => 1)
   end
 
   def edit

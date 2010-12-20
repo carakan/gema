@@ -450,11 +450,11 @@ class Marca < ActiveRecord::Base
     elsif self.numero_registro && !self.numero_registro.blank?
       return {:numero => self.numero_registro, :fecha => self.fecha_registro}
     elsif self.numero_publicacion && !self.numero_publicacion.blank?
-      return {:numero => self.numero_publicacion, :fecha => self.estado_fecha}
+      return {:numero => self.numero_publicacion, :fecha => self.fecha_solicitud}
     elsif self.numero_solicitud && !self.numero_solicitud.blank?
-      return {:numero => self.numero_solicitud, :fecha => self.estado_fecha}
+      return {:numero => self.numero_solicitud, :fecha => self.fecha_solicitud}
     else
-      return {:numero => nil, :fecha => self.estado_fecha}
+      return {:numero => nil, :fecha => self.fecha_solicitud}
     end  
   end
 
