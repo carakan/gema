@@ -9,11 +9,11 @@
 
 <div id="contenido">
   <div class="izquierda">
-      <label for="">Signo</label>
+      <label for="">Signo</label><br/><br/>
       <label class="remarcado"><h1><%= cambio @marca ,:nombre %></h1></label>
   </div>
   
-  <div class="derecha">
+  <div class="derecha_img">
     <% unless @marca.archivo_adjunto.blank? %>
     <label for="">Imagen</label>
       <%= cambio @marca, :archivo_adjunto, image_tag( @marca.adjuntos.last.archivo.url(:mini), :class => 'mini' ) unless @marca.archivo_adjunto.blank? %>
