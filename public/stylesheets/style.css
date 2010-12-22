@@ -735,6 +735,11 @@ div#contenido .derecha {
   float: right;
   width: 45%;
 }
+div#contenido .derecha_img {
+  float: right;
+  width: 45%;
+  height: 85px;
+}
 .izquierda .detalles {
   float: left;
   width: 50%;
