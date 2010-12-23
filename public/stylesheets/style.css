@@ -802,3 +802,37 @@ div#abm {
   width: 100%;
   text-align: right;
 }
+div#busqueda {
+  float: left;
+  width: 100%;
+}
+div#busqueda label {
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 18px;
+  display: block;
+  color: #484848;
+  margin: 3px 0px;
+}
+div#busqueda label.line {
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 18px;
+  display: inline;
+  color: #484848;
+  margin: 3px 0px;
+}
+div#busqueda p {
+  font-family: helvetica, arial, freesans, clean, sans-serif;
+  font-size: 15px;
+  line-height: 18px;
+  font-weight: bold;
+}
+div#busqueda .izquierda {
+  float: left;
+  width: 55%;
+}
+div#busqueda .derecha {
+  float: right;
+  width: 45%;
+}
