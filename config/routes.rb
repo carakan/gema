@@ -83,6 +83,8 @@ Rails.application.routes.draw do
     collection do
       get :cruce 
       get :verificar_cruce
+      get :busqueda_avanzada
+      get :avanzada
     end
   end
 

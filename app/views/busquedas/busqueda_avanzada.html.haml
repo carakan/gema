@@ -1,0 +1,185 @@
+#busqueda
+  %h1 Búsqueda avanzada
+  -form_tag '/search_results' do
+    .izquierda
+      = label_tag "Propiedad:"
+      = select "Propia", "Propia", ["Propia", "Ajena", "Ambas"]
+      %br
+      %br
+      
+      = label_tag "Disponibilidad:"
+      = select "Activa", "Activa", ["Activa", "Inactiva", "Ambas"]
+      %br
+      %br
+      .izquierda
+      = label_tag "Denominación:"
+      = text_field_tag :marca
+
+      .derecha
+        = radio_button_tag "exacta","exacta"
+        = label_tag "Palabra o frase EXACTA", "Palabra o frase EXACTA", :class => 'line'
+        %br
+        = radio_button_tag "similar", "similar"
+        = label_tag "Palabra(s) dentro de una frase", "Palabra(s) dentro de una frase", :class => 'line'
+      %br
+      %br
+      .izquierda
+        = label_tag "Agentes"
+        = text_field_tag :agentes
+
+      .derecha
+        = label_tag "Países"
+        %ul
+          %li
+            =link_to 'BO, VE, CO, PE, UY, BR', "javascript:", :"data-clases" => "1,2,4"
+
+    .izquierda
+      = label_tag "Titulares"
+      = text_field_tag :titulares
+      %br
+      %br
+
+    .derecha
+      = label_tag "Países"
+      %div
+        %ul
+          %li
+            %a{:href => "javascript:", :"data-clases" => "1,2,4"} BO, VE, CO, PE, UY, BR
+
+    = label_tag "Clases"
+    %div
+      %ul
+        %li
+          #{link_to '1,2 y 4', javascript_include_tag}
+
+    = label_tag "Tipo de marca:"
+    = select "tipo_marca", "tipo_marca", TipoMarca.all
+    %br
+    %br
+
+    = label_tag "Tipo de signo:"
+    = select "tipo_signo", "tipo_signo", TipoSigno.all
+    %br
+    %br
+    
+    = label_tag "Vía instrucción:"
+    = select "instruccion", "instruccion", Marca::INSTRUCCIONES
+    %br
+    %br
+    
+    = label_tag "Estado:"
+    = select "estado", "estado", MarcaEstado.all
+    %br
+    %br
+    
+    = label_tag "Descripción del diseño:"
+    = text_field_tag "desc_diseno"
+    %br
+    %br
+    
+    = radio_button_tag "desc_diseno_exacta","desc_diseno_exacta"
+    = label_tag "Palabra o frase EXACTA"
+    = radio_button_tag "desc_diseno_similar", "desc_diseno_similar"
+    = label_tag "Palabra(s) dentro de una frase"
+    %br
+    %br
+
+    = label_tag "Descripción productos/servicios:"
+    = text_field_tag "desc_prod_servicios"
+    %br
+    %br
+    
+    = radio_button_tag "desc_productos_exacta","desc_productos_exacta"
+    = label_tag "Palabra o frase EXACTA"
+    = radio_button_tag "desc_productos_similar", "desc_productos_similar"
+    = label_tag "Palabra(s) dentro de una frase"
+    %br
+    %br
+
+    
+    = label_tag "Observaciones:"
+    = text_field_tag "observaciones"
+    %br
+    %br
+    
+    = radio_button_tag "observaciones_exacta","observaciones_exacta"
+    = label_tag "Palabra o frase EXACTA"
+    = radio_button_tag "observaciones_similar", "observaciones_similar"
+    = label_tag "Palabra(s) dentro de una frase"
+    %br
+    %br
+    
+    = label_tag "sm","SM:"
+    = label_tag "de:"
+    = text_field_tag "sm_inicio"
+    = label_tag "a:"
+    = text_field_tag "sm_fin"
+    %br
+    %br
+    
+    = label_tag "Numero publicación:"
+    = label_tag "de:"
+    = text_field_tag "publicacion_inicio"
+    = label_tag "a:"
+    = text_field_tag "publicacion_fin"
+    %br
+    %br
+
+    = label_tag "Gaceta:"
+    = label_tag "de:"
+    = text_field_tag "gaceta_inicio"
+    = label_tag "a:"
+    = text_field_tag "gaceta_fin"
+    %br
+    %br
+
+    = label_tag "Numero registro:"
+    = label_tag "de:"
+    = text_field_tag "registro_inicio"
+    = label_tag "a:"
+    = text_field_tag "registro_fin"
+    %br
+    %br
+
+    = label_tag "sr","SR:"
+    = label_tag "de:"
+    = text_field_tag "sr_inicio"
+    = label_tag "a:"
+    = text_field_tag "sr_fin"
+    %br
+    %br
+    
+    = label_tag "Numero Renovación:"
+    = label_tag "de:"
+    = text_field_tag "renovacion_inicio"
+    = label_tag "a:"
+    = text_field_tag "renovacion_fin"
+    %br
+    %br
+    
+    = label_tag "Id:"
+    = label_tag "de:"
+    = text_field_tag "id_inicio"
+    = label_tag "a:"
+    = text_field_tag "id_fin"
+    %br
+    %br
+    
+    = label_tag "Fecha solicitud:"
+    = label_tag "de:"
+    = text_field_tag "fecha_sol_inicio"
+    = label_tag "a:"
+    = text_field_tag "fecha_sol_fin"
+    %br
+    %br
+    
+    = label_tag "Fecha publicación:"
+    = label_tag "de:"
+    = text_field_tag "fecha_pub_inicio"
+    = label_tag "a:"
+    = text_field_tag "fecha_pub_fin"
+    %br
+    %br
+    = submit_tag "Calcular"
+
+   

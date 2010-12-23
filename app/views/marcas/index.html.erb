@@ -62,7 +62,7 @@
         <%= link_to marca.nombre, marca_path(marca), :class => "#{ marca.propia! } #{marca.valido!}" %>
       </td>
       <td class="<%= marca.propia %>"></td>
-      <td><span title="<%= marca.ver_estado %>"><%= marca.estado %></span></td>
+      <td><!--<span title="<%#= marca.ver_estado %>">--><%= MarcaEstado.sigla_estado(marca.marca_estado_id) %><!--</span>--></td>
       <td><% unless marca.tipo_signo.nil?%><%= marca.tipo_signo.sigla %><%end%></td>
       <td><%= marca.clase_id %></td>
       <td class="<%= marca.activa %>"></td>

@@ -43,7 +43,7 @@
           <td><%= b.tipo_signo.sigla if b.tipo_signo %></td>
           <td><%= b.clase_id %></td>
           <td><%= numero_marca(b) %></td>
-          <td><%= lo(b.estado_fecha, :format => "%d %b, %Y") %></td>
+          <td><%= lo(b.fecha_solicitud, :format => "%d %b, %Y") %></td>
           <td><%= b.agentes.join(", ") %></td>
           <td><%= b.titulares.join(", ") %></td>
         </tr>

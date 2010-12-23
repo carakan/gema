@@ -27,6 +27,7 @@ gem 'prawn', '0.10.2'
 gem 'less'
 gem 'devise'
 gem 'simple_form'
+gem "meta_search"
 
 group :test do
   gem 'rspec-rails'

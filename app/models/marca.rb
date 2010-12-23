@@ -210,16 +210,16 @@ class Marca < ActiveRecord::Base
   end
 
   # Realiza la inclusion de modulos de acuerdo al tipo_signo
-  def self.set_include_tipo_signo(signo)
-    case signo
-    when 1
-      include ModMarca::Denominacion
-    when 2
-      include ModMarca::Etiqueta
-    when 3
-      include ModMarca::Figurativa
-    end
-  end
+ #def self.set_include_tipo_signo(signo)
+ #  case signo
+ #  when 1
+ #    include ModMarca::Denominacion
+ #  when 2
+ #    include ModMarca::Etiqueta
+ #  when 3
+ #    include ModMarca::Figurativa
+ #  end
+ #end
 
 
   def self.ver_estado(est)
@@ -298,7 +298,7 @@ class Marca < ActiveRecord::Base
   def self.crear_instancia(params)
     klass = new(params)
     set_include_estado(klass, params[:marca_estado_id])
-    set_include_tipo_signo(params[:tipo_signo_id])
+    #set_include_tipo_signo(params[:tipo_signo_id])
     klass
   end
 
@@ -450,11 +450,11 @@ class Marca < ActiveRecord::Base
     elsif self.numero_registro && !self.numero_registro.blank?
       return {:numero => self.numero_registro, :fecha => self.fecha_registro}
     elsif self.numero_publicacion && !self.numero_publicacion.blank?
-      return {:numero => self.numero_publicacion, :fecha => self.estado_fecha}
+      return {:numero => self.numero_publicacion, :fecha => self.fecha_solicitud}
     elsif self.numero_solicitud && !self.numero_solicitud.blank?
-      return {:numero => self.numero_solicitud, :fecha => self.estado_fecha}
+      return {:numero => self.numero_solicitud, :fecha => self.fecha_solicitud}
     else
-      return {:numero => nil, :fecha => self.estado_fecha}
+      return {:numero => nil, :fecha => self.fecha_solicitud}
     end  
   end
 
@@ -462,7 +462,6 @@ class Marca < ActiveRecord::Base
   def fecha_marca
     fecha_numero_marca[:fecha]
   end
-
 
   protected
   #########################################################

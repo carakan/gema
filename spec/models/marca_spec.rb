@@ -3,8 +3,8 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe Marca do
   before(:each) do
-    @params = { :nombre => 'Especial', :estado_fecha => '2009-10-11', 
-      :estado => 'sm', :tipo_marca_id => 2, :numero_solicitud => '2323-2009' }
+    @params = { :nombre => 'Especial', :fecha_solicitud => '2009-10-11', 
+      :estado => 'sm', :tipo_marca_id => 2, :numero_solicitud => '02323-2009' }
   end
 
   it 'should create Marca' do
