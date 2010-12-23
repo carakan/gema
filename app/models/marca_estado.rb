@@ -32,5 +32,10 @@ class MarcaEstado < ActiveRecord::Base
       ModMarca::RenovacionConcedida
     end
   end
+  
+  def self.sigla_estado(id_estado)
+    a = MarcaEstado.find(:first, :conditions => {:id => id_estado})
+    a
+  end
 
 end

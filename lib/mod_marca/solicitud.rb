@@ -37,6 +37,7 @@ module ModMarca::Solicitud
     # Realiza la importación de datos desde archivo Excel
     def importar_archivo(params)
       archivo = params[:archivo]
+      fecha_solicitud = params[:fecha_solicitud]
       fecha_imp = DateTime.now.strftime("%Y-%m-%d %H:%I:%S")
       importar_excel(archivo)
       fila = 3 # Fila inicial que comienza el excel

@@ -49,7 +49,7 @@ table.decorated td {
   padding: 6px 10px;
 }
 table.decorated td li { margin: 0px; }
-table.decorated td { vertical-align: top; }
+table.decorated td { vertical-align: middle; }
 table.decorated a.edit { display: inline-block; }
 table.decorated a.delete { display: inline-block; }
 table.nwl td:last-child { white-space: nowrap; }
@@ -738,7 +738,7 @@ div#contenido .derecha {
 div#contenido .derecha_img {
   float: right;
   width: 45%;
-  height: 85px;
+  height: 100px;
 }
 .izquierda .detalles {
   float: left;

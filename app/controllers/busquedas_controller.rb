@@ -52,4 +52,8 @@ class BusquedasController < ApplicationController
     @busq = BusquedaVacia.new
   end
 
+  def busqueda_avanzada
+
+  end
+
 end

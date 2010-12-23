@@ -210,16 +210,16 @@ class Marca < ActiveRecord::Base
   end
 
   # Realiza la inclusion de modulos de acuerdo al tipo_signo
-  def self.set_include_tipo_signo(signo)
-    case signo
-    when 1
-      include ModMarca::Denominacion
-    when 2
-      include ModMarca::Etiqueta
-    when 3
-      include ModMarca::Figurativa
-    end
-  end
+ #def self.set_include_tipo_signo(signo)
+ #  case signo
+ #  when 1
+ #    include ModMarca::Denominacion
+ #  when 2
+ #    include ModMarca::Etiqueta
+ #  when 3
+ #    include ModMarca::Figurativa
+ #  end
+ #end
 
 
   def self.ver_estado(est)
@@ -298,7 +298,7 @@ class Marca < ActiveRecord::Base
   def self.crear_instancia(params)
     klass = new(params)
     set_include_estado(klass, params[:marca_estado_id])
-    set_include_tipo_signo(params[:tipo_signo_id])
+    #set_include_tipo_signo(params[:tipo_signo_id])
     klass
   end
 
@@ -462,7 +462,6 @@ class Marca < ActiveRecord::Base
   def fecha_marca
     fecha_numero_marca[:fecha]
   end
-
 
   protected
   #########################################################
