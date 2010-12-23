@@ -10,6 +10,7 @@ class BusquedasController < ApplicationController
     params[:tipo_busqueda] = 'prev' if params[:tipo_busqueda].nil?
     if params[:busqueda]
       @busqueda = Busqueda.realizar_busqueda(params)
+      @busqueda2 = Busqueda.realizar_busqueda({:busqueda => params[:busqueda], :tipo_representante => 1}, Representante)
       @representantes = Busqueda.preparar_representantes(@busqueda)
       # Crea una nueva busqueda con los parametros de la busqueda
       @consulta = Consulta.nueva(params)
