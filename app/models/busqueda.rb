@@ -193,7 +193,7 @@ class Busqueda
       sql = "SELECT res.id, res.nombre, res.pos, res.clase_id, res.propia, res.activa, res.tipo_signo_id, res.agente_ids_serial,
       res.fecha_renovacion, res.fecha_solicitud_renovacion, res.fecha_registro, res.fecha_solicitud,
       res.titular_ids_serial, res.fecha_publicacion, res.numero_solicitud, res.numero_publicacion, 
-      res.numero_registro, res.numero_renovacion, res.estado, res.numero_solicitud_renovacion, res.estado_fecha, res.exacto"
+      res.numero_registro, res.numero_renovacion, res.estado, res.numero_solicitud_renovacion, res.fecha_solicitud, res.exacto"
     else
       sql = "SELECT res.id, res.nombre, res.nombre_minusculas"
     end
@@ -299,4 +299,4 @@ class Busqueda
     results.flatten.uniq
     Representante.where(:id => results).inject({})  { |h,v| h[v.id] = v; h }
   end
-end
+end:

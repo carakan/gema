@@ -284,9 +284,15 @@
     </div>
  </div>
 
-  <div class="clear"></div>
+ <div class="clear"></div>
+ <%debugger%>
+ <% unless @marca.tipo_signo_id == 7 %>
+  <div id="posts">
+    <h2 class="title">Lemas comerciales</h2>
+    <%= link_to "Nuevo Lema Comercial", new_marca_path(:tipo => 'LC', :tipo_signo =>'Lema Comercial', :lema_marca_id => @marca.id), :class => 'ajax' %>
+  </div>
+  <% end %>
 
-  <hr />
   <div id="posts" data-posts_size="<%= Marca::POSTS_SIZE %>">
     <h2 class="title">Ultimos comentarios</h2>
       <%= render :partial => "posts/posts", :locals => { :posts => @marca.ultimos_posts } %>
