@@ -19,7 +19,7 @@ module BusquedasHelper
   #  @param Array
   #  @return String
   def buscar_representante(representante_ids, representantes)
-    representante_ids.map { |_id| representantes[_id] }.join(", ") unless representante_ids.blank?
+    representante_ids.map { |_id| representantes[_id] }.join(", ") if !representante_ids.nil? && !representante_ids.blank?
   end
 
   # presenta de acuerdo al estado

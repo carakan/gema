@@ -1,65 +1,21 @@
 <h1>Busquedas</h1>
 <div class="clear"></div>
 <div class="pad-tb">
-  <%= render :partial => "buscar" %>
+  <%= render :partial => "buscar", :locals => {:show_titulares => true} %>
 </div>
 <% unless params[:busqueda].nil? %>
   <hr />
   <h2 class="dark"><span class="resaltado"><%= params[:busqueda].upcase %></span> tuvo <%= @busqueda.size %> resultados en las clases
-  <% if params[:clases].count < 45%>
-    <%= params[:clases].keys.join(",") %>
-  <% else %>
-    <%= "1 a la 45" %>
-  <% end %> 
+    <% if params[:clases].count < 45%>
+      <%= params[:clases].keys.join(",") %>
+    <% else %>
+      <%= "1 a la 45" %>
+    <% end %>
     <% unless params[:representante_id].blank? %> para el cliente <%= Representante.find(params[:representante_id]) %>
-  <% end %>
-</h2>
+    <% end %>
+  </h2>
 <% end %>
-<% unless @busqueda.blank? %>
-  <%= form_for @consulta do |f| -%>
-    <%= f.hidden_field :representante_id %>
-  
-    <!-- <label for="">Cliente</label> -->
-    <!-- <input type="text" id="cliente_id" size="40" /> -->
-    <%= f.hidden_field :parametros %> 
-    <%= f.hidden_field :busqueda %>
- <div id="contenido">
-    <table class="decorated nolink tablesorter" id="tabla-cruce">
-      <thead>
-        <tr>
-          <th style="width: 10px;"></th>
-          <th style="width: 250px;">Nombre</th>
-          <th style="width: 15px;">Cl.</th>
-          <th style="width: 15px;">Tipo</th>
-          <th style="width: 55px;">Nro</th>
-          <th style="width: 40px;">Fecha</th>
-          <th style="width: 175px;">Titulares</th>
-          <th style="width: 175px;">Agentes</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @busqueda.each_with_index do |marca, index| %>
-
-        <tr>
-          <td>
-            <%= check_box_tag "consulta_detalles_attributes_#{marca.id}", 1, false, 'data-index' => index %>
-          </td>
-          <td><label for="marca<%= marca.id %>"><span class="<%= marca.propia! %>"><%= link_to marca.nombre, marca_path(marca), :class => :ajax%></span></label></td>
-          <td><%= marca.clase_id %></td>
-          <td><%= tipo_signo_sigla(marca.tipo_signo_id) %></td>
-          <td><%= marca.numero_marca %></td>
-          <td><%= lo(marca.fecha_marca, :format => "%d %b, %Y") if marca.fecha_marca %></td>
-          <td><%= buscar_representante( marca.titular_ids_serial, @representantes ) %></td>
-          <td><%= buscar_representante( marca.agente_ids_serial, @representantes ) %></td>
-          <!--<td><%= tipo_busqueda marca.pos %></td>-->
-        </tr>
-      <% end %>
-      </tbody>
-    </table>
-      <%= submit_tag "Crear pre reporte", :id => 'seleccionar' %>
-   <% end %>
-  <% end %>
-</div>
+<%= render :partial => "resultados" %>
 
 <script type="text/javascript">
   $(function() {

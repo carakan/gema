@@ -1,0 +1,47 @@
+<% unless @busqueda.blank? %>
+  <%= form_for @consulta do |f| -%>
+    <%= f.hidden_field :representante_id %>
+    <%= f.hidden_field :parametros %>
+    <%= f.hidden_field :busqueda %>
+    <div id="contenido">
+      <table class="decorated nolink tablesorter" id="tabla-cruce">
+        <thead>
+          <tr>
+            <th style="width: 10px;"></th>
+            <th style="width: 250px;">Nombre</th>
+            <th style="width: 15px;">Cl.</th>
+            <th style="width: 15px;">Tipo</th>
+            <th style="width: 55px;">Nro</th>
+            <th style="width: 40px;">Fecha</th>
+            <th style="width: 175px;">Titulares</th>
+            <th style="width: 175px;">Agentes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% index = 0 %>
+          <% @busqueda.each do |marca| %>
+            <tr>
+              <td>
+                <%= check_box_tag "consulta_detalles_attributes_#{marca.id}", 1, false, 'data-index' => index %>
+              </td>
+              <td><label for="marca<%= marca.id %>"><span class="<%= marca.propia! %>"><%= link_to marca.nombre, marca_path(marca), :class => :ajax%></span></label></td>
+              <td><%= marca.clase_id %></td>
+              <td><%= tipo_signo_sigla(marca.tipo_signo_id) %></td>
+              <td><%= marca.numero_marca %></td>
+              <td><%= lo(marca.fecha_marca, :format => "%d %b, %Y") if marca.fecha_marca %></td>
+              <td><%= buscar_representante( marca.titular_ids_serial, @representantes ) %></td>
+              <td><%= buscar_representante( marca.agente_ids_serial, @representantes ) %></td>
+              <!--<td><%= tipo_busqueda marca.pos %></td>-->
+            </tr>
+            <% index += 1 %>
+          <% end %>
+        </tbody>
+      </table>
+      <%= submit_tag "Crear pre reporte", :id => 'seleccionar' %>
+    </div>
+  <% end %>
+<% else %>
+  <% if params[:busqueda] %>
+    <h2>Sin resultados para la busqueda</h2>
+  <% end %>
+<% end %>

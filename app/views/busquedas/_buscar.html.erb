@@ -39,124 +39,125 @@
     margin-left: 20px;
   }
 </style>
-<form action="/busquedas" method="get", id="form_buscar" >
-  <div style="clear:both"></div>
+<form action="/busquedas" method="get" id="form_buscar" >
+      <div style="clear:both"></div>
   <div style="clear:both"></div>
   <div class="half fl">
     <%= label_tag "busqueda", "Busqueda" %>
     <label for="busqueda"></label>
     <%= text_field_tag :busqueda, params[:busqueda], :size => 40 %>
   </div>
-
-  <div class="half fl">
-    Bucar por
-    <label for="representante_agente">
-      <%= check_box_tag "representante[]", "agente", params[:representante] ? params[:representante].include?("agente") : false, :id => "representante_agente" %> Agente
-    </label>
-    <label for="representante_titular">
-      <%= check_box_tag "representante[]", "titular", params[:representante] ? params[:representante].include?("titular") : false, :id => "representante_titular" %> Titular
-    </label>
-    <%= hidden_field_tag 'representante_id', params[:representante_id] %>
-    <%= text_field_tag "cliente", params[:cliente], :size => 40 %>
-    <p class="hint">escriba para poder seleccionar el cliente</p>
-  </div>
-  <div class="clear"></div>
-  <label for="">Clases</label>
-  <div id="clases_grupos">
-    <ul id="botones">
-    	<li>
-    		<a href="javascript:" data-clases="1,2,4">1, 2 y 4</a>
-    	</li>
-    	<li>
-    		<a href="javascript:" data-clases="3,5,10,44">3, 5, 10 y 44</a>
-    	</li>
-    	<li>
-    		<a href="javascript:" data-clases="6,14">6 y 14</a>
-    	</li>
-    	<li>
-    		<a href="javascript:" data-clases="7,8,9,11,21">7, 8, 9, 11 y 21</a>
-    	</li>
-    	<li>
-    		<a href="javascript:" data-clases="17,19,20,22">17, 19, 20 y 22</a>
-    	</li>
-    	<li>
-    		<a href="javascript:" data-clases="18,25">18 y 25</a>
-    	</li>
-    	<li>
-    		<a href="javascript:" data-clases="22,23,24,25,26">22, 23, 24, 25 y 26</a>
-    	</li>
-    	<li>
-    		<a href="javascript:" data-clases="29,30,31">29, 30 y 31</a>
-    	</li>
-    	<li>
-    		<a href="javascript:" data-clases="32,33">32 y 33</a>
-      </li>
-      <li>
-    		<a href="javascript:" data-clases="35,36,37,38,39,40,41,42,43,44,45">35 a la 45</a>
-    	</li>
-    	<li>
-    		<a href="javascript:" data-clases="<%= (1..45).to_a.join(",") %>" class="todas">Todas</a>
-    	</li>
-    </ul>
-
-
-    <div id="clases">
-      <% 4.times do |i| -%>
-        <div>
-          <% (1..10).each do |j| %>
-            <% @id = j + i * 10 %>
-            <label for="clases_<%= @id %>">
-              <% @val = !params[:clases] ? false : params[:clases][@id.to_s] ? true : false %>
-              <%= check_box_tag "clases[#{@id}]", @id, @val %>
-              <%= @id %>
-            </label>
-          <% end %>
-        </div>
-      <% end -%>
-      <% (41..45).each do |i| %>
-        <% @id = i %>
-        <label for="clases_<%= @id %>">
-          <% @val = !params[:clases] ? false : params[:clases][@id.to_s] ? true : false %>
-          <%= check_box_tag "clases[#{@id}]", @id, @val %>
-          <%= @id %>
-        </label>
-      <% end %>
+  <% if show_titulares %>
+    <div class="half fl">
+      Bucar por
+      <label for="representante_agente">
+        <%= check_box_tag "representante[]", "agente", params[:representante] ? params[:representante].include?("agente") : false, :id => "representante_agente" %> Agente
+      </label>
+      <label for="representante_titular">
+        <%= check_box_tag "representante[]", "titular", params[:representante] ? params[:representante].include?("titular") : false, :id => "representante_titular" %> Titular
+      </label>
+      <%= hidden_field_tag 'representante_id', params[:representante_id] %>
+      <%= text_field_tag "cliente", params[:cliente], :size => 40 %>
+      <p class="hint">escriba para poder seleccionar el cliente</p>
     </div>
+    <div class="clear"></div>
+    <label for="">Clases</label>
+    <div id="clases_grupos">
+      <ul id="botones">
+        <li>
+          <a href="javascript:" data-clases="1,2,4">1, 2 y 4</a>
+        </li>
+        <li>
+          <a href="javascript:" data-clases="3,5,10,44">3, 5, 10 y 44</a>
+        </li>
+        <li>
+          <a href="javascript:" data-clases="6,14">6 y 14</a>
+        </li>
+        <li>
+          <a href="javascript:" data-clases="7,8,9,11,21">7, 8, 9, 11 y 21</a>
+        </li>
+        <li>
+          <a href="javascript:" data-clases="17,19,20,22">17, 19, 20 y 22</a>
+        </li>
+        <li>
+          <a href="javascript:" data-clases="18,25">18 y 25</a>
+        </li>
+        <li>
+          <a href="javascript:" data-clases="22,23,24,25,26">22, 23, 24, 25 y 26</a>
+        </li>
+        <li>
+          <a href="javascript:" data-clases="29,30,31">29, 30 y 31</a>
+        </li>
+        <li>
+          <a href="javascript:" data-clases="32,33">32 y 33</a>
+        </li>
+        <li>
+          <a href="javascript:" data-clases="35,36,37,38,39,40,41,42,43,44,45">35 a la 45</a>
+        </li>
+        <li>
+          <a href="javascript:" data-clases="<%= (1..45).to_a.join(",") %>" class="todas">Todas</a>
+        </li>
+      </ul>
 
-    <div style="clear:both"></div>
-  </div>
 
-    <input type="submit" value="Buscar" />
+      <div id="clases">
+        <% 4.times do |i| -%>
+          <div>
+            <% (1..10).each do |j| %>
+              <% @id = j + i * 10 %>
+              <label for="clases_<%= @id %>">
+                <% @val = !params[:clases] ? false : params[:clases][@id.to_s] ? true : false %>
+                <%= check_box_tag "clases[#{@id}]", @id, @val %>
+                <%= @id %>
+              </label>
+            <% end %>
+          </div>
+        <% end -%>
+        <% (41..45).each do |i| %>
+          <% @id = i %>
+          <label for="clases_<%= @id %>">
+            <% @val = !params[:clases] ? false : params[:clases][@id.to_s] ? true : false %>
+            <%= check_box_tag "clases[#{@id}]", @id, @val %>
+            <%= @id %>
+          </label>
+        <% end %>
+      </div>
+
+
+      <div style="clear:both"></div>
+    </div>
+  <% end -%>
+  <input type="submit" value="Buscar" />
 
 </form>
 
 <script type="text/javascript">
-$(document).ready(function() {
-  $('input[name=tipo_busqueda]').click(function() {
-    if( $(this).val() == 'prep' ) {
-      $('#fechas').show();
-    }else{
-      $('#fechas').hide();
-      $('#fechas input').val('');
+  $(document).ready(function() {
+    $('input[name=tipo_busqueda]').click(function() {
+      if( $(this).val() == 'prep' ) {
+        $('#fechas').show();
+      }else{
+        $('#fechas').hide();
+        $('#fechas input').val('');
+      }
+    });
+
+    // Busca si existe el valor en el array
+    function include(arr, obj) {
+      for(var i=0; i<arr.length; i++) {
+        if (arr[i] == obj) return true;
+      }
+      return false;
     }
-  });
+    window.include = include;
 
-  // Busca si existe el valor en el array
-  function include(arr, obj) {
-    for(var i=0; i<arr.length; i++) {
-      if (arr[i] == obj) return true;
-    }
-    return false;
-  }
-  window.include = include;
+    /**
+     * Marca los botones que estan seleccionados
+     */
+    function marcarBotones() {
+      var arr = $('#clases_grupos').find("input:checkbox:checked").map(function(i, el) { return el.value; }).get();
 
-  /**
-   * Marca los botones que estan seleccionados
-   */
-  function marcarBotones() {
-    var arr = $('#clases_grupos').find("input:checkbox:checked").map(function(i, el) { return el.value; }).get();
-
-    $('#botones').find('a').each(function(i, el) {
+      $('#botones').find('a').each(function(i, el) {
         var clases = $(el).attr("data-clases").split(",");
         var encontrado = true;
         $(clases).each(function(index, elem) {
@@ -170,65 +171,65 @@ $(document).ready(function() {
         }else {
           $(el).removeClass("sel");
         }
+      });
+    }
+
+    $('#botones').find("a").live('click', function() {
+      var clases = $(this).attr("data-clases").split(",");
+      var val = !$(this).hasClass("sel");
+
+      $(clases).each(function(i, el) {
+        $('#clases_' + el).attr("checked", val);
+      });
+      marcarBotones();
     });
-  }
 
-  $('#botones').find("a").live('click', function() {
-    var clases = $(this).attr("data-clases").split(",");
-    var val = !$(this).hasClass("sel");
-
-    $(clases).each(function(i, el) {
-      $('#clases_' + el).attr("checked", val);
+    $('#clases_grupos').find("input:checkbox").live('click', function() {
+      marcarBotones();
     });
+
+    // Al iniciar
     marcarBotones();
+
+    // Validacion para la busqueda
+    $('#form_buscar').submit(function() {
+      var txt = "";
+      if($('#clases_grupos').find(':checkbox:checked').length <= 0) {
+        txt += "Debe seleccionar al menos una clase para la busqueda\n";
+      }
+      if($('#busqueda').val().trim() == "") {
+        txt += "Debe ingresar un termino de busqueda";
+      }
+      //if($('#representante_id').val().trim() == "") {
+      //  txt += "Debe seleccionar un cliente";
+      //}
+      if(txt != ""){
+        alert(txt);
+        return false;
+      }else{
+        return true;
+      }
+
+    });
+
+    //var clientes = <%= Representante.clientes.map { |v| { :id => v.id, :label => v.nombre } }.to_json.html_safe %>;
+
+    // Clientes
+    $('#cliente').autocomplete({
+      'source': '/representantes/buscar',
+      'select': function(e, ui) {
+        var val = $(ui).autocomplete("option").get()[0];
+        $('#representante_id').val(val.item.id);
+        $('span.representante_id').html(val.item.label);
+      }
+    });
+
+    $('#cliente').change(function(event){
+      if($(this).val() == ""){
+        $('#representante_id').val(null);
+        $('span.representante_id').html("");
+      }
+    });
   });
-
-  $('#clases_grupos').find("input:checkbox").live('click', function() {
-    marcarBotones();
-  });
-
-  // Al iniciar
-  marcarBotones();
-
-  // Validacion para la busqueda
-  $('#form_buscar').submit(function() {
-    var txt = "";
-    if($('#clases_grupos').find(':checkbox:checked').length <= 0) {
-      txt += "Debe seleccionar al menos una clase para la busqueda\n";
-    }
-    if($('#busqueda').val().trim() == "") {
-      txt += "Debe ingresar un termino de busqueda";
-    }
-    //if($('#representante_id').val().trim() == "") {
-    //  txt += "Debe seleccionar un cliente";
-    //}
-    if(txt != ""){
-      alert(txt);
-      return false;
-    }else{
-      return true;
-    }
-
-  });
-
-  //var clientes = <%= Representante.clientes.map { |v| { :id => v.id, :label => v.nombre } }.to_json.html_safe %>;
-
-  // Clientes
-  $('#cliente').autocomplete({
-    'source': '/representantes/buscar',
-    'select': function(e, ui) {
-      var val = $(ui).autocomplete("option").get()[0];
-      $('#representante_id').val(val.item.id);
-      $('span.representante_id').html(val.item.label);
-    }
-  });
-
-  $('#cliente').change(function(event){
-    if($(this).val() == ""){
-      $('#representante_id').val(null);
-      $('span.representante_id').html("");
-    }
-  });
-});
 </script>
 

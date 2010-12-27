@@ -32,7 +32,7 @@ class BusquedasController < ApplicationController
 
     query[:clases] = (1..45).to_a
     @con = Consulta.new(:consulta_id => params[:consulta_id], :busqueda => @marca.nombre, :parametros => query, 
-                       :importacion_id => params[:importacion_id], :marca_id => params[:marca_id])
+      :importacion_id => params[:importacion_id], :marca_id => params[:marca_id])
     @consulta_detalles = []
     unless params[:consulta_id].nil?
       @consulta = Consulta.find(params[:consulta_id]) 
@@ -54,7 +54,17 @@ class BusquedasController < ApplicationController
   end
 
   def busqueda_avanzada
-
+    if params[:search]
+      @busqueda = Marca.search(params[:search])
+      @representantes = Busqueda.preparar_representantes(@busqueda)
+    end
+    
+    @consulta = Consulta.new()
   end
 
+  private
+
+  def splits_params(params)
+    return params
+  end
 end

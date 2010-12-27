@@ -191,7 +191,7 @@ class Busqueda
     busqueda = params[:busqueda].downcase.cambiar_acentos
     if @nombre_modelo == Marca
       sql = "SELECT res.id, res.nombre, res.pos, res.clase_id, res.propia, res.activa, res.tipo_signo_id, res.agente_ids_serial,
-      res.fecha_renovacion, res.fecha_solicitud_renovacion, res.fecha_registro,
+      res.fecha_renovacion, res.fecha_solicitud_renovacion, res.fecha_registro, res.fecha_solicitud,
       res.titular_ids_serial, res.fecha_publicacion, res.numero_solicitud, res.numero_publicacion, 
       res.numero_registro, res.numero_renovacion, res.estado, res.numero_solicitud_renovacion, res.estado_fecha, res.exacto"
     else
@@ -243,7 +243,7 @@ class Busqueda
 
   def sql_select(pos, exacto = 1)
     if @nombre_modelo == Marca
-      "SELECT id, nombre, nombre_minusculas, clase_id, #{pos} AS pos, propia, activa, estado, agente_ids_serial, titular_ids_serial, fecha_publicacion, fecha_renovacion, fecha_solicitud_renovacion, fecha_registro,
+      "SELECT id, nombre, nombre_minusculas, clase_id, #{pos} AS pos, propia, activa, estado, agente_ids_serial, titular_ids_serial, fecha_publicacion, fecha_renovacion, fecha_solicitud_renovacion, fecha_registro, fecha_solicitud,
       numero_solicitud, numero_publicacion, numero_registro, numero_renovacion, tipo_signo_id, numero_solicitud_renovacion, estado_fecha, #{exacto} AS exacto
       FROM marcas"
     else
@@ -291,7 +291,12 @@ class Busqueda
 
   # Metodo para poder preparar un listado de representantes
   def self.preparar_representantes(busqueda)
-    representante_ids = ( busqueda.map(&:agente_ids_serial) + busqueda.map(&:titular_ids_serial) ).flatten.uniq
-    Representante.where(:id => representante_ids ).inject({})  { |h,v| h[v.id] = v; h }
+    results = []
+    busqueda.each do |marca|
+      results << marca.agente_ids_serial
+      results << marca.titular_ids_serial
+    end
+    results.flatten.uniq
+    Representante.where(:id => results).inject({})  { |h,v| h[v.id] = v; h }
   end
 end

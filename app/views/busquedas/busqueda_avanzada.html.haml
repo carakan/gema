@@ -1,19 +1,19 @@
 #busqueda
   %h1 Búsqueda avanzada
-  -form_tag '/search_results' do
+  -form_tag '/busquedas/busqueda_avanzada', :method => :get do
     .izquierda
       = label_tag "Propiedad:"
-      = select "Propia", "Propia", ["Propia", "Ajena", "Ambas"]
+      = select "search", "propia_equals", {"Propia" => 1, "Ajena" =>0 , "Ambas" => 2}
       %br
       %br
       
       = label_tag "Disponibilidad:"
-      = select "Activa", "Activa", ["Activa", "Inactiva", "Ambas"]
+      = select "search", "activa_equals", {"Activa" => 1, "Inactiva" => 0, "Ambas" => 2}
       %br
       %br
       .izquierda
         = label_tag "Denominación:"
-        = text_field_tag :marca
+        = text_field "search", "nombre_minusculas_equals"
 
       .derecha
         = radio_button_tag "exacta","exacta"
@@ -134,106 +134,109 @@
       %br
       %br
       
-  .contenido
-    .izquierda
-      = label_tag "sm","SM:"
-      = label_tag "de:","de:", :class => 'line'
-      = text_field_tag "sm_inicio"
-      = label_tag "a:","a:", :class => 'line'
-      = text_field_tag "sm_fin"
-      %br
-      %br
-      
-      = label_tag "Numero publicación:"
-      = label_tag "de:","de:", :class => 'line'
-      = text_field_tag "publicacion_inicio"
-      = label_tag "a:","a:", :class => 'line'
-      = text_field_tag "publicacion_fin"
-      %br
-      %br
+    .contenido
+      .izquierda
+        = label_tag "sm","SM:"
+        = label_tag "de:","de:", :class => 'line'
+        = text_field_tag "sm_inicio"
+        = label_tag "a:","a:", :class => 'line'
+        = text_field_tag "sm_fin"
+        %br
+        %br
 
-      = label_tag "Gaceta:"
-      = label_tag "de:","de:", :class => 'line'
-      = text_field_tag "gaceta_inicio"
-      = label_tag "a:","a:", :class => 'line'
-      = text_field_tag "gaceta_fin"
-      %br
-      %br
+        = label_tag "Numero publicación:"
+        = label_tag "de:","de:", :class => 'line'
+        = text_field_tag "publicacion_inicio"
+        = label_tag "a:","a:", :class => 'line'
+        = text_field_tag "publicacion_fin"
+        %br
+        %br
 
-      = label_tag "Numero registro:"
-      = label_tag "de:","de:", :class => 'line'
-      = text_field_tag "registro_inicio"
-      = label_tag "a:","a:", :class => 'line'
-      = text_field_tag "registro_fin"
-      %br
-      %br
+        = label_tag "Gaceta:"
+        = label_tag "de:","de:", :class => 'line'
+        = text_field_tag "gaceta_inicio"
+        = label_tag "a:","a:", :class => 'line'
+        = text_field_tag "gaceta_fin"
+        %br
+        %br
 
-      = label_tag "sr","SR:"
-      = label_tag "de:","de:", :class => 'line'
-      = text_field_tag "sr_inicio"
-      = label_tag "a:","a:", :class => 'line'
-      = text_field_tag "sr_fin"
-      %br
-      %br
-      
-      = label_tag "Numero Renovación:"
-      = label_tag "de:","de:", :class => 'line'
-      = text_field_tag "renovacion_inicio"
-      = label_tag "a:","a:", :class => 'line'
-      = text_field_tag "renovacion_fin"
-      %br
-      %br
-      
-      = label_tag "Id:"
-      = label_tag "de:","de:", :class => 'line'
-      = text_field_tag "id_inicio"
-      = label_tag "a:","a:", :class => 'line'
-      = text_field_tag "id_fin"
-      %br
-      %br
+        = label_tag "Numero registro:"
+        = label_tag "de:","de:", :class => 'line'
+        = text_field_tag "registro_inicio"
+        = label_tag "a:","a:", :class => 'line'
+        = text_field_tag "registro_fin"
+        %br
+        %br
 
-    .derecha  
-      = label_tag "Fecha solicitud:"
-      = label_tag "de:","de:", :class => 'line'
-      = text_field_tag "fecha_sol_inicio"
-      = label_tag "a:","a:", :class => 'line'
-      = text_field_tag "fecha_sol_fin"
-      %br
-      %br
-      
-      = label_tag "Fecha publicación:"
-      = label_tag "de:","de:", :class => 'line'
-      = text_field_tag "fecha_pub_inicio"
-      = label_tag "a:","a:", :class => 'line'
-      = text_field_tag "fecha_pub_fin"
-      %br
-      %br
-      %br
-      %br
-      %br
-      %br
-      
-      = label_tag "Fecha registro:"
-      = label_tag "de:","de:", :class => 'line'
-      = text_field_tag "fecha_reg_inicio"
-      = label_tag "a:","a:", :class => 'line'
-      = text_field_tag "fecha_reg_fin"
-      %br
-      %br
-      
-      = label_tag "Fecha solicitud renovación:"
-      = label_tag "de:","de:", :class => 'line'
-      = text_field_tag "fecha_sol_ren_inicio"
-      = label_tag "a:","a:", :class => 'line'
-      = text_field_tag "fecha_sol_ren_fin"
-      %br
-      %br
+        = label_tag "sr","SR:"
+        = label_tag "de:","de:", :class => 'line'
+        = text_field_tag "sr_inicio"
+        = label_tag "a:","a:", :class => 'line'
+        = text_field_tag "sr_fin"
+        %br
+        %br
 
-      = label_tag "Fecha renovación:"
-      = label_tag "de:","de:", :class => 'line'
-      = text_field_tag "fecha_ren_inicio"
-      = label_tag "a:","a:", :class => 'line'
-      = text_field_tag "fecha_ren_fin"
-      %br
-      %br
-= submit_tag "Buscar" 
+        = label_tag "Numero Renovación:"
+        = label_tag "de:","de:", :class => 'line'
+        = text_field_tag "renovacion_inicio"
+        = label_tag "a:","a:", :class => 'line'
+        = text_field_tag "renovacion_fin"
+        %br
+        %br
+
+        = label_tag "Id:"
+        = label_tag "de:","de:", :class => 'line'
+        = text_field_tag "id_inicio"
+        = label_tag "a:","a:", :class => 'line'
+        = text_field_tag "id_fin"
+        %br
+        %br
+
+      .derecha
+        = label_tag "Fecha solicitud:"
+        = label_tag "de:","de:", :class => 'line'
+        = text_field_tag "fecha_sol_inicio"
+        = label_tag "a:","a:", :class => 'line'
+        = text_field_tag "fecha_sol_fin"
+        %br
+        %br
+
+        = label_tag "Fecha publicación:"
+        = label_tag "de:","de:", :class => 'line'
+        = text_field_tag "fecha_pub_inicio"
+        = label_tag "a:","a:", :class => 'line'
+        = text_field_tag "fecha_pub_fin"
+        %br
+        %br
+        %br
+        %br
+        %br
+        %br
+
+        = label_tag "Fecha registro:"
+        = label_tag "de:","de:", :class => 'line'
+        = text_field_tag "fecha_reg_inicio"
+        = label_tag "a:","a:", :class => 'line'
+        = text_field_tag "fecha_reg_fin"
+        %br
+        %br
+
+        = label_tag "Fecha solicitud renovación:"
+        = label_tag "de:","de:", :class => 'line'
+        = text_field_tag "fecha_sol_ren_inicio"
+        = label_tag "a:","a:", :class => 'line'
+        = text_field_tag "fecha_sol_ren_fin"
+        %br
+        %br
+
+        = label_tag "Fecha renovación:"
+        = label_tag "de:","de:", :class => 'line'
+        = text_field_tag "fecha_ren_inicio"
+        = label_tag "a:","a:", :class => 'line'
+        = text_field_tag "fecha_ren_fin"
+        %br
+        %br{:style => "clear:both"}
+      %br{:style => "clear:both"}
+    = submit_tag "Buscar"
+
+= render :partial => "resultados"
