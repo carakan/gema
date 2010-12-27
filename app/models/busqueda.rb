@@ -193,7 +193,7 @@ class Busqueda
       sql = "SELECT res.id, res.nombre, res.pos, res.clase_id, res.propia, res.activa, res.tipo_signo_id, res.agente_ids_serial,
       res.fecha_renovacion, res.fecha_solicitud_renovacion, res.fecha_registro,
       res.titular_ids_serial, res.fecha_publicacion, res.numero_solicitud, res.numero_publicacion, 
-      res.numero_registro, res.numero_renovacion, res.estado, res.numero_solicitud_renovacion, res.estado_fecha, res.exacto"
+      res.numero_registro, res.numero_renovacion, res.estado, res.numero_solicitud_renovacion, res.fecha_solicitud, res.exacto"
     else
       sql = "SELECT res.id, res.nombre, res.nombre_minusculas"
     end
@@ -244,7 +244,7 @@ class Busqueda
   def sql_select(pos, exacto = 1)
     if @nombre_modelo == Marca
       "SELECT id, nombre, nombre_minusculas, clase_id, #{pos} AS pos, propia, activa, estado, agente_ids_serial, titular_ids_serial, fecha_publicacion, fecha_renovacion, fecha_solicitud_renovacion, fecha_registro,
-      numero_solicitud, numero_publicacion, numero_registro, numero_renovacion, tipo_signo_id, numero_solicitud_renovacion, estado_fecha, #{exacto} AS exacto
+      numero_solicitud, numero_publicacion, numero_registro, numero_renovacion, tipo_signo_id, numero_solicitud_renovacion, fecha_solicitud, #{exacto} AS exacto
       FROM marcas"
     else
       "SELECT * FROM ((SELECT id, nombre, LOWER(nombre) AS nombre_minusculas

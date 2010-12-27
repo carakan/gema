@@ -9,7 +9,8 @@ class MarcasController < ApplicationController
   end
 
   def new
-    @marca = Marca.new(:fecha_solicitud => Date.today, :tipo_signo_id => TipoSigno.find_by_sigla(params[:tipo]).id, :propia => true, :activa => true, :marca_estado_id => 1)
+    @lema_id = params[:lema_marca_id]
+    @marca = Marca.new(:fecha_solicitud => Date.today, :tipo_signo_id => TipoSigno.find_by_sigla(params[:tipo]).id, :propia => true, :activa => true, :marca_estado_id => 1, :lema_marca_id => @lema_id)
   end
 
   def edit
@@ -20,6 +21,7 @@ class MarcasController < ApplicationController
 
   def create
     @marca = Marca.crear_instancia(params[:marca])
+    debugger
     if @marca.save
       redirect_to @marca, :notice => 'Se ha salvado correctamente'
     else

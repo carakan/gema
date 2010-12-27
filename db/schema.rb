@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101220213510) do
+ActiveRecord::Schema.define(:version => 20101227142117) do
 
   create_table "adjuntos", :force => true do |t|
     t.string   "nombre"
@@ -142,6 +142,7 @@ ActiveRecord::Schema.define(:version => 20101220213510) do
     t.integer  "marca_estado_id"
     t.string   "domicilio_titular"
     t.date     "fecha_solicitud"
+    t.integer  "lema_marca_id"
   end
 
   add_index "marcas", ["activa"], :name => "index_marcas_on_activa"
