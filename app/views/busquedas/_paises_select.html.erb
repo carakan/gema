@@ -1,27 +1,27 @@
 <style type="text/css">
-  #clases_grupos{
+  #paises_grupos{
     padding: 0px;
     border:1px solid #676767;
     margin: 10px 0px;
-    width: 660px;
+    width: 900px;
   }
-  #clases_grupos label{
+  #paises_grupos label{
     display: inline-block !important; 
     width: 45px;
     height: 30px;
   }
-  ul#botones{
+  ul#botones_p{
     width: 150px;
     float:left;
     list-style: none;
     padding: 0px;
     margin: 0px;
   }
-  ul#botones li{
+  ul#botones_p li{
     padding: 0px;
     margin: 0px;
   }
-  ul#botones li a{
+  ul#botones_p li a{
     width: 100%;
     display:block;
     text-decoration: none;
@@ -32,15 +32,15 @@
     margin: 0;
     padding: 2px 5px;
   }
-  ul#botones li a.sel{
+  ul#botones_p li a.sel{
     background-color: #5BBF3B;
   }
-  #clases{
+  #paises{
     float: left;
-    width: 485px;
+    width: 730px;
     margin-left: 20px;
   }
-  #clases div label{
+  #paises div label{
     font-weight: bold;
     font-size: 12px;
     padding: 0;
@@ -48,72 +48,55 @@
   }
 </style>
 
-<label for="">Clases</label>
-<div id="clases_grupos">
-  <ul id="botones">
+<label for="">Países</label>
+<div id="paises_grupos">
+  <ul id="botones_p">
     <li>
-      <a href="javascript:" data-clases="CA, US, MX">Norte América</a>
+      <a href="javascript:" data-paises="CA, US, MX">Norte América</a>
     </li>
     <li>
-    <a href="javascript:" data-clases="AR, BO, BR, CL, CO, EC, GY, PY, PE, UY, VE">Sud América</a>
+    <a href="javascript:" data-paises="AR, BO, BR, CL, CO, EC, GY, PY, PE, UY, VE">Sud América</a>
     </li>
     <li>
-    <a href="javascript:" data-clases="AI, AG, AN, AW, BS, BB, BZ, CR, CU, DM, SV, GD, GP, GT, HT, HN, VI, VG, JM, MS, NI, PA, PR, DO, VC, LC, TT, TC">Centro América</a>
+    <a href="javascript:" data-paises="AI, AG, AN, AW, BS, BB, BZ, CR, CU, DM, SV, GD, GP, GT, HT, HN, VI, VG, JM, MS, NI, PA, PR, DO, VC, LC, TT, TC">Centro América</a>
     </li>
     <li>
-      <a href="javascript:" data-clases="AL, DE, AD, AT, BE, BY, BA, BG, CY, EU, HR, DK, SK, SI, ES, EE, FI, FR, GI, GR, GL, NL, HU, IE, IM, IS, JE, FO, IT, LU, MK, MT, MD, MC, ME, NO, PL, PT, UK, CZ, RO, RU, SM, SH, RS, SE, CH, UA, SU ">Europa</a>
+      <a href="javascript:" data-paises="AL, DE, AD, AT, BE, BY, BA, BG, CY, EU, HR, DK, SK, SI, ES, EE, FI, FR, GI, GR, GL, NL, HU, IE, IM, IS, JE, FO, IT, LU, MK, MT, MD, MC, ME, NO, PL, PT, UK, CZ, RO, RU, SM, SH, RS, SE, CH, UA, SU ">Europa</a>
     </li>
     <li>
-      <a href="javascript:" data-clases="AZ, BD, BN, KH, CN, KR, PH, GE, HK, IN, ID, JP, KZ, KG, LA, MY, MN, NP, PK, SG, LK, TH, TW, TJ, IO, TL, UZ, VN">Asia</a>
+      <a href="javascript:" data-paises="AZ, BD, BN, KH, CN, KR, PH, GE, HK, IN, ID, JP, KZ, KG, LA, MY, MN, NP, PK, SG, LK, TH, TW, TJ, IO, TL, UZ, VN">Asia</a>
     </li>
     <li>
-      <a href="javascript:" data-clases="AF, SA, AE, IR, IL, JO, KW, LB, OM, PS, SY, TR, YE">Medio Oriente</a>
+      <a href="javascript:" data-paises="AF, SA, AE, IR, IL, JO, KW, LB, OM, PS, SY, TR, YE">Medio Oriente</a>
     </li>
     <li>
-      <a href="javascript:" data-clases="AO, DZ, BW, BI, CM, CI, EG, ET, GM, GH, AC, RE, KE, LS, LY, MG, MW, MA, MU, MZ, NA, NG, CG, CD, RW, ST, SC, SL, ZA, SD, TZ, TG, TN, UG, DJ, ZM, ZW">Africa</a>
+      <a href="javascript:" data-paises="AO, DZ, BW, BI, CM, CI, EG, ET, GM, GH, AC, RE, KE, LS, LY, MG, MW, MA, MU, MZ, NA, NG, CG, CD, RW, ST, SC, SL, ZA, SD, TZ, TG, TN, UG, DJ, ZM, ZW">Africa</a>
     </li>
     <li>
-      <a href="javascript:" data-clases="29,30,31">Oceania</a>
-    </li>
-    <li>
-      <a href="javascript:" data-clases="32,33">32 y 33</a>
-    </li>
-    <li>
-      <a href="javascript:" data-clases="35,36,37,38,39,40,41,42,43,44,45">35 a la 45</a>
-    </li>
-    <li>
-      <a href="javascript:" data-clases="<%= (1..45).to_a.join(",") %>" class="todas">Todas</a>
+      <a href="javascript:" data-paises="AU, FJ, HM, CX, CK, MP, NF, SB, KI, NR, NU, NZ, PG, PN, AS, TK, TO, VU">Oceania</a>
     </li>
   </ul>
 
 
-  <div id="clases">
-    <% 4.times do |i| -%>
-      <div>
-        <% (1..10).each do |j| %>
-          <% @id = j + i * 10 %>
-          <label for="clases_<%= @id %>">
-            <% @val = !params[:clases] ? false : params[:clases][@id.to_s] ? true : false %>
-            <%= check_box_tag "clases[#{@id}]", @id, @val %>
+  <div id="paises">
+    <div>
+        <% Pais.order("id ASC") %>
+        <% Pais.order("id").each do |p| %>
+        <%# (1..238).each do |j| %>
+          <%# a = Pais.find(p) %>
+          <% @id = p.codigo %>
+          <label for="paises_<%= @id %>">
+            <% @val = !params[:paises] ? false : params[:paises] ? true : false %>
+            <%= check_box_tag "paises[#{@id}]", @id, @val %>
             <%= @id %>
           </label>
         <% end %>
       </div>
-    <% end -%>
-    <div>
-    <% (41..45).each do |i| %>
-      <% @id = i %>
-      <label for="clases_<%= @id %>">
-        <% @val = !params[:clases] ? false : params[:clases][@id.to_s] ? true : false %>
-        <%= check_box_tag "clases[#{@id}]", @id, @val %>
-        <%= @id %>
-      </label>
-    <% end %>
-    </div>
   </div>
   <div style="clear:both"></div>
 </div>
 <script>
+  $(document).ready(function (){
   // Busca si existe el valor en el array
   function include(arr, obj) {
     for(var i=0; i<arr.length; i++) {
@@ -127,12 +110,12 @@
   * Marca los botones que estan seleccionados
   */
   function marcarBotones() {
-    var arr = $('#clases_grupos').find("input:checkbox:checked").map(function(i, el) { return el.value; }).get();
+    var arr = $('#paises_grupos').find("input:checkbox:checked").map(function(i, el) { return el.value; }).get();
 
     $('#botones').find('a').each(function(i, el) {
-      var clases = $(el).attr("data-clases").split(",");
+      var paises = $(el).attr("data-paises").split(",");
       var encontrado = true;
-      $(clases).each(function(index, elem) {
+      $(paises).each(function(index, elem) {
         if(!include(arr, elem)) {
           encontrado = false;
           return;
@@ -146,21 +129,21 @@
     });
   }
 
-  $('#botones').find("a").live('click', function() {
-    var clases = $(this).attr("data-clases").split(",");
+  $('#botones_p').find("a").live('click', function() {
+    var paises = $(this).attr("data-paises").split(",");
     var val = !$(this).hasClass("sel");
 
-    $(clases).each(function(i, el) {
-      $('#clases_' + el).attr("checked", val);
+    $(paises).each(function(i, el) {
+      $('#paises_' + el).attr("checked", val);
     });
     marcarBotones();
   });
 
-  $('#clases_grupos').find("input:checkbox").live('click', function() {
+  $('#paises_grupos').find("input:checkbox").live('click', function() {
     marcarBotones();
   });
 
   // Al iniciar
   marcarBotones();
-
+  });
 </script>

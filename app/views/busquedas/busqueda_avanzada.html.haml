@@ -27,52 +27,49 @@
         = label_tag "Agentes"
         = text_field_tag :agentes
 
-      .derecha
-        = label_tag "Países"
-        %ul
-          %li
-            =#link_to 'BO, VE, CO, PE, UY, BR', "javascript:", :""data-clases"" => "1,2,4"
-            %a{:href => "javascript:", :"data-clases" => ""} BO, VE, CO, PE, UY, BR
-      %br
-      %br
-      %br
-      %br
+        = render :partial => "paises_select"
+        %br
 
-      .izquierda
         = label_tag "Titulares"
         = text_field_tag :titulares
         %br
         %br
-
-      .derecha
-        = label_tag "Países"
-        %ul
-          %li
-            %a{:href => "javascript:", :"data-clases" => ""} BO, VE, CO, PE, UY, BR
+     
+        = render :partial => "paises_select"
+        %br
+        
+        = render :partial => "generic_select"
+        %br
+        %br
+      -#.derecha
+        -#= label_tag "Países"
+        -#%ul
+          -#%li
+            -#%a{:href => "javascript:", :"data-clases" => ""} BO, VE, CO, PE, UY, BR
+        %br
+        %br
         %br
         %br
 
-      = render :partial => "generic_select"
-      
-      = label_tag "Tipo de marca:"
-      = select "search", "tipo_marca_id_equals", llenar_datos_iguales(TipoMarca.all)
-      %br
-      %br
+        = label_tag "Tipo de marca:"
+        = select "search", "tipo_marca_id_equals", llenar_datos_iguales(TipoMarca.all)
+        %br
+        %br
 
-      = label_tag "Tipo de signo:"
-      = select "search", "tipo_signo_id_equals", llenar_datos_iguales(TipoSigno.all)
-      %br
-      %br
-      
-      = label_tag "Vía instrucción:"
-      = select "search", "instruccion_equals", [["Todas las marcas", "all_values"]] + Marca::INSTRUCCIONES.collect{|value| [value, value]}
-      %br
-      %br
-      
-      = label_tag "Estado:"
-      = select "search", "marca_estado_id_equals", llenar_datos_iguales(MarcaEstado.all)
-      %br
-      %br
+        = label_tag "Tipo de signo:"
+        = select "search", "tipo_signo_id_equals", llenar_datos_iguales(TipoSigno.all)
+        %br
+        %br
+        
+        = label_tag "Vía instrucción:"
+        = select "search", "instruccion_equals", [["Todas las marcas", "all_values"]] + Marca::INSTRUCCIONES.collect{|value| [value, value]}
+        %br
+        %br
+        
+        = label_tag "Estado:"
+        = select "search", "marca_estado_id_equals", llenar_datos_iguales(MarcaEstado.all)
+        %br
+        %br
 
       .izquierda
         = label_tag "Descripción del diseño:"
