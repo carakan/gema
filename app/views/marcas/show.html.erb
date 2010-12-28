@@ -282,15 +282,22 @@
     <div class="subder">
       <label class="remarcado"><%= cambio @marca ,:id %></label>
     </div>
+    
+
+
  </div>
 
  <div class="clear"></div>
- <%debugger%>
+
  <% unless @marca.tipo_signo_id == 7 %>
-  <div id="posts">
-    <h2 class="title">Lemas comerciales</h2>
-    <%= link_to "Nuevo Lema Comercial", new_marca_path(:tipo => 'LC', :tipo_signo =>'Lema Comercial', :lema_marca_id => @marca.id), :class => 'ajax' %>
-  </div>
+    <div id="posts">
+      <h2 class="title">Lemas comerciales asociados a la marca</h2>
+      <% lemas_comerciales = @marca.lemas_comerciales %>
+      <% lemas_comerciales.each do |lemas_comerciales| %>
+        <%= link_to lemas_comerciales.nombre.upcase, marca_path(lemas_comerciales), :class => "#{ lemas_comerciales.propia!} #{ lemas_comerciales.valido!} propia_margin" %><br/><br/>
+      <% end %>
+      <%= link_to "Nuevo Lema Comercial", new_marca_path(:tipo => 'LC', :tipo_signo =>'Lema Comercial', :lema_marca_id => @marca.id), :class => 'new ajax' %>
+    </div>
   <% end %>
 
   <div id="posts" data-posts_size="<%= Marca::POSTS_SIZE %>">

@@ -25,12 +25,14 @@ class Marca < ActiveRecord::Base
   #belongs_to :pais
   belongs_to :importacion
   belongs_to :marca_estado
+  belongs_to :marca_asociada_lema, :class_name => "Marca", :foreign_key => :lema_marca_id
 
   has_many :posts, :as => :postable, :order => 'created_at DESC'
   has_many :adjuntos, :as => :adjuntable, :dependent => :destroy
   accepts_nested_attributes_for :adjuntos
   has_many :consultas
   has_many :consulta_detalles
+  has_many :lemas_comerciales, :class_name => "Marca", :foreign_key => :lema_marca_id
 
   POSTS_SIZE = 3
 
@@ -462,6 +464,7 @@ class Marca < ActiveRecord::Base
   def fecha_marca
     fecha_numero_marca[:fecha]
   end
+
 
   protected
   #########################################################

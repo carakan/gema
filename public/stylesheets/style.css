@@ -516,6 +516,12 @@ span.propia, a.propia, .propia {
   padding-left: 18px;
   display: inline-block;
 }
+a.propia_margin {
+  background: transparent url(../images/icons/orpan-mini.png) no-repeat top left;
+  padding-left: 18px;
+  display: inline-block;
+  margin: 0 0 0 20px;
+}
 span.foranea, a.foranea {
   background: transparent url(../images/icons/blank.png) no-repeat top left;
   padding-left: 18px;
