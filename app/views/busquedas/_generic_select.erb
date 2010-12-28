@@ -101,66 +101,67 @@
       </div>
     <% end -%>
     <div>
-    <% (41..45).each do |i| %>
-      <% @id = i %>
-      <label for="clases_<%= @id %>">
-        <% @val = !params[:clases] ? false : params[:clases][@id.to_s] ? true : false %>
-        <%= check_box_tag "clases[#{@id}]", @id, @val %>
-        <%= @id %>
-      </label>
-    <% end %>
+      <% (41..45).each do |i| %>
+        <% @id = i %>
+        <label for="clases_<%= @id %>">
+          <% @val = !params[:clases] ? false : params[:clases][@id.to_s] ? true : false %>
+          <%= check_box_tag "clases[#{@id}]", @id, @val %>
+          <%= @id %>
+        </label>
+      <% end %>
     </div>
   </div>
   <div style="clear:both"></div>
 </div>
 <script>
-  // Busca si existe el valor en el array
-  function include(arr, obj) {
-    for(var i=0; i<arr.length; i++) {
-      if (arr[i] == obj) return true;
+  $(document).ready(function (){
+    // Busca si existe el valor en el array
+    function include(arr, obj) {
+      for(var i=0; i<arr.length; i++) {
+        if (arr[i] == obj) return true;
+      }
+      return false;
     }
-    return false;
-  }
-  window.include = include;
+    window.include = include;
 
-  /**
-  * Marca los botones que estan seleccionados
-  */
-  function marcarBotones() {
-    var arr = $('#clases_grupos').find("input:checkbox:checked").map(function(i, el) { return el.value; }).get();
+    /**
+     * Marca los botones que estan seleccionados
+     */
+    function marcarBotones() {
+      var arr = $('#clases_grupos').find("input:checkbox:checked").map(function(i, el) { return el.value; }).get();
 
-    $('#botones').find('a').each(function(i, el) {
-      var clases = $(el).attr("data-clases").split(",");
-      var encontrado = true;
-      $(clases).each(function(index, elem) {
-        if(!include(arr, elem)) {
-          encontrado = false;
-          return;
+      $('#botones').find('a').each(function(i, el) {
+        var clases = $(el).attr("data-clases").split(",");
+        var encontrado = true;
+        $(clases).each(function(index, elem) {
+          if(!include(arr, elem)) {
+            encontrado = false;
+            return;
+          }
+        });
+        if(encontrado) {
+          $(el).addClass("sel");
+        }else {
+          $(el).removeClass("sel");
         }
       });
-      if(encontrado) {
-        $(el).addClass("sel");
-        }else {
-        $(el).removeClass("sel");
-      }
-    });
-  }
+    }
 
-  $('#botones').find("a").live('click', function() {
-    var clases = $(this).attr("data-clases").split(",");
-    var val = !$(this).hasClass("sel");
+    $('#botones').find("a").live('click', function() {
+      var clases = $(this).attr("data-clases").split(",");
+      var val = !$(this).hasClass("sel");
 
-    $(clases).each(function(i, el) {
-      $('#clases_' + el).attr("checked", val);
+      $(clases).each(function(i, el) {
+        $('#clases_' + el).attr("checked", val);
+      });
+      marcarBotones();
     });
+
+    $('#clases_grupos').find("input:checkbox").live('click', function() {
+      marcarBotones();
+    });
+
+    // Al iniciar
     marcarBotones();
   });
-
-  $('#clases_grupos').find("input:checkbox").live('click', function() {
-    marcarBotones();
-  });
-
-  // Al iniciar
-  marcarBotones();
-
 </script>

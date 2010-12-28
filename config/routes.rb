@@ -84,6 +84,7 @@ Rails.application.routes.draw do
       get :cruce 
       get :verificar_cruce
       get :busqueda_avanzada
+      post :busqueda_avanzada
       get :avanzada
       get :titulares
     end

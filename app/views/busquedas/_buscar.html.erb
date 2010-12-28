@@ -36,56 +36,6 @@
         $('#fechas input').val('');
       }
     });
-
-    // Busca si existe el valor en el array
-    function include(arr, obj) {
-      for(var i=0; i<arr.length; i++) {
-        if (arr[i] == obj) return true;
-      }
-      return false;
-    }
-    window.include = include;
-
-    /**
-     * Marca los botones que estan seleccionados
-     */
-    function marcarBotones() {
-      var arr = $('#clases_grupos').find("input:checkbox:checked").map(function(i, el) { return el.value; }).get();
-
-      $('#botones').find('a').each(function(i, el) {
-        var clases = $(el).attr("data-clases").split(",");
-        var encontrado = true;
-        $(clases).each(function(index, elem) {
-          if(!include(arr, elem)) {
-            encontrado = false;
-            return;
-          }
-        });
-        if(encontrado) {
-          $(el).addClass("sel");
-        }else {
-          $(el).removeClass("sel");
-        }
-      });
-    }
-
-    $('#botones').find("a").live('click', function() {
-      var clases = $(this).attr("data-clases").split(",");
-      var val = !$(this).hasClass("sel");
-
-      $(clases).each(function(i, el) {
-        $('#clases_' + el).attr("checked", val);
-      });
-      marcarBotones();
-    });
-
-    $('#clases_grupos').find("input:checkbox").live('click', function() {
-      marcarBotones();
-    });
-
-    // Al iniciar
-    marcarBotones();
-
     // Validacion para la busqueda
     $('#form_buscar').submit(function() {
       var txt = "";
@@ -95,21 +45,13 @@
       if($('#busqueda').val().trim() == "") {
         txt += "Debe ingresar un termino de busqueda";
       }
-      //if($('#representante_id').val().trim() == "") {
-      //  txt += "Debe seleccionar un cliente";
-      //}
       if(txt != ""){
         alert(txt);
         return false;
       }else{
         return true;
       }
-
     });
-
-    //var clientes = <%= Representante.clientes.map { |v| { :id => v.id, :label => v.nombre } }.to_json.html_safe %>;
-
-    // Clientes
     $('#cliente').autocomplete({
       'source': '/representantes/buscar',
       'select': function(e, ui) {
