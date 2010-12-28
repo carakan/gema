@@ -7,7 +7,7 @@
     <%= link_to "Lista de importaciones", importaciones_path %> >
     <% if @reporte_marca.for_cruce? %>
     <% @consulta = @reporte_marca.marca_foranea.cruce(@importacion.id) %>
-    <%= link_to "Volver al cruce", cruce_busquedas_path(:importacion_id => @importacion.id, :marca_id => @reporte_marca.marca_foranea.id, :consulta_id => @consulta.id) %>
+    <%= link_to "Volver al cruce", cruce_busquedas_path(:importacion_id => @importacion.id, :marca_id => @reporte_marca.marca_foranea.id, :consulta_id => @consulta.id) if @consulta && @importacion  %>
     <% else %>
     <%= link_to "Reportes realizados", reporte_marcas_path() %>
       <% end %>

@@ -296,7 +296,7 @@ class Busqueda
       results << marca.agente_ids_serial
       results << marca.titular_ids_serial
     end
-    results.flatten.uniq
+    results = results.flatten.uniq
     Representante.where(:id => results).inject({})  { |h,v| h[v.id] = v; h }
   end
-end:
+end

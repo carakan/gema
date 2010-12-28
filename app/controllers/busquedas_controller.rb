@@ -2,7 +2,7 @@
 # author: Boris Barroso
 # email: boriscyber@gmail.com
 class BusquedasController < ApplicationController
-  before_filter :authenticate_usuario!
+  #before_filter :authenticate_usuario!
 
   # GET /busquedas
   def index
@@ -55,6 +55,7 @@ class BusquedasController < ApplicationController
 
   def busqueda_avanzada
     if params[:search]
+      params = prepare_search
       @busqueda = Marca.search(params[:search])
       @representantes = Busqueda.preparar_representantes(@busqueda)
     end
@@ -64,7 +65,15 @@ class BusquedasController < ApplicationController
 
   private
 
-  def splits_params(params)
-    return params
+  def splits_params(params, name, new_name)
+    values = params.delete(name).split(" ")
+    return params[new_name] = values
+  end
+
+  def prepare_search
+    if params[:clases] && !params[:clases].empty?
+      params[:search][:clase_id_in] = params[:clases].keys
+    end
+    params
   end
 end

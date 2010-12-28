@@ -30,8 +30,7 @@
               <td><%= marca.numero_marca %></td>
               <td><%= lo(marca.fecha_marca, :format => "%d %b, %Y") if marca.fecha_marca %></td>
               <td><%= buscar_representante( marca.titular_ids_serial, @representantes ) %></td>
-              <td><%= buscar_representante( marca.agente_ids_serial, @representantes ) %></td>
-              <!--<td><%= tipo_busqueda marca.pos %></td>-->
+              <td><%= buscar_representante( marca.agente_ids_serial, @representantes ) %></td>           
             </tr>
             <% index += 1 %>
           <% end %>
