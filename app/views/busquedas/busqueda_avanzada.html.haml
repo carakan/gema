@@ -3,12 +3,12 @@
   -form_tag '/busquedas/busqueda_avanzada', :method => :post do
     .izquierda
       = label_tag "Propiedad:"
-      = select "search", "propia_equals", {"Propia" => 1, "Ajena" =>0 , "Ambas" => 2}
+      = select "search", "propia_equals", {"Todas las marcas" => "all_values", "Propia" => 1, "Ajena" =>0}
       %br
       %br
       
       = label_tag "Disponibilidad:"
-      = select "search", "activa_equals", {"Activa" => 1, "Inactiva" => 0, "Ambas" => 2}
+      = select "search", "activa_equals", {"Todas las marcas" => "all_values", "Activa" => 1, "Inactiva" => 0}
       %br
       %br
       .izquierda
@@ -55,22 +55,22 @@
       = render :partial => "generic_select"
       
       = label_tag "Tipo de marca:"
-      = select "search", "tipo_marca_id_equals", TipoMarca.all.collect {|element| [ element.nombre, element.id]}
+      = select "search", "tipo_marca_id_equals", llenar_datos_iguales(TipoMarca.all)
       %br
       %br
 
       = label_tag "Tipo de signo:"
-      = select "search", "tipo_signo_id_equals", TipoSigno.all.collect {|element| [ element.nombre, element.id]}
+      = select "search", "tipo_signo_id_equals", llenar_datos_iguales(TipoSigno.all)
       %br
       %br
       
       = label_tag "Vía instrucción:"
-      = select "search", "instruccion_equals", Marca::INSTRUCCIONES
+      = select "search", "instruccion_equals", [["Todas las marcas", "all_values"]] + Marca::INSTRUCCIONES.collect{|value| [value, value]}
       %br
       %br
       
       = label_tag "Estado:"
-      = select "search", "marca_estado_id_equals", MarcaEstado.all.collect {|element| [ element.nombre, element.id]}
+      = select "search", "marca_estado_id_equals", llenar_datos_iguales(MarcaEstado.all)
       %br
       %br
 

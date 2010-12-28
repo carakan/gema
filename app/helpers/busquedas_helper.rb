@@ -47,4 +47,8 @@ module BusquedasHelper
         marca.fecha_solicitud
     end
   end
+
+  def llenar_datos_iguales(datos)
+    [["Todas las marcas", "all_values"]] + datos.collect {|element| [ element.nombre, element.id]}
+  end
 end

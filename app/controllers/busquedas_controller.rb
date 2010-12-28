@@ -94,6 +94,11 @@ class BusquedasController < ApplicationController
     else
       splits_params("descripcion_servicios", :productos_contains_all)
     end
+    params[:search].each_with_index do |value, index|
+      if value[1] == "all_values"
+        params[:search].delete(value[0])
+      end
+    end
     debugger
   end
 end
