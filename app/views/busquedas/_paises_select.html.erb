@@ -7,21 +7,21 @@
   }
   #paises_grupos label{
     display: inline-block !important; 
-    width: 45px;
+    width: 150px;
     height: 30px;
   }
-  ul#botones_p{
+  ul#botones{
     width: 150px;
     float:left;
     list-style: none;
     padding: 0px;
     margin: 0px;
   }
-  ul#botones_p li{
+  ul#botones li{
     padding: 0px;
     margin: 0px;
   }
-  ul#botones_p li a{
+  ul#botones li a{
     width: 100%;
     display:block;
     text-decoration: none;
@@ -32,7 +32,7 @@
     margin: 0;
     padding: 2px 5px;
   }
-  ul#botones_p li a.sel{
+  ul#botones li a.sel{
     background-color: #5BBF3B;
   }
   #paises{
@@ -50,45 +50,45 @@
 
 <label for="">Países</label>
 <div id="paises_grupos">
-  <ul id="botones_p">
+  <ul id="botones">
     <li>
-      <a href="javascript:" data-paises="CA, US, MX">Norte América</a>
+      <a href="javascript:" data-paises="CA,US,MX">Norte América</a>
     </li>
     <li>
-    <a href="javascript:" data-paises="AR, BO, BR, CL, CO, EC, GY, PY, PE, UY, VE">Sud América</a>
+     <a href="javascript:" data-paises="AR,BO,BR,CL,CO,EC,GY,PY,PE,UY,VE">SudAmérica</a>
     </li>
     <li>
-    <a href="javascript:" data-paises="AI, AG, AN, AW, BS, BB, BZ, CR, CU, DM, SV, GD, GP, GT, HT, HN, VI, VG, JM, MS, NI, PA, PR, DO, VC, LC, TT, TC">Centro América</a>
+      <a href="javascript:" data-paises="AI,AG,AN,AW,BS,BB,BZ,CR,CU,DM,SV,GD,GP,GT,HT,HN,VI,VG,JM,MS,NI,PA,PR,DO,VC,LC,TT,TC">CentroAmérica</a>
     </li>
     <li>
-      <a href="javascript:" data-paises="AL, DE, AD, AT, BE, BY, BA, BG, CY, EU, HR, DK, SK, SI, ES, EE, FI, FR, GI, GR, GL, NL, HU, IE, IM, IS, JE, FO, IT, LU, MK, MT, MD, MC, ME, NO, PL, PT, UK, CZ, RO, RU, SM, SH, RS, SE, CH, UA, SU ">Europa</a>
+    <a href="javascript:" data-paises="AL,DE,AD,AT,BE,BY,BA,BG,CY,EU,HR,DK,SK,SI,ES,EE,FI,FR,GI,GR,GL,NL,HU,IE,IM,IS,JE,FO,IT,LU,MK,MT,MD,MC,ME,NO,PL,PT,UK,CZ,RO,RU,SM,SH,RS,SE,CH,UA,SU">Europa</a>
     </li>
     <li>
-      <a href="javascript:" data-paises="AZ, BD, BN, KH, CN, KR, PH, GE, HK, IN, ID, JP, KZ, KG, LA, MY, MN, NP, PK, SG, LK, TH, TW, TJ, IO, TL, UZ, VN">Asia</a>
+      <a href="javascript:" data-paises="AZ,BD,BN,KH,CN,KR,PH,GE,HK,IN,ID,JP,KZ,KG,LA,MY,MN,NP,PK,SG,LK,TH,TW,TJ,IO,TL,UZ,VN">Asia</a>
     </li>
     <li>
-      <a href="javascript:" data-paises="AF, SA, AE, IR, IL, JO, KW, LB, OM, PS, SY, TR, YE">Medio Oriente</a>
+      <a href="javascript:" data-paises="AF,SA,AE,IR,IL,JO,KW,LB,OM,PS,SY,TR,YE">MedioOriente</a>
     </li>
     <li>
-      <a href="javascript:" data-paises="AO, DZ, BW, BI, CM, CI, EG, ET, GM, GH, AC, RE, KE, LS, LY, MG, MW, MA, MU, MZ, NA, NG, CG, CD, RW, ST, SC, SL, ZA, SD, TZ, TG, TN, UG, DJ, ZM, ZW">Africa</a>
+      <a href="javascript:" data-paises="AO,DZ,BW,BI,CM,CI,EG,ET,GM,GH,AC,RE,KE,LS,LY,MG,MW,MA,MU,MZ,NA,NG,CG,CD,RW,ST,SC,SL,ZA,SD,TZ,TG,TN,UG,DJ,ZM,ZW">Africa</a>
     </li>
     <li>
-      <a href="javascript:" data-paises="AU, FJ, HM, CX, CK, MP, NF, SB, KI, NR, NU, NZ, PG, PN, AS, TK, TO, VU">Oceania</a>
+      <a href="javascript:" data-paises="AU,FJ,HM,CX,CK,MP,NF,SB,KI,NR,NU,NZ,PG,PN,AS,TK,TO,VU">Oceania</a>
+    </li>
+    <li>
+    <a href="javascript:" data-paises="<% @paises = Pais.all%><%= @paises.map(&:codigo).to_json %>" class="todas">Todas</a>
     </li>
   </ul>
 
 
   <div id="paises">
     <div>
-        <% Pais.order("id ASC") %>
-        <% Pais.order("id").each do |p| %>
-        <%# (1..238).each do |j| %>
-          <%# a = Pais.find(p) %>
-          <% @id = p.codigo %>
-          <label for="paises_<%= @id %>">
-            <% @val = !params[:paises] ? false : params[:paises] ? true : false %>
-            <%= check_box_tag "paises[#{@id}]", @id, @val %>
-            <%= @id %>
+        <% @paises = Pais.all%> 
+        <% @paises.each do |c| %>
+          <label for="paises_<%= c.id %>">
+            <% val = !params[:paises] ? false : params[:paises] ? true : false %>
+            <%= check_box_tag "paises[#{c.codigo}]", c.codigo, val %>
+            <%= c.codigo %>
           </label>
         <% end %>
       </div>
@@ -97,53 +97,45 @@
 </div>
 <script>
   $(document).ready(function (){
-  // Busca si existe el valor en el array
-  function include(arr, obj) {
-    for(var i=0; i<arr.length; i++) {
-      if (arr[i] == obj) return true;
-    }
-    return false;
-  }
-  window.include = include;
+    /**
+    * Marca los botones que estan seleccionados
+    */
+    function marcarBotones() {
+      var arr = $('#paises_grupos').find("input:checkbox:checked").map(function(i, el) { return el.value; }).get();
 
-  /**
-  * Marca los botones que estan seleccionados
-  */
-  function marcarBotones() {
-    var arr = $('#paises_grupos').find("input:checkbox:checked").map(function(i, el) { return el.value; }).get();
-
-    $('#botones').find('a').each(function(i, el) {
-      var paises = $(el).attr("data-paises").split(",");
-      var encontrado = true;
-      $(paises).each(function(index, elem) {
-        if(!include(arr, elem)) {
-          encontrado = false;
-          return;
+      $('#botones').find('a').each(function(i, el) {
+        var paises = $(el).attr("data-paises").split(",");
+        var pais_encontrado = true;
+        $(paises).each(function(index, elem) {
+          if($.inArray(elem, arr) == -1) {
+            pais_encontrado = false;
+            return;
+          }
+        });
+        if(pais_encontrado) {
+          $(el).addClass("sel");
+        }else {
+          $(el).removeClass("sel");
         }
       });
-      if(encontrado) {
-        $(el).addClass("sel");
-        }else {
-        $(el).removeClass("sel");
-      }
+    }
+
+    $('#botones').find("a").live('click', function() {
+      var paises = $(this).attr("data-paises").split(",");
+      var val = !$(this).hasClass("sel");
+
+      $(paises).each(function(i, el) {
+        $('#paises_' + el).attr("checked", val);
+      });
+      marcarBotones();
     });
-  }
 
-  $('#botones_p').find("a").live('click', function() {
-    var paises = $(this).attr("data-paises").split(",");
-    var val = !$(this).hasClass("sel");
-
-    $(paises).each(function(i, el) {
-      $('#paises_' + el).attr("checked", val);
+    $('#paises_grupos').find("input:checkbox").live('click', function() {
+      marcarBotones();
     });
-    marcarBotones();
-  });
 
-  $('#paises_grupos').find("input:checkbox").live('click', function() {
+    // Al iniciar
     marcarBotones();
-  });
-
-  // Al iniciar
-  marcarBotones();
   });
 </script>
+

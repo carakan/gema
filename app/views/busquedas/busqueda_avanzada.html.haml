@@ -41,15 +41,6 @@
         = render :partial => "generic_select"
         %br
         %br
-      -#.derecha
-        -#= label_tag "Países"
-        -#%ul
-          -#%li
-            -#%a{:href => "javascript:", :"data-clases" => ""} BO, VE, CO, PE, UY, BR
-        %br
-        %br
-        %br
-        %br
 
         = label_tag "Tipo de marca:"
         = select "search", "tipo_marca_id_equals", llenar_datos_iguales(TipoMarca.all)
