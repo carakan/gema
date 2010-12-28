@@ -99,6 +99,5 @@ class BusquedasController < ApplicationController
         params[:search].delete(value[0])
       end
     end
-    debugger
   end
 end
