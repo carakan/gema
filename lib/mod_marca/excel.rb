@@ -51,7 +51,7 @@ module ModMarca::Excel
       elsif signo == 'Mixta'
         if marca =='Nombre Comercial'
           s = 'Nombre Comercial Mixto'
-        elsif 
+        else
           s = 'Marca Mixta'
         end
 

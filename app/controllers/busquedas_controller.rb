@@ -55,7 +55,7 @@ class BusquedasController < ApplicationController
 
   def busqueda_avanzada
     if params[:search]
-      params = prepare_search
+      prepare_search
       @busqueda = Marca.search(params[:search])
       @representantes = Busqueda.preparar_representantes(@busqueda)
     end
@@ -65,15 +65,39 @@ class BusquedasController < ApplicationController
 
   private
 
-  def splits_params(params, name, new_name)
-    values = params.delete(name).split(" ")
-    return params[new_name] = values
+  def splits_params(name, new_name, split = true)
+    if params[:search][name] 
+      values = params[:search].delete(name)
+      if !values.blank?
+        values = values.split(" ") if split
+        params[:search][new_name] = values
+      end
+    end
   end
 
   def prepare_search
     if params[:clases] && !params[:clases].empty?
       params[:search][:clase_id_in] = params[:clases].keys
     end
-    params
+    if params[:denominacion] == "exacta"
+      splits_params("nombre_marca", :nombre_minusculas_equals, false)
+    else
+      splits_params("nombre_marca", :nombre_minusculas_contains_all)
+    end
+    if params[:desc_diseno] == "exacta"
+      splits_params("descripcion_diseno", :descripcion_imagen_equals, false)
+    else
+      splits_params("descripcion_diseno", :descripcion_imagen_contains_all)
+    end
+    if params[:desc_productos] == "exacta"
+      splits_params("descripcion_servicios", :productos_equals, false)
+    else
+      splits_params("descripcion_servicios", :productos_contains_all)
+    end
+    params[:search].each_with_index do |value, index|
+      if value[1] == "all_values"
+        params[:search].delete(value[0])
+      end
+    end
   end
 end
