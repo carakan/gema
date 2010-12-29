@@ -465,6 +465,10 @@ class Marca < ActiveRecord::Base
     fecha_numero_marca[:fecha]
   end
 
+  def quitar_lema_marca_id(lema_marca_id)
+    x = Marca.find(lema_marca_id)
+    x.lema_marca_id = ""
+  end
 
   protected
   #########################################################
@@ -503,11 +507,6 @@ class Marca < ActiveRecord::Base
   def self.buscar_titular_id(titular_nombre)
     titular = Representante.find_by_nombre(titular_nombre)
     titular.id unless titular.nil?
-  end
-
-  def quitar_lema_marca_id(lema_marca_id)
-    x = Marca.find(lema_marca_id)
-    x.lema_marca_id = NULL
   end
 
   private

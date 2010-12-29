@@ -314,7 +314,8 @@
           <td><%= lemas_comerciales.numero_marca %></td>
           <td><%= lo(lemas_comerciales.fecha_marca, :format => "%d %b, %Y") if lemas_comerciales.fecha_marca %></td>
           <td><%= lemas_comerciales.titulares.map(&:nombre).join(", ") %></td>
-          <td><%= link_to "Quitar", lemas_comerciales.quitar_lema_marca_id(lemas_comerciales.id), :class => 'delete' %></td>
+          <%#=lemas_comerciales.quitar_lema_marca_id(lemas_comerciales.id)%>
+          <td><%= link_to "Quitar",marca_path(lemas_comerciales), :class => 'delete' %></td>
         </tr>
       <% end %>
       </table>
