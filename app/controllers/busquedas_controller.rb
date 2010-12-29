@@ -94,6 +94,13 @@ class BusquedasController < ApplicationController
     else
       splits_params("descripcion_servicios", :productos_contains_all)
     end
+    keys = {"fecha_sol" => "fecha_solicitud", "fecha_pub" => "fecha_publicacion", "fecha_reg" => "fecha_registro", "fecha_sol_ren" => "fecha_solicitud_renovacion", "fecha_ren" => "fecha_renovacion"}
+    keys.each do |key|
+      if params["#{key[0]}_inicio"] && !params["#{key[0]}_inicio"].empty? && params["#{key[0]}_fin"] && !params["#{key[0]}_fin"].empty?
+        params[:search]["#{key[1]}_btw"] = [Date.parse(params["#{key[0]}_inicio"]), Date.parse(params["#{key[0]}_fin"])]
+      end
+    end
+    
     params[:search].each_with_index do |value, index|
       if value[1] == "all_values"
         params[:search].delete(value[0])
