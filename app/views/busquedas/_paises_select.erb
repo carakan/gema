@@ -10,18 +10,18 @@
     width: 150px;
     height: 30px;
   }
-  ul#botones{
+  ul#botones_p{
     width: 150px;
     float:left;
     list-style: none;
     padding: 0px;
     margin: 0px;
   }
-  ul#botones li{
+  ul#botones_p li{
     padding: 0px;
     margin: 0px;
   }
-  ul#botones li a{
+  ul#botones_p li a{
     width: 100%;
     display:block;
     text-decoration: none;
@@ -32,7 +32,7 @@
     margin: 0;
     padding: 2px 5px;
   }
-  ul#botones li a.sel{
+  ul#botones_p li a.sel{
     background-color: #5BBF3B;
   }
   #paises{
@@ -45,23 +45,24 @@
     font-size: 12px;
     padding: 0;
     margin: 0;
+    width: 45px
   }
 </style>
 
 <label for="">Países</label>
 <div id="paises_grupos">
-  <ul id="botones">
+  <ul id="botones_p">
     <li>
       <a href="javascript:" data-paises="CA,US,MX">Norte América</a>
     </li>
     <li>
-     <a href="javascript:" data-paises="AR,BO,BR,CL,CO,EC,GY,PY,PE,UY,VE">SudAmérica</a>
+      <a href="javascript:" data-paises="AR,BO,BR,CL,CO,EC,GY,PY,PE,UY,VE">SudAmérica</a>
     </li>
     <li>
       <a href="javascript:" data-paises="AI,AG,AN,AW,BS,BB,BZ,CR,CU,DM,SV,GD,GP,GT,HT,HN,VI,VG,JM,MS,NI,PA,PR,DO,VC,LC,TT,TC">CentroAmérica</a>
     </li>
     <li>
-    <a href="javascript:" data-paises="AL,DE,AD,AT,BE,BY,BA,BG,CY,EU,HR,DK,SK,SI,ES,EE,FI,FR,GI,GR,GL,NL,HU,IE,IM,IS,JE,FO,IT,LU,MK,MT,MD,MC,ME,NO,PL,PT,UK,CZ,RO,RU,SM,SH,RS,SE,CH,UA,SU">Europa</a>
+      <a href="javascript:" data-paises="AL,DE,AD,AT,BE,BY,BA,BG,CY,HR,DK,SK,SI,ES,EE,FI,FR,GI,GR,GL,NL,HU,IE,IS,FO,IT,LU,MK,MT,MD,MC,NO,PL,PT,CZ,RO,RU,SM,SH,SE,CH,UA">Europa</a>
     </li>
     <li>
       <a href="javascript:" data-paises="AZ,BD,BN,KH,CN,KR,PH,GE,HK,IN,ID,JP,KZ,KG,LA,MY,MN,NP,PK,SG,LK,TH,TW,TJ,IO,TL,UZ,VN">Asia</a>
@@ -100,10 +101,10 @@
     /**
     * Marca los botones que estan seleccionados
     */
-    function marcarBotones() {
+    function marcarBotonesP() {
       var arr = $('#paises_grupos').find("input:checkbox:checked").map(function(i, el) { return el.value; }).get();
 
-      $('#botones').find('a').each(function(i, el) {
+      $('#botones_p').find('a').each(function(i, el) {
         var paises = $(el).attr("data-paises").split(",");
         var pais_encontrado = true;
         $(paises).each(function(index, elem) {
@@ -120,22 +121,22 @@
       });
     }
 
-    $('#botones').find("a").live('click', function() {
+    $('#botones_p').find("a").live('click', function() {
       var paises = $(this).attr("data-paises").split(",");
       var val = !$(this).hasClass("sel");
 
       $(paises).each(function(i, el) {
         $('#paises_' + el).attr("checked", val);
       });
-      marcarBotones();
+      marcarBotonesP();
     });
 
     $('#paises_grupos').find("input:checkbox").live('click', function() {
-      marcarBotones();
+      marcarBotonesP();
     });
 
     // Al iniciar
-    marcarBotones();
+    marcarBotonesP();
   });
 </script>
 

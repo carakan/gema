@@ -3,12 +3,12 @@
   -form_tag '/busquedas/busqueda_avanzada', :method => :post do
     .izquierda
       = label_tag "Propiedad:"
-      = select "search", "propia_equals", {"Todas las marcas" => "all_values", "Propia" => 1, "Ajena" =>0}
+      = select "search", "propia_equals", {"Todas" => "all_values", "Propia" => 1, "Ajena" =>0}
       %br
       %br
       
       = label_tag "Disponibilidad:"
-      = select "search", "activa_equals", {"Todas las marcas" => "all_values", "Activa" => 1, "Inactiva" => 0}
+      = select "search", "activa_equals", {"Todas" => "all_values", "Activa" => 1, "Inactiva" => 0}
       %br
       %br
       .izquierda
@@ -35,7 +35,7 @@
         %br
         %br
      
-        = render :partial => "paises_select"
+        -#= render :partial => "paises_titular_select"
         %br
         
         = render :partial => "generic_select"
@@ -53,7 +53,7 @@
         %br
         
         = label_tag "Vía instrucción:"
-        = select "search", "instruccion_equals", [["Todas las marcas", "all_values"]] + Marca::INSTRUCCIONES.collect{|value| [value, value]}
+        = select "search", "instruccion_equals", [["Todas", "all_values"]] + Marca::INSTRUCCIONES.collect{|value| [value, value]}
         %br
         %br
         

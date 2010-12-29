@@ -1,0 +1,141 @@
+<style type="text/css">
+  #paises_titulares_grupos{
+    padding: 0px;
+    border:1px solid #676767;
+    margin: 10px 0px;
+    width: 900px;
+  }
+  #paises_titulares_grupos label{
+    display: inline-block !important; 
+    width: 150px;
+    height: 30px;
+  }
+  ul#botones_pt{
+    width: 150px;
+    float:left;
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+  }
+  ul#botones_pt li{
+    padding: 0px;
+    margin: 0px;
+  }
+  ul#botones_pt li a{
+    width: 100%;
+    display:block;
+    text-decoration: none;
+    color: #FFF;
+    background-color: #2167CB;
+    border-bottom: 1px solid #FFF;
+    font-weight: bold;
+    margin: 0;
+    padding: 2px 5px;
+  }
+  ul#botones_pt li a.sel{
+    background-color: #5BBF3B;
+  }
+  #paises_t{
+    float: left;
+    width: 730px;
+    margin-left: 20px;
+  }
+  #paises_t div label{
+    font-weight: bold;
+    font-size: 12px;
+    padding: 0;
+    margin: 0;
+    width: 45px
+  }
+</style>
+
+<label for="">Países</label>
+<div id="paises_titulares_grupos">
+  <ul id="botones_pt">
+    <li>
+      <a href="javascript:" data-paisest="CA,US,MX">Norte América</a>
+    </li>
+    <li>
+      <a href="javascript:" data-paisest="AR,BO,BR,CL,CO,EC,GY,PY,PE,UY,VE">SudAmérica</a>
+    </li>
+    <li>
+      <a href="javascript:" data-paisest="AI,AG,AN,AW,BS,BB,BZ,CR,CU,DM,SV,GD,GP,GT,HT,HN,VI,VG,JM,MS,NI,PA,PR,DO,VC,LC,TT,TC">CentroAmérica</a>
+    </li>
+    <li>
+      <a href="javascript:" data-paisest="AL,DE,AD,AT,BE,BY,BA,BG,CY,EU,HR,DK,SK,SI,ES,EE,FI,FR,GI,GR,GL,NL,HU,IE,IM,IS,JE,FO,IT,LU,MK,MT,MD,MC,ME,NO,PL,PT,UK,CZ,RO,RU,SM,SH,RS,SE,CH,UA,SU">Europa</a>
+    </li>
+    <li>
+      <a href="javascript:" data-paisest="AZ,BD,BN,KH,CN,KR,PH,GE,HK,IN,ID,JP,KZ,KG,LA,MY,MN,NP,PK,SG,LK,TH,TW,TJ,IO,TL,UZ,VN">Asia</a>
+    </li>
+    <li>
+      <a href="javascript:" data-paisest="AF,SA,AE,IR,IL,JO,KW,LB,OM,PS,SY,TR,YE">MedioOriente</a>
+    </li>
+    <li>
+      <a href="javascript:" data-paisest="AO,DZ,BW,BI,CM,CI,EG,ET,GM,GH,AC,RE,KE,LS,LY,MG,MW,MA,MU,MZ,NA,NG,CG,CD,RW,ST,SC,SL,ZA,SD,TZ,TG,TN,UG,DJ,ZM,ZW">Africa</a>
+    </li>
+    <li>
+      <a href="javascript:" data-paisest="AU,FJ,HM,CX,CK,MP,NF,SB,KI,NR,NU,NZ,PG,PN,AS,TK,TO,VU">Oceania</a>
+    </li>
+    <li>
+    <a href="javascript:" data-paisest="<% @paisest = Pais.all%><%= @paisest.map(&:codigo).to_json %>" class="todas">Todas</a>
+    </li>
+  </ul>
+
+
+  <div id="paises_t">
+    <div>
+        <% @paisest = Pais.all%> 
+        <% @paisest.each do |v| %>
+          <label for="paisest_<%= v.id %>">
+            <% valor = !params[:paisest] ? false : params[:paisest] ? true : false %>
+            <%= check_box_tag "paisest[#{v.codigo}]", v.codigo, valor %>
+            <%= v.codigo %>
+          </label>
+        <% end %>
+      </div>
+  </div>
+  <div style="clear:both"></div>
+</div>
+<script>
+  $(document).ready(function (){
+    /**
+    * Marca los botones que estan seleccionados
+    */
+    function marcarBotonesPT() {
+      var array = $('#paises_titulares_grupos').find("input:checkbox:checked").map(function(u, elemento) { return elemento.value; }).get();
+
+      $('#botones_pt').find('a').each(function(u, elemento) {
+        var paisest = $(elemento).attr("data-paisest").split(",");
+        var paist_encontrado = true;
+        $(paisest).each(function(index, elemento) {
+          if($.inArray(elemento, array) == -1) {
+            paist_encontrado = false;
+            return;
+          }
+        });
+        if(paist_encontrado) {
+          $(elemento).addClass("sel");
+        }else {
+          $(elemento).removeClass("sel");
+        }
+      });
+    }
+
+    $('#botones_pt').find("a").live('click', function() {
+      var paisest = $(this).attr("data-paisest").split(",");
+      var valor = !$(this).hasClass("sel");
+
+      $(paisest).each(function(u, elemento) {
+        $('#paisest_' + el).attr("checked", valor);
+      });
+      marcarBotonesPT();
+    });
+
+    $('#paises_titulares_grupos').find("input:checkbox").live('click', function() {
+      marcarBotonesPT();
+    });
+
+    // Al iniciar
+    marcarBotonesPT();
+  });
+</script>
