@@ -2,7 +2,7 @@
 # author: Boris Barroso
 # email: boriscyber@gmail.com
 class BusquedasController < ApplicationController
-  #before_filter :authenticate_usuario!
+  before_filter :authenticate_usuario!
 
   # GET /busquedas
   def index
