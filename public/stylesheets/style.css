@@ -870,6 +870,6 @@ div#busqueda .contenido .derecha {
   padding-bottom: 10px;
 }
 .hasDatepicker {
-  height: 40px;
-  width: 70px;
+  margin-right: 5px;
+  width: 120px;
 }

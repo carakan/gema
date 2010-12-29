@@ -51,9 +51,10 @@
 
 <label for="">Países</label>
 <div id="paises_grupos">
+<% @paises = Pais.all%>
   <ul id="botones_p">
     <li>
-      <a href="javascript:" data-paises="CA,US,MX,BM,GU">Norte América</a>
+      <a href="javascript:" data-paises="CA,US,MX,BM,GU,UM">Norte América</a>
     </li>
     <li>
       <a href="javascript:" data-paises="AR,BO,BR,CL,CO,EC,FK,GS,GY,PY,PE,UY,VE">SudAmérica</a>
@@ -62,33 +63,32 @@
       <a href="javascript:" data-paises="AI,AG,AN,AW,BS,BB,BZ,CR,CU,DM,SV,GD,GP,GT,HT,HN,KN,KY,VI,VG,JM,MS,NI,PA,PR,DO,VC,LC,TT,TC">CentroAmérica</a>
     </li>
     <li>
-      <a href="javascript:" data-paises="AL,AM,DE,AD,AT,BE,BY,BA,BG,CY,HR,DK,SK,SI,ES,EE,FI,FR,GB,GF,GI,GR,GL,NL,HU,IE,IS,FO,IT,LI,LT,LU,LV,MK,MQ,MT,MD,MC,NO,PF,PM,PL,PT,CZ,RO,RU,SM,SH,SE,CH,UA">Europa</a>
+      <a href="javascript:" data-paises="AL,AM,DE,AD,AT,BE,BY,BA,BG,CY,HR,DK,SK,SI,ES,EE,FI,FR,GB,GF,GI,GR,GL,NL,HU,IE,IS,FO,IT,LI,LT,LU,LV,MK,MQ,MT,MD,MC,NO,PF,PM,PL,PT,QA,CZ,RO,RU,SM,SH,SE,SJ,CH,TF,UA,VA,YU">Europa</a>
     </li>
     <li>
-      <a href="javascript:" data-paises="AZ,BD,BN,BH,BT,KH,CN,KR,PH,GE,HK,IN,ID,IQ,JP,KZ,KG,KP,LA,MY,MN,MM,MO,MV,NP,PK,SG,LK,TH,TW,TJ,IO,TL,UZ,VN">Asia</a>
+      <a href="javascript:" data-paises="AZ,BD,BN,BH,BT,KH,CN,KR,PH,GE,HK,IN,ID,IQ,JP,KZ,KG,KP,LA,MY,MN,MM,MO,MV,NP,PK,SG,LK,TH,TM,TW,TJ,IO,TL,UZ,VN">Asia</a>
     </li>
     <li>
       <a href="javascript:" data-paises="AF,SA,AE,IR,IL,JO,KW,LB,OM,SY,TR,YE">MedioOriente</a>
     </li>
     <li>
-      <a href="javascript:" data-paises="AO,DZ,BW,BI,BF,BJ,CF,CV,CM,CI,EG,EH,ER,ET,GA,GN,GM,GH,GQ,GW,AC,RE,KE,KM,LR,LS,LY,MG,ML,MW,MA,MR,MU,MZ,NA,NE,NG,CG,CD,RW,ST,SC,SL,ZA,SD,TZ,TG,TN,UG,DJ,ZM,ZW">Africa</a>
+      <a href="javascript:" data-paises="AO,DZ,BW,BI,BF,BJ,CF,CV,CM,CI,EG,EH,ER,ET,GA,GN,GM,GH,GQ,GW,RE,KE,KM,LR,LS,LY,MG,ML,MW,MA,MR,MU,MZ,NA,NE,NG,CG,CD,RW,ST,SC,SL,SN,SO,SR,SZ,ZA,SD,TD,TZ,TG,TN,UG,DJ,ZM,ZW">Africa</a>
     </li>
     <li>
-      <a href="javascript:" data-paises="AU,BV,CC,FJ,FM,HM,CX,CK,MP,NF,SB,KI,MH,NC,NR,NU,NZ,PG,PN,PW,AS,TK,TO,VU">Oceania</a>
+      <a href="javascript:" data-paises="AU,BV,CC,FJ,FM,HM,CX,CK,MP,NF,SB,KI,MH,NC,NR,NU,NZ,PG,PN,PW,AS,TK,TO,TV,VU,WF,WS,YT">Oceania</a>
     </li>
     <li>
       <a href="javascript:" data-paises="AQ">Antártida</a>
     </li>
 
     <li>
-    <a href="javascript:" data-paises="<% @paises = Pais.all%><%= @paises.map(&:codigo).to_json %>" class="todas">Todas</a>
+    <a href="javascript:" data-paises="<%= @paises.map(&:codigo).to_a.join(",") %>" class="todas">Todos</a>
     </li>
   </ul>
 
 
   <div id="paises">
     <div>
-        <% @paises = Pais.all%> 
         <% @paises.each do |c| %>
           <label for="paises_<%= c.id %>">
             <% val = !params[:paises] ? false : params[:paises] ? true : false %>

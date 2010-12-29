@@ -10,7 +10,7 @@
       = label_tag "Disponibilidad:"
       = select "search", "activa_equals", {"Todas" => "all_values", "Activa" => 1, "Inactiva" => 0}
       %br
-      %br
+      %br.clear
       .izquierda
         = label_tag "Denominación:"
         = text_field "search", "nombre_marca"
@@ -21,21 +21,26 @@
         %br
         = radio_button_tag "denominacion", "similar"
         = label_tag "Palabra(s) dentro de una frase", "Palabra(s) dentro de una frase", :class => 'line'
-      %br
-      %br
-      .izquierda
+      %br.clear
+      %br.clear
+      #agent.izquierda
+        #value
         = label_tag "Agentes"
         = text_field_tag :agentes
 
         = render :partial => "paises_select"
         %br
 
+      %br.clear
+
+      #owner.izquierda
+        #value
         = label_tag "Titulares"
         = text_field_tag :titulares
         %br
         %br
      
-        -#= render :partial => "paises_titular_select"
+        = render :partial => "paises_titular_select"
         %br
         
         = render :partial => "generic_select"
@@ -160,17 +165,17 @@
       .derecha
         = label_tag "Fecha solicitud:"
         = label_tag "de:","de:", :class => 'line'
-        = text_field_tag "fecha_sol_inicio"
+        = text_field_tag "fecha_sol_inicio", "", :class => "date"
         = label_tag "a:","a:", :class => 'line'
-        = text_field_tag "fecha_sol_fin"
+        = text_field_tag "fecha_sol_fin", "", :class => "date"
         %br
         %br
 
         = label_tag "Fecha publicación:"
         = label_tag "de:","de:", :class => 'line'
-        = text_field_tag "fecha_pub_inicio"
+        = text_field_tag "fecha_pub_inicio", "", :class => "date"
         = label_tag "a:","a:", :class => 'line'
-        = text_field_tag "fecha_pub_fin"
+        = text_field_tag "fecha_pub_fin", "", :class => "date"
         %br
         %br
         %br
@@ -180,28 +185,56 @@
 
         = label_tag "Fecha registro:"
         = label_tag "de:","de:", :class => 'line'
-        = text_field_tag "fecha_reg_inicio"
+        = text_field_tag "fecha_reg_inicio", "", :class => "date"
         = label_tag "a:","a:", :class => 'line'
-        = text_field_tag "fecha_reg_fin"
+        = text_field_tag "fecha_reg_fin", "", :class => "date"
         %br
         %br
 
         = label_tag "Fecha solicitud renovación:"
         = label_tag "de:","de:", :class => 'line'
-        = text_field_tag "fecha_sol_ren_inicio"
+        = text_field_tag "fecha_sol_ren_inicio", "", :class => "date"
         = label_tag "a:","a:", :class => 'line'
-        = text_field_tag "fecha_sol_ren_fin"
+        = text_field_tag "fecha_sol_ren_fin", "", :class => "date"
         %br
         %br
 
         = label_tag "Fecha renovación:"
         = label_tag "de:","de:", :class => 'line'
-        = text_field_tag "fecha_ren_inicio"
+        = text_field_tag "fecha_ren_inicio", "", :class => "date"
         = label_tag "a:","a:", :class => 'line'
-        = text_field_tag "fecha_ren_fin"
+        = text_field_tag "fecha_ren_fin", "", :class => "date"
         %br
         %br{:style => "clear:both"}
       %br{:style => "clear:both"}
     = submit_tag "Buscar"
 
 = render :partial => "resultados"
+
+:javascript
+  $('#agentes, #titulares').autocomplete({
+    'source': '/representantes/buscar',
+    'select': function(e, ui) {
+      var node = "";
+      var attribute = "";
+      if($(this).attr("id") == "agentes"){
+        node = "agent";
+        attribute = "agentes_id_equals";
+      } else {
+        node = "owner";
+        attribute = "titulares_id_equals";
+      }
+      var val = $(ui).autocomplete("option").get()[0];
+      $('#' + node + " #value").html("<input name='search[" + attribute +"]' value='"+ val.item.id +"' type='hidden' />");
+    }
+  });
+
+  $('#agentes, #titulares').change(function(event){
+    if($(this).val() == ""){
+      if($(this).attr("id") == "agentes"){
+        $('#agent #value').html("");
+      } else {
+        $('#owner #value').html("");
+      }
+    }
+  });
