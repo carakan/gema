@@ -10,7 +10,7 @@
       = label_tag "Disponibilidad:"
       = select "search", "activa_equals", {"Todas las marcas" => "all_values", "Activa" => 1, "Inactiva" => 0}
       %br
-      %br
+      %br.clear
       .izquierda
         = label_tag "Denominación:"
         = text_field "search", "nombre_marca"
@@ -21,9 +21,10 @@
         %br
         = radio_button_tag "denominacion", "similar"
         = label_tag "Palabra(s) dentro de una frase", "Palabra(s) dentro de una frase", :class => 'line'
-      %br
-      %br
-      .izquierda
+      %br.clear
+      %br.clear
+      #agent.izquierda
+        #value
         = label_tag "Agentes"
         = text_field_tag :agentes
 
@@ -33,12 +34,10 @@
           %li
             =#link_to 'BO, VE, CO, PE, UY, BR', "javascript:", :""data-clases"" => "1,2,4"
             %a{:href => "javascript:", :"data-clases" => ""} BO, VE, CO, PE, UY, BR
-      %br
-      %br
-      %br
-      %br
+      %br.clear
 
-      .izquierda
+      #owner.izquierda
+        #value
         = label_tag "Titulares"
         = text_field_tag :titulares
         %br
@@ -217,3 +216,31 @@
     = submit_tag "Buscar"
 
 = render :partial => "resultados"
+
+:javascript
+  $('#agentes, #titulares').autocomplete({
+    'source': '/representantes/buscar',
+    'select': function(e, ui) {
+      var node = "";
+      var attribute = "";
+      if($(this).attr("id") == "agentes"){
+        node = "agent";
+        attribute = "agentes_id_equals";
+      } else {
+        node = "owner";
+        attribute = "titulares_id_equals";
+      }
+      var val = $(ui).autocomplete("option").get()[0];
+      $('#' + node + " #value").html("<input name='search[" + attribute +"]' value='"+ val.item.id +"' type='hidden' />");
+    }
+  });
+
+  $('#agentes, #titulares').change(function(event){
+    if($(this).val() == ""){
+      if($(this).attr("id") == "agentes"){
+        $('#agent #value').html("");
+      } else {
+        $('#owner #value').html("");
+      }
+    }
+  });

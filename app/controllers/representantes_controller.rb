@@ -106,7 +106,7 @@ class RepresentantesController < ApplicationController
       busq = params[:term]
       hash_proc = lambda { |c| { :id => c.id, :label => c.to_s } }
     end
-    @clientes = Representante.clientes.where("nombre LIKE ?", "%#{busq}%").limit(50)
+    @clientes = Representante.clientes.where("nombre LIKE ?", "%#{busq}%").limit(50).order("nombre")
     render :text => @clientes.map{ |c| hash_proc.call(c) }.to_json 
   end
 end
