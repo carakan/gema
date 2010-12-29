@@ -505,6 +505,11 @@ class Marca < ActiveRecord::Base
     titular.id unless titular.nil?
   end
 
+  def quitar_lema_marca_id(lema_marca_id)
+    x = Marca.find(lema_marca_id)
+    x.lema_marca_id = NULL
+  end
+
   private
 
   def quitar_comillas
