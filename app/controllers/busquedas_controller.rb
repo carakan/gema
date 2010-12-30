@@ -79,6 +79,15 @@ class BusquedasController < ApplicationController
     if params[:clases] && !params[:clases].empty?
       params[:search][:clase_id_in] = params[:clases].keys
     end
+
+    if params[:paises] && !params[:paises].empty?
+      params[:search][:agentes_pais_codigo_in] = params[:paises].keys
+    end
+
+    if params[:paisest] && !params[:paisest].empty?
+      params[:search][:titulares_pais_codigo_in] = params[:paisest].keys
+    end
+    
     if params[:denominacion] == "exacta"
       splits_params("nombre_marca", :nombre_minusculas_equals, false)
     else
@@ -94,13 +103,32 @@ class BusquedasController < ApplicationController
     else
       splits_params("descripcion_servicios", :productos_contains_all)
     end
-    keys = {"fecha_sol" => "fecha_solicitud", "fecha_pub" => "fecha_publicacion", "fecha_reg" => "fecha_registro", "fecha_sol_ren" => "fecha_solicitud_renovacion", "fecha_ren" => "fecha_renovacion"}
+    if params[:observaciones_m] == "exacta"
+      splits_params("observaciones", :observaciones_equals, false)
+    else
+      splits_params("observaciones", :observaciones_contains_all)
+    end
+    keys = {"fecha_sol" => "fecha_solicitud", "fecha_pub" => "fecha_publicacion", "fecha_reg" => "fecha_registro", "fecha_sol_ren" => "fecha_solicitud_renovacion", "fecha_ren" => "fecha_renovacion"
+    }
     keys.each do |key|
       if params["#{key[0]}_inicio"] && !params["#{key[0]}_inicio"].empty? && params["#{key[0]}_fin"] && !params["#{key[0]}_fin"].empty?
         params[:search]["#{key[1]}_btw"] = [Date.parse(params["#{key[0]}_inicio"]), Date.parse(params["#{key[0]}_fin"])]
       end
     end
-    
+
+    other_keys = {:sm => "vista_marca_numero_solicitud_n", "publicacion" => "vista_marca_numero_publicacion_n", "gaceta" => "numero_gaceta", "registro" => "vista_marca_numero_registro_n",
+      :sr => "vista_marca_numero_solicitud_renovacion_n", :renovacion => "vista_marca_numero_renovacion_n", :id => "id"}
+
+    other_keys.each do |key|
+      if params["#{key[0]}_inicio"] && !params["#{key[0]}_inicio"].empty?
+        if params["#{key[0]}_fin"] && !params["#{key[0]}_fin"].empty?
+          params[:search]["#{key[1]}_btw"] = [params["#{key[0]}_inicio"].to_i, params["#{key[0]}_fin"].to_i]
+        else
+          params[:search]["#{key[1]}_equals"] = params["#{key[0]}_inicio"].to_i
+        end
+      end
+    end
+
     params[:search].each_with_index do |value, index|
       if value[1] == "all_values"
         params[:search].delete(value[0])

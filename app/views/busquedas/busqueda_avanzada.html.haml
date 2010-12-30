@@ -94,12 +94,12 @@
 
       .izquierda
         = label_tag "Observaciones:"
-        = text_field_tag "observaciones"
+        = text_field "search", "observaciones"
       .derecha 
-        = radio_button_tag "observaciones_exacta","observaciones_exacta", true
+        = radio_button_tag "observaciones_m","exacta", true
         = label_tag "Palabra o frase EXACTA","Palabra o frase EXACTA" , :class => 'line'
         %br
-        = radio_button_tag "observaciones_similar", "observaciones_similar"
+        = radio_button_tag "observaciones_m", "similar"
         = label_tag "Palabra(s) dentro de una frase","Palabra(s) dentro de una frase" , :class => 'line'
       %br
       %br
@@ -204,10 +204,11 @@
         = text_field_tag "fecha_ren_inicio", "", :class => "date"
         = label_tag "a:","a:", :class => 'line'
         = text_field_tag "fecha_ren_fin", "", :class => "date"
-        %br
-        %br{:style => "clear:both"}
-      %br{:style => "clear:both"}
-= submit_tag "Buscar"
+        %br.clear
+        %br.clear
+      %br.clear
+    %br.clear
+    = submit_tag "Buscar"
 
 = render :partial => "resultados"
 

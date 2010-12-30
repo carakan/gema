@@ -91,7 +91,7 @@
         <% @paisest = Pais.all%> 
         <% @paisest.each do |v| %>
           <label for="paisest_<%= v.id %>">
-            <% valor = !params[:paisest] ? false : params[:paisest] ? true : false %>
+            <% valor = !params[:paisest] ? false : params[:paisest][v.codigo] ? true : false %>
             <%= check_box_tag "paisest[#{v.codigo}]", v.codigo, valor %>
             <%= v.codigo %>
           </label>
