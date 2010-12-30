@@ -103,6 +103,11 @@ class BusquedasController < ApplicationController
     else
       splits_params("descripcion_servicios", :productos_contains_all)
     end
+    if params[:observaciones_m] == "exacta"
+      splits_params("observaciones", :observaciones_equals, false)
+    else
+      splits_params("observaciones", :observaciones_contains_all)
+    end
     keys = {"fecha_sol" => "fecha_solicitud", "fecha_pub" => "fecha_publicacion", "fecha_reg" => "fecha_registro", "fecha_sol_ren" => "fecha_solicitud_renovacion", "fecha_ren" => "fecha_renovacion"
     }
     keys.each do |key|
@@ -119,7 +124,7 @@ class BusquedasController < ApplicationController
         if params["#{key[0]}_fin"] && !params["#{key[0]}_fin"].empty?
           params[:search]["#{key[1]}_btw"] = [params["#{key[0]}_inicio"].to_i, params["#{key[0]}_fin"].to_i]
         else
-          params[:search]["#{key[1]}_equals"] = [params["#{key[0]}_inicio"].to_i]
+          params[:search]["#{key[1]}_equals"] = params["#{key[0]}_inicio"].to_i
         end
       end
     end
@@ -129,6 +134,5 @@ class BusquedasController < ApplicationController
         params[:search].delete(value[0])
       end
     end
-    debugger
   end
 end
