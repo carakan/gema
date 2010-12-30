@@ -22,6 +22,7 @@ class Marca < ActiveRecord::Base
   belongs_to :tipo_signo
   belongs_to :tipo_marca
   belongs_to :usuario
+  belongs_to :vista_marca, :foreign_key => "id"
   #belongs_to :pais
   belongs_to :importacion
   belongs_to :marca_estado
