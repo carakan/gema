@@ -90,7 +90,7 @@
     <div>
         <% @paises.each do |c| %>
           <label for="paises_<%= c.id %>">
-            <% val = !params[:paises] ? false : params[:paises] ? true : false %>
+            <% val = !params[:paises] ? false : params[:paises][c.codigo] ? true : false %>
             <%= check_box_tag "paises[#{c.codigo}]", c.codigo, val %>
             <%= c.codigo %>
           </label>

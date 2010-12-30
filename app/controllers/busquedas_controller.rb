@@ -116,7 +116,7 @@ class BusquedasController < ApplicationController
       end
     end
 
-    other_keys = {:sm => "vista_marca_numero_solicitud_n", "publicacion" => "numero_publicacion", "gaceta" => "numero_gaceta", "registro" => "vista_marca_numero_registro_n",
+    other_keys = {:sm => "vista_marca_numero_solicitud_n", "publicacion" => "vista_marca_numero_publicacion_n", "gaceta" => "numero_gaceta", "registro" => "vista_marca_numero_registro_n",
       :sr => "vista_marca_numero_solicitud_renovacion_n", :renovacion => "vista_marca_numero_renovacion_n", :id => "id"}
 
     other_keys.each do |key|
