@@ -465,10 +465,7 @@ class Marca < ActiveRecord::Base
     fecha_numero_marca[:fecha]
   end
 
-  def quitar_lema_marca_id(lema_marca_id)
-    x = Marca.find(lema_marca_id)
-    x.lema_marca_id = ""
-  end
+
 
   protected
   #########################################################
@@ -573,12 +570,14 @@ class Marca < ActiveRecord::Base
 
   # Usado en caso de importación para asignar el marca_estado_id de una marca
   def set_marca_estado_id
-    case self.estado
-    when 'sm' then self.marca_estado_id = 1
-    when 'lp' then self.marca_estado_id = 7
-    when 'lr' then self.marca_estado_id = 12
-    when 'rc' then self.marca_estado_id = 18
-    when 'sr' then self.marca_estado_id = 16
+    if self.estado
+      case self.estado
+      when 'sm' then self.marca_estado_id = 1
+      when 'lp' then self.marca_estado_id = 7
+      when 'lr' then self.marca_estado_id = 12
+      when 'rc' then self.marca_estado_id = 18
+      when 'sr' then self.marca_estado_id = 16
+      end
     end
   end
 end

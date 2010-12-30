@@ -68,6 +68,7 @@ Rails.application.routes.draw do
     member do
       post :create_post
       get :ver
+      get :quitar_lema
     end
   end
 
