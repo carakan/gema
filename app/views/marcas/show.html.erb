@@ -317,7 +317,7 @@
     <div id="posts">
       <h2 class="title">Lemas comerciales asociados a la marca</h2>
       <% lemas_comerciales = @marca.lemas_comerciales %>
-      <% unless lemas_comerciales %>
+      <%# unless lemas_comerciales %>
         <table class="decorated nwl">
           <tr>
             <th style="width:250px">Nombre</th>
@@ -343,7 +343,7 @@
             </tr>
           <% end %>
         </table>
-      <% end %>
+      <%# end %>
       <%= link_to "Nuevo Lema Comercial", new_marca_path(:tipo => 'LC', :tipo_signo =>'Lema Comercial', :lema_marca_id => @marca.id), :class => 'new ajax' %>
     </div>
   <% end %>

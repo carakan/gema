@@ -49,7 +49,7 @@
   <div class="clear"></div>
 
   <%= f.input :apoderado, :tabindex => 11, :wrapper_html => {:class => 'fl half'} %>
-  <%= f.input :domicilio_titular, :tabindex => 12, :as => :text, :input_html => { :cols => 50, :rows => 4 } %>
+  <%= f.input :domicilio_titular, :tabindex => 12, :as => :text, :input_html => { :cols => 35, :rows => 4 } %>
   <div class="clear"></div>
   <%= f.input :fecha_instruccion , :as => 'string', :input_html => { :class => 'date' } %>
   <%= f.input :instruccion, :collection => Marca::INSTRUCCIONES, :label => 'Tipo de instrucción' %>

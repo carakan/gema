@@ -136,7 +136,8 @@ class Busqueda
 
       params[:fecha_ini], params[:fecha_fin] = transformar_fechas(params)
       if params[:fecha_ini]
-        sql << "AND estado_fecha >= '#{params[:fecha_ini]}' AND estado_fecha <= '#{params[:fecha_fin]}'"
+        #sql << "AND estado_fecha >= '#{params[:fecha_ini]}' AND estado_fecha <= '#{params[:fecha_fin]}'"
+        sql << "AND fecha_solicitud >= '#{params[:fecha_ini]}' AND fecha_solicitud <= '#{params[:fecha_fin]}'"
       end
       sql << condicion_marca_propia(params)
       sql << condicion_activas
@@ -191,7 +192,7 @@ class Busqueda
     busqueda = params[:busqueda].downcase.cambiar_acentos
     if @nombre_modelo == Marca
       sql = "SELECT res.id, res.nombre, res.pos, res.clase_id, res.propia, res.activa, res.tipo_signo_id, res.agente_ids_serial,
-      res.fecha_renovacion, res.fecha_solicitud_renovacion, res.fecha_registro, res.fecha_solicitud,
+      res.fecha_renovacion, res.fecha_solicitud_renovacion, res.fecha_registro,
       res.titular_ids_serial, res.fecha_publicacion, res.numero_solicitud, res.numero_publicacion, 
       res.numero_registro, res.numero_renovacion, res.estado, res.numero_solicitud_renovacion, res.fecha_solicitud, res.exacto"
     else
@@ -243,8 +244,8 @@ class Busqueda
 
   def sql_select(pos, exacto = 1)
     if @nombre_modelo == Marca
-      "SELECT id, nombre, nombre_minusculas, clase_id, #{pos} AS pos, propia, activa, estado, agente_ids_serial, titular_ids_serial, fecha_publicacion, fecha_renovacion, fecha_solicitud_renovacion, fecha_registro, fecha_solicitud,
-      numero_solicitud, numero_publicacion, numero_registro, numero_renovacion, tipo_signo_id, numero_solicitud_renovacion, estado_fecha, #{exacto} AS exacto
+      "SELECT id, nombre, nombre_minusculas, clase_id, #{pos} AS pos, propia, activa, estado, agente_ids_serial, titular_ids_serial, fecha_publicacion, fecha_renovacion, fecha_solicitud_renovacion, fecha_registro, 
+      numero_solicitud, numero_publicacion, numero_registro, numero_renovacion, tipo_signo_id, numero_solicitud_renovacion, fecha_solicitud, #{exacto} AS exacto
       FROM marcas"
     else
       "SELECT * FROM ((SELECT id, nombre, LOWER(nombre) AS nombre_minusculas
