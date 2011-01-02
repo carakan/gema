@@ -32,7 +32,7 @@ class BusquedasController < ApplicationController
 
     query[:clases] = (1..45).to_a
     @con = Consulta.new(:consulta_id => params[:consulta_id], :busqueda => @marca.nombre, :parametros => query, 
-      :importacion_id => params[:importacion_id], :marca_id => params[:marca_id])
+                        :importacion_id => params[:importacion_id], :marca_id => params[:marca_id])
     @consulta_detalles = []
     unless params[:consulta_id].nil?
       @consulta = Consulta.find(params[:consulta_id]) 
@@ -59,8 +59,10 @@ class BusquedasController < ApplicationController
       @busqueda = Marca.search(params[:search])
       @representantes = Busqueda.preparar_representantes(@busqueda)
     end
-    
+
     @consulta = Consulta.new()
+  rescue
+    render :action => :busqueda_avanzada
   end
 
   private
@@ -87,7 +89,7 @@ class BusquedasController < ApplicationController
     if params[:paisest] && !params[:paisest].empty?
       params[:search][:titulares_pais_codigo_in] = params[:paisest].keys
     end
-    
+
     if params[:denominacion] == "exacta"
       splits_params("nombre_marca", :nombre_minusculas_equals, false)
     else
@@ -116,15 +118,21 @@ class BusquedasController < ApplicationController
       end
     end
 
-    other_keys = {:sm => "vista_marca_numero_solicitud_n", "publicacion" => "vista_marca_numero_publicacion_n", "gaceta" => "numero_gaceta", "registro" => "vista_marca_numero_registro_n",
+    other_keys = {:sm => "vista_marca_numero_solicitud_n", "publicacion" => "vista_marca_numero_publicacion", "gaceta" => "numero_gaceta", "registro" => "vista_marca_numero_registro_n",
       :sr => "vista_marca_numero_solicitud_renovacion_n", :renovacion => "vista_marca_numero_renovacion_n", :id => "id"}
 
     other_keys.each do |key|
       if params["#{key[0]}_inicio"] && !params["#{key[0]}_inicio"].empty?
         if params["#{key[0]}_fin"] && !params["#{key[0]}_fin"].empty?
           params[:search]["#{key[1]}_btw"] = [params["#{key[0]}_inicio"].to_i, params["#{key[0]}_fin"].to_i]
+          if key[0] == :sm && params["#{key[0]}_inicio"].split("-").size > 1
+            params[:search]["vista_marca_numero_solicitud_a_btw"] = [params["#{key[0]}_inicio"].split("-").last, params["#{key[0]}_fin"].split("-").last]
+          end
         else
           params[:search]["#{key[1]}_equals"] = params["#{key[0]}_inicio"].to_i
+          if key[0] == :sm && params["#{key[0]}_inicio"].split("-").size > 1
+            params[:search]["vista_marca_numero_solicitud_a_equals"] = params["#{key[0]}_inicio"].split("-").last
+          end
         end
       end
     end
