@@ -71,6 +71,7 @@ class BusquedasController < ApplicationController
 
     @consulta = Consulta.new()
   rescue
+    flash[:notice] = "Existe un error en los criterios de busqueda, vuelva a intentarlo."
     render :action => :busqueda_avanzada
   end
 
@@ -134,12 +135,12 @@ class BusquedasController < ApplicationController
       if params["#{key[0]}_inicio"] && !params["#{key[0]}_inicio"].empty?
         if params["#{key[0]}_fin"] && !params["#{key[0]}_fin"].empty?
           params[:search]["#{key[1]}_btw"] = [params["#{key[0]}_inicio"].to_i, params["#{key[0]}_fin"].to_i]
-          if key[0] == :sm && params["#{key[0]}_inicio"].split("-").size > 1
+          if (key[0] == :sm || key[0] == :sr) && params["#{key[0]}_inicio"].split("-").size > 1
             params[:search]["vista_marca_numero_solicitud_a_btw"] = [params["#{key[0]}_inicio"].split("-").last, params["#{key[0]}_fin"].split("-").last]
           end
         else
           params[:search]["#{key[1]}_equals"] = params["#{key[0]}_inicio"].to_i
-          if key[0] == :sm && params["#{key[0]}_inicio"].split("-").size > 1
+          if (key[0] == :sm || key[0] == :sr) && params["#{key[0]}_inicio"].split("-").size > 1
             params[:search]["vista_marca_numero_solicitud_a_equals"] = params["#{key[0]}_inicio"].split("-").last
           end
         end
