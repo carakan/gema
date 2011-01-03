@@ -9,8 +9,17 @@ class BusquedasController < ApplicationController
     @busqueda = []
     params[:tipo_busqueda] = 'prev' if params[:tipo_busqueda].nil?
     if params[:busqueda]
-      @busqueda = Busqueda.realizar_busqueda(params)
-      @busqueda2 = Busqueda.realizar_busqueda({:busqueda => params[:busqueda], :tipo_representante => 1}, Representante)
+      if params[:representante] && (params[:representante] == "agente" || params[:representante] == "titular")
+        representante_ids = Busqueda.realizar_busqueda({:busqueda => params[:busqueda]}, Representante).collect {|representante| representante.id}
+        if params[:representante] == "agente"
+          @busqueda = Marca.search(:agentes_id_in => representante_ids)
+        else
+          @busqueda = Marca.search(:titulares_id_in => representante_ids)
+        end
+      else
+        @busqueda = Busqueda.realizar_busqueda(params)
+      end
+            
       @representantes = Busqueda.preparar_representantes(@busqueda)
       # Crea una nueva busqueda con los parametros de la busqueda
       @consulta = Consulta.nueva(params)
