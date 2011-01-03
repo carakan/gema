@@ -18,7 +18,7 @@ module ModMarca::ListaPublicacion
     # Define las validaciones y filtros que se deben aplicar a la clase
     def set_validations_and_filters
       # validaciones
-      validates_presence_of :estado_fecha, :numero_publicacion
+      validates_presence_of :fecha_solicitud, :numero_publicacion
       validates_format_of :numero_solicitud, :with => /^\d+-\d{4}$/
       validates_uniqueness_of :numero_solicitud, :scope => :parent_id
 
@@ -27,7 +27,7 @@ module ModMarca::ListaPublicacion
 
     def excel_cols
       {
-        :estado_fecha => 'A',
+        :fecha_solicitud => 'A',
         :numero_solicitud => 'B',
         :apoderado => 'C',
         :nombre => 'E',
@@ -126,7 +126,7 @@ module ModMarca::ListaPublicacion
         :numero_publicacion => params['NUMERO DE PUBLICACION'],
         :nombre => params['NOMBRE DE LA MARCA'],
         :numero_solicitud => params['NUMERO DE SOLICITUD'].gsub(/(\s|\302\240)/, ''),
-        :estado_fecha => convertir_fecha_solicitud( params['FECHA DE SOLICITUD'] ), # Esta es la Fecha de solicitud
+        :fecha_solicitud => convertir_fecha_solicitud( params['FECHA DE SOLICITUD'] ), # Esta es la Fecha de solicitud
         :clase_id => Clase.find_by_codigo(params['CLASE INTERNACIONAL']).try(:id),
         :tipo_signo_id => buscar_tipo_signo( params['TIPO DE SIGNO'], params['TIPO DE MARCA']),
         :tipo_marca_id => buscar_tipo_marca( params['TIPO DE SIGNO'], params['TIPO DE MARCA']),

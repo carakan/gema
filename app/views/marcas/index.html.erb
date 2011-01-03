@@ -50,6 +50,8 @@
     <th><%= sort_order "Tipo", "tipo_signos.nombre" %></th>
     <th>Cl</th>
     <th title="Signo activo"><%= sort_order "Act.", "marcas.activa" %></th>
+    <th>Numero</th>
+    <th>Fecha</th>
     <th>Titulares</th>
     <th class="last"></th>
 	</tr>
@@ -60,10 +62,12 @@
         <%= link_to marca.nombre, marca_path(marca), :class => "#{ marca.propia! } #{marca.valido!}" %>
       </td>
       <td class="<%= marca.propia %>"></td>
-      <td><span title="<%= marca.ver_estado %>"><%= marca.estado %></span></td>
+      <td><!--<span title="<%#= marca.ver_estado %>">--><%= MarcaEstado.sigla_estado(marca.marca_estado_id) %><!--</span>--></td>
       <td><% unless marca.tipo_signo.nil?%><%= marca.tipo_signo.sigla %><%end%></td>
       <td><%= marca.clase_id %></td>
       <td class="<%= marca.activa %>"></td>
+      <td><%= marca.numero_marca %></td>
+      <td><%= lo(marca.fecha_marca, :format => "%d %b, %Y") if marca.fecha_marca %></td>
       <td><%= marca.titulares.map(&:nombre).join(", ") %></td>
       <td><%= links(marca) %></td>
     </tr>

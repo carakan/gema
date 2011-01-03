@@ -5,18 +5,17 @@
     <thead>
       <tr>
         <th></th>
+        <th>Idioma</th>
         <th>Nombre</th>
         <th title="Tipo de signo">Tipo</th>
-        <th title="Clase">Cla</th>
+        <th title="Clase">Cl</th>
         <th>Numero</th>
         <th>Fecha</th>
         <th>Agentes</th>
         <th>Titulares</th>
-        <th>Observaciones</th>
         <th></th>
       </tr>
     </thead>
-
     <% titulares = @busqueda.first.titular_ids_serial.sort %>
     <% agentes = @busqueda.first.agente_ids_serial.sort %>
     <% count = 1 %>
@@ -44,7 +43,7 @@
           <td><%= b.tipo_signo.sigla if b.tipo_signo %></td>
           <td><%= b.clase_id %></td>
           <td><%= numero_marca(b) %></td>
-          <td><%= lo(b.estado_fecha, :format => "%d %b, %Y") %></td>
+          <td><%= lo(b.fecha_solicitud, :format => "%d %b, %Y") %></td>
           <td><%= b.agentes.join(", ") %></td>
           <td><%= b.titulares.join(", ") %></td>
         </tr>

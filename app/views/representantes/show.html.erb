@@ -1,76 +1,107 @@
 <style type="text/css">
   #cliente{ width: 54%; float: left;}
-  #posts{ width: 44%; float: left; background-color: #EFEFEF; }
+  #posts{ width: 100%; float: left; background-color: #EFEFEF; }
 </style>
-
-<h1>Cliente</h1>
 <p class="links">
   <%= link_to 'Editar', edit_representante_path(@representante), :class =>'edit' %>
   <%= link_to 'Lista', representantes_path, :class =>'list' %>
 </p>
-<div id="cliente">
-  <p>
-    <label>Nombre:</label>
-    <%=h @representante.nombre %>
-  </p>
 
-  <p>
-    <label for="">Cliente:</label>
-    <%= valido_img @representante.cliente %>
-  </p>
-  <p>
-    <label>Pais:</label>
-    <%=h @representante.pais_datos %>
-  </p>
+<div id="contenido">
+  <div class="izquierda">
+    <h1><% if @representante.cliente %>Ficha Cliente <%else %>Ficha representante<%end%></h1>
+    <div class="subizq"> 
+      <label>Nombre:</label>
+    </div>
+    <div class="subder">
+     <label class="remarcado"><%=h @representante.nombre %></label>
+    </div>
+     
+    <div class="subizq">
+      <label for="">Cliente:</label>
+    </div>
+    <div class="subder">
+     <label class="remarcado"><%= valido_img @representante.cliente %></label>
+    </div>
+    <div style="clear:both"></div>
+     
+    <div class="subizq"> 
+      <label>Pais:</label>
+    </div>
+    <div class="subder">
+     <label class="remarcado"><%=h @representante.pais_datos %></label>
+    </div>
+    <div style="clear:both"></div>
+     
+    <div class="subizq"> 
+     <label>Email:</label>
+    </div>
+    <div class="subder">
+     <label class="remarcado"><%=h @representante.email %></label>
+    </div>
+    <div style="clear:both"></div>
+     
+    <div class="subizq"> 
+     <label>Direccion:</label>
+    </div>
+    <div class="subder">
+     <label class="remarcado"><%=h @representante.direccion %></label>
+    </div>
+    <div style="clear:both"></div>
+     
+    <div class="subizq"> 
+     <label>Telefono:</label>
+    </div>
+    <div class="subder">
+     <label class="remarcado"><%=h @representante.telefono %></label>
+    </div>
+    <div style="clear:both"></div>
+     
+    <div class="subizq"> 
+     <label>Fax:</label>
+    </div>
+    <div class="subder">
+     <label class="remarcado"><%=h @representante.fax %></label>
+    </div>
+    <div style="clear:both"></div>
+     
+    <div class="subizq"> 
+     <label>Pagina web:</label>
+    </div>
+    <div class="subder">
+     <label class="remarcado"><%=h @representante.pagina_web %></label>
+    </div>
+    <div style="clear:both"></div>
+     
+    <div class="subizq"> 
+     <label for="">Postal</label>
+    </div>
+    <div class="subder">
+     <label class="remarcado"><%= @representante.postal %></label>
+    </div>
+    <div style="clear:both"></div>
+     
+    <div class="subizq"> 
+     <label for="">Division</label>
+    </div>
+    <div class="subder">
+     <label class="remarcado"><%= @representante.division %></label>
+    </div>
+  </div>
 
-  <p>
-    <label>Email:</label>
-    <%=h @representante.email %>
-  </p>
-  <p>
-    <label>Direccion:</label>
-    <%=h @representante.direccion %>
-  </p>
-
-  <p>
-    <label>Telefono:</label>
-    <%=h @representante.telefono %>
-  </p>
-
-  <p>
-    <label>Fax:</label>
-    <%=h @representante.fax %>
-  </p>
-
-  <p>
-    <label>Pagina web:</label>
-    <%=h @representante.pagina_web %>
-  </p>
-
-  <p>
-    <label for="">Postal</label>
-    <%= @representante.postal %>
-  </p>
-
-  <p>
-    <label for="">Division</label>
-    <%= @representante.division %>
-  </p>
-
-  <div id="contactos">
-    <h1 class="dark">Contactos</h1>
+  <div class="derecha">
+    <h1>Contactos</h1>
     <% @representante.contactos.each do |contacto| %>
-      <div class="contacto">
-        <%= render :partial => "contactos/contacto", :locals => { :contacto => contacto } %>
-        <div class="clear"></div>
-      </div>  
+      <%= render :partial => "contactos/contacto", :locals => { :contacto => contacto } %>
     <% end %>
   </div>
-  <%= link_to "Nuevo contacto", new_contacto_path(:representante_id => @representante.id), 'data-title' => 'Crear contacto', :class => 'new ajax' %>
+  <div class="izquierda">
+    <%= link_to "Nuevo contacto", new_contacto_path(:representante_id => @representante.id), 'data-title' => 'Crear contacto', :class => 'new ajax' %>
+  </div>
 </div>
 
-
 <div id="posts" class="posts" data-max_posts="<%= Representante::POSTS_SIZE %>">
+<hr/>
   <div>
     <h2 class="title">Ultimos comentarios</h2>
     <%= render :partial => "posts/posts", :locals => { :posts => @representante.ultimos_posts } %>

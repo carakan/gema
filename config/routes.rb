@@ -68,6 +68,7 @@ Rails.application.routes.draw do
     member do
       post :create_post
       get :ver
+      get :quitar_lema
     end
   end
 
@@ -83,6 +84,10 @@ Rails.application.routes.draw do
     collection do
       get :cruce 
       get :verificar_cruce
+      get :busqueda_avanzada
+      post :busqueda_avanzada
+      get :avanzada
+      get :titulares
     end
   end
 

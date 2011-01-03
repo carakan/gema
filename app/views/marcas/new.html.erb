@@ -12,17 +12,11 @@
   <%= hidden_field_tag "importacion_id", params[:importacion_id] unless params[:importacion_id].nil?  %>
 
   <%= f.hidden_field :valido, :value => 1 %>
-  <%#= f.hidden_field :tipo_signo %>
-
+  <%= f.hidden_field :lema_marca_id %>
+  <%#= f.hidden_field :tipo_signo_id %>
   <%= f.input :propia, :label => 'Signo propio' %>
   <%= f.input :activa, :label => 'Signo activo' %>
   <%= f.input :tipo_signo, :label => 'Tipo signo'%>
-<!--  <li>
-    <label for="">Tipo de signo</label>
-    <%#= @marca.tipo_signo %>
-    <%#= "<span class=\"error\">#{ @marca.errors.on(:tipo_signo_id) }</span>" %>
-    </li>-->
-
   <%= f.input :tipo_marca%>
 
   <%= f.input :nombre,:label => "Denominación",:tabindex => 3 %>
@@ -55,10 +49,13 @@
   <div class="clear"></div>
 
   <%= f.input :apoderado, :tabindex => 11, :wrapper_html => {:class => 'fl half'} %>
-  <%= f.input :domicilio_titular, :tabindex => 12, :as => :text, :input_html => { :cols => 50, :rows => 4 } %>
+  <%= f.input :domicilio_titular, :tabindex => 12, :as => :text, :input_html => { :cols => 35, :rows => 4 } %>
   <div class="clear"></div>
   <%= f.input :fecha_instruccion , :as => 'string', :input_html => { :class => 'date' } %>
   <%= f.input :instruccion, :collection => Marca::INSTRUCCIONES, :label => 'Tipo de instrucción' %>
+  <%= f.input :pais_prioridad_id, :as => :select, :collection => Pais.find(:all), :label => 'Pais prioridad' %>
+  <%= f.input :numero_prioridad, :label => 'Número de prioridad' %>
+  <%= f.input :fecha_prioridad,:label => 'Fecha de prioridad', :as => 'string', :input_html => { :class => 'date' } %>
   <%= f.input :marca_estado, :tabindex => 10, :label => 'Estado' %>
 
   <% unless @marca.errores_manual.blank? %>
@@ -86,7 +83,6 @@
 
 
 <script type="text/javascript">
-
 $(document).ready(function() {
 
   $("#marca_agente_ids").find('option').addClass('selected');
@@ -133,11 +129,10 @@ $(document).ready(function() {
 
  if ($('#marca_tipo_signo_id').val() == "2"){
     $('#marca_nombre').val("Diseño").hide().after("<span>Diseño</span>");
+ }
+
+ if ($('#marca_tipo_signo_id').val() == "4"){
+    $('#marca_nombre').val("Marca tridimensional").hide().after("<span>Marca Tridimensional</span>");
   }
-
-
 });
-
-
-  
 </script>

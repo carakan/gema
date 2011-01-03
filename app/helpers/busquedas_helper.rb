@@ -19,7 +19,7 @@ module BusquedasHelper
   #  @param Array
   #  @return String
   def buscar_representante(representante_ids, representantes)
-    representante_ids.map { |_id| representantes[_id] }.join(", ") unless representante_ids.blank?
+    representante_ids.map { |_id| representantes[_id] }.join(", ") if !representante_ids.nil? && !representante_ids.blank?
   end
 
   # presenta de acuerdo al estado
@@ -38,13 +38,17 @@ module BusquedasHelper
   # presentar fecha de la marca
   def fecha_marca(marca)
     case marca.estado
-      when "sm" then marca.estado_fecha
-      when "lp" then marca.estado_fecha
+      when "sm" then marca.fecha_solicitud
+      when "lp" then marca.fecha_solicitud
       when "lr" then marca.fecha_registro
       when "sr" then marca.fecha_solicitud_renovacion
       when "rc" then marca.fecha_renovacion
       else
-        marca.estado_fecha
+        marca.fecha_solicitud
     end
+  end
+
+  def llenar_datos_iguales(datos)
+    [["Todas las marcas", "all_values"]] + datos.collect {|element| [ element.nombre, element.id]}
   end
 end

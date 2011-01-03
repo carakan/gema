@@ -1,0 +1,145 @@
+<style type="text/css">
+  #paises_grupos{
+    padding: 0px;
+    border:1px solid #676767;
+    margin: 10px 0px;
+    width: 900px;
+  }
+  #paises_grupos label{
+    display: inline-block !important; 
+    width: 150px;
+    height: 30px;
+  }
+  ul#botones_p{
+    width: 150px;
+    float:left;
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+  }
+  ul#botones_p li{
+    padding: 0px;
+    margin: 0px;
+  }
+  ul#botones_p li a{
+    width: 100%;
+    display:block;
+    text-decoration: none;
+    color: #FFF;
+    background-color: #2167CB;
+    border-bottom: 1px solid #FFF;
+    font-weight: bold;
+    margin: 0;
+    padding: 2px 5px;
+  }
+  ul#botones_p li a.sel{
+    background-color: #5BBF3B;
+  }
+  #paises{
+    float: left;
+    width: 730px;
+    margin-left: 20px;
+  }
+  #paises div label{
+    font-weight: bold;
+    font-size: 12px;
+    padding: 0;
+    margin: 0;
+    width: 45px
+  }
+</style>
+
+<label for="">Países</label>
+<div id="paises_grupos">
+<% @paises = Pais.all%>
+  <ul id="botones_p">
+    <li>
+      <a href="javascript:" data-paises="CA,US,MX,BM,GU,UM">Norte América</a>
+    </li>
+    <li>
+      <a href="javascript:" data-paises="AR,BO,BR,CL,CO,EC,FK,GS,GY,PY,PE,UY,VE">SudAmérica</a>
+    </li>
+    <li>
+      <a href="javascript:" data-paises="AI,AG,AN,AW,BS,BB,BZ,CR,CU,DM,SV,GD,GP,GT,HT,HN,KN,KY,VI,VG,JM,MS,NI,PA,PR,DO,VC,LC,TT,TC">CentroAmérica</a>
+    </li>
+    <li>
+      <a href="javascript:" data-paises="AL,AM,DE,AD,AT,BE,BY,BA,BG,CY,HR,DK,SK,SI,ES,EE,FI,FR,GB,GF,GI,GR,GL,NL,HU,IE,IS,FO,IT,LI,LT,LU,LV,MK,MQ,MT,MD,MC,NO,PF,PM,PL,PT,QA,CZ,RO,RU,SM,SH,SE,SJ,CH,TF,UA,VA,YU">Europa</a>
+    </li>
+    <li>
+      <a href="javascript:" data-paises="AZ,BD,BN,BH,BT,KH,CN,KR,PH,GE,HK,IN,ID,IQ,JP,KZ,KG,KP,LA,MY,MN,MM,MO,MV,NP,PK,SG,LK,TH,TM,TW,TJ,IO,TL,UZ,VN">Asia</a>
+    </li>
+    <li>
+      <a href="javascript:" data-paises="AF,SA,AE,IR,IL,JO,KW,LB,OM,SY,TR,YE">MedioOriente</a>
+    </li>
+    <li>
+      <a href="javascript:" data-paises="AO,DZ,BW,BI,BF,BJ,CF,CV,CM,CI,EG,EH,ER,ET,GA,GN,GM,GH,GQ,GW,RE,KE,KM,LR,LS,LY,MG,ML,MW,MA,MR,MU,MZ,NA,NE,NG,CG,CD,RW,ST,SC,SL,SN,SO,SR,SZ,ZA,SD,TD,TZ,TG,TN,UG,DJ,ZM,ZW">Africa</a>
+    </li>
+    <li>
+      <a href="javascript:" data-paises="AU,BV,CC,FJ,FM,HM,CX,CK,MP,NF,SB,KI,MH,NC,NR,NU,NZ,PG,PN,PW,AS,TK,TO,TV,VU,WF,WS,YT">Oceania</a>
+    </li>
+    <li>
+      <a href="javascript:" data-paises="AQ">Antártida</a>
+    </li>
+
+    <li>
+    <a href="javascript:" data-paises="<%= @paises.map(&:codigo).to_a.join(",") %>" class="todas">Todos</a>
+    </li>
+  </ul>
+
+  <div id="paises">
+    <div>
+        <% @paises.each do |c| %>
+          <label for="paises_<%= c.id %>">
+            <% val = !params[:paises] ? false : params[:paises][c.codigo] ? true : false %>
+            <%= check_box_tag "paises[#{c.codigo}]", c.codigo, val %>
+            <%= c.codigo %>
+          </label>
+        <% end %>
+      </div>
+  </div>
+  <div style="clear:both"></div>
+</div>
+<script>
+  $(document).ready(function (){
+    /**
+    * Marca los botones que estan seleccionados
+    */
+    function marcarBotonesP() {
+      var arr = $('#paises_grupos').find("input:checkbox:checked").map(function(i, el) { return el.value; }).get();
+
+      $('#botones_p').find('a').each(function(i, el) {
+        var paises = $(el).attr("data-paises").split(",");
+        var pais_encontrado = true;
+        $(paises).each(function(index, elem) {
+          if($.inArray(elem, arr) == -1) {
+            pais_encontrado = false;
+            return;
+          }
+        });
+        if(pais_encontrado) {
+          $(el).addClass("sel");
+        }else {
+          $(el).removeClass("sel");
+        }
+      });
+    }
+
+    $('#botones_p').find("a").live('click', function() {
+      var paises = $(this).attr("data-paises").split(",");
+      var val = !$(this).hasClass("sel");
+
+      $(paises).each(function(i, el) {
+        $('#paises_' + el).attr("checked", val);
+      });
+      marcarBotonesP();
+    });
+
+    $('#paises_grupos').find("input:checkbox").live('click', function() {
+      marcarBotonesP();
+    });
+
+    // Al iniciar
+    marcarBotonesP();
+  });
+</script>
+

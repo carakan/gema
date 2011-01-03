@@ -7,7 +7,7 @@
     <%= link_to "Lista de importaciones", importaciones_path %> >
     <% if @reporte_marca.for_cruce? %>
     <% @consulta = @reporte_marca.marca_foranea.cruce(@importacion.id) %>
-    <%= link_to "Volver al cruce", cruce_busquedas_path(:importacion_id => @importacion.id, :marca_id => @reporte_marca.marca_foranea.id, :consulta_id => @consulta.id) %>
+    <%= link_to "Volver al cruce", cruce_busquedas_path(:importacion_id => @importacion.id, :marca_id => @reporte_marca.marca_foranea.id, :consulta_id => @consulta.id) if @consulta && @importacion  %>
     <% else %>
     <%= link_to "Reportes realizados", reporte_marcas_path() %>
       <% end %>
@@ -77,6 +77,6 @@
 <% end %>
 <%= link_to 'lista', reporte_marcas_path, :class => 'list' %>
 <% if @reporte_marca.for_cruce? || @reporte_marca.for_busqueda? %>
-  <%= link_to "Descargar reporte .xls", download_reporte_marca_path(@reporte_marca, :format => "xls"), :class => 'xls' %>
+  <%= link_to "Reporte", download_reporte_marca_path(@reporte_marca, :format => "xls"), :class => 'xls' %>
 <% end %>
-<%= link_to "Descargar reporte", download_reporte_marca_path(@reporte_marca), :class => 'pdf' %>
+<%= link_to "Reporte", download_reporte_marca_path(@reporte_marca), :class => 'pdf' %>

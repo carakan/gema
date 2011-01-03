@@ -1,25 +1,10 @@
-<style type="text/css">
-  #marca{ width: 90%; float: left; margin: 15px;}
-  #posts{ width: 90%; float: left; background-color: #EFEFEF; margin: 15px;}
-  #posts p {font-weight: normal !important;}
-</style>
-
-<div class="breadcrumps">
-  <%= link_to 'Lista de marcas', marcas_path, :class =>'list' %> > Marca
-</div>
-
-<div id="abm">
-  <%= link_to 'Editar', edit_marca_path(@marca), :class =>'edit'%> 
-  <%= link_to 'Lista', marcas_path, :class =>'list' %>
-</div>
-
 <div id="contenido">
   <div class="izquierda">
-      <label for="">Signo</label><br/><br/>
+      <label for="">Signo</label>
       <label class="remarcado"><h1><%= cambio @marca ,:nombre %></h1></label>
   </div>
   
-  <div class="derecha_img">
+  <div class="derecha">
     <% unless @marca.archivo_adjunto.blank? %>
     <label for="">Imagen</label>
       <%= cambio @marca, :archivo_adjunto, image_tag( @marca.adjuntos.last.archivo.url(:mini), :class => 'mini' ) unless @marca.archivo_adjunto.blank? %>
@@ -52,7 +37,7 @@
     </div>
     
     <div class="subder">
-      <label class="remarcado"><%= cambio @marca ,:clase , @marca.clase_id%></label>
+      <label class="remarcado"><%= cambio @marca ,:clase %></label>
     </div>
     <div style="clear:both"></div>
 
@@ -70,7 +55,7 @@
     </div>
 
     <div class="subder">
-      <label class="remarcado"><%= cambio @marca ,:tipo_signo_id , @marca.tipo_signo%></label>
+      <label class="remarcado"<%= cambio @marca ,:tipo_signo_id %></label>
     </div>
     <div style="clear:both"></div>
 
@@ -98,33 +83,6 @@
 
     <div class="subder">
       <label class="remarcado"><%= cambio @marca, :fecha_instruccion %></label>
-    </div>
-    <div style="clear:both"></div>
-
-    <div class="subizq">
-      <label for="">Fecha prioridad:</label>
-    </div>
-
-    <div class="subder">
-      <label class="remarcado"><%= cambio @marca, :fecha_prioridad %></label>
-    </div>
-    <div style="clear:both"></div>
-
-    <div class="subizq">
-      <label for="">Nº prioridad:</label>
-    </div>
-
-    <div class="subder">
-      <label class="remarcado"><%= cambio @marca, :numero_prioridad %></label>
-    </div>
-    <div style="clear:both"></div>
-
-    <div class="subizq">
-      <label for="">Pais prioridad:</label>
-    </div>
-
-    <div class="subder">
-      <label class="remarcado"><%#= cambio @marca, :pais_prioridad_id, Pais.find(@marca.pais_prioridad_id) %></label>
     </div>
     <div style="clear:both"></div>
 
@@ -311,70 +269,4 @@
     </div>
  </div>
 
- <div class="clear"></div>
-
- <% unless @marca.tipo_signo_id == 7 %>
-    <div id="posts">
-      <h2 class="title">Lemas comerciales asociados a la marca</h2>
-      <% lemas_comerciales = @marca.lemas_comerciales %>
-      <%# unless lemas_comerciales %>
-        <table class="decorated nwl">
-          <tr>
-            <th style="width:250px">Nombre</th>
-            <th>Estado</th>
-            <th>Tipo</th>
-            <th>Cl</th>
-            <th>Numero</th>
-            <th>Fecha</th>
-            <th>Titulares</th>
-          </tr>
-          <% lemas_comerciales.each do |lemas_comerciales| %>
-            <tr>
-              <td>
-                <%= link_to lemas_comerciales.nombre.upcase, marca_path(lemas_comerciales), :class => "#{ lemas_comerciales.propia!} #{ lemas_comerciales.valido!} propia_margin" %><br/><br/>
-              </td>
-              <td><!--<span title="<%#= lemas_comerciales.ver_estado %>">--><%= MarcaEstado.sigla_estado(lemas_comerciales.marca_estado_id) %><!--</span>--></td>
-              <td><% unless lemas_comerciales.tipo_signo.nil?%><%= lemas_comerciales.tipo_signo.sigla %><%end%></td>
-              <td><%= lemas_comerciales.clase_id %></td>
-              <td><%= lemas_comerciales.numero_marca %></td>
-              <td><%= lo(lemas_comerciales.fecha_marca, :format => "%d %b, %Y") if lemas_comerciales.fecha_marca %></td>
-              <td><%= lemas_comerciales.titulares.map(&:nombre).join(", ") %></td>
-              <td><%= link_to("Quitar", quitar_lema_marca_path(@marca, :lema_id => lemas_comerciales))%></td>
-            </tr>
-          <% end %>
-        </table>
-      <%# end %>
-      <%= link_to "Nuevo Lema Comercial", new_marca_path(:tipo => 'LC', :tipo_signo =>'Lema Comercial', :lema_marca_id => @marca.id), :class => 'new ajax' %>
-    </div>
-  <% end %>
-
-  <div id="posts" data-posts_size="<%= Marca::POSTS_SIZE %>">
-    <h2 class="title">Ultimos comentarios</h2>
-      <%= render :partial => "posts/posts", :locals => { :posts => @marca.ultimos_posts } %>
-      <%= link_post @marca, 'index' %>
-      <%= link_post @marca, 'new' %>
-  </div>
-
-  <div id="marca"> 
-    <h1 class="dark">Historial de modificaciones</h1>
-
-    <% @cambios = @marca.cambios %>
-    <% @marca.historial.each do |marca| %>
-
-    <% @cambios.delete('usuario_id') %>
-    <% @cambios.delete('errores_manual') %>
-    <p>
-      Modificado por <strong><%= marca.usuario %></strong> en fecha: <em><%= l marca.updated_at, :format => "%d, %B %Y %H:%M" %></em>
-    </p>
-
-    <% @cambios.each do |campo| %>
-        <p>
-          <%= presentar_campo_historial( marca, campo ) %>
-        </p>
-      <% end %>
-
-      <hr />
-      <% @cambios = marca.cambios %>
-    <% end %>
-    </div>
 </div>

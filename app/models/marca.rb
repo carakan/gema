@@ -22,15 +22,18 @@ class Marca < ActiveRecord::Base
   belongs_to :tipo_signo
   belongs_to :tipo_marca
   belongs_to :usuario
+  belongs_to :vista_marca, :foreign_key => "id"
   #belongs_to :pais
   belongs_to :importacion
   belongs_to :marca_estado
+  belongs_to :marca_asociada_lema, :class_name => "Marca", :foreign_key => :lema_marca_id
 
   has_many :posts, :as => :postable, :order => 'created_at DESC'
   has_many :adjuntos, :as => :adjuntable, :dependent => :destroy
   accepts_nested_attributes_for :adjuntos
   has_many :consultas
   has_many :consulta_detalles
+  has_many :lemas_comerciales, :class_name => "Marca", :foreign_key => :lema_marca_id
 
   POSTS_SIZE = 3
 
@@ -210,16 +213,16 @@ class Marca < ActiveRecord::Base
   end
 
   # Realiza la inclusion de modulos de acuerdo al tipo_signo
-  def self.set_include_tipo_signo(signo)
-    case signo
-    when 1
-      include ModMarca::Denominacion
-    when 2
-      include ModMarca::Etiqueta
-    when 3
-      include ModMarca::Figurativa
-    end
-  end
+ #def self.set_include_tipo_signo(signo)
+ #  case signo
+ #  when 1
+ #    include ModMarca::Denominacion
+ #  when 2
+ #    include ModMarca::Etiqueta
+ #  when 3
+ #    include ModMarca::Figurativa
+ #  end
+ #end
 
 
   def self.ver_estado(est)
@@ -298,7 +301,7 @@ class Marca < ActiveRecord::Base
   def self.crear_instancia(params)
     klass = new(params)
     set_include_estado(klass, params[:marca_estado_id])
-    set_include_tipo_signo(params[:tipo_signo_id])
+    #set_include_tipo_signo(params[:tipo_signo_id])
     klass
   end
 
@@ -450,11 +453,11 @@ class Marca < ActiveRecord::Base
     elsif self.numero_registro && !self.numero_registro.blank?
       return {:numero => self.numero_registro, :fecha => self.fecha_registro}
     elsif self.numero_publicacion && !self.numero_publicacion.blank?
-      return {:numero => self.numero_publicacion, :fecha => self.estado_fecha}
+      return {:numero => self.numero_publicacion, :fecha => self.fecha_solicitud}
     elsif self.numero_solicitud && !self.numero_solicitud.blank?
-      return {:numero => self.numero_solicitud, :fecha => self.estado_fecha}
+      return {:numero => self.numero_solicitud, :fecha => self.fecha_solicitud}
     else
-      return {:numero => nil, :fecha => self.estado_fecha}
+      return {:numero => nil, :fecha => self.fecha_solicitud}
     end  
   end
 
@@ -462,6 +465,7 @@ class Marca < ActiveRecord::Base
   def fecha_marca
     fecha_numero_marca[:fecha]
   end
+
 
 
   protected
@@ -567,12 +571,14 @@ class Marca < ActiveRecord::Base
 
   # Usado en caso de importación para asignar el marca_estado_id de una marca
   def set_marca_estado_id
-    case self.estado
-    when 'sm' then self.marca_estado_id = 1
-    when 'lp' then self.marca_estado_id = 7
-    when 'lr' then self.marca_estado_id = 12
-    when 'rc' then self.marca_estado_id = 18
-    when 'sr' then self.marca_estado_id = 16
+    if self.estado
+      case self.estado
+      when 'sm' then self.marca_estado_id = 1
+      when 'lp' then self.marca_estado_id = 7
+      when 'lr' then self.marca_estado_id = 12
+      when 'rc' then self.marca_estado_id = 18
+      when 'sr' then self.marca_estado_id = 16
+      end
     end
   end
 end

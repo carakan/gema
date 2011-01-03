@@ -1,0 +1,12 @@
+<h1>Busquedas por titular o agente</h1>
+<div class="clear"></div>
+<div class="pad-tb">
+  <%= render :partial => "buscar", :locals => {:show_titulares => false} %>
+</div>
+<% unless params[:busqueda].nil? %>
+  <hr />
+  <h2 class="dark"><span class="resaltado"><%= params[:busqueda].upcase %></span> tuvo <%= @busqueda.size %> resultados en las clases
+  </h2>
+<% end %>
+<%= render :partial => "resultados" %>
+

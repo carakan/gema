@@ -1,0 +1,167 @@
+<style type="text/css">
+  #clases_grupos{
+    padding: 0px;
+    border:1px solid #676767;
+    margin: 10px 0px;
+    width: 660px;
+  }
+  #clases_grupos label{
+    display: inline-block !important; 
+    width: 45px;
+    height: 30px;
+  }
+  ul#botones{
+    width: 150px;
+    float:left;
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+  }
+  ul#botones li{
+    padding: 0px;
+    margin: 0px;
+  }
+  ul#botones li a{
+    width: 100%;
+    display:block;
+    text-decoration: none;
+    color: #FFF;
+    background-color: #2167CB;
+    border-bottom: 1px solid #FFF;
+    font-weight: bold;
+    margin: 0;
+    padding: 2px 5px;
+  }
+  ul#botones li a.sel{
+    background-color: #5BBF3B;
+  }
+  #clases{
+    float: left;
+    width: 485px;
+    margin-left: 20px;
+  }
+  #clases div label{
+    font-weight: bold;
+    font-size: 12px;
+    padding: 0;
+    margin: 0;
+  }
+</style>
+
+<label for="">Clases</label>
+<div id="clases_grupos">
+  <ul id="botones">
+    <li>
+      <a href="javascript:" data-clases="1,2,4">1, 2 y 4</a>
+    </li>
+    <li>
+      <a href="javascript:" data-clases="3,5,10,44">3, 5, 10 y 44</a>
+    </li>
+    <li>
+      <a href="javascript:" data-clases="6,14">6 y 14</a>
+    </li>
+    <li>
+      <a href="javascript:" data-clases="7,8,9,11,21">7, 8, 9, 11 y 21</a>
+    </li>
+    <li>
+      <a href="javascript:" data-clases="17,19,20,22">17, 19, 20 y 22</a>
+    </li>
+    <li>
+      <a href="javascript:" data-clases="18,25">18 y 25</a>
+    </li>
+    <li>
+      <a href="javascript:" data-clases="22,23,24,25,26">22, 23, 24, 25 y 26</a>
+    </li>
+    <li>
+      <a href="javascript:" data-clases="29,30,31">29, 30 y 31</a>
+    </li>
+    <li>
+      <a href="javascript:" data-clases="32,33">32 y 33</a>
+    </li>
+    <li>
+      <a href="javascript:" data-clases="35,36,37,38,39,40,41,42,43,44,45">35 a la 45</a>
+    </li>
+    <li>
+      <a href="javascript:" data-clases="<%= (1..45).to_a.join(",") %>" class="todas">Todas</a>
+    </li>
+  </ul>
+
+
+  <div id="clases">
+    <% 4.times do |i| -%>
+      <div>
+        <% (1..10).each do |j| %>
+          <% @id = j + i * 10 %>
+          <label for="clases_<%= @id %>">
+            <% @val = !params[:clases] ? false : params[:clases][@id.to_s] ? true : false %>
+            <%= check_box_tag "clases[#{@id}]", @id, @val %>
+            <%= @id %>
+          </label>
+        <% end %>
+      </div>
+    <% end -%>
+    <div>
+      <% (41..45).each do |i| %>
+        <% @id = i %>
+        <label for="clases_<%= @id %>">
+          <% @val = !params[:clases] ? false : params[:clases][@id.to_s] ? true : false %>
+          <%= check_box_tag "clases[#{@id}]", @id, @val %>
+          <%= @id %>
+        </label>
+      <% end %>
+    </div>
+  </div>
+  <div style="clear:both"></div>
+</div>
+<script>
+  $(document).ready(function (){
+    // Busca si existe el valor en el array
+    function include(arr, obj) {
+      for(var i=0; i<arr.length; i++) {
+        if (arr[i] == obj) return true;
+      }
+      return false;
+    }
+    window.include = include;
+
+    /**
+     * Marca los botones que estan seleccionados
+     */
+    function marcarBotones() {
+      var arr = $('#clases_grupos').find("input:checkbox:checked").map(function(i, el) { return el.value; }).get();
+
+      $('#botones').find('a').each(function(i, el) {
+        var clases = $(el).attr("data-clases").split(",");
+        var encontrado = true;
+        $(clases).each(function(index, elem) {
+          if(!include(arr, elem)) {
+            encontrado = false;
+            return;
+          }
+        });
+        if(encontrado) {
+          $(el).addClass("sel");
+        }else {
+          $(el).removeClass("sel");
+        }
+      });
+    }
+
+    $('#botones').find("a").live('click', function() {
+      var clases = $(this).attr("data-clases").split(",");
+      var val = !$(this).hasClass("sel");
+
+      $(clases).each(function(i, el) {
+        $('#clases_' + el).attr("checked", val);
+      });
+      marcarBotones();
+    });
+
+    $('#clases_grupos').find("input:checkbox").live('click', function() {
+      marcarBotones();
+    });
+
+    // Al iniciar
+    marcarBotones();
+  });
+</script>

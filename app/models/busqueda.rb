@@ -2,7 +2,7 @@
 # author: Boris Barroso
 # email: boriscyber@gmail.com
 ##############################
-# Clase que se utiliza para poder otener las expresiones necesarias
+# Clase que se utiliza para poder obtener las expresiones necesarias
 # en una busqueda
 class Busqueda
 
@@ -11,15 +11,16 @@ class Busqueda
 
   include BusquedaCambio
 
-  def initialize(busq)
+  def initialize(busq, model = Marca)
     @busqueda = busq.downcase.cambiar_acentos
     @letras = self.class.dividir_palabra(@busqueda)
     @expresiones = { 1 => [], 2 => [], 3 => [], 4 => [] }
     @expresiones[1] << busqueda
+    @nombre_modelo = model
   end
 
   # @param String busq
-  def self.buscar(busqueda)
+  def self.buscar(busqueda, model = Marca)
     letras = dividir_palabra(busqueda)
 
     case 
@@ -29,7 +30,7 @@ class Busqueda
 
     include BuscarPorGrupo
 
-    new(busqueda)
+    new(busqueda, model)
   end
 
   # divide una palabra en un array con los caracteres de la busqueda,
@@ -98,7 +99,7 @@ class Busqueda
   # Transforma las fechas de busqueda de String a Date
   # en caso de que esten correctas devuelve las dos fechas
   # caso contrario retorna un array de false
-  def self.transformar_fechas(params)
+  def transformar_fechas(params)
     begin
       fecha_ini = params[:fecha_ini].to_date
       fecha_fin = params[:fecha_fin].to_date
@@ -113,9 +114,9 @@ class Busqueda
   end
 
   # Funcion que se invoca desde el controlador para realizar busquedas
-  def self.realizar_busqueda(params)
-    b = buscar(params[:busqueda])
-    result = Marca.find_by_sql(crear_sql(b.expresiones, params) )
+  def self.realizar_busqueda(params, model = Marca)
+    b = buscar(params[:busqueda], model)
+    result = model.find_by_sql(b.crear_sql(b.expresiones, params) )
     #result.sort! { |a,b| a.agente_ids_serial.sort <=> b.agente_ids_serial.sort }
     result
   end
@@ -123,28 +124,30 @@ class Busqueda
   # Adiciona las condiciones sql necesarias
   #   @param Hash
   #   @return String
-  def self.condiciones_sql(params)
-    if params[:clases].is_a? String
-      clases = params[:clases].split(",").map(&:to_i)
-    else
-      clases = params[:clases].keys.map(&:to_i)
+  def condiciones_sql(params)
+    if @nombre_modelo == Marca
+      if params[:clases].is_a? String
+        clases = params[:clases].split(",").map(&:to_i)
+      else
+        clases = params[:clases].keys.map(&:to_i)
+      end
+
+      sql = [ "WHERE res.clase_id IN (#{clases.join(', ')})" ]
+
+      params[:fecha_ini], params[:fecha_fin] = transformar_fechas(params)
+      if params[:fecha_ini]
+        #sql << "AND estado_fecha >= '#{params[:fecha_ini]}' AND estado_fecha <= '#{params[:fecha_fin]}'"
+        sql << "AND fecha_solicitud >= '#{params[:fecha_ini]}' AND fecha_solicitud <= '#{params[:fecha_fin]}'"
+      end
+      sql << condicion_marca_propia(params)
+      sql << condicion_activas
+      sql.join(" ")
     end
-
-    sql = [ "WHERE res.clase_id IN (#{clases.join(', ')})" ]
-
-    params[:fecha_ini], params[:fecha_fin] = transformar_fechas(params)
-    if params[:fecha_ini]
-      sql << "AND estado_fecha >= '#{params[:fecha_ini]}' AND estado_fecha <= '#{params[:fecha_fin]}'"
-    end
-    sql << condicion_marca_propia(params)
-    sql << condicion_activas
-
-    sql.join(" ")
   end
 
   #   @param Hash
   #   @return String
-  def self.condicion_marca_propia(params)
+  def condicion_marca_propia(params)
     if params[:propia].nil?
       ""
     elsif params[:propia] == true
@@ -154,12 +157,12 @@ class Busqueda
     end
   end
 
-  def self.condicion_activas
+  def condicion_activas
     "AND res.activa=1"
   end
 
   # Trabajar en esto
-  def self.condicion_tipo_signo(params)
+  def condicion_tipo_signo(params)
     #if params[:tipo_signo_id].nil?
     #  ActiveRecord::Base.send(:sanitize_sql_array, [" AND tipo_signo_id IN (%s)", signos])
     #else
@@ -171,7 +174,7 @@ class Busqueda
   #   @param Array
   #   @param Hash
   #   @return String
-  def self.crear_sql(expresiones, params)
+  def crear_sql(expresiones, params)
     sql_exp = []
     expresiones.each do |pos, exp|
       case pos
@@ -187,15 +190,20 @@ class Busqueda
     end
 
     busqueda = params[:busqueda].downcase.cambiar_acentos
-    sql = "SELECT res.id, res.nombre, res.pos, res.clase_id, res.propia, res.activa, res.tipo_signo_id, res.agente_ids_serial, 
+    if @nombre_modelo == Marca
+      sql = "SELECT res.id, res.nombre, res.pos, res.clase_id, res.propia, res.activa, res.tipo_signo_id, res.agente_ids_serial,
       res.fecha_renovacion, res.fecha_solicitud_renovacion, res.fecha_registro,
       res.titular_ids_serial, res.fecha_publicacion, res.numero_solicitud, res.numero_publicacion, 
-      res.numero_registro, res.numero_renovacion, res.estado, res.numero_solicitud_renovacion, res.estado_fecha, res.exacto"
-      sql << ", IF(#{busqueda.size}>CHAR_LENGTH(res.nombre_minusculas), #{busqueda.size} - CHAR_LENGTH(res.nombre_minusculas),
+      res.numero_registro, res.numero_renovacion, res.estado, res.numero_solicitud_renovacion, res.fecha_solicitud, res.exacto"
+    else
+      sql = "SELECT res.id, res.nombre, res.nombre_minusculas"
+    end
+    sql << ", IF(#{busqueda.size}>CHAR_LENGTH(res.nombre_minusculas), #{busqueda.size} - CHAR_LENGTH(res.nombre_minusculas),
       CHAR_LENGTH(res.nombre_minusculas) - #{busqueda.size}) AS longitud_letras"
-      sql << ", IF(res.id=#{params[:clase_id].to_i}, 0, 2) AS dist_clase_id" unless params[:clase_id].nil?
-      sql = [ "#{sql} FROM" ]
-      sql << "(#{sql_exp.join(" UNION ")}) AS res"
+    sql << ", IF(res.id=#{params[:clase_id].to_i}, 0, 2) AS dist_clase_id" unless params[:clase_id].nil?
+    sql = [ "#{sql} FROM" ]
+    sql << "(#{sql_exp.join(" UNION ")}) AS res"
+    if @nombre_modelo == Marca
       sql << condiciones_sql(params)
       sql << condiciones_representante(params) # busqueda por agente o titular
       sql << "AND res.tipo_signo_id NOT IN (2)"
@@ -207,13 +215,12 @@ class Busqueda
       else
         sql << "ORDER BY res.exacto, res.clase_id, res.pos, longitud_letras ASC"
       end
-      # sql << "GROUP BY res.id"
-
-      sql.join(" ")
+    end
+    sql.join(" ")
   end
 
   # Busqueda por agente o titular
-  def self.condiciones_representante(params)
+  def condiciones_representante(params)
     representantes = []
     marcas = []
 
@@ -235,51 +242,62 @@ class Busqueda
     end
   end
 
-  def self.sql_select(pos, exacto = 1)
-    "SELECT id, nombre, nombre_minusculas, clase_id, #{pos} AS pos, propia, activa, estado, agente_ids_serial, titular_ids_serial, fecha_publicacion, fecha_renovacion, fecha_solicitud_renovacion, fecha_registro,
-     numero_solicitud, numero_publicacion, numero_registro, numero_renovacion, tipo_signo_id, numero_solicitud_renovacion, estado_fecha, #{exacto} AS exacto
-     FROM marcas"
+  def sql_select(pos, exacto = 1)
+    if @nombre_modelo == Marca
+      "SELECT id, nombre, nombre_minusculas, clase_id, #{pos} AS pos, propia, activa, estado, agente_ids_serial, titular_ids_serial, fecha_publicacion, fecha_renovacion, fecha_solicitud_renovacion, fecha_registro, 
+      numero_solicitud, numero_publicacion, numero_registro, numero_renovacion, tipo_signo_id, numero_solicitud_renovacion, fecha_solicitud, #{exacto} AS exacto
+      FROM marcas"
+    else
+      "SELECT * FROM ((SELECT id, nombre, LOWER(nombre) AS nombre_minusculas
+       FROM representantes) AS representantes)"
+    end
   end
 
   # SQl que busca la palabra exacata
   #   @param String
   #   @param Integer
   #   @return String
-  def self.sql_exacto(bus, pos)
-    ActiveRecord::Base.send(:sanitize_sql_array, 
-                            [ "#{sql_select(pos, 0)} WHERE parent_id = 0 AND nombre_minusculas = '%s'", bus ]
-                           )
+  def sql_exacto(bus, pos)
+    condicion = "parent_id = 0 AND" if @nombre_modelo == Marca
+    ActiveRecord::Base.send(:sanitize_sql_array,
+      [ "(#{sql_select(pos, 0)} WHERE #{condicion} nombre_minusculas = '%s')", bus ]
+    )
   end
 
   # SQl con expresion regular
   #   @param Array
   #   @param Integer
   #   @return String
-  def self.sql_exp_reg(arr, pos)
-    sql = "#{sql_select(pos)} WHERE parent_id = 0 AND ("
-    sql << arr.map{ 
+  def sql_exp_reg(arr, pos)
+    condicion = "parent_id = 0 AND" if @nombre_modelo == Marca
+    sql = "(#{sql_select(pos)} WHERE #{condicion} ("
+    sql << arr.map{
       |v| ActiveRecord::Base.send(:sanitize_sql_array, [ "nombre_minusculas REGEXP '%s'", v ] )
     }.join(" OR ")
-    sql << ")"
+    sql << "))"
   end
 
   # Crea variaciones de la busqueda (palabra)
   #   @param Array
   #   @param Integer
   #   @return String
-  def self.sql_variaciones(arr, pos)
-    sql = "#{sql_select(pos)} WHERE parent_id = 0 AND ("
-    sql << arr.map{ |v| 
-      ActiveRecord::Base.send(:sanitize_sql_array, ["nombre_minusculas LIKE '%s'", "%#{v}%"] ) 
+  def sql_variaciones(arr, pos)
+    condicion = "parent_id = 0 AND" if @nombre_modelo == Marca
+    sql = "(#{sql_select(pos)} WHERE #{condicion} ("
+    sql << arr.map{ |v|
+      ActiveRecord::Base.send(:sanitize_sql_array, ["nombre_minusculas LIKE '%s'", "%#{v}%"] )
     }.join(" OR ")
-    sql << ")"
+    sql << "))"
   end
 
   # Metodo para poder preparar un listado de representantes
-
   def self.preparar_representantes(busqueda)
-    representante_ids = ( busqueda.map(&:agente_ids_serial) + busqueda.map(&:titular_ids_serial) ).flatten.uniq
-    Representante.where(:id => representante_ids ).inject({})  { |h,v| h[v.id] = v; h } 
+    results = []
+    busqueda.each do |marca|
+      results << marca.agente_ids_serial
+      results << marca.titular_ids_serial
+    end
+    results = results.flatten.uniq
+    Representante.where(:id => results).inject({})  { |h,v| h[v.id] = v; h }
   end
-
 end
