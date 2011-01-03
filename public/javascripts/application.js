@@ -92,8 +92,8 @@
       params = $.extend({
         'id': new Date().getTime(),
         'title': '',
-        'width': 800,
-        'height': 400,
+        'width': 900,
+        'height': 700,
         'modal': true,
         'resizable': false
       }, params);

@@ -467,6 +467,7 @@ class Marca < ActiveRecord::Base
   end
 
 
+
   protected
   #########################################################
   # Metodos que ayudan para la extraccion de datos de Excel
@@ -504,11 +505,6 @@ class Marca < ActiveRecord::Base
   def self.buscar_titular_id(titular_nombre)
     titular = Representante.find_by_nombre(titular_nombre)
     titular.id unless titular.nil?
-  end
-
-  def quitar_lema_marca_id(lema_marca_id)
-    x = Marca.find(lema_marca_id)
-    x.lema_marca_id = NULL
   end
 
   private
@@ -575,12 +571,14 @@ class Marca < ActiveRecord::Base
 
   # Usado en caso de importación para asignar el marca_estado_id de una marca
   def set_marca_estado_id
-    case self.estado
-    when 'sm' then self.marca_estado_id = 1
-    when 'lp' then self.marca_estado_id = 7
-    when 'lr' then self.marca_estado_id = 12
-    when 'rc' then self.marca_estado_id = 18
-    when 'sr' then self.marca_estado_id = 16
+    if self.estado
+      case self.estado
+      when 'sm' then self.marca_estado_id = 1
+      when 'lp' then self.marca_estado_id = 7
+      when 'lr' then self.marca_estado_id = 12
+      when 'rc' then self.marca_estado_id = 18
+      when 'sr' then self.marca_estado_id = 16
+      end
     end
   end
 end

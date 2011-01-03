@@ -10,7 +10,7 @@ class MarcasController < ApplicationController
 
   def new
     @lema_id = params[:lema_marca_id]
-    @marca = Marca.new(:fecha_solicitud => Date.today, :tipo_signo_id => TipoSigno.find_by_sigla(params[:tipo]).id, :propia => true, :activa => true, :marca_estado_id => 1, :lema_marca_id => @lema_id)
+    @marca = Marca.new(:fecha_solicitud => Date.today, :tipo_signo_id => TipoSigno.find_by_sigla(params[:tipo]).id, :propia => true, :activa => true, :marca_estado_id => 1, :lema_marca_id => @lema_id, :pais_prioridad_id => '999')
   end
 
   def edit
@@ -21,9 +21,12 @@ class MarcasController < ApplicationController
 
   def create
     @marca = Marca.crear_instancia(params[:marca])
-    debugger
     if @marca.save
-      redirect_to @marca, :notice => 'Se ha salvado correctamente'
+      if @marca.lema_marca_id.nil?
+        redirect_to @marca, :notice => 'Se ha salvado correctamente'
+      else
+        redirect_to marca_path(@marca.lema_marca_id)
+      end
     else
 #      flash[:error] = "Existio un error al salvar los datos"
       render :action => 'new'
@@ -64,6 +67,13 @@ class MarcasController < ApplicationController
     @marca.destroy
 
     render :text => 'Ok'
+  end
+
+  def quitar_lema
+    @lema = Marca.find(params[:lema_id])
+    @marca = Marca.find(params[:id])
+    @lema.update_attribute(:lema_marca_id, nil)
+    redirect_to @marca
   end
 
   private

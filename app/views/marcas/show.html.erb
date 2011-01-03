@@ -102,6 +102,33 @@
     <div style="clear:both"></div>
 
     <div class="subizq">
+      <label for="">Fecha prioridad:</label>
+    </div>
+
+    <div class="subder">
+      <label class="remarcado"><%= cambio @marca, :fecha_prioridad %></label>
+    </div>
+    <div style="clear:both"></div>
+
+    <div class="subizq">
+      <label for="">Nº prioridad:</label>
+    </div>
+
+    <div class="subder">
+      <label class="remarcado"><%= cambio @marca, :numero_prioridad %></label>
+    </div>
+    <div style="clear:both"></div>
+
+    <div class="subizq">
+      <label for="">Pais prioridad:</label>
+    </div>
+
+    <div class="subder">
+      <label class="remarcado"><%#= cambio @marca, :pais_prioridad_id, Pais.find(@marca.pais_prioridad_id) %></label>
+    </div>
+    <div style="clear:both"></div>
+
+    <div class="subizq">
       <label for="">Fecha solicitud:</label>
     </div>
 
@@ -282,9 +309,6 @@
     <div class="subder">
       <label class="remarcado"><%= cambio @marca ,:id %></label>
     </div>
-    
-
-
  </div>
 
  <div class="clear"></div>
@@ -293,31 +317,33 @@
     <div id="posts">
       <h2 class="title">Lemas comerciales asociados a la marca</h2>
       <% lemas_comerciales = @marca.lemas_comerciales %>
-      <table class="decorated nwl">
-        <tr>
-          <th style="width:250px">Nombre</th>
-          <th>Estado</th>
-          <th>Tipo</th>
-          <th>Cl</th>
-          <th>Numero</th>
-          <th>Fecha</th>
-          <th>Titulares</th>
-        </tr>
-        <% lemas_comerciales.each do |lemas_comerciales| %>
-        <tr>
-          <td>
-            <%= link_to lemas_comerciales.nombre.upcase, marca_path(lemas_comerciales), :class => "#{ lemas_comerciales.propia!} #{ lemas_comerciales.valido!} propia_margin" %><br/><br/>
-          </td>
-          <td><!--<span title="<%#= lemas_comerciales.ver_estado %>">--><%= MarcaEstado.sigla_estado(lemas_comerciales.marca_estado_id) %><!--</span>--></td>
-          <td><% unless lemas_comerciales.tipo_signo.nil?%><%= lemas_comerciales.tipo_signo.sigla %><%end%></td>
-          <td><%= lemas_comerciales.clase_id %></td>
-          <td><%= lemas_comerciales.numero_marca %></td>
-          <td><%= lo(lemas_comerciales.fecha_marca, :format => "%d %b, %Y") if lemas_comerciales.fecha_marca %></td>
-          <td><%= lemas_comerciales.titulares.map(&:nombre).join(", ") %></td>
-          <td><%= link_to "Quitar", lemas_comerciales.quitar_lema_marca_id(lemas_comerciales.id), :class => 'delete' %></td>
-        </tr>
-      <% end %>
-      </table>
+      <%# unless lemas_comerciales %>
+        <table class="decorated nwl">
+          <tr>
+            <th style="width:250px">Nombre</th>
+            <th>Estado</th>
+            <th>Tipo</th>
+            <th>Cl</th>
+            <th>Numero</th>
+            <th>Fecha</th>
+            <th>Titulares</th>
+          </tr>
+          <% lemas_comerciales.each do |lemas_comerciales| %>
+            <tr>
+              <td>
+                <%= link_to lemas_comerciales.nombre.upcase, marca_path(lemas_comerciales), :class => "#{ lemas_comerciales.propia!} #{ lemas_comerciales.valido!} propia_margin" %><br/><br/>
+              </td>
+              <td><!--<span title="<%#= lemas_comerciales.ver_estado %>">--><%= MarcaEstado.sigla_estado(lemas_comerciales.marca_estado_id) %><!--</span>--></td>
+              <td><% unless lemas_comerciales.tipo_signo.nil?%><%= lemas_comerciales.tipo_signo.sigla %><%end%></td>
+              <td><%= lemas_comerciales.clase_id %></td>
+              <td><%= lemas_comerciales.numero_marca %></td>
+              <td><%= lo(lemas_comerciales.fecha_marca, :format => "%d %b, %Y") if lemas_comerciales.fecha_marca %></td>
+              <td><%= lemas_comerciales.titulares.map(&:nombre).join(", ") %></td>
+              <td><%= link_to("Quitar", quitar_lema_marca_path(@marca, :lema_id => lemas_comerciales))%></td>
+            </tr>
+          <% end %>
+        </table>
+      <%# end %>
       <%= link_to "Nuevo Lema Comercial", new_marca_path(:tipo => 'LC', :tipo_signo =>'Lema Comercial', :lema_marca_id => @marca.id), :class => 'new ajax' %>
     </div>
   <% end %>

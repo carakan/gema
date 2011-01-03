@@ -209,6 +209,8 @@
       %br.clear
     %br.clear
     = submit_tag "Buscar"
+%br.clear
+
 
 = render :partial => "resultados"
 
@@ -239,3 +241,18 @@
       }
     }
   });
+
+  $('#contenido input:checkbox').live("click", function() {
+    if( $(this).attr('checked') ) {
+      var id = $(this).attr("name").replace(/^[a-z_]+([0-9]+)$/,"$1");
+      var index = $(this).attr('data-index');
+      $('<input/>').attr({
+        'name': 'consulta[consulta_detalles_attributes][' + index + '][marca_id]',
+        'type': 'hidden',
+        'value': id
+      }).insertAfter(this);
+    }else {
+      $(this).siblings('input:hidden').remove();
+    }
+  });
+

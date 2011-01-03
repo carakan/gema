@@ -11,13 +11,6 @@
 
   <%= f.input :tipo_signo_id, :as => :hidden %>
   <%= f.association :tipo_signo%>
-
-  <!--<li>
-    <label for="">Tipo de signo</label>
-    <%#= @marca.tipo_signo %>
-    <%#= "<span class=\"error\">#{ @marca.errors.on(:tipo_signo_id) }</span>" %>
-    </li>-->
-
   <%= f.association :tipo_marca %>
 
   <%= f.input :nombre,:label => "Denominación",:tabindex => 3 %>
@@ -52,22 +45,26 @@
     </li>
     <div class="clear"></div>
     <li class="fl half">
-      <%= f.input :fecha_instruccion , :as => 'string', :input_html => { :class => 'date' } %>
-    </li>
-    <li class="fl half">
         <%= f.input :apoderado, :tabindex => 11 %>
     </li>
     <li class="fl half">
       <%= f.input :domicilio_titular, :tabindex => 12, :as => :text, :input_html => { :cols => 50, :rows => 4 }  %>
     </li>
+    <li class="fl half">
+      <%= f.input :fecha_instruccion , :as => 'string', :input_html => { :class => 'date' } %>
+    </li>
+    <li class="fl half">
+      <%= f.input :instruccion, :collection => Marca::INSTRUCCIONES, :label => 'Tipo de instrucción' %>
+    </li>
 
     <div class="clear"></div>
 
-  <%= f.input :instruccion, :collection => Marca::INSTRUCCIONES, :label => 'Tipo de instrucción' %>
-
+  <%= f.input :pais_prioridad_id, :as => :select, :collection => Pais.find(:all), :label => 'Pais prioridad' %>
+  <%= f.input :numero_prioridad, :label => 'Número de prioridad' %>
+  <%= f.input :fecha_prioridad,:label => 'Fecha de prioridad', :as => 'string', :input_html => { :class => 'date' } %>
   <%# f.input :estado, :collection => Marca.lista_estados , :tabindex => 10 %>
 
-  <%= f.association :marca_estado, :tabindex => 10, :label => 'estado' %>
+  <%= f.association :marca_estado, :tabindex => 10, :label => 'Estado' %>
 
   <%= f.input :numero_solicitud , :tabindex => 13  %>
   <%# f.input :fecha_solicitud, :label => 'Fecha solicitud',:as => :string, :input_html => {:tabindex => 14, :class => 'date' } %>

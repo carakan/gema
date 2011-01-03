@@ -46,7 +46,6 @@ module MarcasHelper
     elsif !presentar and attr.to_s =~ /.*_id$/
       presentar = klass.send(attr.to_s.gsub(/_id$/, ''))
     end
-
     if [Date, Time, DateTime, ActiveSupport::TimeWithZone ].include? klass.send(attr).class
       presentar = l(klass.send(attr))
     end
