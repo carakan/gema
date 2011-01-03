@@ -9,8 +9,17 @@ class BusquedasController < ApplicationController
     @busqueda = []
     params[:tipo_busqueda] = 'prev' if params[:tipo_busqueda].nil?
     if params[:busqueda]
-      @busqueda = Busqueda.realizar_busqueda(params)
-      @busqueda2 = Busqueda.realizar_busqueda({:busqueda => params[:busqueda], :tipo_representante => 1}, Representante)
+      if params[:representante] && (params[:representante] == "agente" || params[:representante] == "titular")
+        representante_ids = Busqueda.realizar_busqueda({:busqueda => params[:busqueda]}, Representante).collect {|representante| representante.id}
+        if params[:representante] == "agente"
+          @busqueda = Marca.search(:agentes_id_in => representante_ids)
+        else
+          @busqueda = Marca.search(:titulares_id_in => representante_ids)
+        end
+      else
+        @busqueda = Busqueda.realizar_busqueda(params)
+      end
+            
       @representantes = Busqueda.preparar_representantes(@busqueda)
       # Crea una nueva busqueda con los parametros de la busqueda
       @consulta = Consulta.nueva(params)
@@ -62,6 +71,7 @@ class BusquedasController < ApplicationController
 
     @consulta = Consulta.new()
   rescue
+    flash[:notice] = "Existe un error en los criterios de busqueda, vuelva a intentarlo."
     render :action => :busqueda_avanzada
   end
 
@@ -125,12 +135,12 @@ class BusquedasController < ApplicationController
       if params["#{key[0]}_inicio"] && !params["#{key[0]}_inicio"].empty?
         if params["#{key[0]}_fin"] && !params["#{key[0]}_fin"].empty?
           params[:search]["#{key[1]}_btw"] = [params["#{key[0]}_inicio"].to_i, params["#{key[0]}_fin"].to_i]
-          if key[0] == :sm && params["#{key[0]}_inicio"].split("-").size > 1
+          if (key[0] == :sm || key[0] == :sr) && params["#{key[0]}_inicio"].split("-").size > 1
             params[:search]["vista_marca_numero_solicitud_a_btw"] = [params["#{key[0]}_inicio"].split("-").last, params["#{key[0]}_fin"].split("-").last]
           end
         else
           params[:search]["#{key[1]}_equals"] = params["#{key[0]}_inicio"].to_i
-          if key[0] == :sm && params["#{key[0]}_inicio"].split("-").size > 1
+          if (key[0] == :sm || key[0] == :sr) && params["#{key[0]}_inicio"].split("-").size > 1
             params[:search]["vista_marca_numero_solicitud_a_equals"] = params["#{key[0]}_inicio"].split("-").last
           end
         end

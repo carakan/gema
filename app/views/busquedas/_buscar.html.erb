@@ -8,16 +8,16 @@
   </div>
   <% if show_titulares %>
     <div class="half fl">
-      Bucar por
+      Buscar por
+      <label for="representante_signo">
+        <%= radio_button_tag "representante", "signo", params[:representante] ? params[:representante] == "signo" : false, :id => "representante_signo" %> Signo
+      </label>
       <label for="representante_agente">
-        <%= check_box_tag "representante[]", "agente", params[:representante] ? params[:representante].include?("agente") : false, :id => "representante_agente" %> Agente
+        <%= radio_button_tag "representante", "agente", params[:representante] ? params[:representante] == "agente" : false, :id => "representante_agente" %> Agente
       </label>
       <label for="representante_titular">
-        <%= check_box_tag "representante[]", "titular", params[:representante] ? params[:representante].include?("titular") : false, :id => "representante_titular" %> Titular
+        <%= radio_button_tag  "representante", "titular", params[:representante] ? params[:representante] == "titular" : false, :id => "representante_titular" %> Titular
       </label>
-      <%= hidden_field_tag 'representante_id', params[:representante_id] %>
-      <%= text_field_tag "cliente", params[:cliente], :size => 40 %>
-      <p class="hint">escriba para poder seleccionar el cliente</p>
     </div>
     <div class="clear"></div>
     <%= render :partial => "generic_select" %>
