@@ -97,7 +97,7 @@ $(document).ready(->
   # Crea un dialogo y retorna el id con el que fue creado
   createDialog = (params)->
     params = $.extend({
-      'id': new Date().getTime(), 'title': '', 'width': 800, 'height' : 400, 'modal': true, 'resizable' : false
+      'id': new Date().getTime(), 'title': '', 'width': 900, 'height' : 700, 'modal': true, 'resizable' : false
     }, params)
     div = document.createElement('div')
     $(div).attr( { 'id': params['id'], 'title': params['title'], 'data-ajax_id': params['id'] } )
