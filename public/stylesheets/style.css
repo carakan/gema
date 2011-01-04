@@ -735,11 +735,11 @@ div#contenido {
 }
 div#contenido .izquierda {
   float: left;
-  width: 45%;
+  width: 50%;
 }
 div#contenido .derecha {
   float: right;
-  width: 45%;
+  width: 48%;
 }
 div#contenido .derecha_img {
   float: right;

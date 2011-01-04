@@ -231,7 +231,7 @@ namespace :datos do
     cont = 0
     cont_procesed = 0
     puts "Atencion esta es una tarea muy larga, que puede durar varios minutos"
-    marcas = Marca.all(:order => "propia DESC", :conditions => {:propia => true})
+    marcas = Marca.all(:order => "propia DESC")
     puts "se encontraron #{marcas.size} marcas"
     marcas.each do |marca|
       if marca && marca.agente_ids_serial.class != Array && marca.titular_ids_serial.class != Array

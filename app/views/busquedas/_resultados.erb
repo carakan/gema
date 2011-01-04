@@ -1,3 +1,5 @@
+<%debugger%>
+<h2 class="dark"><span class="resaltado"><%#= params[:search].upcase if @busqueda %></span> tuvo <%#= @busqueda.size %> 
 <% unless @busqueda.blank? %>
   <%= form_for @consulta do |f| -%>
     <%= f.hidden_field :representante_id %>
