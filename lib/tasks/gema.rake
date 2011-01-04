@@ -234,7 +234,7 @@ namespace :datos do
     marcas = Marca.all(:order => "propia DESC")
     puts "se encontraron #{marcas.size} marcas"
     marcas.each do |marca|
-      if marca && marca.agente_ids_serial.class != Array && marca.titular_ids_serial.class != Array
+      if marca && marca.agente_ids_serial && marca.titular_ids_serial && marca.agente_ids_serial.class != Array && marca.titular_ids_serial.class != Array
         marca.agente_ids_serial = marca.agente_ids if marca.agentes.count > 0
         marca.titular_ids_serial = marca.titular_ids if marca.titulares.count > 0
 
