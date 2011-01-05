@@ -52,6 +52,7 @@ class UsuariosController < ApplicationController
         format.html { redirect_to(@usuario, :notice => 'el usuario fue creado de forma correcta.') }
         format.xml  { render :xml => @usuario, :status => :created, :location => @usuario }
       else
+    @usuario.errors.add(:base, "Error crucial")
         format.html { render :action => "new" }
         format.xml  { render :xml => @usuario.errors, :status => :unprocessable_entity }
       end

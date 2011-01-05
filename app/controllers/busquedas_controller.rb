@@ -67,9 +67,11 @@ class BusquedasController < ApplicationController
       prepare_search
       @busqueda = Marca.search(params[:search])
       @representantes = Busqueda.preparar_representantes(@busqueda)
+      @consulta = Consulta.new(:parametros => params[:search])
+    else
+      @consulta = Consulta.new()
     end
-
-    @consulta = Consulta.new()
+    
   rescue
     flash[:notice] = "Existe un error en los criterios de busqueda, vuelva a intentarlo."
     render :action => :busqueda_avanzada

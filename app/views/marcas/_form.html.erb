@@ -51,7 +51,7 @@
       <%= f.input :domicilio_titular, :tabindex => 12, :as => :text, :input_html => { :cols => 50, :rows => 4 }  %>
     </li>
     <li class="fl half">
-      <%= f.input :fecha_instruccion , :as => 'string', :input_html => { :class => 'date' } %>
+    <%= f.input :fecha_instruccion , :label => 'Fecha instrucción', :as => 'string', :input_html => { :class => 'date' } %>
     </li>
     <li class="fl half">
       <%= f.input :instruccion, :collection => Marca::INSTRUCCIONES, :label => 'Tipo de instrucción' %>
