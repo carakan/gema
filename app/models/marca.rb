@@ -213,16 +213,16 @@ class Marca < ActiveRecord::Base
   end
 
   # Realiza la inclusion de modulos de acuerdo al tipo_signo
- #def self.set_include_tipo_signo(signo)
- #  case signo
- #  when 1
- #    include ModMarca::Denominacion
- #  when 2
- #    include ModMarca::Etiqueta
- #  when 3
- #    include ModMarca::Figurativa
- #  end
- #end
+  #def self.set_include_tipo_signo(signo)
+  #  case signo
+  #  when 1
+  #    include ModMarca::Denominacion
+  #  when 2
+  #    include ModMarca::Etiqueta
+  #  when 3
+  #    include ModMarca::Figurativa
+  #  end
+  #end
 
 
   def self.ver_estado(est)
@@ -436,7 +436,7 @@ class Marca < ActiveRecord::Base
   end
 
   def self.quitar_comillas(txt)
-    txt.gsub(/^(\342\200\234|"|\342\200\235)(.*)(\342\200\235|"|\342\200\234)$/, '\2').strip
+      txt.gsub(/^(\342\200\234|"|\342\200\235)(.*)(\342\200\235|"|\342\200\234)$/, '\2').strip
   end
 
 
@@ -510,7 +510,7 @@ class Marca < ActiveRecord::Base
   private
 
   def quitar_comillas
-    self.nombre = Marca.quitar_comillas(self.nombre)
+    self.nombre = Marca.quitar_comillas(self.nombre) if self.nombre
   end
 
   def adicionar_usuario
