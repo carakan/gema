@@ -212,7 +212,7 @@
 %br.clear
 
 
-= render :partial => "resultados"
+= render :partial => "resultados", :locals => {:avanzado => true}
 
 :javascript
   $('#agentes, #titulares').autocomplete({

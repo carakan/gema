@@ -148,13 +148,15 @@ class Busqueda
   #   @param Hash
   #   @return String
   def condicion_marca_propia(params)
+    condicion_sql = ""
     if params[:propia].nil?
-      ""
-    elsif params[:propia] == true
-      "AND res.propia=1"
-    elsif params[:propia] == false
-      "AND res.propia=0"
+      condicion_sql
+    elsif params[:propia] == "1"
+      condicion_sql = "AND res.propia = 1"
+    elsif params[:propia] == "0"
+      condicion_sql = "AND res.propia = 0"
     end
+    return condicion_sql
   end
 
   def condicion_activas
