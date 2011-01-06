@@ -573,7 +573,7 @@ class Marca < ActiveRecord::Base
   def set_marca_estado_id
     if self.estado
       case self.estado
-      when 'sm' then self.marca_estado_id = 1
+      when 'sm' then self.marca_estado_id = 2
       when 'lp' then self.marca_estado_id = 7
       when 'lr' then self.marca_estado_id = 12
       when 'rc' then self.marca_estado_id = 18

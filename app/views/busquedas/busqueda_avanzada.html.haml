@@ -211,6 +211,12 @@
     = submit_tag "Buscar"
 %br.clear
 
+%h2.dark
+  %span.resaltado
+  = unless @busqueda.nil?
+    = parametros_busqueda(params[:search]) unless params[:search].nil?
+    = @busqueda.size
+    - 'resultados'
 
 = render :partial => "resultados", :locals => {:avanzado => true}
 
