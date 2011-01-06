@@ -44,13 +44,14 @@ class TipoSignosController < ApplicationController
   # POST /tipo_marcas
   # POST /tipo_marcas.xml
   def create
-    @tipo_signos = TipoSigno.new(params[:tipo_marca])
-
+    @tipo_signos = TipoSigno.new(params[:tipo_signo])
+    
     respond_to do |format|
       if @tipo_signos.save
         format.html { redirect_to(@tipo_signos, :notice => 'El tipo de signo fue creado de forma correcta.') }
         format.xml  { render :xml => @tipo_signos, :status => :created, :location => @tipo_signos }
       else
+    @tipo_signos.errors.add(:base, "Error crucial")
         format.html { render :action => "new" }
         format.xml  { render :xml => @tipo_signos.errors, :status => :unprocessable_entity }
       end
@@ -63,7 +64,7 @@ class TipoSignosController < ApplicationController
     @tipo_signos = TipoSigno.find(params[:id])
 
     respond_to do |format|
-      if @tipo_signos.update_attributes(params[:tipo_marca])
+      if @tipo_signos.update_attributes(params[:tipo_signo])
         format.html { redirect_to(@tipo_signos, :notice => 'Los datos del tipo de signo fueron actualizados de forma correcta.') }
         format.xml  { head :ok }
       else
@@ -73,14 +74,14 @@ class TipoSignosController < ApplicationController
     end
   end
 
-  # DELETE /tipo_marcas/1
+  # DELETE /tipo_marcas/tipo_signos
   # DELETE /tipo_marcas/1.xml
   def destroy
     @tipo_signos = TipoSigno.find(params[:id])
     @tipo_signos.destroy
 
     respond_to do |format|
-      format.html { redirect_to(tipo_marcas_url) }
+      format.html { redirect_to(tipo_signos_url) }
       format.xml  { head :ok }
     end
   end
