@@ -51,7 +51,12 @@ Rails.application.routes.draw do
 
   resources :tipo_marcas
 
-  resources :usuarios
+  resources :usuarios do
+    member do
+      post :create_usuario
+      put :update_usuario
+    end
+  end
 
   resources :representantes do
     collection do

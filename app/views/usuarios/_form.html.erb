@@ -1,5 +1,6 @@
-<%= semantic_form_for(@usuario) do |f| %>
+<%= semantic_form_for(@usuario, :url => usuario_form_path(@usuario)) do |f| %>
   <%= f.semantic_errors %>
+    <%= f.input :email, :label => 'Email' %>
     <%= f.input :nombre, :label => 'Nombre' %>
     <%= f.input :login, :label => 'Nombre de usuario' %>
     <%= f.input :rol, :collection => Rol.all %>

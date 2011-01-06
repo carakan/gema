@@ -21,6 +21,13 @@ module BusquedasHelper
   def buscar_representante(representante_ids, representantes)
     representante_ids.map { |_id| representantes[_id] }.join(", ") if !representante_ids.nil? && !representante_ids.blank?
   end
+  
+  def parametros_busqueda(search)
+    parametros = search
+    x = []
+    parametros.each{|key, value| x << "#{value}"}
+      x
+  end
 
   # presenta de acuerdo al estado
   def numero_marca(marca)

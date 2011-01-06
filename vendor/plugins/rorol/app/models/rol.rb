@@ -21,7 +21,11 @@ class Rol < ActiveRecord::Base
     Rol.routes.each do |cont|
       # Asignacion a dos variables para no confundirse
       controller, actions = cont.first, cont.last
-      permission = permissions[permissions.index { |p| p.controller == controller }]
+      if permissions.index { |p| p.controller == controller }.nil?
+        permission = false
+      else
+        permission = permissions[permissions.index { |p| p.controller == controller }]
+      end
 
       if permission
         # Delete the ones that don't exists
