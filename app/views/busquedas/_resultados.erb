@@ -1,10 +1,12 @@
-<%debugger%>
-<h2 class="dark"><span class="resaltado"><%#= params[:search].upcase if @busqueda %></span> tuvo <%#= @busqueda.size %> 
+<h2 class="dark"><span class="resaltado"><%#= params[:search].upcase if @busqueda %></span> tuvo <%#= @busqueda.size %></h2>
 <% unless @busqueda.blank? %>
   <%= form_for @consulta do |f| -%>
     <%= f.hidden_field :representante_id %>
     <%= f.hidden_field :parametros %>
     <%= f.hidden_field :busqueda %>
+    <% if defined?(avanzado) %>
+      <%= hidden_field_tag :avanzado, avanzado %>
+    <% end %>
     <div id="contenido">
       <table class="decorated nolink tablesorter" id="tabla-cruce">
         <thead>

@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
     member do
       get :download
+      get :download_advanced
     end
   end
 
