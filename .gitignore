@@ -25,3 +25,4 @@ spec/archivos/pdftest/*.html
 spec/archivos/pdftest/*.png
 Gemfile.lock
 tmp/*
+.rvmrc

@@ -44,9 +44,8 @@ class UsuariosController < ApplicationController
 
   # POST /usuarios
   # POST /usuarios.xml
-  def create
+  def create_usuario
     @usuario = Usuario.new(params[:usuario])
-
     respond_to do |format|
       if @usuario.save
         format.html { redirect_to(@usuario, :notice => 'el usuario fue creado de forma correcta.') }
@@ -60,7 +59,7 @@ class UsuariosController < ApplicationController
 
   # PUT /usuarios/1
   # PUT /usuarios/1.xml
-  def update
+  def update_usuario
     @usuario = Usuario.find(params[:id])
 
     respond_to do |format|
