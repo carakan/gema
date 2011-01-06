@@ -138,8 +138,8 @@ class BusquedasController < ApplicationController
         if params["#{key[0]}_fin"] && !params["#{key[0]}_fin"].empty?
           if (key[0] == :sm || key[0] == :sr)
             if params["#{key[0]}_inicio"].split("-").size > 1
-              params[:search]["#{key[1][0]}_btw"] = [params["#{key[0]}_inicio"].split("-").first, params["#{key[0]}_fin"].split("-").first]
-              params[:search]["#{key[1][1]}_btw"] = [params["#{key[0]}_inicio"].split("-").last, params["#{key[0]}_fin"].split("-").last]
+              params[:search]["#{key[1][0]}_btw"] = [params["#{key[0]}_inicio"].split("-").first.to_i, params["#{key[0]}_fin"].split("-").first.to_i]
+              params[:search]["#{key[1][1]}_btw"] = [params["#{key[0]}_inicio"].split("-").last.to_i, params["#{key[0]}_fin"].split("-").last.to_i]
             end
           else
             params[:search]["#{key[1]}_btw"] = [params["#{key[0]}_inicio"].to_i, params["#{key[0]}_fin"].to_i]
@@ -147,8 +147,8 @@ class BusquedasController < ApplicationController
         else
           if (key[0] == :sm || key[0] == :sr)
             if params["#{key[0]}_inicio"].split("-").size > 1
-              params[:search]["#{key[1][0]}_equals"] = params["#{key[0]}_inicio"].split("-").first
-              params[:search]["#{key[1][1]}_equals"] = params["#{key[0]}_inicio"].split("-").last
+              params[:search]["#{key[1][0]}_equals"] = params["#{key[0]}_inicio"].split("-").first.to_i
+              params[:search]["#{key[1][1]}_equals"] = params["#{key[0]}_inicio"].split("-").last.to_i
             end
           else
             params[:search]["#{key[1]}_equals"] = params["#{key[0]}_inicio"].to_i

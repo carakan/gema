@@ -1,6 +1,6 @@
 <h2 class="dark">
   <span class="resaltado">
-  <% unless @busqueda %>
+  <% unless @busqueda.nil? %>
     <%= parametros_busqueda(params[:search]) unless params[:search].nil?%>
   </span> tuvo <%= @busqueda.size %> resultados
   <% end %>
