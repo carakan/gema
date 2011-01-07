@@ -65,15 +65,21 @@ class BusquedasController < ApplicationController
   def busqueda_avanzada
     if params[:search]
       prepare_search
-      @busqueda = Marca.search(params[:search])
-      @representantes = Busqueda.preparar_representantes(@busqueda)
+      timeout(30){@busqueda_old = Marca.search(params[:search])}
+      @representantes = Busqueda.preparar_representantes(@busqueda_old)
       @consulta = Consulta.new(:parametros => params[:search])
+      @busqueda = []
+      @busqueda_old.each{|element| @busqueda << element }
+      @busqueda_old = nil
+      @busqueda.sort! { |a, b| [a.agente_ids_serial.sort, a.titular_ids_serial.sort] <=> [b.agente_ids_serial.sort, b.titular_ids_serial.sort]  }
     else
       @consulta = Consulta.new()
     end
-    
-  rescue
-    flash[:notice] = "Existe un error en los criterios de busqueda, vuelva a intentarlo."
+  rescue Timeout::Error => ex
+    flash[:notice] = "Existe un error en los criterios de busqueda, la consulta tardo demasiado."
+    render :action => :busqueda_avanzada
+  rescue => e
+    flash[:notice] = "Existe un error en los criterios de busqueda, vuelva a intentarlo. #{e}"
     render :action => :busqueda_avanzada
   end
 
@@ -122,11 +128,25 @@ class BusquedasController < ApplicationController
     else
       splits_params("observaciones", :observaciones_contains_all)
     end
-    keys = {"fecha_sol" => "fecha_solicitud", "fecha_pub" => "fecha_publicacion", "fecha_reg" => "fecha_registro", "fecha_sol_ren" => "fecha_solicitud_renovacion", "fecha_ren" => "fecha_renovacion"
+    keys = {"fecha_sol" => "fecha_solicitud", "fecha_pub" => "fecha_publicacion",
+      "fecha_reg" => "fecha_registro", "fecha_sol_ren" => "fecha_solicitud_renovacion",
+      "fecha_ren" => "fecha_renovacion", "fecha_ren_pen" => "fecha_registro"
     }
     keys.each do |key|
       if params["#{key[0]}_inicio"] && !params["#{key[0]}_inicio"].empty? && params["#{key[0]}_fin"] && !params["#{key[0]}_fin"].empty?
-        params[:search]["#{key[1]}_btw"] = [Date.parse(params["#{key[0]}_inicio"]), Date.parse(params["#{key[0]}_fin"])]
+        if key[0] == "fecha_ren_pen"
+          fecha_inicio_key = 6.months.ago(Date.parse(params["#{key[0]}_inicio"]))
+          fecha_fin_key = 6.months.since(Date.parse(params["#{key[0]}_fin"]))
+          fechas = []
+          while(fecha_inicio_key.year > 1900 && fecha_fin_key.year > 1900)
+            fechas << [fecha_inicio_key, fecha_fin_key]
+            fecha_inicio_key = 10.years.ago(fecha_inicio_key)
+            fecha_fin_key = 10.years.ago(fecha_fin_key)
+          end
+          params[:search]["#{key[1]}_btw_any"] = fechas
+        else
+          params[:search]["#{key[1]}_btw"] = [Date.parse(params["#{key[0]}_inicio"]), Date.parse(params["#{key[0]}_fin"])]
+        end
       end
     end
 
