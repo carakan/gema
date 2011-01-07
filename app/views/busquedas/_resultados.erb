@@ -57,11 +57,17 @@
   <% end %>
 <% end %>
 <script>
-  $("#select_all_ckecks").change(function(){
-    if($("#select_all_ckecks:checked").size() > 0){
-      $("#tabla-cruce tbody :checkbox:not(:checked)").click();
+  $("#select_all_ckecks").click(function(){
+    if($(this).attr("checked")){
+      var results = $("#tabla-cruce tbody :checkbox:not(:checked)");
+      results.attr('checked', true)
+      results.click();
+      results.attr('checked', true)
     } else{
-      $("#tabla-cruce tbody :checkbox:checked").click();
+      results = $("#tabla-cruce tbody :checkbox:checked");
+      results.attr('checked', false)
+      results.click();
+      results.attr('checked', false)
     }
   });
 </script>

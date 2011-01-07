@@ -252,7 +252,7 @@
   });
 
   $('#contenido input:checkbox').live("click", function() {
-    if( $(this).attr('checked') ) {
+    if( $(this).is(':checked') ) {
       var id = $(this).attr("name").replace(/^[a-z_]+([0-9]+)$/,"$1");
       var index = $(this).attr('data-index');
       $('<input/>').attr({
@@ -263,5 +263,6 @@
     }else {
       $(this).siblings('input:hidden').remove();
     }
+    console.debug($(this).is(':checked'));
   });
 
