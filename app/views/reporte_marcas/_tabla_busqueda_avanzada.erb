@@ -12,6 +12,7 @@
     <% end %>
   </tr>
   <% consulta.consulta_detalles.each do |rd|  %>
+  <% if rd.marca %>
     <tr>
       <td><span class="<%= rd.marca.propia! %>"><%= link_to rd.marca.nombre, marca_path(rd.marca), :class => :ajax%></span></td>
       <td><%= rd.marca.tipo_signo.sigla if rd.marca.tipo_signo %></td>
@@ -23,6 +24,7 @@
         <td><%= rd.marca.agentes.join(", ") %></td>
       <% end %>
     </tr>
+  <% end %>
   <% end %>
 </table>
 
