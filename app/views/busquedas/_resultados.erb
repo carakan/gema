@@ -10,7 +10,9 @@
       <table class="decorated nolink tablesorter" id="tabla-cruce">
         <thead>
           <tr>
-            <th style="width: 10px;"></th>
+            <th style="width: 10px;">
+              <%= check_box_tag :select_all_ckecks %>
+            </th>
             <th style="width: 250px;">Nombre</th>
             <th style="width: 15px;">Cl.</th>
             <th style="width: 15px;">Tipo</th>
@@ -33,7 +35,7 @@
               <td><%= marca.numero_marca %></td>
               <td><%= lo(marca.fecha_marca, :format => "%d %b, %Y") if marca.fecha_marca %></td>
               <td><%= buscar_representante( marca.titular_ids_serial, @representantes ) %></td>
-              <td><%= buscar_representante( marca.agente_ids_serial, @representantes ) %></td>           
+              <td><%= buscar_representante( marca.agente_ids_serial, @representantes ) %></td>
             </tr>
             <% index += 1 %>
           <% end %>
@@ -47,3 +49,12 @@
     <h2>Sin resultados para la busqueda</h2>
   <% end %>
 <% end %>
+<script>
+  $("#select_all_ckecks").change(function(){
+    if($("#select_all_ckecks:checked").size() > 0){
+      $("#tabla-cruce tbody :checkbox:not(:checked)").click();
+    } else{
+      $("#tabla-cruce tbody :checkbox:checked").click();
+    }
+  });
+</script>
