@@ -1,3 +1,12 @@
+<h2 class="dark">
+  <span class="resaltado">
+    <% unless @busqueda.nil? %>
+      <% if params[:action] != "index" %>
+        <%#= parametros_busqueda(params[:search]) unless params[:search].nil?%>
+        La búsqueda tuvo <%= @busqueda.size %> resultados
+      <% end %>
+  <% end %>
+</h2>
 <% unless @busqueda.blank? %>
   <%= form_for @consulta do |f| -%>
     <%= f.hidden_field :representante_id %>
