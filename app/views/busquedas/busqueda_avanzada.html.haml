@@ -224,7 +224,7 @@
 
 :javascript
   $('#agentes, #titulares').autocomplete({
-    'source': '/representantes/buscar',
+    'source': '/representantes/buscar?all=true',
     'select': function(e, ui) {
       var node = "";
       var attribute = "";
