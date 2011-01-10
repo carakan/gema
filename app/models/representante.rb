@@ -50,6 +50,11 @@ class Representante < ActiveRecord::Base
     Post.all(:conditions => { :postable_id => self.id, :postable_type => 'Representante' }, 
              :limit => POSTS_SIZE, :order => 'created_at DESC' )
   end
+  
+  def lista_contactos()
+    Contacto.all(:conditions => { :representante_id => self.id }, 
+             :limit => POSTS_SIZE, :order => 'created_at DESC' )
+  end
 
   # concatena los datos denormalizados de pais
   def pais_datos
