@@ -1,6 +1,7 @@
 <div class="subder">
   <% unless contactos.blank? %>
     <% contactos.each do |contacto| %>
+      <%= link_to 'Editar', edit_contacto_path(contacto), :class => 'edit' %> 
       <p>
         <label>Nombre:</label>
         <%=h contacto.nombre %>
@@ -19,6 +20,7 @@
         <label>Email:</label>
           <%=h contacto.email %>
       </p>
+      <hr>
     <% end %>
   <% end %>
   <hr/>

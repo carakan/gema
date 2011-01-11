@@ -716,8 +716,6 @@ a.desc {
   margin-bottom: 15px;
 }
 .breadcrumps a { font-weight: normal; }
-.ui-dialog .links { display: none; }
-.ui-dialog .breadcrumps { display: none; }
 #tabla-cruce tbody {
   height: 350px;
   overflow-y: auto;

@@ -2,14 +2,16 @@
   #cliente{ width: 54%; float: left;}
   #posts{ width: 100%; float: left; background-color: #EFEFEF; }
 </style>
-<div id="abm">
-    <%= link_to 'Editar', edit_representante_path(@representante), :class =>'edit' %>
-    <%= link_to 'Lista', representantes_path, :class =>'list' %>
-</div>
 
 <div id="contenido">
   <div class="izquierda">
-    <h1><% if @representante.cliente %>Ficha Cliente <%else %>Ficha representante<%end%></h1>
+  <h1><% if @representante.cliente %>Ficha Cliente <%else %>Ficha representante<%end%></h1>
+    <div class="subizq"> 
+    <%= link_to 'Editar', edit_representante_path(@representante), :class =>'edit' %>
+    <%= link_to 'Lista', representantes_path, :class =>'list' %>
+    </div>
+    <div style="clear:both"></div>
+
     <div class="subizq"> 
       <label>Nombre:</label>
     </div>
@@ -89,14 +91,16 @@
      <label class="remarcado"><%= @representante.division %></label>
     </div>
   </div>
+  
 
-  <div class="derecha" data-max_contactos="2">
-    <h1>Contactos</h1>
+  <div class="izquierda" >
+      <h1>Contactos</h1>
       <%= render :partial => "contactos/contacto", :locals => { :contactos => @representante.lista_contactos } %>
-      <%= link_to "Lista completa", contacto_path(@representante), :class => 'ajax' %>
   </div>
   <div class="izquierda">
-    <%= link_to "Nuevo contacto", new_contacto_path(:representante_id => @representante.id), 'data-title' => 'Crear contacto', :class => 'new ajax' %>
+    <%= link_to "Lista completa", contacto_path(@representante), :class => 'list ajax' %>
+        <%= link_to "Nuevo contacto", new_contacto_path(:representante_id => @representante.id), 'data-title' => 'Crear contacto', :class => 'new ajax' %>
+    </div>
   </div>
 </div>
 

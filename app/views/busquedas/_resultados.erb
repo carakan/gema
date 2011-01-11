@@ -38,7 +38,7 @@
               <td>
                 <%= check_box_tag "consulta_detalles_attributes_#{marca.id}", 1, false, 'data-index' => index %>
               </td>
-              <td><label for="marca<%= marca.id %>"><span class="<%= marca.propia! %>"><%= link_to marca.nombre, marca_path(marca), :class => :ajax%></span></label></td>
+              <td><label for="marca<%= marca.id %>"><span class="<%= marca.propia! %>"><%= link_to marca.nombre, marca_path(marca), :class => 'ajax'%></span></label></td>
               <td><%= marca.clase_id %></td>
               <td><%= tipo_signo_sigla(marca.tipo_signo_id) %></td>
               <td><%= marca.numero_marca %></td>
