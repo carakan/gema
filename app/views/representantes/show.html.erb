@@ -2,10 +2,10 @@
   #cliente{ width: 54%; float: left;}
   #posts{ width: 100%; float: left; background-color: #EFEFEF; }
 </style>
-<p class="links">
-  <%= link_to 'Editar', edit_representante_path(@representante), :class =>'edit' %>
-  <%= link_to 'Lista', representantes_path, :class =>'list' %>
-</p>
+<div id="abm">
+    <%= link_to 'Editar', edit_representante_path(@representante), :class =>'edit' %>
+    <%= link_to 'Lista', representantes_path, :class =>'list' %>
+</div>
 
 <div id="contenido">
   <div class="izquierda">
@@ -16,6 +16,7 @@
     <div class="subder">
      <label class="remarcado"><%=h @representante.nombre %></label>
     </div>
+    <div style="clear:both"></div>
      
     <div class="subizq">
       <label for="">Cliente:</label>
@@ -89,11 +90,10 @@
     </div>
   </div>
 
-  <div class="derecha">
+  <div class="derecha" data-max_contactos="2">
     <h1>Contactos</h1>
-    <% @representante.contactos.each do |contacto| %>
-      <%= render :partial => "contactos/contacto", :locals => { :contacto => contacto } %>
-    <% end %>
+      <%= render :partial => "contactos/contacto", :locals => { :contactos => @representante.lista_contactos } %>
+      <%= link_to "Lista completa", contacto_path(@representante), :class => 'ajax' %>
   </div>
   <div class="izquierda">
     <%= link_to "Nuevo contacto", new_contacto_path(:representante_id => @representante.id), 'data-title' => 'Crear contacto', :class => 'new ajax' %>
@@ -101,10 +101,10 @@
 </div>
 
 <div id="posts" class="posts" data-max_posts="<%= Representante::POSTS_SIZE %>">
-<hr/>
   <div>
-    <h2 class="title">Ultimos comentarios</h2>
+    <h1 class="title">Ultimos comentarios</h1>
     <%= render :partial => "posts/posts", :locals => { :posts => @representante.ultimos_posts } %>
+    <%= link_post @representante, 'index' %>
     <%= link_post @representante, 'new' %>
   </div>
 </div>

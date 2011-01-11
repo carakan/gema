@@ -1,22 +1,25 @@
-<div class="fl">
-<p>
-  <label>Nombre:</label>
-  <%=h contacto.nombre %>
-</p>
+<div class="subder">
+  <% unless contactos.blank? %>
+    <% contactos.each do |contacto| %>
+      <p>
+        <label>Nombre:</label>
+        <%=h contacto.nombre %>
+      </p>
 
-<p>
-  <label>Cargo:</label>
-  <%=h contacto.cargo %>
-</p>
-<p>
-  <label>Teléfono:</label>
-  <%=h contacto.telefono %>
-</p>
+      <p>
+        <label>Cargo:</label>
+        <%=h contacto.cargo %>
+      </p>
+      <p>
+        <label>Teléfono:</label>
+        <%=h contacto.telefono %>
+      </p>
 
-<p>
-  <label>Email:</label>
-    <%=h contacto.email %>
-</p>
-
-<hr/>
+      <p>
+        <label>Email:</label>
+          <%=h contacto.email %>
+      </p>
+    <% end %>
+  <% end %>
+  <hr/>
 </div>
