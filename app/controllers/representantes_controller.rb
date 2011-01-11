@@ -107,9 +107,9 @@ class RepresentantesController < ApplicationController
       hash_proc = lambda { |c| { :id => c.id, :label => c.to_s } }
     end
     if params[:all]
-      @clientes = Representante.where("nombre LIKE ?", "%#{busq}%").limit(50).order("nombre")
+      @clientes = Representante.where("nombre LIKE ?", "%#{busq}%").limit(20).order("nombre")
     else
-      @clientes = Representante.clientes.where("nombre LIKE ?", "%#{busq}%").limit(50).order("nombre")
+      @clientes = Representante.clientes.where("nombre LIKE ?", "%#{busq}%").limit(20).order("nombre")
     end
     render :text => @clientes.map{ |c| hash_proc.call(c) }.to_json 
   end

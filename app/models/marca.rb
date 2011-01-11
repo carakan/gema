@@ -271,7 +271,7 @@ class Marca < ActiveRecord::Base
     Marca.all(:conditions => { :fecha_importacion => fecha, :valido => valid }, :include => [ :clase, :tipo_signo ] )
   end
 
-
+    
   # indica si hay errores en un listado
   # Debe ser un resultado de la tabla 'view_importaciones'
   # Marca.table_name = 'view_importaciones'
