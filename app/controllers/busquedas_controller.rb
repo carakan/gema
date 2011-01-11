@@ -69,7 +69,16 @@ class BusquedasController < ApplicationController
       @representantes = Busqueda.preparar_representantes(@busqueda_old)
       @consulta = Consulta.new(:parametros => params[:search])
       @busqueda = []
-      @busqueda_old.each{|element| @busqueda << element }
+      if params[:search]["fecha_registro_btw_any"]
+        fecha_inicio = 6.months.since(Date.parse(params["fecha_ren_pen_inicio"]))
+        @busqueda_old.each do |element|
+          if element.fecha_renovacion.nil? || element.fecha_renovacion <= fecha_inicio
+            @busqueda << element
+          end
+        end
+      else
+        @busqueda_old.each{ |element| @busqueda << element }
+      end
       @busqueda_old = nil
       @busqueda.sort! { |a, b| [a.agente_ids_serial.sort, a.titular_ids_serial.sort] <=> [b.agente_ids_serial.sort, b.titular_ids_serial.sort]  }
     else
@@ -86,7 +95,7 @@ class BusquedasController < ApplicationController
   private
 
   def splits_params(name, new_name, split = true)
-    if params[:search][name] 
+    if params[:search][name]
       values = params[:search].delete(name)
       if !values.blank?
         values = values.split(" ") if split
