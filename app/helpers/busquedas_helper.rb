@@ -24,6 +24,7 @@ module BusquedasHelper
   
   def parametros_busqueda(search)
     parametros = search
+    debugger
     x = []
     parametros.each{|key, value| x << "#{value}"}
       x

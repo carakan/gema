@@ -699,7 +699,7 @@ a.desc {
 .posts h2 { margin: 10px 0px; }
 .posts ul { list-style: none; }
 .posts ul li h3 { color: #484848; }
-.posts > div { padding: 10px; }
+.posts > div { padding: 30px; }
 #comments .title {
   margin: 0px 0px;
   background: #484848;
