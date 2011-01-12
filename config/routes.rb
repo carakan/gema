@@ -59,6 +59,9 @@ Rails.application.routes.draw do
   end
 
   resources :representantes do
+    member do
+      get :representante_contactos
+    end
     collection do
       get :buscar
     end

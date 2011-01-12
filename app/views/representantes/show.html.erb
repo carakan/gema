@@ -98,7 +98,7 @@
       <%= render :partial => "contactos/contacto", :locals => { :contactos => @representante.lista_contactos } %>
   </div>
   <div class="izquierda">
-    <%= link_to "Lista completa", contacto_path(@representante), :class => 'list ajax' %>
+    <%= link_to "Lista completa", representante_contactos_representante_path(@representante), :class => 'list ajax' %>
         <%= link_to "Nuevo contacto", new_contacto_path(:representante_id => @representante.id), 'data-title' => 'Crear contacto', :class => 'new ajax' %>
     </div>
   </div>
