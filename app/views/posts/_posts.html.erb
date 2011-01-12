@@ -15,9 +15,10 @@
             <%= link_to "<strong>#{ a.archivo_file_name }</strong> (#{ a.archivo_file_size.to_byte_size})".html_safe, a, :class => a.tipo %>
             </li>
           <% end %>
-          <hr>
         </ul>
       <%= link_to "borrar", p, :class => 'delete' if UsuarioSession.current_user[:rol] == 'admin' %>
+      <%= link_to "Editar", edit_post_path(p), :class => 'edit' %>
+      <hr>
     </li>
   <% end %>
 <% end %>
