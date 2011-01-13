@@ -1,24 +1,40 @@
-<ul>
-<% unless posts.blank? %>
-  <% posts.each do |p| %>
-    <li class="post">
-      <h3><%= p.categoria %></h3>
-      <h4><%= p.titulo %></h4>
-      <p>
-        <%= p.comentario %>
-      </p>
-      Por <strong><%= p.usuario %></strong><br /> 
-      <em><%= l p.created_at, :format => "%d, %B %Y %H:%M" %></em>
-        <ul>
-          <% p.adjuntos.each do |a| %>
-            <li class="mime">
-            <%= link_to "<strong>#{ a.archivo_file_name }</strong> (#{ a.archivo_file_size.to_byte_size})".html_safe, a, :class => a.tipo %>
-            </li>
-          <% end %>
-          <hr>
-        </ul>
-      <%= link_to "borrar", p, :class => 'delete' if UsuarioSession.current_user[:rol] == 'admin' %>
-    </li>
-  <% end %>
+<% unless posts.empty? %>
+  <div id="tabs-post">
+    <% groups = posts.group_by(&:categoria) %>
+    <% groups.delete("\"\"") %>
+    <% groups = {} if groups.nil? %>
+    <ul>
+      <% groups.each do |categoria, posts| %>
+        <li class="post">
+          <a href="#<%= categoria.gsub(/,| |"/, "") %>"><%= categoria %></a>
+        </li>
+      <% end %>
+    </ul>
+
+    <% groups.each do |categoria, posts| %>
+      <div id="<%= categoria.gsub(/,| |"/, "") %>">
+        <% posts.each do |p| %>
+          <h4><%= p.titulo %></h4>
+          <p>
+            <%= p.comentario %>
+          </p>
+          Por <strong><%= p.usuario %></strong><br />
+          <em><%= l(p.created_at, :format => "%d, %B %Y %H:%M") if p.created_at %></em>
+          <ul>
+            <% p.adjuntos.each do |a| %>
+              <li class="mime">
+                <%= link_to "<strong>#{ a.archivo_file_name }</strong> (#{ a.archivo_file_size.to_byte_size})".html_safe, a, :class => a.tipo %>
+              </li>
+            <% end %>
+          </ul>
+          <%= link_to "borrar", p, :class => 'delete'  %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 <% end %>
-</ul>
+<script>
+  $(document).ready(function() {
+    $("#tabs-post").tabs();
+  });
+</script>

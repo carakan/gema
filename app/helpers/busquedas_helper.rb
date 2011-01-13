@@ -5,12 +5,12 @@ module BusquedasHelper
   # Indica que tipo de resultado de fue encontrado "Exacta", "Reemplazos", etc.
   def tipo_busqueda(tipo)
     case tipo.to_i
-      when 1 then "Exacta"
-      when 2 then "Reemplazos"
-      when 3 then "Fonética"
-      when 4 then "División"
-      else
-        ""
+    when 1 then "Exacta"
+    when 2 then "Reemplazos"
+    when 3 then "Fonética"
+    when 4 then "División"
+    else
+      ""
     end
   end
 
@@ -25,33 +25,35 @@ module BusquedasHelper
   def parametros_busqueda(search)
     parametros = search
     x = []
-    parametros.each{|key, value| x << "#{value}"}
-      x
+    parametros.each do |key, value|
+      x << key.gsub(/equals|any|btw|btw_any|vista_marca|_n_|_a_|contains_all|_in/, "").gsub(/_/, " ")
+    end
+    return "Busqueda por: #{x.uniq.join(", ")}"
   end
 
   # presenta de acuerdo al estado
   def numero_marca(marca)
     case marca.estado
-      when "sm" then marca.numero_solicitud
-      when "lp" then marca.numero_publicacion
-      when "lr" then marca.numero_registro
-      when "sr" then marca.numero_solicitud_renovacion
-      when "rc" then marca.numero_renovacion
-      else
-        marca.numero_solicitud
+    when "sm" then marca.numero_solicitud
+    when "lp" then marca.numero_publicacion
+    when "lr" then marca.numero_registro
+    when "sr" then marca.numero_solicitud_renovacion
+    when "rc" then marca.numero_renovacion
+    else
+      marca.numero_solicitud
     end
   end
 
   # presentar fecha de la marca
   def fecha_marca(marca)
     case marca.estado
-      when "sm" then marca.fecha_solicitud
-      when "lp" then marca.fecha_solicitud
-      when "lr" then marca.fecha_registro
-      when "sr" then marca.fecha_solicitud_renovacion
-      when "rc" then marca.fecha_renovacion
-      else
-        marca.fecha_solicitud
+    when "sm" then marca.fecha_solicitud
+    when "lp" then marca.fecha_solicitud
+    when "lr" then marca.fecha_registro
+    when "sr" then marca.fecha_solicitud_renovacion
+    when "rc" then marca.fecha_renovacion
+    else
+      marca.fecha_solicitud
     end
   end
 

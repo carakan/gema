@@ -2,10 +2,11 @@
   <span class="resaltado">
     <% unless @busqueda.nil? %>
       <% if params[:action] != "index" %>
-        <%#= parametros_busqueda(params[:search]) unless params[:search].nil?%>
-        La búsqueda tuvo <%= @busqueda.size %> resultados
+        <%= parametros_busqueda(params[:search]) unless params[:search].nil?%>
+        , La búsqueda tuvo <%= @busqueda.size %> resultados
       <% end %>
   <% end %>
+        </span>
 </h2>
 <% unless @busqueda.blank? %>
   <%= form_for @consulta do |f| -%>
