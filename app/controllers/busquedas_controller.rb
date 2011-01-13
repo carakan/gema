@@ -70,9 +70,9 @@ class BusquedasController < ApplicationController
       @consulta = Consulta.new(:parametros => params[:search])
       @busqueda = []
       if params[:search]["fecha_registro_btw_any"]
-        fecha_inicio = 6.months.since(Date.parse(params["fecha_ren_pen_inicio"]))
+        fecha_inicio = 6.months.ago(Date.parse(params["fecha_ren_pen_inicio"]))
         @busqueda_old.each do |element|
-          if element.fecha_renovacion.nil? || element.fecha_renovacion <= fecha_inicio
+          if element.fecha_renovacion.nil? || element.fecha_renovacion.to_date <= fecha_inicio
             @busqueda << element
           end
         end

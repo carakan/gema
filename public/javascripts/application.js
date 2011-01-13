@@ -2,7 +2,6 @@
   $(document).ready(function() {
     var addDatePicker, createDialog, csfr_token, getDataTitle, iniciar, mark, parsearFecha, roundVal, serializeFormElements, setFechaDateSelect, setIframePostEvents, speed, toByteSize, transformarDateSelect;
     speed = 300;
-    /*$('#marca_fecha_instruccion').datepicker();*/
     csfr_token = $('meta[name=csfr-token]').attr('content');
     $.datepicker._defaults.dateFormat = 'dd M yy';
     parsearFecha = function(fecha, tipo) {
@@ -119,7 +118,7 @@
         'title': $(this).attr('data-title')
       });
       $(div).load($(this).attr("href"), function(e) {
-        return $(div).find('a.new[href*=/], a.edit[href*=/], a.list[href*=/]').hide();
+        return $(div).find('a.new[href*=/], a.edit[href*=/]').show();
       });
       e.stopPropagation();
       return false;

@@ -5,8 +5,8 @@
     <%= label_tag "busqueda", "Busqueda" %>
     <label for="busqueda"></label>
     <%= text_field_tag :busqueda, params[:busqueda], :size => 40 %>
-    <label for="propia">Marcas propias</label>
-    <%= check_box_tag :propia %>
+    <label for="propia"><%= check_box_tag :propia %> Marcas propias(Búsqueda preventiva)</label>
+    
   </div>
   <% if show_titulares %>
     <div class="half fl">
