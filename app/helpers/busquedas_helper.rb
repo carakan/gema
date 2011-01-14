@@ -28,11 +28,11 @@ module BusquedasHelper
     y = []
     res = []
     parametros.each do |key, value|
-      x = key.gsub(/equals|any|btw|btw_any|vista_marca|_n_|_a_|contains_all|_in/, "").gsub(/_/, "")
+      x = key.gsub(/equals|any|btw|btw_any|vista_marca|_n_|_a_|contains_all|_in/, "").gsub(/_/," ")
       y << "#{parametros[key]}"
-      res << "#{x} => #{value}"
+      res << "#{x} = #{value}"
     end
-      return "#{res.uniq.join("<br>")}"
+      return "#{res.uniq.join("<br>")}".html_safe
       #return "Valores: #{y.uniq.join(", ")} Campos: #{x.uniq.join(", ")}"
   end
 
