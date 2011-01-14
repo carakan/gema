@@ -57,6 +57,7 @@ class MarcasController < ApplicationController
   def create_post()
     @post = Post.new(params[:post])
 
+      debugger
     if @post.save
       redirect_to marca_url(@post.marca_id)
     else
