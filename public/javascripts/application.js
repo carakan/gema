@@ -154,17 +154,21 @@
         var html, posts, postsSize;
         html = $(iframe).contents().find('body').html();
         if ($(html).find('form').length <= 0 && created) {
-          $('#posts ul:first').prepend(html);
+          console.debug("hola 3")
+          //$('#posts ul:first').prepend(html);
           mark('#posts ul li:first');
           posts = parseInt($('#posts ul:first>li').length);
           postsSize = parseInt($('#posts').attr("data-posts_size"));
           if (posts > postsSize) {
             $('#posts ul:first>li:last').remove();
           }
+          window.location.reload();
           return $('#create_post_dialog').dialog('close');
         } else {
+          console.debug("hola 4")
           created = true;
           return $('#create_post_dialog').html(html);
+
         }
       };
     };
@@ -200,6 +204,7 @@
         'type': data['_method'] || $(this).attr('method'),
         'success': function(resp, status, xhr) {
           var id, p;
+          console.debug("hola")
           if ($(resp).find('input:submit').length <= 0) {
             p = $(el).parents('div.ajax-modal');
             id = $(p).attr('data-ajax_id');

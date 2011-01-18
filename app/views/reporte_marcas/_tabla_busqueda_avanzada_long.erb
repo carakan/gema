@@ -1,0 +1,53 @@
+<table class="decorated">
+  <tr style="background-color: #000; color: #fff">
+    <th class="_200">ID</th>
+    <th>Propiedad</th>
+    <th class="_200">Signo</th>
+    <th class="_200">Marca</th>
+    <th class="_200">Denominacion</th>
+    <th class="_200">Clase</th>
+    <th class="_200">Descripcion prod</th>
+    <th class="_200">Titulares</th>
+    <th class="_200">Agentes</th>
+    <th class="_200">Domicilio</th>
+    <th class="_200">Fecha Instruccion</th>
+    <th class="_200">Numero Solicitud</th>
+    <th class="_200">Fecha Solicitud</th>
+    <th class="_200">Numero Publicacion</th>
+    <th class="_200">Fecha Publicacion</th>
+    <th class="_200">Numero Registro</th>
+    <th class="_200">Fecha Registro</th>
+    <th class="_200">Numero Solicitud Renovacion</th>
+    <th class="_200">Fecha Solicitud Renovacion</th>
+    <th class="_200">Numero Renovacion</th>
+    <th class="_200">Fecha Renovacion</th>
+  </tr>
+  <% consulta.consulta_detalles.each do |rd|  %>
+    <% if rd.marca %>
+      <tr>
+        <td><%= rd.marca.id %></td>
+        <td><%= rd.marca.propia ? "Propia":"Ajeno" %></td>
+        <td><%= rd.marca.tipo_signo.sigla if rd.marca.tipo_signo %></td>
+        <td><%= rd.marca.tipo_marca.sigla if rd.marca.tipo_marca %></td>
+        <td><%= rd.marca.nombre %></td>
+        <td><%= rd.marca.clase_id %></td>
+        <td><%= rd.marca.productos %></td>
+        <td><%= rd.marca.titulares.join(", ") %></td>
+        <td><%= rd.marca.agentes.join(", ") %></td>
+        <td><%= rd.marca.domicilio_titular %></td>
+        <td><%= rd.marca.fecha_instruccion %></td>
+        <td><%= rd.marca.numero_solicitud %></td>
+        <td><%= rd.marca.fecha_solicitud %></td>
+        <td><%= rd.marca.numero_publicacion %></td>
+        <td><%= rd.marca.fecha_publicacion %></td>
+        <td><%= rd.marca.numero_registro %></td>
+        <td><%= rd.marca.fecha_registro %></td>
+        <td><%= rd.marca.numero_solicitud_renovacion %></td>
+        <td><%= rd.marca.fecha_solicitud_renovacion %></td>
+        <td><%= rd.marca.numero_renovacion %></td>
+        <td><%= rd.marca.fecha_renovacion %></td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>
+
