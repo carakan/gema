@@ -24,7 +24,6 @@ module BusquedasHelper
   
   def parametros_busqueda(search)
     parametros = search
-    debugger
     x = []
     parametros.each do |key, value|
       x << key.gsub(/equals|any|btw|btw_any|vista_marca|_n_|_a_|contains_all|_in/, "").gsub(/_/, " ")
