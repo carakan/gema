@@ -119,6 +119,7 @@ $(document).ready(->
       $(div).find('a.new[href*=/], a.edit[href*=/]').show()
     )
     addDatePicker()
+    transformarDateSelect()
     e.stopPropagation()
     false
   )

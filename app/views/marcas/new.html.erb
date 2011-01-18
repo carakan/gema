@@ -1,5 +1,5 @@
 <div class="breadcrumps">
-  <%= link_to 'Lista de signos', marcas_path, :class =>'list' %> > Nuevo signo <%= params[:tipo_signo] %> 
+  <%= link_to 'Lista de signos', marcas_path, :class =>'list' %> > Nuevo signo <%= params[:tipo_signo] %>
 </div>
 <h1>Nuevo signo - <%= params[:tipo_signo] %> </h1> 
 
@@ -22,10 +22,10 @@
   <%= f.input :nombre,:label => "Denominación",:tabindex => 3 %>
   <% if @marca.con_imagen? %>
     <li>
-    <%= image_tag @marca.adjuntos.last.archivo.url(:mini), :class => 'mini' if @marca.adjuntos.size > 0 and @marca.id %>
-        <label for="">Imagen</label>
-        <input type="file" name="marca[adjuntos_attributes][0][archivo]" size= "30" />
-          <%# adj.file_field :archivo, :size => 30 %>
+      <%= image_tag @marca.adjuntos.last.archivo.url(:mini), :class => 'mini' if @marca.adjuntos.size > 0 and @marca.id %>
+      <label for="">Imagen</label>
+      <input type="file" name="marca[adjuntos_attributes][0][archivo]" size= "30" />
+    <%# adj.file_field :archivo, :size => 30 %>
     </li>
     <%= f.input :descripcion_imagen,:label => 'Descripcion diseño', :as => :text, :input_html => { :rows => 10, :cols => 115 }, :tabindex => 5 %>
   <% end %>
@@ -52,7 +52,7 @@
   <%= f.input :domicilio_titular, :tabindex => 12, :as => :text, :input_html => { :cols => 35, :rows => 4 } %>
   <div class="clear"></div>
   <%= f.input :fecha_instruccion , :label => 'Fecha instrucción', :as => 'string', :input_html => { :class => 'date' } %>
-    <%= f.input :instruccion, :collection => Marca::INSTRUCCIONES, :label => 'Tipo de instrucción' %>
+  <%= f.input :instruccion, :collection => Marca::INSTRUCCIONES, :label => 'Tipo de instrucción' %>
   <%= f.input :pais_prioridad_id, :as => :select, :collection => Pais.find(:all), :label => 'Pais prioridad' %>
   <%= f.input :numero_prioridad, :label => 'Número de prioridad' %>
   <%= f.input :fecha_prioridad,:label => 'Fecha de prioridad', :as => 'string', :input_html => { :class => 'date' }%>
@@ -60,7 +60,6 @@
 
   <% unless @marca.errores_manual.blank? %>
     <h3 class="error">Existen errores de comparación</h3>
-
     <% @marca.errores_manual.try(:each) do |k, v| %>
       <div class="error_manual erro error">
         <div>
@@ -74,62 +73,59 @@
       Debe borrar los errores para que pueda validar el signo al salvar
     </p>
   <% end %>
-
   <div style="clear:both; height: 30px"></div>
   <%= f.submit "Salvar" , :tabindex => 21  %>
 <% end -%>
 
 <div style="clear:both"></div>
 
-
 <script type="text/javascript">
-$(document).ready(function() {
+  $(document).ready(function() {
 
-  $("#marca_agente_ids").find('option').addClass('selected');
-  $("#marca_titular_ids").find('option').addClass('selected');
+    $("#marca_agente_ids").find('option').addClass('selected');
+    $("#marca_titular_ids").find('option').addClass('selected');
 
-  $("#marca_titular_ids").fcbkcomplete({
-    json_url: "/representantes/buscar",
-    filter_hide: true,
-    filter_selected: true,
-    newel: false
-  });
+    $("#marca_titular_ids").fcbkcomplete({
+      json_url: "/representantes/buscar",
+      filter_hide: true,
+      filter_selected: true,
+      newel: false
+    });
 
-  $("#marca_agente_ids").fcbkcomplete({
-    json_url: "/representantes/buscar",
-    filter_hide: true,
-    filter_selected: true,
-    newel: false
-  });
+    $("#marca_agente_ids").fcbkcomplete({
+      json_url: "/representantes/buscar",
+      filter_hide: true,
+      filter_selected: true,
+      newel: false
+    });
 
-  $('.error_manual a').click(function(){
-    $(this).parents("div:first").remove();
-    verificarErrorresManuales();
-  });
+    $('.error_manual a').click(function(){
+      $(this).parents("div:first").remove();
+      verificarErrorresManuales();
+    });
 
-
-  // Funcion que habilita las clases
-  $('#marca_tipo_marca_id').live('change, focusout', function() {
+    // Funcion que habilita las clases
+    $('#marca_tipo_marca_id').live('change, focusout', function() {
       $('#marca_clase_id').find('option').show();
       switch($(this).val()) {
         case '1':
           $('#marca_clase_id').find('option:gt(34)').hide();
-        break;
+          break;
         case '2':
           $('#marca_clase_id').find('option:lt(35)').hide();
-        break;
+          break;
       }
-  });
+    });
 
-  $('#marca_tipo_signo_id').live('change', function() {
+    $('#marca_tipo_signo_id').live('change', function() {
       if(($(this).val() * 1) > 4) {
         $('#marca_tipo_marca_id').val('5');
       }
-  });
+    });
 
- if ($('#marca_tipo_signo_id').val() == "2"){
-    $('#marca_nombre').val("Diseño").hide().after("<span>Diseño</span>");
- }
+    if ($('#marca_tipo_signo_id').val() == "2"){
+      $('#marca_nombre').val("Diseño").hide().after("<span>Diseño</span>");
+    }
 
  if ($('#marca_tipo_signo_id').val() == "1"){
     $('#marca_descripcion_imagen_input').hide();
