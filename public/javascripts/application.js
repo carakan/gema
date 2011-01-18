@@ -120,6 +120,7 @@
       $(div).load($(this).attr("href"), function(e) {
         return $(div).find('a.new[href*=/], a.edit[href*=/]').show();
       });
+      addDatePicker();
       e.stopPropagation();
       return false;
     });
