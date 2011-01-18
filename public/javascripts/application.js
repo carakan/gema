@@ -3,7 +3,7 @@
     var addDatePicker, createDialog, csfr_token, getDataTitle, iniciar, mark, parsearFecha, roundVal, serializeFormElements, setFechaDateSelect, setIframePostEvents, speed, toByteSize, transformarDateSelect;
     speed = 300;
     csfr_token = $('meta[name=csfr-token]').attr('content');
-    $.datepicker._defaults.dateFormat = 'dd M yy';
+    $.datepicker._defaults.dateFormat = 'dd-mm-yy';
     parsearFecha = function(fecha, tipo) {
       var d;
       fecha = $.datepicker.parseDate($.datepicker._defaults.dateFormat, fecha);
@@ -120,6 +120,8 @@
       $(div).load($(this).attr("href"), function(e) {
         return $(div).find('a.new[href*=/], a.edit[href*=/]').show();
       });
+      addDatePicker();
+      transformarDateSelect();
       e.stopPropagation();
       return false;
     });

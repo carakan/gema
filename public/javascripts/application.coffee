@@ -4,7 +4,7 @@ $(document).ready(->
   # csfr
   csfr_token = $('meta[name=csfr-token]').attr('content')
   # Date format
-  $.datepicker._defaults.dateFormat = 'dd M yy'
+  $.datepicker._defaults.dateFormat = 'dd-mm-yy'
   # Parsea la fecha con formato seleciando a un objeto Date
   # @param String fecha
   # @param String tipo : Tipo de dato a devolver
@@ -118,6 +118,7 @@ $(document).ready(->
     $(div).load( $(this).attr("href"), (e)->
       $(div).find('a.new[href*=/], a.edit[href*=/]').show()
     )
+    addDatePicker()
     e.stopPropagation()
     false
   )
