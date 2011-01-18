@@ -116,10 +116,9 @@ $(document).ready(->
 
     div = createDialog( { 'title': $(this).attr('data-title') } )
     $(div).load( $(this).attr("href"), (e)->
+      addDatePicker($(div))
       $(div).find('a.new[href*=/], a.edit[href*=/]').show()
     )
-    addDatePicker()
-    transformarDateSelect()
     e.stopPropagation()
     false
   )
@@ -208,38 +207,6 @@ $(document).ready(->
     false
   )
 
-
-  # Adicionar datepicker a un elemento input
-  addDatePicker = ->
-    $('input.date').each( (i, el)->
-      if(!$(el).hasClass('hasDate'))
-
-        input = document.createElement('input')
-
-        $(input).attr({'type': 'text', 'class': 'ui-date-text'})
-        $(el).addClass('hasDate hide').after(input)
-
-        id = '#' + el.id
-
-        $(input).datepicker(
-          'altFormat': 'yy-mm-dd'
-          'altField': id
-          'showOtherMonths': true
-          'selectOtherMonths': true
-          'buttonImage': '/images/icons/calendar.gif'
-          'showOn': 'button'
-          'buttonImageOnly': true
-        )
-        try
-          d = $.datepicker.parseDate('yy-mm-dd', $(el).val() )
-          d = $.datepicker.formatDate($.datepicker._defaults.dateFormat, d)
-          $(input).datepicker('setDate', d)
-        catch e
-          e
-
-    )
-  #fin datePicker
-
   # Cambiar icono para more y less
   $('ul.menu>li').live('mouseover mouseout', (e)->
     $span = $(this).find('.more, .less')
@@ -292,8 +259,9 @@ $(document).ready(->
   $.serializeFormElements = $.fn.serializeFormElements = serializeFormElements
 
   # Adiciona un datePicker a todos los elementos con clase date
-  addDatePicker = ->
-    $('input.date').each( (i, el)->
+  addDatePicker = (element_find) ->
+    element_find = element_find || $(document)
+    $('input.date', element_find).each( (i, el)->
       if( !$(el).hasClass('hasDate') )
 
         input = document.createElement('input')
