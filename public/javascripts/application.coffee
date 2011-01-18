@@ -148,13 +148,14 @@ $(document).ready(->
     iframe.onload = ->
       html = $(iframe).contents().find('body').html()
       if $(html).find('form').length <= 0 and created
-        $('#posts ul:first').prepend(html)
-        mark('#posts ul li:first')
+        #$('#posts ul:first').prepend(html)
+        #mark('#posts ul li:first')
         posts = parseInt($('#posts ul:first>li').length)
         postsSize = parseInt($('#posts').attr("data-posts_size") )
         if(posts > postsSize)
           $('#posts ul:first>li:last').remove()
         $('#create_post_dialog').dialog('close')
+        window.location.reload();
       else
         created = true
         $('#create_post_dialog').html(html)
