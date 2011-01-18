@@ -299,6 +299,9 @@ class Marca < ActiveRecord::Base
   # @param Marca o modelo heredado Indica si se debe unir con los atributos de la clase
   # @return Marca.new o clase heredada
   def self.crear_instancia(params)
+    if params[:fecha_instruccion] 
+      params[:fecha_instruccion] = Date.parse(params[:fecha_instruccion])
+    end
     klass = new(params)
     set_include_estado(klass, params[:marca_estado_id])
     #set_include_tipo_signo(params[:tipo_signo_id])

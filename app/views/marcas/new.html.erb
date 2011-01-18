@@ -143,7 +143,10 @@ $(document).ready(function() {
   
   /*$(".date").datepicker({
     altField: '#actualDate', altFormat: 'dd M yy'
-    datepicker('setDate', new Date(y, m-1, d));
-  })*/
+    //datepicker('setDate', new Date(y, m-1, d));
+    })*/
+    $(".date").datepicker({
+      showOn: 'button', buttonImageOnly: true, buttonImage: 'images/icon_cal.png' }
+    );
 });
 </script>
