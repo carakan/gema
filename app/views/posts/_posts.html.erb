@@ -16,7 +16,7 @@
         <% posts.each do |p| %>
           <h4><%= p.titulo %></h4>
           <p>
-            <%= p.comentario %>
+            <%= p.comentario.html_safe %>
           </p>
           Por <strong><%= p.usuario %></strong><br />
           <em><%= l(p.created_at, :format => "%d, %B %Y %H:%M") if p.created_at %></em>
@@ -28,7 +28,7 @@
             <% end %>
           </ul>
           <%= link_to "borrar", p, :class => 'delete' %>
-          <%= link_to 'Editar', edit_post_path(p), :class =>'edit'%> 
+          <%= link_to 'Editar', edit_post_path(p), :class =>'edit post', "data_title" => "Editar comentario"%> 
         <% end %>
       </div>
     <% end %>
