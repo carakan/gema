@@ -121,6 +121,7 @@ module ModMarca::PDF
             break
           end
         end
+
         arr << hash
 
         break if @posicion == (divs.size - 1)

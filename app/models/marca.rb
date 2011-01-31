@@ -421,6 +421,9 @@ class Marca < ActiveRecord::Base
           marca.errores_manual[m] = "tiene valor distinto"
         end
       else
+        if marca[m].nil? || marca[m].blank?
+          marca[m] = params[m]
+        end
         #marca.errores_manual[m] = "#{TIPOS[params[:estado]]} con valor distinto: #{params[m]}" unless marca.send(m) == params[m]
         marca.errores_manual[m] = error_manual_comparacion(params[m])
       end
