@@ -24,10 +24,13 @@
 <% end %>
 
 <h1> Datos de la búsqueda</h3>
-<div id="izquierda">
+<div id="contenido">
+<div class="izquierda">
   <p>
-    <label for="">Cliente</label>
-    <h2><%= @consulta.representante %></h2>
+    <% if @consulta.representante %>
+      <label for="">Cliente</label>
+      <h2><%= @consulta.representante %></h2>
+    <%end%>
   </p>
   
   <p>
@@ -43,7 +46,7 @@
     <% end %>
   <% end %>
 </div>
-<div id="derecha">
+<div class="derecha">
   <p>
     <label for="">Comentario</label>
     <h2><%=h @consulta.comentario %></h2>
@@ -51,12 +54,13 @@
 
  
   <p>
-    <label>Usuario:</label>
+    <label>Usuario</label>
     <h2><%=h @consulta.usuario %></h2>
   </p>
 </div>
+</div>
 <div style="clear:both"></div>
-
+<hr>
 <h1>Marcas que coinciden</h2>
 <table class="decorated">
   <tr align="center">
@@ -71,12 +75,13 @@
   <% @consulta.consulta_detalles.each do |cd| %>
     <tr>
       <td>
-        <span class="propia"><%= cd.try(:marca) %></span>
+        <% @css = cd.marca.propia ? "propia": "foranea" %>
+        <span class="<%= @css %>"><%= cd.try(:marca) %></span>
       </td>
       <td><%= cd.marca.try(:clase_id) %></td>
       <td><%= cd.marca.try(:tipo_signo) %></td>
-      <td><%#= numero_marca(cd)%></td>
-      <td><%#= lo(fecha_marca(cd), :format => "%d %b, %Y") %></td>
+      <td><%= cd.marca.numero_marca%></td>
+      <td><%= lo(cd.marca.fecha_marca, :format => "%d %b, %Y") %></td>
       <td>
         <%= cd.marca.titulares.join(", ") %>
       </td>
@@ -92,3 +97,4 @@
   <%= link_to 'Reporte', new_reporte_marca_path(:consulta_id => @consulta.id) %>
 </p>
 <% end  %>
+

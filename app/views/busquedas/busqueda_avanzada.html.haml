@@ -204,6 +204,15 @@
         = text_field_tag "fecha_ren_inicio", "", :class => "date"
         = label_tag "a:","a:", :class => 'line'
         = text_field_tag "fecha_ren_fin", "", :class => "date"
+
+        = label_tag "Renovaciones pendientes:"
+        = label_tag "de:","de:", :class => 'line'
+        = text_field_tag "fecha_ren_pen_inicio", "", :class => "date"
+        = label_tag "a:","a:", :class => 'line'
+        = text_field_tag "fecha_ren_pen_fin", "", :class => "date"
+        %br
+        %br
+
         %br.clear
         %br.clear
       %br.clear
@@ -211,12 +220,11 @@
     = submit_tag "Buscar"
 %br.clear
 
-
-= render :partial => "resultados"
+= render :partial => "resultados", :locals => {:avanzado => true}
 
 :javascript
   $('#agentes, #titulares').autocomplete({
-    'source': '/representantes/buscar',
+    'source': '/representantes/buscar?all=true',
     'select': function(e, ui) {
       var node = "";
       var attribute = "";
@@ -243,7 +251,7 @@
   });
 
   $('#contenido input:checkbox').live("click", function() {
-    if( $(this).attr('checked') ) {
+    if( $(this).is(':checked') ) {
       var id = $(this).attr("name").replace(/^[a-z_]+([0-9]+)$/,"$1");
       var index = $(this).attr('data-index');
       $('<input/>').attr({

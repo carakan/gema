@@ -74,6 +74,9 @@ class ConsultasController < ApplicationController
         notice = "Se ha almacenado la consulta"
         uri = new_reporte_marca_url(:consulta_id => @consulta.id)
       end
+      if params[:avanzado]
+        uri = download_advanced_reporte_marca_path(:id => @consulta.id)
+      end
       redirect_to uri, :notice => notice
     else
       render :action => "new"

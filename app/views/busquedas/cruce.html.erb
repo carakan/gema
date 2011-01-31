@@ -6,7 +6,6 @@
 <div class="breadcrumps">
   <%= link_to "Lista de importaciones", importaciones_path %> > <%= link_to "Cruce gaceta", cruce_importaciones_path(:importacion_id => params[:importacion_id], :page => @page) %> > Selección
 </div>
-
 <div id="contenido">
   <div class="izquierda">
       <label for="">Signo</label><br/><br/>
@@ -45,7 +44,7 @@
     </div>
 
     <div class="subder">
-      <label class="remarcado"><%= cambio @marca ,:estado_fecha %></label>
+      <label class="remarcado"><%= cambio @marca ,:fecha_solicitud %></label>
     </div>
     <div style="clear:both"></div>
 
@@ -65,7 +64,7 @@
     </div>
 
     <div class="subder">
-      <label class="remarcado"<%= cambio @marca ,:tipo_signo_id %></label>
+      <label class="remarcado"<%= cambio @marca ,:tipo_signo_id , @marca.tipo_signo %></label>
     </div>
     <div style="clear:both"></div>
 

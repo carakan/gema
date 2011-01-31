@@ -21,8 +21,8 @@ class RepresentantesController < ApplicationController
     @representante = Representante.find(params[:id])
     @post = @representante.posts.build()
     #respond_to do |format|
-      #format.html # show.html.erb
-      #format.xml  { render :xml => @representante }
+    #format.html # show.html.erb
+    #format.xml  { render :xml => @representante }
     #end
   end
 
@@ -106,7 +106,15 @@ class RepresentantesController < ApplicationController
       busq = params[:term]
       hash_proc = lambda { |c| { :id => c.id, :label => c.to_s } }
     end
-    @clientes = Representante.clientes.where("nombre LIKE ?", "%#{busq}%").limit(50).order("nombre")
+    if params[:all]
+      @clientes = Representante.where("nombre LIKE ?", "%#{busq}%").limit(20).order("nombre")
+    else
+      @clientes = Representante.clientes.where("nombre LIKE ?", "%#{busq}%").limit(20).order("nombre")
+    end
     render :text => @clientes.map{ |c| hash_proc.call(c) }.to_json 
+  end
+
+  def representante_contactos
+    @representante = Representante.find(params[:id])
   end
 end

@@ -3,7 +3,7 @@
     var addDatePicker, createDialog, csfr_token, getDataTitle, iniciar, mark, parsearFecha, roundVal, serializeFormElements, setFechaDateSelect, setIframePostEvents, speed, toByteSize, transformarDateSelect;
     speed = 300;
     csfr_token = $('meta[name=csfr-token]').attr('content');
-    $.datepicker._defaults.dateFormat = 'dd M yy';
+    $.datepicker._defaults.dateFormat = 'dd-mm-yy';
     parsearFecha = function(fecha, tipo) {
       var d;
       fecha = $.datepicker.parseDate($.datepicker._defaults.dateFormat, fecha);
@@ -118,7 +118,8 @@
         'title': $(this).attr('data-title')
       });
       $(div).load($(this).attr("href"), function(e) {
-        return $(div).find('a.new[href*=/], a.edit[href*=/], a.list[href*=/]').hide();
+        addDatePicker($(div));
+        return $(div).find('a.new[href*=/], a.edit[href*=/]').show();
       });
       e.stopPropagation();
       return false;
@@ -152,14 +153,13 @@
         var html, posts, postsSize;
         html = $(iframe).contents().find('body').html();
         if ($(html).find('form').length <= 0 && created) {
-          $('#posts ul:first').prepend(html);
-          mark('#posts ul li:first');
           posts = parseInt($('#posts ul:first>li').length);
           postsSize = parseInt($('#posts').attr("data-posts_size"));
           if (posts > postsSize) {
             $('#posts ul:first>li:last').remove();
           }
-          return $('#create_post_dialog').dialog('close');
+          $('#create_post_dialog').dialog('close');
+          return window.location.reload();
         } else {
           created = true;
           return $('#create_post_dialog').html(html);
@@ -213,36 +213,6 @@
       });
       return false;
     });
-    addDatePicker = function() {
-      return $('input.date').each(function(i, el) {
-        var d, id, input;
-        if (!$(el).hasClass('hasDate')) {
-          input = document.createElement('input');
-          $(input).attr({
-            'type': 'text',
-            'class': 'ui-date-text'
-          });
-          $(el).addClass('hasDate hide').after(input);
-          id = '#' + el.id;
-          $(input).datepicker({
-            'altFormat': 'yy-mm-dd',
-            'altField': id,
-            'showOtherMonths': true,
-            'selectOtherMonths': true,
-            'buttonImage': '/images/icons/calendar.gif',
-            'showOn': 'button',
-            'buttonImageOnly': true
-          });
-          try {
-            d = $.datepicker.parseDate('yy-mm-dd', $(el).val());
-            d = $.datepicker.formatDate($.datepicker._defaults.dateFormat, d);
-            return $(input).datepicker('setDate', d);
-          } catch (e) {
-            return e;
-          }
-        }
-      });
-    };
     $('ul.menu>li').live('mouseover mouseout', function(e) {
       var $span;
       $span = $(this).find('.more, .less');
@@ -288,8 +258,9 @@
       return params;
     };
     $.serializeFormElements = $.fn.serializeFormElements = serializeFormElements;
-    addDatePicker = function() {
-      return $('input.date').each(function(i, el) {
+    addDatePicker = function(element_find) {
+      element_find = element_find || $(document);
+      return $('input.date', element_find).each(function(i, el) {
         var d, id, input;
         if (!$(el).hasClass('hasDate')) {
           input = document.createElement('input');

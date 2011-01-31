@@ -70,6 +70,12 @@ class ReporteMarcasController < ApplicationController
     end
   end
 
+  def download_advanced
+    consulta = Consulta.find(params[:id])
+    reporte = render_to_string(:partial => "tabla_busqueda_avanzada_long", :locals => {:show_titulares => true, :consulta => consulta})
+    send_data reporte.encode('ISO-8859-1'), :filename => "busqueda_avanzada.xls", :type => 'application/vnd.ms-excel;', :encoding => 'utf-8'
+  end
+
   # GET /reporte_marcas/new
   # GET /reporte_marcas/new.xml
   def cruce

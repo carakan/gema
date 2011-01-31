@@ -39,7 +39,13 @@ class CruceReport < ReporteMarcaBase
   end
 
   def analisis
-    text(@observacion.to_s, :inline_format => true)
+    if I18n.locale == :es
+      text("<b>Análisis</b>", :inline_format => true)
+      text(@observacion.to_s, :inline_format => true)
+    else
+      text("<b>Comments</b>", :inline_format => true)
+      text(@observacion.to_s, :inline_format => true)
+    end
   end
 
   def encabezado

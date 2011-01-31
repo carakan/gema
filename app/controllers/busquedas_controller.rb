@@ -9,8 +9,17 @@ class BusquedasController < ApplicationController
     @busqueda = []
     params[:tipo_busqueda] = 'prev' if params[:tipo_busqueda].nil?
     if params[:busqueda]
-      @busqueda = Busqueda.realizar_busqueda(params)
-      @busqueda2 = Busqueda.realizar_busqueda({:busqueda => params[:busqueda], :tipo_representante => 1}, Representante)
+      if params[:representante] && (params[:representante] == "agente" || params[:representante] == "titular")
+        representante_ids = Busqueda.realizar_busqueda({:busqueda => params[:busqueda]}, Representante).collect {|representante| representante.id}
+        if params[:representante] == "agente"
+          @busqueda = Marca.search(:agentes_id_in => representante_ids)
+        else
+          @busqueda = Marca.search(:titulares_id_in => representante_ids)
+        end
+      else
+        @busqueda = Busqueda.realizar_busqueda(params)
+      end
+            
       @representantes = Busqueda.preparar_representantes(@busqueda)
       # Crea una nueva busqueda con los parametros de la busqueda
       @consulta = Consulta.nueva(params)
@@ -32,7 +41,7 @@ class BusquedasController < ApplicationController
 
     query[:clases] = (1..45).to_a
     @con = Consulta.new(:consulta_id => params[:consulta_id], :busqueda => @marca.nombre, :parametros => query, 
-                        :importacion_id => params[:importacion_id], :marca_id => params[:marca_id])
+      :importacion_id => params[:importacion_id], :marca_id => params[:marca_id])
     @consulta_detalles = []
     unless params[:consulta_id].nil?
       @consulta = Consulta.find(params[:consulta_id]) 
@@ -56,19 +65,37 @@ class BusquedasController < ApplicationController
   def busqueda_avanzada
     if params[:search]
       prepare_search
-      @busqueda = Marca.search(params[:search])
-      @representantes = Busqueda.preparar_representantes(@busqueda)
+      timeout(30){@busqueda_old = Marca.search(params[:search])}
+      @representantes = Busqueda.preparar_representantes(@busqueda_old)
+      @consulta = Consulta.new(:parametros => params[:search])
+      @busqueda = []
+      if params[:search]["fecha_registro_btw_any"]
+        fecha_inicio = 6.months.ago(Date.parse(params["fecha_ren_pen_inicio"]))
+        @busqueda_old.each do |element|
+          if element.fecha_renovacion.nil? || element.fecha_renovacion.to_date <= fecha_inicio
+            @busqueda << element
+          end
+        end
+      else
+        @busqueda_old.each{ |element| @busqueda << element }
+      end
+      @busqueda_old = nil
+      @busqueda.sort! { |a, b| [a.agente_ids_serial.sort, a.titular_ids_serial.sort] <=> [b.agente_ids_serial.sort, b.titular_ids_serial.sort]  }
+    else
+      @consulta = Consulta.new()
     end
-
-    @consulta = Consulta.new()
-  rescue
+  rescue Timeout::Error => ex
+    flash[:notice] = "Existe un error en los criterios de busqueda, la consulta tardo demasiado."
+    render :action => :busqueda_avanzada
+  rescue => e
+    flash[:notice] = "Existe un error en los criterios de busqueda, vuelva a intentarlo. #{e}"
     render :action => :busqueda_avanzada
   end
 
   private
 
   def splits_params(name, new_name, split = true)
-    if params[:search][name] 
+    if params[:search][name]
       values = params[:search].delete(name)
       if !values.blank?
         values = values.split(" ") if split
@@ -110,28 +137,50 @@ class BusquedasController < ApplicationController
     else
       splits_params("observaciones", :observaciones_contains_all)
     end
-    keys = {"fecha_sol" => "fecha_solicitud", "fecha_pub" => "fecha_publicacion", "fecha_reg" => "fecha_registro", "fecha_sol_ren" => "fecha_solicitud_renovacion", "fecha_ren" => "fecha_renovacion"
+    keys = {"fecha_sol" => "fecha_solicitud", "fecha_pub" => "fecha_publicacion",
+      "fecha_reg" => "fecha_registro", "fecha_sol_ren" => "fecha_solicitud_renovacion",
+      "fecha_ren" => "fecha_renovacion", "fecha_ren_pen" => "fecha_registro"
     }
     keys.each do |key|
       if params["#{key[0]}_inicio"] && !params["#{key[0]}_inicio"].empty? && params["#{key[0]}_fin"] && !params["#{key[0]}_fin"].empty?
-        params[:search]["#{key[1]}_btw"] = [Date.parse(params["#{key[0]}_inicio"]), Date.parse(params["#{key[0]}_fin"])]
+        if key[0] == "fecha_ren_pen"
+          fecha_inicio_key = 6.months.ago(Date.parse(params["#{key[0]}_inicio"]))
+          fecha_fin_key = 6.months.since(Date.parse(params["#{key[0]}_fin"]))
+          fechas = []
+          while(fecha_inicio_key.year > 1900 && fecha_fin_key.year > 1900)
+            fechas << [fecha_inicio_key, fecha_fin_key]
+            fecha_inicio_key = 10.years.ago(fecha_inicio_key)
+            fecha_fin_key = 10.years.ago(fecha_fin_key)
+          end
+          params[:search]["#{key[1]}_btw_any"] = fechas
+        else
+          params[:search]["#{key[1]}_btw"] = [Date.parse(params["#{key[0]}_inicio"]), Date.parse(params["#{key[0]}_fin"])]
+        end
       end
     end
 
-    other_keys = {:sm => "vista_marca_numero_solicitud_n", "publicacion" => "vista_marca_numero_publicacion", "gaceta" => "numero_gaceta", "registro" => "vista_marca_numero_registro_n",
-      :sr => "vista_marca_numero_solicitud_renovacion_n", :renovacion => "vista_marca_numero_renovacion_n", :id => "id"}
+    other_keys = {:sm => ["vista_marca_numero_solicitud_n", "vista_marca_numero_solicitud_a"], "publicacion" => "vista_marca_numero_publicacion", "gaceta" => "numero_gaceta", "registro" => "vista_marca_numero_registro_n",
+      :sr => ["vista_marca_numero_solicitud_renovacion_n", "vista_marca_numero_solicitud_renovacion_a"], :renovacion => "vista_marca_numero_renovacion_n", :id => "id"}
 
     other_keys.each do |key|
       if params["#{key[0]}_inicio"] && !params["#{key[0]}_inicio"].empty?
         if params["#{key[0]}_fin"] && !params["#{key[0]}_fin"].empty?
-          params[:search]["#{key[1]}_btw"] = [params["#{key[0]}_inicio"].to_i, params["#{key[0]}_fin"].to_i]
-          if key[0] == :sm && params["#{key[0]}_inicio"].split("-").size > 1
-            params[:search]["vista_marca_numero_solicitud_a_btw"] = [params["#{key[0]}_inicio"].split("-").last, params["#{key[0]}_fin"].split("-").last]
+          if (key[0] == :sm || key[0] == :sr)
+            if params["#{key[0]}_inicio"].split("-").size > 1
+              params[:search]["#{key[1][0]}_btw"] = [params["#{key[0]}_inicio"].split("-").first.to_i, params["#{key[0]}_fin"].split("-").first.to_i]
+              params[:search]["#{key[1][1]}_btw"] = [params["#{key[0]}_inicio"].split("-").last.to_i, params["#{key[0]}_fin"].split("-").last.to_i]
+            end
+          else
+            params[:search]["#{key[1]}_btw"] = [params["#{key[0]}_inicio"].to_i, params["#{key[0]}_fin"].to_i]
           end
         else
-          params[:search]["#{key[1]}_equals"] = params["#{key[0]}_inicio"].to_i
-          if key[0] == :sm && params["#{key[0]}_inicio"].split("-").size > 1
-            params[:search]["vista_marca_numero_solicitud_a_equals"] = params["#{key[0]}_inicio"].split("-").last
+          if (key[0] == :sm || key[0] == :sr)
+            if params["#{key[0]}_inicio"].split("-").size > 1
+              params[:search]["#{key[1][0]}_equals"] = params["#{key[0]}_inicio"].split("-").first.to_i
+              params[:search]["#{key[1][1]}_equals"] = params["#{key[0]}_inicio"].split("-").last.to_i
+            end
+          else
+            params[:search]["#{key[1]}_equals"] = params["#{key[0]}_inicio"].to_i
           end
         end
       end

@@ -4,7 +4,7 @@ $(document).ready(->
   # csfr
   csfr_token = $('meta[name=csfr-token]').attr('content')
   # Date format
-  $.datepicker._defaults.dateFormat = 'dd M yy'
+  $.datepicker._defaults.dateFormat = 'dd-mm-yy'
   # Parsea la fecha con formato seleciando a un objeto Date
   # @param String fecha
   # @param String tipo : Tipo de dato a devolver
@@ -116,7 +116,8 @@ $(document).ready(->
 
     div = createDialog( { 'title': $(this).attr('data-title') } )
     $(div).load( $(this).attr("href"), (e)->
-      $(div).find('a.new[href*=/], a.edit[href*=/], a.list[href*=/]').hide()
+      addDatePicker($(div))
+      $(div).find('a.new[href*=/], a.edit[href*=/]').show()
     )
     e.stopPropagation()
     false
@@ -148,13 +149,14 @@ $(document).ready(->
     iframe.onload = ->
       html = $(iframe).contents().find('body').html()
       if $(html).find('form').length <= 0 and created
-        $('#posts ul:first').prepend(html)
-        mark('#posts ul li:first')
+        #$('#posts ul:first').prepend(html)
+        #mark('#posts ul li:first')
         posts = parseInt($('#posts ul:first>li').length)
         postsSize = parseInt($('#posts').attr("data-posts_size") )
         if(posts > postsSize)
           $('#posts ul:first>li:last').remove()
         $('#create_post_dialog').dialog('close')
+        window.location.reload();
       else
         created = true
         $('#create_post_dialog').html(html)
@@ -204,38 +206,6 @@ $(document).ready(->
 
     false
   )
-
-
-  # Adicionar datepicker a un elemento input
-  addDatePicker = ->
-    $('input.date').each( (i, el)->
-      if(!$(el).hasClass('hasDate'))
-
-        input = document.createElement('input')
-
-        $(input).attr({'type': 'text', 'class': 'ui-date-text'})
-        $(el).addClass('hasDate hide').after(input)
-
-        id = '#' + el.id
-
-        $(input).datepicker(
-          'altFormat': 'yy-mm-dd'
-          'altField': id
-          'showOtherMonths': true
-          'selectOtherMonths': true
-          'buttonImage': '/images/icons/calendar.gif'
-          'showOn': 'button'
-          'buttonImageOnly': true
-        )
-        try
-          d = $.datepicker.parseDate('yy-mm-dd', $(el).val() )
-          d = $.datepicker.formatDate($.datepicker._defaults.dateFormat, d)
-          $(input).datepicker('setDate', d)
-        catch e
-          e
-
-    )
-  #fin datePicker
 
   # Cambiar icono para more y less
   $('ul.menu>li').live('mouseover mouseout', (e)->
@@ -289,8 +259,9 @@ $(document).ready(->
   $.serializeFormElements = $.fn.serializeFormElements = serializeFormElements
 
   # Adiciona un datePicker a todos los elementos con clase date
-  addDatePicker = ->
-    $('input.date').each( (i, el)->
+  addDatePicker = (element_find) ->
+    element_find = element_find || $(document)
+    $('input.date', element_find).each( (i, el)->
       if( !$(el).hasClass('hasDate') )
 
         input = document.createElement('input')

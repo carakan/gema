@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
     member do
       get :download
+      get :download_advanced
     end
   end
 
@@ -50,9 +51,17 @@ Rails.application.routes.draw do
 
   resources :tipo_marcas
 
-  resources :usuarios
+  resources :usuarios do
+    member do
+      post :create_usuario
+      put :update_usuario
+    end
+  end
 
   resources :representantes do
+    member do
+      get :representante_contactos
+    end
     collection do
       get :buscar
     end

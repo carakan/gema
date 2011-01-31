@@ -1,5 +1,5 @@
 <h1>Comentarios</h1>
 <div class="posts">
-<%= render "posts", :locales => {:posts => @posts} %>
+  <%= render :partial => "posts", :locals => {:posts => @posts} %>
 </div>
 <%= will_paginate @posts %>

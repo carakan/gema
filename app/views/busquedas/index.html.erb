@@ -5,7 +5,7 @@
 </div>
 <% unless params[:busqueda].nil? %>
   <hr />
-  <h2 class="dark"><span class="resaltado"><%= params[:busqueda].upcase %></span> tuvo <%= @busqueda.size %> resultados en las clases
+  <h2 class="dark"><span class="resaltado"><% if @busqueda %><%= params[:busqueda].upcase %></span> tuvo <%= @busqueda.size %> resultados en las clases
     <% if params[:clases].count < 45%>
       <%= params[:clases].keys.join(",") %>
     <% else %>
@@ -13,6 +13,7 @@
     <% end %>
     <% unless params[:representante_id].blank? %> para el cliente <%= Representante.find(params[:representante_id]) %>
     <% end %>
+  <% end %>
   </h2>
 <% end %>
 <%= render :partial => "resultados" %>
@@ -43,7 +44,6 @@
       }
     });
 
-
     $('#cliente_id').autocomplete({
       'source': '/representantes/buscar',
       'select': function(e, ui) {
@@ -52,6 +52,5 @@
         //$('span.representante_id').html(val.item.label);
       }
     });
-
   });
 </script>

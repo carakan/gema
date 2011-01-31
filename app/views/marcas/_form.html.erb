@@ -51,7 +51,7 @@
       <%= f.input :domicilio_titular, :tabindex => 12, :as => :text, :input_html => { :cols => 50, :rows => 4 }  %>
     </li>
     <li class="fl half">
-      <%= f.input :fecha_instruccion , :as => 'string', :input_html => { :class => 'date' } %>
+    <%= f.input :fecha_instruccion , :label => 'Fecha instrucción', :as => 'string', :input_html => { :class => 'date' } %>
     </li>
     <li class="fl half">
       <%= f.input :instruccion, :collection => Marca::INSTRUCCIONES, :label => 'Tipo de instrucción' %>
@@ -165,6 +165,10 @@ $(document).ready(function() {
   if ($('#marca_tipo_signo_id').val() == "1"){
     $('#marca_descripcion_imagen_input').hide();
     $('#marca_descripcion_imagen').val(" Descripcion diseño").hide();
+  }
+ 
+  if ($('#marca_tipo_signo_id').val() == "4"){
+    $('#marca_nombre').val("Marca tridimensional").hide().after("<span>Marca Tridimensional</span>");
   }
 
 });

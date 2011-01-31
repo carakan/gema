@@ -1,0 +1,27 @@
+<h1 class="title">Lista de contactos</h1>
+<div class="subder">
+  <table class="decorated nwl">
+    <tr>
+      <th style="width:250px">Nombre</th>
+      <th>Cargo</th>
+      <th>Teléfono</th>
+      <th>Email</th>
+      <th>Regla relacionamiento</th>
+      <th></th>
+    </tr>    
+
+    <% unless @representante.blank? %>
+      <% contacts = @representante.contactos %>
+      <% contacts.each do |contacto| %>
+    <tr>    
+      <td><%= contacto.nombre %></td>
+      <td><%= contacto.cargo %></td>
+      <td><%= contacto.telefono %></td>
+      <td><%= contacto.email %></td>
+      <td><%= contacto.relacionamiento %></td>
+      <td><%= link_to 'Editar', edit_contacto_path(contacto), :class => 'edit' %></td>
+    </tr>
+      <% end %>
+    <% end %>
+</table>
+</div>

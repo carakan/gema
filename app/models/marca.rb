@@ -213,16 +213,16 @@ class Marca < ActiveRecord::Base
   end
 
   # Realiza la inclusion de modulos de acuerdo al tipo_signo
- #def self.set_include_tipo_signo(signo)
- #  case signo
- #  when 1
- #    include ModMarca::Denominacion
- #  when 2
- #    include ModMarca::Etiqueta
- #  when 3
- #    include ModMarca::Figurativa
- #  end
- #end
+  #def self.set_include_tipo_signo(signo)
+  #  case signo
+  #  when 1
+  #    include ModMarca::Denominacion
+  #  when 2
+  #    include ModMarca::Etiqueta
+  #  when 3
+  #    include ModMarca::Figurativa
+  #  end
+  #end
 
 
   def self.ver_estado(est)
@@ -271,7 +271,7 @@ class Marca < ActiveRecord::Base
     Marca.all(:conditions => { :fecha_importacion => fecha, :valido => valid }, :include => [ :clase, :tipo_signo ] )
   end
 
-
+    
   # indica si hay errores en un listado
   # Debe ser un resultado de la tabla 'view_importaciones'
   # Marca.table_name = 'view_importaciones'
@@ -299,6 +299,9 @@ class Marca < ActiveRecord::Base
   # @param Marca o modelo heredado Indica si se debe unir con los atributos de la clase
   # @return Marca.new o clase heredada
   def self.crear_instancia(params)
+    if params[:fecha_instruccion] 
+      params[:fecha_instruccion] = Date.parse(params[:fecha_instruccion])
+    end
     klass = new(params)
     set_include_estado(klass, params[:marca_estado_id])
     #set_include_tipo_signo(params[:tipo_signo_id])
@@ -436,7 +439,7 @@ class Marca < ActiveRecord::Base
   end
 
   def self.quitar_comillas(txt)
-    txt.gsub(/^(\342\200\234|"|\342\200\235)(.*)(\342\200\235|"|\342\200\234)$/, '\2').strip
+      txt.gsub(/^(\342\200\234|"|\342\200\235)(.*)(\342\200\235|"|\342\200\234)$/, '\2').strip
   end
 
 
@@ -510,7 +513,7 @@ class Marca < ActiveRecord::Base
   private
 
   def quitar_comillas
-    self.nombre = Marca.quitar_comillas(self.nombre)
+    self.nombre = Marca.quitar_comillas(self.nombre) if self.nombre
   end
 
   def adicionar_usuario
@@ -573,7 +576,7 @@ class Marca < ActiveRecord::Base
   def set_marca_estado_id
     if self.estado
       case self.estado
-      when 'sm' then self.marca_estado_id = 1
+      when 'sm' then self.marca_estado_id = 2
       when 'lp' then self.marca_estado_id = 7
       when 'lr' then self.marca_estado_id = 12
       when 'rc' then self.marca_estado_id = 18
