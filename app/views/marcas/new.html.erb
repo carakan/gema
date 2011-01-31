@@ -55,7 +55,7 @@
   <%= f.input :instruccion, :collection => Marca::INSTRUCCIONES, :label => 'Tipo de instrucción' %>
   <%= f.input :pais_prioridad_id, :as => :select, :collection => Pais.find(:all), :label => 'Pais prioridad' %>
   <%= f.input :numero_prioridad, :label => 'Número de prioridad' %>
-  <%= f.input :fecha_prioridad,:label => 'Fecha de prioridad', :as => 'string', :input_html => { :class => 'date' } %>
+  <%= f.input :fecha_prioridad,:label => 'Fecha de prioridad', :as => 'string', :input_html => { :class => 'date' }%>
   <%= f.input :marca_estado, :tabindex => 10, :label => 'Estado' %>
 
   <% unless @marca.errores_manual.blank? %>
@@ -127,8 +127,14 @@
       $('#marca_nombre').val("Diseño").hide().after("<span>Diseño</span>");
     }
 
-    if ($('#marca_tipo_signo_id').val() == "4"){
-      $('#marca_nombre').val("Marca tridimensional").hide().after("<span>Marca Tridimensional</span>");
-    }
-  });
+ if ($('#marca_tipo_signo_id').val() == "1"){
+    $('#marca_descripcion_imagen_input').hide();
+    $('#marca_descripcion_imagen').val(" Descripcion diseño").hide();
+  }
+
+
+ if ($('#marca_tipo_signo_id').val() == "4"){
+    $('#marca_nombre').val("Marca tridimensional").hide().after("<span>Marca Tridimensional</span>");
+  }
+});
 </script>

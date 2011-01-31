@@ -113,4 +113,8 @@ class RepresentantesController < ApplicationController
     end
     render :text => @clientes.map{ |c| hash_proc.call(c) }.to_json 
   end
+
+  def representante_contactos
+    @representante = Representante.find(params[:id])
+  end
 end

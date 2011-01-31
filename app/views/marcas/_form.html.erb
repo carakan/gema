@@ -166,6 +166,10 @@ $(document).ready(function() {
     $('#marca_descripcion_imagen_input').hide();
     $('#marca_descripcion_imagen').val(" Descripcion diseño").hide();
   }
+ 
+  if ($('#marca_tipo_signo_id').val() == "4"){
+    $('#marca_nombre').val("Marca tridimensional").hide().after("<span>Marca Tridimensional</span>");
+  }
 
 });
 

@@ -25,10 +25,15 @@ module BusquedasHelper
   def parametros_busqueda(search)
     parametros = search
     x = []
+    y = []
+    res = []
     parametros.each do |key, value|
-      x << key.gsub(/equals|any|btw|btw_any|vista_marca|_n_|_a_|contains_all|_in/, "").gsub(/_/, " ")
+      x = key.gsub(/equals|any|btw|btw_any|vista_marca|_n_|_a_|contains_all|_in/, "").gsub(/_/," ")
+      y << "#{parametros[key]}"
+      res << "#{x} = #{value}"
     end
-    return "Busqueda por: #{x.uniq.join(", ")}"
+      return "#{res.uniq.join("<br>")}".html_safe
+      #return "Valores: #{y.uniq.join(", ")} Campos: #{x.uniq.join(", ")}"
   end
 
   # presenta de acuerdo al estado

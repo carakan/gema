@@ -7,3 +7,4 @@ Los archivos para hacer pruebas se encuentran en: 'spec/archivos'
 Los modulos de marca se encuentran en lib/mod_marca
 
 El plugin more ahora se lo instala desde: git://github.com/grosser/more.git
+"Prueba 1"
