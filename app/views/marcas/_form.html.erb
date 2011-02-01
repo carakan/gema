@@ -84,10 +84,24 @@
 
   <%= f.input :numero_renovacion,:label => 'Número de renovación' , :tabindex => 18 %>
   <%= f.input :fecha_renovacion, :as => 'string', :input_html => { :tabindex => 19, :class => 'date'  } %>
-  <% unless @marca.errores_manual.blank? %>
+  <% if !@marca.errores_manual.empty? && @marca.errores_manual.class != String %>
     <h3 class="error">Existen errores de comparación</h3>
-
     <% @marca.errores_manual.try(:each) do |k, v| %>
+      <div class="error_manual erro error">
+        <div>
+          <%= hidden_field_tag "marca[errores_manual][#{k}]", v  %>
+          <%= k.to_s.humanize %>: <%= v %>
+          <a href="javascript:">borrar</a>
+        </div>
+      </div>
+    <% end %>
+    <p class="inline-hints">
+      Debe borrar los errores para que pueda validar el signo al salvar
+    </p>
+  <% end %>
+  <% if !@marca.errores.empty? && @marca.errores.class != String %>
+    <h3 class="error">Existen errores de comparación</h3>
+    <% @marca.errores.try(:each) do |k, v| %>
       <div class="error_manual erro error">
         <div>
           <%= hidden_field_tag "marca[errores_manual][#{k}]", v  %>

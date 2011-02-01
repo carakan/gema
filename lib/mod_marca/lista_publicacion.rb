@@ -85,16 +85,14 @@ module ModMarca::ListaPublicacion
     # Busca la marca que debe actualizar o crear una nueva
     def crear_o_actualizar(params, hoja)
       params = get_pdf_params( params, hoja)
-      comp = [ :apoderado, :tipo_signo_id, :clase_id, :nombre, :tipo_marca_id, :titular_ids, :productos, :numero_gaceta, :numero_publicacion, :fecha_publicacion, :productos, :apoderado]
+      comp = [ :apoderado, :tipo_signo_id, :clase_id, :nombre, :tipo_marca_id, :titular_ids, :productos, :numero_gaceta, :numero_publicacion, :fecha_publicacion, :productos, :apoderado, :domicilio_titular]
       params[:fecha_publicacion] = @fecha_publicacion
       klass = buscar_comparar_o_nuevo(params, comp)
       
       # Salva correctamente o sino con errores
-      
       unless klass.save
         klass.valido = false # Indica que no paso la validación
         klass.almacenar_errores
-        debugger
         klass.save(:validate => false )
       end
       klass
@@ -136,7 +134,8 @@ module ModMarca::ListaPublicacion
         :titular_ids => [buscar_o_crear_titular(params)].compact,
         :apoderado => params['NOMBRE DEL APODERADO'],
         :productos => params['PRODUCTOS'],
-        :importacion_id => @importacion.id
+        :importacion_id => @importacion.id,
+        :domicilio_titular => params["DIRECCION DEL TITULAR"]
       }
     end
 
