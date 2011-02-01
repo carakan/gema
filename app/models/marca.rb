@@ -99,8 +99,8 @@ class Marca < ActiveRecord::Base
 
   scope :cruce, lambda { |importacion_id, nombre_marca|
     where("marcas.importacion_id = ? AND marcas.tipo_signo_id NOT IN (?) AND marcas.nombre_minusculas LIKE ?",
-          importacion_id, TipoSigno.descartadas_cruce, "%#{ nombre_marca.downcase }%").
-          includes(:tipo_signo, :clase, { :consultas => :usuario }, :titulares)
+      importacion_id, TipoSigno.descartadas_cruce, "%#{ nombre_marca.downcase }%").
+      includes(:tipo_signo, :clase, { :consultas => :usuario }, :titulares)
   }
 
   scope :propias, where(:propia => true)
@@ -366,7 +366,7 @@ class Marca < ActiveRecord::Base
   #   @return array
   def ultimos_posts()
     Post.all(:conditions => { :postable_id => self.id, :postable_type => 'Marca' }, 
-             :limit => POSTS_SIZE, :order => 'created_at DESC' )
+      :limit => POSTS_SIZE, :order => 'created_at DESC' )
   end
 
   # Almacena los errores despues de que es fallida la validación (usado para importaciones)
@@ -414,10 +414,9 @@ class Marca < ActiveRecord::Base
       marca.attributes = params
       return marca
     end
-
     marca.importacion_id = params[:importacion_id]
+    marca.fecha_publicacion = params[:publicacion_fecha]
     marca.errores_manual = {}
-
     comp.each do |m|
       if m.to_s =~ /^.*_ids$/
         unless marca[m].try(:sort) == params[m].try(:sort)
@@ -431,7 +430,6 @@ class Marca < ActiveRecord::Base
         marca.errores_manual[m] = error_manual_comparacion(params[m])
       end
     end
-
     marca
   end
 
@@ -442,9 +440,8 @@ class Marca < ActiveRecord::Base
   end
 
   def self.quitar_comillas(txt)
-      txt.gsub(/^(\342\200\234|"|\342\200\235)(.*)(\342\200\235|"|\342\200\234)$/, '\2').strip
+    txt.gsub(/^(\342\200\234|"|\342\200\235)(.*)(\342\200\235|"|\342\200\234)$/, '\2').strip
   end
-
 
   # presenta de acuerdo al estado
   def numero_marca
@@ -562,9 +559,11 @@ class Marca < ActiveRecord::Base
 
   # Valida de que los campos de comparación esten vacios
   def validar_errores_manual
-    unless self.errores_manual.blank?
-      self.errores_manual.each do |k, v|
-        self.errors.add(k, v)
+    if self.errores_manual.class != String
+      if self.errores_manual && !self.errores_manual.empty?
+        self.errores_manual.each do |k, v|
+          self.errors.add(k, v)
+        end
       end
     end
   end

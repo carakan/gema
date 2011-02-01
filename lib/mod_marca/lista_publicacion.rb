@@ -48,6 +48,7 @@ module ModMarca::ListaPublicacion
       archivo, @nro_gaceta = [ params[:archivo], params[:publicacion] ]
       @fecha_imp = DateTime.now.strftime("%Y-%m-%d %H:%I:%S")
       @formato_fecha = params.delete(:formato_fecha)
+      @fecha_publicacion = params[:publicacion_fecha]
 
       Importacion.transaction do
         @importacion = Importacion.create!(params)
@@ -85,12 +86,15 @@ module ModMarca::ListaPublicacion
     def crear_o_actualizar(params, hoja)
       params = get_pdf_params( params, hoja)
       comp = [ :apoderado, :tipo_signo_id, :clase_id, :nombre, :tipo_marca_id, :titular_ids, :productos, :numero_gaceta, :numero_publicacion, :fecha_publicacion, :productos, :apoderado]
+      params[:fecha_publicacion] = @fecha_publicacion
       klass = buscar_comparar_o_nuevo(params, comp)
+      
       # Salva correctamente o sino con errores
       
       unless klass.save
         klass.valido = false # Indica que no paso la validación
         klass.almacenar_errores
+        debugger
         klass.save(:validate => false )
       end
       klass
