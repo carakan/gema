@@ -107,9 +107,7 @@ module ModMarca::ListaRegistro
       params[:numero_solicitud] = preparar_numero_solicitud(params[:numero_solicitud])
       params[:tipo_signo_id] = buscar_tipo_signo_id(params[:tipo_signo_id])
       params[:clase_id] = params[:clase_id].to_i
-
       params
     end
-
   end
 end

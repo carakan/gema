@@ -566,7 +566,7 @@ class Marca < ActiveRecord::Base
         end
       end
     end
-        if self.errores.class != String
+    if self.errores.class != String
       if self.errores && !self.errores.empty?
         self.errores.each do |k, v|
           self.errors.add(k, v)
