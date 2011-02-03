@@ -433,6 +433,13 @@ class Marca < ActiveRecord::Base
     marca
   end
 
+  def actualizar_clientes_propios
+    representantes = Representante.find(self.titular_ids)
+    representantes.each do |representante|
+      representante.update_attribute(:cliente, true)
+    end
+  end
+
   def self.error_manual_comparacion(act)
     e2 = ""
     e2 = act.size <= 50 ? act : act[0,50] + '...' unless act.nil?

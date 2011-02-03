@@ -88,8 +88,7 @@ module ModMarca::ListaPublicacion
       comp = [ :apoderado, :tipo_signo_id, :clase_id, :nombre, :tipo_marca_id, :titular_ids, :productos, :numero_gaceta, :numero_publicacion, :fecha_publicacion, :productos, :apoderado, :domicilio_titular]
       params[:fecha_publicacion] = @fecha_publicacion
       klass = buscar_comparar_o_nuevo(params, comp)
-      
-      # Salva correctamente o sino con errores
+      klass.actualizar_clientes_propios if klass.propia
       unless klass.save
         klass.valido = false # Indica que no paso la validación
         klass.almacenar_errores
@@ -178,16 +177,21 @@ module ModMarca::ListaPublicacion
     # Crea un representante y lo relaciona
     def buscar_o_crear_titular(params)
       rep = Representante.where(["LOWER(nombre) = ?", params['NOMBRE DEL TITULAR'].downcase]).first
-      if rep and ! rep.cliente
+      pais = Pais.find_by_codigo(params['PAIS DEL TITULAR'])
+      if rep
+        if pais
+          rep.pais_id = pais.id
+          rep.pais_codigo = pais.codigo
+          rep.pais_nombre = pais.nombre
+        end
         rep.direccion = params['DIRECCION DEL TITULAR']
-        rep.pais = Pais.find_by_codigo(params['PAIS DEL TITULAR'])
-        rep.save
-      elsif not params['NOMBRE DEL TITULAR'].blank?
+        rep.save(:validate => false)
+      elsif !params['NOMBRE DEL TITULAR'].blank?
         rep = Representante.new(
           :nombre => params['NOMBRE DEL TITULAR'],
           :direccion => params['DIRECCION DEL TITULAR'],
           :cliente => false,
-          :pais_id => Pais.find_by_codigo(params['PAIS DEL TITULAR']).try(:id)
+          :pais_id => pais.try(:id)
         )
         rep.save
       end
@@ -229,10 +233,10 @@ module ModMarca::ListaPublicacion
         m = 'Marca Producto'
       elsif (marca == 'Marca Servicio')
         m = 'Marca Servicio'
-        elsif (marca == 'Marca Colectiva')
-          m = 'Marca Colectiva'
-        else (marca == 'Marca de Certificación')
-          m = 'Marca de Certificación'
+      elsif (marca == 'Marca Colectiva')
+        m = 'Marca Colectiva'
+      else (marca == 'Marca de Certificación')
+        m = 'Marca de Certificación'
       end
 
       m
@@ -300,15 +304,15 @@ module ModMarca::ListaPublicacion
     #   @param Integer fila
     #   @return Marca
     #def crear_marca_excel(fila, fecha_imp)
-      #klass = Marca.new( get_excel_params(fila, fecha_imp) )
+    #klass = Marca.new( get_excel_params(fila, fecha_imp) )
 
-      ## Salva correctamente o sino con errores
-      #unless klass.save
-        #klass.valido = false # Indica que no paso la validación
-        #klass.save( false )
-      #end
+    ## Salva correctamente o sino con errores
+    #unless klass.save
+    #klass.valido = false # Indica que no paso la validación
+    #klass.save( false )
+    #end
 
-      #klass
+    #klass
     #end
 
     # Obitiene los datos de la fila del excel
