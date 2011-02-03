@@ -177,9 +177,11 @@ module ModMarca::ListaPublicacion
 
     # Crea un representante y lo relaciona
     def buscar_o_crear_titular(params)
-      rep = Representante.find_by_nombre(params['NOMBRE DEL TITULAR'])
+      rep = Representante.where(["LOWER(nombre) = ?", params['NOMBRE DEL TITULAR'].downcase]).first
       if rep and ! rep.cliente
-        rep.update_attributes(:direccion => params['DIRECCION DEL TITULAR'])
+        rep.direccion = params['DIRECCION DEL TITULAR']
+        rep.pais = Pais.find_by_codigo(params['PAIS DEL TITULAR'])
+        rep.save
       elsif not params['NOMBRE DEL TITULAR'].blank?
         rep = Representante.new(
           :nombre => params['NOMBRE DEL TITULAR'],
