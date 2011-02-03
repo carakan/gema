@@ -528,7 +528,7 @@ span.foranea, a.foranea {
 }
 span.resaltado {
   color: #0055aa;
-  font-size: 22px;
+  font-size: 15px;
 }
 .delete-l {
   background-image: url(../images/icons/delete.png);
@@ -813,7 +813,7 @@ div#busqueda {
   width: 100%;
 }
 div#busqueda label {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: normal;
   line-height: 18px;
   display: block;
@@ -822,7 +822,7 @@ div#busqueda label {
   text-align: left;
 }
 div#busqueda label.line {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: normal;
   line-height: 18px;
   display: inline;
