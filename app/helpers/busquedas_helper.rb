@@ -25,11 +25,15 @@ module BusquedasHelper
   def parametros_busqueda(search)
     parametros = search
     x = []
-    y = []
+    #y = []
     res = []
     parametros.each do |key, value|
       x = key.gsub(/equals|any|btw|btw_any|vista_marca|_n_|_a_|contains_all|_in/, "").gsub(/_/," ")
-      y << "#{parametros[key]}"
+      #y << "#{parametros[key]}"
+      if value.class != String
+        value = value.join(", ")
+      end
+      
       res << "#{x} = #{value}"
     end
       return "#{res.uniq.join("<br>")}".html_safe
@@ -64,5 +68,6 @@ module BusquedasHelper
 
   def llenar_datos_iguales(datos)
     [["Todas las marcas", "all_values"]] + datos.collect {|element| [ element.nombre, element.id]}
+   
   end
 end

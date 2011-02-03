@@ -1,7 +1,7 @@
 <h2 class="dark">
     <% unless @busqueda.nil? %>
       <% if params[:action] != "index" %>
-        Para los parametros de búsqueda: <br> <span class="resaltado"> <%= parametros_busqueda(params[:search]) unless params[:search].nil?%>  </span><br> se obtuvieron <%= @busqueda.size %> resultados
+       Para los parametros de búsqueda: <br> <span class="resaltado"> <%= parametros_busqueda(params[:search]) unless params[:search].nil?%>  </span><br> se obtuvieron <%= @busqueda.size %> resultados
       <% end %>
   <% end %>
 </h2>
@@ -34,7 +34,7 @@
           <% @busqueda.each do |marca| %>
             <tr>
               <td>
-                <%= check_box_tag "consulta_detalles_attributes_#{marca.id}", 1, false, 'data-index' => index %>
+               <%= check_box_tag "consulta_detalles_attributes_#{marca.id}", 1, false, 'data-index' => index %>
               </td>
               <td><label for="marca<%= marca.id %>"><span class="<%= marca.propia! %>"><%= link_to marca.nombre, marca_path(marca), :class => 'ajax'%></span></label></td>
               <td><%= marca.clase_id %></td>
