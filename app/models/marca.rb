@@ -477,7 +477,18 @@ class Marca < ActiveRecord::Base
     fecha_numero_marca[:fecha]
   end
 
-
+  # Usado en caso de importación para asignar el marca_estado_id de una marca
+  def set_marca_estado_id
+    if self.estado
+      case self.estado
+      when 'sm' then self.marca_estado_id = 2
+      when 'lp' then self.marca_estado_id = 7
+      when 'lr' then self.marca_estado_id = 12
+      when 'rc' then self.marca_estado_id = 18
+      when 'sr' then self.marca_estado_id = 16
+      end
+    end
+  end
 
   protected
   #########################################################
@@ -589,16 +600,5 @@ class Marca < ActiveRecord::Base
     self.productos = self.clase.descripcion unless self.clase.nil?
   end
 
-  # Usado en caso de importación para asignar el marca_estado_id de una marca
-  def set_marca_estado_id
-    if self.estado
-      case self.estado
-      when 'sm' then self.marca_estado_id = 2
-      when 'lp' then self.marca_estado_id = 7
-      when 'lr' then self.marca_estado_id = 12
-      when 'rc' then self.marca_estado_id = 18
-      when 'sr' then self.marca_estado_id = 16
-      end
-    end
-  end
+
 end
