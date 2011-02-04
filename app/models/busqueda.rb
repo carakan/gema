@@ -151,9 +151,9 @@ class Busqueda
     condicion_sql = ""
     if params[:propia].nil?
       condicion_sql
-    elsif params[:propia] == "1"
+    elsif params[:propia] == "1" || params[:propia] === true
       condicion_sql = "AND res.propia = 1"
-    elsif params[:propia] == "0"
+    elsif params[:propia] == "0" || params[:propia] === false
       condicion_sql = "AND res.propia = 0"
     end
     return condicion_sql

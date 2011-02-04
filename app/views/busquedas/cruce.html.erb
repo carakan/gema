@@ -146,7 +146,7 @@
                     </td>
                   <% end %>
                   <td <%= errores_marca(b) %>>
-                    <label for="consulta_consulta_detalles_attributes_<%= i %>_marca_id" class="propia"><%= link_to b.nombre, marca_path(b), :class => :ajax%></label>
+                    <label for="consulta_consulta_detalles_attributes_<%= i %>_marca_id"><%= link_to b.nombre, marca_path(b), :class => "ajax #{b.propia!} #{b.valido!}" %></label>
                   </td>
                   <td><%= b.tipo_signo.sigla if b.tipo_signo %></td>
                   <td><%= b.clase_id %></td>
