@@ -85,7 +85,7 @@ module ModMarca::ListaPublicacion
     # Busca la marca que debe actualizar o crear una nueva
     def crear_o_actualizar(params, hoja)
       params = get_pdf_params( params, hoja)
-      comp = [ :apoderado, :tipo_signo_id, :clase_id, :nombre, :tipo_marca_id, :titular_ids, :productos, :numero_gaceta, :numero_publicacion, :fecha_publicacion, :productos, :apoderado, :domicilio_titular]
+      comp = [ :apoderado, :tipo_signo_id, :clase_id, :nombre, :tipo_marca_id, :titular_ids, :productos, :numero_gaceta, :numero_publicacion, :fecha_publicacion, :productos, :apoderado, :domicilio_titular, :estado]
       params[:fecha_publicacion] = @fecha_publicacion
       klass = buscar_comparar_o_nuevo(params, comp)
       klass.actualizar_clientes_propios if klass.propia

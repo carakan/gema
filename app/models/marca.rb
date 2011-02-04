@@ -430,6 +430,7 @@ class Marca < ActiveRecord::Base
         marca.errores_manual[m] = error_manual_comparacion(params[m])
       end
     end
+    marca.set_marca_estado_id
     marca
   end
 
