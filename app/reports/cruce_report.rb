@@ -14,7 +14,8 @@ class CruceReport < ReporteMarcaBase
       cells.style(:size => 8, :inline_format => true)
       column(0..5).style(:width => 80)
       column(0).style(:width => 120)
-      column(5).style(:width => 300)
+      column(5).style(:width => 250)
+      column(5).style(:width => 100)
     end
   end
 
@@ -50,9 +51,9 @@ class CruceReport < ReporteMarcaBase
 
   def encabezado
     if I18n.locale == :es
-      ["Signo vigilado", "Tipo", "Clase", "Número", "Fecha", "Obsevaciones"]
+      ["Signo vigilado", "Tipo", "Clase", "Número", "Fecha", "Titular" ,"Obsevaciones"]
     else
-      ["Own trademarks", "Type", "Class", "Pub. Number", "Date", "Observations"]
+      ["Own trademarks", "Type", "Class", "Pub. Number", "Date", "Owner", "Observations"]
     end
   end
 
@@ -64,7 +65,8 @@ class CruceReport < ReporteMarcaBase
     datos_array[2] = "#{ reporte_marca.marca_propia.clase_id }"
     datos_array[3] = "#{ reporte_marca.marca_propia.numero_marca if reporte_marca.marca_propia.numero_marca }"
     datos_array[4] = "#{ I18n.l(reporte_marca.marca_propia.fecha_marca.to_date, :format => :short) if reporte_marca.marca_propia.fecha_marca}"
-    datos_array[5] = "#{ reporte_marca.comentario }"
+    datos_array[5] = "#{ reporte_marca.marca_propia.titulares.join(", ") }"
+    datos_array[6] = "#{ reporte_marca.comentario }"
     datos_array
   end
 
