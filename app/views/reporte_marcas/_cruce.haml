@@ -1,6 +1,6 @@
 %tr
   %td Fecha Importacion
-  %td{:colspan => 6}= "Gaceta " + @reporte_marca.importacion.publicacion + " del #{l(@reporte_marca.importacion.publicacion_fecha) if @reporte_marca.importacion.publicacion_fecha}"
+  %td{:colspan => 6}= "Gaceta #{@reporte_marca.importacion.publicacion if @reporte_marca.importacion} del #{l(@reporte_marca.importacion.publicacion_fecha) if @reporte_marca.importacion.publicacion_fecha}"
 
 %tr
   %td{:colspan => 7} Datos de la Marca
@@ -24,5 +24,3 @@
 %tr
   %td Carta
   %td{:colspan => 6}= @reporte_marca.carta
-
-

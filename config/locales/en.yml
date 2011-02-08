@@ -24,3 +24,15 @@ en:
   time:
     formats:
       date: "%B %d, %Y"
+
+  "glosa-1": "Orientation on trademark types, numbers and dates"
+  "glosa-2": "Trademark types"
+  "glosa-3": "MD: Word trademark / MF: Device trademark / MM: Word & Device trademark / MT: 3D Trademark / NCD: Word trade name / NCM: Word & Device trade name / LC: Slogan / OT: Other"
+  "glosa-4": "Numbers"
+  "glosa-5": "Trademark registration or renewal applications: 4 or 5 digits followed by a year reference (2 or 4 digits) e.g. 05678-2010 or 4432-10."
+  "glosa-6": "Publication number: 5 or 6 dígits (e.g. 54099 o 167544)"
+  "glosa-7": "Granted registration number: 4 to 6 digits followed by \"-C\" e.g 5332-C, 88901-C or 145433-C"
+  "glosa-8": "Granted renewal number: 4 to 6 digits followed by \"-A\" e.g. 2011-A, 77644-A o 101564-A"
+  "glosa-9": "Dates"
+  "glosa-10": "Regarding trademark registration applications, trademark renewal applications, and trademark publication numbers, dates are referred to the filing date."
+  "glosa-11": "Regarding granted registration and renewal numbers, dates are referred to the granting date (trademarks are in force 10 years after this date)."
