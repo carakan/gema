@@ -65,7 +65,7 @@ class CruceReport < ReporteMarcaBase
     datos_array[2] = "#{ reporte_marca.marca_propia.clase_id }"
     datos_array[3] = "#{ reporte_marca.marca_propia.numero_marca if reporte_marca.marca_propia.numero_marca }"
     datos_array[4] = "#{ I18n.l(reporte_marca.marca_propia.fecha_marca.to_date, :format => :short) if reporte_marca.marca_propia.fecha_marca}"
-    datos_array[5] = "#{ reporte_marca.marca_propia.titulares.join(", ") }"
+    datos_array[5] = "#{ reporte_marca.marca_propia.titulares.collect{|persona| persona.nombre}.join(", ") }"
     datos_array[6] = "#{ reporte_marca.comentario }"
     datos_array
   end
