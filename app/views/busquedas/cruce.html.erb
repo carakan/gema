@@ -86,13 +86,6 @@
     </div>
   </div>
 
-
-  <!--<div class="scroll">
-<%#= render :partial => "/marcas/mostrar" %>
-</div>-->
-<%#= link_to "Ver marca", ver_marca_path(@marca), :class => 'ajax show' %>
-  <!--  </div>-->
-
   <div class="clear"></div>
   <div class="clear"></div>
   <div class="clear"></div>
@@ -146,14 +139,14 @@
                     </td>
                   <% end %>
                   <td <%= errores_marca(b) %>>
-                    <label for="consulta_consulta_detalles_attributes_<%= i %>_marca_id" class="propia"><%= link_to b.nombre, marca_path(b), :class => :ajax%></label>
+                    <label for="consulta_consulta_detalles_attributes_<%= i %>_marca_id"><%= link_to b.nombre, marca_path(b), :class => "ajax #{b.propia!} #{b.valido!}" %></label>
                   </td>
                   <td><%= b.tipo_signo.sigla if b.tipo_signo %></td>
                   <td><%= b.clase_id %></td>
                   <td><%= b.numero_marca %></td>
                   <td><%= lo(b.fecha_marca, :format => "%d %b, %Y") if b.fecha_marca %></td>
-                  <td><%= b.agentes.join(", ") %></td>
-                  <td><%= b.titulares.join(", ") %></td>
+                  <td><%= b.agentes.collect{|a| "#{a} - #{a.id}"}.join(", ") %></td>
+                  <td><%= b.titulares.collect{|a| "#{a} - #{a.id}"}.join(", ") %></td>
                   <% if params[:reporte] %>
                     <td><%= text_area_tag "observaciones_#{b.id}", "", :size => "10x3" %></td>
                     <% if group_selected %>

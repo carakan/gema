@@ -57,11 +57,13 @@ class ReporteMarcasController < ApplicationController
           send_data reporte, :filename => "#{nombre_archivo}.pdf"
         end
         format.xls do
+          I18n.locale = @reporte_marca.idioma
           if @reporte_marca.importacion_id
             reporte = render_to_string(:partial => "tabla_cruce", :locals => {:show_titulares => true})
           else
             reporte = render_to_string(:partial => "tabla_busqueda", :locals => {:show_titulares => true})
           end
+          I18n.locale = "es"
           send_data reporte.encode('ISO-8859-1'), :filename => "#{nombre_archivo}.xls", :type => 'application/vnd.ms-excel;', :encoding => 'utf-8'
         end
       end

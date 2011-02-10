@@ -432,7 +432,15 @@ class Marca < ActiveRecord::Base
         marca.errores_manual[m] = error_manual_comparacion(params[m])
       end
     end
+    marca.set_marca_estado_id
     marca
+  end
+
+  def actualizar_clientes_propios
+    representantes = Representante.find(self.titular_ids)
+    representantes.each do |representante|
+      representante.update_attribute(:cliente, true)
+    end
   end
 
   def self.error_manual_comparacion(act)
@@ -471,7 +479,18 @@ class Marca < ActiveRecord::Base
     fecha_numero_marca[:fecha]
   end
 
-
+  # Usado en caso de importación para asignar el marca_estado_id de una marca
+  def set_marca_estado_id
+    if self.estado
+      case self.estado
+      when 'sm' then self.marca_estado_id = 2
+      when 'lp' then self.marca_estado_id = 7
+      when 'lr' then self.marca_estado_id = 12
+      when 'rc' then self.marca_estado_id = 18
+      when 'sr' then self.marca_estado_id = 16
+      end
+    end
+  end
 
   protected
   #########################################################
@@ -583,16 +602,5 @@ class Marca < ActiveRecord::Base
     self.productos = self.clase.descripcion unless self.clase.nil?
   end
 
-  # Usado en caso de importación para asignar el marca_estado_id de una marca
-  def set_marca_estado_id
-    if self.estado
-      case self.estado
-      when 'sm' then self.marca_estado_id = 2
-      when 'lp' then self.marca_estado_id = 7
-      when 'lr' then self.marca_estado_id = 12
-      when 'rc' then self.marca_estado_id = 18
-      when 'sr' then self.marca_estado_id = 16
-      end
-    end
-  end
+
 end

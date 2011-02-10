@@ -36,7 +36,7 @@ class BusquedasController < ApplicationController
     @importacion = Importacion.find(params[:importacion_id])
 
     @busqueda = Busqueda.realizar_busqueda(query)
-
+    @busqueda = @busqueda.collect{ |marca| marca if(((@marca.titular_ids - marca.titular_ids).size == marca.titular_ids.size)||marca.titular_ids.empty?)}.compact
     @busqueda.sort! { |a, b| [a.agente_ids_serial.sort, a.titular_ids_serial.sort] <=> [b.agente_ids_serial.sort, b.titular_ids_serial.sort]  }
 
     query[:clases] = (1..45).to_a

@@ -10,6 +10,19 @@ es:
   "imagen marca": Diseño
 
 
+  "glosa-1": "Orientación sobre formatos de tipos de signo, numeración y fechas"
+  "glosa-2": "Tipos de signo"
+  "glosa-3": "MD: Marca Denominativa / MF: Marca figurativa / MM: Marca Mixta / MT: Marca Tridimensional / NCD: Nombre Comercial Denominativo / NCM: Nombre comercial mixto / LC: Lema comercial / OT: Otro"
+  "glosa-4": "Números"
+  "glosa-5": "Números de solicitudes de registro y renovación de signos: 4 o 5 dígitos seguidos de una referencia de año (2 a 4 dígitos) Ej. 05678-2010 o 4432-10."
+  "glosa-6": "Números de publicación: 5 o 6 dígitos seguidos (Ej. 54099 o 167544)"
+  "glosa-7": "Números de registro: 4 a 6 digitos seguidos de la terminación \"-C\" Ej. 5332-C, 88901-C o 145433-C"
+  "glosa-8": "Números de renovación: 4 a 6 digitos seguidos de la terminación \"-A\" Ej. 2011-A, 77644-A o 101564-A"
+  "glosa-9": "Fechas"
+  "glosa-10": "Números de solicitudes de registro, solicitudes de renovación y publicaciones: fecha de presentación de la solicitud."
+  "glosa-11": "Números de registros o renovaciones: la fecha corresponde a la de su concesión (vigencia de 10 años a partir de esta fecha)."
+
+  
 
   number:
     # Used in number_with_delimiter()

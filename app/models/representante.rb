@@ -48,12 +48,12 @@ class Representante < ActiveRecord::Base
 
   def ultimos_posts()
     Post.all(:conditions => { :postable_id => self.id, :postable_type => 'Representante' }, 
-             :limit => POSTS_SIZE, :order => 'created_at DESC' )
+      :limit => POSTS_SIZE, :order => 'created_at DESC' )
   end
   
   def lista_contactos()
     Contacto.all(:conditions => { :representante_id => self.id }, 
-             :limit => POSTS_SIZE, :order => 'created_at DESC' )
+      :limit => POSTS_SIZE, :order => 'created_at DESC' )
   end
 
   # concatena los datos denormalizados de pais
@@ -82,7 +82,7 @@ class Representante < ActiveRecord::Base
     clientes.map { |v| [v.nombre, v.id] }
   end
 
-private
+  private
   # Prepara el atributo validar
   def set_validar
     self.validar = true if validar.nil?
@@ -90,8 +90,10 @@ private
 
   # Denormaliza los datos de país
   def set_pais
-    self.pais_codigo = self.pais.codigo
-    self.pais_nombre = self.pais.nombre
+    if self.pais
+      self.pais_codigo = self.pais.codigo
+      self.pais_nombre = self.pais.nombre
+    end
   end
 
   #def strip_data
