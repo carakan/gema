@@ -1,0 +1,27 @@
+<h2>Listado Lemas Comerciales Existentes</h2>
+
+
+<table class="decorated nwl">
+  <tr>
+    <th style="width:250px">Nombre</th>
+    <th>Estado</th>
+    <th>Tipo</th>
+    <th>Cl</th>
+    <th>Numero</th>
+    <th>Fecha</th>
+    <th>Titulares</th>
+  </tr>
+  <% marcas.each do |marca| %>
+    <tr>
+      <td><%= link_to marca.nombre.upcase, marca_path(marca), :class => "#{ marca.propia!} #{ marca.valido!} propia_margin" %><br/><br/></td>
+      <td><%= MarcaEstado.sigla_estado(marca.marca_estado_id) %></td>
+      <td><% unless marca.tipo_signo.nil?%><%= marca.tipo_signo.sigla %><%end%></td>
+      <td><%= marca.clase_id %></td>
+      <td><%= marca.numero_marca %></td>
+      <td><%= lo(marca.fecha_marca, :format => "%d %b, %Y") if marca.fecha_marca %></td>
+      <td><%= marca.titulares.map(&:nombre).join(", ") %></td>
+      <td><%= link_to("Adicionar", adicionar_lemas_marca_path(@marca.id, :lema_marca_id=>marca))%></td>
+    </tr>
+  <%end%>
+</table>
+

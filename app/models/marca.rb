@@ -105,6 +105,8 @@ class Marca < ActiveRecord::Base
 
   scope :propias, where(:propia => true)
 
+  scope :listado_lemas_comerciales, where('marcas.tipo_signo_id = 7')
+   
   TIPOS = {
     'sm' => 'Solicitud de Marca',
     'lp' => 'Lista de publicación',

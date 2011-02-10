@@ -12,6 +12,7 @@
 <%= @will = will_paginate @representantes %>
 <table class="decorated nwl">
     <tr>
+      <th>Id</th>
       <th>Nombre</th>
       <th>País</th>
       <th>Direccion</th>
@@ -20,6 +21,7 @@
 
 <% @representantes.each do |representante| %>
   <tr>
+    <td><%= representante.id %></td>
     <td><%= link_to representante.nombre, representante, :class => cliente_propio(representante) %></td>
     <td><%= representante.pais_datos %></td>
    <td><%= representante.direccion %></td>

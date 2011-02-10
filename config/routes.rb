@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     collection do
       get :cruces
       post :cruce
+      
     end
 
     member do
@@ -78,6 +79,11 @@ Rails.application.routes.draw do
       post :create_post
       get :ver
       get :quitar_lema
+      get :adicionar_lemas
+    end
+    collection do
+      get :lemas_comerciales
+      
     end
   end
 

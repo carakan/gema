@@ -21,7 +21,6 @@ class MarcasController < ApplicationController
     @marca.valid?
   end
 
-
   def create
     @marca = Marca.crear_instancia(params[:marca])
     if @marca.save
@@ -77,6 +76,18 @@ class MarcasController < ApplicationController
     @lema = Marca.find(params[:lema_id])
     @marca = Marca.find(params[:id])
     @lema.update_attribute(:lema_marca_id, nil)
+    redirect_to @marca
+  end
+
+  def lemas_comerciales
+    @marca = Marca.find(params[:id])
+    render :partial=> "listar", :locals=>{:marcas=>Marca.listado_lemas_comerciales}
+  end
+
+  def adicionar_lemas
+    @marca = Marca.find(params[:id])
+    @lema = Marca.find(params[:lema_marca_id])
+    @marca.lemas_comerciales << @lema
     redirect_to @marca
   end
 
