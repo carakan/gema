@@ -15,15 +15,15 @@ end
 gem "nifty-generators"
 gem "haml"
 gem 'formtastic'
-gem 'will_paginate', '~> 3.0.pre2'
+gem 'will_paginate'
 gem 'nokogiri'
 gem 'forgery'
 gem 'zip'
 gem 'spreadsheet'
 gem 'google-spreadsheet-ruby'
 gem 'roo'
-gem 'paperclip', '2.3.6'
-gem 'prawn', '0.10.2'
+gem 'paperclip'
+gem 'prawn'
 gem 'less'
 gem 'devise'
 gem 'simple_form'
@@ -31,8 +31,8 @@ gem "meta_search"
 
 group :test do
   gem 'rspec-rails'
-  gem 'steak', '>= 1.0.0'
+  gem 'steak'
   gem 'capybara'
   gem 'mocha'
-  gem 'spork', '0.8.4'
+  gem 'spork'
 end

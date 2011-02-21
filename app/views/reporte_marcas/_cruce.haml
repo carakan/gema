@@ -1,9 +1,19 @@
 %tr
-  %td Fecha Importacion
-  %td{:colspan => 6}= "Gaceta #{@reporte_marca.importacion.publicacion if @reporte_marca.importacion} del #{l(@reporte_marca.importacion.publicacion_fecha) if @reporte_marca.importacion.publicacion_fecha}"
+  %td{:colspan => 6} REPORTE DE VIGILANCIA DE SIGNOS DISTINTIVOS
+%tr
+  %td Gaceta
+  %td= "#{@reporte_marca.importacion.publicacion if @reporte_marca.importacion}"
+%tr
+  %td Fecha publicación
+  %td{:colspan => 2}= "#{l(@reporte_marca.importacion.publicacion_fecha) if @reporte_marca.importacion.publicacion_fecha}"
+%tr
+  %td{:colspan => 3} Fecha límite para presentar oposiciones
+  %td{:colspan => 2}= "#{l(@reporte_marca.importacion.fecha_limite) if @reporte_marca.importacion.fecha_limite}"
+
+
 
 %tr
-  %td{:colspan => 7} Datos de la Marca
+  %td{:colspan => 7} SIGNO PUBLICADO
 
 %tr
   %td Denominacion
@@ -15,12 +25,15 @@
 
 %tr
   %td= @reporte_marca.marca_foranea.nombre
-  %td= @reporte_marca.marca_foranea.tipo_signo
+  %td= @reporte_marca.marca_foranea.tipo_signo.sigla
   %td= @reporte_marca.marca_foranea.tipo_marca
   %td= @reporte_marca.marca_foranea.clase_id
   %td= @reporte_marca.marca_foranea.numero_marca
   %td= @reporte_marca.marca_foranea.fecha_marca
 
 %tr
-  %td Carta
+  %td Observaciones
   %td{:colspan => 6}= @reporte_marca.carta
+
+%tr
+  %td{:colspan => 7} SIGNO(S) VIGILADO(S)
