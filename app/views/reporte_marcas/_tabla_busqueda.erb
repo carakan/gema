@@ -5,19 +5,14 @@
       <th class="_200" colspan="7"><%= @reporte_marca.busqueda.upcase %></th>
     </tr>
     <tr>
-      <th class="_200" >Idioma</th>
-      <th class="_200" colspan="7"><%= @reporte_marca.idioma! %></th>
-    </tr>
-    <tr>
-      <th class="_200" >Analisis</th>
-      <th class="_200" colspan="7"><%= @reporte_marca.carta %></th>
-    </tr>
-    <tr>
       <th class="_200" >Fecha</th>
       <th class="_200" colspan="7"><%= l(@reporte_marca.created_at) %></th>
     </tr>
     <tr>
-      <th class="_200" colspan="8"><%= l(@reporte_marca.created_at) %></th>
+      <th class="_200" colspan="8"></th>
+    </tr>
+    <tr>
+      <th class="_200" colspan="2">RESULTADOS</th>
     </tr>
   <% end %>
   <tr style="background-color: #000; color: #fff">
@@ -52,5 +47,17 @@
       <td><%= rd.comentario %></td>
     </tr>
   <% end %>
+  <% if show_titulares %>
+    <tr>
+      <th class="_200" colspan="8"></th>
+    </tr>
+    <tr>
+      <td class="_200" >Análisis</th>
+      <th class="_200" colspan="7"><%= @reporte_marca.carta %></th>
+    </tr>
+  <% end %>
+    <tr>
+      <td><%= render :partial => "nota" if show_titulares%></td>
+    </tr>
 </table>
 
