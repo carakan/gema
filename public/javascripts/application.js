@@ -97,7 +97,11 @@
         'modal': true,
         'resizable': false
       }, params);
-      div = document.createElement('div');
+      if(params['div']){
+        div = params['div'];
+      } else {
+        div = document.createElement('div');
+      }
       $(div).attr({
         'id': params['id'],
         'title': params['title'],
@@ -107,6 +111,7 @@
       });
       delete params['id'];
       delete params['title'];
+      delete params['div'];
       $(div).dialog(params);
       return div;
     };
@@ -166,7 +171,7 @@
         }
       };
     };
-    $('a.post').live('click', function() {
+    $('a.post').live('click', function(e) {
       var div, iframe;
       if ($('iframe#post_iframe').length <= 0) {
         iframe = $('<iframe />').attr({
@@ -176,9 +181,12 @@
         })[0];
         $('body').append(iframe);
         setIframePostEvents(iframe, false);
+        div = document.createElement('div');
+        $(div).load($(this).attr("href"));
         div = createDialog({
           'id': 'create_post_dialog',
-          'title': 'Crear comentario'
+          'title': 'Crear comentario',
+          'div': div
         });
       } else {
         div = $('#create_post_dialog').dialog("open").html("");
