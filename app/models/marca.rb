@@ -150,9 +150,9 @@ class Marca < ActiveRecord::Base
   end
 
   def propia!
-    propia? ? "propia" : "foranea"
+      propia? ? "propia" : "foranea"
   end
-
+     
   def valido!
     valido? ? "" : "error"
   end

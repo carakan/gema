@@ -33,11 +33,13 @@
       <!--<td>
   <%#= rd.busqueda %>
       </td>-->
+      <% if rd.marca_propia %>
       <td><span class="<%= rd.marca_propia.propia! %>"><%= link_to rd.marca_propia.nombre, marca_path(rd.marca_propia), :class => :ajax%></span></td>
       <td><%= rd.marca_propia.tipo_signo.sigla if rd.marca_propia.tipo_signo %></td>
       <td><%= rd.marca_propia.clase_id %></td>
       <td><%= rd.marca_propia.numero_marca %></td>
       <td><%= rd.marca_propia.fecha_marca %></td>
+      <%end%>
       <% if show_titulares %>
         <td><%= rd.marca_propia.titulares.join(", ") %></td>
         <td><%= rd.marca_propia.agentes.join(", ") %></td>
