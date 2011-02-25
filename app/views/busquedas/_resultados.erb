@@ -1,7 +1,7 @@
 <h2 class="dark">
     <% unless @busqueda.nil? %>
       <% if params[:action] != "index" %>
-       Para los parametros de búsqueda: <br> <span class="resaltado"> <%= parametros_busqueda(params[:search]) unless params[:search].nil?%>  </span><br> se obtuvieron <%= @busqueda.size %> resultados
+       Para los parametros de búsqueda: <br/> <span class="resaltado"> <%= parametros_busqueda(params[:search]) unless params[:search].nil?%>  </span><br> se obtuvieron <%= @busqueda.size %> resultados
       <% end %>
   <% end %>
 </h2>
