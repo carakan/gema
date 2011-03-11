@@ -23,9 +23,9 @@ class Representante < ActiveRecord::Base
 
   POSTS_SIZE = 2
 
-  validates_presence_of :nombre
-  validates :email, :presence => {:if => :cliente?}, :email => {:if => lambda { |c| !c.email.blank? } }
-  validates_presence_of :telefono, :direccion, :fax, :if => :cliente?
+  #validates_presence_of :nombre
+  #validates :email, :presence => {:if => :cliente?}, :email => {:if => lambda { |c| !c.email.blank? } }
+  validates_presence_of  :direccion, :if => :cliente?
 
   scope :order, order( "nombre ASC" )
   scope :lista, select("id, nombre, pais_codigo").order("nombre ASC")
