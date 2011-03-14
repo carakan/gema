@@ -1,11 +1,8 @@
 <h1>Busquedas realizadas</h1>
-
 <%= link_to "Nueva busqueda", busquedas_path, :class => 'new fl' %>
-<%# link_to "Nuevo reporte", new_reporte_marca_path, :class => 'new', :id => 'nuevo_reporte' %>
 <br />
 <br />
 <br />
-
 <table class="decorated">
   <tr>
     <th>Id</th>
@@ -15,13 +12,12 @@
     <th>Fecha</th>
     <th>Seleccionados</th>
     <th>Usuario</th>
+    <th>Tipo</th>
     <th></th>
     <th></th>
   </tr>
-
   <% @consultas.each do |consulta| %>
     <tr>
-
       <td><%= consulta.id %></td>
       <td><%=h  link_to consulta.busqueda, consulta %></td>
       <td><%= consulta.representante.gerencia if consulta.representante %></td>
@@ -29,12 +25,10 @@
       <td><%= l consulta.created_at, :format => :short %></td>
       <td><%=h consulta.consulta_detalles.size %></td>
       <td><%=h consulta.usuario %></td>
-      <td>
-        <%= link_to 'Borrar', consulta, :class => 'delete' %>
-      </td>
-      <td>
-        <%= link_to 'Reporte', new_reporte_marca_path(:consulta_id => consulta.id) %>
-      </td>
+      <td><%= consulta.parametros[:tipo_busqueda] rescue "" %></td>
+      
+      <td><%= link_to 'Borrar', consulta, :class => 'delete' %></td>
+      <td><%= link_to 'Reporte', new_reporte_marca_path(:consulta_id => consulta.id) %></td>
     </tr>
   <% end %>
 </table>
