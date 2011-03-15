@@ -19,7 +19,7 @@ class BusquedasController < ApplicationController
       else
         @busqueda = Busqueda.realizar_busqueda(params)
       end
-            
+
       @representantes = Busqueda.preparar_representantes(@busqueda)
       # Crea una nueva busqueda con los parametros de la busqueda
       @consulta = Consulta.nueva(params)

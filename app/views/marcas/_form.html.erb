@@ -114,14 +114,10 @@
       Debe borrar los errores para que pueda validar el signo al salvar
     </p>
   <% end %>
-
   <div style="clear:both; height: 30px"></div>
   <%= f.submit "Salvar" , :tabindex => 21  %>
 <% end -%>
-
 <div style="clear:both"></div>
-
-
 <script type="text/javascript">
 
 $(document).ready(function() {
@@ -180,13 +176,25 @@ $(document).ready(function() {
     $('#marca_descripcion_imagen_input').hide();
     $('#marca_descripcion_imagen').val(" Descripcion diseño").hide();
   }
- 
+  
   if ($('#marca_tipo_signo_id').val() == "4"){
     $('#marca_nombre').val("Marca tridimensional").hide().after("<span>Marca Tridimensional</span>");
   }
 
+  $(".field_with_errors .error, .fl .error").append(" <a>borrar</a>");
+  $(".field_with_errors .error a").live("click", function(){
+    var parent = $(this).parent();
+    var cadena = parent.text().replace(/ borrar/g, "");
+    var label = parent.parent().find("label").text().replace(/\* /g, "");
+    var result =  label + ": " + cadena;
+    var elementos = $(".error_manual div:contains('" + cadena +"')");
+    var elemento = $(".error_manual div:contains('" + result +"')");
+        parent.hide();
+    if(elementos.size() == 1){
+      elementos.find("a").click();
+    } else{
+      elemento.find("a").click();
+    }
+  });
 });
-
-
-
 </script>
