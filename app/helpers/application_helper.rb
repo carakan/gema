@@ -95,7 +95,7 @@ module ApplicationHelper
   end
 
   def last_importation
-    importacion = Importacion.last(:conditions => {:tipo => "lp"})
+    importacion = Importacion.last(:conditions => {:tipo => ["lp", "lr"]})
     link_to("Reporte lista publicacion", lista_path(importacion))
   end
 end
