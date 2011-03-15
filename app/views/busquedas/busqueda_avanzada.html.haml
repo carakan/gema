@@ -15,7 +15,7 @@
             Titulares
         %li
           %a{:href=>'#tabs-4'}
-            Fechas
+            Números y Fechas
         %li
           %a{:href=>'#tabs-5'}
             Complementarios
@@ -53,8 +53,6 @@
 
             = label_tag "Tipo de signo:"
             = select "search", "tipo_signo_id_equals", llenar_datos_iguales(TipoSigno.all)
-            = label_tag "Vía instrucción:"
-            = select "search", "instruccion_equals", [["Todas", "all_values"]] + Marca::INSTRUCCIONES.collect{|value| [value, value]}
             %br
             %br
 
@@ -201,12 +199,6 @@
           = select "search", "instruccion_equals", [["Todas", "all_values"]] + Marca::INSTRUCCIONES.collect{|value| [value, value]}
           %br
           %br
-
-          = label_tag "Estado:"
-          = select "search", "marca_estado_id_equals", llenar_datos_iguales(MarcaEstado.all)
-          %br
-          %br
-
 
           = label_tag "Descripción del diseño:"
           = text_field "search", "descripcion_diseno"
