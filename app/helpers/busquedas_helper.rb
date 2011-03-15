@@ -30,8 +30,8 @@ module BusquedasHelper
     parametros.each do |key, value|
       x = key.gsub(/equals|any|btw|btw_any|vista_marca|_n_|_a_|contains_all|_in/, "").gsub(/_/," ")
       #y << "#{parametros[key]}"
-      if value.class != String
-        value = value.join(", ")
+      if value.class == Array or value.class == Hash
+        value = value.join(", ").html_safe
       end
       
       res << "#{x} = #{value}"

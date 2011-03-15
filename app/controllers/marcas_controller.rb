@@ -13,7 +13,7 @@ class MarcasController < ApplicationController
     @clase_id = params[:clase_id]
     @tipo_marca = params[:tipo_marca_id]
     @productos = params[:productos]
-    @marca = Marca.new(:fecha_solicitud => Date.today, :tipo_signo_id => TipoSigno.find_by_sigla(params[:tipo]).id, :propia => true, :activa => true, :marca_estado_id => 1, :lema_marca_id => @lema_id, :tipo_marca_id => @tipo_marca, :clase_id => @clase_id, :productos => @productos, :pais_prioridad_id => '999')
+    @marca = Marca.new(:tipo_signo_id => TipoSigno.find_by_sigla(params[:tipo]).id, :propia => true, :activa => true, :marca_estado_id => 1, :lema_marca_id => @lema_id, :tipo_marca_id => @tipo_marca, :clase_id => @clase_id, :productos => @productos, :pais_prioridad_id => '999')
   end
 
   def edit
@@ -55,8 +55,6 @@ class MarcasController < ApplicationController
 
   def create_post()
     @post = Post.new(params[:post])
-
-      debugger
     if @post.save
       redirect_to marca_url(@post.marca_id)
     else
