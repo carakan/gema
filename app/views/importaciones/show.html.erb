@@ -13,22 +13,44 @@
 
 
 <table class="decorated nwf nwl">
+
   <tr>
     <th>Marca</th>
-    <th>Numero<br />Solicitud</th>
+    <!--<th>Numero<br />Solicitud</th>-->
     <th>Tipo</th>
     <th>Cl</th>
     <th>Titulares</th>
+
+    <%for marc in @marcas.find(params[:id])%>
+      <%if marc.tipo =='lr' %>
+        <th>Numero<br />Solicitud</th>
+        <th>Numero Publicación</th>
+        <th>Numero de Registro</th>
+      <%  else marc.tipo == 'sr'%>
+        <th>Numero SR</th>
+        <th>Numero de Registro</th>
+      <%end%>
+    <%end%>
     <th></th>
-    <% @marcas.each do |marca| %>
-      <% tr_error marca %>
+  </tr>
+
+  <% @marcas.each do |marca| %>
+    <% tr_error marca %>
     <tr>
       <td <%= errores_marca(marca) %>><%= link_to marca.nombre, marca_path(marca), :class => "ajax #{marca.propia!} #{marca.valido!}" %></td>
-      <td><%= marca.numero_solicitud %></td>
+      <!--<td><%= marca.numero_solicitud %></td>-->
       <td><%= marca.tipo_signo.sigla if marca.tipo_signo %></td>
       <td><%= marca.clase_id %></td>
       <td><%= marca.try(:titulares).map(&:nombre).join(",") %></td>
-
+           <%  if marca.tipo =='lr' %>
+        <td><%= marca.numero_solicitud%></td>
+        <td><%= marca.numero_publicacion%></td>
+        <td><%= marca.numero_registro%></td>
+      <%  else marca.tipo =='sr'%>
+        <td><%= marca.numero_solicitud%></td>
+        <td><%= marca.numero_publicacion%></td>
+      <%end%>
+  
       <td>
         <%= link_to "editar", edit_marca_path(marca, :importacion_id => @importacion.id), :class => 'edit' %>
         <%= link_to "borrar", marca, :class => 'delete' %>
@@ -36,7 +58,7 @@
     </tr>
   <% end %>
 
-</tr>
+
 </table>
 
 <%= will_paginate @marcas %>
