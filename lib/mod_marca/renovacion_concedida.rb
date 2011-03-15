@@ -77,14 +77,12 @@ module ModMarca::RenovacionConcedida
     def buscar_o_crear_marca(fila, fecha_imp)
       comp = [:apoderado, :tipo_signo_id, :clase_id, :nombre]
       klass = buscar_comparar_o_nuevo(get_excel_params(fila, fecha_imp), comp )
-
       # Salva correctamente o sino con errores
       unless klass.save
         klass.almacenar_errores
         klass.valido = false # Indica que no paso la validación
         klass.save(:validate => false )
       end
-
       klass
     end
 
@@ -106,13 +104,13 @@ module ModMarca::RenovacionConcedida
         :importacion_id => @importacion.id
       }
       params.merge!(extraer_datos(fila, excel_cols) )
+      if params[:fecha_renovacion].class != String
+        params[:fecha_renovacion] = params[:fecha_renovacion].years_since(10)
+      end
       params[:numero_solicitud] = preparar_numero_solicitud(params[:numero_solicitud])
       params[:tipo_signo_id] = buscar_tipo_signo_id(params[:tipo_signo_id])
       params[:clase_id] = params[:clase_id].to_i
-
       params
     end
-
-    
   end
 end

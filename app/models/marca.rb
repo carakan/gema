@@ -450,7 +450,9 @@ class Marca < ActiveRecord::Base
   end
 
   def self.quitar_comillas(txt)
-    txt.gsub(/^(\342\200\234|"|\342\200\235)(.*)(\342\200\235|"|\342\200\234)$/, '\2').strip
+    if txt.class == String
+      txt.gsub(/^(\342\200\234|"|\342\200\235)(.*)(\342\200\235|"|\342\200\234)$/, '\2').strip
+    end
   end
 
   # presenta de acuerdo al estado
