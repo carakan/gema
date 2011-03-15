@@ -25,6 +25,7 @@
     <th>Cruce</th>
     <th>Reportes</th>
     <th>Descargas</th>
+    <th>Usuario</th>
   </tr>
   <%- @importaciones.each do |imp| -%>
     <tr>
@@ -36,6 +37,7 @@
       <td><%= link_to "Cruce", cruce_importaciones_path(:importacion_id => imp.id) %></td>
       <td><%= link_to("Aviso publicación", lista_path(imp.id)) if imp.gaceta? %></td>
       <td><%= link_to "descargar", descarga_importacion_path(imp.id), :class => 'dowload' %></td>
+      <td><%= imp.usuario.nombre  %></td>
     </tr>
   <%- end -%>
 </table>
