@@ -1,11 +1,8 @@
 <div class="breadcrumps">
   <%= link_to "Lista de importaciones", importaciones_path %> > Cruce
 </div>
-
 <h1>Cruce (Faltan <%= @importacion.cruces_pendientes %> cruces)<%= gaceta @importacion %></h1>
 <br />
-
-
 <p>
   <%= form_tag cruce_importaciones_path(:importacion_id => @importacion.id), :method => :get  do %>
     <%= hidden_field_tag :importacion_id, params[:importacion_id] %>
@@ -14,18 +11,14 @@
   <% end %>
   <%= link_to "Borra busqueda", cruce_importaciones_path(:importacion_id => @importacion.id), :class => 'fl' %>
 </p>
-
 <br/>
 <br/>
-
 <p>
   <span class="icon true"></span>Cruce realizado<br />
   <span class="icon false"></span>Cruce descartado
 </p>
 <div class="clear"></div>
-
 <%= @will = will_paginate @marcas %>
-
 <table class="decorated nwl nwf">
 	<tr>
     <%= '<th>Fila</th>' if @mostra_fila %>
@@ -34,7 +27,8 @@
 		<th>Cl</th>
     <th>Titulares</th>
     <th>Usuario</th>
-    <th>Cruzar</th>
+    <th>Clases</th>
+    <th>Accciones</th>
     <% @marcas.each do |marca| %>
       <tr>
         <td <%= errores_marca(marca) %>>
@@ -45,20 +39,57 @@
         <% @consult = marca.cruce(@importacion.id) %>
         <td><%= marca.try(:titulares).map(&:nombre).join(",") %></td>
         <td><%= @consult.try(:usuario) %></td>
+        <td>
+          <%= link_to("Elegir", "#", :class => "select-class", :'data-id' => marca.id) %>
+          <%= hidden_field_tag("class-#{marca.id}") %>
+        </td>
         <td class="<%= @consult.class.to_s %>">
           <%= realizar_cruce(marca, @importacion, @consult.try(:id)) %>
         </td>
       </tr>
     <% end %>
-
 	</tr>
 </table>
 
-<script type="text/javascript">
-  $(function() {
-    $('table.decorated').fixedtableheader();
-  });
-</script>
-
 <%= @will %>
 
+<div id="selector-clases" style="display:none;">
+  <%= render :partial => "/busquedas/generic_select" %>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function (){
+    $('table.decorated').fixedtableheader();
+    $(".select-class").click(function(){
+      $("#selector-clases").attr("data-clase", $(this).attr("data-id"));
+      select_clases($("#class-" + $("#selector-clases").attr("data-clase")).val());
+      $("#selector-clases").dialog({ height: 420, width:700, buttons: { "Cerrar": function() { $(this).dialog("close"); set_state_changes_on_class();} } });
+      return false;
+    });
+    $("#botones a").live('click', function() {
+      var clases = $(this).attr("data-clases").split(",");
+      var val = !$(this).hasClass("sel");
+
+      $(clases).each(function(i, el) {
+        $('#clases_' + el).attr("checked", val);
+      });
+      marcarBotones();
+    });
+    $("#clases_grupos input:checkbox").live('click', function() {
+      marcarBotones();
+    });
+    $("#clases_grupos input:checkbox").live('change', set_state_changes_on_class);
+  });
+
+  function set_state_changes_on_class() {
+      var union = [];
+      $("#clases_grupos input:checkbox:checked").each(function(){union.push($(this).val())});
+      console.debug("veamos lo que es", union, $("#class-" + $("#selector-clases").attr("data-clase")), $("#selector-clases").attr("data-clase"));
+      $("#class-" + $("#selector-clases").attr("data-clase")).val(union.join(","));
+    }
+  function select_clases(clases){
+    $("#clases_grupos input").attr("checked", false);
+    $.map(clases.split(","), function(i){ $("#clases_"+i).click(); })
+  }
+
+</script>
