@@ -1,3 +1,14 @@
+<style>
+  .list-clases input{
+    -moz-box-shadow: none;
+    border: 1px solid #BFBFBF;
+    font-size: 8px;
+    width: 130px;
+  }
+  .list-clases input:disabled {
+    background-color: white;
+  }
+</style>
 <div class="breadcrumps">
   <%= link_to "Lista de importaciones", importaciones_path %> > Cruce
 </div>
@@ -39,11 +50,11 @@
         <% @consult = marca.cruce(@importacion.id) %>
         <td><%= marca.try(:titulares).map(&:nombre).join(",") %></td>
         <td><%= @consult.try(:usuario) %></td>
-        <td>
+        <td class="list-clases">
           <%= link_to("Elegir", "#", :class => "select-class", :'data-id' => marca.id) %>
-          <%= hidden_field_tag("class-#{marca.id}") %>
+          <%= text_field_tag("class-#{marca.id}", nil, :disabled => true) %>
         </td>
-        <td class="<%= @consult.class.to_s %>">
+        <td class="<%= @consult.class.to_s %> link-cruce">
           <%= realizar_cruce(marca, @importacion, @consult.try(:id)) %>
         </td>
       </tr>
@@ -79,16 +90,19 @@
       marcarBotones();
     });
     $("#clases_grupos input:checkbox").live('change', set_state_changes_on_class);
+    $(".link-cruce a").click(function(){
+      window.location = $(this).attr("href") + "&clases_ids=" + $("#class-" + $(this).attr("data-id")).val();
+      return false;
+    });
   });
 
   function set_state_changes_on_class() {
-      var union = [];
-      $("#clases_grupos input:checkbox:checked").each(function(){union.push($(this).val())});
-      console.debug("veamos lo que es", union, $("#class-" + $("#selector-clases").attr("data-clase")), $("#selector-clases").attr("data-clase"));
-      $("#class-" + $("#selector-clases").attr("data-clase")).val(union.join(","));
-    }
+    var union = [];
+    $("#clases_grupos input:checkbox:checked").each(function(){union.push($(this).val())});
+    $("#class-" + $("#selector-clases").attr("data-clase")).val(union.join(","));
+  }
   function select_clases(clases){
-    $("#clases_grupos input").attr("checked", false);
+    $("#clases_grupos input:checked").click();
     $.map(clases.split(","), function(i){ $("#clases_"+i).click(); })
   }
 

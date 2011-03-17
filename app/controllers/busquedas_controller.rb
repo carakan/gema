@@ -30,8 +30,13 @@ class BusquedasController < ApplicationController
 
   # GET /busquedas/cruce
   def cruce
+    if params[:clases_ids] && !params[:clases_ids].empty?
+      clases = params[:clases_ids]
+    else
+      clases = (1..45).to_a.join(",")
+    end
     @marca = Marca.find(params[:marca_id])
-    query = { :busqueda => @marca.nombre, :clases => (1..45).to_a.join(","), 
+    query = { :busqueda => @marca.nombre, :clases => clases,
       :propia => true, :id => @marca.id, :clase_id => @marca.clase_id, :tipo => :cruce }
     @importacion = Importacion.find(params[:importacion_id])
 

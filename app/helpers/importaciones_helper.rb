@@ -19,7 +19,7 @@ module ImportacionesHelper
       css = 'edit'
       title = 'Editar'
     end
-    link_to "cruzar", cruce_busquedas_path(query), :class => css, :title => title
+    link_to "cruzar", cruce_busquedas_path(query), :class => css, :title => title, :'data-id' => marca.id
   end
 
   def ver_cruce(consulta, options = {})
