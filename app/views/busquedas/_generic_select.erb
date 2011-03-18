@@ -37,7 +37,7 @@
   }
   #clases{
     float: left;
-    width: 485px;
+    width: 490px;
     margin-left: 20px;
   }
   #clases div label{
@@ -114,8 +114,6 @@
   <div style="clear:both"></div>
 </div>
 <script>
-  $(document).ready(function (){
-    // Busca si existe el valor en el array
     function include(arr, obj) {
       for(var i=0; i<arr.length; i++) {
         if (arr[i] == obj) return true;
@@ -130,7 +128,7 @@
     function marcarBotones() {
       var arr = $('#clases_grupos').find("input:checkbox:checked").map(function(i, el) { return el.value; }).get();
 
-      $('#botones').find('a').each(function(i, el) {
+      $('#botones a').each(function(i, el) {
         var clases = $(el).attr("data-clases").split(",");
         var encontrado = true;
         $(clases).each(function(index, elem) {
@@ -146,8 +144,9 @@
         }
       });
     }
-
-    $('#botones').find("a").live('click', function() {
+  $(document).ready(function (){
+    // Busca si existe el valor en el array
+    $("#botones a").live('click', function() {
       var clases = $(this).attr("data-clases").split(",");
       var val = !$(this).hasClass("sel");
 
@@ -156,11 +155,9 @@
       });
       marcarBotones();
     });
-
-    $('#clases_grupos').find("input:checkbox").live('click', function() {
+    $("#clases_grupos input:checkbox").live('click', function() {
       marcarBotones();
     });
-
     // Al iniciar
     marcarBotones();
   });
