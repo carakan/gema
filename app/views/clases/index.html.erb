@@ -14,7 +14,7 @@
 
 <% @clases.each do |clase| %>
   <tr>
-    <td><%=h link_to clase.nombre[6..-1], clase %></td>
+    <td><%=h link_to clase.nombre, clase %></td>
     <td><%=h clase.id %></td>
     <td><%=h clase.descripcion %></td>
     <td><%= links(clase) %></td>
