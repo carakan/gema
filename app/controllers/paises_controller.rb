@@ -2,7 +2,7 @@
 # author: Boris Barroso
 # email: boriscyber@gmail.com
 class PaisesController < ApplicationController
-  before_filter :revisar_permiso!
+  #before_filter :revisar_permiso!
   # GET /paises
   # GET /paises.xml
   def index

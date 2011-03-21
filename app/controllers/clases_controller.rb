@@ -2,7 +2,7 @@
 # author: Boris Barroso
 # email: boriscyber@gmail.com
 class ClasesController < ApplicationController
-  before_filter :revisar_permiso!
+  #before_filter :revisar_permiso!
   # GET /clases
   # GET /clases.xml
   def index

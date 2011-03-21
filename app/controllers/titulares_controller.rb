@@ -2,7 +2,7 @@
 # author: Boris Barroso
 # email: boriscyber@gmail.com
 class TitularesController < ApplicationController
-  before_filter :revisar_permiso!
+  #before_filter :revisar_permiso!
 
   def index
     @titulares = Titular.paginate( order_query_params( :include => :pais, :order => 'representantes.nombre' ) )

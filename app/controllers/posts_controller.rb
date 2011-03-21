@@ -2,7 +2,7 @@
 # author: Boris Barroso
 # email: boriscyber@gmail.com
 class PostsController < ApplicationController
-  before_filter :revisar_permiso!
+  #before_filter :revisar_permiso!
   layout false
 
   # GET /posts

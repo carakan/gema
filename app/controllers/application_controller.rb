@@ -3,10 +3,10 @@
 # email: boriscyber@gmail.com
 class ApplicationController < ActionController::Base
   include Rorol::Controllers::Helpers
-
   before_filter :set_page
   before_filter :set_user_session, :if => :usuario_signed_in?
-
+  before_filter :revisar_permiso!
+  
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 

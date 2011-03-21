@@ -2,7 +2,7 @@
 # author: Boris Barroso
 # email: boriscyber@gmail.com
 class RepresentantesController < ApplicationController
-  before_filter :revisar_permiso!
+  #before_filter :revisar_permiso!
   # GET /representantes
   # GET /representantes.xml
   def index

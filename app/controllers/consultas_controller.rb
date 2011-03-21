@@ -101,15 +101,15 @@ class ConsultasController < ApplicationController
 
   ## DELETE /consultas/1
   ## DELETE /consultas/1.xml
-  #def destroy
-  #  @consulta = Consulta.find(params[:id])
-  #  @consulta.destroy
+  def destroy
+    @consulta = Consulta.find(params[:id])
+    @consulta.destroy
 
-  #  respond_to do |format|
-  #    format.html { redirect_to(consultas_url) }
-  #    format.xml  { head :ok }
-  #  end
-  #end
+    respond_to do |format|
+      format.html { redirect_to(consultas_url) }
+      format.xml  { head :ok }
+    end
+  end
 
   private
   def set_busqueda
