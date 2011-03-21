@@ -3,12 +3,7 @@
     <%= f.input :email, :label => 'Email' %>
     <%= f.input :nombre, :label => 'Nombre' %>
     <%= f.input :login, :label => 'Nombre de usuario' %>
-<<<<<<< HEAD
-    <%= f.input :rol, :collection => Rol.all %>
-=======
     <%= f.input :rol, :collection => Rol.find(:all, :conditions=>"name!='admin'" )%>
-    <%# unless edit_usuario? -%>
->>>>>>> 6d28bbf04e090dfd7c3cd092d995ab556c434404
       <%= f.input :password, :as => :password, :label => 'Contraseña' %>
       <%= f.input :password_confirmation, :as => :password, :label => 'Confirmar contraseña' %>
   <%= f.submit 'Salvar' %>
