@@ -54,7 +54,7 @@ Devise.setup do |config|
   # When confirm_within is zero, the user won't be able to sign in without confirming. 
   # You can use this to let your user access some features of your application 
   # without confirming the account, but blocking it after a certain period 
-  # (ie 2 days). 
+  # (ie 2 days).
   # config.confirm_within = 2.days
 
   # ==> Configuration for :rememberable
