@@ -40,6 +40,7 @@ class MarcasController < ApplicationController
     if @marca.update_marca(params[:marca])
       redireccionar_udpate @marca
     else
+      flash[:notice] = "error al actualizar #{@marca.errors}"
       render :action => 'edit'
     end
   end

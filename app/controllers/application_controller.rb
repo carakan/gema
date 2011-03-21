@@ -74,12 +74,23 @@ private
   end
 
   def revisar_permiso!
-    permission = Permission.find_by_rol_id_and_controller( UsuarioSession.current_user[:rol_id], params[:controller] )
+    if UsuarioSession && UsuarioSession.current_user
+      permission = Permission.find_by_rol_id_and_controller( UsuarioSession.current_user[:rol_id], params[:controller] )
 
-    if permission
-      redirect_to "/" unless permission.actions[ params[:action] ]
+      if permission
+        unless permission.actions[params[:action]]
+          flash[:notice] = "Esta area esta reestringida."
+          redirect_to "/"
+        end
+      else
+        flash[:notice] = "Esta area esta reestringida, saliendo del sistema."
+        redirect_to '/logout'
+      end
     else
-      redirect_to '/logout'
-    end
+      flash[:notice] = "Esta area esta reestringida."
+      if params[:controller] != "devise/sessions"
+        redirect_to '/login'
+      end
+    end 
   end
 end
