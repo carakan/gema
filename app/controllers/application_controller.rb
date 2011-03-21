@@ -79,15 +79,15 @@ private
 
       if permission
         unless permission.actions[params[:action]]
-          flash[:notice] = "Esta area esta reestringida."
+          flash[:notice] = "Esta área esta restringida."
           redirect_to "/"
         end
       else
-        flash[:notice] = "Esta area esta reestringida, saliendo del sistema."
+        flash[:notice] = "Esta área esta restringida, saliendo del sistema."
         redirect_to '/logout'
       end
     else
-      flash[:notice] = "Esta area esta reestringida."
+      flash[:notice] = "Esta área esta restringida."
       if params[:controller] != "devise/sessions"
         redirect_to '/login'
       end
