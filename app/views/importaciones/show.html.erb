@@ -17,7 +17,6 @@
     <!--<th>Numero<br />Solicitud</th>-->
     <th>Tipo</th>
     <th>Cl</th>
-    <th>Titulares</th>
 
     <% if @importacion.tipo == 'sm' %>
       <th>N° Solicitud</th>
@@ -35,6 +34,7 @@
       <th>N° Renovaciòn</th>
     <%  end %>
 
+    <th>Titulares</th>
     <th></th>
   </tr>
   <% @marcas.each do |marca| %>
@@ -44,7 +44,6 @@
       <!--<td><%#= marca.numero_solicitud %></td>-->
       <td><%= marca.tipo_signo.sigla if marca.tipo_signo %></td>
       <td><%= marca.clase_id %></td>
-      <td><%= marca.try(:titulares).map(&:nombre).join(",") %></td>
       <% if marca.importacion.tipo == 'sm' %>
         <td><%= marca.numero_solicitud %></td>
       <%elsif marca.importacion.tipo == 'lp' %>
@@ -61,6 +60,7 @@
         <td><%= marca.numero_renovacion %></td>
       <%end%>
 
+      <td><%= marca.try(:titulares).map(&:nombre).join(",") %></td>
       <td><%= link_to "editar", edit_marca_path(marca, :importacion_id => @importacion.id), :class => 'edit' %>
         <%= link_to "borrar", marca, :class => 'delete' %></td>
     </tr>
