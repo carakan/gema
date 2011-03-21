@@ -41,7 +41,7 @@
   <% if @consulta.importacion.nil? %>
     <% Consulta::PARAMS.each do |param| %>
       <p>
-        <%= presentar_parametro @consulta, param unless @consulta.parametros[param].nil? %>
+        <%= presentar_parametro @consulta, param unless @consulta.busqueda=="" %>
       </p>
     <% end %>
   <% end %>

@@ -20,8 +20,8 @@
     <tr>
       <td><%= consulta.id %></td>
       <td>
-        <% if consulta.nil? %>
-          <%= h  link_to consulta.busqueda,'Busqueda avanzada'%></td>
+        <% if (consulta.busqueda == "") %>
+          <%= h link_to 'Busqueda avanzada', consulta %></td>
         <% else %>  
           <%= h  link_to consulta.busqueda, consulta %></td>
         <% end %>
