@@ -40,7 +40,8 @@ module ImportacionesHelper
     end
   end
 
-protected
+  protected
+  
   def link_cruce(marca)
     imp = marca.importacion
     if imp.cruces_pendientes < 0

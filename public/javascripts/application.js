@@ -241,7 +241,8 @@
         el = this;
         $.ajax({
           'url': url,
-          'type': 'delete',
+          'type': 'POST',
+          'data': {'authenticity_token' : $("meta[name=csrf-token]").attr("content"), '_method':'delete'},
           'context': el,
           'success': function() {
             $(el).parents("tr:first, li:first").remove();
