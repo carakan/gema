@@ -4,10 +4,10 @@
     <%= f.input :nombre, :label => 'Nombre' %>
     <%= f.input :login, :label => 'Nombre de usuario' %>
     <%= f.input :rol, :collection => Rol.all %>
-    <% unless edit_usuario? -%>
+    <%# unless edit_usuario? -%>
       <%= f.input :password, :as => :password, :label => 'Contraseña' %>
       <%= f.input :password_confirmation, :as => :password, :label => 'Confirmar contraseña' %>
-    <% end %>
+    <%# end %>
   <%= f.submit 'Salvar' %>
 <% end %>
 
