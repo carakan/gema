@@ -11,7 +11,7 @@ class Clase < ActiveRecord::Base
 
 
   def to_s
-    nombre
+    nombre[6..-1]
   end
 
 end

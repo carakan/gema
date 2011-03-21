@@ -1,8 +1,7 @@
 <h1>Importacion</h1>
-<div class="clear"></div>
-<h2 class="dark"><%= gaceta @importacion %> <%= fecha_hora @importacion.created_at %>: Fecha limite <%= fecha_hora @importacion.fecha_limite %> </h2>
-
-
+<div class="clear">
+</div>
+<h2 class="dark"><%= gaceta @importacion %> <%= fecha_hora @importacion.created_at %>: Fecha limite <%= fecha_hora @importacion.fecha_limite %></h2>
 <% form_tag importacion_path(@importacion), :method => :get  do %>
   <%= text_field_tag :nombre_marca %>
   <%= submit_tag "Buscar" %>
@@ -11,7 +10,6 @@
 <br />
 <br />
 
-
 <table class="decorated nwf nwl">
 
   <tr>
@@ -19,46 +17,54 @@
     <!--<th>Numero<br />Solicitud</th>-->
     <th>Tipo</th>
     <th>Cl</th>
-    <th>Titulares</th>
 
-    <%for marc in @marcas.find(params[:id])%>
-      <%if marc.tipo =='lr' %>
-        <th>Numero<br />Solicitud</th>
-        <th>Numero Publicación</th>
-        <th>Numero de Registro</th>
-      <%  else marc.tipo == 'sr'%>
-        <th>Numero SR</th>
-        <th>Numero de Registro</th>
-      <%end%>
-    <%end%>
+    <% if @importacion.tipo == 'sm' %>
+      <th>N° Solicitud</th>
+    <%  elsif @importacion.tipo == 'lp' %>
+      <th>N° Solicitud</th>
+      <th>N° Publicación</th>
+    <%elsif @importacion.tipo == 'lr' %>
+      <th>N° Solicitud</th>
+      <th>N° Registro</th>
+    <%elsif @importacion.tipo == 'sr' %>
+      <th>N° Registro</th>
+      <th>N° Solicitud </br> Renovación</th>
+    <%elsif @importacion.tipo == 'rc'%>
+      <th>N° Registro</th>
+      <th>N° Renovaciòn</th>
+    <%  end %>
+
+    <th>Titulares</th>
     <th></th>
   </tr>
-
   <% @marcas.each do |marca| %>
     <% tr_error marca %>
     <tr>
       <td <%= errores_marca(marca) %>><%= link_to marca.nombre, marca_path(marca), :class => "ajax #{marca.propia!} #{marca.valido!}" %></td>
-      <!--<td><%= marca.numero_solicitud %></td>-->
+      <!--<td><%#= marca.numero_solicitud %></td>-->
       <td><%= marca.tipo_signo.sigla if marca.tipo_signo %></td>
       <td><%= marca.clase_id %></td>
-      <td><%= marca.try(:titulares).map(&:nombre).join(",") %></td>
-           <%  if marca.tipo =='lr' %>
-        <td><%= marca.numero_solicitud%></td>
-        <td><%= marca.numero_publicacion%></td>
-        <td><%= marca.numero_registro%></td>
-      <%  else marca.tipo =='sr'%>
-        <td><%= marca.numero_solicitud%></td>
-        <td><%= marca.numero_publicacion%></td>
+      <% if marca.importacion.tipo == 'sm' %>
+        <td><%= marca.numero_solicitud %></td>
+      <%elsif marca.importacion.tipo == 'lp' %>
+        <td><%= marca.numero_solicitud %></td>
+        <td><%= marca.numero_publicacion %></td>
+      <%elsif marca.importacion.tipo == 'lr' %>
+        <td><%= marca.numero_solicitud %></td>
+        <td><%= marca.numero_registro %></td>
+      <%elsif marca.importacion.tipo == 'sr' %>
+        <td><%= marca.numero_registro %></td>
+        <td><%= marca.numero_solicitud_renovacion %></td>
+      <%elsif marca.importacion.tipo == 'rc'%>
+        <td><%= marca.numero_registro %></td>
+        <td><%= marca.numero_renovacion %></td>
       <%end%>
-  
-      <td>
-        <%= link_to "editar", edit_marca_path(marca, :importacion_id => @importacion.id), :class => 'edit' %>
-        <%= link_to "borrar", marca, :class => 'delete' %>
-      </td>
+
+      <td><%= marca.try(:titulares).map(&:nombre).join(",") %></td>
+      <td><%= link_to "editar", edit_marca_path(marca, :importacion_id => @importacion.id), :class => 'edit' %>
+        <%= link_to "borrar", marca, :class => 'delete' %></td>
     </tr>
   <% end %>
-
-
 </table>
-
 <%= will_paginate @marcas %>
+

@@ -28,6 +28,8 @@ gem 'less'
 gem 'devise'
 gem 'simple_form'
 gem "meta_search"
+gem 'warden'
+gem 'bcrypt-ruby'
 
 group :test do
   gem 'rspec-rails'
