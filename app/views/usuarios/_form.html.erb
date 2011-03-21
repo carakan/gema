@@ -4,11 +4,14 @@
     <%= f.input :nombre, :label => 'Nombre' %>
     <%= f.input :login, :label => 'Nombre de usuario' %>
     <%= f.input :rol, :collection => Rol.all %>
+<<<<<<< Updated upstream
     <%# unless edit_usuario? -%>
       <%= f.input :password, :as => :password, :label => 'Contraseña' %>
       <%= f.input :password_confirmation, :as => :password, :label => 'Confirmar contraseña' %>
     <%# end %>
+=======
+      <%= f.input :password, :as => :password, :label => 'Contraseña' %>
+      <%= f.input :password_confirmation, :as => :password, :label => 'Confirmar contraseña' %>
+>>>>>>> Stashed changes
   <%= f.submit 'Salvar' %>
 <% end %>
-
-

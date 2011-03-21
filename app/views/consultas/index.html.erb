@@ -19,7 +19,12 @@
   <% @consultas.each do |consulta| %>
     <tr>
       <td><%= consulta.id %></td>
-      <td><%=h  link_to consulta.busqueda, consulta %></td>
+      <td>
+        <% if consulta.nil? %>
+          <%= h  link_to consulta.busqueda,'Busqueda avanzada'%></td>
+        <% else %>  
+          <%= h  link_to consulta.busqueda, consulta %></td>
+        <% end %>
       <td><%= consulta.representante.gerencia if consulta.representante %></td>
       <td><%= consulta.representante %></td>
       <td><%= l consulta.created_at, :format => :short %></td>

@@ -13,7 +13,7 @@
 
 <% @paises.each do |pais| %>
   <tr>
-    <td><%=h pais.nombre %></td>
+    <td><%=h link_to pais.nombre, pais %></td>
     <td><%=h pais.codigo %></td>
     <td><%= links(pais) %></td>
   </tr>
@@ -22,5 +22,3 @@
 </table>
 
 <%= will_paginate @paises  %>
-
-
