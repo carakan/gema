@@ -1,7 +1,7 @@
 <div id="header">
   <% if usuario_signed_in? %>
     <ul>
-      <li><%= link_to "Salir", "/logout", :class => 'logout' %></li>
+      <li>Bienvenido(a) <b><%= current_usuario.nombre %></b>  | <%= link_to "Salir", "/logout", :class => 'logout' %></li>
     </ul>
   <% end %>
 </div>

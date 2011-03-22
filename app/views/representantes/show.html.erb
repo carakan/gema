@@ -77,7 +77,7 @@
     <div style="clear:both"></div>
      
     <div class="subizq"> 
-     <label for="">Postal</label>
+     <label for="">Postal:</label>
     </div>
     <div class="subder">
      <label class="remarcado"><%= @representante.postal %></label>
@@ -92,14 +92,15 @@
     </div>
   </div>-->
   
-
-  <div class="izquierda" >
+  </div>
+  <div class="derecha" >
       <h1>Contactos</h1>
       <%= render :partial => "contactos/contacto", :locals => { :contactos => @representante.lista_contactos } %>
   </div>
+  <div style="clear:both"></div>
   <div class="izquierda">
     <%= link_to "Lista completa de contactos", representante_contactos_representante_path(@representante), :class => 'list ajax' %>
-        <%= link_to "Nuevo contacto", new_contacto_path(:representante_id => @representante.id), 'data-title' => 'Crear contacto', :class => 'new ajax' %>
+    <%= link_to "Nuevo contacto", new_contacto_path(:representante_id => @representante.id), 'data-title' => 'Crear contacto', :class => 'new ajax' %>
     </div>
   </div>
 </div>
