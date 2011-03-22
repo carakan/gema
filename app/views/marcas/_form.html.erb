@@ -1,6 +1,10 @@
 <%= stylesheet_link_tag 'facebook' %>
 <%= javascript_include_tag 'jquery.fcbkcomplete.min' %>
 
+<% if !@marca.errors.empty? || !@marca.errores.empty? || !@marca.errores_manual.empty? %>
+  <%= link_to("eliminar todos los errores", "#", :id => "clean-all-errors", :style => "float:right;") %>
+<% end %>
+
 <%= simple_form_for(@marca,:html => { :multipart => true } ) do |f| -%>
   <%= hidden_field_tag "importacion_id", params[:importacion_id] unless params[:importacion_id].nil?  %>
 
@@ -195,6 +199,10 @@ $(document).ready(function() {
     } else{
       elemento.find("a").click();
     }
+  });
+  $("#clean-all-errors").click(function(){
+    $(".error_manual a").click();
+    return false;
   });
 });
 </script>

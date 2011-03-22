@@ -321,3 +321,7 @@
     return iniciar();
   });
 }).call(this);
+
+function verificarErrorresManuales(){
+  
+}

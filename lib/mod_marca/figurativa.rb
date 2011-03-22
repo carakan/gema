@@ -16,5 +16,6 @@ module ModMarca::Figurativa
       has_one :adjunto, :as => :adjuntable
     end
 
-end
+  end
 
+end

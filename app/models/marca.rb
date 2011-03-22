@@ -321,6 +321,7 @@ class Marca < ActiveRecord::Base
   # que pueda cambiar la clse y el estado
   def update_marca(params)
     params[:errores_manual] = {} if params[:errores_manual].nil?
+    params[:errores] = {} if params[:errores].nil?
     self.class.set_include_estado(self, params[:marca_estado_id])
     params[:valido] = true
     self.update_attributes(params)
