@@ -13,6 +13,15 @@
 </div>
 
 <div id="contenido">
+  <div class="izquierda">
+  <div class="subizq">
+    <label for="">Id Marca:</label>
+  </div>
+
+  <div class="subder">
+    <label class="remarcado"><%= cambio @marca ,:id %></label>
+  </div>
+</div>
 <div class="izquierda">
     <label for="">Signo</label><br/><br/>
     <label class="remarcado"><h1><%= cambio @marca ,:nombre %></h1></label>
@@ -301,13 +310,7 @@
   </div>
   <div style="clear:both"></div>
 
-  <div class="subizq">
-    <label for="">Id Marca:</label>
-  </div>
 
-  <div class="subder">
-    <label class="remarcado"><%= cambio @marca ,:id %></label>
-  </div>
 </div>
 
 <div class="clear"></div>
