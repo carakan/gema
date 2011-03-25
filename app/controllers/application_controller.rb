@@ -3,6 +3,14 @@
 # email: boriscyber@gmail.com
 class ApplicationController < ActionController::Base
   include Rorol::Controllers::Helpers
+  before_filter :set_cache_buster
+
+  def set_cache_buster
+    response.headers["Cache-Control"] = "no-cache, no-store, max-age=0, must-revalidate"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "Fri, 01 Jan 1990 00:00:00 GMT"
+  end
+
   before_filter :set_page
   before_filter :set_user_session, :if => :usuario_signed_in?
   before_filter :revisar_permiso!

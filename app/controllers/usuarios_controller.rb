@@ -7,7 +7,7 @@ class UsuariosController < ApplicationController
   # GET /usuarios
   # GET /usuarios.xml
   def index
-    @usuarios = Usuario.all
+    @usuarios = Usuario.find(:all, :conditions=>'nombre!="admin"')
 
     respond_to do |format|
       format.html # index.html.erb
