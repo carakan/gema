@@ -1,19 +1,19 @@
 # encoding: utf-8
 class AddTemplateForListaPublicationReport < ActiveRecord::Migration
-  def self.up
-    text_es =<<-TEXTO
-**logo_orpan**
-++fecha_reporte++
+#  def self.up
+ #   text_es =<<-TEXTO
+#**logo_orpan**
+#++fecha_reporte++
 
-La presente es para informales que en fecha ++fecha_gaceta++ se ha publicado la Gaceta Oficial de Bolivia Nº ++numero_gaceta++ correspondiente a las solicitudes de registro de signos distintivos presentados ante el Servicio Nacional de Propiedad Intelectual (SENAPI) durante los meses y trámites subsanados de meses anteriores.
+#La presente es para informales que en fecha ++fecha_gaceta++ se ha publicado la Gaceta Oficial de Bolivia Nº ++numero_gaceta++ correspondiente a las solicitudes de registro de signos distintivos presentados ante el Servicio Nacional de Propiedad Intelectual (SENAPI) durante los meses y trámites subsanados de meses anteriores.
 
-En la mencionada Gaceta se han publicado las siguientes solicitudes de registro solicitadas a nombre del <b>++titulares++</b>:
+#En la mencionada Gaceta se han publicado las siguientes solicitudes de registro solicitadas a nombre del <b>++titulares++</b>:
 
-**mini_ficha**
+#**mini_ficha**
+#
+#El plazo para que terceros interpongan oposición contra las mencionadas solicitudes vence el dia ++fecha_vencimiento++. La fecha límite es común a todas las solicitudes que se publicaron en esta Gaceta.
 
-El plazo para que terceros interpongan oposición contra las mencionadas solicitudes vence el dia ++fecha_vencimiento++. La fecha límite es común a todas las solicitudes que se publicaron en esta Gaceta.
-
-Les informaremos cualquier novedad con relación a las solicitudes arriba mencionadas.
+#Les informaremos cualquier novedad con relación a las solicitudes arriba mencionadas.
 
 Aprovechamos para enviarlas nuestros más cordiales saludos,
     TEXTO

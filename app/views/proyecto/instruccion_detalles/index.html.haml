@@ -1,0 +1,23 @@
+- title "Proyecto/Instruccion Detalles"
+
+%table
+  %tr
+    %th Codigo
+    %th Instruccion
+    %th Usuario
+    %th Tarea
+    %th Fecha limite
+    %th Estado
+  - for proyecto/instruccion_detalle in @proyecto/instruccion_detalles
+    %tr
+      %td= proyecto/instruccion_detalle.codigo
+      %td= proyecto/instruccion_detalle.instruccion_id
+      %td= proyecto/instruccion_detalle.usuario_id
+      %td= proyecto/instruccion_detalle.tarea
+      %td= proyecto/instruccion_detalle.fecha_limite
+      %td= proyecto/instruccion_detalle.estado
+      %td= link_to 'Show', proyecto/instruccion_detalle
+      %td= link_to 'Edit', edit_proyecto/instruccion_detalle_path(proyecto/instruccion_detalle)
+      %td= link_to 'Destroy', proyecto/instruccion_detalle, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Proyecto/Instruccion Detalle", new_proyecto/instruccion_detalle_path

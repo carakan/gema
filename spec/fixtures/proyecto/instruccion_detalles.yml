@@ -1,0 +1,15 @@
+one:
+  codigo: 1
+  instruccion_id: 1
+  usuario_id: 1
+  tarea: MyString
+  fecha_limite: 2011-03-25 13:28:30
+  estado: MyString
+
+two:
+  codigo: 1
+  instruccion_id: 1
+  usuario_id: 1
+  tarea: MyString
+  fecha_limite: 2011-03-25 13:28:30
+  estado: MyString

@@ -1,0 +1,24 @@
+- title "Proyecto/Item Cobro"
+
+%p
+  %strong Referencia Cliente:
+  = @proyecto/item_cobro.referencia_cliente
+%p
+  %strong Referencia Cliente Cobranza:
+  = @proyecto/item_cobro.referencia_cliente_cobranza
+%p
+  %strong Fecha Limite:
+  = @proyecto/item_cobro.fecha_limite
+%p
+  %strong Honorarios:
+  = @proyecto/item_cobro.honorarios
+%p
+  %strong Gastos Administrativos:
+  = @proyecto/item_cobro.gastos_administrativos
+
+%p
+  = link_to "Edit", edit_proyecto/item_cobro_path(@proyecto/item_cobro)
+  |
+  = link_to "Destroy", @proyecto/item_cobro, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", proyecto/item_cobros_path

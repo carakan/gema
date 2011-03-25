@@ -1,0 +1,2 @@
+module Proyecto::ItemCobrosHelper
+end

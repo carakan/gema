@@ -1,0 +1,28 @@
+- form_for @proyecto/instruccion_detalle do |f|
+  = f.error_messages
+  %p
+    = f.label :codigo
+    %br
+    = f.text_field :codigo
+  %p
+    = f.label :instruccion_id
+    %br
+    = f.text_field :instruccion_id
+  %p
+    = f.label :usuario_id
+    %br
+    = f.text_field :usuario_id
+  %p
+    = f.label :tarea
+    %br
+    = f.text_field :tarea
+  %p
+    = f.label :fecha_limite
+    %br
+    = f.datetime_select :fecha_limite
+  %p
+    = f.label :estado
+    %br
+    = f.text_field :estado
+  %p
+    = f.submit
