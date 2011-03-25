@@ -1,0 +1,20 @@
+- form_for @proyecto/instruccion do |f|
+  = f.error_messages
+  %p
+    = f.label :codigo
+    %br
+    = f.text_field :codigo
+  %p
+    = f.label :proyecto_id
+    %br
+    = f.text_field :proyecto_id
+  %p
+    = f.label :gerencia_id
+    %br
+    = f.text_field :gerencia_id
+  %p
+    = f.label :referencia_email
+    %br
+    = f.text_field :referencia_email
+  %p
+    = f.submit
