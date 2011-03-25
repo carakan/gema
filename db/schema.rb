@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101230150710) do
+ActiveRecord::Schema.define(:version => 20110325152645) do
 
   create_table "adjuntos", :force => true do |t|
     t.string   "nombre"
@@ -69,6 +69,14 @@ ActiveRecord::Schema.define(:version => 20101230150710) do
   end
 
   add_index "contactos", ["representante_id"], :name => "index_contactos_on_representante_id"
+
+  create_table "correspondencias", :force => true do |t|
+    t.integer  "proyecto_id"
+    t.boolean  "tipo"
+    t.text     "contenido"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "importaciones", :force => true do |t|
     t.boolean  "completa"
@@ -186,14 +194,6 @@ ActiveRecord::Schema.define(:version => 20101230150710) do
     t.datetime "updated_at"
   end
 
-  create_table "permissions", :force => true do |t|
-    t.integer  "rol_id"
-    t.string   "controller", :limit => 150
-    t.string   "actions"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "posts", :force => true do |t|
     t.integer  "postable_id"
     t.string   "postable_type"
@@ -274,13 +274,6 @@ ActiveRecord::Schema.define(:version => 20101230150710) do
 
   add_index "representantes", ["nombre"], :name => "index_representantes_on_nombre"
   add_index "representantes", ["pais_id"], :name => "index_representantes_on_pais_id"
-
-  create_table "roles", :force => true do |t|
-    t.string   "name",        :limit => 100
-    t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "tipo_marcas", :force => true do |t|
     t.string   "nombre",      :limit => 100
