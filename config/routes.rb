@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   namespace(:proyecto){ resources :proyecto_items }
 
+  namespace(:proyecto){ resources :instruccion_item_cobros }
+
   resources :marca_estados
 
   resources :reportes
