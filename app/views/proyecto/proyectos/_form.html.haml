@@ -1,0 +1,24 @@
+= form_for [:proyecto, @proyecto] do |f|
+  = f.error_messages
+  %p
+    = f.label :cliente_id
+    %br
+    = f.text_field :cliente_id
+  %p
+    = f.label :area_id
+    %br
+    = f.text_field :area_id
+  %p
+    = f.label :titulo
+    %br
+    = f.text_field :titulo
+  %p
+    = f.label :referencia_cliente
+    %br
+    = f.text_field :referencia_cliente
+  %p
+    = f.label :prioridad
+    %br
+    = f.text_field :prioridad
+  %p
+    = f.submit

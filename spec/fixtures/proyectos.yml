@@ -1,0 +1,13 @@
+one:
+  cliente_id: 1
+  area_id: 1
+  titulo: MyString
+  referencia_cliente: MyString
+  prioridad: MyString
+
+two:
+  cliente_id: 1
+  area_id: 1
+  titulo: MyString
+  referencia_cliente: MyString
+  prioridad: MyString
