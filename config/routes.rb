@@ -7,6 +7,12 @@ Rails.application.routes.draw do
 
   namespace(:proyecto){ resources :correspondencias }
 
+  namespace(:proyecto){ resources :areas }
+
+  namespace(:proyecto){ resources :items }
+
+  namespace(:proyecto){ resources :proyecto_items }
+
   resources :marca_estados
 
   resources :reportes
