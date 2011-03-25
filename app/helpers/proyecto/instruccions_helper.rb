@@ -1,0 +1,2 @@
+module Proyecto::InstruccionsHelper
+end
