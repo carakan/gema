@@ -1,0 +1,17 @@
+- title "Proyecto/Correspondencias"
+
+%table
+  %tr
+    %th Proyecto
+    %th Tipo
+    %th Contenido
+  - for correspondencia in @correspondencias
+    %tr
+      %td= correspondencia.proyecto_id
+      %td= correspondencia.tipo
+      %td= correspondencia.contenido
+      %td= link_to 'Show', [:proyecto, correspondencia]
+      %td= link_to 'Edit', edit_proyecto_correspondencia_path(correspondencia)
+      %td= link_to 'Destroy', [:proyecto, correspondencia], :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Proyecto/Correspondencia", new_proyecto_correspondencia_path

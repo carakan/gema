@@ -1,0 +1,16 @@
+= form_for [:proyecto, @correspondencia] do |f|
+  = f.error_messages
+  %p
+    = f.label :proyecto_id
+    %br
+    = f.text_field :proyecto_id
+  %p
+    = f.label :tipo
+    %br
+    = f.check_box :tipo
+  %p
+    = f.label :contenido
+    %br
+    = f.text_area :contenido
+  %p
+    = f.submit
