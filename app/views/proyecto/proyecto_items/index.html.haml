@@ -1,0 +1,33 @@
+- title "Proyecto/Proyecto Items"
+
+%table
+  %tr
+    %th Codigo
+    %th Proyecto
+    %th Descripcion
+    %th Estado
+    %th Referencia cliente
+    %th Referencia cliente cobranza
+    %th Fecha limite
+    %th Honorarios
+    %th Gastos adminitrativos
+    %th Monto
+    %th Fecha solicitud
+  - for proyecto/proyecto_item in @proyecto/proyecto_items
+    %tr
+      %td= proyecto/proyecto_item.codigo
+      %td= proyecto/proyecto_item.proyecto_id
+      %td= proyecto/proyecto_item.descripcion
+      %td= proyecto/proyecto_item.estado
+      %td= proyecto/proyecto_item.referencia_cliente
+      %td= proyecto/proyecto_item.referencia_cliente_cobranza
+      %td= proyecto/proyecto_item.fecha_limite
+      %td= proyecto/proyecto_item.honorarios
+      %td= proyecto/proyecto_item.gastos_adminitrativos
+      %td= proyecto/proyecto_item.monto
+      %td= proyecto/proyecto_item.fecha_solicitud
+      %td= link_to 'Show', proyecto/proyecto_item
+      %td= link_to 'Edit', edit_proyecto/proyecto_item_path(proyecto/proyecto_item)
+      %td= link_to 'Destroy', proyecto/proyecto_item, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Proyecto/Proyecto Item", new_proyecto/proyecto_item_path

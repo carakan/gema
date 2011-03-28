@@ -2,13 +2,21 @@
 # author: Boris Barroso
 # email: boriscyber@gmail.com
 Rails.application.routes.draw do
-
-  namespace(:proyecto){ resources :correspondencias }
-  namespace(:proyecto){ resources :instructions }
-  namespace(:proyecto){ resources :instruccion_detalles }
-  namespace(:proyecto){ resources :item_cobros }
-  namespace(:proyecto){ resources :item_gastos }
   
+  namespace(:proyecto) do 
+    resources :proyectos 
+    resources :correspondencias 
+    resources :instructions 
+    resources :instruccion_detalles 
+    resources :item_cobros 
+    resources :item_gastos 
+    resources :areas 
+    resources :instruccion_item_cobros 
+    resources :areas
+    resources :proyecto_items
+    resources :items
+  end
+
   resources :marca_estados
 
   resources :reportes

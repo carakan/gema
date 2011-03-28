@@ -1,0 +1,16 @@
+- form_for @proyecto/item do |f|
+  = f.error_messages
+  %p
+    = f.label :categoria_id
+    %br
+    = f.text_field :categoria_id
+  %p
+    = f.label :sigla
+    %br
+    = f.text_field :sigla
+  %p
+    = f.label :nombre
+    %br
+    = f.text_field :nombre
+  %p
+    = f.submit

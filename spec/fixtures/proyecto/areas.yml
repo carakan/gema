@@ -1,0 +1,7 @@
+one:
+  nombre: MyString
+  sigla: MyString
+
+two:
+  nombre: MyString
+  sigla: MyString

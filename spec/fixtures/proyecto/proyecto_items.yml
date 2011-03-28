@@ -1,0 +1,25 @@
+one:
+  codigo: 1
+  proyecto_id: 1
+  descripcion: MyString
+  estado: MyString
+  referencia_cliente: MyString
+  referencia_cliente_cobranza: MyString
+  fecha_limite: 2011-03-28
+  honorarios: 1.5
+  gastos_adminitrativos: 1.5
+  monto: 1.5
+  fecha_solicitud: 2011-03-28
+
+two:
+  codigo: 1
+  proyecto_id: 1
+  descripcion: MyString
+  estado: MyString
+  referencia_cliente: MyString
+  referencia_cliente_cobranza: MyString
+  fecha_limite: 2011-03-28
+  honorarios: 1.5
+  gastos_adminitrativos: 1.5
+  monto: 1.5
+  fecha_solicitud: 2011-03-28

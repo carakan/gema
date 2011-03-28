@@ -15,34 +15,34 @@ class AddTemplateForListaPublicationReport < ActiveRecord::Migration
 
 #Les informaremos cualquier novedad con relación a las solicitudes arriba mencionadas.
 
-Aprovechamos para enviarlas nuestros más cordiales saludos,
-    TEXTO
+#Aprovechamos para enviarlas nuestros más cordiales saludos,
+#    TEXTO
 
-        text_en =<<-TEXTO
-**logo_orpan**
-++fecha_reporte++
+#        text_en =<<-TEXTO
+#**logo_orpan**
+#++fecha_reporte++
 
-Dear Sirs:
+#Dear Sirs:
 
-This is to inform you that on ++fecha_gaceta++, the Bolivian Official Gazzette issue ++numero_gaceta++ has been published. This Gazzette is refered to trademark applications filed before the Bolivian Trademark Office (SENAPI) during (MESES), as well as previously filed applications that encountered formal observations.
+# This is to inform you that on ++fecha_gaceta++, the Bolivian Official Gazzette issue ++numero_gaceta++ has been published. This Gazzette is refered to trademark applications filed before the Bolivian Trademark Office (SENAPI) during (MESES), as well as previously filed applications that encountered formal observations.
 
-In this issue the following trademark applications have been published in the name of ++titulares++:
+#In this issue the following trademark applications have been published in the name of ++titulares++:
 
-**mini_ficha**
+#**mini_ficha**
 
-The deadline to file oppositions against the above mentioned application espires on ++fecha_vencimiento++.
+#The deadline to file oppositions against the above mentioned application espires on ++fecha_vencimiento++.
 
-We will keep you informed regarding the developments of these applications.
+#We will keep you informed regarding the developments of these applications.
 
-Kindest regards
-    TEXTO
+#Kindest regards
+#    TEXTO
 
-    Reporte.all(:conditions => {:clave => "lista_publicacion"}).each{|r| r.destroy}
+ #   Reporte.all(:conditions => {:clave => "lista_publicacion"}).each{|r| r.destroy}
     
-    Reporte.create(:texto_es => text_es, :texto_en => text_en, :nombre_clase => "CruceReport", :clave => "lista_publicacion")
-  end
+ #   Reporte.create(:texto_es => text_es, :texto_en => text_en, :nombre_clase => "CruceReport", :clave => "lista_publicacion")
+#  end
 
-  def self.down
-    Reporte.all(:conditions => {:clave => "lista_publicacion"}).each{|r| r.destroy}
-  end
+#  def self.down
+#    Reporte.all(:conditions => {:clave => "lista_publicacion"}).each{|r| r.destroy}
+#  end
 end

@@ -1,0 +1,48 @@
+- form_for @proyecto/proyecto_item do |f|
+  = f.error_messages
+  %p
+    = f.label :codigo
+    %br
+    = f.text_field :codigo
+  %p
+    = f.label :proyecto_id
+    %br
+    = f.text_field :proyecto_id
+  %p
+    = f.label :descripcion
+    %br
+    = f.text_field :descripcion
+  %p
+    = f.label :estado
+    %br
+    = f.text_field :estado
+  %p
+    = f.label :referencia_cliente
+    %br
+    = f.text_field :referencia_cliente
+  %p
+    = f.label :referencia_cliente_cobranza
+    %br
+    = f.text_field :referencia_cliente_cobranza
+  %p
+    = f.label :fecha_limite
+    %br
+    = f.date_select :fecha_limite
+  %p
+    = f.label :honorarios
+    %br
+    = f.text_field :honorarios
+  %p
+    = f.label :gastos_adminitrativos
+    %br
+    = f.text_field :gastos_adminitrativos
+  %p
+    = f.label :monto
+    %br
+    = f.text_field :monto
+  %p
+    = f.label :fecha_solicitud
+    %br
+    = f.date_select :fecha_solicitud
+  %p
+    = f.submit

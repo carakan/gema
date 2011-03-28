@@ -1,0 +1,17 @@
+- title "Proyecto/Items"
+
+%table
+  %tr
+    %th Categoria
+    %th Sigla
+    %th Nombre
+  - for proyecto/item in @proyecto/items
+    %tr
+      %td= proyecto/item.categoria_id
+      %td= proyecto/item.sigla
+      %td= proyecto/item.nombre
+      %td= link_to 'Show', proyecto/item
+      %td= link_to 'Edit', edit_proyecto/item_path(proyecto/item)
+      %td= link_to 'Destroy', proyecto/item, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Proyecto/Item", new_proyecto/item_path

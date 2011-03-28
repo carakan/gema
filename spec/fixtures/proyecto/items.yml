@@ -1,0 +1,9 @@
+one:
+  categoria_id: 1
+  sigla: MyString
+  nombre: MyString
+
+two:
+  categoria_id: 1
+  sigla: MyString
+  nombre: MyString

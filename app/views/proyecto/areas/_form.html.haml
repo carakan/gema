@@ -1,0 +1,12 @@
+- form_for @proyecto/area do |f|
+  = f.error_messages
+  %p
+    = f.label :nombre
+    %br
+    = f.text_field :nombre
+  %p
+    = f.label :sigla
+    %br
+    = f.text_field :sigla
+  %p
+    = f.submit

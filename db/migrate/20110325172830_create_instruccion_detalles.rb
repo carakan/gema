@@ -1,7 +1,6 @@
-class CreateProyecto::InstruccionDetalles < ActiveRecord::Migration
+class CreateInstruccionDetalles < ActiveRecord::Migration
   def self.up
-    create_table :proyecto/instruccion_detalles do |t|
-      t.integer :codigo
+    create_table :instruccion_detalles do |t|
       t.integer :instruccion_id
       t.integer :usuario_id
       t.string :tarea
@@ -12,6 +11,6 @@ class CreateProyecto::InstruccionDetalles < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :proyecto/instruccion_detalles
+    drop_table :instruccion_detalles
   end
 end
