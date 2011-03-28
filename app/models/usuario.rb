@@ -15,7 +15,7 @@ class Usuario < ActiveRecord::Base
   has_many :posts
   has_many :consultas
   has_many :importaciones
-  
+  belongs_to :area
 
   belongs_to :rol
 

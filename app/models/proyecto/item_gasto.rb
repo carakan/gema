@@ -1,3 +1,3 @@
-class Proyecto::ItemGasto < ActiveRecord::Base
-  attr_accessible :monto, :fecha_solicitud
+class Proyecto::ItemGasto < Proyecto::ProyectoItem 
+
 end
