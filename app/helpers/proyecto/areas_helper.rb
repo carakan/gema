@@ -1,0 +1,2 @@
+module Proyecto::AreasHelper
+end

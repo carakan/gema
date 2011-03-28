@@ -1,0 +1,15 @@
+- title "Proyecto/Area"
+
+%p
+  %strong Nombre:
+  = @proyecto/area.nombre
+%p
+  %strong Sigla:
+  = @proyecto/area.sigla
+
+%p
+  = link_to "Edit", edit_proyecto/area_path(@proyecto/area)
+  |
+  = link_to "Destroy", @proyecto/area, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", proyecto/areas_path

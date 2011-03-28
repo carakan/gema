@@ -1,0 +1,9 @@
+one:
+  sigla: MyString
+  nombre: MyString
+  codigo_categoria: 1
+
+two:
+  sigla: MyString
+  nombre: MyString
+  codigo_categoria: 1
