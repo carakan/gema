@@ -16,9 +16,8 @@ module ModMarca::Solicitud
     # Define las validaciones y filtros que se deben aplicar a la clase
     def set_validations_and_filters
       # validaciones
-      validates_presence_of :nombre, :fecha_solicitud, 
-        :tipo_signo_id, :clase_id
-      validates_format_of :numero_solicitud, :with => /^\d+-\d{4}$/
+      validates_presence_of :nombre, :fecha_solicitud, :tipo_signo_id, :clase_id
+      validates_format_of :numero_solicitud, :with => /^\d+-\d{4}/
       validates_uniqueness_of :numero_solicitud, :scope => :parent_id
     end
 

@@ -1,5 +1,4 @@
 module ModMarca::Figurativa
-
   def self.included(base)
     base.send(:include, InstanceMethods)
     base.send(:extend, ClassMethods)
@@ -15,7 +14,5 @@ module ModMarca::Figurativa
       # relaciones
       has_one :adjunto, :as => :adjuntable
     end
-
   end
-
 end

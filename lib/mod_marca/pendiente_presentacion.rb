@@ -22,6 +22,7 @@ module ModMarca::PendientePresentacion
   module ClassMethods
     # Define las validaciones y filtros que se deben aplicar a la clase
     def set_validations_and_filters
+      # validates_length_of :tipo_marca_id, :fecha_instruccion, :instruccion, :in => 6..12, :allow_nil => true, :allow_blank => true
       validates_presence_of :tipo_marca_id, :fecha_instruccion, :instruccion, :if => :propia?
       validate :validar_agente, :if => :propia?
       validate :validar_titular, :if => :propia?

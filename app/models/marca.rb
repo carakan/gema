@@ -537,6 +537,8 @@ class Marca < ActiveRecord::Base
   private
 
   def quitar_comillas
+    self.errores = []
+    self.errores_manual = []
     self.nombre = Marca.quitar_comillas(self.nombre) if self.nombre
   end
 
