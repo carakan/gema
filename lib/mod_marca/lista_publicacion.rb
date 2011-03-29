@@ -17,12 +17,11 @@ module ModMarca::ListaPublicacion
 
     # Define las validaciones y filtros que se deben aplicar a la clase
     def set_validations_and_filters
-      # validaciones
-      validates_presence_of :fecha_solicitud, :numero_publicacion
-      validates_format_of :numero_solicitud, :with => /^\d+-\d{4}$/
+      validates_length_of :numero_publicacion, :in => 6..12, :allow_nil => true, :allow_blank => true
+      validates_presence_of :fecha_solicitud, :numero_gaceta
+      validates_format_of :numero_solicitud, :with => /^\d+-\d{4}/
       validates_uniqueness_of :numero_solicitud, :scope => :parent_id
-
-      validates_presence_of :numero_publicacion, :numero_gaceta
+      #validates_presence_of :numero_publicacion, :numero_gaceta
     end
 
     def excel_cols
@@ -52,9 +51,7 @@ module ModMarca::ListaPublicacion
 
       Importacion.transaction do
         @importacion = Importacion.create!(params)
-
         extension, cont_type = [ File.extname( archivo.original_filename ).downcase, archivo.content_type ]
-
         if extension == '.xls'# and cont_type == 'application/vnd.ms-excel'
           importar_archivo_excel(archivo)
         elsif extension == '.pdf'# and cont_type == 'application/pdf'
@@ -64,8 +61,6 @@ module ModMarca::ListaPublicacion
           raise "Existio un error debe seleccionar un archivo PDF o Excel"
         end
       end
-      #@importacion.update_attributes(:completa => true)
-
       @importacion.id
     end
     ############################################################
