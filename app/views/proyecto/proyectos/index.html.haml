@@ -14,8 +14,8 @@
       %td= proyecto.titulo
       %td= proyecto.referencia_cliente
       %td= proyecto.prioridad
-      %td= link_to 'Show', [:proyecto, proyecto]
+      %td= link_to 'Show', proyecto
       %td= link_to 'Edit', edit_proyecto_proyecto_path(proyecto)
-      %td= link_to 'Destroy', [:proyecto, proyecto], :confirm => 'Are you sure?', :method => :delete
+      %td= link_to 'Destroy',proyecto, :confirm => 'Are you sure?', :method => :delete
 
 %p= link_to "New Proyecto/Proyecto", new_proyecto_proyecto_path

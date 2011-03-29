@@ -1,27 +1,24 @@
 - title "Proyecto/Instruccion Detalle"
 
 %p
-  %strong Codigo:
-  = @proyecto/instruccion_detalle.codigo
-%p
   %strong Instruccion:
-  = @proyecto/instruccion_detalle.instruccion_id
+  = @instruccion_detalle.instruccion_id
 %p
   %strong Usuario:
-  = @proyecto/instruccion_detalle.usuario_id
+  = @instruccion_detalle.usuario_id
 %p
   %strong Tarea:
-  = @proyecto/instruccion_detalle.tarea
+  = @instruccion_detalle.tarea
 %p
   %strong Fecha Limite:
-  = @proyecto/instruccion_detalle.fecha_limite
+  = @instruccion_detalle.fecha_limite
 %p
   %strong Estado:
-  = @proyecto/instruccion_detalle.estado
+  = @instruccion_detalle.estado
 
 %p
-  = link_to "Edit", edit_proyecto/instruccion_detalle_path(@proyecto/instruccion_detalle)
+  = link_to "Edit", edit_proyecto_instruccion_detall_path(@instruccion_detalle)
   |
-  = link_to "Destroy", @proyecto/instruccion_detalle, :confirm => 'Are you sure?', :method => :delete
+  = link_to "Destroy", @instruccion_detalle, :confirm => 'Are you sure?', :method => :delete
   |
-  = link_to "View All", proyecto/instruccion_detalles_path
+  = link_to "View All", proyecto_instruccion_detalles_path

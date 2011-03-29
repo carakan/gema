@@ -1,40 +1,40 @@
 class Proyecto::CorrespondenciasController < ApplicationController
   def index
-    @correspondencias = Correspondencia.all
+    @correspondencias = Proyecto::Correspondencia.all
   end
 
   def show
-    @correspondencia = Correspondencia.find(params[:id])
+    @correspondencia = Proyecto::Correspondencia.find(params[:id])
   end
 
   def new
-    @correspondencia = Correspondencia.new
+    @correspondencia = Proyecto::Correspondencia.new
   end
 
   def create
-    @correspondencia = Correspondencia.new(params[:correspondencia])
+    @correspondencia = Proyecto::Correspondencia.new(params[:proyecto_correspondencia])
     if @correspondencia.save
-      redirect_to [:proyecto, @correspondencia], :notice => "Successfully created correspondencia."
+      redirect_to @correspondencia, :notice => "Successfully created correspondencia."
     else
       render :action => 'new'
     end
   end
 
   def edit
-    @correspondencia = Correspondencia.find(params[:id])
+    @correspondencia = Proyecto::Correspondencia.find(params[:id])
   end
 
   def update
-    @correspondencia = Correspondencia.find(params[:id])
+    @correspondencia = Proyecto::Correspondencia.find(params[:id])
     if @correspondencia.update_attributes(params[:correspondencia])
-      redirect_to [:proyecto, @correspondencia], :notice  => "Successfully updated correspondencia."
+      redirect_to @correspondencia, :notice  => "Successfully updated correspondencia."
     else
       render :action => 'edit'
     end
   end
 
   def destroy
-    @correspondencia = Correspondencia.find(params[:id])
+    @correspondencia = Proyecto::Correspondencia.find(params[:id])
     @correspondencia.destroy
     redirect_to proyecto_correspondencias_url, :notice => "Successfully destroyed correspondencia."
   end

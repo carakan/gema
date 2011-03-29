@@ -1,42 +1,39 @@
-- title "Proyecto/Proyecto Item"
+- title "Proyecto Item"
 
-%p
-  %strong Codigo:
-  = @proyecto/proyecto_item.codigo
 %p
   %strong Proyecto:
-  = @proyecto/proyecto_item.proyecto_id
+  = @proyecto_item.proyecto_id
 %p
   %strong Descripcion:
-  = @proyecto/proyecto_item.descripcion
+  = @proyecto_item.descripcion
 %p
   %strong Estado:
-  = @proyecto/proyecto_item.estado
+  = @proyecto_item.estado
 %p
   %strong Referencia Cliente:
-  = @proyecto/proyecto_item.referencia_cliente
+  = @proyecto_item.referencia_cliente
 %p
   %strong Referencia Cliente Cobranza:
-  = @proyecto/proyecto_item.referencia_cliente_cobranza
+  = @proyecto_item.referencia_cliente_cobranza
 %p
   %strong Fecha Limite:
-  = @proyecto/proyecto_item.fecha_limite
+  = @proyecto_item.fecha_limite
 %p
   %strong Honorarios:
-  = @proyecto/proyecto_item.honorarios
+  = @proyecto_item.honorarios
 %p
   %strong Gastos Adminitrativos:
-  = @proyecto/proyecto_item.gastos_adminitrativos
+  = @proyecto_item.gastos_adminitrativos
 %p
   %strong Monto:
-  = @proyecto/proyecto_item.monto
+  = @proyecto_item.monto
 %p
   %strong Fecha Solicitud:
-  = @proyecto/proyecto_item.fecha_solicitud
+  = @proyecto_item.fecha_solicitud
 
 %p
-  = link_to "Edit", edit_proyecto/proyecto_item_path(@proyecto/proyecto_item)
+  = link_to "Edit", edit_proyecto_item_path(@proyecto_item)
   |
-  = link_to "Destroy", @proyecto/proyecto_item, :confirm => 'Are you sure?', :method => :delete
+  = link_to "Destroy", @proyecto_item, :confirm => 'Are you sure?', :method => :delete
   |
-  = link_to "View All", proyecto/proyecto_items_path
+  = link_to "View All", proyecto_proyecto_items_path

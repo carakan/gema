@@ -5,13 +5,13 @@
     %th Categoria
     %th Sigla
     %th Nombre
-  - for proyecto/item in @proyecto/items
+  - for item in @items
     %tr
-      %td= proyecto/item.categoria_id
-      %td= proyecto/item.sigla
-      %td= proyecto/item.nombre
-      %td= link_to 'Show', proyecto/item
-      %td= link_to 'Edit', edit_proyecto/item_path(proyecto/item)
-      %td= link_to 'Destroy', proyecto/item, :confirm => 'Are you sure?', :method => :delete
+      %td= item.categoria_id
+      %td= item.sigla
+      %td= item.nombre
+      %td= link_to 'Show', item
+      %td= link_to 'Edit', edit_proyecto_item_path(item)
+      %td= link_to 'Destroy', item, :confirm => 'Are you sure?', :method => :delete
 
-%p= link_to "New Proyecto/Item", new_proyecto/item_path
+%p= link_to "New Proyecto/Item", new_proyecto_item_path

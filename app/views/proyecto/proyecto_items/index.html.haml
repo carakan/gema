@@ -1,8 +1,7 @@
-- title "Proyecto/Proyecto Items"
+- title "Proyecto Items"
 
 %table
   %tr
-    %th Codigo
     %th Proyecto
     %th Descripcion
     %th Estado
@@ -13,21 +12,20 @@
     %th Gastos adminitrativos
     %th Monto
     %th Fecha solicitud
-  - for proyecto/proyecto_item in @proyecto/proyecto_items
+  - for proyecto_item in @proyecto_items
     %tr
-      %td= proyecto/proyecto_item.codigo
-      %td= proyecto/proyecto_item.proyecto_id
-      %td= proyecto/proyecto_item.descripcion
-      %td= proyecto/proyecto_item.estado
-      %td= proyecto/proyecto_item.referencia_cliente
-      %td= proyecto/proyecto_item.referencia_cliente_cobranza
-      %td= proyecto/proyecto_item.fecha_limite
-      %td= proyecto/proyecto_item.honorarios
-      %td= proyecto/proyecto_item.gastos_adminitrativos
-      %td= proyecto/proyecto_item.monto
-      %td= proyecto/proyecto_item.fecha_solicitud
-      %td= link_to 'Show', proyecto/proyecto_item
-      %td= link_to 'Edit', edit_proyecto/proyecto_item_path(proyecto/proyecto_item)
-      %td= link_to 'Destroy', proyecto/proyecto_item, :confirm => 'Are you sure?', :method => :delete
+      %td= proyecto_item.proyecto_id
+      %td= proyecto_item.descripcion
+      %td= proyecto_item.estado
+      %td= proyecto_item.referencia_cliente
+      %td= proyecto_item.referencia_cliente_cobranza
+      %td= proyecto_item.fecha_limite
+      %td= proyecto_item.honorarios
+      %td= proyecto_item.gastos_adminitrativos
+      %td= proyecto_item.monto
+      %td= proyecto_item.fecha_solicitud
+      %td= link_to 'Show', proyecto_item
+      %td= link_to 'Edit', edit_proyecto_item_path(proyecto_item)
+      %td= link_to 'Destroy', proyecto_item, :confirm => 'Are you sure?', :method => :delete
 
-%p= link_to "New Proyecto/Proyecto Item", new_proyecto/proyecto_item_path
+%p= link_to "New Proyecto Item", new_proyecto_proyecto_item_path

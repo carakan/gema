@@ -1,0 +1,17 @@
+- title "Proyecto/Instruccions"
+
+%table
+  %tr
+    %th Proyecto
+    %th Gerencia
+    %th Referencia email
+  - for instruccion in @instrucciones
+    %tr
+      %td= instruccion.proyecto_id
+      %td= instruccion.gerencia_id
+      %td= instruccion.referencia_email
+      %td= link_to 'Show', instruccion
+      %td= link_to 'Edit', edit_proyecto_instruccion_path(instruccion)
+      %td= link_to 'Destroy', instruccion, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Proyecto/Instruccion", new_proyecto_instruccion_path

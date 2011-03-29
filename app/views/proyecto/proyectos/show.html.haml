@@ -19,6 +19,6 @@
 %p
   = link_to "Edit", edit_proyecto_proyecto_path(@proyecto)
   |
-  = link_to "Destroy", [:proyecto, @proyecto], :confirm => 'Are you sure?', :method => :delete
+  = link_to "Destroy", @proyecto, :confirm => 'Are you sure?', :method => :delete
   |
   = link_to "View All", proyecto_proyectos_path

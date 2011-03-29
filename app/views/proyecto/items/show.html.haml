@@ -2,17 +2,17 @@
 
 %p
   %strong Categoria:
-  = @proyecto/item.categoria_id
+  = @item.categoria_id
 %p
   %strong Sigla:
-  = @proyecto/item.sigla
+  = @item.sigla
 %p
   %strong Nombre:
-  = @proyecto/item.nombre
+  = @item.nombre
 
 %p
-  = link_to "Edit", edit_proyecto/item_path(@proyecto/item)
+  = link_to "Edit", edit_proyecto_item_path(@item)
   |
-  = link_to "Destroy", @proyecto/item, :confirm => 'Are you sure?', :method => :delete
+  = link_to "Destroy", @item, :confirm => 'Are you sure?', :method => :delete
   |
-  = link_to "View All", proyecto/items_path
+  = link_to "View All", proyecto_items_path

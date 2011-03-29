@@ -4,12 +4,12 @@
   %tr
     %th Nombre
     %th Sigla
-  - for proyecto/area in @proyecto/areas
-    %tr
-      %td= proyecto/area.nombre
-      %td= proyecto/area.sigla
-      %td= link_to 'Show', proyecto/area
-      %td= link_to 'Edit', edit_proyecto/area_path(proyecto/area)
-      %td= link_to 'Destroy', proyecto/area, :confirm => 'Are you sure?', :method => :delete
+  -for area in @areas
+    %tr 
+      %td= area.nombre
+      %td= area.sigla
+      %td= link_to 'Show', area
+      %td= link_to 'Edit', edit_proyecto_area_path(area)
+      %td= link_to 'Destroy', area, :confirm => 'Are you sure?', :method => :delete
 
-%p= link_to "New Proyecto/Area", new_proyecto/area_path
+%p= link_to "New Proyecto/Area", new_proyecto_area_path
