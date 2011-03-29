@@ -76,6 +76,18 @@
         <%= last_importation rescue "" %>
       </li>
     </ul>
+    <li>
+     <%= link_to 'Proyectos', proyecto_proyectos_path%>
+    <ul> 
+     <li><%= link_to 'Correspondencias', proyecto_correspondencias_path %></li>	
+     <li><%= link_to 'Items', proyecto_items_path %></li>
+     <li><%= link_to 'Proyecto Items', proyecto_proyecto_items_path %></li>
+     <li><%= link_to 'Areas', proyecto_areas_path %></li>
+     <li><%= link_to 'Instrucciones', proyecto_instrucciones_path %>  </li>	
+     <li><%= link_to 'Instruccion Detalles', proyecto_instruccion_detalles_path %></li>	 
+    </ul>	
+    </li>
+    	
   <!--	<ul>
   		<li>
   			<a href="#">Marcas por tipo signo</a>
