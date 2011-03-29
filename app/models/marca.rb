@@ -210,7 +210,6 @@ class Marca < ActiveRecord::Base
       end
       #raise "Error, debe incluir estado válido" unless m
     end
-
     include mod
   end
 
