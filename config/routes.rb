@@ -8,8 +8,6 @@ Rails.application.routes.draw do
     resources :correspondencias 
     resources :instrucciones 
     resources :instruccion_detalles 
-    resources :item_cobros 
-    resources :item_gastos 
     resources :areas 
     resources :instruccion_item_cobros 
     resources :proyecto_items
