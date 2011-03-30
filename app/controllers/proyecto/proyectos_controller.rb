@@ -12,7 +12,7 @@ class Proyecto::ProyectosController < ApplicationController
   end
 
   def create
-    @proyecto = Proyecto::Proyecto.new(params[:proyecto])
+    @proyecto = Proyecto::Proyecto.new(params[:proyecto_proyecto])
     if @proyecto.save
       redirect_to @proyecto, :notice => "Successfully created proyecto."
     else
@@ -26,7 +26,7 @@ class Proyecto::ProyectosController < ApplicationController
 
   def update
     @proyecto = Proyecto::Proyecto.find(params[:id])
-    if @proyecto.update_attributes(params[:proyecto])
+    if @proyecto.update_attributes(params[:proyecto_proyecto])
       redirect_to @proyecto, :notice  => "Successfully updated proyecto."
     else
       render :action => 'edit'
