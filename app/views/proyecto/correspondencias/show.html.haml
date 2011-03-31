@@ -1,4 +1,4 @@
-- title "Proyecto/Correspondencia"
+- title "Ficha Correspondencia"
 
 %p
   %strong Proyecto:
@@ -11,8 +11,8 @@
   = @correspondencia.contenido
 
 %p
-  = link_to "Edit", edit_proyecto_correspondencia_path(@correspondencia)
+  = link_to "Editar", edit_proyecto_correspondencia_path(@correspondencia)
   |
-  = link_to "Destroy", @correspondencia, :confirm => 'Are you sure?', :method => :delete
+  = link_to "Borrar", @correspondencia, :confirm => 'Are you sure?', :method => :delete
   |
-  = link_to "View All", proyecto_correspondencias_path
+  = link_to "Listado", proyecto_correspondencias_path

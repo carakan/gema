@@ -1,15 +1,30 @@
-%table
-  %tr
-    %th Proyecto
-    %th Tipo
-    %th Contenido
-  - for correspondencia in @correspondencias
-    %tr
-      %td= correspondencia.proyecto_id
-      %td= correspondencia.tipo
-      %td= correspondencia.contenido
-      %td= link_to 'Show', correspondencia
-      %td= link_to 'Edit', edit_proyecto_correspondencia_path(correspondencia)
-      %td= link_to 'Destroy', correspondencia, :confirm => 'Are you sure?', :method => :delete
+#tabs{:style=>'font-size:11px;'}
+  %ul
+    %li
+      %a{:href=>'#tabs-1'}
+        Correspondencia
+        
+  #tabs-1
+    %table.decorated  
+      %tr
+        %th= sort_order "Id", "correspondencia.id"
+        %th Tipo
+        %th Contenido
+      - for correspondencia in @correspondencias
+        %tr
+          %td= link_to correspondencia.id, proyecto_correspondencias_path(correspondencia)
+          - if correspondencia.tipo == true
+            %td= image_tag("icons/received.png", :size => "16x16", :title => "Recibido")
+          - else
+            %td= image_tag("icons/sent.png", :size => "16x16", :title => "Enviado")
+          %td= correspondencia.contenido
+          %td= link_to 'Ver', correspondencia
+          %td= link_to 'Editar', edit_proyecto_correspondencia_path(correspondencia)
+          %td= link_to 'Eliminar', correspondencia, :confirm => 'Are you sure?', :method => :delete
 
-%p= link_to "New Proyecto/Correspondencia", new_proyecto_correspondencia_path
+    %p= link_to "Nueva correspondencia", new_proyecto_correspondencia_path, :class => 'new'
+
+:javascript
+  $(function() {
+   $( "#tabs" ).tabs();
+  });

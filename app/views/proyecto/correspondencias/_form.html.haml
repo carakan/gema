@@ -1,9 +1,9 @@
 = simple_form_for @correspondencia do |f|
   /= f.error_messages
   %p
-    = f.input :proyecto_id
+    = f.input :proyecto_id, :disabled => true
   %p
-    = f.input :tipo
+    = f.input :tipo, :as => :radio, :label => '¿Recibido?'
   %p
     = f.input :contenido
   %p
