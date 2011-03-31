@@ -111,11 +111,9 @@ ActiveRecord::Schema.define(:version => 20110328152925) do
     t.datetime "updated_at"
   end
 
-  create_table "instruccion_item_cobro", :force => true do |t|
-    t.integer  "instruccion_detalle_id"
-    t.integer  "proyecto_item_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "instruccion_detalles_item_cobros", :id => false, :force => true do |t|
+    t.integer "instruccion_detalle_id"
+    t.integer "proyecto_item_id"
   end
 
   create_table "instruccions", :force => true do |t|
@@ -126,11 +124,9 @@ ActiveRecord::Schema.define(:version => 20110328152925) do
     t.datetime "updated_at"
   end
 
-  create_table "item_cobro_marcas", :force => true do |t|
-    t.integer  "proyecto_item_id"
-    t.integer  "marca_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "item_cobros_marcas", :id => false, :force => true do |t|
+    t.integer "proyecto_item_id"
+    t.integer "marca_id"
   end
 
   create_table "items", :force => true do |t|

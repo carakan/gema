@@ -18,14 +18,12 @@ class CreateProyectos < ActiveRecord::Migration
       t.integer :area_id
     end
 
-    create_table :item_cobro_marcas do |t|
+    create_table :item_cobros_marcas, :id => false do |t|  	
       t.integer :proyecto_item_id, :marca_id
-      t.timestamps
     end
 
-    create_table :instruccion_item_cobro do |t|
+    create_table :instruccion_detalles_item_cobros,:id => false do |t|
       t.integer :instruccion_detalle_id, :proyecto_item_id
-      t.timestamps
     end
   end
 
