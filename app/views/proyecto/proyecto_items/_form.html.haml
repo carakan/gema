@@ -1,44 +1,24 @@
-- form_for @proyecto_item do |f|
+- simple_form_for @proyecto_item do |f|
   = f.error_messages
   %p
-    = f.label :proyecto_id
-    %br
-    = f.text_field :proyecto_id
+    = f.input :proyecto_id
   %p
-    = f.label :descripcion
-    %br
-    = f.text_field :descripcion
+    = f.input :descripcion
   %p
-    = f.label :estado
-    %br
-    = f.text_field :estado
+    = f.input :estado
   %p
-    = f.label :referencia_cliente
-    %br
-    = f.text_field :referencia_cliente
+    = f.input :referencia_cliente
   %p
-    = f.label :referencia_cliente_cobranza
-    %br
-    = f.text_field :referencia_cliente_cobranza
+    = f.input :referencia_cliente_cobranza
   %p
-    = f.label :fecha_limite
-    %br
-    = f.date_select :fecha_limite
+    = f.input :fecha_limite
   %p
-    = f.label :honorarios
-    %br
-    = f.text_field :honorarios
+    = f.input :honorarios
   %p
-    = f.label :gastos_adminitrativos
-    %br
-    = f.text_field :gastos_adminitrativos
+    = f.input :gastos_adminitrativos
   %p
-    = f.label :monto
-    %br
-    = f.text_field :monto
+    = f.input :monto
   %p
-    = f.label :fecha_solicitud
-    %br
-    = f.date_select :fecha_solicitud
+    = f.input :fecha_solicitud
   %p
-    = f.submit
+    = f.button :submit, 'Guardar Proyecto Item'

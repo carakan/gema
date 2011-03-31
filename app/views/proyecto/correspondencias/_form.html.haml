@@ -1,16 +1,10 @@
-= form_for [:proyecto, @correspondencia] do |f|
-  = f.error_messages
+= simple_form_for [:proyecto, @correspondencia] do |f|
+  /= f.error_messages
   %p
-    = f.label :proyecto_id
-    %br
-    = f.text_field :proyecto_id
+    = f.input :proyecto_id
   %p
-    = f.label :tipo
-    %br
-    = f.check_box :tipo
+    = f.input :tipo
   %p
-    = f.label :contenido
-    %br
-    = f.text_area :contenido
+    = f.input :contenido
   %p
-    = f.submit
+    = f.button :submit, 'Guardar'

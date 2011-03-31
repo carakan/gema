@@ -1,24 +1,14 @@
-= form_for @proyecto do |f|
+= simple_form_for @proyecto do |f|
   = f.error_messages
   %p
-    = f.label :cliente_id
-    %br
-    = f.text_field :cliente_id
+    = f.input :cliente_id
   %p
-    = f.label :area_id
-    %br
-    = f.text_field :area_id
+    = f.input :area_id
   %p
-    = f.label :titulo
-    %br
-    = f.text_field :titulo
+    = f.input :titulo
   %p
-    = f.label :referencia_cliente
-    %br
-    = f.text_field :referencia_cliente
+    = f.input :referencia_cliente
   %p
-    = f.label :prioridad
-    %br
-    = f.text_field :prioridad
+    = f.input :prioridad
   %p
-    = f.submit
+    = f.button :submit, 'Guardar Proyecto'

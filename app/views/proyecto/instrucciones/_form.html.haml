@@ -1,16 +1,10 @@
-- form_for @instruccion do |f|
+- simple_form_for @instruccion do |f|
   = f.error_messages
   %p
-    = f.label :proyecto_id
-    %br
-    = f.text_field :proyecto_id
+    = f.input :proyecto_id
   %p
-    = f.label :gerencia_id
-    %br
-    = f.text_field :gerencia_id
+    = f.input :gerencia_id
   %p
-    = f.label :referencia_email
-    %br
-    = f.text_field :referencia_email
+    = f.input :referencia_email
   %p
-    = f.submit
+    = f.button :submit
