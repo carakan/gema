@@ -26,7 +26,7 @@ class Proyecto::CorrespondenciasController < ApplicationController
 
   def update
     @correspondencia = Proyecto::Correspondencia.find(params[:id])
-    if @correspondencia.update_attributes(params[:correspondencia])
+    if @correspondencia.update_attributes(params[:proyecto_correspondencia])
       redirect_to @correspondencia, :notice  => "Successfully updated correspondencia."
     else
       render :action => 'edit'
