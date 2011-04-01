@@ -1,6 +1,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
-describe Proyecto::Area do
+
+describe Proyeco::Correspondencia do
   it "should be valid" do
-    Proyecto::Area.new.should be_valid
+    Correspondencia.new.should be_valid
   end
 end
