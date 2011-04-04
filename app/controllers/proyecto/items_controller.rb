@@ -12,9 +12,9 @@ class Proyecto::ItemsController < ApplicationController
   end
   
   def create
-    @item = Proyecto::Item.new(params[:proyecto_item])
+    @item = Proyecto::Item.new(params[:item])
     if @item.save
-      flash[:notice] = "Successfully created proyecto/item."
+      flash[:notice] = "Se creo exitosamente el item"
       redirect_to @item
     else
       render :action => 'new'

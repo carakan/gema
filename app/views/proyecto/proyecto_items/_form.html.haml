@@ -1,6 +1,6 @@
-%h1 Servicios
-- simple_form_for @proyecto_item do |f|
+= simple_form_for @proyecto_item, :url => url do |f|
   = f.error_messages
+  = f.hidden_field :proyecto_id
   %p
     = f.input :proyecto_id
   %p

@@ -1,4 +1,5 @@
 class Proyecto::ProyectoItemsController < ApplicationController
+  before_filter :set_proyecto
   def index
     @proyecto_items = Proyecto::ProyectoItem.all
   end
@@ -15,7 +16,7 @@ class Proyecto::ProyectoItemsController < ApplicationController
     @proyecto_item = Proyecto::ProyectoItem.new(params[:proyecto_proyecto_item])
     if @proyecto_item.save
       flash[:notice] = "Se creo con exito el servicio."
-      redirect_to @proyecto_item
+      redirect_to proyecto_proyecto_proyecto_items_url(@proyecto)
     else
       render :action => 'new'
     end
@@ -40,5 +41,10 @@ class Proyecto::ProyectoItemsController < ApplicationController
     @proyecto_item.destroy
     flash[:notice] = "Se elimino de forma correcta el servicio."
     redirect_to proyecto_proyecto_items_url
+  end
+
+  protected
+  def set_proyecto
+    @proyecto = Proyecto::Proyecto.find(params[:proyecto_id])
   end
 end

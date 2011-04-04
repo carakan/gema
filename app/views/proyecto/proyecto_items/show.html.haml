@@ -1,4 +1,4 @@
-- title "Proyecto Item"
+- title "Servicio"
 
 %p
   %strong Proyecto:
@@ -32,8 +32,8 @@
   = @proyecto_item.fecha_solicitud
 
 %p
-  = link_to "Edit", edit_proyecto_item_path(@proyecto_item)
+  = link_to "Editar", edit_proyecto_item_path(@proyecto_item)
   |
-  = link_to "Destroy", @proyecto_item, :confirm => 'Are you sure?', :method => :delete
+  = link_to "Eliminar", proyecto_proyecto_proyecto_item_path(@proyecto_item), :confirm => 'Esta seguro de eliminar el item seleccionado?', :method => :delete
   |
-  = link_to "View All", proyecto_proyecto_items_path
+  = link_to "Listado", proyecto_proyecto_proyecto_items_path

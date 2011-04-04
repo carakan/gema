@@ -1,10 +1,10 @@
 #tabs{:style=>'font-size:11px;'}
   %ul
     %li
-      %a{:href=>'#tabs-1'}
+      %a{:href=>'#tabs-2'}
         Servicios
         
-  #tabs-1
+  #tabs-2
     %table.decorated
       %tr
         %th= sort_order "Codigo ORPAN", "proyecto_item.id"
@@ -20,7 +20,7 @@
   
       - for proyecto_item in proyecto_items
         %tr
-          %td= link_to proyecto_item.proyecto_id, proyecto_proyecto_proyecto_items_path(@proyecto, proyecto_item)
+          %td= link_to proyecto_item.proyecto_id, proyecto_proyecto_proyecto_item_path(@proyecto, proyecto_item)
           %td= proyecto_item.descripcion
           %td= proyecto_item.estado
           %td= proyecto_item.referencia_cliente
@@ -30,9 +30,7 @@
           %td= proyecto_item.gastos_adminitrativos
           %td= proyecto_item.monto
           %td= proyecto_item.fecha_solicitud
-          %td= link_to 'Show', proyecto_item
-          %td= link_to 'Edit', edit_proyecto_proyecto_item_path(@proyecto, proyecto_item)
-          %td= link_to 'Destroy', proyecto_item, :confirm => 'Are you sure?', :method => :delete
+          %td= link_to 'Edit', edit_proyecto_proyecto_proyecto_item_path(@proyecto, proyecto_item)
 
 %p= link_to "New Proyecto Item", new_proyecto_proyecto_proyecto_item_path(@proyecto), :class => 'new'
 
