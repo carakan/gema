@@ -1,6 +1,6 @@
 - title "Editar Correspondencia"
 
-= render 'form', :locals => {:url => proyecto_proyecto_correspondencias_path(@proyecto, @correspondencia)}
+= render :partial => 'form', :locals => {:url => proyecto_proyecto_correspondencia_path(@proyecto, @correspondencia)}
 
 %p
   = link_to "Ver", proyecto_proyecto_correspondencia_path(@proyecto, @correspondencia)
