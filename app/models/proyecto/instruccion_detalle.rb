@@ -3,4 +3,5 @@ class Proyecto::InstruccionDetalle < ActiveRecord::Base
   set_table_name "instruccion_detalles"
   belongs_to :instruccion
   has_and_belongs_to_many :item_cobros, :association_foreign_key => :proyecto_item_id
+  belongs_to :usuario
 end

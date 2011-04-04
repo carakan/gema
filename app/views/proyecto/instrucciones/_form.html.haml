@@ -1,10 +1,10 @@
-- simple_form_for @instruccion do |f|
+- simple_form_for @instruccion,  :url => url do |f|
   = f.error_messages
   %p
-    = f.input :proyecto_id
+    = f.input :proyecto_id , :disabled => false
   %p
-    = f.input :gerencia_id
+    = f.input :gerencia_id , :disabled => false
   %p
-    = f.input :referencia_email
+    = f.input :referencia_email , :disabled => false
   %p
     = f.button :submit

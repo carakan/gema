@@ -1,5 +1,6 @@
-- title "New Proyecto/Instruccion"
+- title "Instruccion"
 
-= render 'form'
+= render :partial=>'form', :locals => {:url => proyecto_proyecto_instrucciones_path(@proyecto, @instrucciones)}
 
-%p= link_to "Back to List", proyecto_instrucciones_path
+%p= link_to "Back to List", proyecto_proyecto_instrucciones_path(@proyecto)
+

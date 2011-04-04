@@ -16,7 +16,7 @@ class Usuario < ActiveRecord::Base
   has_many :consultas
   has_many :importaciones
   belongs_to :area
-
+  has_many :instruccion_detalles
   belongs_to :rol
 
   #validates_presence_of :login, :password
