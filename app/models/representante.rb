@@ -20,6 +20,7 @@ class Representante < ActiveRecord::Base
   has_many :reporte_marcas
   has_many :contactos
   has_many :consultas
+  has_many :proyectos
 
   POSTS_SIZE = 2
 

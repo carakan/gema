@@ -1,6 +1,7 @@
 - simple_form_for @instruccion_detalle do |f|
   = f.error_messages
 
+  = f.association :instruccion
   %p
     = f.input :tarea
   %p

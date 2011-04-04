@@ -9,7 +9,6 @@ class Proyecto::ProyectoItemsController < ApplicationController
   end
   
   def new
-    debugger
     @proyecto_item = Proyecto::ProyectoItem.new
   end
   

@@ -1,7 +1,7 @@
 = simple_form_for @proyecto do |f|
   = f.error_messages
   %p
-    = f.input :cliente_id
+    = f.association :representante
   %p
     = f.input :area_id
   %p

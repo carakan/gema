@@ -3,4 +3,8 @@ class Proyecto::Instruccion < ActiveRecord::Base
   set_table_name "instruccions"
   belongs_to :proyecto
   has_many :instruccion_detalles
+
+  def to_s
+    id
+  end 
 end
