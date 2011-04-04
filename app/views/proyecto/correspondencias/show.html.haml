@@ -1,18 +1,3 @@
 - title "Ficha Correspondencia"
 
-%p
-  %strong Proyecto:
-  = @correspondencia.proyecto_id
-%p
-  %strong Tipo:
-  = @correspondencia.tipo
-%p
-  %strong Contenido:
-  = @correspondencia.contenido
-
-%p
-  = link_to "Editar", edit_proyecto_correspondencia_path(@correspondencia)
-  |
-  = link_to "Borrar", @correspondencia, :confirm => 'Are you sure?', :method => :delete
-  |
-  = link_to "Listado", proyecto_correspondencias_path
+= render :partial => "/proyecto/correspondencias/show"

@@ -7,22 +7,23 @@
   #tabs-1
     %table.decorated
       %tr
-        %th= sort_order "Id", "correspondencia.id"
         %th Tipo
+        %th Fecha
         %th Contenido
       - for correspondencia in correspondencias
         %tr
-          %td= link_to correspondencia.id, proyecto_proyecto_correspondencias_path(@proyecto, correspondencia)
           - if correspondencia.tipo == true
             %td= image_tag("icons/received.png", :size => "16x16", :title => "Recibido")
           - else
             %td= image_tag("icons/sent.png", :size => "16x16", :title => "Enviado")
+          %td= correspondencia.created_at
           %td= correspondencia.contenido
           %td= link_to 'Ver', proyecto_proyecto_correspondencia_path(@proyecto, correspondencia)
           %td= link_to 'Editar', edit_proyecto_proyecto_correspondencia_path(@proyecto, correspondencia), :class => 'edit'
           %td= link_to 'Eliminar', proyecto_proyecto_correspondencia_path(@proyecto, correspondencia), :confirm => 'Are you sure?', :method => :delete, :class => 'delete'
 
-    %p= link_to "Nueva correspondencia", new_proyecto_proyecto_correspondencia_path(@proyecto), :class => 'new'
+    %p= link_to "Añadir email", new_proyecto_proyecto_correspondencia_path(@proyecto), :class => 'new'
+    %p= link_to "Ver todos los email", proyecto_proyecto_correspondencias_path(@proyecto)
 
 :javascript
   $(function() {
