@@ -17,6 +17,7 @@
   = @proyecto.prioridad
 
 = render :partial => "/proyecto/correspondencias/listado", :locals => {:correspondencias => @proyecto.correspondencias}
+= render :partial => "/proyecto/proyecto_items/listado", :locals => {:proyecto_items => @proyecto.proyecto_items}
 
 %p
   = link_to "Edit", edit_proyecto_proyecto_path(@proyecto)

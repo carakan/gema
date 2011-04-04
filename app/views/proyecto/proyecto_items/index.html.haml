@@ -25,7 +25,7 @@
       %td= proyecto_item.monto
       %td= proyecto_item.fecha_solicitud
       %td= link_to 'Show', proyecto_item
-      %td= link_to 'Edit', edit_proyecto_item_path(proyecto_item)
+      %td= link_to 'Edit', edit_proyecto_proyecto_item_path(@proyecto, proyecto_item)
       %td= link_to 'Destroy', proyecto_item, :confirm => 'Are you sure?', :method => :delete
 
-%p= link_to "New Proyecto Item", new_proyecto_proyecto_item_path
+%p= link_to "New Proyecto Item", new_proyecto_proyecto_proyecto_item_path(@proyecto)
