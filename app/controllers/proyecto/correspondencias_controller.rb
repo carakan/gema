@@ -1,4 +1,5 @@
 class Proyecto::CorrespondenciasController < ApplicationController
+  before_filter :set_proyecto
   def index
     @correspondencias = Proyecto::Correspondencia.all
   end
@@ -37,5 +38,10 @@ class Proyecto::CorrespondenciasController < ApplicationController
     @correspondencia = Proyecto::Correspondencia.find(params[:id])
     @correspondencia.destroy
     redirect_to proyecto_correspondencias_url, :notice => "Successfully destroyed correspondencia."
+  end
+
+  protected
+  def set_proyecto
+    @proyecto = Proyecto::Proyecto.find(params[:proyecto_id])
   end
 end

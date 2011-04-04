@@ -1,5 +1,5 @@
-= simple_form_for @correspondencia do |f|
-  /= f.error_messages
+= simple_form_for @correspondencia, :url => url do |f|
+  = f.error_messages
   %p
     = f.input :proyecto_id, :disabled => true
   %p

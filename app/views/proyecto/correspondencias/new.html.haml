@@ -1,5 +1,5 @@
-- title "New Proyecto/Correspondencia"
+- title "Nueva Correspondencia"
 
-= render 'form'
+= render :partial => 'form', :locals => {:url => proyecto_proyecto_correspondencias_path(@proyecto)}
 
-%p= link_to "Back to List", proyecto_correspondencias_path
+%p= link_to "Back to List", proyecto_proyecto_correspondencias_path(@proyecto)
