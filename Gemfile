@@ -29,7 +29,6 @@ gem 'devise'
 gem 'simple_form'
 gem "meta_search"
 gem 'warden'
-gem 'bcrypt-ruby'
 
 group :development do
   gem "nifty-generators"

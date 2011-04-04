@@ -1,16 +1,17 @@
 # encoding: utf-8
 # author: Boris Barroso
 # email: boriscyber@gmail.com
-Rails.application.routes.draw do
+Rails.application.routes.draw do 
   
-  namespace(:proyecto) do 
-    resources :proyectos 
-    resources :correspondencias 
-    resources :instrucciones 
+  namespace(:proyecto) do
+    resources :proyectos do
+      resources :correspondencias
+      resources :instrucciones
+      resources :proyecto_items
+    end
     resources :instruccion_detalles 
     resources :areas 
     resources :instruccion_item_cobros 
-    resources :proyecto_items
     resources :items
   end
 

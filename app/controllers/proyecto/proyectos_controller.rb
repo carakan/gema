@@ -14,7 +14,7 @@ class Proyecto::ProyectosController < ApplicationController
   def create
     @proyecto = Proyecto::Proyecto.new(params[:proyecto_proyecto])
     if @proyecto.save
-      redirect_to @proyecto, :notice => "Successfully created proyecto."
+      redirect_to @proyecto, :notice => "Se creo con exito el proyecto."
     else
       render :action => 'new'
     end

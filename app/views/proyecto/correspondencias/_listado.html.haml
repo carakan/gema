@@ -19,8 +19,8 @@
             %td= image_tag("icons/sent.png", :size => "16x16", :title => "Enviado")
           %td= correspondencia.contenido
           %td= link_to 'Ver', correspondencia
-          %td= link_to 'Editar', edit_proyecto_correspondencia_path(correspondencia)
-          %td= link_to 'Eliminar', correspondencia, :confirm => 'Are you sure?', :method => :delete
+          %td= link_to 'Editar', edit_proyecto_correspondencia_path(correspondencia), :class => 'edit'
+          %td= link_to 'Eliminar', correspondencia, :confirm => 'Are you sure?', :method => :delete, :class => 'delete'
 
     %p= link_to "Nueva correspondencia", new_proyecto_correspondencia_path, :class => 'new'
 
