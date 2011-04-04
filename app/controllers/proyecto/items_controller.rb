@@ -12,7 +12,7 @@ class Proyecto::ItemsController < ApplicationController
   end
   
   def create
-    @item = Proyecto::Item.new(params[:item])
+    @item = Proyecto::Item.new(params[:proyecto_item])
     if @item.save
       flash[:notice] = "Se creo exitosamente el item"
       redirect_to @item
@@ -27,7 +27,7 @@ class Proyecto::ItemsController < ApplicationController
   
   def update
     @item = Proyecto::Item.find(params[:id])
-    if @proyecto/item.update_attributes(params[:proyecto/item])
+    if @proyecto/item.update_attributes(params[:proyecto_item])
       flash[:notice] = "Successfully updated proyecto/item."
       redirect_to @item
     else

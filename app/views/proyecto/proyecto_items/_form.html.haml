@@ -1,8 +1,7 @@
 = simple_form_for @proyecto_item, :url => url do |f|
   = f.error_messages
-  = f.hidden_field :proyecto_id
   %p
-    = f.input :proyecto_id
+    = f.input :proyecto_id, :value => @proyecto.id
   %p
     = f.input :descripcion
   %p

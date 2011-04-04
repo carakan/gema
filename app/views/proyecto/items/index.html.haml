@@ -1,6 +1,6 @@
 - title "Proyecto/Items"
-
-%table
+%h1 Listado de items
+%table.decorated
   %tr
     %th Categoria
     %th Sigla
@@ -14,4 +14,4 @@
       %td= link_to 'Edit', edit_proyecto_item_path(item)
       %td= link_to 'Destroy', item, :confirm => 'Are you sure?', :method => :delete
 
-%p= link_to "New Proyecto/Item", new_proyecto_item_path
+%p= link_to "Nuevo Item", new_proyecto_item_path, :class => 'new'

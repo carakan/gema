@@ -1,4 +1,4 @@
-- form_for @item do |f|
+= simple_form_for @item do |f|
   = f.error_messages
   %p
     = f.label :categoria_id
@@ -13,4 +13,4 @@
     %br
     = f.text_field :nombre
   %p
-    = f.submit
+    = f.button :submit, 'Guardar'
