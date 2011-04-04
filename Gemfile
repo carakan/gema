@@ -25,7 +25,7 @@ gem 'roo'
 gem 'paperclip'
 gem 'prawn'
 gem 'less'
-gem 'devise'
+gem 'devise', '1.2.1'
 gem 'simple_form'
 gem "meta_search"
 gem 'warden'
