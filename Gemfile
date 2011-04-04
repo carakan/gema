@@ -28,7 +28,7 @@ gem 'less'
 gem 'devise', '1.2.1'
 gem 'simple_form'
 gem "meta_search"
-gem 'warden'
+gem 'warden', '1.0.3'
 
 group :development do
   gem "nifty-generators"

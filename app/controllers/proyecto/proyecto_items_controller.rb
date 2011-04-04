@@ -14,7 +14,7 @@ class Proyecto::ProyectoItemsController < ApplicationController
   def create
     @proyecto_item = Proyecto::ProyectoItem.new(params[:proyecto_proyecto_item])
     if @proyecto_item.save
-      flash[:notice] = "Successfully created proyecto/proyecto item."
+      flash[:notice] = "Se creo con exito el servicio."
       redirect_to @proyecto_item
     else
       render :action => 'new'
@@ -28,7 +28,7 @@ class Proyecto::ProyectoItemsController < ApplicationController
   def update
     @proyecto_item = Proyecto::ProyectoItem.find(params[:id])
     if @pproyecto_item.update_attributes(params[:proyecto_proyecto_item])
-      flash[:notice] = "Successfully updated proyecto/proyecto item."
+      flash[:notice] = "Se actualizo correctamente los datos del servicio."
       redirect_to @proyecto_item
     else
       render :action => 'edit'
@@ -38,7 +38,7 @@ class Proyecto::ProyectoItemsController < ApplicationController
   def destroy
     @proyecto_item = Proyecto::ProyectoItem.find(params[:id])
     @proyecto_item.destroy
-    flash[:notice] = "Successfully destroyed proyecto/proyecto item."
+    flash[:notice] = "Se elimino de forma correcta el servicio."
     redirect_to proyecto_proyecto_items_url
   end
 end
