@@ -1,0 +1,19 @@
+%h2== Proyecto #{@proyecto.titulo}
+
+
+
+#correspondencia
+  %p
+    - if @correspondencia.tipo == true
+      %td= image_tag("icons/received.png", :size => "16x16", :title => "Recibido")
+    - else
+      %td= image_tag("icons/sent.png", :size => "16x16", :title => "Enviado")
+  %p
+    = @correspondencia.contenido
+
+  %p
+    = link_to "Editar", edit_proyecto_proyecto_correspondencia_path(@proyecto, @correspondencia)
+    |
+    = link_to "Borrar", proyecto_proyecto_correspondencia_path(@proyecto, @correspondencia), :confirm => 'Are you sure?', :method => :delete
+    |
+    = link_to "Listado", proyecto_proyecto_correspondencias_path(@proyecto)
