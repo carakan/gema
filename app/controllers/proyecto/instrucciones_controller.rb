@@ -1,6 +1,8 @@
 class Proyecto::InstruccionesController < ApplicationController
+  before_filter :set_proyecto
+  
   def index
-    @instrucciones = Proyecto::Instruccion.all
+    @instrucciones = Proyecto::Instruccion.find(:all)
   end
   
   def show
@@ -14,8 +16,7 @@ class Proyecto::InstruccionesController < ApplicationController
   def create
     @instruccion = Proyecto::Instruccion.new(params[:proyecto_instruccion])
     if @instruccion.save
-      flash[:notice] = "Successfully created proyecto/instruccion."
-      redirect_to @instruccion
+      redirect_to proyecto_proyecto_instrucciones_url(@proyecto), :notice => "Ha sido creado con exito esta instruccion"
     else
       render :action => 'new'
     end
@@ -28,8 +29,7 @@ class Proyecto::InstruccionesController < ApplicationController
   def update
     @instruccion = Proyecto::Instruccion.find(params[:id])
     if @instruccion.update_attributes(params[:proyecto_instruccion])
-      flash[:notice] = "Successfully updated proyecto/instruccion."
-      redirect_to @instruccion
+      redirect_to proyecto_proyecto_instrucciones_url(@proyecto), :notice => "Instruccion Actualizada"
     else
       render :action => 'edit'
     end
@@ -38,7 +38,11 @@ class Proyecto::InstruccionesController < ApplicationController
   def destroy
     @instruccion = Proyecto::Instruccion.find(params[:id])
     @instruccion.destroy
-    flash[:notice] = "Successfully destroyed proyecto/instruccion."
-    redirect_to proyecto_instruccions_url
+    redirect_to proyecto_proyecto_instrucciones_url, :notice => "Ha sido destruida la instruccion"
+  end
+  
+  protected
+  def set_proyecto
+    @proyecto = Proyecto::Proyecto.find(params[:proyecto_id])
   end
 end

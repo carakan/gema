@@ -1,25 +1,13 @@
-- form_for @instruccion_detalle do |f|
+- simple_form_for @instruccion_detalle do |f|
   = f.error_messages
 
   %p
-    = f.label :instruccion_id
-    %br
-    = f.text_field :instruccion_id
+    = f.input :tarea
   %p
-    = f.label :usuario_id
-    %br
-    = f.text_field :usuario_id
+    = f.input :fecha_limite
   %p
-    = f.label :tarea
-    %br
-    = f.text_field :tarea
+    = f.input :estado
+
+    = f.association :usuario
   %p
-    = f.label :fecha_limite
-    %br
-    = f.datetime_select :fecha_limite
-  %p
-    = f.label :estado
-    %br
-    = f.text_field :estado
-  %p
-    = f.submit
+    = f.button :submit
