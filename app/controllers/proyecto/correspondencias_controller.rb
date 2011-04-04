@@ -1,11 +1,11 @@
 class Proyecto::CorrespondenciasController < ApplicationController
   before_filter :set_proyecto
   def index
-    @correspondencias = Proyecto::Correspondencia.all
+    @correspondencias = @proyecto.correspondencias.paginate(:per_page => 10, :page => params[:page])
   end
 
   def show
-    @correspondencia = Proyecto::Correspondencia.find(params[:id])
+    @correspondencia = @proyecto.correspondencias.find(params[:id])
   end
 
   def new
@@ -22,11 +22,11 @@ class Proyecto::CorrespondenciasController < ApplicationController
   end
 
   def edit
-    @correspondencia = Proyecto::Correspondencia.find(params[:id])
+    @correspondencia = @proyecto.correspondencias.find(params[:id])
   end
 
   def update
-    @correspondencia = Proyecto::Correspondencia.find(params[:id])
+    @correspondencia = @proyecto.correspondencias.find(params[:id])
     if @correspondencia.update_attributes(params[:proyecto_correspondencia])
       redirect_to proyecto_proyecto_correspondencias_url(@proyecto), :notice  => "Successfully updated correspondencia."
     else
