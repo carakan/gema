@@ -4,6 +4,7 @@
   = previus_email(@proyecto, @correspondencia)
   #correspondencia
     %p
+      = @correspondencia.created_at
       - if @correspondencia.tipo == true
         %td= image_tag("icons/received.png", :size => "16x16", :title => "Recibido")
       - else
