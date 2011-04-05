@@ -1,8 +1,11 @@
-#tabs{:style=>'font-size:11px;'}
+#tabsx{:style=>'font-size:11px;'}
   %ul
     %li
       %a{:href=>'#tabs-2'}
         Servicios
+    %li
+      %a{:href=>'#tabs-3'}
+        Solicitud de fondos
         
   #tabs-2
     %table.decorated
@@ -31,10 +34,12 @@
           %td= proyecto_item.monto
           %td= proyecto_item.fecha_solicitud
           %td= link_to 'Edit', edit_proyecto_proyecto_proyecto_item_path(@proyecto, proyecto_item)
+    %p= link_to "Nuevo servicio", new_proyecto_proyecto_proyecto_item_path(@proyecto), :class => 'new'
 
-%p= link_to "New Proyecto Item", new_proyecto_proyecto_proyecto_item_path(@proyecto), :class => 'new'
+  #tabs-3
+    %p= link_to "Nueva solicitud", new_proyecto_proyecto_proyecto_item_path(@proyecto), :class => 'new'
 
 :javascript
   $(function() {
-   $( "#tabs" ).tabs();
+   $( "#tabsx" ).tabs();
   });

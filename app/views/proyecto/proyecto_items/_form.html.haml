@@ -1,12 +1,10 @@
 = simple_form_for @proyecto_item, :url => url do |f|
   = f.error_messages
-  %p
-    = f.association :proyecto
+  %h3= @proyecto.titulo
   %p
     = f.input :descripcion
-
   %p
-    = f.input :estado, :collection=>['....','....']
+    = f.input :estado, :collection=>['Solicitdado','Apropiado','Cobrado','Pagado']
   %p
     = f.input :referencia_cliente
   %p
