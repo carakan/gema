@@ -9,3 +9,10 @@
     = f.input :contenido
   %p
     = f.button :submit, 'Guardar'
+
+:javascript
+  tinyMCE.init({
+   mode : "textareas",
+   theme: "simple"
+  });
+
