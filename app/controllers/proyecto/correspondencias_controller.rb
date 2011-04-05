@@ -15,7 +15,7 @@ class Proyecto::CorrespondenciasController < ApplicationController
   def create
     @correspondencia = @proyecto.correspondencias.new(params[:proyecto_correspondencia])
     if @correspondencia.save
-      redirect_to proyecto_proyecto_correspondencias_url(@proyecto), :notice => "Successfully created correspondencia."
+      redirect_to proyecto_proyecto_url(@proyecto), :notice => "Successfully created correspondencia."
     else
       render :action => 'new'
     end
@@ -28,7 +28,7 @@ class Proyecto::CorrespondenciasController < ApplicationController
   def update
     @correspondencia = @proyecto.correspondencias.find(params[:id])
     if @correspondencia.update_attributes(params[:proyecto_correspondencia])
-      redirect_to proyecto_proyecto_correspondencias_url(@proyecto), :notice  => "Successfully updated correspondencia."
+      redirect_to proyecto_proyecto_url(@proyecto), :notice  => "Successfully updated correspondencia."
     else
       render :action => 'edit'
     end
@@ -37,7 +37,7 @@ class Proyecto::CorrespondenciasController < ApplicationController
   def destroy
     @correspondencia = Proyecto::Correspondencia.find(params[:id])
     @correspondencia.destroy
-    redirect_to proyecto_proyecto_correspondencias_url(@proyecto), :notice => "Successfully destroyed correspondencia."
+    redirect_to proyecto_proyecto_url(@proyecto), :notice => "Successfully destroyed correspondencia."
   end
 
   protected

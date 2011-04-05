@@ -288,6 +288,7 @@ ActiveRecord::Schema.define(:version => 20110404160426) do
   end
 
   create_table "proyectos", :force => true do |t|
+    t.integer  "contacto_id"
     t.integer  "representante_id"
     t.integer  "area_id"
     t.string   "titulo"
