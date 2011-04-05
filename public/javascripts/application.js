@@ -319,7 +319,7 @@
       return addDatePicker();
     };
     return iniciar();
-    
+
   });
 }).call(this);
 function ajaxeable(e){
@@ -334,7 +334,6 @@ function ajaxeable(e){
   return false;
 }
 function verificarErrorresManuales(){
-  
-}
 
+}
 

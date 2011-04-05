@@ -2,13 +2,13 @@
 = simple_form_for @proyecto do |f|
   = f.error_messages
   %p
-    =f.association :representante
-    = f.association :area
-    = f.input :titulo
+    = f.association :representante, :prompt=>'Seleccione a un Representante'
+    = f.association :area, :prompt => 'Seleccione un Area'
+    = f.input :titulo, :hint=> "Escriba una breve descripción de este proyecto"
   %p
-    = f.input :referencia_cliente
+    = f.input :referencia_cliente, :hint => "Introduza una referencia de cliente, por ejemplo : AC-5454-BOL"
   %p
-    = f.input :prioridad, :collection =>['A', 'B', 'C'], :as=> :radio
+    = f.input :prioridad, :collection =>['A', 'B', 'C'], :as=> :radio, :hint=> 'Asigne una prioridad para este proyecto, de tipo A = Mayor Prioridad, B = Mediana Prioridad, C = Menor Prioridad '
   %p
     = f.button :submit, 'Guardar Proyecto'
 
