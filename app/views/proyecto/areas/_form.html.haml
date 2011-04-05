@@ -1,12 +1,9 @@
-- form_for @area do |f|
+- simple_form_for @area do |f|
   = f.error_messages
   %p
-    = f.label :nombre
-    %br
-    = f.text_field :nombre
+    = f.input :nombre
   %p
-    = f.label :sigla
-    %br
-    = f.text_field :sigla
+    = f.input :sigla
   %p
-    = f.submit
+    = f.button :submit
+

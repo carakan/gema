@@ -1,6 +1,6 @@
 # Be sure to restart your server when you modify this file.
 
-# Add new inflection rules using the following format 
+# Add new inflection rules using the following format
 # (all these examples are active by default):
 # ActiveSupport::Inflector.inflections do |inflect|
 #   inflect.plural /^(ox)$/i, '\1en'
@@ -22,8 +22,10 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'permission', 'permissions'
   inflect.irregular 'item', 'items'
   inflect.irregular 'instruccion', 'instrucciones'
+#  inflect.irregular 'area', 'areas'
 #   inflect.plural /^(ox)$/i, '\1en'
 #   inflect.singular /^(ox)en/i, '\1'
-#  inflect.plural 'importar', 'importar' 
+#  inflect.plural 'importar', 'importar'
 #   inflect.uncountable %w( fish sheep )
 end
+

@@ -2,15 +2,15 @@ class Proyecto::AreasController < ApplicationController
   def index
     @areas = Proyecto::Area.all
   end
-  
+
   def show
     @area = Proyecto::Area.find(params[:id])
   end
-  
+
   def new
-    @areas = Proyecto::Area.new
+    @area = Proyecto::Area.new
   end
-  
+
   def create
     @area = Proyecto::Area.new(params[:proyecto_area])
     if @area.save
@@ -19,11 +19,11 @@ class Proyecto::AreasController < ApplicationController
       render :action => 'new'
     end
   end
-  
+
   def edit
     @area = Proyecto::Area.find(params[:id])
   end
-  
+
   def update
     @area = Proyecto::Area.find(params[:id])
     if @area.update_attributes(params[:proyecto_area])
@@ -32,10 +32,11 @@ class Proyecto::AreasController < ApplicationController
       render :action => 'edit'
     end
   end
-  
+
   def destroy
     @area = Proyecto::Area.find(params[:id])
     @area.destroy
     redirect_to proyecto_areas_url,:notice => "Successfully destroyed proyecto/area."
   end
 end
+
