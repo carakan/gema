@@ -1,6 +1,6 @@
 - title "Proyectos"
 
-%table
+%table.decorated
   %tr
     %th Cliente
     %th Area
@@ -9,7 +9,7 @@
     %th Prioridad
   - for proyecto in @proyectos
     %tr
-      %td= proyecto.cliente_id
+      %td= proyecto.representante_id
       %td= proyecto.area_id
       %td= proyecto.titulo
       %td= proyecto.referencia_cliente
@@ -19,3 +19,4 @@
       %td= link_to 'Destroy',proyecto, :confirm => 'Are you sure?', :method => :delete, :class => "delete"
 
 %p= link_to "Nuevo Proyecto", new_proyecto_proyecto_path
+

@@ -1,7 +1,8 @@
 class CreateProyectos < ActiveRecord::Migration
   def self.up
     create_table :proyectos do |t|
-      t.integer :cliente_id
+      t.integer :contacto_id
+      t.integer :representante_id
       t.integer :area_id
       t.string :titulo
       t.string :referencia_cliente
@@ -10,7 +11,7 @@ class CreateProyectos < ActiveRecord::Migration
     end
 
     create_table :proyecto_contactos do |t|
-      t.integer :proyecto_id, :cliente_id, :contacto_id
+      t.integer :proyecto_id, :representante_id, :contacto_id
       t.timestamps
     end
 
@@ -18,7 +19,7 @@ class CreateProyectos < ActiveRecord::Migration
       t.integer :area_id
     end
 
-    create_table :item_cobros_marcas, :id => false do |t|  	
+    create_table :item_cobros_marcas, :id => false do |t|
       t.integer :proyecto_item_id, :marca_id
     end
 
@@ -37,3 +38,4 @@ class CreateProyectos < ActiveRecord::Migration
     drop_table :instruccion_item_cobro
   end
 end
+
