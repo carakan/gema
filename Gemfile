@@ -15,7 +15,7 @@ end
 gem "nifty-generators"
 gem "haml"
 gem 'formtastic'
-gem 'will_paginate'
+gem 'will_paginate','3.0.pre2'
 gem 'nokogiri'
 gem 'forgery'
 gem 'zip'
