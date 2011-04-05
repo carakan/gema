@@ -17,8 +17,7 @@
           - else
             %td= image_tag("icons/sent.png", :size => "16x16", :title => "Enviado")
           %td= correspondencia.created_at
-          %td= correspondencia.contenido
-          %td= link_to 'Ver', proyecto_proyecto_correspondencia_path(@proyecto, correspondencia)
+          %td= link_to(truncate(correspondencia.contenido), proyecto_proyecto_correspondencia_path(@proyecto, correspondencia), :class => "show-correspondencia", :"data-selector" => "#tabs-1")
           %td= link_to 'Editar', edit_proyecto_proyecto_correspondencia_path(@proyecto, correspondencia), :class => 'edit'
           %td= link_to 'Eliminar', proyecto_proyecto_correspondencia_path(@proyecto, correspondencia), :confirm => 'Are you sure?', :method => :delete, :class => 'delete'
     = will_paginate(correspondencias)
@@ -30,3 +29,4 @@
   $(function() {
    $( "#tabs" ).tabs();
   });
+  $(".show-correspondencia, .next-email, .previus-email").live("click", ajaxeable);

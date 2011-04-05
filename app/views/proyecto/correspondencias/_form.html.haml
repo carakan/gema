@@ -1,6 +1,9 @@
 = simple_form_for @correspondencia, :url => url do |f|
   = f.error_messages
   %p
+    %b Proyecto:
+    %h3= @proyecto.titulo
+  %p
     = f.input :tipo, :as => :radio, :label => '¿Recibido?'
   %p
     = f.input :contenido
