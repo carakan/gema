@@ -5,28 +5,29 @@
         Correspondencia
         
   #tabs-1
-    %table.decorated
-      %tr
-        %th Tipo
-        %th Fecha
-        %th Contenido
-      - for correspondencia in correspondencias
+    #remote
+      %table.decorated
         %tr
-          - if correspondencia.tipo == true
-            %td= image_tag("icons/received.png", :size => "16x16", :title => "Recibido")
-          - else
-            %td= image_tag("icons/sent.png", :size => "16x16", :title => "Enviado")
-          %td= correspondencia.created_at
-          %td= link_to(truncate(correspondencia.contenido), proyecto_proyecto_correspondencia_path(@proyecto, correspondencia), :class => "show-correspondencia", :"data-selector" => "#tabs-1")
-          %td= link_to 'Editar', edit_proyecto_proyecto_correspondencia_path(@proyecto, correspondencia), :class => 'edit'
-          %td= link_to 'Eliminar', proyecto_proyecto_correspondencia_path(@proyecto, correspondencia), :confirm => 'Are you sure?', :method => :delete, :class => 'delete'
-    = will_paginate(correspondencias)
+          %th Tipo
+          %th Fecha
+          %th Contenido
+        - for correspondencia in correspondencias
+          %tr
+            - if correspondencia.tipo == true
+              %td= image_tag("icons/received.png", :size => "16x16", :title => "Recibido")
+            - else
+              %td= image_tag("icons/sent.png", :size => "16x16", :title => "Enviado")
+            %td= correspondencia.created_at
+            %td= link_to(truncate(correspondencia.contenido), proyecto_proyecto_correspondencia_path(@proyecto, correspondencia), :class => "correspondencia", :"data-selector" => "#tabs-1")
+            %td= link_to 'Editar', edit_proyecto_proyecto_correspondencia_path(@proyecto, correspondencia), :class => 'edit'
+            %td= link_to 'Eliminar', proyecto_proyecto_correspondencia_path(@proyecto, correspondencia), :confirm => 'Are you sure?', :method => :delete, :class => 'delete'
+      = will_paginate(correspondencias)
 
-    %p= link_to "Añadir email", new_proyecto_proyecto_correspondencia_path(@proyecto), :class => 'new'
-    %p= link_to "Ver todos los email", proyecto_proyecto_correspondencias_path(@proyecto)
+      %p= link_to "Añadir email", new_proyecto_proyecto_correspondencia_path(@proyecto), :class => 'new'
+      %p= link_to "Ver todos los email", proyecto_proyecto_correspondencias_path(@proyecto), :class => "correspondencia", :"data-selector" => "#tabs-1"
 
 :javascript
   $(function() {
    $( "#tabs" ).tabs();
   });
-  $(".show-correspondencia, .next-email, .previus-email").live("click", ajaxeable);
+  $(".correspondencia, .next-email, .previus-email").live("click", ajaxeable);
