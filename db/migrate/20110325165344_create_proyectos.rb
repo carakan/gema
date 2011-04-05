@@ -34,8 +34,8 @@ class CreateProyectos < ActiveRecord::Migration
     change_table :usuarios do |t|
       t.remove :area_id
     end
-    drop_table :item_cobro_marcas
-    drop_table :instruccion_item_cobro
+    drop_table :item_cobros_marcas
+    drop_table :instruccion_detalles_item_cobros
   end
 end
 
