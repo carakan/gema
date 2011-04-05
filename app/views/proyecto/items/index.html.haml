@@ -1,17 +1,2 @@
-- title "Proyecto/Items"
-%h1 Listado de items
-%table.decorated
-  %tr
-    %th Categoria
-    %th Sigla
-    %th Nombre
-  - for item in @items
-    %tr
-      %td= item.categoria_id
-      %td= item.sigla
-      %td= item.nombre
-      %td= link_to 'Show', item
-      %td= link_to 'Edit', edit_proyecto_item_path(item)
-      %td= link_to 'Destroy', item, :confirm => 'Are you sure?', :method => :delete
+=render :partial =>'proyecto/items/listado'
 
-%p= link_to "Nuevo Item", new_proyecto_item_path, :class => 'new'

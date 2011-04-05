@@ -1,15 +1,4 @@
 - title "Proyecto/Areas"
 
-%table
-  %tr
-    %th Nombre
-    %th Sigla
-  -for area in @areas
-    %tr 
-      %td= area.nombre
-      %td= area.sigla
-      %td= link_to 'Show', area
-      %td= link_to 'Edit', edit_proyecto_area_path(area)
-      %td= link_to 'Destroy', area, :confirm => 'Are you sure?', :method => :delete
+=render :partial=> '/proyecto/areas/listado'
 
-%p= link_to "New Proyecto/Area", new_proyecto_area_path

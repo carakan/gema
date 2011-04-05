@@ -4,4 +4,7 @@ class Proyecto::ProyectoItem < ActiveRecord::Base
   belongs_to :item
   has_and_belongs_to_many :marcas
   set_table_name 'proyecto_items'
+
+
 end
+

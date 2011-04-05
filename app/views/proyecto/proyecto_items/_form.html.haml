@@ -1,13 +1,12 @@
 = simple_form_for @proyecto_item, :url => url do |f|
   = f.error_messages
   %p
-    = f.input :proyecto_id, :value => @proyecto.id
+    = f.association :proyecto
   %p
     = f.input :descripcion
-    
-    = f.association :item
+
   %p
-    = f.input :estado
+    = f.input :estado, :collection=>['....','....']
   %p
     = f.input :referencia_cliente
   %p
@@ -24,3 +23,4 @@
     = f.input :fecha_solicitud
   %p
     = f.button :submit, 'Guardar'
+

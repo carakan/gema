@@ -1,4 +1,4 @@
-%table
+%table.decorated
   %tr
     %th Proyecto
     %th Gerencia
@@ -12,3 +12,4 @@
       %td= link_to 'Editar', edit_proyecto_proyecto_instruccion_path(@proyecto, instruccion), :class=>'edit'
       %td= link_to 'ELiminar',proyecto_proyecto_instruccion_path(@proyecto, instruccion), :confirm => 'Are you sure?', :method => :delete, :class=>'delete'
   %p= link_to "Añadir Instruccion", new_proyecto_proyecto_instruccion_path(@proyecto), :class=>'new'
+

@@ -7,4 +7,9 @@ class Proyecto::Proyecto < ActiveRecord::Base
   has_many :correspondencias
   has_many :instruccions
   has_many :proyecto_items
+
+def to_s
+ titulo
 end
+end
+

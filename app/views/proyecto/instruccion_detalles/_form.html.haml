@@ -7,8 +7,9 @@
   %p
     = f.input :fecha_limite
   %p
-    = f.input :estado
+    = f.input :estado, :collection=>['Activo', 'Inactivo']
 
     = f.association :usuario
   %p
     = f.button :submit
+
