@@ -1,14 +1,14 @@
+
 = simple_form_for @proyecto do |f|
   = f.error_messages
   %p
+    =f.association :representante
     = f.association :area
-
-  %p
     = f.input :titulo
   %p
     = f.input :referencia_cliente
   %p
-    = f.input :prioridad
+    = f.input :prioridad, :collection =>['A', 'B', 'C'], :as=> :radio
   %p
     = f.button :submit, 'Guardar Proyecto'
 
