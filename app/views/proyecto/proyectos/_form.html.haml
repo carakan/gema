@@ -29,17 +29,45 @@
           = g.input :honorarios
           = g.input :gastos_adminitrativos
           = g.input :fecha_solicitud, :as=> :date
+          = g.input :hola
       #tabs-2
         %p
           Información relacionada con Solicitud de Fondos
+
+  %div.adjuntos
+    = f.simple_fields_for :adjuntos do |adj|
+      = adj.input :archivo, :as => :file, :input_html => { :size => 60 }
+    %a#a_adjuntar_archivo{:href => 'javascript:', :class=>'new'}
+      Adjuntar archivo
 
     = f.simple_fields_for :correspondencias do |h|
       = h.input :tipo, :as=> :radio
       = h.input :contenido, :as => :text
 
     = f.button :submit, 'Guardar Proyecto'
+
 :javascript
   $(function() {
    $( "#tabs" ).tabs();
   });
+  
+  $(document).ready(function() {
+  $('#a_adjuntar_archivo').click(function() {
+    input = $('<input/>').attr({
+      'name': 'post[adjuntos_attributes][' + ( new Date() ).getTime().toString() + '][archivo]',
+      'type': 'file',
+      'size': 60
+    });
+    del = '<a href="javascript:" class="adjunto_delete">borrar</a>';
+    li = $('<li/>').append('<label>Adjunto</label>').append(input).append(del)
+    $('#adjuntos').append( li );
+    $.mark(li, 7);
+  });
+
+  $('.adjunto_delete').live('click', function(e) {
+    $(this).parents('li:first').remove();
+  });
+  });
+
+
 

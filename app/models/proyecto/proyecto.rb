@@ -7,6 +7,9 @@ class Proyecto::Proyecto < ActiveRecord::Base
   has_many :correspondencias
   has_many :instruccions
   has_many :proyecto_items
+  has_many :adjuntos, :as => :adjuntable, :dependent => :destroy
+  
+  accepts_nested_attributes_for :adjuntos
 
 def to_s
  titulo
