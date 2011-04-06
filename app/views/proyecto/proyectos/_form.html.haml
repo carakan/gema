@@ -2,13 +2,44 @@
 = simple_form_for @proyecto do |f|
   = f.error_messages
   %p
-    = f.association :representante, :prompt=>'Seleccione a un Representante'
-    = f.association :area, :prompt => 'Seleccione un Area'
-    = f.input :titulo, :hint=> "Escriba una breve descripción de este proyecto"
+    = f.association :representante, :prompt=>'Seleccione a un Representante', :hint=>'Asigne a un representante', :required => true
+    = f.association :area, :prompt => 'Seleccione un Area', :hint=>'A que área corresponde', :required => true
+    = f.input :titulo, :hint=> "Escriba una breve descripción de este proyecto", :required => true
   %p
-    = f.input :referencia_cliente, :hint => "Introduza una referencia de cliente, por ejemplo : AC-5454-BOL"
+    = f.input :referencia_cliente, :hint => "Introduza una referencia de cliente, por ejemplo : AC-5454-BOL", :required => true
   %p
-    = f.input :prioridad, :collection =>['A', 'B', 'C'], :as=> :radio, :hint=> 'Asigne una prioridad para este proyecto, de tipo A = Mayor Prioridad, B = Mediana Prioridad, C = Menor Prioridad '
+    = f.input :prioridad, :collection =>['A', 'B', 'C'], :as=> :radio, :hint=> 'Asigne una prioridad para este proyecto, de tipo A = Mayor Prioridad, B = Mediana Prioridad, C = Menor Prioridad ', :required => true
   %p
+  = f.simple_fields_for :proyecto_items do |g|
+    #tabs{:style=>'font-size:11px;'}
+      %ul
+        %li
+          %a{:href=>'#tabs-1'}
+            Servicios
+        %li
+          %a{:href=>'#tabs-2'}
+            Solicitud de Fondos
+
+      #tabs-1
+        %p
+          = g.input :referencia_cliente
+          = g.input :referencia_cliente_cobranza
+          = g.input :estado
+          = g.input :descripcion
+          = g.input :honorarios
+          = g.input :gastos_adminitrativos
+          = g.input :fecha_solicitud, :as=> :date
+      #tabs-2
+        %p
+          Información relacionada con Solicitud de Fondos
+
+    = f.simple_fields_for :correspondencias do |h|
+      = h.input :tipo, :as=> :radio
+      = h.input :contenido, :as => :text
+
     = f.button :submit, 'Guardar Proyecto'
+:javascript
+  $(function() {
+   $( "#tabs" ).tabs();
+  });
 
