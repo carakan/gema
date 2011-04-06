@@ -3,7 +3,7 @@ class Proyecto::Proyecto < ActiveRecord::Base
   set_table_name "proyectos"
   belongs_to :area
   belongs_to :representante
-  #belongs_to :contacto
+  has_and_belongs_to_many :contactos, :join_table => :proyectos_contactos
   has_many :correspondencias
   has_many :instruccions
   has_many :proyecto_items

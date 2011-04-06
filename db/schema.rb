@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110404160426) do
+ActiveRecord::Schema.define(:version => 20110406144520) do
 
   create_table "adjuntos", :force => true do |t|
     t.string   "nombre"
@@ -116,10 +116,24 @@ ActiveRecord::Schema.define(:version => 20110404160426) do
     t.integer "proyecto_item_id"
   end
 
+  create_table "instruccion_item_cobro", :force => true do |t|
+    t.integer  "instruccion_detalle_id"
+    t.integer  "proyecto_item_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "instruccions", :force => true do |t|
     t.integer  "proyecto_id"
     t.integer  "gerencia_id"
     t.integer  "referencia_email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "item_cobro_marcas", :force => true do |t|
+    t.integer  "proyecto_item_id"
+    t.integer  "marca_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -262,14 +276,6 @@ ActiveRecord::Schema.define(:version => 20110404160426) do
   add_index "posts", ["postable_id"], :name => "index_posts_on_postable_id"
   add_index "posts", ["postable_type"], :name => "index_posts_on_postable_type"
 
-  create_table "proyecto_contactos", :force => true do |t|
-    t.integer  "proyecto_id"
-    t.integer  "representante_id"
-    t.integer  "contacto_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "proyecto_items", :force => true do |t|
     t.integer  "proyecto_id"
     t.string   "descripcion"
@@ -296,6 +302,11 @@ ActiveRecord::Schema.define(:version => 20110404160426) do
     t.string   "prioridad"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "proyectos_contactos", :id => false, :force => true do |t|
+    t.integer "proyecto_id"
+    t.integer "contacto_id"
   end
 
   create_table "reporte_marca_detalles", :force => true do |t|

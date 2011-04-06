@@ -2,13 +2,15 @@
   = f.error_messages
   %h3= @proyecto.titulo
   %p
-    = f.input :descripcion
-  %p
     = f.input :estado, :collection=>['Solicitdado','Apropiado','Cobrado','Pagado']
   %p
     = f.input :referencia_cliente
   %p
     = f.input :referencia_cliente_cobranza
+  %p
+    = f.assoiation :item_id
+  %p
+    = f.input :descripcion
   %p
     = f.input :fecha_limite
   %p
