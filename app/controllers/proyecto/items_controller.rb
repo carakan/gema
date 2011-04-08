@@ -16,7 +16,7 @@ class Proyecto::ItemsController < ApplicationController
     if @item.save
       flash[:notice] = "Se creo exitosamente el item"
       redirect_to @item
-    else
+   else
       render :action => 'new'
     end
   end

@@ -4,8 +4,7 @@ class Proyecto::Area < ActiveRecord::Base
   has_many :proyectos
   has_many :usuarios
 
-def to_s
-  self.nombre
+	def to_s
+	  self.nombre
+	end
 end
-end
-
