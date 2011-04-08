@@ -319,9 +319,24 @@
       return addDatePicker();
     };
     return iniciar();
+
   });
 }).call(this);
-
-function verificarErrorresManuales(){
-  
+function ajaxeable(e){
+  var reference = $(this);
+  var url = reference.attr("href");
+  var selector = reference.attr("data-selector");
+  if(!selector){
+    selector = window.selectorAjax;
+  }
+  if(reference.attr("data-url")){
+    url = reference.attr("data-url");
+  }
+  $(selector).load(url + " #remote");
+  e.stopPropagation();
+  return false;
 }
+function verificarErrorresManuales(){
+
+}
+

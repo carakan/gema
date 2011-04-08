@@ -1,16 +1,18 @@
-= form_for [:proyecto, @correspondencia] do |f|
+= simple_form_for @correspondencia, :url => url do |f|
   = f.error_messages
   %p
-    = f.label :proyecto_id
-    %br
-    = f.text_field :proyecto_id
+    %b Proyecto:
+    %h3 Proyecto > %h3= @proyecto.titulo > Nuevo servicio
   %p
-    = f.label :tipo
-    %br
-    = f.check_box :tipo
+    = f.input :tipo, :as => :radio, :label => '¿Recibido?'
   %p
-    = f.label :contenido
-    %br
-    = f.text_area :contenido
+    = f.input :contenido
   %p
-    = f.submit
+    = f.button :submit, 'Guardar'
+
+:javascript
+  tinyMCE.init({
+   mode : "textareas",
+   theme: "simple"
+  });
+

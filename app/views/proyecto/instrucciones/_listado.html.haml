@@ -1,0 +1,15 @@
+%table.decorated
+  %tr
+    %th Proyecto
+    %th Gerencia
+    %th Referencia email
+  - for instruccion in @instrucciones
+    %tr
+      %td= instruccion.proyecto_id
+      %td= instruccion.gerencia_id
+      %td= instruccion.referencia_email
+      %td= link_to 'Ver', proyecto_proyecto_instruccion_path(@proyecto,instruccion)
+      %td= link_to 'Editar', edit_proyecto_proyecto_instruccion_path(@proyecto, instruccion), :class=>'edit'
+      %td= link_to 'ELiminar',proyecto_proyecto_instruccion_path(@proyecto, instruccion), :confirm => 'Are you sure?', :method => :delete, :class=>'delete'
+  %p= link_to "Añadir Instruccion", new_proyecto_proyecto_instruccion_path(@proyecto), :class=>'new'
+

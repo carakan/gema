@@ -1,16 +1,9 @@
-- form_for @proyecto/item do |f|
+= simple_form_for @item do |f|
   = f.error_messages
+
   %p
-    = f.label :sigla
-    %br
-    = f.text_field :sigla
+    = f.input :sigla , :required=> false
   %p
-    = f.label :nombre
-    %br
-    = f.text_field :nombre
+    = f.input :nombre
   %p
-    = f.label :codigo_categoria
-    %br
-    = f.text_field :codigo_categoria
-  %p
-    = f.submit
+    = f.button :submit, 'Guardar'

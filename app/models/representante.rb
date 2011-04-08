@@ -14,12 +14,13 @@ class Representante < ActiveRecord::Base
   #  :join_table => 'marcas_titulares'
 
   belongs_to :pais
-  
+
   #has_many :posts, :order => 'created_at DESC'
   has_many :posts, :as => :postable, :dependent => :destroy
   has_many :reporte_marcas
   has_many :contactos
   has_many :consultas
+  has_many :proyectos
 
   POSTS_SIZE = 2
 
@@ -47,12 +48,12 @@ class Representante < ActiveRecord::Base
   end
 
   def ultimos_posts()
-    Post.all(:conditions => { :postable_id => self.id, :postable_type => 'Representante' }, 
+    Post.all(:conditions => { :postable_id => self.id, :postable_type => 'Representante' },
       :limit => POSTS_SIZE, :order => 'created_at DESC' )
   end
-  
+
   def lista_contactos()
-    Contacto.all(:conditions => { :representante_id => self.id }, 
+    Contacto.all(:conditions => { :representante_id => self.id },
       :limit => POSTS_SIZE, :order => 'created_at DESC' )
   end
 
@@ -71,7 +72,7 @@ class Representante < ActiveRecord::Base
     Representante.all(:conditions => { :id => marcas_representantes.map(&singular_id.to_sym).uniq } )
   end
 
-  # Busca en un array los representantes segun los ids 
+  # Busca en un array los representantes segun los ids
   def self.buscar_representantes(representante_ids, representantes)
     @reps ||= representantes.inject({}) { |h,v| h[v.id] = v; h }
     representante_ids.map { |v| @reps[v] }
@@ -103,3 +104,4 @@ class Representante < ActiveRecord::Base
   #end
 
 end
+

@@ -1,0 +1,15 @@
+- simple_form_for @instruccion_detalle do |f|
+  = f.error_messages
+
+  = f.association :instruccion
+  %p
+    = f.input :tarea
+  %p
+    = f.input :fecha_limite
+  %p
+    = f.input :estado, :collection=>['Activo', 'Inactivo']
+
+    = f.association :usuario
+  %p
+    = f.button :submit
+

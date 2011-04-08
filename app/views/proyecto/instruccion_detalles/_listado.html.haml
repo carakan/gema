@@ -1,0 +1,21 @@
+%h1 Listado detalle de Instrucciones
+%table.decorated
+  %tr
+    %th Instruccion
+    %th Usuario
+    %th Tarea
+    %th Fecha limite
+    %th Estado
+  - for instruccion_detalle in @instruccion_detalles
+    %tr
+      %td= instruccion_detalle.instruccion_id
+      %td= instruccion_detalle.usuario_id
+      %td= instruccion_detalle.tarea
+      %td= instruccion_detalle.fecha_limite
+      %td= instruccion_detalle.estado
+      %td= link_to 'Show', instruccion_detalle
+      %td= link_to 'Edit', edit_proyecto_instruccion_detall_path(instruccion_detalle)
+      %td= link_to 'Destroy', instruccion_detalle, :confirm => 'Are you sure?', :method => :delete
+
+%p= link_to "New Proyecto/Instruccion Detalle", new_proyecto_instruccion_detall_path
+

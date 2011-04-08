@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.0.3'
 
-gem 'mysql2' #, '2.8.1'
+gem 'mysql2'
 if RUBY_VERSION == "1.8.7"
   gem 'ruby-debug'
   gem 'fastercsv'
@@ -15,7 +15,7 @@ end
 gem "nifty-generators"
 gem "haml"
 gem 'formtastic'
-gem 'will_paginate'
+gem 'will_paginate','3.0.pre2'
 gem 'nokogiri'
 gem 'forgery'
 gem 'zip'
@@ -25,11 +25,10 @@ gem 'roo'
 gem 'paperclip'
 gem 'prawn'
 gem 'less'
-gem 'devise'
+gem 'devise', '1.2.1'
 gem 'simple_form'
 gem "meta_search"
-gem 'warden'
-gem 'bcrypt-ruby'
+gem 'warden', '1.0.3'
 
 group :development do
   gem "nifty-generators"

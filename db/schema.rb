@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110325152645) do
+ActiveRecord::Schema.define(:version => 20110406144520) do
 
   create_table "adjuntos", :force => true do |t|
     t.string   "nombre"
@@ -24,6 +24,13 @@ ActiveRecord::Schema.define(:version => 20110325152645) do
 
   add_index "adjuntos", ["adjuntable_id"], :name => "index_adjuntos_on_adjuntable_id"
   add_index "adjuntos", ["adjuntable_type"], :name => "index_adjuntos_on_adjuntable_type"
+
+  create_table "areas", :force => true do |t|
+    t.string   "nombre"
+    t.string   "sigla"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "clases", :force => true do |t|
     t.string   "nombre"
@@ -82,6 +89,9 @@ ActiveRecord::Schema.define(:version => 20110325152645) do
     t.boolean  "completa"
     t.string   "publicacion",        :limit => 30
     t.date     "publicacion_fecha"
+    t.date     "fecha_importacion"
+    t.date     "fecha_limite"
+    t.date     "fecha_limite_orpan"
     t.string   "tipo"
     t.string   "archivo_file_name"
     t.integer  "archivo_file_size"
@@ -89,8 +99,56 @@ ActiveRecord::Schema.define(:version => 20110325152645) do
     t.integer  "usuario_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "instruccion_detalles", :force => true do |t|
+    t.integer  "instruccion_id"
+    t.integer  "usuario_id"
+    t.string   "tarea"
     t.datetime "fecha_limite"
-    t.datetime "fecha_limite_orpan"
+    t.string   "estado"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "instruccion_detalles_item_cobros", :id => false, :force => true do |t|
+    t.integer "instruccion_detalle_id"
+    t.integer "proyecto_item_id"
+  end
+
+  create_table "instruccion_item_cobro", :force => true do |t|
+    t.integer  "instruccion_detalle_id"
+    t.integer  "proyecto_item_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "instruccions", :force => true do |t|
+    t.integer  "proyecto_id"
+    t.integer  "gerencia_id"
+    t.integer  "referencia_email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "item_cobro_marcas", :force => true do |t|
+    t.integer  "proyecto_item_id"
+    t.integer  "marca_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "item_cobros_marcas", :id => false, :force => true do |t|
+    t.integer "proyecto_item_id"
+    t.integer "marca_id"
+  end
+
+  create_table "items", :force => true do |t|
+    t.integer  "categoria_id"
+    t.string   "sigla"
+    t.string   "nombre"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "marca_estados", :force => true do |t|
@@ -103,57 +161,54 @@ ActiveRecord::Schema.define(:version => 20110325152645) do
 
   create_table "marcas", :force => true do |t|
     t.integer  "parent_id",                                   :default => 0
-    t.integer  "usuario_id"
-    t.integer  "tipo_signo_id"
-    t.integer  "tipo_marca_id"
-    t.integer  "clase_id"
-    t.integer  "pais_id"
-    t.string   "numero_solicitud",            :limit => 40
-    t.string   "nombre"
-    t.string   "numero_registro",                             :default => ""
-    t.date     "fecha_registro"
-    t.string   "numero_renovacion",                           :default => ""
-    t.string   "productos",                   :limit => 1024, :default => ""
-    t.string   "estado",                                      :default => ""
-    t.datetime "estado_fecha"
-    t.string   "estado_serial"
-    t.string   "numero_publicacion",                          :default => ""
-    t.string   "numero_gaceta",                               :default => ""
-    t.string   "lema",                                        :default => ""
+    t.integer  "usuario_id",                  :limit => 2,    :default => 1
+    t.string   "nombre",                                      :default => ""
+    t.boolean  "propia",                                      :default => false
+    t.boolean  "activa",                                      :default => true
+    t.integer  "marca_estado_id",             :limit => 2,    :default => 104
+    t.integer  "tipo_signo_id",               :limit => 2,    :default => 104
+    t.integer  "tipo_marca_id",               :limit => 2,    :default => 104
+    t.integer  "clase_id",                    :limit => 2,    :default => 104
+    t.text     "productos"
+    t.string   "numero_solicitud",            :limit => 15,   :default => ""
+    t.date     "fecha_solicitud"
+    t.string   "numero_publicacion",          :limit => 15,   :default => ""
     t.date     "fecha_publicacion"
+    t.string   "numero_registro",             :limit => 15,   :default => ""
+    t.date     "fecha_registro"
+    t.string   "numero_solicitud_renovacion", :limit => 15,   :default => ""
+    t.date     "fecha_solicitud_renovacion"
+    t.string   "numero_renovacion",           :limit => 15,   :default => ""
+    t.date     "fecha_renovacion"
+    t.string   "instruccion",                 :limit => 128,  :default => ""
+    t.string   "via_instruccion",             :limit => 128,  :default => ""
+    t.date     "fecha_instruccion"
+    t.string   "numero_gaceta",               :limit => 10,   :default => ""
+    t.string   "representante_empresarial",   :limit => 512,  :default => ""
+    t.string   "apoderado",                   :limit => 512,  :default => ""
+    t.string   "observaciones",               :limit => 2056, :default => ""
     t.integer  "fila"
-    t.datetime "fecha_importacion"
+    t.boolean  "importado",                                   :default => false
+    t.integer  "importacion_id"
+    t.date     "fecha_importacion"
     t.boolean  "valido"
     t.string   "cambios",                                     :default => "[]"
-    t.boolean  "importado",                                   :default => false
-    t.string   "apoderado"
-    t.string   "representante_empresarial"
-    t.integer  "importacion_id"
-    t.boolean  "activa",                                      :default => true
     t.string   "archivo_adjunto",                             :default => ""
-    t.datetime "fecha_solicitud_renovacion"
-    t.string   "numero_solicitud_renovacion", :limit => 40
-    t.date     "fecha_renovacion"
-    t.date     "fecha_instruccion"
-    t.string   "via_instruccion"
-    t.string   "descripcion_imagen"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "descripcion_imagen",                          :default => ""
     t.boolean  "anterior",                                    :default => false
-    t.boolean  "propia",                                      :default => false
-    t.string   "nombre_minusculas"
+    t.string   "nombre_minusculas",                           :default => ""
     t.string   "agente_ids_serial"
     t.string   "titular_ids_serial"
     t.string   "errores",                     :limit => 700
     t.string   "errores_manual",              :limit => 500
-    t.string   "instruccion"
-    t.integer  "marca_estado_id"
-    t.string   "domicilio_titular"
-    t.date     "fecha_solicitud"
-    t.integer  "lema_marca_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "domicilio_titular",           :limit => 512,  :default => ""
     t.integer  "pais_prioridad_id"
-    t.string   "numero_prioridad"
     t.date     "fecha_prioridad"
+    t.integer  "numero_prioridad"
+    t.integer  "lema_marca_id"
+    t.string   "estado",                                      :default => ""
   end
 
   add_index "marcas", ["activa"], :name => "index_marcas_on_activa"
@@ -162,7 +217,10 @@ ActiveRecord::Schema.define(:version => 20110325152645) do
   add_index "marcas", ["importacion_id"], :name => "index_marcas_on_importacion_id"
   add_index "marcas", ["importado"], :name => "index_marcas_on_importado"
   add_index "marcas", ["nombre_minusculas"], :name => "index_marcas_on_nombre_minusculas"
-  add_index "marcas", ["pais_id"], :name => "index_marcas_on_pais_id"
+  add_index "marcas", ["numero_publicacion"], :name => "numero_publicacion"
+  add_index "marcas", ["numero_registro"], :name => "numero_registro"
+  add_index "marcas", ["numero_renovacion"], :name => "numero_renovacion"
+  add_index "marcas", ["numero_solicitud"], :name => "numero_solicitud"
   add_index "marcas", ["parent_id"], :name => "index_marcas_on_parent_id"
   add_index "marcas", ["propia"], :name => "index_marcas_on_propia"
   add_index "marcas", ["tipo_marca_id"], :name => "index_marcas_on_tipo_marca_id"
@@ -194,21 +252,62 @@ ActiveRecord::Schema.define(:version => 20110325152645) do
     t.datetime "updated_at"
   end
 
+  create_table "permissions", :force => true do |t|
+    t.integer  "rol_id"
+    t.string   "controller", :limit => 150
+    t.string   "actions"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "posts", :force => true do |t|
     t.integer  "postable_id"
     t.string   "postable_type"
     t.integer  "usuario_id"
+    t.string   "categoria",                     :default => "\"\"", :null => false
     t.string   "titulo"
     t.string   "comentario",    :limit => 2058
     t.integer  "accesso"
     t.boolean  "adjuntos",                      :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "categoria"
   end
 
   add_index "posts", ["postable_id"], :name => "index_posts_on_postable_id"
   add_index "posts", ["postable_type"], :name => "index_posts_on_postable_type"
+
+  create_table "proyecto_items", :force => true do |t|
+    t.integer  "proyecto_id"
+    t.string   "descripcion"
+    t.string   "estado"
+    t.string   "referencia_cliente"
+    t.string   "referencia_cliente_cobranza"
+    t.date     "fecha_limite"
+    t.float    "honorarios"
+    t.float    "gastos_adminitrativos"
+    t.float    "monto"
+    t.date     "fecha_solicitud"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "tipo"
+    t.integer  "item_id"
+  end
+
+  create_table "proyectos", :force => true do |t|
+    t.integer  "contacto_id"
+    t.integer  "representante_id"
+    t.integer  "area_id"
+    t.string   "titulo"
+    t.string   "referencia_cliente"
+    t.string   "prioridad"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "proyectos_contactos", :id => false, :force => true do |t|
+    t.integer "proyecto_id"
+    t.integer "contacto_id"
+  end
 
   create_table "reporte_marca_detalles", :force => true do |t|
     t.integer  "reporte_marca_id"
@@ -275,6 +374,13 @@ ActiveRecord::Schema.define(:version => 20110325152645) do
   add_index "representantes", ["nombre"], :name => "index_representantes_on_nombre"
   add_index "representantes", ["pais_id"], :name => "index_representantes_on_pais_id"
 
+  create_table "roles", :force => true do |t|
+    t.string   "name",        :limit => 100
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "tipo_marcas", :force => true do |t|
     t.string   "nombre",      :limit => 100
     t.string   "sigla",       :limit => 5
@@ -307,31 +413,60 @@ ActiveRecord::Schema.define(:version => 20110325152645) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "rol_id"
+    t.integer  "area_id"
   end
 
   add_index "usuarios", ["email"], :name => "index_usuarios_on_email", :unique => true
   add_index "usuarios", ["login"], :name => "index_usuarios_on_login", :unique => true
   add_index "usuarios", ["reset_password_token"], :name => "index_usuarios_on_reset_password_token", :unique => true
 
-  create_table "view_importaciones", :id => false, :force => true do |t|
-    t.integer "importacion_id"
-    t.integer "total",          :limit => 8, :default => 0, :null => false
-    t.integer "errores",        :limit => 8, :default => 0, :null => false
-    t.string  "estado"
-  end
-
-  create_table "view_importaciones_errores", :id => false, :force => true do |t|
-    t.integer "importacion_id"
-    t.integer "total",                       :default => 0,  :null => false
-    t.integer "errores",        :limit => 8, :default => 0,  :null => false
-    t.string  "estado",                      :default => ""
-  end
-
-  create_table "view_importaciones_todos", :id => false, :force => true do |t|
-    t.integer "importacion_id"
-    t.integer "total",          :limit => 8, :default => 0,  :null => false
-    t.integer "errores",                     :default => 0,  :null => false
-    t.string  "estado",                      :default => ""
+  create_table "v_marcas_atomizadas", :id => false, :force => true do |t|
+    t.integer  "id",                                            :default => 0,     :null => false
+    t.integer  "parent_id",                                     :default => 0
+    t.integer  "usuario_id",                    :limit => 2,    :default => 1
+    t.string   "nombre",                                        :default => ""
+    t.boolean  "propia",                                        :default => false
+    t.boolean  "activa",                                        :default => true
+    t.integer  "marca_estado_id",               :limit => 2,    :default => 104
+    t.integer  "tipo_signo_id",                 :limit => 2,    :default => 104
+    t.integer  "tipo_marca_id",                 :limit => 2,    :default => 104
+    t.integer  "clase_id",                      :limit => 2,    :default => 104
+    t.text     "productos"
+    t.integer  "numero_solicitud_n",            :limit => 8
+    t.integer  "numero_solicitud_a",            :limit => 8
+    t.date     "fecha_solicitud"
+    t.string   "numero_publicacion",            :limit => 15,   :default => ""
+    t.date     "fecha_publicacion"
+    t.integer  "numero_registro_n",             :limit => 8
+    t.date     "fecha_registro"
+    t.integer  "numero_solicitud_renovacion_n", :limit => 8
+    t.integer  "numero_solicitud_renovacion_a", :limit => 8
+    t.date     "fecha_solicitud_renovacion"
+    t.integer  "numero_renovacion_n",           :limit => 8
+    t.date     "fecha_renovacion"
+    t.string   "instruccion",                   :limit => 128,  :default => ""
+    t.string   "via_instruccion",               :limit => 128,  :default => ""
+    t.date     "fecha_instruccion"
+    t.string   "numero_gaceta",                 :limit => 10,   :default => ""
+    t.string   "representante_empresarial",     :limit => 512,  :default => ""
+    t.string   "apoderado",                     :limit => 512,  :default => ""
+    t.string   "observaciones",                 :limit => 2056, :default => ""
+    t.integer  "fila"
+    t.boolean  "importado",                                     :default => false
+    t.integer  "importacion_id"
+    t.date     "fecha_importacion"
+    t.boolean  "valido"
+    t.string   "cambios",                                       :default => "[]"
+    t.string   "archivo_adjunto",                               :default => ""
+    t.string   "descripcion_imagen",                            :default => ""
+    t.boolean  "anterior",                                      :default => false
+    t.string   "nombre_minusculas",                             :default => ""
+    t.string   "agente_ids_serial"
+    t.string   "titular_ids_serial"
+    t.string   "errores",                       :limit => 700
+    t.string   "errores_manual",                :limit => 500
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

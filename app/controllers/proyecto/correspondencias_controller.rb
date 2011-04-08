@@ -1,41 +1,47 @@
 class Proyecto::CorrespondenciasController < ApplicationController
+  before_filter :set_proyecto
   def index
-    @correspondencias = Correspondencia.all
+    @correspondencias = @proyecto.correspondencias.paginate(:per_page => 5, :page => params[:page])
   end
 
   def show
-    @correspondencia = Correspondencia.find(params[:id])
+    @correspondencia = @proyecto.correspondencias.find(params[:id])
   end
 
   def new
-    @correspondencia = Correspondencia.new
+    @correspondencia = Proyecto::Correspondencia.new
   end
 
   def create
-    @correspondencia = Correspondencia.new(params[:correspondencia])
+    @correspondencia = @proyecto.correspondencias.new(params[:proyecto_correspondencia])
     if @correspondencia.save
-      redirect_to [:proyecto, @correspondencia], :notice => "Successfully created correspondencia."
+      redirect_to proyecto_proyecto_url(@proyecto), :notice => "Successfully created correspondencia."
     else
       render :action => 'new'
     end
   end
 
   def edit
-    @correspondencia = Correspondencia.find(params[:id])
+    @correspondencia = @proyecto.correspondencias.find(params[:id])
   end
 
   def update
-    @correspondencia = Correspondencia.find(params[:id])
-    if @correspondencia.update_attributes(params[:correspondencia])
-      redirect_to [:proyecto, @correspondencia], :notice  => "Successfully updated correspondencia."
+    @correspondencia = @proyecto.correspondencias.find(params[:id])
+    if @correspondencia.update_attributes(params[:proyecto_correspondencia])
+      redirect_to proyecto_proyecto_url(@proyecto), :notice  => "Successfully updated correspondencia."
     else
       render :action => 'edit'
     end
   end
 
   def destroy
-    @correspondencia = Correspondencia.find(params[:id])
+    @correspondencia = Proyecto::Correspondencia.find(params[:id])
     @correspondencia.destroy
-    redirect_to proyecto_correspondencias_url, :notice => "Successfully destroyed correspondencia."
+    redirect_to proyecto_proyecto_url(@proyecto), :notice => "Successfully destroyed correspondencia."
+  end
+
+  protected
+  def set_proyecto
+    @proyecto = Proyecto::Proyecto.find(params[:proyecto_id])
   end
 end

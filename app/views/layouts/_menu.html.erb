@@ -1,23 +1,13 @@
 <% if usuario_signed_in? %>
 <ul id="navigation">
   <li class="first">
-  	<a href="/marcas">Signos</a>
+  	<%= link_to 'Signos', marcas_path%>
   	<ul>
-      <li>
-      <a href="/busquedas">Busquedas por similitud</a>
-      </li>
-            <li>
-  	    <a href="/busquedas/busqueda_avanzada">Busqueda Avanzada</a>
-      </li>
-      <li>
-  	    <a href="/consultas">Busquedas realizadas</a>
-      </li>
-      <li>
-      	<a href="/reporte_marcas">Reportes realizados</a>
-      </li>
-      <li>
-        <a href="/importaciones">Importaciones</a>
-      </li>
+      <li><%= link_to 'Busquedas por similitud', busquedas_path %></li>
+      <li><%= link_to 'Busqueda Avanzada', busqueda_avanzada_busquedas_path %></li>
+      <li><%= link_to 'Busquedas realizadas', consultas_path%></li>
+      <li><%= link_to 'Reportes realizados', reporte_marcas_path%></li>
+      <li><%= link_to 'Importaciones', importaciones_path%></li>
 <!--      <li>
         <a href="#">Vigilancia</a>
         </li>-->
@@ -26,9 +16,7 @@
   <li>
   	<a href="/representantes?cliente=true">Clientes</a>
   	<ul>
-  		<li>
-  			<a href="/representantes">Agentes/Titulares</a>
-  		</li>
+  		<li><%= link_to 'Agentes/Titulares', representantes_path%></li>
   	</ul>
   </li>
 
@@ -51,21 +39,11 @@
   <li>
   	<a href="#">Datos generales</a>
   	<ul>
-  		<li>
-  			<a href="/tipo_marcas">Tipos de marca</a>
-  		</li>
-  		<li>
-  			<a href="/tipo_signos">Tipos de signo</a>
-  		</li>
-  		<li>
-  			<a href="/clases">Clases</a>
-  		</li>
-  		<li>
-  			<a href="/usuarios">Usuarios</a>
-  		</li>
-  		<li>
-  			<a href="/paises">Paises</a>
-        </li>
+  		<li><%= link_to 'Tipos de marca', tipo_marcas_path%></li>
+  		<li><%= link_to 'Tipos de signo', tipo_signos_path%></li>
+  		<li><%= link_to 'Clases', clases_path %></li>
+  		<li><%= link_to 'Usuarios', usuarios_path%></li>
+  		<li><%= link_to 'Paises', paises_path%></li>
   	</ul>
   </li>
 
@@ -76,6 +54,10 @@
         <%= last_importation rescue "" %>
       </li>
     </ul>
+    <li>
+     <%= link_to 'Proyectos', proyecto_proyectos_path%>
+    </li>
+    	
   <!--	<ul>
   		<li>
   			<a href="#">Marcas por tipo signo</a>

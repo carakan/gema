@@ -1,0 +1,2 @@
+module Proyecto::ItemGastosHelper
+end

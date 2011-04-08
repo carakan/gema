@@ -1,9 +1,10 @@
 one:
+  categoria_id: 1
   sigla: MyString
   nombre: MyString
-  codigo_categoria: 1
 
 two:
+  categoria_id: 1
   sigla: MyString
   nombre: MyString
-  codigo_categoria: 1
+

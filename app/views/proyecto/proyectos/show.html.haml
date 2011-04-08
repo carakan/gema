@@ -2,7 +2,7 @@
 
 %p
   %strong Cliente:
-  = @proyecto.cliente_id
+  = @proyecto.representante_id
 %p
   %strong Area:
   = @proyecto.area_id
@@ -16,9 +16,13 @@
   %strong Prioridad:
   = @proyecto.prioridad
 
+= render :partial => "/proyecto/correspondencias/listado", :locals => {:correspondencias => @proyecto.correspondencias.paginate(:per_page=>5, :page=>params[:page])}
+= render :partial => "/proyecto/proyecto_items/listado", :locals => {:proyecto_items => @proyecto.proyecto_items}
+
 %p
   = link_to "Edit", edit_proyecto_proyecto_path(@proyecto)
   |
-  = link_to "Destroy", [:proyecto, @proyecto], :confirm => 'Are you sure?', :method => :delete
+  = link_to "Destroy", @proyecto, :confirm => 'Are you sure?', :method => :delete
   |
   = link_to "View All", proyecto_proyectos_path
+

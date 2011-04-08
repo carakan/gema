@@ -1,0 +1,39 @@
+- title "Servicio"
+
+%p
+  %strong Proyecto:
+  = @proyecto_item.proyecto_id
+%p
+  %strong Descripcion:
+  = @proyecto_item.descripcion
+%p
+  %strong Estado:
+  = @proyecto_item.estado
+%p
+  %strong Referencia Cliente:
+  = @proyecto_item.referencia_cliente
+%p
+  %strong Referencia Cliente Cobranza:
+  = @proyecto_item.referencia_cliente_cobranza
+%p
+  %strong Fecha Limite:
+  = @proyecto_item.fecha_limite
+%p
+  %strong Honorarios:
+  = @proyecto_item.honorarios
+%p
+  %strong Gastos Adminitrativos:
+  = @proyecto_item.gastos_adminitrativos
+%p
+  %strong Monto:
+  = @proyecto_item.monto
+%p
+  %strong Fecha Solicitud:
+  = @proyecto_item.fecha_solicitud
+
+%p
+  = link_to "Editar", edit_proyecto_item_path(@proyecto_item)
+  |
+  = link_to "Eliminar", proyecto_proyecto_proyecto_item_path(@proyecto_item), :confirm => 'Esta seguro de eliminar el item seleccionado?', :method => :delete
+  |
+  = link_to "Listado", proyecto_proyecto_proyecto_items_path

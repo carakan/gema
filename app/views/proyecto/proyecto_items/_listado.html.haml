@@ -1,0 +1,45 @@
+#tabsx{:style=>'font-size:11px;'}
+  %ul
+    %li
+      %a{:href=>'#tabs-2'}
+        Servicios
+    %li
+      %a{:href=>'#tabs-3'}
+        Solicitud de fondos
+        
+  #tabs-2
+    %table.decorated
+      %tr
+        %th= sort_order "Codigo ORPAN", "proyecto_item.id"
+        %th Descripcion
+        %th Estado
+        %th Referencia cliente
+        %th Referencia cliente cobranza
+        %th Fecha limite
+        %th Honorarios
+        %th Gastos adminitrativos
+        %th Monto
+        %th Fecha solicitud
+  
+      - for proyecto_item in proyecto_items
+        %tr
+          %td= link_to proyecto_item.proyecto_id, proyecto_proyecto_proyecto_item_path(@proyecto, proyecto_item)
+          %td= proyecto_item.descripcion
+          %td= proyecto_item.estado
+          %td= proyecto_item.referencia_cliente
+          %td= proyecto_item.referencia_cliente_cobranza
+          %td= proyecto_item.fecha_limite
+          %td= proyecto_item.honorarios
+          %td= proyecto_item.gastos_adminitrativos
+          %td= proyecto_item.monto
+          %td= proyecto_item.fecha_solicitud
+          %td= link_to 'Edit', edit_proyecto_proyecto_proyecto_item_path(@proyecto, proyecto_item)
+    %p= link_to "Nuevo servicio", new_proyecto_proyecto_proyecto_item_path(@proyecto), :class => 'new'
+
+  #tabs-3
+    %p= link_to "Nueva solicitud", new_proyecto_proyecto_proyecto_item_path(@proyecto), :class => 'new'
+
+:javascript
+  $(function() {
+   $( "#tabsx" ).tabs();
+  });

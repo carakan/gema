@@ -1,0 +1,10 @@
+- title "Proyecto/Instruccion"
+
+=render :partial =>'mostrar_instruccion'
+
+%p
+  = link_to "Edit", edit_proyecto_proyecto_instruccion_path(@instruccion)
+  |
+  = link_to "Destroy", @proyecto_instruccion, :confirm => 'Are you sure?', :method => :delete
+  |
+  = link_to "View All", proyecto_proyecto_instrucciones_path

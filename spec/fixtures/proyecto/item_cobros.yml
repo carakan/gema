@@ -1,0 +1,13 @@
+one:
+  referencia_cliente: MyString
+  referencia_cliente_cobranza: MyString
+  fecha_limite: 2011-03-25
+  honorarios: 1.5
+  gastos_administrativos: 1.5
+
+two:
+  referencia_cliente: MyString
+  referencia_cliente_cobranza: MyString
+  fecha_limite: 2011-03-25
+  honorarios: 1.5
+  gastos_administrativos: 1.5

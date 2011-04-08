@@ -34,7 +34,7 @@ class Marca < ActiveRecord::Base
   has_many :consultas
   has_many :consulta_detalles
   has_many :lemas_comerciales, :class_name => "Marca", :foreign_key => :lema_marca_id
-
+  has_and_belongs_to_many :item_cobros , :class_name => 'Proyecto::ItemCobro', :association_foreign_key=> :proyecto_item_id
   POSTS_SIZE = 3
 
   INSTRUCCIONES = ["Email","Carta", "Teléfono", "Fax", "Otro"]

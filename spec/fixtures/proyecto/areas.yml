@@ -1,7 +1,8 @@
 one:
   nombre: MyString
-  sigla: 1
+  sigla: MyString
 
 two:
   nombre: MyString
-  sigla: 1
+  sigla: MyString
+

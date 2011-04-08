@@ -1,0 +1,9 @@
+- title "Edit Proyecto/Instruccion"
+
+= render :partial=> 'form', :locals => {:url => proyecto_proyecto_instruccion_path(@proyecto, @instruccion)}
+
+
+%p
+  = link_to "Ver", proyecto_proyecto_instruccion_path(@proyecto, @instruccion)
+  |
+  = link_to "Ver listado", proyecto_proyecto_instrucciones_path(@proyecto)
