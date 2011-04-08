@@ -38,6 +38,7 @@ module ModMarca::PDF
         arr.each do |params|
           # crear_instancia_pdf  se encuentra en el archivo lista_publicacion
           # lib/mod_marca/lista_publicacion.rb
+          # debugger
           m = crear_marca_pdf(params, num)
         end
       end
@@ -103,9 +104,7 @@ module ModMarca::PDF
       arr = []
       divs = n.css(css_selector)
       @fin = false
-
       divs.each_with_index do |div, ind| 
-
         hash = {}
         @lista_seleccionada.each do |key, desp|
           primero = @lista_seleccionada.first[0] == key
@@ -114,20 +113,16 @@ module ModMarca::PDF
           if hash[key].class == String and primero and @seccion == 'FIGURATIVAS' and hash['imagen'].nil?
             hash['imagen'] = extraer_imagen(divs[@posicion - desp], num)
           end
-
           if hash[key] == false
             hash.delete(key)
             buscar_seccion(divs)
             break
           end
         end
-
         arr << hash
-
         break if @posicion == (divs.size - 1)
       end
       arr.delete_if{ |h| h.blank? }
-
       arr
     end
 

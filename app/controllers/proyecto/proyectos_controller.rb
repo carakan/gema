@@ -9,6 +9,8 @@ class Proyecto::ProyectosController < ApplicationController
 
   def new
     @proyecto = Proyecto::Proyecto.new
+    @proyecto.proyecto_items << @proyecto.proyecto_items.build
+    @proyecto.correspondencias << @proyecto.correspondencias.build
   end
 
   def create

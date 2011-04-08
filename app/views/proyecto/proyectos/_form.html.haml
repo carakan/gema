@@ -2,7 +2,7 @@
 = simple_form_for @proyecto do |f|
   = f.error_messages
   %p
-    = f.association :representante, :prompt=>'Seleccione a un Representante', :hint=>'Asigne a un representante', :required => true
+    -# f.association :representante, :prompt=>'Seleccione a un Representante', :hint=>'Asigne a un representante', :required => true
     = f.association :area, :prompt => 'Seleccione un Area', :hint=>'A que área corresponde', :required => true
     = f.input :titulo, :hint=> "Escriba una breve descripción de este proyecto", :required => true
   %p
@@ -29,7 +29,6 @@
           = g.input :honorarios
           = g.input :gastos_adminitrativos
           = g.input :fecha_solicitud, :as=> :date
-          = g.input :hola
       #tabs-2
         %p
           Información relacionada con Solicitud de Fondos
