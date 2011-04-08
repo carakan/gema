@@ -1,4 +1,4 @@
-= form_for @proyecto , :html=>{:multipart=>true} do |f|
+= form_for @proyecto do |f|
 	= f.label :representante_id
 	= f.select(:area_id, Proyecto::Area.all.collect{|s|[s.nombre, s.id]})
 	= f.label :titulo
