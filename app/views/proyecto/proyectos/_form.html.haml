@@ -1,73 +1,41 @@
-
-= simple_form_for @proyecto do |f|
-  = f.error_messages
-  %p
-    = f.association :representante, :prompt=>'Seleccione a un Representante', :hint=>'Asigne a un representante', :required => true
-    = f.association :area, :prompt => 'Seleccione un Area', :hint=>'A que área corresponde', :required => true
-    = f.input :titulo, :hint=> "Escriba una breve descripción de este proyecto", :required => true
-  %p
-    = f.input :referencia_cliente, :hint => "Introduza una referencia de cliente, por ejemplo : AC-5454-BOL", :required => true
-  %p
-    = f.input :prioridad, :collection =>['A', 'B', 'C'], :as=> :radio, :hint=> 'Asigne una prioridad para este proyecto, de tipo A = Mayor Prioridad, B = Mediana Prioridad, C = Menor Prioridad ', :required => true
-  %p
-  = f.simple_fields_for :proyecto_items do |g|
-    #tabs{:style=>'font-size:11px;'}
-      %ul
-        %li
-          %a{:href=>'#tabs-1'}
-            Servicios
-        %li
-          %a{:href=>'#tabs-2'}
-            Solicitud de Fondos
-
-      #tabs-1
-        %p
-          = g.input :referencia_cliente
-          = g.input :referencia_cliente_cobranza
-          = g.input :estado
-          = g.input :descripcion
-          = g.input :honorarios
-          = g.input :gastos_adminitrativos
-          = g.input :fecha_solicitud, :as=> :date
-          = g.input :hola
-      #tabs-2
-        %p
-          Información relacionada con Solicitud de Fondos
-
-  %div.adjuntos
-    = f.simple_fields_for :adjuntos do |adj|
-      = adj.input :archivo, :as => :file, :input_html => { :size => 60 }
-    %a#a_adjuntar_archivo{:href => 'javascript:', :class=>'new'}
-      Adjuntar archivo
-
-    = f.simple_fields_for :correspondencias do |h|
-      = h.input :tipo, :as=> :radio
-      = h.input :contenido, :as => :text
-
-    = f.button :submit, 'Guardar Proyecto'
-
-:javascript
-  $(function() {
-   $( "#tabs" ).tabs();
-  });
-  
-  $(document).ready(function() {
-  $('#a_adjuntar_archivo').click(function() {
-    input = $('<input/>').attr({
-      'name': 'post[adjuntos_attributes][' + ( new Date() ).getTime().toString() + '][archivo]',
-      'type': 'file',
-      'size': 60
-    });
-    del = '<a href="javascript:" class="adjunto_delete">borrar</a>';
-    li = $('<li/>').append('<label>Adjunto</label>').append(input).append(del)
-    $('#adjuntos').append( li );
-    $.mark(li, 7);
-  });
-
-  $('.adjunto_delete').live('click', function(e) {
-    $(this).parents('li:first').remove();
-  });
-  });
+= form_for @proyecto , :html=>{:multipart=>true} do |f|
+	= f.label :representante_id
+	= f.select(:area_id, Proyecto::Area.all.collect{|s|[s.nombre, s.id]})
+	= f.label :titulo
+	= f.text_field :titulo
+	= f.label :referencia_cliente
+	= f.text_field :referencia_cliente
+	= f.label :prioridad
+	= f.radio_button(:prioridad, "A") + "A"  
+	= f.radio_button(:prioridad, "B") + "B"
+	= f.radio_button(:prioridad, "C") + "C"
+	%br
+	%br
+	%br
+	= f.fields_for :proyecto_item do |g|
+		= g.label :descripcion
+		= g.text_field :descripcion
+		= g.label :estado
+		= g.text_field :estado
+		= g.label :referencia_cliente
+		= g.text_field :referencia_cliente
+		= g.label :referencia_cliente_cobranza
+		= g.text_field :referencia_cliente_cobranza
+		= g.label :fecha_limite
+		= g.text_field :fecha_limite
+		%br
+		%br
+		%br
+		= f.fields_for :correspondencia do |h|
+			= h.label :Enviado?
+			= h.radio_button(:tipo, "true") + "Si"
+			= h.radio_button(:tipo, "false") + "No"
+			= h.label :contenido
+			= h.text_area  :contenido
+		%br
+		%br
+		%br
+	= f.submit
 
 
 
