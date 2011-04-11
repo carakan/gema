@@ -1,5 +1,5 @@
 class Proyecto::Proyecto < ActiveRecord::Base
-  attr_accessible :representante_id, :area_id, :titulo, :referencia_cliente, :prioridad, :contacto_id
+  #attr_accessible :representante_id, :area_id, :titulo, :referencia_cliente, :prioridad, :contacto_id
   set_table_name "proyectos"
   belongs_to :area
   belongs_to :representante
@@ -9,10 +9,12 @@ class Proyecto::Proyecto < ActiveRecord::Base
   has_many :proyecto_items
   has_many :adjuntos, :as => :adjuntable, :dependent => :destroy
   
-  accepts_nested_attributes_for :correspondencias, :instruccions, :proyecto_items, :adjuntos
+  accepts_nested_attributes_for :adjuntos
+  accepts_nested_attributes_for :correspondencias
+  accepts_nested_attributes_for :proyecto_items
 
-def to_s
- titulo
-end
+  def to_s
+    titulo
+  end
 end
 

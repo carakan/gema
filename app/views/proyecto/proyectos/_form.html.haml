@@ -1,7 +1,10 @@
 = simple_form_for (@proyecto , :html => {:multipart => true}) do |f|
+= stylesheet_link_tag 'facebook'
+= javascript_include_tag 'jquery.fcbkcomplete.min'
+
   = f.error_messages
-  %p
-    = f.association :representante, :prompt=>'Seleccione a un Representante', :hint=>'Asigne a un representante', :required => true
+  %p 
+    = f.association :representante, :prompt=>'Seleccione a un Representante', :hint=>'Asigne a un representante', :required => true, :collection => []
     = f.association :area, :prompt => 'Seleccione un Area', :hint=>'A que área corresponde', :required => true
     = f.input :titulo, :hint=> "Escriba una breve descripción de este proyecto", :required => true
   %p
@@ -28,7 +31,6 @@
           = g.input :honorarios
           = g.input :gastos_adminitrativos
           = g.input :fecha_solicitud, :as=> :date
-          = g.input :hola
       #tabs-2
         %p
           Información relacionada con Solicitud de Fondos
@@ -47,7 +49,18 @@
 
 :javascript
   $(function() {
-   $( "#tabs" ).tabs();
+    $( "#tabs" ).tabs();
+    $("#proyecto_proyecto_representante_id").fcbkcomplete({
+      json_url: "/representantes/buscar",
+      filter_hide: true,
+      filter_selected: true,
+      newel: false,
+      maxitems: 1
+    });
+  });
+
+  $("form").submit(function(){
+    $("#proyecto_proyecto_representante_id").attr("name", "proyecto_proyecto[representante_id]")
   });
   
   $(document).ready(function() {
@@ -67,6 +80,4 @@
     $(this).parents('li:first').remove();
   });
   });
-
-
 

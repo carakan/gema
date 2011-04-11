@@ -2,7 +2,7 @@ class Proyecto::AreasController < ApplicationController
   def index
     @areas = Proyecto::Area.all
   end
-
+ 
   def show
     @area = Proyecto::Area.find(params[:id])
   end
@@ -15,11 +15,12 @@ class Proyecto::AreasController < ApplicationController
     @area = Proyecto::Area.new(params[:proyecto_area])
     if @area.save
      redirect_to @area ,:notice => "Successfully created area."
+
     else
       render :action => 'new'
     end
   end
-
+  
   def edit
     @area = Proyecto::Area.find(params[:id])
   end
