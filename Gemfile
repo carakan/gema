@@ -29,6 +29,8 @@ gem 'devise', '1.2.1'
 gem 'simple_form'
 gem "meta_search"
 gem 'warden', '1.0.3'
+gem 'show_for'
+gem "cocoon"
 
 group :development do
   gem "nifty-generators"

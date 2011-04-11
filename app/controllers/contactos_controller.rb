@@ -84,4 +84,9 @@ class ContactosController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def buscar
+    @clientes = Contacto.where("representante_id = ?", params[:id]).order("nombre")
+    render :text => @clientes.map{ |c| "<option value='#{c.id}'>#{c.nombre}</option>"}.join("")
+  end
 end

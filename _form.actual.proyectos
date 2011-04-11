@@ -1,29 +1,29 @@
 = stylesheet_link_tag 'facebook'
 = javascript_include_tag 'jquery.fcbkcomplete.min'
-
+= javascript_include_tag 'jquery.sheepItPlugin'
 = simple_form_for @proyecto do |f|
   = f.error_messages
   %table{:border=>0}
     %tr
     %td
-      %div{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all", :style=>'font-size:11px; width:570px; height:470px;'}
+      %div{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all", :style=>'font-size:11px; width:570px; height:420px;'}
         %h2{:style=>'text-align:center;'} 
           Datos del Proyecto
-        = f.association :representante, :prompt=>'Seleccione a un Representante', :hint=>'Asigne a un representante', :collection => []
-        = f.association :area, :prompt => 'Seleccione un Area', :hint=>'A que área corresponde'
-        = f.association :contactos, :collection => [], :input_html=> {:multiple => true}
-        = f.input :titulo, :hint=> "Escriba una breve descripción de este proyecto"
+        = f.association :representante, :prompt=>'Seleccione a un Representante', :hint=>'Asigne a un representante'
+        = f.association :area, :prompt => 'Seleccione un Area', :hint=>'A que �rea corresponde'
+        =# f.association :contactos, :collection => Contacto.all(:order => 'nombre'), :input_html=> {:size => 1}
+        = f.input :titulo, :hint=> "Escriba una breve descripci�n de este proyecto"
         = f.input :referencia_cliente, :hint => "Introduza una referencia de cliente, por ejemplo : AC-5454-BOL"
         = f.input :prioridad, :collection =>['A', 'B', 'C'], :as=> :radio, :hint=> 'Asigne una prioridad para este proyecto, de tipo A = Mayor Prioridad, B = Mediana Prioridad, C = Menor Prioridad '
     %td
-      %div{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all",:style=>'font-size:11px;width:339px; height:470px;'}
+      %div{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all",:style=>'font-size:11px;width:339px; height:420px;'}
         %h2{:style=>'text-align:center;'} 
           Nuevo Email
         = f.simple_fields_for :correspondencias, Proyecto::Correspondencia.new  do |h|
-          = render 'correspondencia_fields', :f => h
-        .links
-          = link_to_add_association 'Añadir correspondencia', f, :correspondencias
-  %br
+          = h.collection_radio :tipo, [[true, 'Recibido'] ,[false, 'Enviado']], :first, :last
+          = h.input :contenido, :input_html =>{:style=>"width:330px; height:280px;" }, :hint => "Escriba la correspondencia recibida que inicia este proyecto"
+             
+  %br 
   = f.simple_fields_for :proyecto_items, Proyecto::ProyectoItem.new do |g|
     #tabs{:style=>'font-size:11px;'}
       %h2{:style=>'text-align:center;'}
@@ -46,7 +46,7 @@
           %td
             = g.input :estado, :input_html=>{:size=>20},:label => "Tipo", :label => false
           %td
-            = g.input :descripcion, :input_html=>{:size=>20}, :label => "Descripción", :label => false
+            = g.input :descripcion, :input_html=>{:size=>20}, :label => "Descripci�n", :label => false
           %td
             = g.input :honorarios, :input_html=>{:size=>5}, :label => "Honorarios", :label => false
           %td
@@ -56,18 +56,12 @@
           %td
       #tabs-2
         %p
-          Información relacionada con Solicitud de Fondos
+          Informaci�n relacionada con Solicitud de Fondos
   %br
 
   %div{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all",:style=>'font-size:11px;text-align:center;'}
     %h2{:style=>'text-align:center;'}
       Archivos Adjuntos
-      %div#adjuntos
-        = f.simple_fields_for Proyecto::Adjunto.new do |adj|
-          = adj.input :archivo, :as => :file,:hidden => true, :input_html => { :size => 60 }
-        %a#a_adjuntar_archivo{:href => "javascript:", :class => "new"}
-          Adjuntar archivo
-
   %br
   
   %div{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all",:style=>'font-size:11px;'}
@@ -81,40 +75,21 @@
         = i.simple_fields_for :instruccion_detalles, Proyecto::InstruccionDetalle.new do |h|
           %table{:border=>0}
             %tr
-            %td
+            %td	
               = h.association :usuario
             %td
               = h.input :estado
             %td
-              =h.input :tarea
+              =h.input :tarea  
             %td
-              = h.input :fecha_limite, :as => :date
+              = h.input :fecha_limite, :as => :date     
 
-       
   %br
   = f.button :submit, 'Guardar Proyecto'
 
 :javascript
-  $(document).ready(function() {
-    $('#a_adjuntar_archivo').click(function() {
-      input = $('<input/>').attr({
-        'name': 'proyecto_proyecto[adjuntos_attributes][' + ( new Date() ).getTime().toString() + '][archivo]',
-        'type': 'file',
-        'size': 60
-      });
-      del = '<a href="javascript:" class="adjunto_delete">borrar</a>';
-      li = $('<li/>').append('<label>Adjunto</label>').append(input).append(del)
-      $('#adjuntos').append( li );
-      $.mark(li, 7);
-    });
-
-    $('.adjunto_delete').live('click', function(e) {
-      $(this).parents('li:first').remove();
-    });
-  });
-
   $(function() {
-    $("#tabs").tabs();
+    $( "#tabs" ).tabs();
     $("#proyecto_proyecto_representante_id").fcbkcomplete({
       json_url: "/representantes/buscar",
       filter_hide: true,
@@ -122,16 +97,13 @@
       newel: false,
       maxitems: 1
     });
-
-    $("#proyecto_proyecto_representante_id").change(function(){
-      $("#proyecto_proyecto_contacto_ids").load("/contactos/buscar?id=" + $("#proyecto_proyecto_representante_id option:selected.selected").val());
-    });
   });
 
   $("form").submit(function(){
     $("#proyecto_proyecto_representante_id").attr("name", "proyecto_proyecto[representante_id]")
   });
 
+:javascript
   tinyMCE.init({
    mode : "textareas",
    theme: "simple"

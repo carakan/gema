@@ -1,20 +1,12 @@
-- title "Proyecto/Proyecto"
+= show_for @proyecto do |p|
+  = p.association :representante
+  = p.association :contactos
+  = p.association :area	
+  = p.attribute :titulo
+  = p.attribute :referencia_cliente
+  = p.attribute :prioridad
 
-%p
-  %strong Cliente:
-  = @proyecto.representante.nombre
-%p
-  %strong Area:
-  = @proyecto.area_id
-%p
-  %strong Titulo:
-  = @proyecto.titulo
-%p
-  %strong Referencia Cliente:
-  = @proyecto.referencia_cliente
-%p
-  %strong Prioridad:
-  = @proyecto.prioridad
+
 
 = for correspondencia in @proyecto.correspondencias
   %ol
@@ -24,12 +16,12 @@
 /= render :partial => "/proyecto/correspondencias/listado", :locals => {:correspondencias => @proyecto.correspondencias.paginate(:per_page=>5, :page=>params[:page])}
 /= render :partial => "/proyecto/proyecto_items/listado", :locals => {:proyecto_items => @proyecto.proyecto_items}
 
-=# render :partial =>"/proyecto/instrucciones/listado", :locals =>{:instruccions => @proyecto.instruccions}
-
 %p
   = link_to "Edit", edit_proyecto_proyecto_path(@proyecto)
   |
   = link_to "Destroy", @proyecto, :confirm => 'Are you sure?', :method => :delete
   |
-  = link_to "View All", proyecto_proyectos_path
+  = link_to "View All", proyecto_proyectos_path  
+
+
 

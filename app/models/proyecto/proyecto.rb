@@ -10,7 +10,7 @@ class Proyecto::Proyecto < ActiveRecord::Base
   has_many :adjuntos, :as => :adjuntable, :dependent => :destroy
   
   accepts_nested_attributes_for :adjuntos
-  accepts_nested_attributes_for :correspondencias
+  accepts_nested_attributes_for :correspondencias, :reject_if => proc {|attributes| attributes[:contenido].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :proyecto_items
   accepts_nested_attributes_for :instruccions
  
