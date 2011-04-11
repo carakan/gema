@@ -26,7 +26,6 @@ class Consulta < ActiveRecord::Base
 
   PARAMS = [:clases, :tipo_busqueda, :fecha_ini, :fecha_fin]
 
-
   # Convierte los parametros que se utilizaron en la busqueda
   # como las clases, rangos de fechas y otros a un hash
   def self.convertir_parametros_a_hash(params)

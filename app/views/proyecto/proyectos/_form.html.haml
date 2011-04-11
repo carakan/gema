@@ -1,16 +1,32 @@
 = simple_form_for @proyecto do |f|
   = f.error_messages
-  %p
-    -# f.association :representante, :prompt=>'Seleccione a un Representante', :hint=>'Asigne a un representante', :required => true
-    = f.association :area, :prompt => 'Seleccione un Area', :hint=>'A que área corresponde', :required => true
-    = f.input :titulo, :hint=> "Escriba una breve descripción de este proyecto", :required => true
-  %p
-    = f.input :referencia_cliente, :hint => "Introduza una referencia de cliente, por ejemplo : AC-5454-BOL", :required => true
-  %p
-    = f.input :prioridad, :collection =>['A', 'B', 'C'], :as=> :radio, :hint=> 'Asigne una prioridad para este proyecto, de tipo A = Mayor Prioridad, B = Mediana Prioridad, C = Menor Prioridad ', :required => true
-  %p
-  = f.simple_fields_for :proyecto_items do |g|
+ 
+   
+  %table{:border=>0}
+    %tr
+    %td
+      %div{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all", :style=>'font-size:11px; width:570px; height:420px;'}
+        %h2{:style=>'text-align:center;'} 
+          Datos del Proyecto
+        =# f.association :representante, :prompt=>'Seleccione a un Representante', :hint=>'Asigne a un representante'
+        = f.association :area, :prompt => 'Seleccione un Area', :hint=>'A que área corresponde'
+        =# f.association :contactos
+        = f.input :titulo, :hint=> "Escriba una breve descripción de este proyecto"
+        = f.input :referencia_cliente, :hint => "Introduza una referencia de cliente, por ejemplo : AC-5454-BOL"
+        = f.input :prioridad, :collection =>['A', 'B', 'C'], :as=> :radio, :hint=> 'Asigne una prioridad para este proyecto, de tipo A = Mayor Prioridad, B = Mediana Prioridad, C = Menor Prioridad '
+    %td
+      %div{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all",:style=>'font-size:11px;width:339px; height:420px;'}
+        %h2{:style=>'text-align:center;'} 
+          Nuevo Email
+        = f.simple_fields_for :correspondencias, Proyecto::Correspondencia.new  do |h|
+          = h.input :tipo , :as=> :radio, :label => 'Se ha enviado?'
+          = h.input :contenido, :input_html =>{:style=>"width:330px; height:280px;" }, :hint => "Escriba la correspondencia recibida que inicia este proyecto"
+             
+  %br 
+  = f.simple_fields_for :proyecto_items, Proyecto::ProyectoItem.new do |g|
     #tabs{:style=>'font-size:11px;'}
+      %h2{:style=>'text-align:center;'}
+        Servicios & Solicitud de Fondos
       %ul
         %li
           %a{:href=>'#tabs-1'}
@@ -20,52 +36,63 @@
             Solicitud de Fondos
 
       #tabs-1
-        %p
-          = g.input :referencia_cliente
-          = g.input :referencia_cliente_cobranza
-          = g.input :estado
-          = g.input :descripcion
-          = g.input :honorarios
-          = g.input :gastos_adminitrativos
-          = g.input :fecha_solicitud, :as=> :date
+        %table{:border=>0}
+          %tr
+          %td
+            = g.input :referencia_cliente, :input_html=>{:size=>10}, :label => false
+          %td
+            = g.input :referencia_cliente_cobranza, :input_html=>{:size=>10}, :label => "codigo", :label => false
+          %td
+            = g.input :estado, :input_html=>{:size=>20},:label => "Tipo", :label => false
+          %td
+            = g.input :descripcion, :input_html=>{:size=>20}, :label => "Descripción", :label => false
+          %td
+            = g.input :honorarios, :input_html=>{:size=>5}, :label => "Honorarios", :label => false
+          %td
+            = g.input :gastos_adminitrativos, :input_html=>{:size=>5}, :label => "Gastos", :label => false
+          %td
+            = g.input :fecha_solicitud,:label => "Fecha", :input_html=>{:size=>4}, :as => :date, :label => false
+          %td
       #tabs-2
         %p
           Información relacionada con Solicitud de Fondos
+  %br
 
-  %div.adjuntos
-    = f.simple_fields_for :adjuntos do |adj|
-      = adj.input :archivo, :as => :file, :input_html => { :size => 60 }
-    %a#a_adjuntar_archivo{:href => 'javascript:', :class=>'new'}
-      Adjuntar archivo
+  %div{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all",:style=>'font-size:11px;text-align:center;'}
+    %h2{:style=>'text-align:center;'}
+      Archivos Adjuntos
+  %br
+  
+  %div{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all",:style=>'font-size:11px;'}
+    %h2{:style=>'text-align:center;'}
+      Instrucciones
+    = f.simple_fields_for :instruccions, Proyecto::Instruccion.new do |i|
+      = i.input :referencia_email
+      %br
+        %h2
+          Tareas
+        = i.simple_fields_for :instruccion_detalles, Proyecto::InstruccionDetalle.new do |h|
+          %table{:border=>0}
+            %tr
+            %td	
+              = h.association :usuario
+            %td
+              = h.input :estado
+            %td
+              =h.input :tarea  
+            %td
+              = h.input :fecha_limite, :as => :date     
 
-    = f.simple_fields_for :correspondencias do |h|
-      = h.input :tipo, :as=> :radio
-      = h.input :contenido, :as => :text
-
-    = f.button :submit, 'Guardar Proyecto'
+  %br
+  = f.button :submit, 'Guardar Proyecto'
 
 :javascript
   $(function() {
    $( "#tabs" ).tabs();
   });
   
-  $(document).ready(function() {
-  $('#a_adjuntar_archivo').click(function() {
-    input = $('<input/>').attr({
-      'name': 'post[adjuntos_attributes][' + ( new Date() ).getTime().toString() + '][archivo]',
-      'type': 'file',
-      'size': 60
-    });
-    del = '<a href="javascript:" class="adjunto_delete">borrar</a>';
-    li = $('<li/>').append('<label>Adjunto</label>').append(input).append(del)
-    $('#adjuntos').append( li );
-    $.mark(li, 7);
+:javascript
+  tinyMCE.init({
+   mode : "textareas",
+   theme: "simple"
   });
-
-  $('.adjunto_delete').live('click', function(e) {
-    $(this).parents('li:first').remove();
-  });
-  });
-
-
-
