@@ -1,9 +1,12 @@
 = show_for @proyecto do |p|
   = p.association :representante
+  = p.association :contactos
   = p.association :area	
   = p.attribute :titulo
   = p.attribute :referencia_cliente
   = p.attribute :prioridad
+
+
 
 = render :partial => "/proyecto/correspondencias/listado", :locals => {:correspondencias => @proyecto.correspondencias.paginate(:per_page=>5, :page=>params[:page])}
 = render :partial => "/proyecto/proyecto_items/listado", :locals => {:proyecto_items => @proyecto.proyecto_items}
