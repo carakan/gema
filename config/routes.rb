@@ -37,7 +37,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :contactos
+  resources :contactos do
+    collection do
+      get :buscar
+    end
+  end
 
   resources :consultas do
     collection do
@@ -82,8 +86,6 @@ Rails.application.routes.draw do
 
   resources :tipo_signos
 
-  resources :testes
-
   resources :clases
 
   resources :marcas do
@@ -121,13 +123,7 @@ Rails.application.routes.draw do
   resources :solicitudes do
     member { get :importado }
   end
-
+  
   resources :roles
-
-  #resources :login
-
-  #match 'logout' => 'devise/sessions#sign_out'
-
-  #root :to => 'login#new'
   root :to => 'busquedas#index'
 end

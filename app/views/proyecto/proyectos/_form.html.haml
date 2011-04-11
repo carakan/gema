@@ -9,9 +9,9 @@
       %div{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all", :style=>'font-size:11px; width:570px; height:420px;'}
         %h2{:style=>'text-align:center;'} 
           Datos del Proyecto
-        = f.association :representante, :prompt=>'Seleccione a un Representante', :hint=>'Asigne a un representante'
+        = f.association :representante, :prompt=>'Seleccione a un Representante', :hint=>'Asigne a un representante', :collection => []
         = f.association :area, :prompt => 'Seleccione un Area', :hint=>'A que área corresponde'
-        =# f.association :contactos, :collection => Contacto.all(:order => 'nombre'), :input_html=> {:size => 1}
+        = f.association :contactos, :collection => [], :input_html=> {:multiple => true}
         = f.input :titulo, :hint=> "Escriba una breve descripción de este proyecto"
         = f.input :referencia_cliente, :hint => "Introduza una referencia de cliente, por ejemplo : AC-5454-BOL"
         = f.input :prioridad, :collection =>['A', 'B', 'C'], :as=> :radio, :hint=> 'Asigne una prioridad para este proyecto, de tipo A = Mayor Prioridad, B = Mediana Prioridad, C = Menor Prioridad '
@@ -89,7 +89,7 @@
 
 :javascript
   $(function() {
-    $( "#tabs" ).tabs();
+    $("#tabs").tabs();
     $("#proyecto_proyecto_representante_id").fcbkcomplete({
       json_url: "/representantes/buscar",
       filter_hide: true,
@@ -97,13 +97,16 @@
       newel: false,
       maxitems: 1
     });
+
+    $("#proyecto_proyecto_representante_id").change(function(){
+      $("#proyecto_proyecto_contacto_ids").load("/contactos/buscar?id=" + $("#proyecto_proyecto_representante_id option:selected.selected").val());
+    });
   });
 
   $("form").submit(function(){
     $("#proyecto_proyecto_representante_id").attr("name", "proyecto_proyecto[representante_id]")
   });
 
-:javascript
   tinyMCE.init({
    mode : "textareas",
    theme: "simple"
