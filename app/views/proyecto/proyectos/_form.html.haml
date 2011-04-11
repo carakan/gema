@@ -1,7 +1,8 @@
+= stylesheet_link_tag 'facebook'
+= javascript_include_tag 'jquery.fcbkcomplete.min'
+
 = simple_form_for @proyecto do |f|
   = f.error_messages
- 
-   
   %table{:border=>0}
     %tr
     %td
@@ -88,11 +89,23 @@
 
 :javascript
   $(function() {
-   $( "#tabs" ).tabs();
+    $( "#tabs" ).tabs();
+    $("#proyecto_proyecto_representante_id").fcbkcomplete({
+      json_url: "/representantes/buscar",
+      filter_hide: true,
+      filter_selected: true,
+      newel: false,
+      maxitems: 1
+    });
   });
-  
+
+  $("form").submit(function(){
+    $("#proyecto_proyecto_representante_id").attr("name", "proyecto_proyecto[representante_id]")
+  });
+
 :javascript
   tinyMCE.init({
    mode : "textareas",
    theme: "simple"
   });
+

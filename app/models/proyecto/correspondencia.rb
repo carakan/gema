@@ -1,4 +1,4 @@
 class Proyecto::Correspondencia < ActiveRecord::Base
-  attr_accessible :proyecto_id, :tipo, :contenido
   belongs_to :proyecto
+  #validates :contenido, :presence => true
 end
