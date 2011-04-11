@@ -1,6 +1,6 @@
 = stylesheet_link_tag 'facebook'
 = javascript_include_tag 'jquery.fcbkcomplete.min'
-
+= javascript_include_tag 'jquery.sheepItPlugin'
 = simple_form_for @proyecto do |f|
   = f.error_messages
   %table{:border=>0}
@@ -9,9 +9,9 @@
       %div{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all", :style=>'font-size:11px; width:570px; height:420px;'}
         %h2{:style=>'text-align:center;'} 
           Datos del Proyecto
-        =# f.association :representante, :prompt=>'Seleccione a un Representante', :hint=>'Asigne a un representante'
+        = f.association :representante, :prompt=>'Seleccione a un Representante', :hint=>'Asigne a un representante'
         = f.association :area, :prompt => 'Seleccione un Area', :hint=>'A que área corresponde'
-        =# f.association :contactos
+        =# f.association :contactos, :collection => Contacto.all(:order => 'nombre'), :input_html=> {:size => 1}
         = f.input :titulo, :hint=> "Escriba una breve descripción de este proyecto"
         = f.input :referencia_cliente, :hint => "Introduza una referencia de cliente, por ejemplo : AC-5454-BOL"
         = f.input :prioridad, :collection =>['A', 'B', 'C'], :as=> :radio, :hint=> 'Asigne una prioridad para este proyecto, de tipo A = Mayor Prioridad, B = Mediana Prioridad, C = Menor Prioridad '
@@ -20,7 +20,7 @@
         %h2{:style=>'text-align:center;'} 
           Nuevo Email
         = f.simple_fields_for :correspondencias, Proyecto::Correspondencia.new  do |h|
-          = h.input :tipo , :as=> :radio, :label => 'Se ha enviado?'
+          = h.collection_radio :tipo, [[true, 'Recibido'] ,[false, 'Enviado']], :first, :last
           = h.input :contenido, :input_html =>{:style=>"width:330px; height:280px;" }, :hint => "Escriba la correspondencia recibida que inicia este proyecto"
              
   %br 
