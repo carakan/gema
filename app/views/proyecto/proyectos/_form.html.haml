@@ -20,9 +20,8 @@
         %h2{:style=>'text-align:center;'} 
           Nuevo Email
         = f.simple_fields_for :correspondencias, Proyecto::Correspondencia.new  do |h|
-          = render 'correspondencia_fields', :h => h
-          .links
-            = link_to_add_association 'add task', h, :correspondencias
+          = render 'correspondencia_fields', :f => h
+          = link_to_add_association 'Adicionar correspondencia', f, :correspondencias
              
   %br 
   = f.simple_fields_for :proyecto_items, Proyecto::ProyectoItem.new do |g|

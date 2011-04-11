@@ -1,0 +1,15 @@
+
+            = g.input :referencia_cliente, :input_html=>{:size=>10}, :label => false
+
+            = g.input :referencia_cliente_cobranza, :input_html=>{:size=>10}, :label => "codigo", :label => false
+
+            = g.input :estado, :input_html=>{:size=>20},:label => "Tipo", :label => false
+
+            = g.input :descripcion, :input_html=>{:size=>20}, :label => "Descripción", :label => false
+
+            = g.input :honorarios, :input_html=>{:size=>5}, :label => "Honorarios", :label => false
+
+            = g.input :gastos_adminitrativos, :input_html=>{:size=>5}, :label => "Gastos", :label => false
+
+            = g.input :fecha_solicitud,:label => "Fecha", :input_html=>{:size=>4}, :as => :date, :label => false
+          = link_to_remove_association "Remover Servicio", f

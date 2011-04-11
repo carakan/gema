@@ -1,4 +1,5 @@
 .nested-fields
-  = h.collection_radio :tipo, [[true, 'Recibido'] ,[false, 'Enviado']], :first, :last
-  = h.input :contenido, :input_html =>{:style=>"width:330px; height:280px;" }, :hint => "Escriba la correspondencia recibida que inicia este proyecto"
-  = link_to_remove_association "Remover Correspondencia", h
+  = f.collection_radio :tipo, [[true, 'Recibido'] ,[false, 'Enviado']], :first, :last
+  = f.input :contenido, :input_html =>{:style=>"width:330px; height:280px;" }, :hint => "Escriba la correspondencia recibida que inicia este proyecto"
+  = link_to_remove_association "Remover Correspondencia", f
+  
