@@ -1,5 +1,4 @@
-
-= simple_form_for @proyecto do |f|
+= simple_form_for (@proyecto , :html => {:multipart => true}) do |f|
   = f.error_messages
   %p
     = f.association :representante, :prompt=>'Seleccione a un Representante', :hint=>'Asigne a un representante', :required => true
@@ -35,16 +34,16 @@
           Información relacionada con Solicitud de Fondos
 
   %div.adjuntos
-    = f.simple_fields_for :adjuntos do |adj|
-      = adj.input :archivo, :as => :file, :input_html => { :size => 60 }
-    %a#a_adjuntar_archivo{:href => 'javascript:', :class=>'new'}
-      Adjuntar archivo
+  = f.simple_fields_for :adjuntos do |adj|
+    = adj.input :archivo, :as => :file, :input_html => { :size => 60 }
+  %a#a_adjuntar_archivo{:href => 'javascript:', :class=>'new'}
+    Adjuntar archivo
 
-    = f.simple_fields_for :correspondencias do |h|
-      = h.input :tipo, :as=> :radio
-      = h.input :contenido, :as => :text
+  = f.simple_fields_for :correspondencias do |c|
+    = c.input :tipo, :as=> :radio
+    = c.input :contenido, :as => :text
 
-    = f.button :submit, 'Guardar Proyecto'
+  = f.button :submit, 'Guardar Proyecto'
 
 :javascript
   $(function() {
