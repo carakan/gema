@@ -10,9 +10,9 @@
         %h2{:style=>'text-align:center;'} 
           Datos del Proyecto
         = f.association :representante, :prompt=>'Seleccione a un Representante', :hint=>'Asigne a un representante'
-        = f.association :area, :prompt => 'Seleccione un Area', :hint=>'A que Ã¡rea corresponde'
+        = f.association :area, :prompt => 'Seleccione un Area', :hint=>'A que área corresponde'
         =# f.association :contactos, :collection => Contacto.all(:order => 'nombre'), :input_html=> {:size => 1}
-        = f.input :titulo, :hint=> "Escriba una breve descripciÃ³n de este proyecto"
+        = f.input :titulo, :hint=> "Escriba una breve descripción de este proyecto"
         = f.input :referencia_cliente, :hint => "Introduza una referencia de cliente, por ejemplo : AC-5454-BOL"
         = f.input :prioridad, :collection =>['A', 'B', 'C'], :as=> :radio, :hint=> 'Asigne una prioridad para este proyecto, de tipo A = Mayor Prioridad, B = Mediana Prioridad, C = Menor Prioridad '
     %td
@@ -46,7 +46,7 @@
           %td
             = g.input :estado, :input_html=>{:size=>20},:label => "Tipo", :label => false
           %td
-            = g.input :descripcion, :input_html=>{:size=>20}, :label => "DescripciÃ³n", :label => false
+            = g.input :descripcion, :input_html=>{:size=>20}, :label => "Descripción", :label => false
           %td
             = g.input :honorarios, :input_html=>{:size=>5}, :label => "Honorarios", :label => false
           %td
@@ -56,7 +56,7 @@
           %td
       #tabs-2
         %p
-          InformaciÃ³n relacionada con Solicitud de Fondos
+          Información relacionada con Solicitud de Fondos
   %br
 
   %div{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all",:style=>'font-size:11px;text-align:center;'}
