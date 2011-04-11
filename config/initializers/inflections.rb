@@ -17,7 +17,6 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.irregular 'agente', 'agentes'
   inflect.irregular 'post', 'posts'
   inflect.irregular 'marca_representante', 'marcas_representantes'
-
   inflect.irregular 'reporte', 'reportes'
   inflect.irregular 'permission', 'permissions'
   inflect.irregular 'item', 'items'

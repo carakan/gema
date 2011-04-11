@@ -1,4 +1,4 @@
-- title "Proyecto/Area"
+- title "Area"
 
 %p
   %strong Nombre:
@@ -8,8 +8,8 @@
   = @area.sigla
 
 %p
-  = link_to "Edit", edit_proyecto_area_path(@area)
+  = link_to "Editar", edit_proyecto_area_path(@area)
   |
-  = link_to "Destroy", @area, :confirm => 'Are you sure?', :method => :delete
+  = link_to "Eliminar", @area, :confirm => 'Esta usted seguro?', :method => :delete
   |
-  = link_to "View All", proyecto_areas_path
+  = link_to "Listado", proyecto_areas_path
