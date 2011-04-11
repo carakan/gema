@@ -6,7 +6,7 @@
   %table{:border=>0}
     %tr
     %td
-      %div{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all", :style=>'font-size:11px; width:570px; height:420px;'}
+      %div{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all", :style=>'font-size:11px; width:570px; height:470px;'}
         %h2{:style=>'text-align:center;'} 
           Datos del Proyecto
         = f.association :representante, :prompt=>'Seleccione a un Representante', :hint=>'Asigne a un representante', :collection => []
@@ -16,12 +16,13 @@
         = f.input :referencia_cliente, :hint => "Introduza una referencia de cliente, por ejemplo : AC-5454-BOL"
         = f.input :prioridad, :collection =>['A', 'B', 'C'], :as=> :radio, :hint=> 'Asigne una prioridad para este proyecto, de tipo A = Mayor Prioridad, B = Mediana Prioridad, C = Menor Prioridad '
     %td
-      %div{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all",:style=>'font-size:11px;width:339px; height:420px;'}
+      %div{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all",:style=>'font-size:11px;width:339px; height:470px;'}
         %h2{:style=>'text-align:center;'} 
           Nuevo Email
         = f.simple_fields_for :correspondencias, Proyecto::Correspondencia.new  do |h|
-          = h.collection_radio :tipo, [[true, 'Recibido'] ,[false, 'Enviado']], :first, :last
-          = h.input :contenido, :input_html =>{:style=>"width:330px; height:280px;" }, :hint => "Escriba la correspondencia recibida que inicia este proyecto"
+          = render 'correspondencia_fields', :h => h
+          .links
+            = link_to_add_association 'add task', h, :correspondencias
              
   %br 
   = f.simple_fields_for :proyecto_items, Proyecto::ProyectoItem.new do |g|
