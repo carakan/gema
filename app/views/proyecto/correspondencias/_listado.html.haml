@@ -1,10 +1,13 @@
-#tabs{:style=>'font-size:11px;'}
+#tabs-correspondencia{:style=>'font-size:11px;'}
   %ul
     %li
-      %a{:href=>'#tabs-1'}
+      %a{:href=>'#tabs-correspondencia-1'}
         Correspondencia
+    %li
+      %a{:href=>'#tabs-correspondencia-2'}
+        Adjuntos
 
-  #tabs-1
+  #tabs-correspondencia-1
     #remote
       %table.decorated
         %tr
@@ -24,11 +27,13 @@
       .pagination= will_paginate(correspondencias, :params => {:controller => "proyecto/correspondencias", :proyecto_id => @proyecto.id, :action => "index", :id => nil})
       %p= link_to "Añadir email", new_proyecto_proyecto_correspondencia_path(@proyecto), :class => 'new'
       %p= link_to "Ver todos los email", proyecto_proyecto_correspondencias_path(@proyecto), :class => "correspondencia", :"data-selector" => "#tabs-1"
+  #tabs-correspondencia-2
+    = render :partial => "/adjuntos/index", :locals => {:adjuntos => @proyecto.adjuntos}
 
 :javascript
   window.selectorAjax = "#tabs-1";
   $(function() {
-    $( "#tabs" ).tabs();
+    $("#tabs-correspondencia").tabs();
     $(".correspondencia, .next-email, .previus-email, .pagination a").live("click", ajaxeable);
   });
   $(".show-correspondencia, .next-email, .previus-email").live("click", ajaxeable);
