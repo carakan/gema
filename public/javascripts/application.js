@@ -326,7 +326,6 @@ function ajaxeable(e){
   var reference = $(this);
   var url = reference.attr("href");
   var selector = reference.attr("data-selector");
-  console.debug(reference, url, selector);
   if(!selector){
     selector = window.selectorAjax;
   }
