@@ -26,11 +26,11 @@ gem 'paperclip'
 gem 'prawn'
 gem 'less'
 gem 'devise', '1.2.1'
-gem 'simple_form'
+gem 'simple_form', '1.3.1'
 gem "meta_search"
 gem 'warden', '1.0.3'
 gem 'show_for'
-gem "cocoon"
+gem "cocoon", '1.0.3'
 
 group :development do
   gem "nifty-generators"
