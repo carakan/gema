@@ -31,6 +31,7 @@ gem "meta_search"
 gem 'warden', '1.0.3'
 gem 'show_for'
 gem "cocoon"
+gem "simple_nested_form"
 
 group :development do
   gem "nifty-generators"
@@ -43,3 +44,4 @@ group :test do
   gem 'mocha'
   gem 'spork'
 end
+

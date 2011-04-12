@@ -1,4 +1,5 @@
-.nested-fields
+.fields
   = f.collection_radio :tipo, [[true, 'Recibido'] ,[false, 'Enviado']], :first, :last
   = f.input :contenido, :hint => "Escriba la correspondencia recibida que inicia este proyecto"
-  = link_to_remove_association "Remover Correspondencia", f
+  = remove_child_link "Quitar", f
+
