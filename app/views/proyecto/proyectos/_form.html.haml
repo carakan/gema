@@ -63,8 +63,6 @@
     %h2{:style=>'text-align:center;'}
       Archivos Adjuntos
       %div#adjuntos
-        = f.simple_fields_for Proyecto::Adjunto.new do |adj|
-          = adj.input :archivo, :as => :file,:hidden => true, :input_html => { :size => 60 }
         %a#a_adjuntar_archivo{:href => "javascript:", :class => "new"}
           Adjuntar archivo
 
