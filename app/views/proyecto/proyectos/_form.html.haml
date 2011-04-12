@@ -1,6 +1,6 @@
 = stylesheet_link_tag 'facebook'
 = javascript_include_tag 'jquery.fcbkcomplete.min'
-= javascript_include_tag 'jquery.sheepItPlugin'
+
 = simple_form_for @proyecto do |f|
   = f.error_messages
   %table{:border=>0}
@@ -21,9 +21,9 @@
           Nuevo Email
         = f.simple_fields_for :correspondencias, Proyecto::Correspondencia.new  do |h|
           = render 'correspondencia_fields', :f => h
-          = link_to_add_association 'Adicionar correspondencia', f, :correspondencias
-             
-  %br 
+        .links
+          = link_to_add_association 'Añadir correspondencia', f, :correspondencias
+  %br
   = f.simple_fields_for :proyecto_items, Proyecto::ProyectoItem.new do |g|
     #tabs{:style=>'font-size:11px;'}
       %h2{:style=>'text-align:center;'}
@@ -62,6 +62,12 @@
   %div{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all",:style=>'font-size:11px;text-align:center;'}
     %h2{:style=>'text-align:center;'}
       Archivos Adjuntos
+      %div#adjuntos
+        = f.simple_fields_for Proyecto::Adjunto.new do |adj|
+          = adj.input :archivo, :as => :file,:hidden => true, :input_html => { :size => 60 }
+        %a#a_adjuntar_archivo{:href => "javascript:", :class => "new"}
+          Adjuntar archivo
+
   %br
   
   %div{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all",:style=>'font-size:11px;'}
@@ -75,19 +81,38 @@
         = i.simple_fields_for :instruccion_detalles, Proyecto::InstruccionDetalle.new do |h|
           %table{:border=>0}
             %tr
-            %td	
+            %td
               = h.association :usuario
             %td
               = h.input :estado
             %td
-              =h.input :tarea  
+              =h.input :tarea
             %td
-              = h.input :fecha_limite, :as => :date     
+              = h.input :fecha_limite, :as => :date
 
+       
   %br
   = f.button :submit, 'Guardar Proyecto'
 
 :javascript
+  $(document).ready(function() {
+    $('#a_adjuntar_archivo').click(function() {
+      input = $('<input/>').attr({
+        'name': 'proyecto_proyecto[adjuntos_attributes][' + ( new Date() ).getTime().toString() + '][archivo]',
+        'type': 'file',
+        'size': 60
+      });
+      del = '<a href="javascript:" class="adjunto_delete">borrar</a>';
+      li = $('<li/>').append('<label>Adjunto</label>').append(input).append(del)
+      $('#adjuntos').append( li );
+      $.mark(li, 7);
+    });
+
+    $('.adjunto_delete').live('click', function(e) {
+      $(this).parents('li:first').remove();
+    });
+  });
+
   $(function() {
     $("#tabs").tabs();
     $("#proyecto_proyecto_representante_id").fcbkcomplete({
