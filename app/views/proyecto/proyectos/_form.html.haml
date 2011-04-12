@@ -1,7 +1,7 @@
 = stylesheet_link_tag 'facebook'
 = javascript_include_tag 'jquery.fcbkcomplete.min'
 
-= simple_form_for @proyecto do |f|
+= simple_form_for @proyecto, :html => {:multipart => true} do |f|
   = f.error_messages
   %table{:border=>0}
     %tr
@@ -72,22 +72,9 @@
     %h2{:style=>'text-align:center;'}
       Instrucciones
     = f.simple_fields_for :instruccions, Proyecto::Instruccion.new do |i|
-      = i.input :referencia_email
-      %br
-        %h2
-          Tareas
-        = i.simple_fields_for :instruccion_detalles, Proyecto::InstruccionDetalle.new do |h|
-          %table{:border=>0}
-            %tr
-            %td
-              = h.association :usuario
-            %td
-              = h.input :estado
-            %td
-              =h.input :tarea
-            %td
-              = h.input :fecha_limite, :as => :date
-
+      = render :partial => 'instruccion_fields', :locals => {:f => i, :g => f}
+    .links
+      #- link_to_add_association 'Añadir instruccion', f, :instruccion
        
   %br
   = f.button :submit, 'Guardar Proyecto'
