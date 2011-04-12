@@ -1,7 +1,7 @@
 = stylesheet_link_tag 'facebook'
 = javascript_include_tag 'jquery.fcbkcomplete.min'
 
-= simple_form_for @proyecto do |f|
+= simple_form_for @proyecto, :html => {:multipart => true} do |f|
   = f.error_messages
   %table{:border=>0}
     %tr
@@ -55,36 +55,28 @@
     %h2{:style=>'text-align:center;'}
       Instrucciones
     = f.simple_fields_for :instruccions, Proyecto::Instruccion.new do |i|
-      = i.input :referencia_email
-      %br
-        %h2
-          Tareas
-        = i.simple_fields_for :instruccion_detalles, Proyecto::InstruccionDetalle.new do |h|
-          %table{:border=>0}
-            %tr
-            %td
-              = h.association :usuario
-            %td
-              = h.input :estado
-            %td
-              =h.input :tarea
-            %td
-              = h.input :fecha_limite, :as => :date
-
-
+      = render :partial => 'instruccion_fields', :locals => {:f => i, :g => f}
+    .links
+      #- link_to_add_association 'Añadir instruccion', f, :instruccion
   %br
   = f.button :submit, 'Guardar Proyecto'
 
 :javascript
   $(document).ready(function() {
     $('#a_adjuntar_archivo').click(function() {
+      tiempo = ( new Date() ).getTime().toString();
       input = $('<input/>').attr({
-        'name': 'proyecto_proyecto[adjuntos_attributes][' + ( new Date() ).getTime().toString() + '][archivo]',
+        'name': 'proyecto_proyecto[adjuntos_attributes][' + tiempo + '][archivo]',
         'type': 'file',
+        'size': 20
+      });
+      input2 = $('<input/>').attr({
+        'name': 'proyecto_proyecto[adjuntos_attributes][' + tiempo + '][nombre]',
+        'type': 'text',
         'size': 60
       });
       del = '<a href="javascript:" class="adjunto_delete">borrar</a>';
-      li = $('<li/>').append('<label>Adjunto</label>').append(input).append(del)
+      li = $('<li/>').append('<label>descripcion</label>').append(input2).append('<label>archivo</label>').append(input).append(del)
       $('#adjuntos').append( li );
       $.mark(li, 7);
     });

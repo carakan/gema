@@ -1,0 +1,10 @@
+%table{:border=>0}
+  %tr
+  %td
+    = f.association :usuario
+  %td
+    = f.input :estado
+  %td
+    =f.input :tarea
+  %td
+    = f.input :fecha_limite, :as => :date

@@ -3,7 +3,7 @@ class Proyecto::Instruccion < ActiveRecord::Base
   set_table_name "instruccions"
   belongs_to :proyecto
   has_many :instruccion_detalles
-  accepts_nested_attributes_for :proyecto, :instruccion_detalles
+  accepts_nested_attributes_for :instruccion_detalles
 
   def to_s
     id
