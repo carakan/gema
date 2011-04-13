@@ -101,7 +101,7 @@ module ApplicationHelper
 
   #Metodos que permiten generar los links para añadir y eliminar un elemento html en un formulario
   def remove_child_link(name, f)
-    f.hidden_field(:_destroy) + link_to_function(name, "remove_fields(this);addDatePicker();")
+    f.hidden_field(:_destroy) + link_to_function(name, "remove_fields(this);")
   end
 
   def add_child_link(name, f, method)
