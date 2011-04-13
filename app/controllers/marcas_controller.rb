@@ -27,6 +27,7 @@ class MarcasController < ApplicationController
       if @marca.lema_marca_id.nil?
         redirect_to @marca, :notice => 'Se ha salvado correctamente'
       else
+        flash[:notice] = "Error al guardar" 
         redirect_to marca_path(@marca.lema_marca_id)
       end
     else

@@ -1,7 +1,7 @@
 <%= stylesheet_link_tag 'facebook' %>
 <%= javascript_include_tag 'jquery.fcbkcomplete.min' %>
 
-<% if !@marca.errors.empty? || !@marca.errores.empty? || !@marca.errores_manual.empty? %>
+<% if (@marca.errors && !@marca.errors.empty?) || (@marca.errores && !@marca.errores.empty?) || (@marca.errores_manual && @marca.errores_manual.empty?) %>
   <%= link_to("eliminar todos los errores", "#", :id => "clean-all-errors", :style => "float:right;") %>
 <% end %>
 

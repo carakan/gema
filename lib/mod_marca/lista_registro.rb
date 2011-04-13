@@ -13,8 +13,9 @@ module ModMarca::ListaRegistro
     # Define las validaciones y filtros que se deben aplicar a la clase
     def set_validations_and_filters
       # validaciones
-      validates_presence_of :fecha_solicitud, :numero_registro, :fecha_registro
-      validates_format_of :numero_solicitud, :with => /^\d+-\d{4}$/
+      validates_length_of :numero_registro, :in => 6..12, :allow_nil => true, :allow_blank => true
+      validates_presence_of :fecha_solicitud, :fecha_registro
+      validates_format_of :numero_solicitud, :with => /^\d+-\d{4}/
       validates_format_of :numero_registro, :with => /^\d+-C$/
       validates_uniqueness_of :numero_solicitud, :scope => :parent_id
     end

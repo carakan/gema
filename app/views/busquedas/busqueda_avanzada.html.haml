@@ -269,8 +269,8 @@
     }
   });
 
-  $('#contenido input:checkbox').live("click", function() {
-    if( $(this).is(':checked') ) {
+  $('#contenido tbody input:checkbox').live("click", function() {
+    if( $(this).attr('checked') ) {
       var id = $(this).attr("name").replace(/^[a-z_]+([0-9]+)$/,"$1");
       var index = $(this).attr('data-index');
       $('<input/>').attr({
@@ -278,12 +278,11 @@
         'type': 'hidden',
         'value': id
       }).insertAfter(this);
-    }else {
+    } else {
       $(this).siblings('input:hidden').remove();
     }
   });
 
-:javascript
   $(function() {
    $( "#tabs" ).tabs();
   });

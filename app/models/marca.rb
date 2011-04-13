@@ -210,7 +210,6 @@ class Marca < ActiveRecord::Base
       end
       #raise "Error, debe incluir estado válido" unless m
     end
-
     include mod
   end
 
@@ -537,6 +536,8 @@ class Marca < ActiveRecord::Base
   private
 
   def quitar_comillas
+    self.errores = []
+    self.errores_manual = []
     self.nombre = Marca.quitar_comillas(self.nombre) if self.nombre
   end
 
