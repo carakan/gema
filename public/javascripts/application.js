@@ -322,6 +322,7 @@
 
   });
 }).call(this);
+
 function ajaxeable(e){
   var reference = $(this);
   var url = reference.attr("href");
@@ -336,6 +337,7 @@ function ajaxeable(e){
   e.stopPropagation();
   return false;
 }
+
 function verificarErrorresManuales(){
 
 }
@@ -345,6 +347,10 @@ function insert_fields(link, method, content) {
   var new_id = new Date().getTime();
   var regexp = new RegExp("new_" + method, "g")
   $(link).parent().before(content.replace(regexp, new_id));
+  tinyMCE.init({
+   mode : "textareas",
+   theme: "simple"
+  });
 }
 
 function remove_fields(link) {
