@@ -1,10 +1,11 @@
-%table{:border=>0}
+.fields
+  %table{:border=>0}
   %tr
   %td
     = f.association :usuario
   %td
-    = f.input :estado
-  %td
-    =f.input :tarea
+    = f.input :tarea
   %td
     = f.input :fecha_limite, :as => :date
+    = remove_child_link "Quitar", f
+

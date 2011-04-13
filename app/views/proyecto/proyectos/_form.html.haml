@@ -55,9 +55,10 @@
     %h2{:style=>'text-align:center;'}
       Instrucciones
     = f.simple_fields_for :instruccions, Proyecto::Instruccion.new do |i|
-      = render :partial => 'instruccion_fields', :locals => {:f => i, :g => f}
-    .links
-      #- link_to_add_association 'Añadir instruccion', f, :instruccion
+      =# render :partial => 'instruccion_fields', :locals => {:f => i, :g => f}
+      = i.simple_fields_for :instruccion_detalles, Proyecto::InstruccionDetalle.new do |m|
+        = render :partial => 'instruccion_detall_fields', :locals=> {:f => m}
+        = add_child_link "Añadir", i, :instruccion_detalles
   %br
   = f.button :submit, 'Guardar Proyecto'
 
