@@ -14,9 +14,9 @@ class Proyecto::InstruccionesController < ApplicationController
   end
   
   def create
-    @instruccion = Proyecto::Instruccion.new(params[:proyecto_instruccion])
+    @instruccion = @proyecto.instruccions.new(params[:proyecto_instruccion])
     if @instruccion.save
-      redirect_to proyecto_proyecto_instrucciones_url(@proyecto), :notice => "Ha sido creado con exito esta instruccion"
+      redirect_to proyecto_proyecto_url(@proyecto), :notice => "Ha sido creado con exito esta instruccion"
     else
       render :action => 'new'
     end

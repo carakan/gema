@@ -7,5 +7,6 @@ class Proyecto::Instruccion < ActiveRecord::Base
 
   def to_s
     id
+    proyecto_id
   end 
 end

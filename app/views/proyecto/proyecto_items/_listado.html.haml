@@ -33,8 +33,8 @@
           %td= proyecto_item.gastos_adminitrativos
           %td= proyecto_item.monto
           %td= proyecto_item.fecha_solicitud
-          %td= link_to 'Edit', edit_proyecto_proyecto_proyecto_item_path(@proyecto, proyecto_item)
-    %p= link_to "Nuevo servicio", new_proyecto_proyecto_proyecto_item_path(@proyecto), :class => 'new'
+          %td= link_to 'Editar', edit_proyecto_proyecto_proyecto_item_path(@proyecto, proyecto_item), :class => "edit"
+    %p= link_to "Añadir servicio", new_proyecto_proyecto_proyecto_item_path(@proyecto), :class => 'new'
 
   #tabs-items-2
     %p= link_to "Nueva solicitud", new_proyecto_proyecto_proyecto_item_path(@proyecto), :class => 'new'

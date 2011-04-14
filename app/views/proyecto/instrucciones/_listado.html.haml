@@ -1,15 +1,25 @@
-%table.decorated
-  %tr
-    %th Proyecto
-    %th Gerencia
-    %th Referencia email
-  - for instruccion in @instrucciones
-    %tr
-      %td= instruccion.proyecto_id
-      %td= instruccion.gerencia_id
-      %td= instruccion.referencia_email
-      %td= link_to 'Ver', proyecto_proyecto_instruccion_path(@proyecto,instruccion)
-      %td= link_to 'Editar', edit_proyecto_proyecto_instruccion_path(@proyecto, instruccion), :class=>'edit'
-      %td= link_to 'ELiminar',proyecto_proyecto_instruccion_path(@proyecto, instruccion), :confirm => 'Are you sure?', :method => :delete, :class=>'delete'
-  %p= link_to "Añadir Instruccion", new_proyecto_proyecto_instruccion_path(@proyecto), :class=>'new'
-
+#tabs-instruccion{:style=>'font-size:11px;'}
+  %ul
+    %li
+      %a{:href=>'#tabs-instruccion-1'}
+        Mis Tareas
+    %li
+      %a{:href=>'#tabs-instruccion-2'}
+        Asignadas por mi
+  #tabs-instruccion-1
+    - for instruccion in instrucciones
+      = instruccion.referencia_email
+      %br
+      = instruccion.id
+      %br
+      = instruccion.proyecto_id
+      %br
+      %p= link_to 'Editar',  edit_proyecto_proyecto_instruccion_path(@proyecto, instruccion), :class=>'edit'
+      %p= link_to "Añadir Instruccion", new_proyecto_proyecto_instruccion_path(@proyecto), :class=>'new'
+      = render :partial =>'proyecto/instruccion_detalles/listado', :locals =>{:instruccion_detalle => instruccion.instruccion_detalles}
+  #tabs-instruccion-2
+    Asignada por mi
+:javascript
+  $(function() {
+   $("#tabs-instruccion").tabs();
+  });

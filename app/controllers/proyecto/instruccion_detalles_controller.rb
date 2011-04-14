@@ -12,10 +12,10 @@ class Proyecto::InstruccionDetallesController < ApplicationController
   end
   
   def create
-    @instruccion_detalle = Proyecto::InstruccionDetalle.new(params[:proyecto_instruccion_detalle])
+    @instruccion_detalle = @instruccion.instruccion_detalles.new(params[:proyecto_instruccion_detalle])
     if @instruccion_detalle.save
       flash[:notice] = "Successfully created proyecto/instruccion detalle."
-      redirect_to @instruccion_detalle
+      redirect_to proyecto_proyecto_url(@proyecto), :notice => "Ha sido creado con exito esta instruccion"
     else
       render :action => 'new'
     end
@@ -27,7 +27,7 @@ class Proyecto::InstruccionDetallesController < ApplicationController
   
   def update
     @instruccion_detalle = Proyecto::InstruccionDetalle.find(params[:id])
-    if @proyecto/instruccion_detalle.update_attributes(params[:proyecto_instruccion_detalle])
+    if @instruccion_detalle.update_attributes(params[:proyecto_instruccion_detalle])
       flash[:notice] = "Successfully updated proyecto/instruccion detalle."
       redirect_to @instruccion_detalle
     else
