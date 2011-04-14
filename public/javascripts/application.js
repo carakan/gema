@@ -346,7 +346,7 @@ function verificarErrorresManuales(){
 function insert_fields(link, method, content) {
   var new_id = new Date().getTime();
   var regexp = new RegExp("new_" + method, "g")
-  $(link).parent().after(content.replace(regexp, new_id));
+  $(link).parent().before(content.replace(regexp, new_id));
   tinyMCE.init({
    mode : "textareas",
    theme: "simple"
@@ -358,6 +358,6 @@ function remove_fields(link) {
   if (hidden_field) {
     hidden_field.attr("value", '1');
   }
-  $(link).parent(".fields").hide();
+  $(link).parent(".fieldset").hide();
 }
 
