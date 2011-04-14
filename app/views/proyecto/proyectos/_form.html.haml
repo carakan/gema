@@ -19,8 +19,9 @@
       %div{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all",:style=>'font-size:11px;width:339px; height:auto;'}
         %h2
           Nuevo Email
-        = f.simple_fields_for :correspondencias, Proyecto::Correspondencia.new  do |form|
-          = add_child_link "Añadir", f, :correspondencias
+        .container
+          = f.simple_fields_for :correspondencias, Proyecto::Correspondencia.new  do |form|
+            = add_child_link "Añadir", f, :correspondencias
   %br
   #proyecto_items
   = f.simple_fields_for :proyecto_items, Proyecto::ProyectoItem.new do |g|

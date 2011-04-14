@@ -1,6 +1,6 @@
 (function() {
   $(document).ready(function() {
-    var addDatePicker, createDialog, csfr_token, getDataTitle, iniciar, mark, parsearFecha, roundVal, serializeFormElements, setFechaDateSelect, setIframePostEvents, speed, toByteSize, transformarDateSelect;
+    var addDatePicker, createDialog, csfr_token, getDataTitle, iniciar, mark, parsearFecha, roundVal, serializeFormElements, setFechaDateSelect, setIframePostEvents, speed, toByteSize; //, transformarDateSelect;
     speed = 300;
     csfr_token = $('meta[name=csfr-token]').attr('content');
     $.datepicker._defaults.dateFormat = 'dd-mm-yy';
@@ -23,23 +23,25 @@
     };
     transformarDateSelect = function() {
       return $('li.date, div.date, li.datetime, div.datetime').each(function(i, el) {
-        var day, input, month, year;
-        input = document.createElement('input');
-        $(input).attr({
-          'class': 'date-transform',
-          'type': 'text'
-        });
-        year = $(el).find('select[name*=1i]').hide().val();
-        month = parseInt($(el).find('select[name*=2i]').hide().val()) - 1;
-        day = $(el).find('select[name*=3i]').hide().after(input).val();
-        $(input).datepicker({
-          'showOn': 'button',
-          'buttonImage': '/images/icons/calendar.gif',
-          'buttonImageOnly': true
-        }).change(function(e) {
-          return setFechaDateSelect(this);
-        });
-        return $(input).datepicker("setDate", new Date(year, month, day));
+        if($(el).find("input").size() == 0){
+          var day, input, month, year;
+          input = document.createElement('input');
+          $(input).attr({
+            'class': 'date-transform',
+            'type': 'text'
+          });
+          year = $(el).find('select[name*=1i]').hide().val();
+          month = parseInt($(el).find('select[name*=2i]').hide().val()) - 1;
+          day = $(el).find('select[name*=3i]').hide().after(input).val();
+          $(input).datepicker({
+            'showOn': 'button',
+            'buttonImage': '/images/icons/calendar.gif',
+            'buttonImageOnly': true
+          }).change(function(e) {
+            return setFechaDateSelect(this);
+          });
+          return $(input).datepicker("setDate", new Date(year, month, day));
+        }        
       });
     };
     $('[tooltip]').live('mouseover mouseout', function(e) {
@@ -351,6 +353,7 @@ function insert_fields(link, method, content) {
    mode : "textareas",
    theme: "simple"
   });
+  transformarDateSelect();
 }
 
 function remove_fields(link) {
