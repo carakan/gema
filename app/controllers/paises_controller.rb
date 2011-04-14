@@ -7,6 +7,7 @@ class PaisesController < ApplicationController
   # GET /paises.xml
   def index
     @paises = Pais.paginate(:page => @page)
+    @titulo = "TG - Listado de países"
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @paises }
@@ -17,7 +18,7 @@ class PaisesController < ApplicationController
   # GET /paises/1.xml
   def show
     @pais = Pais.find(params[:id])
-
+    @titulo = "Pais: #{@pais}"
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @pais }

@@ -6,6 +6,7 @@ class BusquedasController < ApplicationController
 
   # GET /busquedas
   def index
+    @titulo = "TG - Búsqueda x similitud" 
     @busqueda = []
     params[:tipo_busqueda] = 'prev' if params[:tipo_busqueda].nil?
     if params[:busqueda]
@@ -68,6 +69,7 @@ class BusquedasController < ApplicationController
   end
 
   def busqueda_avanzada
+    @titulo = "TG - Búsqueda avanzada" 
     if params[:search]
       prepare_search
       timeout(30){@busqueda_old = Marca.search(params[:search])}

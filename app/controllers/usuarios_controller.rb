@@ -8,6 +8,7 @@ class UsuariosController < ApplicationController
   # GET /usuarios.xml
   def index
     @usuarios = Usuario.find(:all, :conditions=>'nombre!="admin"')
+    @titulo = "TG - Listado de usuarios" 
 
     respond_to do |format|
       format.html # index.html.erb
@@ -19,6 +20,7 @@ class UsuariosController < ApplicationController
   # GET /usuarios/1.xml
   def show
     @usuario = Usuario.find(params[:id])
+    @titulo = "Usuario: #{@usuario}" 
 
     respond_to do |format|
       format.html # show.html.erb

@@ -7,6 +7,7 @@ class TipoSignosController < ApplicationController
   # GET /tipo_marcas.xml
   def index
     @tipo_signos = TipoSigno.all
+    @titulo = "TG - Listado tipo signos" 
 
     respond_to do |format|
       format.html # index.html.erb
@@ -18,6 +19,7 @@ class TipoSignosController < ApplicationController
   # GET /tipo_marcas/1.xml
   def show
     @tipo_signos = TipoSigno.find(params[:id])
+    @titulo = "Tipo signo: #{@tipo_signo}" 
 
     respond_to do |format|
       format.html # show.html.erb

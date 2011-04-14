@@ -7,6 +7,7 @@ class ClasesController < ApplicationController
   # GET /clases.xml
   def index
     @clases = Clase.paginate(:page => @page)
+    @titulo = "TG - Listado clases" 
 
     respond_to do |format|
       format.html # index.html.erb
@@ -19,6 +20,7 @@ class ClasesController < ApplicationController
   # GET /clases/1.xml
   def show
     @clase = Clase.find(params[:id])
+    @titulo = "Clase: #{@clase}" 
 
     respond_to do |format|
       format.html # show.html.erb
