@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.3'
+gem 'rails', '3.0.5'
 
 gem 'mysql2'
 if RUBY_VERSION == "1.8.7"
@@ -43,3 +43,4 @@ group :test do
   gem 'mocha'
   gem 'spork'
 end
+

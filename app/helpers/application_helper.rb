@@ -21,13 +21,13 @@ module ApplicationHelper
   def gema_method_path(m, klass)
     k = klass.class.to_s.underscore
     case(m)
-      when "new" then link_to "Nuevo", send("new_#{k}_path", klass) 
+      when "new" then link_to "Nuevo", send("new_#{k}_path", klass)
       when "show" then link_to "ver", klass, :class => "show", :title => "Ver", :class => 'show'
       when "edit" then link_to "editar", send("edit_#{k}_path", klass), :class => "edit", :title => "Editar"
       when "destroy" then link_to "borrar", klass, :class => 'delete', :title => "Borrar", 'data-remote' => true
       else ""
     end
-  end  
+  end
 
   def tr_error(klass)
     if klass.try(:valido)
@@ -97,6 +97,26 @@ module ApplicationHelper
   def last_importation
     importacion = Importacion.last(:conditions => {:tipo => ["lp", "lr"]})
     link_to("Reporte lista publicacion", lista_path(importacion))
+  end
+
+  #Metodos que permiten generar los links para añadir y eliminar un elemento html en un formulario
+  def remove_child_link(name, f)
+    f.hidden_field(:_destroy) + link_to_function(name, "remove_fields(this);")
+  end
+
+  def add_child_link(name, f, method)
+    fields = new_child_fields(f, method)
+    link_to_function(name, ("insert_fields(this, \"#{method}\", \"#{escape_javascript(fields)}\")"))
+  end
+
+  def new_child_fields(form_builder, method, options = {})
+    options[:object] ||= form_builder.object.class.reflect_on_association(method).klass.new
+
+ options[:partial] ||= method.to_s.singularize + "_fields"
+    options[:form_builder_local] ||= :f
+    form_builder.fields_for(method, options[:object], :child_index => "new_#{method}") do |f|
+      render(:partial => options[:partial], :locals => { options[:form_builder_local] => f })
+    end
   end
 end
 WillPaginate::ViewHelpers.pagination_options[:previous_label] = '<<'

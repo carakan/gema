@@ -1,13 +1,13 @@
 = stylesheet_link_tag 'facebook'
 = javascript_include_tag 'jquery.fcbkcomplete.min'
 
-= simple_form_for @proyecto do |f|
+= simple_form_for @proyecto, :html => {:multipart => true} do |f|
   = f.error_messages
   %table{:border=>0}
     %tr
     %td
-      %div{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all", :style=>'font-size:11px; width:570px; height:470px;'}
-        %h2{:style=>'text-align:center;'} 
+      %div{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all", :style=>'font-size:11px; width:570px; height:auto;'}
+        %h2
           Datos del Proyecto
         = f.association :representante, :prompt=>'Seleccione a un Representante', :hint=>'Asigne a un representante', :collection => []
         = f.association :area, :prompt => 'Seleccione un Area', :hint=>'A que área corresponde'
@@ -16,17 +16,16 @@
         = f.input :referencia_cliente, :hint => "Introduza una referencia de cliente, por ejemplo : AC-5454-BOL"
         = f.input :prioridad, :collection =>['A', 'B', 'C'], :as=> :radio, :hint=> 'Asigne una prioridad para este proyecto, de tipo A = Mayor Prioridad, B = Mediana Prioridad, C = Menor Prioridad '
     %td
-      %div{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all",:style=>'font-size:11px;width:339px; height:470px;'}
-        %h2{:style=>'text-align:center;'} 
+      %div{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all",:style=>'font-size:11px;width:339px; height:auto;'}
+        %h2
           Nuevo Email
-        = f.simple_fields_for :correspondencias, Proyecto::Correspondencia.new  do |h|
-          = render 'correspondencia_fields', :f => h
-        .links
-          = link_to_add_association 'Añadir correspondencia', f, :correspondencias
+        = f.simple_fields_for :correspondencias, Proyecto::Correspondencia.new  do |form|
+          = add_child_link "Añadir", f, :correspondencias
   %br
+  #proyecto_items
   = f.simple_fields_for :proyecto_items, Proyecto::ProyectoItem.new do |g|
     #tabs{:style=>'font-size:11px;'}
-      %h2{:style=>'text-align:center;'}
+      %h2
         Servicios & Solicitud de Fondos
       %ul
         %li
@@ -37,69 +36,45 @@
             Solicitud de Fondos
 
       #tabs-1
-        %table{:border=>0}
-          %tr
-          %td
-            = g.input :referencia_cliente, :input_html=>{:size=>10}, :label => false
-          %td
-            = g.input :referencia_cliente_cobranza, :input_html=>{:size=>10}, :label => "codigo", :label => false
-          %td
-            = g.input :estado, :input_html=>{:size=>20},:label => "Tipo", :label => false
-          %td
-            = g.input :descripcion, :input_html=>{:size=>20}, :label => "Descripción", :label => false
-          %td
-            = g.input :honorarios, :input_html=>{:size=>5}, :label => "Honorarios", :label => false
-          %td
-            = g.input :gastos_adminitrativos, :input_html=>{:size=>5}, :label => "Gastos", :label => false
-          %td
-            = g.input :fecha_solicitud,:label => "Fecha", :input_html=>{:size=>4}, :as => :date, :label => false
-          %td
+        = add_child_link "Añadir", f, :proyecto_items
       #tabs-2
         %p
           Información relacionada con Solicitud de Fondos
   %br
 
-  %div{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all",:style=>'font-size:11px;text-align:center;'}
-    %h2{:style=>'text-align:center;'}
+  %div{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all",:style=>'font-size:8px;'}
+    %h2
       Archivos Adjuntos
       %div#adjuntos
         %a#a_adjuntar_archivo{:href => "javascript:", :class => "new"}
           Adjuntar archivo
 
   %br
-  
   %div{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all",:style=>'font-size:11px;'}
-    %h2{:style=>'text-align:center;'}
-      Instrucciones
-    = f.simple_fields_for :instruccions, Proyecto::Instruccion.new do |i|
-      = i.input :referencia_email
-      %br
-        %h2
-          Tareas
-        = i.simple_fields_for :instruccion_detalles, Proyecto::InstruccionDetalle.new do |h|
-          %table{:border=>0}
-            %tr
-            %td
-              = h.association :usuario
-            %td
-              =h.input :tarea
-            %td
-              = h.input :fecha_limite, :as => :date
-
-       
-  %br
+    %h2
+      Instrucciones:
+      = f.simple_fields_for :instruccions, Proyecto::Instruccion.new do |i|
+        = render 'instruccion_fields', :i => i
+        = i.simple_fields_for :instruccion_detalles, Proyecto::InstruccionDetalle.new do |m|
+          = add_child_link "Añadir", i, :instruccion_detalles
   = f.button :submit, 'Guardar Proyecto'
 
 :javascript
   $(document).ready(function() {
     $('#a_adjuntar_archivo').click(function() {
+      tiempo = ( new Date() ).getTime().toString();
       input = $('<input/>').attr({
-        'name': 'proyecto_proyecto[adjuntos_attributes][' + ( new Date() ).getTime().toString() + '][archivo]',
+        'name': 'proyecto_proyecto[adjuntos_attributes][' + tiempo + '][archivo]',
         'type': 'file',
+        'size': 20
+      });
+      input2 = $('<input/>').attr({
+        'name': 'proyecto_proyecto[adjuntos_attributes][' + tiempo + '][nombre]',
+        'type': 'text',
         'size': 60
       });
       del = '<a href="javascript:" class="adjunto_delete">borrar</a>';
-      li = $('<li/>').append('<label>Adjunto</label>').append(input).append(del)
+      li = $('<li/>').append('<label>descripcion</label>').append(input2).append('<label>archivo</label>').append(input).append(del)
       $('#adjuntos').append( li );
       $.mark(li, 7);
     });
@@ -132,3 +107,4 @@
    mode : "textareas",
    theme: "simple"
   });
+

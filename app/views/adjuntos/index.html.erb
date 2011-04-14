@@ -1,18 +1,19 @@
-<h1>Listing adjuntos</h1>
 
+<h1>Listing adjuntos</h1>
+<%= render :partial => "/adjuntos/index", :locals => {:adjuntos => @adjuntos} %>
 <table>
   <tr>
-    <th>Nombre</th>
+    <th>Descripcion</th>
   </tr>
 
-<% @adjuntos.each do |adjunto| %>
-  <tr>
-    <td><%=h adjunto.nombre %></td>
-    <td><%= link_to 'Show', adjunto %></td>
-    <td><%= link_to 'Edit', edit_adjunto_path(adjunto) %></td>
-    <td><%= link_to 'Destroy', adjunto, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
+  <% @adjuntos.each do |adjunto| %>
+    <tr>
+      <td><%=h adjunto.nombre %></td>
+      <td><%= link_to 'Show', adjunto %></td>
+      <td><%= link_to 'Edit', edit_adjunto_path(adjunto) %></td>
+      <td><%= link_to 'Destroy', adjunto, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
 </table>
 
 <br />

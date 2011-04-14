@@ -1,13 +1,13 @@
-#tabsx{:style=>'font-size:11px;'}
+#tabs-items{:style=>'font-size:11px;'}
   %ul
     %li
-      %a{:href=>'#tabs-2'}
+      %a{:href=>'#tabs-items-1'}
         Servicios
     %li
-      %a{:href=>'#tabs-3'}
+      %a{:href=>'#tabs-items-2'}
         Solicitud de fondos
         
-  #tabs-2
+  #tabs-items-1
     %table.decorated
       %tr
         %th= sort_order "Codigo ORPAN", "proyecto_item.id"
@@ -36,10 +36,10 @@
           %td= link_to 'Edit', edit_proyecto_proyecto_proyecto_item_path(@proyecto, proyecto_item)
     %p= link_to "Nuevo servicio", new_proyecto_proyecto_proyecto_item_path(@proyecto), :class => 'new'
 
-  #tabs-3
+  #tabs-items-2
     %p= link_to "Nueva solicitud", new_proyecto_proyecto_proyecto_item_path(@proyecto), :class => 'new'
 
 :javascript
   $(function() {
-   $( "#tabsx" ).tabs();
+   $("#tabs-items").tabs();
   });
