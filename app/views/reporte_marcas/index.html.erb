@@ -5,7 +5,7 @@
     <th></th>
     <th>Reporte</th>
     <th>Idioma</th>
-    <th>Cliente</th>
+    <!--<th>Cliente</th>-->
     <th>Fecha</th>
     <th>Usuario</th>
     <th>Consulta</th>
@@ -16,7 +16,7 @@
       <td><%= r.id %></td>
       <td><%= reporte r %></td>
       <td><%= r.idioma %></td>
-      <td><%= r.representante %></td>
+      <!--<td><%#= r.representante %></td>-->
       <td><%= l r.updated_at %></td>
       <td><%= r.consulta.usuario.nombre if r.consulta && r.consulta.usuario %></td>
       <td><%= link_to(r.consulta.id, r.consulta) if r.consulta %></td>

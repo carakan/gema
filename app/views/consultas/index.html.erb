@@ -7,8 +7,8 @@
   <tr>
     <th>Id</th>
     <th>Busqueda</th>
-    <th>Gerencia</th>
-    <th>Agente</th>
+    <!--<th>Gerencia</th>
+    <th>Agente</th>-->
     <th>Fecha</th>
     <th>Seleccionados</th>
     <th>Usuario</th>
@@ -25,8 +25,8 @@
         <% else %>  
           <%= h  link_to consulta.busqueda, consulta %></td>
         <% end %>
-      <td><%= consulta.representante.gerencia if consulta.representante %></td>
-      <td><%= consulta.representante %></td>
+      <!--<td><%#= consulta.representante.gerencia if consulta.representante %></td>
+      <td><%#= consulta.representante %></td>-->
       <td><%= l consulta.created_at, :format => :short %></td>
       <td><%=h consulta.consulta_detalles.size %></td>
       <td><%=h consulta.usuario %></td>
