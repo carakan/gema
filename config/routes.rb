@@ -6,10 +6,12 @@ Rails.application.routes.draw do
   namespace(:proyecto) do
     resources :proyectos do
       resources :correspondencias
-      resources :instrucciones
+      resources :instrucciones do
+       resources :instruccion_detalles 
+      end
       resources :proyecto_items
     end
-    resources :instruccion_detalles 
+
     resources :areas 
     resources :instruccion_item_cobros 
     resources :items

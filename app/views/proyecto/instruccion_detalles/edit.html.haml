@@ -1,8 +1,4 @@
-- title "Edit Proyecto/Instruccion Detalle"
 
-= render 'form'
+= render :partial => 'form', :locals =>{ :url => proyecto_proyecto_instruccion_instruccion_detalles_path(@proyecto, @instruccion)}
 
-%p
-  = link_to "Show", proyecto_instruccion_detall_path(@instruccion_detalle)
-  |
-  = link_to "View All", proyecto_instruccion_detalles_path
+= link_to "View All", proyecto_proyecto_instruccion_instruccion_detalles_path(@proyecto, @instruccion), :class => 'new'

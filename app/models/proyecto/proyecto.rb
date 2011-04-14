@@ -13,6 +13,10 @@ class Proyecto::Proyecto < ActiveRecord::Base
   accepts_nested_attributes_for :correspondencias, :reject_if => :all_blank, :allow_destroy => true  
   accepts_nested_attributes_for :proyecto_items
   accepts_nested_attributes_for :instruccions
+
+  def to_s
+    id
+  end
  
 end
 

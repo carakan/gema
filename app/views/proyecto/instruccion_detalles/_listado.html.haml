@@ -5,15 +5,15 @@
     %th Tarea
     %th Fecha limite
     %th Estado
-  - for instruccion_detall in instruccion_detalle
+  - for instruccion_detall in instruccion_detalles
     %tr
-      %td= instruccion_detall.instruccion_id
-      %td= instruccion_detall.usuario_id
+      %td= instruccion_detall.instruccion
+      %td= instruccion_detall.usuario
       %td= instruccion_detall.tarea
       %td= instruccion_detall.fecha_limite
       %td= instruccion_detall.estado
-      %td= link_to 'Editar', edit_proyecto_instruccion_detall_path(instruccion_detall), :class => "edit"
-      %td= link_to 'Eliminar', instruccion_detall, :confirm => 'Are you sure?', :method => :delete, :class => 'delete'
+      %td= link_to 'Editar', edit_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion,instruccion_detall), :class => "edit"
+      %td= link_to 'Eliminar', proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion,instruccion_detall), :confirm => 'Are you sure?', :method => :delete, :class => 'delete'
 
-%p= link_to "Añadir Tareas", new_proyecto_instruccion_detall_path, :class => 'new'
+%p= link_to "Añadir Tareas", new_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion), :class => 'new'
 

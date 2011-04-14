@@ -11,6 +11,7 @@ class Proyecto::InstruccionesController < ApplicationController
   
   def new
     @instruccion = Proyecto::Instruccion.new
+    @instruccion.instruccion_detalles << @instruccion.instruccion_detalles.build
   end
   
   def create
