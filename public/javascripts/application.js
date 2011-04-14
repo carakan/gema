@@ -346,7 +346,7 @@ function verificarErrorresManuales(){
 function insert_fields(link, method, content) {
   var new_id = new Date().getTime();
   var regexp = new RegExp("new_" + method, "g")
-  $(link).parent().before(content.replace(regexp, new_id));
+  $(link).parent().after(content.replace(regexp, new_id));
   tinyMCE.init({
    mode : "textareas",
    theme: "simple"

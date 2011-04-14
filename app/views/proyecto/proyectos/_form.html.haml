@@ -54,9 +54,9 @@
     %h2
       Instrucciones:
       = f.simple_fields_for :instruccions, Proyecto::Instruccion.new do |i|
-        = render 'instruccion_fields', :i => i
-        = i.simple_fields_for :instruccion_detalles, Proyecto::InstruccionDetalle.new do |m|
-          = add_child_link "Añadir", i, :instruccion_detalles
+        = render 'instruccion_fields', :f => i
+        = add_child_link "Añadir Instruccion", f, :instruccion, {:object => Proyecto::Instruccion.new}
+
   = f.button :submit, 'Guardar Proyecto'
 
 :javascript

@@ -1,2 +1,4 @@
-= i.input :referencia_email
+= f.input :referencia_email
+= f.simple_fields_for :instruccion_detalles, Proyecto::InstruccionDetalle.new do |m|
+  = add_child_link "Añadir tarea", f, :instruccion_detalles
 
