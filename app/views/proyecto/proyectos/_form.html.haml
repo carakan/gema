@@ -26,7 +26,8 @@
   #proyecto_items
     %h2 Servicios
     = f.simple_fields_for :proyecto_items, Proyecto::ProyectoItem.new do |g|
-      = add_child_link "Añadir", f, :proyecto_items
+      .container
+        = add_child_link "Añadir", f, :proyecto_items
   %br
 
   %div{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all",:style=>'font-size:8px;'}

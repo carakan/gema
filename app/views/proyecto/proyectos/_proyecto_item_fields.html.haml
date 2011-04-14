@@ -1,11 +1,11 @@
-.fields
-  = f.input :referencia_cliente, :input_html=>{:size=>10}, :label => false
-  = f.input :referencia_cliente_cobranza, :input_html=>{:size=>10}, :label => "codigo", :label => false
-  = f.input :estado, :input_html=>{:size=>20},:label => "Tipo", :label => false
-  = f.input :descripcion, :input_html=>{:size=>20}, :label => "Descripcion", :label => false
-  = f.input :honorarios, :input_html=>{:size=>5}, :label => "Honorarios", :label => false
-  = f.input :gastos_adminitrativos, :input_html=>{:size=>5}, :label => "Gastos", :label => false
-  = f.input :fecha_solicitud,:label => "Fecha", :input_html=>{:size=>4}, :label => false
+.fieldset
+  = f.input :referencia_cliente, :input_html=>{:size=>10}
+  = f.input :referencia_cliente_cobranza, :input_html=>{:size=>10}, :label => "codigo"
+  = f.input :estado, :input_html=>{:size=>20},:label => "Tipo"
+  = f.input :descripcion, :input_html=>{:size=>20}
+  = f.input :honorarios, :input_html=>{:size=>5}
+  = f.input :gastos_adminitrativos, :input_html=>{:size=>5}
+  = f.input :fecha_solicitud,:label => "Fecha", :input_html=>{:size=>4}
 
   = remove_child_link "Remover Servicio", f
 
