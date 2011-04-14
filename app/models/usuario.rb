@@ -9,13 +9,13 @@ class Usuario < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :login, :nombre, :email, :password, :password_confirmation, :remember_me, :rol_id
+  attr_accessible :login, :nombre, :email, :password, :password_confirmation, :remember_me, :rol_id, :area_id
 
   has_many :marcas
   has_many :posts
   has_many :consultas
   has_many :importaciones
-  belongs_to :area
+  belongs_to :area, :class_name => "Proyecto::Area"
   has_many :instruccion_detalles
   belongs_to :rol
 
@@ -24,6 +24,14 @@ class Usuario < ActiveRecord::Base
   #validates_uniqueness_of :login
   #validates_confirmation_of :password
   #validates_presence_of :password_confirmation, :if => :password_changed?
+
+  def self.all_for_areas
+    result = []
+    Proyecto::Area.all.each do |area|
+      result << [area.nombre, area.usuarios.collect{|u| [u.nombre, u.id]}]
+    end
+    result
+  end
 
   def to_s
     nombre

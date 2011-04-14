@@ -24,23 +24,9 @@
             = add_child_link "Añadir", f, :correspondencias
   %br
   #proyecto_items
-  = f.simple_fields_for :proyecto_items, Proyecto::ProyectoItem.new do |g|
-    #tabs{:style=>'font-size:11px;'}
-      %h2
-        Servicios & Solicitud de Fondos
-      %ul
-        %li
-          %a{:href=>'#tabs-1'}
-            Servicios
-        %li
-          %a{:href=>'#tabs-2'}
-            Solicitud de Fondos
-
-      #tabs-1
-        = add_child_link "Añadir", f, :proyecto_items
-      #tabs-2
-        %p
-          Información relacionada con Solicitud de Fondos
+    %h2 Servicios
+    = f.simple_fields_for :proyecto_items, Proyecto::ProyectoItem.new do |g|
+      = add_child_link "Añadir", f, :proyecto_items
   %br
 
   %div{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all",:style=>'font-size:8px;'}
@@ -54,10 +40,10 @@
   %div{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all",:style=>'font-size:11px;'}
     %h2
       Instrucciones:
-      = f.simple_fields_for :instruccions, Proyecto::Instruccion.new do |i|
-        = render 'instruccion_fields', :f => i
-      .container
-        = add_child_link "Añadir Instruccion", f, :instruccions, {:object => Proyecto::Instruccion.new}
+    = f.simple_fields_for :instruccions, Proyecto::Instruccion.new do |i|
+      = render 'instruccion_fields', :f => i
+    .container
+      = add_child_link "Añadir Instruccion", f, :instruccions, {:object => Proyecto::Instruccion.new}
 
   = f.button :submit, 'Guardar Proyecto'
 

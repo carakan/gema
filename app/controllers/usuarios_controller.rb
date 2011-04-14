@@ -45,6 +45,7 @@ class UsuariosController < ApplicationController
   # POST /usuarios
   # POST /usuarios.xml
   def create_usuario
+
     @usuario = Usuario.new(params[:usuario])
     respond_to do |format|
       if @usuario.save
@@ -62,7 +63,10 @@ class UsuariosController < ApplicationController
   # PUT /usuarios/1.xml
   def update_usuario
     @usuario = Usuario.find(params[:id])
-
+    if params[:usuario][:password].blank?
+      params[:usuario].delete(:password)
+      params[:usuario].delete(:password_confirmation)
+    end
     respond_to do |format|
       if @usuario.update_attributes(params[:usuario])
         format.html { redirect_to(@usuario, :notice => 'Datos del usuario fueron actualizados de forma correcta.') }
