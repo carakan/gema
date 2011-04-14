@@ -25,8 +25,10 @@
             %td= link_to 'Editar', edit_proyecto_proyecto_correspondencia_path(@proyecto, correspondencia), :class => 'edit'
             %td= link_to 'Eliminar', proyecto_proyecto_correspondencia_path(@proyecto, correspondencia), :confirm => 'Are you sure?', :method => :delete, :class => 'delete'
       .pagination= will_paginate(correspondencias, :params => {:controller => "proyecto/correspondencias", :proyecto_id => @proyecto.id, :action => "index", :id => nil})
-      %p= link_to "Añadir email", new_proyecto_proyecto_correspondencia_path(@proyecto), :class => 'new'
-  = link_to "Ver todos los email", proyecto_proyecto_correspondencias_path(@proyecto), :class => "correspondencia", :"data-selector" => "#tabs-correspondencia-1", :class => 'new'
+      %p
+        = link_to "Añadir email", new_proyecto_proyecto_correspondencia_path(@proyecto), :class => 'new', :style => "float: right;"
+        = link_to "Ver todos los email", proyecto_proyecto_correspondencias_path(@proyecto), :class => "correspondencia new", :"data-selector" => "#tabs-correspondencia-1", :style => "float: right;"
+        %br.clear
   #tabs-correspondencia-2
     = render :partial => "/adjuntos/index", :locals => {:adjuntos => @proyecto.adjuntos}
 

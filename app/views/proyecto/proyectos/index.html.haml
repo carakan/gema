@@ -9,13 +9,13 @@
     %th Prioridad
   - for proyecto in @proyectos
     %tr
-      %td= proyecto.representante_id
+      %td= proyecto.representante
       %td= proyecto.area_id
       %td= proyecto.titulo
       %td= proyecto.referencia_cliente
       %td= proyecto.prioridad
       %td= link_to 'Mostrar', proyecto
-      %td= link_to 'ELiminar',proyecto, :confirm => 'Are you sure?', :method => :delete, :class => "delete"
+      %td= link_to 'Eliminar',proyecto, :confirm => 'Are you sure?', :method => :delete, :class => "delete"
 
 %p= link_to "Nuevo Proyecto", new_proyecto_proyecto_path, :class => 'new'
 

@@ -107,3 +107,6 @@ img.right, table.right {
 .fieldset{
   margin: 5px;
 }
+.proyecto .ui-tabs p{
+  margin: 0;
+}
