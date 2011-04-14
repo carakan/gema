@@ -100,3 +100,10 @@ img.right, table.right {
     text-transform: uppercase;
     font-size: 11px;
 }
+.correspondencia label{
+  width: 50%;
+  display: inline-block;
+}
+.fieldset{
+  margin: 5px;
+}

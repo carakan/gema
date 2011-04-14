@@ -2,7 +2,9 @@
   %table{:border=>0}
     %tr
     %td
-      = f.select :usuario_id, grouped_options_for_select(Usuario.all_for_areas)
+      .input
+        = f.label :usuario_id, "Usuario"
+        = f.select :usuario_id, grouped_options_for_select(Usuario.all_for_areas)
     %td
       = f.input :tarea
     %td

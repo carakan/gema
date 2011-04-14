@@ -5,7 +5,7 @@
   = f.error_messages
   %table{:border=>0}
     %tr
-    %td
+    %td{:valign=>"top"}
       %div{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all", :style=>'font-size:11px; width:570px; height:auto;'}
         %h2
           Datos del Proyecto
@@ -15,13 +15,13 @@
         = f.input :titulo, :hint=> "Escriba una breve descripción de este proyecto"
         = f.input :referencia_cliente, :hint => "Introduza una referencia de cliente, por ejemplo : AC-5454-BOL"
         = f.input :prioridad, :collection =>['A', 'B', 'C'], :as=> :radio, :hint=> 'Asigne una prioridad para este proyecto, de tipo A = Mayor Prioridad, B = Mediana Prioridad, C = Menor Prioridad '
-    %td
+    %td{:valign=>"top"}
       %div{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all",:style=>'font-size:11px;width:339px; height:auto;'}
         %h2
           Nuevo Email
         .container
           = f.simple_fields_for :correspondencias, Proyecto::Correspondencia.new  do |form|
-            = add_child_link "Añadir", f, :correspondencias
+            = add_child_link "Añadir email", f, :correspondencias
   %br
   #proyecto_items
     %h2 Servicios
