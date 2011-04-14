@@ -1,6 +1,16 @@
 - title "Proyecto/Instruccion"
+= @instruccion.referencia_email
+%br
+= @instruccion.proyecto_id
+%br
+= @instruccion.area_id
+%br
+  - for inst in @instruccion.instruccion_detalles
+    = inst.tarea
+    %br
+    = inst.usuario_id
 
-=render :partial =>'mostrar_instruccion'
+
 
 %p
   = link_to "Edit", edit_proyecto_proyecto_instruccion_path(@instruccion)

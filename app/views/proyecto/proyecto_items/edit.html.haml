@@ -1,8 +1,8 @@
 - title "Edit Proyecto/Proyecto Item"
 
-= render :partial => 'form', :locals => {:url => proyecto_proyecto_items_path(@proyecto, @proyecto_item)}
+= render :partial => 'form', :locals => {:url => proyecto_proyecto_proyecto_item_path(@proyecto, @proyecto_item)}
 
 %p
-  = link_to "Ver", proyecto_proyecto_item_path(@proyecto_item)
+  = link_to "Ver", proyecto_proyecto_proyecto_item_path(@proyecto,@proyecto_item)
   |
-  = link_to "Listado", proyecto_proyecto_items_path(@proyecto)
+  = link_to "Listado", proyecto_proyecto_proyecto_items_path(@proyecto)

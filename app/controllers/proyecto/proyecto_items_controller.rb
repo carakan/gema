@@ -13,10 +13,10 @@ class Proyecto::ProyectoItemsController < ApplicationController
   end
   
   def create
-    @proyecto_item = Proyecto::ProyectoItem.new(params[:proyecto_proyecto_item])
+    @proyecto_item = @proyecto.proyecto_items.new(params[:proyecto_proyecto_item])
     if @proyecto_item.save
       flash[:notice] = "Se creo con exito el servicio."
-      redirect_to proyecto_proyecto_proyecto_items_url(@proyecto)
+      redirect_to proyecto_proyecto_url(@proyecto)
     else
       render :action => 'new'
     end
