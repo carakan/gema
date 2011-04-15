@@ -42,7 +42,7 @@ class Proyecto::InstruccionDetallesController < ApplicationController
     
   end
 
-    protected
+  protected
   def set_instruccion
     @proyecto = Proyecto::Proyecto.find(params[:proyecto_id])
     @instruccion = @proyecto.instruccions.find(params[:instruccion_id])

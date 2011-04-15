@@ -85,6 +85,7 @@ img.right, table.right {
 	float: right;
 	text-align: inherit;
 }
+
 .correspondencia label{
   width: 50%;
   display: inline-block;
