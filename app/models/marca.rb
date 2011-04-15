@@ -170,9 +170,9 @@ class Marca < ActiveRecord::Base
   def self.paginacion(options = {})
     search = options[:search] || ""
     order, direction = set_order_by(options)
-    @marcas = Marca.where("marcas.nombre LIKE ? OR marcas.numero_solicitud LIKE ?", "%#{search}%", "%#{search}%").includes(:tipo_signo, :titulares)
-    @marcas.send(:extend, ModMarca::Paginacion)
-    @marcas.crear_paginacion(options).order("#{order} #{direction}")
+    @marcas = Marca.paginate(:per_page => 10, :page => options[:page], :conditions => ["marcas.nombre LIKE ? OR marcas.numero_solicitud LIKE ?", "%#{search}%", "%#{search}%"], :include => [:tipo_signo, :titulares])
+    # @marcas.send(:extend, ModMarca::Paginacion)
+    # @marcas.crear_paginacion(options).order("#{order} #{direction}")
   end
 
   # Metodo para poder presentar con corden
