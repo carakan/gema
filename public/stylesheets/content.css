@@ -85,22 +85,7 @@ img.right, table.right {
 	float: right;
 	text-align: inherit;
 }
-.proyecto table{
-    width: 100%;
-}
-.proyecto table.decorated th {
-    border: 0 solid #FFFFFF;
-    padding: 3px 8px;
-    font-family: Arial;
-}
-.proyecto table.decorated th {
-    background: url("/images/bg_tr_tabs_tab.png") repeat-x scroll 0 50% #484848;
-    border-right: 1px solid #484848;
-    color: #FFFFFF;
-    text-align: center;
-    text-transform: uppercase;
-    font-size: 10px;
-}
+
 .correspondencia label{
   width: 50%;
   display: inline-block;

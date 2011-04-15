@@ -1,4 +1,4 @@
-.fieldset
+.fieldset.ui-corner-all.ui-widget-content.ui-tabs
   = f.input :referencia_email
   = f.simple_fields_for :instruccion_detalles, Proyecto::InstruccionDetalle.new do |m|
     .container
