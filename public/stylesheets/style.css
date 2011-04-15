@@ -885,3 +885,8 @@ div#busqueda .contenido .derecha {
   padding: 0;
   display: inline-block;
 }
+.percent_40{
+  width: 40%;
+  padding-left: 20px;
+  display: inline-block;
+}
