@@ -1,5 +1,5 @@
 .fieldset.correspondencia
   = f.collection_radio :tipo, [[true, 'Recibido'] ,[false, 'Enviado']], :first, :last
-  = f.input :contenido, :hint => "Escriba la correspondencia recibida que inicia este proyecto"
+  = f.input :contenido, :hint => "Escriba el contenido de la correspondencia"
   = remove_child_link "Quitar email", f
 

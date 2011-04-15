@@ -23,14 +23,14 @@
           = f.simple_fields_for :correspondencias, Proyecto::Correspondencia.new  do |form|
             = add_child_link "Añadir email", f, :correspondencias
   %br
-  #proyecto_items
+  #proyecto_items.ui-corner-all.ui-widget-content.ui-tabs
     %h2 Servicios
     = f.simple_fields_for :proyecto_items, Proyecto::ProyectoItem.new do |g|
       .container
         = add_child_link "Añadir", f, :proyecto_items
   %br
 
-  %div{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all",:style=>'font-size:8px;'}
+  %div{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all",:style=>'font-size:11px;'}
     %h2
       Archivos Adjuntos
       %div#adjuntos
@@ -40,7 +40,7 @@
   %br
   %div{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all",:style=>'font-size:11px;'}
     %h2
-      Instrucciones:
+      Instrucciones
     = f.simple_fields_for :instruccions, Proyecto::Instruccion.new do |i|
       = render 'instruccion_fields', :f => i
     .container
@@ -63,7 +63,9 @@
         'size': 60
       });
       del = '<a href="javascript:" class="adjunto_delete">borrar</a>';
-      li = $('<li/>').append('<label>descripcion</label>').append(input2).append('<label>archivo</label>').append(input).append(del)
+      var uno = $("<div class='percent_50'/>").append('<label>descripcion</label>').append(input2);
+      var dos = $("<div class='percent_50'/>").append('<label>archivo</label>').append(input);
+      li = $('<li/>').append(uno).append(dos).append(del)
       $('#adjuntos').append( li );
       $.mark(li, 7);
     });

@@ -8,11 +8,8 @@
         Asignadas por mi
   #tabs-instruccion-1
     - for instruccion in instrucciones
+      %p Referencia email
       = instruccion.referencia_email
-      %br
-      = instruccion.id
-      %br
-      = instruccion.proyecto
       %br
       %p= link_to 'Editar',  edit_proyecto_proyecto_instruccion_path(@proyecto, instruccion), :class=>'edit'
       %p= link_to "Añadir Instruccion", new_proyecto_proyecto_instruccion_path(@proyecto), :class=>'new'
