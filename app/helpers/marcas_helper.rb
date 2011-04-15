@@ -12,6 +12,7 @@ module MarcasHelper
       pres = pres.join(", ") if pres.is_a? Array
       %Q( <label>#{hash[:label]}</label> #{ pres } ).html_safe
     end
+    
   end
 
   def ver_estado(estado)
@@ -35,7 +36,7 @@ module MarcasHelper
       else
         val
     end
-
+  rescue
   end
 
   # Indica si hay cambio en el campo

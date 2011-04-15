@@ -1,6 +1,6 @@
 development:
   adapter: mysql2
-  database: gema_development #db/development.sqlite3
+  database: gema_produccion_prueba #db/development.sqlite3
   encoding: utf8
   username: root
   password: demo123
@@ -18,7 +18,7 @@ test:
 
 production:
   adapter: mysql2
-  database: gema_development #db/development.sqlite3
+  database: gema_produccion_prueba #db/development.sqlite3
   encoding: utf8
   username: root
   password: demo123

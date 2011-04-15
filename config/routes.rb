@@ -3,6 +3,14 @@
 # email: boriscyber@gmail.com
 Rails.application.routes.draw do
 
+  namespace(:proyecto){ resources :proyectos }
+
+  namespace(:proyecto){ resources :correspondencias }
+
+  namespace(:proyecto){ resources :areas }
+
+  namespace(:proyecto){ resources :items }
+
   resources :marca_estados
 
   resources :reportes

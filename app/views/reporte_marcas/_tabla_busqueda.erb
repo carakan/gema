@@ -34,7 +34,7 @@
   <%#= rd.busqueda %>
       </td>-->
       <% if rd.marca_propia %>
-      <td><span class="<%= rd.marca_propia.propia! %>"><%= link_to rd.marca_propia.nombre, marca_path(rd.marca_propia), :class => :ajax%></span></td>
+      <td><span class="<%= rd.marca_propia.propia! %>"><%= rd.marca_propia.nombre%></span></td>
       <td><%= rd.marca_propia.tipo_signo.sigla if rd.marca_propia.tipo_signo %></td>
       <td><%= rd.marca_propia.clase_id %></td>
       <td><%= rd.marca_propia.numero_marca %></td>

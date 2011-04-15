@@ -7,6 +7,7 @@ class ConsultasController < ApplicationController
   before_filter :set_busqueda, :only => [:new, :create]
 
   def index
+    @titulo = "TG - Busquedas realizadas" 
     @consultas = Consulta.paginate( :page => @oage, 
       :conditions => { :importacion_id => 0 },
       :include => [ :consulta_detalles, :usuario],

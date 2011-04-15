@@ -6,6 +6,7 @@ class MarcasController < ApplicationController
 
   def index
     @marcas = Marca.paginacion(params)
+    @titulo = "TG - Listado signos" 
   end
 
   def new
@@ -49,6 +50,7 @@ class MarcasController < ApplicationController
   def show
     @marca = Marca.find(params[:id])
     @post = @marca.posts.build()
+    @titulo = "Marca: #{@marca}" 
   end
 
   def ver

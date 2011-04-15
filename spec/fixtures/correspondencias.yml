@@ -1,0 +1,9 @@
+one:
+  proyecto_id: 1
+  tipo: false
+  contenido: MyText
+
+two:
+  proyecto_id: 1
+  tipo: false
+  contenido: MyText

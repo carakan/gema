@@ -6,6 +6,7 @@ class RepresentantesController < ApplicationController
   # GET /representantes
   # GET /representantes.xml
   def index
+    @titulo = "TG - Listado clientes" 
     @representantes = Representante.where(["representantes.nombre LIKE ?", "%#{ params[:search] }%"])
     @representantes = @representantes.where(:cliente => true) if params[:cliente]
     @representantes = @representantes.includes(:pais).paginate( :page => @page )
@@ -20,6 +21,7 @@ class RepresentantesController < ApplicationController
   def show
     @representante = Representante.find(params[:id])
     @post = @representante.posts.build()
+    @titulo = "Cliente: #{@representante}" 
     #respond_to do |format|
     #format.html # show.html.erb
     #format.xml  { render :xml => @representante }

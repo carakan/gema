@@ -4,7 +4,7 @@ module ModMarca::Paginacion
   # metodo usado para poder crear la paginacion
   def crear_paginacion(options = {})
     @options = options
-    @page_size = (options[:page_size] || 30).to_i
+    @page_size = (options[:page_size] || 10).to_i
     define_total_pages(@page_size)
     define_current_page
     define_previous_page
