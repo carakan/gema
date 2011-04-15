@@ -23,7 +23,7 @@
           = f.simple_fields_for :correspondencias, Proyecto::Correspondencia.new  do |form|
             = add_child_link "Añadir email", f, :correspondencias
   %br
-  #proyecto_items
+  #proyecto_items.ui-corner-all.ui-widget-content.ui-tabs
     %h2 Servicios
     = f.simple_fields_for :proyecto_items, Proyecto::ProyectoItem.new do |g|
       .container
@@ -63,6 +63,7 @@
         'size': 60
       });
       del = '<a href="javascript:" class="adjunto_delete">borrar</a>';
+      $("<div class='percent_50'/>").append()
       li = $('<li/>').append('<label>descripcion</label>').append(input2).append('<label>archivo</label>').append(input).append(del)
       $('#adjuntos').append( li );
       $.mark(li, 7);
