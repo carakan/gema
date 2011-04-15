@@ -91,6 +91,7 @@ img.right, table.right {
 .proyecto table.decorated th {
     border: 0 solid #FFFFFF;
     padding: 3px 8px;
+    font-family: Arial;
 }
 .proyecto table.decorated th {
     background: url("/images/bg_tr_tabs_tab.png") repeat-x scroll 0 50% #484848;
