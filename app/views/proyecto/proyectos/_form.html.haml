@@ -63,8 +63,9 @@
         'size': 60
       });
       del = '<a href="javascript:" class="adjunto_delete">borrar</a>';
-      $("<div class='percent_50'/>").append()
-      li = $('<li/>').append('<label>descripcion</label>').append(input2).append('<label>archivo</label>').append(input).append(del)
+      var uno = $("<div class='percent_50'/>").append('<label>descripcion</label>').append(input2);
+      var dos = $("<div class='percent_50'/>").append('<label>archivo</label>').append(input);
+      li = $('<li/>').append(uno).append(dos).append(del)
       $('#adjuntos').append( li );
       $.mark(li, 7);
     });
