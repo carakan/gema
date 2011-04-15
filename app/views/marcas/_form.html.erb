@@ -21,10 +21,10 @@
 
   <% if @marca.con_imagen? %>
     <li>
-    <%= image_tag @marca.adjuntos.last.archivo.url(:mini), :class => 'mini' if @marca.adjuntos.size > 0 and @marca.id %>
-        <label for="">Imagen</label>
-        <input type="file" name="marca[adjuntos_attributes][0][archivo]" size= "30" />
-          <%# adj.file_field :archivo, :size => 30 %>
+      <%=  show_image(@marca) %>
+      <label for="">Imagen</label>
+      <input type="file" name="marca[adjuntos_attributes][0][archivo]" size= "30" />
+      <%# adj.file_field :archivo, :size => 30 %>
     </li>
     <%= f.input :descripcion_imagen,:label => 'Descripcion diseño', :as => :text, :input_html => { :rows => 10, :cols => 115 }, :tabindex => 5 %>
   <% end %>

@@ -118,6 +118,14 @@ module MarcasHelper
     end
   end
 
+  def show_image(marca)
+    if marca.adjuntos.last
+      image_tag(@marca.adjuntos.last.archivo.url(:mini), :class => 'mini')
+    end
+  rescue
+    ""
+  end
+
 private
   # Relacion entre campos y el historico
   def label_campos

@@ -142,7 +142,7 @@ class Marca < ActiveRecord::Base
   end
 
   def con_imagen?
-    [2, 3, 4, 6].include? self.tipo_signo_id
+    [2, 3, 4, 6].include?(self.tipo_signo_id)
   end
 
   def ver_fila
