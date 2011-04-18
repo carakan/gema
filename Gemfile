@@ -1,5 +1,4 @@
 source 'http://rubygems.org'
-
 gem 'rails', '3.0.5'
 
 gem 'mysql2', "0.2.6"
@@ -8,39 +7,38 @@ if RUBY_VERSION == "1.8.7"
   gem 'fastercsv'
   gem 'hashie'
 elsif RUBY_VERSION == "1.9.2"
-  gem 'ruby-debug19', :require => "ruby-debug"
-  gem 'unicode_utils'
+  gem 'ruby-debug19', "0.11.6", :require => "ruby-debug"
+  gem 'unicode_utils', "1.0.0"
 end
 
-gem "nifty-generators"
-gem "haml"
-gem 'formtastic'
+gem "haml", "3.0.25"
+gem 'formtastic', "1.2.3"
 gem 'will_paginate','3.0.pre2'
-gem 'nokogiri'
-gem 'forgery'
-gem 'zip'
-gem 'spreadsheet'
-gem 'google-spreadsheet-ruby'
-gem 'roo'
-gem 'paperclip'
-gem 'prawn'
-gem 'less'
+gem 'nokogiri', "1.4.4"
+gem 'forgery', "0.3.7"
+gem 'zip', "2.0.2"
+gem 'spreadsheet', "0.6.5.3"
+gem 'google-spreadsheet-ruby', "0.1.2"
+gem 'roo', "1.9.3"
+gem 'paperclip', "2.3.11"
+gem 'prawn', "0.11.1"
+gem 'less', "1.2.21"
 gem 'devise', '1.2.1'
 gem 'simple_form', '1.3.1'
-gem "meta_search"
+gem "meta_search", "1.0.4"
 gem 'warden', '1.0.3'
-gem 'show_for'
+gem 'show_for', "0.2.4"
 gem "cocoon", '1.0.3'
 
 group :development do
-  gem "nifty-generators"
+  gem "nifty-generators", "0.4.6"
 end
 
 group :test do
-  gem 'rspec-rails'
-  gem 'steak'
-  gem 'capybara'
-  gem 'mocha'
-  gem 'spork'
+  gem 'rspec-rails', "2.5.0"
+  gem 'steak', "1.1.0"
+  gem 'capybara', "0.4.1.2"
+  gem 'mocha', "0.9.12"
+  gem 'spork', "0.8.4"
 end
 
