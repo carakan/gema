@@ -45,6 +45,9 @@
   		<li><%= link_to 'Usuarios', usuarios_path%></li>
   		<li><%= link_to 'Paises', paises_path%></li>
   		<li><%= link_to 'Áreas', proyecto_areas_path%></li>
+        <% if current_usuario.is?(:admin) %>
+        <li><%= link_to 'Roles', roles_path%></li>
+        <% end %>
   	</ul>
   </li>
 

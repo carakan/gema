@@ -33,6 +33,10 @@ class Usuario < ActiveRecord::Base
     result
   end
 
+  def is?(rol)
+    self.rol.name == rol.to_s
+  end
+
   def to_s
     nombre
   end

@@ -2,10 +2,11 @@
 # author: Boris Barroso
 # email: boriscyber@gmail.com
 class AdjuntosController < ApplicationController
+  before_filter :set_proyecto
   # GET /adjuntos
   # GET /adjuntos.xml
   def index
-    @adjuntos = Adjunto.all
+    @adjuntos = Adjunto.paginate(:per_page => 20, :page => params[:page])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -39,11 +40,17 @@ class AdjuntosController < ApplicationController
   # POST /adjuntos
   # POST /adjuntos.xml
   def create
-    @adjunto = Adjunto.new(params[:adjunto])
-
+    
+    if @proyecto
+      value = proyecto_proyecto_path(@proyecto)
+      @adjunto = @proyecto.adjuntos.new(params[:adjunto])
+    else
+      value = @adjunto
+      @adjunto = Adjunto.new(params[:adjunto])
+    end
     respond_to do |format|
       if @adjunto.save
-        format.html { redirect_to(@adjunto, :notice => 'Adjunto was successfully created.') }
+        format.html { redirect_to(value, :notice => 'Adjunto was successfully created.') }
         format.xml  { render :xml => @adjunto, :status => :created, :location => @adjunto }
       else
         format.html { render :action => "new" }
@@ -78,5 +85,11 @@ class AdjuntosController < ApplicationController
       format.html { redirect_to(adjuntos_url) }
       format.xml  { head :ok }
     end
+  end
+  
+  protected
+  def set_proyecto
+    @proyecto = Proyecto::Proyecto.find(params[:proyecto_id])
+  rescue
   end
 end
