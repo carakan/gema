@@ -13,14 +13,21 @@
         %tr
           %th Tipo
           %th Fecha
+          %th Correo
+          %th Asunto
           %th Contenido
         - for correspondencia in correspondencias
           %tr
             - if correspondencia.tipo == true
-              %td= image_tag("icons/received.png", :size => "16x16", :title => "Recibido")
+              %td= image_tag("icons/received.png", :size => "16x16", :title => "Recibido")  
             - else
               %td= image_tag("icons/sent.png", :size => "16x16", :title => "Enviado")
             %td= correspondencia.created_at
+            - if correspondencia.tipo == true
+              %td= correspondencia.tipo="Recibido"
+            -else
+              %td= correspondencia.tipo="Enviado"
+            %td= correspondencia.asunto
             %td= link_to(truncate(correspondencia.contenido, :length=>90, :separator => ' ').html_safe, proyecto_proyecto_correspondencia_path(@proyecto, correspondencia), :class => "correspondencia", :"data-selector" => "#tabs-correspondencia-1")
             %td= link_to 'Editar', edit_proyecto_proyecto_correspondencia_path(@proyecto, correspondencia), :class => 'edit'
             %td= link_to 'Eliminar', proyecto_proyecto_correspondencia_path(@proyecto, correspondencia), :confirm => 'Are you sure?', :method => :delete, :class => 'delete'

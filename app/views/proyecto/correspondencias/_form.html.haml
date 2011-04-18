@@ -4,7 +4,9 @@
     %b Proyecto:
     %h3 Proyecto > #{@proyecto.titulo} > Nuevo servicio
   %p
-    = f.input :tipo, :as => :radio, :label => '¿Recibido?'
+    = f.collection_radio :tipo, [[true, 'Recibido'] ,[false, 'Enviado']], :first, :last
+  %p
+    = f.input :asunto
   %p
     = f.input :contenido
   %p
