@@ -2,6 +2,7 @@
 
 %table.decorated
   %tr
+    %th Id
     %th Cliente
     %th Area
     %th Titulo
@@ -9,6 +10,7 @@
     %th Prioridad
   - for proyecto in @proyectos
     %tr
+      %td= proyecto.id
       %td= proyecto.representante
       %td= proyecto.area_id
       %td= proyecto.titulo

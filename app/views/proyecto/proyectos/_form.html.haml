@@ -3,18 +3,38 @@
 
 = simple_form_for @proyecto, :html => {:multipart => true} do |f|
   = f.error_messages
-  %table{:border=>0}
-    %tr
-    %td{:valign=>"top"}
-      %div{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all", :style=>'font-size:11px; width:570px; height:auto;'}
-        %h2
-          Datos del Proyecto
-        = f.association :representante, :prompt=>'Seleccione a un Representante', :hint=>'Asigne a un representante', :collection => []
-        = f.association :area, :prompt => 'Seleccione un Area', :hint=>'A que área corresponde'
-        = f.association :contactos, :collection => [], :input_html=> {:multiple => true}
-        = f.input :titulo, :hint=> "Escriba una breve descripción de este proyecto"
-        = f.input :referencia_cliente, :hint => "Introduza una referencia de cliente, por ejemplo : AC-5454-BOL"
-        = f.input :prioridad, :collection =>['A', 'B', 'C'], :as=> :radio, :hint=> 'Asigne una prioridad para este proyecto, de tipo A = Mayor Prioridad, B = Mediana Prioridad, C = Menor Prioridad '
+  #tabs{:style=>'font-size:11px;'}
+      %ul
+        %li
+          %a{:href=>'#tabs-1'}
+            Proyecto
+        %li
+          %a{:href=>'#tabs-2'}
+            Correspondencia e Instrucciones
+        %li
+          %a{:href=>'#tabs-3'}
+            Servicios
+        %li
+          %a{:href=>'#tabs-4'}
+            Archivos adjuntos
+
+      #tabs-1
+        %table{:border=>0}
+          %tr
+          %td{:valign=>"top"}
+            %div{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all", :style=>'font-size:11px; width:570px; height:auto;'}
+              %h2
+                Datos del Proyecto
+              = f.association :representante, :label => 'Agente', :prompt=>'Seleccione a un Representante', :hint=>'Asigne a un representante', :collection => []
+              = link_to 'Nuevo cliente', new_representante_path('data-title' => 'Crear cliente'), :class => 'new ajax'
+              = f.association :area, :prompt => 'Seleccione un Area', :hint=>'A que área corresponde'
+              = f.association :contactos, :collection => [], :input_html=> {:multiple => true} 
+              = f.input :titulo, :hint=> "Escriba una breve descripción de este proyecto"
+              = f.input :referencia_cliente, :hint => "Introduza una referencia de cliente, por ejemplo : AC-5454-BOL"
+              = f.input :prioridad, :collection =>['A', 'B', 'C'], :as=> :radio, :hint=> 'Asigne una prioridad para este proyecto, de tipo A = Mayor Prioridad, B = Mediana Prioridad, C = Menor Prioridad '
+      #tabs-1
+        %table{:border=>0}
+          %tr
     %td{:valign=>"top"}
       %div{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all",:style=>'font-size:11px;width:339px; height:auto;'}
         %h2
