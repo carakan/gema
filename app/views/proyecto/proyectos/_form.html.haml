@@ -39,10 +39,10 @@
       %div.percent_50{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all",:style=>'font-size:11px; align:right;'}
         %h2
           Instrucciones
-          = f.simple_fields_for :instruccions, Proyecto::Instruccion.new do |i|
-            = render 'instruccion_fields', :f => i
-          .container
-            = add_child_link "Añadir Instruccion", f, :instruccions, {:object => Proyecto::Instruccion.new}
+        = f.simple_fields_for :instruccions, Proyecto::Instruccion.new do |i|
+          = render 'instruccion_fields', :f => i
+        .container
+          = add_child_link "Añadir Instruccion", f, :instruccions, {:object => Proyecto::Instruccion.new}
 
     #tabs-3
       %h2 Servicios
