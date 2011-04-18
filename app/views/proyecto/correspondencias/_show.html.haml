@@ -10,6 +10,8 @@
       - else
         %td= image_tag("icons/sent.png", :size => "16x16", :title => "Enviado")
     %p
+      = @correspondencia.asunto
+    %p
       = @correspondencia.contenido.html_safe
 
     %p
