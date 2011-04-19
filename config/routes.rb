@@ -3,6 +3,8 @@
 # email: boriscyber@gmail.com
 Rails.application.routes.draw do 
   
+  get "home/index"
+
   namespace(:proyecto) do
     resources :proyectos do
       resources :adjuntos
