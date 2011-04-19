@@ -1,5 +1,7 @@
-<h1>New adjunto</h1>
+<h1>Nuevo adjunto</h1>
 
-<%= render :partial => "/adjuntos/form" %>
+<% url = (@proyecto)? proyecto_proyecto_adjuntos_path(@proyecto): adjuntos_path %>
+
+<%= render :partial => "/adjuntos/form", :locals => {:url => url} %>
 
 <%= link_to 'Atras', adjuntos_path %>

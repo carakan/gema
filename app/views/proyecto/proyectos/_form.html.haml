@@ -19,6 +19,7 @@
           Archivos adjuntos
 
     #tabs-1
+
       %h2
         Datos del Proyecto
       = f.association :representante, :label => 'Agente', :prompt=>'Seleccione a un Representante', :hint=>'Asigne a un representante', :collection => []
@@ -42,6 +43,7 @@
         = f.simple_fields_for :instruccions, Proyecto::Instruccion.new do |i|
           = render 'instruccion_fields', :f => i
           = add_child_link "Añadir Instruccion", f, :instruccions, {:object => Proyecto::Instruccion.new}
+
 
     #tabs-3
       %h2 Servicios

@@ -1,6 +1,8 @@
 <h1>Editing adjunto</h1>
 
-<%= render :partial => "/adjuntos/form" %>
+<% url = (@proyecto)? proyecto_proyecto_adjunto_path(@proyecto, @adjunto): adjunto_path(@adjunto) %>
+
+<%= render :partial => "/adjuntos/form", :locals => {:url => url} %>
 
 <%= link_to 'Show', @adjunto %> |
 <%= link_to 'Back', adjuntos_path %>
