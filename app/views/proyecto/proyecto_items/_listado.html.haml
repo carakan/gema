@@ -5,7 +5,10 @@
         Servicios
     %li
       %a{:href=>'#tabs-items-2'}
-        Solicitud de fondos
+        Solicitud de fondos 
+    %li
+      %a{:href=>'#tabs-items-3'}
+        Notas de debito
         
   #tabs-items-1
     %table.decorated
@@ -38,6 +41,9 @@
 
   #tabs-items-2
     %p= link_to "Nueva solicitud", new_proyecto_proyecto_proyecto_item_path(@proyecto), :class => 'new'
+
+  #tabs-items-3
+    %p= link_to "Nueva solicitud"
 
 :javascript
   $(function() {
