@@ -6,7 +6,7 @@
         = f.label :usuario_id, "Usuario"
         = f.select :usuario_id, grouped_options_for_select(Usuario.all_for_areas)
     %td
-      = f.input :tarea
+      = f.input :tarea,:as => :text, :input_html => {:cols => 16, :rows => 2}
     %td
       = f.input :fecha_limite, :as => :date
   = remove_child_link "Quitar tarea", f

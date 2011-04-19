@@ -2,6 +2,7 @@
 # author: Boris Barroso
 # email: boriscyber@gmail.com
 class Consulta < ActiveRecord::Base
+  set_table_name "consultas"
   before_create :adicionar_usuario
   before_create :disminuir_cruces_pendientes, :if => :importacion_id? #lambda { |c| !!c.importacion.nil? }
   before_destroy :aumentar_cruces_pendientes, :if => :importacion_id?

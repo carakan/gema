@@ -350,7 +350,9 @@ function insert_fields(link, method, content) {
   var regexp = new RegExp("new_" + method, "g")
   $(link).parent().before(content.replace(regexp, new_id));
   tinyMCE.init({
-   mode : "textareas",
+   mode : "specific_textareas",
+   editor_selector :/(mceRichText|mceEditor)/,
+   editor_deselector : "mceNoEditor",
    theme: "simple"
   });
   transformarDateSelect();
@@ -363,4 +365,3 @@ function remove_fields(link) {
   }
   $(link).parent(".fieldset").hide();
 }
-

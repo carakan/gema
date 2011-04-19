@@ -5,7 +5,7 @@
   .percent_20= f.input :descripcion, :input_html=>{:size=>20}
   .percent_20= f.input :honorarios, :input_html=>{:size=>5}
   .percent_20= f.input :gastos_adminitrativos, :input_html=>{:size=>5}
-  .percent_20= f.input :fecha_solicitud,:label => "Fecha", :input_html=>{:size=>4}
+  .percent_20= f.input :fecha_solicitud,:label => "Fecha límite", :input_html=>{:size=>4}
   .percent_20= link_to("Anadir marca", busqueda_avanzada_busquedas_path(:select_marcas => true), :class => "ajax")
   = remove_child_link "Remover Servicio", f
   %hr
