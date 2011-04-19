@@ -6,7 +6,7 @@
   <% end %>
 </h2>
 <% unless @busqueda.blank? %>
-  <%= form_for @consulta do |f| -%>
+  <%= form_for @consulta, :url => consultas_path do |f| -%>
     <%= f.hidden_field :representante_id %>
     <%= f.hidden_field :parametros %>
     <%= f.hidden_field :busqueda %>
@@ -48,7 +48,11 @@
           <% end %>
         </tbody>
       </table>
-      <%= submit_tag "Crear pre reporte", :id => 'seleccionar' %>
+      <% if params[:select_marcas] %>
+        <%= submit_tag "Seleccionar marcas", :id => 'seleccionar_ids' %>
+      <% else%>
+        <%= submit_tag "Crear pre reporte", :id => 'seleccionar' %>
+      <% end %>
     </div>
   <% end %>
 <% else %>

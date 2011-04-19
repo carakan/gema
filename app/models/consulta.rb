@@ -24,6 +24,8 @@ class Consulta < ActiveRecord::Base
   serialize :parametros
   serialize :marca_ids_serial
 
+  set_table_name "consultas"
+
   PARAMS = [:clases, :tipo_busqueda, :fecha_ini, :fecha_fin]
 
   # Convierte los parametros que se utilizaron en la busqueda
