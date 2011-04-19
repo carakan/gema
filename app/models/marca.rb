@@ -52,6 +52,14 @@ class Marca < ActiveRecord::Base
     :association_foreign_key => :titular_id,
     :join_table => 'marcas_titulares'
 
+    include AASM
+    
+    aasm_column :current_state # defaults to aasm_state
+    aasm_initial_state :pendiente
+    aasm_state :revision
+    aasm_state :aprobada
+    aasm_state :reprobada
+
   #def self.after_initialize
   #  @con_historico = true
   #end

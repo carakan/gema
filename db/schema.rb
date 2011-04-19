@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 201104188153930) do
+ActiveRecord::Schema.define(:version => 201104188153945) do
 
   create_table "adjuntos", :force => true do |t|
     t.string   "nombre"
@@ -110,6 +110,7 @@ ActiveRecord::Schema.define(:version => 201104188153930) do
     t.string   "estado"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "estado_tarea"
   end
 
   create_table "instruccion_detalles_item_cobros", :id => false, :force => true do |t|
