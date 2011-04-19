@@ -29,6 +29,7 @@ gem "meta_search", "1.0.4"
 gem 'warden', '1.0.3'
 gem 'show_for', "0.2.4"
 gem "cocoon", '1.0.3'
+gem "aasm", '2.2.0'
 
 group :development do
   gem "nifty-generators", "0.4.6"

@@ -30,18 +30,17 @@
       = f.input :referencia_cliente, :hint => "Introduza una referencia de cliente, por ejemplo : AC-5454-BOL"
       = f.input :prioridad, :collection =>['A', 'B', 'C'], :as=> :radio, :hint=> 'Asigne una prioridad para este proyecto, de tipo A = Mayor Prioridad, B = Mediana Prioridad, C = Menor Prioridad '
     #tabs-2
-      %div.percent_40{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all",:style=>'font-size:11px; align: left;'}
+      %div.percent_40{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all",:style=>'font-size:11px;'}
         %h2
           Nuevo Email
         .container
           = f.simple_fields_for :correspondencias, Proyecto::Correspondencia.new  do |form|
             = add_child_link "Añadir email", f, :correspondencias
-      %div.percent_50{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all",:style=>'font-size:11px; align:right;'}
+      %div.percent_50{:style=>'font-size:11px;width: 520px; height: auto;'}
         %h2
           Instrucciones
         = f.simple_fields_for :instruccions, Proyecto::Instruccion.new do |i|
           = render 'instruccion_fields', :f => i
-        .container
           = add_child_link "Añadir Instruccion", f, :instruccions, {:object => Proyecto::Instruccion.new}
 
     #tabs-3
@@ -104,9 +103,3 @@
   $("form").submit(function(){
     $("#proyecto_proyecto_representante_id").attr("name", "proyecto_proyecto[representante_id]")
   });
-
-  tinyMCE.init({
-   mode : "textareas",
-   theme: "simple"
-  });
-

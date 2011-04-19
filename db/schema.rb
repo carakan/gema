@@ -117,10 +117,24 @@ ActiveRecord::Schema.define(:version => 201104188153930) do
     t.integer "proyecto_item_id"
   end
 
+  create_table "instruccion_item_cobro", :force => true do |t|
+    t.integer  "instruccion_detalle_id"
+    t.integer  "proyecto_item_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "instruccions", :force => true do |t|
     t.integer  "area_id"
     t.integer  "proyecto_id"
     t.integer  "referencia_email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "item_cobro_marcas", :force => true do |t|
+    t.integer  "proyecto_item_id"
+    t.integer  "marca_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
