@@ -68,6 +68,7 @@ class BusquedasController < ApplicationController
   end
 
   def busqueda_avanzada
+
     if params[:search]
       prepare_search
       timeout(30){@busqueda_old = Marca.search(params[:search])}
@@ -81,8 +82,10 @@ class BusquedasController < ApplicationController
             @busqueda << element
           end
         end
+
       else
         @busqueda_old.each{ |element| @busqueda << element }
+
       end
       @busqueda_old = nil
       @busqueda.sort! { |a, b| [a.agente_ids_serial.sort, a.titular_ids_serial.sort] <=> [b.agente_ids_serial.sort, b.titular_ids_serial.sort]  }
@@ -91,9 +94,11 @@ class BusquedasController < ApplicationController
     end
   rescue Timeout::Error => ex
     flash[:notice] = "Existe un error en los criterios de busqueda, la consulta tardo demasiado."
+    logger.info("Error en el tiempo de la consulta")
     render :action => :busqueda_avanzada
   rescue => e
     flash[:notice] = "Existe un error en los criterios de busqueda, vuelva a intentarlo. #{e}"
+    logger.info("Error en la consulta #{e}")
     render :action => :busqueda_avanzada
   end
 

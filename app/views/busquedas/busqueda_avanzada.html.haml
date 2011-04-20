@@ -1,26 +1,26 @@
 #busqueda
   %h1 Búsqueda avanzada
-  -form_tag '/busquedas/busqueda_avanzada', :method => :post do
+  -form_tag busqueda_avanzada_busquedas_path(:select_marcas => params[:select_marcas]), :method => :post do
 
-    #tabs{:style=>'font-size:11px;'}
+    #tabs-avanzada{:style=>'font-size:11px;'}
       %ul
         %li
-          %a{:href=>'#tabs-1'}
+          %a{:href=>'#tabs-avanzada-1'}
             Parámetros Generales
         %li
-          %a{:href=>'#tabs-2'}
+          %a{:href=>'#tabs-avanzada-2'}
             Agentes
         %li
-          %a{:href=>'#tabs-3'}
+          %a{:href=>'#tabs-avanzada-3'}
             Titulares
         %li
-          %a{:href=>'#tabs-4'}
+          %a{:href=>'#tabs-avanzada-4'}
             Números y Fechas
         %li
-          %a{:href=>'#tabs-5'}
+          %a{:href=>'#tabs-avanzada-5'}
             Complementarios
         
-      #tabs-1
+      #tabs-avanzada-1
         %p
 
           = label_tag "Propiedad:"
@@ -60,7 +60,7 @@
             = select "search", "marca_estado_id_equals", llenar_datos_iguales(MarcaEstado.all)
             %br
             %br
-      #tabs-2
+      #tabs-avanzada-2
         %p
         #agent
           #value
@@ -71,7 +71,7 @@
         %br
 
         %br.clear
-      #tabs-3
+      #tabs-avanzada-3
         %p
         #owner
           #value
@@ -81,7 +81,7 @@
         %br
         = render :partial => "paises_titular_select"
         %br
-      #tabs-4
+      #tabs-avanzada-4
         %p
         .contenido
           .izquierda
@@ -193,7 +193,7 @@
             %br
           %br.clear
         %br.clear
-      #tabs-5
+      #tabs-avanzada-5
         %p
           = label_tag "Vía instrucción:"
           = select "search", "instruccion_equals", [["Todas", "all_values"]] + Marca::INSTRUCCIONES.collect{|value| [value, value]}
@@ -285,5 +285,5 @@
 
 :javascript
   $(function() {
-   $( "#tabs" ).tabs();
+   $( "#tabs-avanzada" ).tabs();
   });

@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-gem 'rails', '3.0.5'
+gem 'rails', '3.0.7'
 
 gem 'mysql2', "0.2.6"
 if RUBY_VERSION == "1.8.7"

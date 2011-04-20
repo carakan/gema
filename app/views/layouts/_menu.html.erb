@@ -8,9 +8,6 @@
       <li><%= link_to 'Busquedas realizadas', consultas_path%></li>
       <li><%= link_to 'Reportes realizados', reporte_marcas_path%></li>
       <li><%= link_to 'Importaciones', importaciones_path%></li>
-<!--      <li>
-        <a href="#">Vigilancia</a>
-        </li>-->
  	  </ul>
   </li>
   <li>
@@ -19,23 +16,6 @@
   		<li><%= link_to 'Agentes/Titulares', representantes_path%></li>
   	</ul>
   </li>
-
-
-<!--  <li>
-    <a href="#">Vigilancia</a>
-  	<ul>
-  		<li>
-  			<a href="#/">Cruce con gaceta</a>
-  		</li>
-  	  <li>
-  			<a href="#">Renovación de marcas</a>
-      </li>
-      <li>
-  			<a href="#">Marcas por títular</a>
-  		</li>
-   	</ul>
-    </li> -->
-
   <li>
   	<a href="#">Datos generales</a>
   	<ul>
@@ -50,7 +30,6 @@
         <% end %>
   	</ul>
   </li>
-
   <li>
   	<a href="#">Reportes Estadísticos</a>
     <ul>
@@ -58,23 +37,9 @@
         <%= last_importation rescue "" %>
       </li>
     </ul>
+  </li>
     <li>
      <%= link_to 'Proyectos', proyecto_proyectos_path%>
     </li>
-    	
-  <!--	<ul>
-  		<li>
-  			<a href="#">Marcas por tipo signo</a>
-  		</li>
-  		<li>
-  			<a href="#">Marcas por estado</a>
-      </li>
-    	<li>
-  			<a href="#">Marcas propias/ajenas</a>
-      </li>
-
-    </ul>-->
-  </li>
-
 </ul>
 <% end %>

@@ -1,0 +1,72 @@
+%table.decorated
+  %tr
+    %td
+      #tabshome{:style=>'font-size:11px;'}
+        %ul
+          %li
+            %a{:href=>'#tabshome-1'}
+              Tareas Pendientes Revisión
+          %li
+            %a{:href=>'#tabshome-2'}
+              Tareas Asignadas Pendientes
+          %li
+            %a{:href=>'#tabshome-3'}
+              Tareas Mias Pendientes
+        #tabshome-1
+          %p
+            %table
+              %tr
+                %th
+                  Fecha Limite
+                %th
+                  Descripción
+              %tr
+                %td
+                %td
+        #tabshome-2
+          %p
+            %table
+              %tr
+                %th
+                  Fecha Limite
+                %th
+                  Descripción
+              %tr
+                %td
+                %td
+        #tabshome-3
+          %p
+            %table
+              %tr
+                %th
+                  Fecha Limite
+                %th
+                  Descripción
+              %tr
+                %td
+                %td
+    %td
+      %h3
+        Tareas Realizadas
+  %tr
+    %td{:colspan=>2}
+      %h3
+        Proyectos Pendientes
+      %table{:border=>1}
+        %tr
+          %th Proyecto
+          %th Agente
+          %th Descripción
+          %th Fecha Limite
+        - for proyecto in @proyecto
+          %tr
+            %td= proyecto.id
+            %td= proyecto.contactos
+            %td= proyecto.titulo
+            %td= proyecto.updated_at
+            
+
+:javascript
+  $(function() {
+  $( "#tabshome" ).tabs();
+  });
