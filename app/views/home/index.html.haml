@@ -16,35 +16,35 @@
           %p
             %table
               %tr
-                %th
-                  Fecha Limite
-                %th
-                  Descripción
-              %tr
-                %td
-                %td
+                %th Fecha Limite
+                %th Descripción
+              - for proy in @proyecto
+                %tr
+                - for proyit in proy.proyecto_items.find(:all, :order=>'fecha_limite ASC', :limit=>1)
+                  %td= proyit.fecha_limite
+                  %td= proy.titulo
         #tabshome-2
           %p
             %table
               %tr
-                %th
-                  Fecha Limite
-                %th
-                  Descripción
-              %tr
-                %td
-                %td
+                %th Fecha Limite
+                %th Descripción
+              - for proyt in @proyecto
+                %tr
+                - for proyitem in proyt.proyecto_items.find(:all, :order=>'fecha_limite ASC', :limit=>1)
+                  %td= proyitem.fecha_limite
+                  %td= proyt.titulo
         #tabshome-3
           %p
             %table
               %tr
-                %th
-                  Fecha Limite
-                %th
-                  Descripción
-              %tr
-                %td
-                %td
+                %th Fecha Limite
+                %th Descripción
+              - for proyect in @proyecto
+                %tr
+                - for proyitems in proyect.proyecto_items.find(:all, :order=>'fecha_solicitud ASC', :limit=>1)
+                  %td= proyitems.fecha_limite
+                  %td= proyect.titulo
     %td
       %h3
         Tareas Realizadas
@@ -63,7 +63,8 @@
             %td= proyecto.id
             %td= proyecto.contactos
             %td= proyecto.titulo
-            %td= proyecto.updated_at
+            -for proyitem in proyecto.proyecto_items.find(:all, :order=>'fecha_limite ASC', :limit =>1 )
+              %td= proyitem.fecha_limite
             
 
 :javascript
