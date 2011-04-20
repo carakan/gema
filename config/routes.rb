@@ -13,6 +13,7 @@ Rails.application.routes.draw do
         resources :instruccion_detalles do
           member do
             get :entrega
+            post :entregar
           end
         end
       end

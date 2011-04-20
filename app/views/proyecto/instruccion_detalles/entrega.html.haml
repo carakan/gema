@@ -31,7 +31,8 @@
       %strong Fecha Limite:
     .subder
       = l(@instruccion_detalle.fecha_limite, :format => "%d, %B %Y") if @instruccion_detalle.fecha_limite
-  /= render :partial => "/proyecto/instruccion_detalles/datos_entrega", :locals => {:instruccion_detalles => @proyecto.instruccion_detalles[@instruccion_detalle.id]}
+
+= render :partial => "/proyecto/instruccion_detalles/datosentrega", :locals => {:instruccion_detalle => @instruccion_detalle}
 
 /%p
 /  = link_to "Edit", edit_proyecto_instruccion_detall_path(@instruccion_detalle)

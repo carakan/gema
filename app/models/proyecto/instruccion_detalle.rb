@@ -1,9 +1,11 @@
 class Proyecto::InstruccionDetalle < ActiveRecord::Base
-  attr_accessible :instruccion_id, :usuario_id, :tarea, :fecha_limite, :estado
+  attr_accessible :instruccion_id, :usuario_id, :tarea, :fecha_limite, :estado, :descripcion_entrega
   set_table_name "instruccion_detalles"
   belongs_to :instruccion
   has_and_belongs_to_many :item_cobros, :association_foreign_key => :proyecto_item_id
   belongs_to :usuario
+  has_many :adjuntos, :as => :adjuntable, :dependent => :destroy
+  accepts_nested_attributes_for :adjuntos
 
   include AASM
 
@@ -11,20 +13,15 @@ class Proyecto::InstruccionDetalle < ActiveRecord::Base
 
   aasm_initial_state :pendiente
   aasm_state :pendiente
-  aasm_state :revision,:enter => :revisar 
+  aasm_state :revision 
   aasm_state :aprobado
   aasm_state :reprobado
 
-  aasm_event :terminada do
+  aasm_event :terminar do
     transitions :to => :revision, :from => [:pendiente]
   end
   
-  def terminar
-    assm_event(terminada)
-    # Called when record moves into the "viewed" state.
-  end
-
-#  aasm_event :revisada do
+#  aasm_event :aprobar do
 #    if calificacion > 10
 #      transitions :to => :aprobado, :from => [:revision]
 #    else

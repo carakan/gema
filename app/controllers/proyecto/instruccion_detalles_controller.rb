@@ -44,9 +44,17 @@ class Proyecto::InstruccionDetallesController < ApplicationController
 
   def entrega
     @instruccion_detalle = @instruccion.instruccion_detalles.find(params[:id])
-    @estado = @instruccion_detalle.estado
   end
-    
+ 
+  def entregar
+    @instruccion_detalle = Proyecto::InstruccionDetalle.find(params[:id])
+    if @instruccion_detalle.update_attributes(params[:proyecto_instruccion_detalle])
+      flash[:notice] = "Datos registrados de manera correcta"
+      redirect_to @instruccion_detalle.instruccion.proyecto
+    end
+    @instruccion_detalle.terminar!    
+  end
+
   protected
   def set_instruccion
     @proyecto = Proyecto::Proyecto.find(params[:proyecto_id])
