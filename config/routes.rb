@@ -134,5 +134,5 @@ Rails.application.routes.draw do
   end
   
   resources :roles
-  root :to => 'busquedas#index'
+  root :to => 'home#index'
 end
