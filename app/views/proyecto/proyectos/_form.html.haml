@@ -47,9 +47,9 @@
 
     #tabs-3
       %h2 Servicios
-      = f.simple_fields_for :proyecto_items, Proyecto::ProyectoItem.new do |g|
+      = f.simple_fields_for :item_cobros, Proyecto::ItemCobro.new do |g|
         .container
-          = add_child_link "Añadir", f, :proyecto_items
+          = add_child_link "Añadir", f, :item_cobros
     
     #tabs-4
       %h2

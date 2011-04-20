@@ -2,7 +2,7 @@
   %h1 Búsqueda avanzada
   -form_tag busqueda_avanzada_busquedas_path(:select_marcas => params[:select_marcas]), :method => :post do
 
-    #tabs-avanzada{:style=>'font-size:11px;'}
+    .tabs-avanzada{:style=>'font-size:11px;'}
       %ul
         %li
           %a{:href=>'#tabs-avanzada-1'}
@@ -284,6 +284,4 @@
   });
 
 :javascript
-  $(function() {
-   $( "#tabs-avanzada" ).tabs();
-  });
+  $(".tabs-avanzada").tabs();
