@@ -1,0 +1,41 @@
+%title Resumen entrega tarea
+#contenido
+  .izquierda
+    .subizq
+      %strong Tarea:
+    .subder
+      = @instruccion_detalle.tarea
+  .derecha
+    .subizq
+      %strong Nro:
+    .subder
+      = @instruccion_detalle.id
+
+  .izquierda
+    .subizq
+      %strong Fecha asignación:
+    .subder
+      = @instruccion_detalle.created_at
+  .derecha
+    .subizq
+      %strong Usuario:
+    .subder
+      = @instruccion_detalle.usuario_id
+  .izquierda
+    .subizq
+      %strong Estado:
+    .subder
+      = @instruccion_detalle.estado
+  .derecha
+    .subizq
+      %strong Fecha Limite:
+    .subder
+      = l(@instruccion_detalle.fecha_limite, :format => "%d, %B %Y") if @instruccion_detalle.fecha_limite
+  /= render :partial => "/proyecto/instruccion_detalles/datos_entrega", :locals => {:instruccion_detalles => @proyecto.instruccion_detalles[@instruccion_detalle.id]}
+
+/%p
+/  = link_to "Edit", edit_proyecto_instruccion_detall_path(@instruccion_detalle)
+/  |
+/  = link_to "Destroy", @instruccion_detalle, :confirm => 'Are you sure?', :method => :delete
+/  |
+/  = link_to "View All", proyecto_instruccion_detalles_path

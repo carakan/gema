@@ -11,7 +11,7 @@ class Proyecto::InstruccionDetalle < ActiveRecord::Base
 
   aasm_initial_state :pendiente
   aasm_state :pendiente
-  aasm_state :revision
+  aasm_state :revision,:enter => :revisar 
   aasm_state :aprobado
   aasm_state :reprobado
 
@@ -19,6 +19,11 @@ class Proyecto::InstruccionDetalle < ActiveRecord::Base
     transitions :to => :revision, :from => [:pendiente]
   end
   
+  def terminar
+    assm_event(terminada)
+    # Called when record moves into the "viewed" state.
+  end
+
 #  aasm_event :revisada do
 #    if calificacion > 10
 #      transitions :to => :aprobado, :from => [:revision]

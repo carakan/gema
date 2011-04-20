@@ -42,6 +42,11 @@ class Proyecto::InstruccionDetallesController < ApplicationController
     
   end
 
+  def entrega
+    @instruccion_detalle = @instruccion.instruccion_detalles.find(params[:id])
+    @estado = @instruccion_detalle.estado
+  end
+    
   protected
   def set_instruccion
     @proyecto = Proyecto::Proyecto.find(params[:proyecto_id])

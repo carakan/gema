@@ -10,8 +10,9 @@
       %td= instruccion_detall.instruccion
       %td= instruccion_detall.usuario
       %td= instruccion_detall.tarea
-      %td= instruccion_detall.fecha_limite
+      %td= l(instruccion_detall.fecha_limite, :format => "%d, %B %Y") if instruccion_detall.fecha_limite
       %td= instruccion_detall.estado
+      %td= link_to 'Entregar', entrega_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion, instruccion_detall)
       %td= link_to 'Editar', edit_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion,instruccion_detall), :class => "edit"
       %td= link_to 'Eliminar', proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion,instruccion_detall), :confirm => 'Are you sure?', :method => :delete, :class => 'delete'
 
