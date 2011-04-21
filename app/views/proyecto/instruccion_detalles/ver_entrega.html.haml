@@ -1,0 +1,39 @@
+#contenido
+  .izquierda
+    .subizq
+      %strong Tarea:
+    .subder
+      = @instruccion_detalle.tarea
+  .derecha
+    .subizq
+      %strong Nro:
+    .subder
+      = @instruccion_detalle.id
+
+  .izquierda
+    .subizq
+      %strong Fecha asignación:
+    .subder
+      = @instruccion_detalle.created_at
+  .derecha
+    .subizq
+      %strong Usuario:
+    .subder
+      = @instruccion_detalle.usuario_id
+  .izquierda
+    .subizq
+      %strong Estado:
+    .subder
+      = @instruccion_detalle.estado_tarea
+  .derecha
+    .subizq
+      %strong Fecha Limite:
+    .subder
+      = l(@instruccion_detalle.fecha_limite, :format => "%d, %B %Y") if @instruccion_detalle.fecha_limite
+  .izquierda
+    .subizq
+      %strong Descripcion:
+    .subder
+      = @instruccion_detalle.descripcion_entrega
+
+= render :partial => "/proyecto/instruccion_detalles/evaluacion", :locals => {:instruccion_detalle => @instruccion_detalle}

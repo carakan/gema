@@ -21,7 +21,7 @@ gem 'spreadsheet', "0.6.5.3"
 gem 'google-spreadsheet-ruby', "0.1.2"
 gem 'roo', "1.9.3"
 gem 'paperclip', "2.3.11"
-gem 'prawn', "0.11.1"
+gem 'prawn', "0.10.2"
 gem 'less', "1.2.21"
 gem 'devise', '1.2.1'
 gem 'simple_form', '1.3.1'
@@ -30,7 +30,7 @@ gem 'warden', '1.0.3'
 gem 'show_for', "0.2.4"
 gem "cocoon", '1.0.3'
 gem "aasm", '2.2.0'
-
+gem "ancestry", '1.2.3'
 group :development do
   gem "nifty-generators", "0.4.6"
 end

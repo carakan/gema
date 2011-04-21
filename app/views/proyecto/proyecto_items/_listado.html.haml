@@ -19,9 +19,10 @@
         %th Referencia cliente
         %th Referencia cliente cobranza
         %th Fecha limite
-        %th Honorarios
-        %th Gastos adminitrativos
-        %th Monto
+        - if current_usuario.is?(:admin)
+          %th Honorarios
+          %th Gastos adminitrativos
+          %th Monto
         %th Fecha solicitud
       - for proyecto_item in proyecto_items
         %tr
@@ -31,9 +32,10 @@
           %td= proyecto_item.referencia_cliente
           %td= proyecto_item.referencia_cliente_cobranza
           %td= proyecto_item.fecha_limite
-          %td= proyecto_item.honorarios
-          %td= proyecto_item.gastos_adminitrativos
-          %td= proyecto_item.monto
+          - if current_usuario.is?(:admin)
+            %td= proyecto_item.honorarios
+            %td= proyecto_item.gastos_adminitrativos
+            %td= proyecto_item.monto
           %td= proyecto_item.fecha_solicitud
           %td= link_to 'Editar', edit_proyecto_proyecto_proyecto_item_path(@proyecto, proyecto_item), :class => "edit"
     %p= link_to "Añadir servicio", new_proyecto_proyecto_proyecto_item_path(@proyecto), :class => 'new'

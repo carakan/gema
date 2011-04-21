@@ -10,7 +10,15 @@ Rails.application.routes.draw do
       resources :adjuntos
       resources :correspondencias
       resources :instrucciones do
-        resources :instruccion_detalles
+        resources :instruccion_detalles do
+          member do
+            get :entrega
+            post :entregar
+            get :ver_entrega
+            post :revisada
+            get :ver_calificacion
+          end
+        end
       end
       resources :proyecto_items
     end

@@ -1,0 +1,34 @@
+%title Datos de entrega
+= simple_form_for @instruccion_detalle, :html => { :multipart => true, :method => :post}, :url => entregar_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, @instruccion, @instruccion_detalle) do |detalle|
+  = detalle.input :descripcion_entrega
+
+  %h2
+    Archivos Adjuntos
+  %div#adjuntos
+    %a#a_adjuntar_archivo{:href => "javascript:", :class => "new"}
+      Adjuntar archivo
+
+  = detalle.button :submit, 'Confirmar'
+
+:javascript
+  $(document).ready(function() {
+    $('#a_adjuntar_archivo').click(function() {
+      tiempo = ( new Date() ).getTime().toString();
+      input = $('<input/>').attr({
+        'name': 'proyecto_instruccion_detalle[adjuntos_attributes][' + tiempo + '][archivo]',
+        'type': 'file',
+        'size': 20
+      });
+
+      del = '<a href="javascript:" class="adjunto_delete">borrar</a>';
+
+      var dos = $("<div class='percent_50'/>").append('<label>archivo</label>').append(input);
+      li = $('<li/>').append(dos).append(del)
+      $('#adjuntos').append( li );
+      $.mark(li, 7);
+    });
+
+    $('.adjunto_delete').live('click', function(e) {
+      $(this).parents('li:first').remove();
+    });
+  });
