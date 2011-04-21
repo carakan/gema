@@ -1,10 +1,10 @@
 class Proyecto::InstruccionDetalle < ActiveRecord::Base
-  attr_accessible :instruccion_id, :usuario_id, :tarea, :fecha_limite, :estado
+  #attr_accessible :instruccion_id, :usuario_id, :tarea, :fecha_limite, :estado, :ancestry
   set_table_name "instruccion_detalles"
   belongs_to :instruccion
   has_and_belongs_to_many :item_cobros, :association_foreign_key => :proyecto_item_id
   belongs_to :usuario
-
+  has_ancestry
   include AASM
 
   aasm_column :estado_tarea

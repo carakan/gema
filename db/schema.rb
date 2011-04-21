@@ -110,32 +110,21 @@ ActiveRecord::Schema.define(:version => 201104188153945) do
     t.string   "estado"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "ancestry"
     t.string   "estado_tarea"
   end
+
+  add_index "instruccion_detalles", ["ancestry"], :name => "index_instruccion_detalles_on_ancestry"
 
   create_table "instruccion_detalles_item_cobros", :id => false, :force => true do |t|
     t.integer "instruccion_detalle_id"
     t.integer "proyecto_item_id"
   end
 
-  create_table "instruccion_item_cobro", :force => true do |t|
-    t.integer  "instruccion_detalle_id"
-    t.integer  "proyecto_item_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "instruccions", :force => true do |t|
     t.integer  "area_id"
     t.integer  "proyecto_id"
     t.integer  "referencia_email"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "item_cobro_marcas", :force => true do |t|
-    t.integer  "proyecto_item_id"
-    t.integer  "marca_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -328,7 +317,7 @@ ActiveRecord::Schema.define(:version => 201104188153945) do
     t.integer  "representante_id"
     t.string   "representante_type"
     t.integer  "importacion_id"
-    t.string   "carta",              :limit => 500
+    t.string   "carta",              :limit => 1024
     t.string   "reporte_pdf"
     t.string   "idioma",             :limit => 4
     t.datetime "created_at"
