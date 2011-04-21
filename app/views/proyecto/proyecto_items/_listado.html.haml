@@ -23,7 +23,6 @@
         %th Gastos adminitrativos
         %th Monto
         %th Fecha solicitud
-  
       - for proyecto_item in proyecto_items
         %tr
           %td= link_to proyecto_item.proyecto_id, proyecto_proyecto_proyecto_item_path(@proyecto, proyecto_item)
@@ -38,14 +37,12 @@
           %td= proyecto_item.fecha_solicitud
           %td= link_to 'Editar', edit_proyecto_proyecto_proyecto_item_path(@proyecto, proyecto_item), :class => "edit"
     %p= link_to "Añadir servicio", new_proyecto_proyecto_proyecto_item_path(@proyecto), :class => 'new'
-
   #tabs-items-2
     %p= link_to "Nueva solicitud", new_proyecto_proyecto_proyecto_item_path(@proyecto), :class => 'new'
-
   #tabs-items-3
     %p= link_to "Nueva solicitud"
 
 :javascript
   $(function() {
-   $("#tabs-items").tabs();
+    $("#tabs-items").tabs();
   });
