@@ -14,6 +14,9 @@ Rails.application.routes.draw do
           member do
             get :entrega
             post :entregar
+            get :ver_entrega
+            post :revisada
+            get :ver_calificacion
           end
         end
       end

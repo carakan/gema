@@ -47,12 +47,23 @@ class Proyecto::InstruccionDetallesController < ApplicationController
   end
  
   def entregar
-    @instruccion_detalle = Proyecto::InstruccionDetalle.find(params[:id])
-    if @instruccion_detalle.update_attributes(params[:proyecto_instruccion_detalle])
+    if Proyecto::InstruccionDetalle.update(params[:id], params[:proyecto_instruccion_detalle])
       flash[:notice] = "Datos registrados de manera correcta"
       redirect_to @instruccion_detalle.instruccion.proyecto
     end
     @instruccion_detalle.terminar!    
+  end
+
+  def ver_entrega
+    @instruccion_detalle = @instruccion.instruccion_detalles.find(params[:id])
+  end
+
+  def revisa
+    if Proyecto::InstruccionDetalle.update(params[:id], params[:proyecto_instruccion_detalle])
+      flash[:notice] = "Datos registrados de manera correcta"
+      redirect_to @instruccion_detalle.instruccion.proyecto
+    end
+    @instruccion_detalle.aprobar!    
   end
 
   protected

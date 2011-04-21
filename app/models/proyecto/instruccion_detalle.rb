@@ -1,5 +1,6 @@
 class Proyecto::InstruccionDetalle < ActiveRecord::Base
-  attr_accessible :instruccion_id, :usuario_id, :tarea, :fecha_limite, :estado, :descripcion_entrega
+  # TODO research for enable adjuntos atributtes in instruccion_detalle
+  #attr_accessible :instruccion_id, :usuario_id, :tarea, :fecha_limite, :estado, :descripcion_entrega
   set_table_name "instruccion_detalles"
   belongs_to :instruccion
   has_and_belongs_to_many :item_cobros, :association_foreign_key => :proyecto_item_id
@@ -21,11 +22,11 @@ class Proyecto::InstruccionDetalle < ActiveRecord::Base
     transitions :to => :revision, :from => [:pendiente]
   end
   
-#  aasm_event :aprobar do
-#    if calificacion > 10
-#      transitions :to => :aprobado, :from => [:revision]
-#    else
-#      transitions :to => :reprobado, :from => [:revision]
-#    end
-#  end
+  aasm_event :evaluar do
+    if evaluación >= 6
+      transitions :to => :aprobado, :from => [:revision]
+    else
+      transitions :to => :reprobado, :from => [:revision]
+    end
+  end
 end

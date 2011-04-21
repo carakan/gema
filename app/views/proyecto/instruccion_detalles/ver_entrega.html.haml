@@ -1,4 +1,3 @@
-%title Resumen entrega tarea
 #contenido
   .izquierda
     .subizq
@@ -25,12 +24,16 @@
     .subizq
       %strong Estado:
     .subder
-      = @instruccion_detalle.estado
+      = @instruccion_detalle.estado_tarea
   .derecha
     .subizq
       %strong Fecha Limite:
     .subder
       = l(@instruccion_detalle.fecha_limite, :format => "%d, %B %Y") if @instruccion_detalle.fecha_limite
+  .izquierda
+    .subizq
+      %strong Descripcion:
+    .subder
+      = @instruccion_detalle.descripcion_entrega
 
-= render :partial => "/proyecto/instruccion_detalles/datosentrega", :locals => {:instruccion_detalle => @instruccion_detalle}
-
+= render :partial => "/proyecto/instruccion_detalles/evaluacion", :locals => {:instruccion_detalle => @instruccion_detalle}
