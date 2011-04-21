@@ -24,8 +24,8 @@
   </tr>
   <% consulta.consulta_detalles.each do |rd|  %>
     <% if rd.marca %>
-      <tr>
-        <td><%= rd.marca.id %></td>
+      <tr class="marca-attr" data-id="<%= rd.marca.id %>" data-nombre="<%= rd.marca.nombre %>">
+        <td ><%= rd.marca.id %></td>
         <td><%= rd.marca.propia ? "Propia":"Ajeno" %></td>
         <td><%= rd.marca.tipo_signo.sigla if rd.marca.tipo_signo %></td>
         <td><%= rd.marca.tipo_marca.sigla if rd.marca.tipo_marca %></td>

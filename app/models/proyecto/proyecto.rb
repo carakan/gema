@@ -7,6 +7,14 @@ class Proyecto::Proyecto < ActiveRecord::Base
   has_many :correspondencias
   has_many :instruccions, :include => :instruccion_detalles
   has_many :proyecto_items
+
+  # TODO use a condition for select correct values
+  has_many :item_cobros, :class_name => "Proyecto::ItemCobro"
+  has_many :item_gastos, :class_name => "Proyecto::ItemGasto"
+
+  accepts_nested_attributes_for :item_gastos
+  accepts_nested_attributes_for :item_cobros
+
   has_many :adjuntos, :as => :adjuntable, :dependent => :destroy
   
   accepts_nested_attributes_for :adjuntos
@@ -17,6 +25,5 @@ class Proyecto::Proyecto < ActiveRecord::Base
   def to_s
     id
   end
- 
 end
 

@@ -211,7 +211,17 @@
           if ($(resp).find('input:submit').length <= 0) {
             p = $(el).parents('div.ajax-modal');
             id = $(p).attr('data-ajax_id');
+            $(p).html("");
             $(p).dialog('destroy');
+            var marcas = $(resp).find('.marca-attr');
+            if(marcas.length > 0) {
+              var name_input = $("#marcas-related input").attr("name");
+              $("#marcas-related input").remove();
+              marcas.each(function(e){
+                $("#marcas-related").prepend("<b>" + $(this).attr("data-nombre")+"</b></br>");
+                $("#marcas-related").prepend("<input name='" + name_input + "[]' value='"+ $(this).attr("data-id")+"' type='hidden' />");
+              })
+            }
             return $('body').trigger('ajax:complete', [resp]);
           } else {
             return $(el).parents('div.ajax-modal:first').html(resp);

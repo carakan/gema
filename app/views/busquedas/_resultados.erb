@@ -49,7 +49,7 @@
         </tbody>
       </table>
       <% if params[:select_marcas] %>
-        <%= submit_tag "Seleccionar marcas", :id => 'seleccionar_ids' %>
+        <%= submit_tag "Seleccionar marcas", :id => 'seleccionar_ids', :action => :select_marcas %>
       <% else%>
         <%= submit_tag "Crear pre reporte", :id => 'seleccionar' %>
       <% end %>

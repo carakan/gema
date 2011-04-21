@@ -1,37 +1,37 @@
 <% if usuario_signed_in? %>
 <ul id="navigation">
   <li class="first">
-  	<%= link_to 'Signos', marcas_path%>
-  	<ul>
+    <%= link_to 'Signos', marcas_path%>
+    <ul>
       <li><%= link_to 'Busquedas por similitud', busquedas_path %></li>
       <li><%= link_to 'Busqueda Avanzada', busqueda_avanzada_busquedas_path %></li>
       <li><%= link_to 'Busquedas realizadas', consultas_path%></li>
       <li><%= link_to 'Reportes realizados', reporte_marcas_path%></li>
       <li><%= link_to 'Importaciones', importaciones_path%></li>
- 	  </ul>
+    </ul>
   </li>
   <li>
-  	<a href="/representantes?cliente=true">Clientes</a>
-  	<ul>
-  		<li><%= link_to 'Agentes/Titulares', representantes_path%></li>
-  	</ul>
+    <a href="/representantes?cliente=true">Clientes</a>
+    <ul>
+      <li><%= link_to 'Agentes/Titulares', representantes_path%></li>
+    </ul>
   </li>
   <li>
-  	<a href="#">Datos generales</a>
-  	<ul>
-  		<li><%= link_to 'Tipos de marca', tipo_marcas_path%></li>
-  		<li><%= link_to 'Tipos de signo', tipo_signos_path%></li>
-  		<li><%= link_to 'Clases', clases_path %></li>
-  		<li><%= link_to 'Usuarios', usuarios_path%></li>
-  		<li><%= link_to 'Paises', paises_path%></li>
-  		<li><%= link_to 'Áreas', proyecto_areas_path%></li>
+    <a href="#">Datos generales</a>
+      <ul>
+  	<li><%= link_to 'Tipos de marca', tipo_marcas_path%></li>
+  	<li><%= link_to 'Tipos de signo', tipo_signos_path%></li>
+        <li><%= link_to 'Clases', clases_path %></li>
+  	<li><%= link_to 'Usuarios', usuarios_path%></li>
+  	<li><%= link_to 'Paises', paises_path%></li>
+  	<li><%= link_to 'Áreas', proyecto_areas_path%></li>
         <% if current_usuario.is?(:admin) %>
-        <li><%= link_to 'Roles', roles_path%></li>
+          <li><%= link_to 'Roles', roles_path%></li>
         <% end %>
-  	</ul>
+      </ul>
   </li>
   <li>
-  	<a href="#">Reportes Estadísticos</a>
+    <a href="#">Reportes Estadísticos</a>
     <ul>
       <li>
         <%= last_importation rescue "" %>

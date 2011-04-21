@@ -65,21 +65,24 @@ class ConsultasController < ApplicationController
   # POST /consultas.xml
   def create
     @consulta = Consulta.new(params[:consulta])
-    
-    if @consulta.save
-      unless @consulta.importacion.nil?
-        notice = "Se ha almacenado la consulta del cruce"
-        uri = cruce_importaciones_url(:importacion_id => @consulta.importacion.id, :page => @page)
-      else
-        notice = "Se ha almacenado la consulta"
-        uri = new_reporte_marca_url(:consulta_id => @consulta.id)
-      end
-      if params[:avanzado]
-        uri = download_advanced_reporte_marca_path(:id => @consulta.id)
-      end
-      redirect_to uri, :notice => notice
+    if params[:commit] == "Seleccionar marcas"
+      render(:partial => "/reporte_marcas/tabla_busqueda_avanzada_long", :locals => {:show_titulares => true, :consulta => @consulta})
     else
-      render :action => "new"
+      if @consulta.save
+        unless @consulta.importacion.nil?
+          notice = "Se ha almacenado la consulta del cruce"
+          uri = cruce_importaciones_url(:importacion_id => @consulta.importacion.id, :page => @page)
+        else
+          notice = "Se ha almacenado la consulta"
+          uri = new_reporte_marca_url(:consulta_id => @consulta.id)
+        end
+        if params[:avanzado]
+          uri = download_advanced_reporte_marca_path(:id => @consulta.id)
+        end
+        redirect_to uri, :notice => notice
+      else
+        render :action => "new"
+      end
     end
   end
 
