@@ -58,12 +58,13 @@ class Proyecto::InstruccionDetallesController < ApplicationController
     @instruccion_detalle = @instruccion.instruccion_detalles.find(params[:id])
   end
 
-  def revisa
+  def revisada
+    @instruccion_detalle = Proyecto::InstruccionDetalle.find(params[:id])
     if Proyecto::InstruccionDetalle.update(params[:id], params[:proyecto_instruccion_detalle])
       flash[:notice] = "Datos registrados de manera correcta"
-      redirect_to @instruccion_detalle.instruccion.proyecto
     end
-    @instruccion_detalle.aprobar!    
+    @instruccion_detalle.realizar_evaluacion(@instruccion_detalle.calificacion)    
+    redirect_to @instruccion_detalle.instruccion.proyecto
   end
 
   protected

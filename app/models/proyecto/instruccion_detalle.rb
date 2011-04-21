@@ -14,7 +14,7 @@ class Proyecto::InstruccionDetalle < ActiveRecord::Base
 
   aasm_initial_state :pendiente
   aasm_state :pendiente
-  aasm_state :revision 
+  aasm_state :revision
   aasm_state :aprobado
   aasm_state :reprobado
 
@@ -22,11 +22,19 @@ class Proyecto::InstruccionDetalle < ActiveRecord::Base
     transitions :to => :revision, :from => [:pendiente]
   end
   
-  aasm_event :evaluar do
-    if evaluación >= 6
-      transitions :to => :aprobado, :from => [:revision]
-    else
+  aasm_event :aprobar do
+    transitions :to => :aprobado, :from => [:revision]
+  end
+
+  aasm_event :reprobar do
       transitions :to => :reprobado, :from => [:revision]
+  end
+
+  def realizar_evaluacion(calificacion)
+    if calificacion >= 6
+      aprobar! 
+    else
+      reprobar!
     end
   end
 end

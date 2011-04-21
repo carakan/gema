@@ -61,7 +61,7 @@
         - for proyecto in @proyecto
           %tr
             %td= proyecto.id
-            %td= proyecto.contactos
+            %td= proyecto.representante
             %td= proyecto.titulo
             -for proyitem in proyecto.proyecto_items.find(:all, :order=>'fecha_limite ASC', :limit =>1 )
               %td= proyitem.fecha_limite
