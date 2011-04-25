@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110415150346) do
+ActiveRecord::Schema.define(:version => 20110415150348) do
 
   create_table "adjuntos", :force => true do |t|
     t.string   "nombre"
@@ -156,7 +156,7 @@ ActiveRecord::Schema.define(:version => 20110415150346) do
     t.string   "domicilio_titular",           :limit => 512,  :default => ""
     t.integer  "pais_prioridad_id"
     t.date     "fecha_prioridad"
-    t.integer  "numero_prioridad"
+    t.string   "numero_prioridad",                            :default => ""
     t.integer  "lema_marca_id"
     t.string   "estado",                                      :default => ""
   end
