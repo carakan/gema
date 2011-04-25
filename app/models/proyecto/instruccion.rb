@@ -4,6 +4,8 @@ class Proyecto::Instruccion < ActiveRecord::Base
   belongs_to :proyecto
   has_many :instruccion_detalles
   accepts_nested_attributes_for :instruccion_detalles
+  
+  has_many :revision_tareas, :conditions => {:estado_tarea => 'revision'}, :order => 'fecha_limite ASC', :class_name => 'Proyecto::InstruccionDetalle'
 
   def to_s
     id

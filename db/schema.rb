@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 201104218154850) do
+ActiveRecord::Schema.define(:version => 201104258153930) do
 
   create_table "adjuntos", :force => true do |t|
     t.string   "nombre"
@@ -109,11 +109,12 @@ ActiveRecord::Schema.define(:version => 201104218154850) do
     t.datetime "fecha_limite"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "ancestry"
     t.string   "estado_tarea"
     t.text     "descripcion_entrega"
     t.string   "comentario_evaluacion"
     t.integer  "calificacion"
+    t.string   "ancestry"
+    t.integer  "asignado_por"
   end
 
   add_index "instruccion_detalles", ["ancestry"], :name => "index_instruccion_detalles_on_ancestry"
@@ -123,10 +124,24 @@ ActiveRecord::Schema.define(:version => 201104218154850) do
     t.integer "proyecto_item_id"
   end
 
+  create_table "instruccion_item_cobro", :force => true do |t|
+    t.integer  "instruccion_detalle_id"
+    t.integer  "proyecto_item_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "instruccions", :force => true do |t|
     t.integer  "area_id"
     t.integer  "proyecto_id"
     t.integer  "referencia_email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "item_cobro_marcas", :force => true do |t|
+    t.integer  "proyecto_item_id"
+    t.integer  "marca_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -319,7 +334,7 @@ ActiveRecord::Schema.define(:version => 201104218154850) do
     t.integer  "representante_id"
     t.string   "representante_type"
     t.integer  "importacion_id"
-    t.string   "carta",              :limit => 1024
+    t.string   "carta",              :limit => 500
     t.string   "reporte_pdf"
     t.string   "idioma",             :limit => 4
     t.datetime "created_at"

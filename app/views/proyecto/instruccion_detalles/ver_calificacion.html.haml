@@ -35,7 +35,24 @@
       %strong Descripcion:
     .subder
       = @instruccion_detalle.descripcion_entrega
+
   = render :partial => "/adjuntos/index", :locals => {:adjuntos => @instruccion_detalle.adjuntos}
 
--if UsuarioSession.current_user[:id] == @instruccion_detalle.asignado_por 
-  = render :partial => "/proyecto/instruccion_detalles/evaluacion", :locals => {:instruccion_detalle => @instruccion_detalle}
+  %h2 Evaluación
+  .izquierda
+    .subizq
+      %strong Observaciones:
+    .subder
+      = @instruccion_detalle.comentario_evaluacion
+  .derecha
+    .subizq
+      %strong Calificación:
+    .subder
+      = @instruccion_detalle.calificacion
+  .izquierda
+    .subizq
+      %strong Estado:
+    .subder
+      = @instruccion_detalle.estado_tarea
+
+

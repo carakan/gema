@@ -13,7 +13,11 @@
       - if instruccion_detall.estado_tarea == 'pendiente'
         %td= link_to "Entregar", entrega_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion, instruccion_detall)
       - else
-        %td= link_to "Terminada", ver_entrega_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion, instruccion_detall), :class => 'terminada'
+        -if instruccion_detall.estado_tarea != 'revision'
+          %td= link_to "Calificada", ver_calificacion_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion, instruccion_detall), :class => 'terminada'
+        - else
+          %td= link_to "Revision", ver_entrega_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion, instruccion_detall), :class => 'terminada'
+
       %td= link_to 'Editar', edit_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion,instruccion_detall), :class => "edit"
       %td= link_to 'Eliminar', proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion,instruccion_detall), :confirm => 'Are you sure?', :method => :delete, :class => 'delete'
 
