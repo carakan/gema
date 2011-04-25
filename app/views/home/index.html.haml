@@ -62,9 +62,9 @@
             %td= proyecto.id
             %td= link_to proyecto.representante, proyecto 
             %td= proyecto.titulo
-            -for proyitem in proyecto.proyecto_items.find(:all, :order=>'fecha_limite ASC', :limit =>1 )
-              %td= proyitem.fecha_limite
-            
+            -for proyitem in proyecto.instruccions
+              -for instdetal in proyitem.instruccion_detalles.find(:all, :order=>'fecha_limite ASC', :limit=>1 )  
+                %td= l(instdetal.fecha_limite, :format => "%d %B %Y")
 
 :javascript
   $(function() {

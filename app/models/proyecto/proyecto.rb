@@ -25,5 +25,9 @@ class Proyecto::Proyecto < ActiveRecord::Base
   def to_s
     id
   end
+
+  def proxima_fecha_limite
+
+  end
 end
 
