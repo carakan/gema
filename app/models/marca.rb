@@ -9,7 +9,7 @@ class Marca < ActiveRecord::Base
   before_create :adicionar_usuario
   before_save :set_agentes_titulares, :if => lambda { |m| m.parent_id == 0 }
   before_save :llenar_productos, :if => lambda { |m| m.productos.blank? }
-  before_validation :set_marca_estado_id, :id => lambda { |m| m.marca_estado_id.nil? }
+  # before_validation :set_marca_estado_id, :id => lambda { |m| m.marca_estado_id.nil? }
 
   # Numero de palabras
   #before_save lambda { |m| m.numero_palabras = m.nombre_minusculas.strip.split(/\s/).size } 
@@ -150,7 +150,7 @@ class Marca < ActiveRecord::Base
   end
 
   def propia!
-      propia? ? "propia" : "foranea"
+    propia? ? "propia" : "foranea"
   end
      
   def valido!
@@ -208,7 +208,6 @@ class Marca < ActiveRecord::Base
         mod = false
         return klass.errors.add(:marca_estado_id, "Debe seleccionar un estado")
       end
-      #raise "Error, debe incluir estado válido" unless m
     end
     include mod
   end
@@ -605,6 +604,4 @@ class Marca < ActiveRecord::Base
   def llenar_productos
     self.productos = self.clase.descripcion unless self.clase.nil?
   end
-
-
 end
