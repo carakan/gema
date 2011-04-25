@@ -91,6 +91,7 @@
     };
     createDialog = function(params) {
       var div;
+      $(".ajax-modal").remove();
       params = $.extend({
         'id': new Date().getTime(),
         'title': '',
@@ -128,6 +129,7 @@
         addDatePicker($(div));
         return $(div).find('a.new[href*=/], a.edit[href*=/]').show();
       });
+      $(div).attr("data-id", $(this).attr("data-id"));
       e.stopPropagation();
       return false;
     });
@@ -211,15 +213,15 @@
           if ($(resp).find('input:submit').length <= 0) {
             p = $(el).parents('div.ajax-modal');
             id = $(p).attr('data-ajax_id');
-            $(p).html("");
             $(p).dialog('destroy');
             var marcas = $(resp).find('.marca-attr');
             if(marcas.length > 0) {
-              var name_input = $("#marcas-related input").attr("name");
-              $("#marcas-related input").remove();
+              var selected_var = $(".marcas-related[data-id="+ $(p).attr("data-id") +"]");
+              var name_input = selected_var.find("input").attr("name");
+              selected_var.find("input").remove();
               marcas.each(function(e){
-                $("#marcas-related").prepend("<b>" + $(this).attr("data-nombre")+"</b></br>");
-                $("#marcas-related").prepend("<input name='" + name_input + "[]' value='"+ $(this).attr("data-id")+"' type='hidden' />");
+                selected_var.prepend("<b>" + $(this).attr("data-nombre")+"</b></br>");
+                selected_var.prepend("<input name='" + name_input + "[]' value='"+ $(this).attr("data-id")+"' type='hidden' />");
               })
             }
             return $('body').trigger('ajax:complete', [resp]);

@@ -38,10 +38,10 @@
 
           %br
           = radio_button_tag "denominacion","exacta", true
-          = label_tag "Palabra o frase EXACTA", "Palabra o frase EXACTA", :class => 'line'
+          = label_tag "denominacion_exacta", "Palabra o frase EXACTA", :class => 'line'
           %br
           = radio_button_tag "denominacion", "similar"
-          = label_tag "Palabra(s) dentro de una frase", "Palabra(s) dentro de una frase", :class => 'line'
+          = label_tag "denominacion_similar", "Palabra(s) dentro de una frase", :class => 'line'
           %br.clear
           %br.clear
             = render :partial => "generic_select"
