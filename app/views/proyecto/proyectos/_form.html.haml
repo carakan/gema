@@ -83,7 +83,7 @@
     });
   });
 
-  $(function() {
+  $(document).ready(function(){
     $("#tabs").tabs();
     $("#proyecto_proyecto_representante_id").fcbkcomplete({
       json_url: "/representantes/buscar",
@@ -92,7 +92,7 @@
       newel: false,
       maxitems: 1
     });
-
+    
     $("#proyecto_proyecto_representante_id").change(function(){
       $("#proyecto_proyecto_contacto_ids").load("/contactos/buscar?id=" + $("#proyecto_proyecto_representante_id option:selected.selected").val());
     });
@@ -100,4 +100,7 @@
 
   $("form").submit(function(){
     $("#proyecto_proyecto_representante_id").attr("name", "proyecto_proyecto[representante_id]")
+  });
+  $(".subordinada, .coordinada").live("click", function(){
+    $(this).parents(".fieldset").siblings(".container").find("a").click();
   });

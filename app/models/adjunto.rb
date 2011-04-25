@@ -1,6 +1,4 @@
-# encoding: utf-8
-# author: Boris Barroso
-# email: boriscyber@gmail.com
+
 class Adjunto < ActiveRecord::Base
   after_save :set_marca_archivo
   #after_save :set_tipo

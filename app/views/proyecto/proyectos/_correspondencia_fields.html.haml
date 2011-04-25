@@ -2,4 +2,4 @@
   = f.collection_radio :tipo, [[true, 'Recibido'] ,[false, 'Enviado']], :first, :last
   = f.input :asunto, :label =>'Asunto:', :hint =>'Indique el asunto o cabecera del email'
   = f.input :contenido, :input_html => {:class => "mceEditor", :cols=>120, :rows=>5}, :hint => "Escriba el contenido de la correspondencia"
-  = remove_child_link "Quitar email", f
+  = remove_child_link "Quitar", f

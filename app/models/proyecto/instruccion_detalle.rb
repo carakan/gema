@@ -9,7 +9,7 @@ class Proyecto::InstruccionDetalle < ActiveRecord::Base
   accepts_nested_attributes_for :adjuntos
 
   has_ancestry
-  
+
   include AASM
 
   aasm_column :estado_tarea

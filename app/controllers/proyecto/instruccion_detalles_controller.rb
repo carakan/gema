@@ -67,6 +67,10 @@ class Proyecto::InstruccionDetallesController < ApplicationController
     redirect_to @instruccion_detalle.instruccion.proyecto
   end
 
+  def ver_calificacion
+    @instruccion_detalle = @instruccion.instruccion_detalles.find(params[:id])
+  end
+
   protected
   def set_instruccion
     @proyecto = Proyecto::Proyecto.find(params[:proyecto_id])
