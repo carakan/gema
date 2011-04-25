@@ -39,4 +39,16 @@ class Proyecto::InstruccionDetalle < ActiveRecord::Base
       reprobar!
     end
   end
+
+  def self.revision(usuario)
+    self.find(:all, :conditions => {:estado_tarea => 'revision', :asignado_por => usuario})
+  end
+
+  def self.mistareas(usuario)
+    self.find(:all, :conditions=>{:estado_tarea=> 'pendiente', :usuario_id=>usuario})
+  end
+
+  def self.pendientes(usuario)
+    self.find(:all, :conditions => {:estado_tarea => 'pendiente', :asignado_por => usuario})
+  end
 end

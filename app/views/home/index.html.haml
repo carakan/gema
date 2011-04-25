@@ -18,34 +18,30 @@
               %tr
                 %th Fecha Limite
                 %th Tarea
-              - @proyectos.each do |proy|
-                - proy.instruccions.each do |proyinstruccions|
-                  - proyinstruccions.revision_tareas.each do |instareas|
-                    %tr
-                      %td= instareas.fecha_limite
-                      %td= link_to instareas.tarea, ver_entrega_proyecto_proyecto_instruccion_instruccion_detall_path(proy, proyinstruccions, instareas) 
+              - Proyecto::InstruccionDetalle.revision(current_usuario).each do |instarea|
+                %tr
+                  %td= instarea.fecha_limite
+                  %td= link_to instarea.tarea, ver_entrega_proyecto_proyecto_instruccion_instruccion_detall_path(instarea.instruccion.proyecto,instarea.instruccion, instarea) 
         #tabshome-2
           %p
             %table
               %tr
                 %th Fecha Limite
-                %th Descripción
-              - for proyt in @proyectos
+                %th Tarea
+              - Proyecto::InstruccionDetalle.pendientes(current_usuario).each do |tarea|
                 %tr
-                - for proyitem in proyt.proyecto_items.find(:all, :order=>'fecha_limite ASC', :limit=>1)
-                  %td= proyitem.fecha_limite
-                  %td= proyt.titulo
+                  %td= tarea.fecha_limite
+                  %td= link_to tarea.tarea, ver_entrega_proyecto_proyecto_instruccion_instruccion_detall_path(tarea.instruccion.proyecto, tarea.instruccion, tarea) 
         #tabshome-3
           %p
             %table
               %tr
                 %th Fecha Limite
                 %th Descripción
-              - for proyect in @proyectos
+              - Proyecto::InstruccionDetalle.mistareas(current_usuario).each do |mitarea| 
                 %tr
-                - for proyitems in proyect.proyecto_items.find(:all, :order=>'fecha_solicitud ASC', :limit=>1)
-                  %td= proyitems.fecha_limite
-                  %td= proyect.titulo
+                  %td= mitarea.fecha_limite
+                  %td= mitarea.tarea
 
   %tr
     %td{:colspan=>2}
