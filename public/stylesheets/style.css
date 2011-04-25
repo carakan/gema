@@ -898,6 +898,6 @@ div#busqueda .contenido .derecha {
   padding-left: 20px;
   display: inline-block;
 }
-#marcas-related b{
+.marcas-related b{
   font-size: 8px;
 }
