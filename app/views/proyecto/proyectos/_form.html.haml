@@ -39,8 +39,8 @@
         %h2 Instrucciones
         = f.simple_fields_for :instruccions, Proyecto::Instruccion.new do |i|
           = render 'instruccion_fields', :f => i
-          = add_child_link "Añadir Instruccion", f, :instruccions, {:object => Proyecto::Instruccion.new}
-
+          .container
+            = add_child_link "Añadir Instruccion", f, :instruccions, {:object => Proyecto::Instruccion.new}
 
     #tabs-3
       %h2 Servicios
@@ -102,5 +102,10 @@
     $("#proyecto_proyecto_representante_id").attr("name", "proyecto_proyecto[representante_id]")
   });
   $(".subordinada, .coordinada").live("click", function(){
-    $(this).parents(".fieldset").siblings(".container").find("a").click();
+    var enlace = $(this).parents(".fieldset").siblings(".container").find("a");
+    if($(this).attr("data-")){
+      
+    }
+    enlace.click();
+    return false;
   });

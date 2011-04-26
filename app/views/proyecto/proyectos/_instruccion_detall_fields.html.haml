@@ -1,17 +1,15 @@
 .fieldset
-  %table{:border=>0}
-    %tr
-      %td
-        = f.input :parent_id, :as => :hidden
-        .input
-          = f.label :usuario_id, "Usuario"
-          = f.select :usuario_id, grouped_options_for_select(Usuario.all_for_areas)
-      %td
-        = f.input :tarea,:as => :text, :input_html => {:cols => 50, :rows => 1}
-      %td
-        = f.input :fecha_limite, :as => :date
-      %td
-        = link_to 'Subordinada', "#", :class => "subordinada"
-        = link_to 'Coordinada', "#", :class => "coordinada"
-  = remove_child_link "Quitar", f
-  %br.clear
+  .percent_20{:style => "width: 17%;"}
+    .input
+      = f.label :usuario_id, "Usuario"
+      = f.select :usuario_id, grouped_options_for_select(Usuario.all_for_areas)
+    = f.input :parent_id, :as => :hidden, :input_html => { :value => "parent_id_regex"}
+  .percent_40
+    = f.input :tarea,:as => :text, :input_html => {:cols => 40, :rows => 1}
+  .percent_20
+    = f.input :fecha_limite, :as => :date
+  .percent_20
+    = link_to 'Subordinada', "#", :class => "subordinada"
+    = link_to 'Coordinada', "#", :class => "coordinada"
+    = remove_child_link "Quitar", f
+  .tab.container{:"data-id" => "new_instruccion_detalles"}

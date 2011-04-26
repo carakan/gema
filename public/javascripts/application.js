@@ -360,7 +360,19 @@ function verificarErrorresManuales(){
 function insert_fields(link, method, content) {
   var new_id = new Date().getTime();
   var regexp = new RegExp("new_" + method, "g")
-  $(link).parent().before(content.replace(regexp, new_id));
+  var regexp2 = new RegExp("parent_id_regex", "g");
+  if($(link).attr("data-replace")){
+    content.replace(regexp2, $(link).attr("data-replace"))
+    $(link).removeAttr("data-replace");
+  } else {
+    content.replace(regexp2, "")
+  }
+  if($(link).attr("data-parent")){
+    $($(link).attr("data-parent")).before(content.replace(regexp, new_id));
+    $(link).removeAttr("data-parent");
+  } else {
+    $(link).parent().before(content.replace(regexp, new_id));
+  }
   tinyMCE.init({
    mode : "specific_textareas",
    editor_selector :/(mceRichText|mceEditor)/,
