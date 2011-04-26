@@ -52,16 +52,17 @@
           %th Proyecto
           %th Agente
           %th Descripción
-          %th Fecha Limite
-        - for proyecto in @proyectos
+          %th Iniciado en
+          %th Terminado en
+          %th Estado
+        - @proyectos.each do |proyecto|
           %tr
             %td= proyecto.id
             %td= link_to proyecto.representante, proyecto 
             %td= proyecto.titulo
-            -for proyitem in proyecto.instruccions
-              -for instdetal in proyitem.instruccion_detalles.find(:all, :order=>'fecha_limite ASC', :limit=>1 )  
-                %td= l(instdetal.fecha_limite, :format => "%d %B %Y")
-
+            %td= l(proyecto.fecha_minima, :format=>"%d %B %Y") if proyecto.fecha_minima  
+            %td= l(proyecto.fecha_maxima, :format =>"%d %b %y") if proyecto.fecha_maxima
+            %td= proyecto.estado_proyecto           
 :javascript
   $(function() {
   $( "#tabshome" ).tabs();

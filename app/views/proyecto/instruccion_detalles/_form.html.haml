@@ -1,14 +1,11 @@
 - simple_form_for @instruccion_detalle, :url=>url do |f|
   = f.error_messages
-  =# f.association :instruccion
   %p
     = f.input :tarea, :as => :text
   %p
     = f.input :fecha_limite, :as => :date
   %p
-    = f.input :estado, :collection=>['Activo', 'Inactivo']
-
-    =# f.association :usuario
+    = f.association :usuario
   %p
     = f.button :submit, "Crear nueva Tarea"
 

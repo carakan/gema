@@ -6,7 +6,7 @@
     %th Fecha limite
   - for instruccion_detall in instruccion_detalles
     %tr
-      %td= instruccion_detall.instruccion
+      %td= instruccion_detall.instruccion_id
       %td= instruccion_detall.usuario
       %td= instruccion_detall.tarea
       %td= l(instruccion_detall.fecha_limite, :format => "%d, %B %Y") if instruccion_detall.fecha_limite
