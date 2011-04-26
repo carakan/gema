@@ -3,13 +3,14 @@
     .input
       = f.label :usuario_id, "Usuario"
       = f.select :usuario_id, grouped_options_for_select(Usuario.all_for_areas)
-    = f.input :parent_id, :as => :hidden, :input_html => { :value => "parent_id_regex"}
+    = f.input :temporal_parent_id, :as => :hidden, :input_html => { :value => "parent_id_regex"}
+    = f.input :temporal_id, :as => :hidden, :input_html => { :value => "new_instruccion_detalles"}
   .percent_40
     = f.input :tarea,:as => :text, :input_html => {:cols => 40, :rows => 1}
   .percent_20
     = f.input :fecha_limite, :as => :date
   .percent_20
-    = link_to 'Subordinada', "#", :class => "subordinada"
-    = link_to 'Coordinada', "#", :class => "coordinada"
+    = link_to 'Subordinada', "#", :class => "subordinada", :"data-id" => "new_instruccion_detalles"
+    = link_to 'Coordinada', "#", :class => "coordinada", :"data-id" => "new_instruccion_detalles"
     = remove_child_link "Quitar", f
   .tab.container{:"data-id" => "new_instruccion_detalles"}

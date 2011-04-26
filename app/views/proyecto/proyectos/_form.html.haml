@@ -32,7 +32,7 @@
     #tabs-2
       %div{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all",:style=>'font-size:11px;'}
         %h2 Nuevo Email
-        .container
+        .container.email
           = f.simple_fields_for :correspondencias, Proyecto::Correspondencia.new  do |form|
             = add_child_link "Añadir email", f, :correspondencias
       %div{:style=>'font-size:11px; height: auto;'}
@@ -102,10 +102,22 @@
     $("#proyecto_proyecto_representante_id").attr("name", "proyecto_proyecto[representante_id]")
   });
   $(".subordinada, .coordinada").live("click", function(){
-    var enlace = $(this).parents(".fieldset").siblings(".container").find("a");
-    if($(this).attr("data-")){
-      
-    }
+    var id = $(this).attr("data-id");
+    var enlace = $(this).parents(".fieldset").siblings(".container.tarea").find("a");
+    enlace.attr("data-replace", id);
+    enlace.attr("data-parent", ".container[data-id="+id+"]");
+    console.debug("enlace ", enlace);
     enlace.click();
     return false;
   });
+  $(".container.email a").live("click", function(){
+    
+  })
+  $(".correspondencia input[name*=asunto]").live("change", function(){
+    var results = "";
+    $(".correspondencia input[name*=asunto]").each(function(elem){
+      results += "<option value='" + $(this).attr("data-id") + "'>" + $(this).val() + "<option/>";
+    })
+    $(".instrucciones select").html(results);
+    $(".instrucciones select option:empty").remove();
+  })

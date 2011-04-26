@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(:version => 201104258153930) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "asunto"
+    t.integer  "temporal_id"
   end
 
   create_table "importaciones", :force => true do |t|
@@ -114,6 +115,8 @@ ActiveRecord::Schema.define(:version => 201104258153930) do
     t.text     "descripcion_entrega"
     t.string   "comentario_evaluacion"
     t.integer  "calificacion"
+    t.integer  "temporal_id"
+    t.integer  "temporal_parent_id"
     t.integer  "asignado_por"
   end
 
@@ -130,6 +133,7 @@ ActiveRecord::Schema.define(:version => 201104258153930) do
     t.integer  "referencia_email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "temporal_correspondencia_id"
   end
 
   create_table "item_cobros_marcas", :id => false, :force => true do |t|

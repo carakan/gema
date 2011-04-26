@@ -362,10 +362,10 @@ function insert_fields(link, method, content) {
   var regexp = new RegExp("new_" + method, "g")
   var regexp2 = new RegExp("parent_id_regex", "g");
   if($(link).attr("data-replace")){
-    content.replace(regexp2, $(link).attr("data-replace"))
+    content = content.replace(regexp2, $(link).attr("data-replace"))
     $(link).removeAttr("data-replace");
   } else {
-    content.replace(regexp2, "")
+    content = content.replace(regexp2, "")
   }
   if($(link).attr("data-parent")){
     $($(link).attr("data-parent")).before(content.replace(regexp, new_id));
