@@ -25,5 +25,44 @@ class Proyecto::Proyecto < ActiveRecord::Base
   def to_s
     id
   end
+
+  def fecha_minima  
+    fechas = []
+    self.instruccions.each do |instruccion|
+      instruccion.tareas_pendientes.each do |tarea|
+        fechas << tarea.fecha_limite
+      end
+    end
+  fechas.min
+  end
+
+  def fecha_maxima
+    fechas = []
+    self.instruccions.each do |instruccion|
+      instruccion.tareas_pendientes.each do |tarea|
+        fechas << tarea.fecha_limite
+      end
+    end
+  fechas.max
+  end
+
+  def estado_proyecto
+    estados =[]
+    self.instruccions.each do |instruccion|
+      instruccion.instruccion_detalles.each do |tarea|
+       estados << tarea.estado_tarea 
+      end
+    end
+
+    if estados.include?("pendiente")
+      "pendiente"
+    else
+      if estados.empty?
+        "Vacio"
+      else
+        "terminado"    
+      end
+    end
+  end
 end
 
