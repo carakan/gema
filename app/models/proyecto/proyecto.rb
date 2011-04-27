@@ -9,8 +9,8 @@ class Proyecto::Proyecto < ActiveRecord::Base
   has_many :proyecto_items
 
   # TODO use a condition for select correct values
-  has_many :item_cobros, :class_name => "Proyecto::ItemCobro", :conditions => {:tipo=> 1 }
-  has_many :item_gastos, :class_name => "Proyecto::ItemGasto" , :conditions => {:tipo=> 0 }
+  #has_many :item_cobros, :class_name => "Proyecto::ItemCobro", :conditions => {:tipo=> 1 }
+  #has_many :item_gastos, :class_name => "Proyecto::ItemGasto" , :conditions => {:tipo=> 0 }
 
   accepts_nested_attributes_for :item_gastos
   accepts_nested_attributes_for :item_cobros
