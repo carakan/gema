@@ -6,17 +6,13 @@
   #tabs{:style=>'font-size:11px;'}
     %ul
       %li
-        %a{:href=>'#tabs-1'}
-          Proyecto
+        %a{:href=>'#tabs-1'} Proyecto
       %li
-        %a{:href=>'#tabs-2'}
-          Correspondencia e Instrucciones
+        %a{:href=>'#tabs-2'} Correspondencia e Instrucciones
       %li
-        %a{:href=>'#tabs-3'}
-          Servicios
+        %a{:href=>'#tabs-3'} Servicios
       %li
-        %a{:href=>'#tabs-4'}
-          Archivos adjuntos
+        %a{:href=>'#tabs-4'} Archivos adjuntos
 
     #tabs-1
 
@@ -51,8 +47,7 @@
     #tabs-4
       %h2 Archivos Adjuntos
       %div#adjuntos
-        %a#a_adjuntar_archivo{:href => "javascript:", :class => "new"}
-          Adjuntar archivo
+        %a#a_adjuntar_archivo{:href => "javascript:", :class => "new"} Adjuntar archivo
 
   = f.button :submit, 'Guardar Proyecto'
 
@@ -99,14 +94,18 @@
   });
 
   $("form").submit(function(){
-    $("#proyecto_proyecto_representante_id").attr("name", "proyecto_proyecto[representante_id]")
+    $("#proyecto_proyecto_representante_id").attr("name", "proyecto_proyecto[representante_id]");
+    $("input[name*=marca_ids]").each(function(){
+      if($(this).val() == "[]"){
+        $(this).remove();
+      }
+    });
   });
   $(".subordinada, .coordinada").live("click", function(){
     var id = $(this).attr("data-id");
     var enlace = $(this).parents(".fieldset").siblings(".container.tarea").find("a");
     enlace.attr("data-replace", id);
     enlace.attr("data-parent", ".container[data-id="+id+"]");
-    console.debug("enlace ", enlace);
     enlace.click();
     return false;
   });

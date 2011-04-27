@@ -1,7 +1,7 @@
 class Proyecto::InstruccionDetallesController < ApplicationController
   before_filter :set_instruccion
   def index
-    @instruccion_detalles = @instruccion.instruccion_detalles.all
+    @instruccion_detalles = @instruccion.instruccion_detalles.paginate(:per_page => 5, :page => params[:page])
   end
   
   def show
