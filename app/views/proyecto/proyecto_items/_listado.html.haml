@@ -25,7 +25,7 @@
           %th Monto
         %th Marcas
         %th Fecha solicitud
-      - for proyecto_item in proyecto_items
+      - @proyecto.item_cobros.each do |proyecto_item|
         %tr
           %td= link_to proyecto_item.proyecto_id, proyecto_proyecto_proyecto_item_path(@proyecto, proyecto_item)
           %td= proyecto_item.descripcion
@@ -41,9 +41,11 @@
           %td= proyecto_item.fecha_solicitud
           %td= link_to 'Editar', edit_proyecto_proyecto_proyecto_item_path(@proyecto, proyecto_item), :class => "edit"
     %p  
-      = link_to "Añadir servicio", new_proyecto_proyecto_proyecto_item_path(@proyecto), :class => 'new', :style => "float: right;"
+      = link_to "Añadir servicio", new_proyecto_proyecto_proyecto_item_path(@proyecto), :class => 'new ajax', :style => "float: right;"
       %br.clear
   #tabs-items-2
+    %h2 Solicitud de fondos
+    =render :partial => "/proyecto/proyecto_items/gasto_form"
     %p
       = link_to "Nueva solicitud", new_proyecto_proyecto_proyecto_item_path(@proyecto), :class => 'new', :style => "float: right;"
       %br.clear
