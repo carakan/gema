@@ -101,7 +101,6 @@
     var enlace = $(this).parents(".fieldset").siblings(".container.tarea").find("a");
     enlace.attr("data-replace", id);
     enlace.attr("data-parent", ".container[data-id="+id+"]");
-    console.debug("enlace ", enlace);
     enlace.click();
     return false;
   });

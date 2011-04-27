@@ -387,5 +387,5 @@ function remove_fields(link) {
   if (hidden_field) {
     hidden_field.attr("value", '1');
   }
-  $(link).parent(".fieldset").hide();
+  $(link).parents(".fieldset:first").hide();
 }
