@@ -9,11 +9,12 @@ class Proyecto::InstruccionDetallesController < ApplicationController
   end
   
   def new
-    @instruccion_detalle = @instruccion.instruccion_detalles.new(:parent_id=>params[:parent_id])
+    @instruccion_detalle = @instruccion.instruccion_detalles.new(:parent_id => params[:parent_id])
   end
   
   def create
     @instruccion_detalle = @instruccion.instruccion_detalles.new(params[:proyecto_instruccion_detalle])
+    @instruccion_detalle.asignado_por = current_usuario.id
     if @instruccion_detalle.save
       redirect_to proyecto_proyecto_url(@proyecto), :notice => "Ha sido satisfactoriamente creada la Tarea."
     else
@@ -47,9 +48,10 @@ class Proyecto::InstruccionDetallesController < ApplicationController
   end
  
   def entregar
+    @instruccion_detalle = Proyecto::InstruccionDetalle.find(params[:id])
     if Proyecto::InstruccionDetalle.update(params[:id], params[:proyecto_instruccion_detalle])
       flash[:notice] = "Datos registrados de manera correcta"
-      redirect_to @instruccion_detalle.instruccion.proyecto
+      redirect_to @proyecto
     end
     @instruccion_detalle.terminar!    
   end
@@ -63,8 +65,8 @@ class Proyecto::InstruccionDetallesController < ApplicationController
     if Proyecto::InstruccionDetalle.update(params[:id], params[:proyecto_instruccion_detalle])
       flash[:notice] = "Datos registrados de manera correcta"
     end
-    @instruccion_detalle.realizar_evaluacion(@instruccion_detalle.calificacion)    
-    redirect_to @instruccion_detalle.instruccion.proyecto
+    @instruccion_detalle.realizar_evaluacion(@instruccion_detalle.calificacion)
+    redirect_to @proyecto
   end
 
   def ver_calificacion

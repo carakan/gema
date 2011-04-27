@@ -33,7 +33,7 @@ class Proyecto::InstruccionDetalle < ActiveRecord::Base
   end
 
   def realizar_evaluacion(calificacion)
-    if calificacion >= 6
+    if calificacion > 5
       aprobar! 
     else
       reprobar!
