@@ -11,7 +11,6 @@
 # It's strongly recommended to check this file into your version control system.
 
 ActiveRecord::Schema.define(:version => 20110426164814) do
-
   create_table "adjuntos", :force => true do |t|
     t.string   "nombre"
     t.integer  "adjuntable_id"
@@ -110,11 +109,12 @@ ActiveRecord::Schema.define(:version => 20110426164814) do
     t.datetime "fecha_limite"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "ancestry"
     t.string   "estado_tarea"
     t.text     "descripcion_entrega"
     t.string   "comentario_evaluacion"
     t.integer  "calificacion"
+    t.string   "ancestry"
+
     t.integer  "asignado_por"
     t.integer  "temporal_id",           :limit => 8
     t.integer  "temporal_parent_id",    :limit => 8
@@ -125,6 +125,13 @@ ActiveRecord::Schema.define(:version => 20110426164814) do
   create_table "instruccion_detalles_item_cobros", :id => false, :force => true do |t|
     t.integer "instruccion_detalle_id"
     t.integer "proyecto_item_id"
+  end
+
+  create_table "instruccion_item_cobro", :force => true do |t|
+    t.integer  "instruccion_detalle_id"
+    t.integer  "proyecto_item_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "instruccions", :force => true do |t|
