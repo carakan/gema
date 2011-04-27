@@ -99,7 +99,12 @@
   });
 
   $("form").submit(function(){
-    $("#proyecto_proyecto_representante_id").attr("name", "proyecto_proyecto[representante_id]")
+    $("#proyecto_proyecto_representante_id").attr("name", "proyecto_proyecto[representante_id]");
+    $("input[name*=marca_ids]").each(function(){
+      if($(this).val() == "[]"){
+        $(this).remove();
+      }
+    });
   });
   $(".subordinada, .coordinada").live("click", function(){
     var id = $(this).attr("data-id");
