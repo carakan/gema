@@ -373,7 +373,7 @@ function insert_fields(link, method, content) {
   } else {
     $(link).parent().before(content.replace(regexp, new_id));
   }
-
+  transformarDateSelect();
 }
 function remove_fields(link) {
   var hidden_field = $(link).prev("input[type=hidden]");

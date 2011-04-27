@@ -76,7 +76,6 @@ class Proyecto::Proyecto < ActiveRecord::Base
           if correspondencia.temporal_id == instruccion.temporal_correspondencia_id
             instruccion.referencia_email = correspondencia.id
             instruccion.save
-            break
           end
         end
       end
@@ -86,7 +85,6 @@ class Proyecto::Proyecto < ActiveRecord::Base
             if parent.temporal_id == tarea.temporal_parent_id
               tarea.parent = parent
               tarea.save
-              break
             end
           end
         end
