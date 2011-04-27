@@ -8,13 +8,14 @@
         Mis Tareas
 
   #tabs-instruccion-1
-    - for instruccion in instrucciones
-      %p Referencia email
-      = instruccion.referencia_email
-      %br
-      %p= link_to 'Editar',  edit_proyecto_proyecto_instruccion_path(@proyecto, instruccion), :class=>'edit'
-      %p= link_to "Añadir Instruccion", new_proyecto_proyecto_instruccion_path(@proyecto), :class=>'new'
-      = render :partial =>'proyecto/instruccion_detalles/listado', :locals =>{:instruccion_detalles => instruccion.instruccion_detalles, :instruccion => instruccion}
+    %table
+      %th Referencia email
+      - for instruccion in instrucciones
+        %tr
+          %td= instruccion.referencia_email
+          %td= link_to 'Editar',  edit_proyecto_proyecto_instruccion_path(@proyecto, instruccion), :class=>'edit'
+        %p= link_to "Añadir Instruccion", new_proyecto_proyecto_instruccion_path(@proyecto), :class=>'new', :style => "float: right;"
+        = render :partial =>'proyecto/instruccion_detalles/listado', :locals =>{:instruccion_detalles => instruccion.instruccion_detalles, :instruccion => instruccion}
   #tabs-instruccion-2
     Asignada por mi
 :javascript
