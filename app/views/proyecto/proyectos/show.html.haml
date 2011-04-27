@@ -12,7 +12,7 @@
 
   = render :partial => "/proyecto/correspondencias/listado", :locals => {:correspondencias => @proyecto.correspondencias.paginate(:per_page=>5, :page=>params[:page])}
   %br
-  = render :partial => "/proyecto/proyecto_items/listado", :locals => {:proyecto_items => @proyecto.proyecto_items}
+  = render :partial => "/proyecto/proyecto_items/listado", :locals => {:proyecto_items => @proyecto.proyecto_items.paginate(:per_page=>5, :page=>params[:page])}
   %br
   = render :partial => "/proyecto/instrucciones/listado", :locals =>{:instrucciones => @proyecto.instruccions}
 

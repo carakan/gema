@@ -1,7 +1,7 @@
 class Proyecto::ProyectoItemsController < ApplicationController
   before_filter :set_proyecto
   def index
-    @proyecto_items = Proyecto::ProyectoItem.all
+    @proyecto_items = Proyecto::ProyectoItem.paginate(:per_page => 5, :page => params[:page])
   end
   
   def show
