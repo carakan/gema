@@ -382,3 +382,4 @@ function remove_fields(link) {
   }
   $(link).parents(".fieldset:first").hide();
 }
+					
