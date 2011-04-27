@@ -373,15 +373,8 @@ function insert_fields(link, method, content) {
   } else {
     $(link).parent().before(content.replace(regexp, new_id));
   }
-  tinyMCE.init({
-   mode : "specific_textareas",
-   editor_selector :/(mceRichText|mceEditor)/,
-   editor_deselector : "mceNoEditor",
-   theme: "simple"
-  });
-  transformarDateSelect();
-}
 
+}
 function remove_fields(link) {
   var hidden_field = $(link).prev("input[type=hidden]");
   if (hidden_field) {

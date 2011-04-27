@@ -14,7 +14,7 @@
         = link_to(instruccion.email.asunto, proyecto_proyecto_correspondencia_path(@proyecto, instruccion.email)) if instruccion.email
       %p= link_to 'Editar',  edit_proyecto_proyecto_instruccion_path(@proyecto, instruccion), :class=>'edit'
       %p= link_to "Añadir Instruccion", new_proyecto_proyecto_instruccion_path(@proyecto), :class=>'new'
-      = render :partial =>'proyecto/instruccion_detalles/listado', :locals =>{:instruccion_detalles => instruccion.instruccion_detalles, :instruccion => instruccion}
+      = render :partial =>'proyecto/instruccion_detalles/listado', :locals =>{:instruccion_detalles => instruccion.instruccion_detalles.paginate(:per_page=>5, :page=>params[:page]), :instruccion => instruccion}
   #tabs-instruccion-2
     Asignada por mi
 :javascript
