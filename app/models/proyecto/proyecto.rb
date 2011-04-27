@@ -22,6 +22,8 @@ class Proyecto::Proyecto < ActiveRecord::Base
   accepts_nested_attributes_for :proyecto_items
   accepts_nested_attributes_for :instruccions
 
+  after_save :update_position_on_tree
+
   def to_s
     id
   end
@@ -61,6 +63,31 @@ class Proyecto::Proyecto < ActiveRecord::Base
         "Vacio"
       else
         "terminado"    
+      end
+    end
+  end
+
+  protected
+
+  def update_position_on_tree
+    self.instruccions.each do |instruccion|
+      if instruccion.temporal_correspondencia_id
+        self.correspondencias.each do |correspondencia|
+          if correspondencia.temporal_id == instruccion.temporal_correspondencia_id
+            instruccion.referencia_email = correspondencia.id
+            instruccion.save
+          end
+        end
+      end
+      instruccion.instruccion_detalles.each do |tarea|
+        if tarea.temporal_parent_id
+          instruccion.instruccion_detalles.each do |parent|
+            if parent.temporal_id == tarea.temporal_parent_id
+              tarea.parent = parent
+              tarea.save
+            end
+          end
+        end
       end
     end
   end

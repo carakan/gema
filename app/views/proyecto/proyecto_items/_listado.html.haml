@@ -23,6 +23,7 @@
           %th Honorarios
           %th Gastos adminitrativos
           %th Monto
+        %th Marcas
         %th Fecha solicitud
       - for proyecto_item in proyecto_items
         %tr
@@ -36,6 +37,7 @@
             %td= proyecto_item.honorarios
             %td= proyecto_item.gastos_adminitrativos
             %td= proyecto_item.monto
+          %td.marcas= proyecto_item.marcas.collect{|marca| link_to(marca, marca, :class => "ajax")}.join(", ").html_safe
           %td= proyecto_item.fecha_solicitud
           %td= link_to 'Editar', edit_proyecto_proyecto_proyecto_item_path(@proyecto, proyecto_item), :class => "edit"
     %p= link_to "Añadir servicio", new_proyecto_proyecto_proyecto_item_path(@proyecto), :class => 'new'
