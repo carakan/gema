@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 201104258153930) do
+ActiveRecord::Schema.define(:version => 20110426164814) do
 
   create_table "adjuntos", :force => true do |t|
     t.string   "nombre"
@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(:version => 201104258153930) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "asunto"
-    t.integer  "temporal_id"
+    t.integer  "temporal_id", :limit => 8
   end
 
   create_table "importaciones", :force => true do |t|
@@ -115,9 +115,9 @@ ActiveRecord::Schema.define(:version => 201104258153930) do
     t.text     "descripcion_entrega"
     t.string   "comentario_evaluacion"
     t.integer  "calificacion"
-    t.integer  "temporal_id"
-    t.integer  "temporal_parent_id"
     t.integer  "asignado_por"
+    t.integer  "temporal_id",           :limit => 8
+    t.integer  "temporal_parent_id",    :limit => 8
   end
 
   add_index "instruccion_detalles", ["ancestry"], :name => "index_instruccion_detalles_on_ancestry"
@@ -133,7 +133,7 @@ ActiveRecord::Schema.define(:version => 201104258153930) do
     t.integer  "referencia_email"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "temporal_correspondencia_id"
+    t.integer  "temporal_correspondencia_id", :limit => 8
   end
 
   create_table "item_cobros_marcas", :id => false, :force => true do |t|
