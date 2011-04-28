@@ -20,7 +20,19 @@
     %br.clear
 
   #tabs-instruccion-2
-    Asignada por mi
+    %p
+      %table.decorated
+        %tr
+          %th Intruccion
+          %th Tarea
+          %th Fecha limite
+        - @mistareas.each do |mitarea|
+          %tr
+            %td= mitarea.instruccion_id
+            %td= link_to mitarea.tarea, ver_entrega_proyecto_proyecto_instruccion_instruccion_detall_path(mitarea.instruccion.proyecto,mitarea.instruccion, mitarea) 
+            %td= l(mitarea.fecha_limite, :format => "%d %B %Y")
+  =will_paginate @mistareas        
+
 :javascript
   $(function() {
    $("#tabs-instruccion").tabs();

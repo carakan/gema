@@ -5,6 +5,7 @@ class Proyecto::ProyectosController < ApplicationController
 
   def show
     @proyecto = Proyecto::Proyecto.find(params[:id])
+    @mistareas = Proyecto::InstruccionDetalle.mistareas(current_usuario, params[:page])
   end
 
   def new

@@ -24,15 +24,16 @@
                   %td= link_to instarea.tarea, ver_entrega_proyecto_proyecto_instruccion_instruccion_detall_path(instarea.instruccion.proyecto,instarea.instruccion, instarea) 
           =will_paginate @revisiones         
         #tabshome-2
-          %p
-            %table
-              %tr
-                %th Fecha Limite
-                %th Tarea
-              - @pendientes.each do |tarea|
+          #remote
+            %p
+              %table
                 %tr
-                  %td= tarea.fecha_limite
-                  %td= link_to tarea.tarea, proyecto_proyecto_instruccion_instruccion_detall_path(tarea.instruccion.proyecto, tarea.instruccion, tarea)
+                  %th Fecha Limite
+                  %th Tarea
+                - @pendientes.each do |tarea|
+                  %tr
+                    %td= tarea.fecha_limite
+                    %td= link_to tarea.tarea, proyecto_proyecto_instruccion_instruccion_detall_path(tarea.instruccion.proyecto, tarea.instruccion, tarea)
           =will_paginate @pendientes         
 
         #tabshome-3
