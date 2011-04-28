@@ -100,12 +100,14 @@
         $(this).remove();
       }
     });
+    $("input[value=parent_id_regex]").remove();
   });
   $(".subordinada, .coordinada").live("click", function(){
     var id = $(this).attr("data-id");
     var enlace = $(this).parents(".fieldset").siblings(".container.tarea").find("a");
     enlace.attr("data-replace", id);
     enlace.attr("data-parent", ".container[data-id="+id+"]");
+    console.debug(enlace.attr("data-parent"), enlace.attr("data-replace"));
     enlace.click();
     return false;
   });
