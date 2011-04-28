@@ -1,4 +1,5 @@
 = simple_form_for @proyecto_item, :url => url do |f|
+  =f.input :tipo, :input_html => { :value => 1}, :as => :hidden
   = f.error_messages
   %h3= @proyecto.titulo
   %p

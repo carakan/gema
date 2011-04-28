@@ -18,31 +18,34 @@
               %tr
                 %th Fecha Limite
                 %th Tarea
-              - debugger
-              - @instruccion_detalles.revision(current_usuario).each do |instarea|
+              - @revisiones.each do |instarea|
                 %tr
                   %td= instarea.fecha_limite
                   %td= link_to instarea.tarea, ver_entrega_proyecto_proyecto_instruccion_instruccion_detall_path(instarea.instruccion.proyecto,instarea.instruccion, instarea) 
+          =will_paginate @revisiones         
         #tabshome-2
           %p
             %table
               %tr
                 %th Fecha Limite
                 %th Tarea
-              - @instruccion_detalles.pendientes(current_usuario).each do |tarea|
+              - @pendientes.each do |tarea|
                 %tr
                   %td= tarea.fecha_limite
-                  %td= link_to tarea.tarea, proyecto_proyecto_instruccion_instruccion_detall_path(tarea.instruccion.proyecto, tarea.instruccion, tarea) 
+                  %td= link_to tarea.tarea, proyecto_proyecto_instruccion_instruccion_detall_path(tarea.instruccion.proyecto, tarea.instruccion, tarea)
+          =will_paginate @pendientes         
+
         #tabshome-3
           %p
             %table
               %tr
                 %th Fecha Limite
                 %th Descripción
-              - @instruccion_detalles.mistareas(current_usuario).each do |mitarea| 
+              - @mistareas.each do |mitarea| 
                 %tr
                   %td= mitarea.fecha_limite
                   %td= link_to mitarea.tarea, proyecto_proyecto_instruccion_instruccion_detall_path(mitarea.instruccion.proyecto, mitarea.instruccion, mitarea) 
+          =will_paginate @mistareas         
 
   %tr
     %td{:colspan=>2}
@@ -65,6 +68,8 @@
             %td= l(proyecto.fecha_maxima, :format =>"%d %b %y") if proyecto.fecha_maxima
             %td= proyecto.estado_proyecto           
 :javascript
+  window.selectorAjax = "tabshome";
   $(function() {
-  $( "#tabshome" ).tabs();
+    $( "#tabshome" ).tabs();
+    $(".pagination a, .previus_page, .next_page").live("click", ajaxeable);
   });
