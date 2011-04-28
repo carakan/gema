@@ -70,7 +70,6 @@ class Proyecto::Proyecto < ActiveRecord::Base
   protected
 
   def update_position_on_tree
-    debugger
     self.instruccions.each do |instruccion|
       if instruccion.temporal_correspondencia_id
         self.correspondencias.each do |correspondencia|
@@ -80,7 +79,6 @@ class Proyecto::Proyecto < ActiveRecord::Base
           end
         end
       end
-      debugger
       instruccion.instruccion_detalles.each do |tarea|
         if tarea.temporal_parent_id
           instruccion.instruccion_detalles.each do |parent|

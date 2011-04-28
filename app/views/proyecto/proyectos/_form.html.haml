@@ -40,7 +40,7 @@
 
     #tabs-3
       %h2 Servicios
-      = f.simple_fields_for :item_cobros, Proyecto::ItemCobro.new do |g|
+      = f.simple_fields_for :item_cobros, Proyecto::ItemCobro.new(:tipo => 1) do |g|
         .container
           = add_child_link "Añadir", f, :item_cobros
     
@@ -109,7 +109,6 @@
     var enlace = $(this).parents(".fieldset").siblings(".container.tarea").find("a");
     enlace.attr("data-replace", id);
     enlace.attr("data-parent", ".container[data-id="+id+"]");
-    console.debug(enlace.attr("data-parent"), enlace.attr("data-replace"));
     enlace.click();
     return false;
   });
