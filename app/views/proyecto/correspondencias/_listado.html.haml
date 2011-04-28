@@ -26,9 +26,7 @@
             -else
               %td= correspondencia.tipo="Enviado"
             %td= l(correspondencia.created_at, :format => "%d, %B %Y %H:%M") if correspondencia.created_at
-            %td= link_to(truncate(correspondencia.asunto, :length=>50, :separator => ' ').html_safe, proyecto_proyecto_correspondencia_path(@proyecto, correspondencia), :class => "correspondencia", :"data-selector" => "#tabs-correspondencia-1")
-            /%td= correspondencia.contenido
-            /%td#= link_to(truncate(correspondencia.contenido, :length=>90, :separator => ' ').html_safe, proyecto_proyecto_correspondencia_path(@proyecto, correspondencia), :class => "correspondencia", :"data-selector" => "#tabs-correspondencia-1")
+            %td= link_to(truncate(correspondencia.asunto, :length=>50), proyecto_proyecto_correspondencia_path(@proyecto, correspondencia), :class => "correspondencia", :"data-selector" => "#tabs-correspondencia-1")
             %td= link_to 'Editar', edit_proyecto_proyecto_correspondencia_path(@proyecto, correspondencia), :class => 'edit'
             %td= link_to 'Eliminar', proyecto_proyecto_correspondencia_path(@proyecto, correspondencia), :confirm => 'Are you sure?', :method => :delete, :class => 'delete'
       .pagination= will_paginate(correspondencias, :params => {:controller => "proyecto/correspondencias", :proyecto_id => @proyecto.id, :action => "index", :id => nil})
@@ -37,7 +35,7 @@
         = link_to "Ver todos los email", proyecto_proyecto_correspondencias_path(@proyecto), :class => "correspondencia new", :"data-selector" => "#tabs-correspondencia-1", :style => "float: right;"
         %br.clear
   #tabs-correspondencia-2
-    = render :partial => "/adjuntos/index", :locals => {:adjuntos => @proyecto.adjuntos}
+    = render :partial => "/adjuntos/index", :locals => {:adjuntos => @proyecto.adjuntos.paginate(:per_page => 10, :page => params[:page])}
 
 :javascript
   window.selectorAjax = "tabs-correspondencia";
