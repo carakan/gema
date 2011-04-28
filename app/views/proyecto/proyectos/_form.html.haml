@@ -21,7 +21,7 @@
       = link_to 'Nuevo cliente', new_representante_path('data-title' => 'Crear cliente'), :class => 'new ajax'
       = f.association :area, :prompt => 'Seleccione un Area', :hint=>'A que área corresponde'
       = f.association :contactos, :collection => [], :input_html=> {:multiple => true}
-      = link_to 'Agregar nuevo contacto', new_contacto_path, :class => 'new ajax'
+      = link_to 'Agregar nuevo contacto', new_contacto_path, :class => 'new ajax new_contacto', :"data-path" => new_contacto_path
       = f.input :titulo, :hint=> "Escriba una breve descripción de este proyecto"
       = f.input :referencia_cliente, :hint => "Introduza una referencia de cliente, por ejemplo : AC-5454-BOL"
       = f.input :prioridad, :collection =>['A', 'B', 'C'], :as=> :radio, :hint=> 'Asigne una prioridad para este proyecto, de tipo A = Mayor Prioridad, B = Mediana Prioridad, C = Menor Prioridad '
@@ -89,7 +89,9 @@
     });
     
     $("#proyecto_proyecto_representante_id").change(function(){
-      $("#proyecto_proyecto_contacto_ids").load("/contactos/buscar?id=" + $("#proyecto_proyecto_representante_id option:selected.selected").val());
+      var valor = $("#proyecto_proyecto_representante_id option:selected.selected").val();
+      $("#proyecto_proyecto_contacto_ids").load("/contactos/buscar?id=" + valor);
+      $(".new_contacto").attr("href", $(".new_contacto").attr("data-path") + "?representante_id=" + valor)
     });
   });
 

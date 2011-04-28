@@ -29,7 +29,10 @@ class ContactosController < ApplicationController
   # GET /contactos/new.xml
   def new
     @contacto = Contacto.new(:representante_id => params[:representante_id])
-
+    if params[:representante_id]
+      representante = Representante.find(params[:representante_id])
+      @contacto.representante = representante
+    end
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @contacto }
