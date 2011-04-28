@@ -1,5 +1,7 @@
 - title "Nuevo servicio"
-
-= render :partial => 'form', :locals => {:url => proyecto_proyecto_proyecto_items_path(@proyecto)}
+- if params[:tipo] && params[:tipo] == "gasto"
+  = render :partial => "gasto_form"
+- else
+  = render :partial => 'form', :locals => {:url => proyecto_proyecto_proyecto_items_path(@proyecto)}
 
 %p= link_to "listado", proyecto_proyecto_proyecto_items_path(@proyecto)

@@ -42,15 +42,15 @@ class Proyecto::InstruccionDetalle < ActiveRecord::Base
     end
   end
 
-  def revision(usuario)
-    @instruccion_detalles.find(:all, :conditions => {:estado_tarea => 'revision', :asignado_por => usuario})
+  def self.revision(usuario, page = 1)
+    self.find(:all, :conditions => {:estado_tarea => 'revision', :asignado_por => usuario}).paginate(:per_page => 5, :page => page)
   end
 
-  def self.mistareas(usuario)
-    self.find(:all, :conditions=>{:estado_tarea=> 'pendiente', :usuario_id=>usuario})
+  def self.mistareas(usuario, page = 1)
+    self.find(:all, :conditions=>{:estado_tarea=> 'pendiente', :usuario_id=>usuario}).paginate(:per_page => 5, :page => page)
   end
 
-  def self.pendientes(usuario)
-    self.find(:all, :conditions => {:estado_tarea => 'pendiente', :asignado_por => usuario})
+  def self.pendientes(usuario, page = 1)
+    self.find(:all, :conditions => {:estado_tarea => 'pendiente', :asignado_por => usuario}).paginate(:per_page => 5, :page => page)
   end
 end

@@ -1,4 +1,5 @@
-= simple_form_for :item_gastos, Proyecto::ItemGasto.new do |f|
+= simple_form_for @proyecto_item, :url => proyecto_proyecto_proyecto_items_path(@proyecto) do |f|
+  =f.input :tipo, :input_html => { :value => 0}, :as => :hidden
   =f.input :descripcion
   =f.input :monto
   =f.button :submit
