@@ -49,7 +49,7 @@
       %div#adjuntos
         %a#a_adjuntar_archivo{:href => "javascript:", :class => "new"} Adjuntar archivo
 
-  = f.button :submit, 'Guardar Proyecto'
+  = f.button :submit, 'Guardar Proyecto', :input_html => {:style => "float: right;"}
 
 :javascript
   $(document).ready(function() {

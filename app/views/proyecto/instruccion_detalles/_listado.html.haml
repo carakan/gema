@@ -14,11 +14,11 @@
       %td= l(instruccion_detall.fecha_limite, :format => "%d, %B %Y") if instruccion_detall.fecha_limite
       %td
         - if instruccion_detall.estado_tarea == 'pendiente'
-          = link_to "Entregar", entrega_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion, instruccion_detall)
+          = link_to "Entregar", entrega_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion, instruccion_detall), :class => 'terminada'
         - elsif instruccion_detall.estado_tarea != 'revision'
-          = link_to "Calificada", ver_calificacion_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion, instruccion_detall), :class => 'terminada'
+          = link_to "Calificada", ver_calificacion_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion, instruccion_detall)
         - else
-          = link_to "Revision", ver_entrega_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion, instruccion_detall), :class => 'terminada'
+          = link_to "Revision", ver_entrega_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion, instruccion_detall), :class => 'revision'
 
       %td= link_to 'Editar', edit_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion,instruccion_detall), :class => "edit"
       %td= link_to 'Eliminar', proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion,instruccion_detall), :confirm => 'Are you sure?', :method => :delete, :class => 'delete'

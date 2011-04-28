@@ -1,6 +1,6 @@
 class Proyecto::ProyectosController < ApplicationController
   def index
-    @proyectos = Proyecto::Proyecto.paginate(:per_page => 20, :page => params[:page], :order => "created_at DESC")
+    @proyectos = Proyecto::Proyecto.paginate(:per_page => 10, :page => params[:page], :order => "created_at DESC")
   end
 
   def show

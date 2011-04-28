@@ -1,5 +1,6 @@
 - title "Proyecto"
 
+%p= link_to "Nuevo Proyecto", new_proyecto_proyecto_path, :class => 'new'
 %table.decorated
   %tr
     %th Id
@@ -20,6 +21,3 @@
       %td= link_to 'Eliminar',proyecto, :confirm => 'Are you sure?', :method => :delete, :class => "delete"
 
 = will_paginate(@proyectos)
-
-%p= link_to "Nuevo Proyecto", new_proyecto_proyecto_path, :class => 'new'
-
