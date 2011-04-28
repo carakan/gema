@@ -18,7 +18,8 @@
               %tr
                 %th Fecha Limite
                 %th Tarea
-              - Proyecto::InstruccionDetalle.revision(current_usuario).each do |instarea|
+              - debugger
+              - @instruccion_detalles.revision(current_usuario).each do |instarea|
                 %tr
                   %td= instarea.fecha_limite
                   %td= link_to instarea.tarea, ver_entrega_proyecto_proyecto_instruccion_instruccion_detall_path(instarea.instruccion.proyecto,instarea.instruccion, instarea) 
@@ -28,20 +29,20 @@
               %tr
                 %th Fecha Limite
                 %th Tarea
-              - Proyecto::InstruccionDetalle.pendientes(current_usuario).each do |tarea|
+              - @instruccion_detalles.pendientes(current_usuario).each do |tarea|
                 %tr
                   %td= tarea.fecha_limite
-                  %td= link_to tarea.tarea, ver_entrega_proyecto_proyecto_instruccion_instruccion_detall_path(tarea.instruccion.proyecto, tarea.instruccion, tarea) 
+                  %td= link_to tarea.tarea, proyecto_proyecto_instruccion_instruccion_detall_path(tarea.instruccion.proyecto, tarea.instruccion, tarea) 
         #tabshome-3
           %p
             %table
               %tr
                 %th Fecha Limite
                 %th Descripción
-              - Proyecto::InstruccionDetalle.mistareas(current_usuario).each do |mitarea| 
+              - @instruccion_detalles.mistareas(current_usuario).each do |mitarea| 
                 %tr
                   %td= mitarea.fecha_limite
-                  %td= mitarea.tarea
+                  %td= link_to mitarea.tarea, proyecto_proyecto_instruccion_instruccion_detall_path(mitarea.instruccion.proyecto, mitarea.instruccion, mitarea) 
 
   %tr
     %td{:colspan=>2}

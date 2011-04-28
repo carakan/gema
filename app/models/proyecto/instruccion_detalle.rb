@@ -42,8 +42,8 @@ class Proyecto::InstruccionDetalle < ActiveRecord::Base
     end
   end
 
-  def self.revision(usuario)
-    self.find(:all, :conditions => {:estado_tarea => 'revision', :asignado_por => usuario})
+  def revision(usuario)
+    @instruccion_detalles.find(:all, :conditions => {:estado_tarea => 'revision', :asignado_por => usuario})
   end
 
   def self.mistareas(usuario)
