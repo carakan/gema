@@ -1,4 +1,5 @@
 .fieldset
+  = f.input :tipo, :as => :hidden, :input_html=>{:value=>1}
   .percent_20= f.input :referencia_cliente, :input_html=>{:size=>10}
   .percent_20= f.input :referencia_cliente_cobranza, :input_html=>{:size=>10}, :label => "Codigo cliente cobranza"
   .percent_20= f.association :item, :prompt => 'Seleccione un item', :label => 'Servicio'
@@ -11,3 +12,5 @@
     = f.input :marca_ids, :label => false, :input_html=>{:type=>:hidden}
   = remove_child_link "Remover Servicio", f
   %hr
+:javascript
+  transformarDateSelect();

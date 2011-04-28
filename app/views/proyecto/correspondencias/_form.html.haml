@@ -2,7 +2,7 @@
   = f.error_messages
   %p
     %b Proyecto:
-    %h3 Proyecto > #{@proyecto.titulo} > Nuevo servicio
+    %h3== Proyecto > #{link_to(@proyecto.titulo, proyecto_proyecto_path(@proyecto))} > Nuevo servicio
   %p
     = f.collection_radio :tipo, [[true, 'Recibido'] ,[false, 'Enviado']], :first, :last
   %p

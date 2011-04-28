@@ -9,7 +9,13 @@ class Proyecto::ProyectoItemsController < ApplicationController
   end
   
   def new
-    @proyecto_item = Proyecto::ProyectoItem.new
+    if params[:tipo] && params[:tipo] == "cobro"
+      @proyecto_item = Proyecto::ItemCobro.new
+    elsif params[:tipo] && params[:tipo] == "gasto"
+      @proyecto_item = Proyecto::ItemGasto.new
+    else
+      @proyecto_item = Proyecto::ProyectoItem.new
+    end
   end
   
   def create

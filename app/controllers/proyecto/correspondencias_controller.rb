@@ -9,7 +9,7 @@ class Proyecto::CorrespondenciasController < ApplicationController
   end
 
   def new
-    @correspondencia = Correspondencia.new()
+    @correspondencia = @proyecto.correspondencias.build()
   end
 
   def create

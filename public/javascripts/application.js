@@ -361,7 +361,6 @@ function insert_fields(link, method, content) {
   var new_id = new Date().getTime();
   var regexp = new RegExp("new_" + method, "g")
   var regexp2 = new RegExp("parent_id_regex", "g");
-  console.debug($(link).attr("data-replace"));
   if($(link).attr("data-replace")){
     content = content.replace(regexp2, $(link).attr("data-replace"))
     $(link).removeAttr("data-replace");
