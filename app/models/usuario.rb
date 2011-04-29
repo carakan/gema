@@ -37,6 +37,12 @@ class Usuario < ActiveRecord::Base
     self.rol.name == rol.to_s
   end
 
+  def user_asignado(usuario)
+    if self.id == usuario
+      true
+    end
+  end
+
   def to_s
     nombre
   end

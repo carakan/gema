@@ -15,15 +15,16 @@
       %td
         - if instruccion_detall.estado_tarea == 'pendiente'
           = link_to "Entregar", entrega_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion, instruccion_detall), :class => 'terminada'
-        - elsif instruccion_detall.estado_tarea != 'revision'
-          = link_to "Calificada", ver_calificacion_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion, instruccion_detall)
-        - else
+        - if instruccion_detall.estado_tarea == "aprobado"
+          = link_to "Calificada", ver_calificacion_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion, instruccion_detall), :class => "aprobado"
+        - if instruccion_detall.estado_tarea == "reprobado"
+          = link_to "Calificada", ver_calificacion_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion, instruccion_detall), :class => "reprobado"
+        - if instruccion_detall.estado_tarea == 'revision'
           = link_to "Revision", ver_entrega_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion, instruccion_detall), :class => 'revision'
 
       %td= link_to 'Editar', edit_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion,instruccion_detall), :class => "edit"
       %td= link_to 'Eliminar', proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion,instruccion_detall), :confirm => 'Are you sure?', :method => :delete, :class => 'delete'
+%p= link_to "Añadir Tareas", new_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion), :class => 'new', :style => "float: right;"
+%br.clear
 
 .pagination= will_paginate(instruccion_detalles)
-
-%p= link_to "Añadir Tareas", new_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion), :class => 'new'
-

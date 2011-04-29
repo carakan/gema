@@ -53,4 +53,10 @@ class Proyecto::InstruccionDetalle < ActiveRecord::Base
   def self.pendientes(usuario, page = 1)
     self.find(:all, :conditions => {:estado_tarea => 'pendiente', :asignado_por => usuario}).paginate(:per_page => 5, :page => page)
   end
+
+  def self.aprobado
+    if self.estado_tarea == "aprobado"
+      true
+    end
+  end
 end

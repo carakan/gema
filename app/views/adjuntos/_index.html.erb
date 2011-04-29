@@ -13,7 +13,9 @@
     </tr>
   <% end %>
 </table>
-<%= will_paginate(adjuntos) %>
+<% if @adjuntos %>
+  <%= will_paginate(@adjuntos) %>
+<%end%>
 <br />
 <% if @proyecto %>
 <%= link_to 'Nuevo adjunto', new_proyecto_proyecto_adjunto_path(@proyecto), :class => 'new' %>

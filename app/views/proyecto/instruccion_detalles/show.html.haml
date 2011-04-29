@@ -1,23 +1,30 @@
-
-%p
-  %strong Instruccion:
-  = @instruccion_detalle.instruccion_id
-%p
-  %strong Usuario:
-  = @instruccion_detalle.usuario_id
-%p
-  %strong Tarea:
-  = @instruccion_detalle.tarea
-%p
-  %strong Fecha Limite:
-  = @instruccion_detalle.fecha_limite
-%p
-  %strong Estado:
-  = @instruccion_detalle.estado
-
-%p
-  = link_to "Edit", edit_proyecto_instruccion_detall_path(@instruccion_detalle)
-  |
-  = link_to "Destroy", @instruccion_detalle, :confirm => 'Are you sure?', :method => :delete
-  |
-  = link_to "View All", proyecto_instruccion_detalles_path
+%h3 Datos de la tarea
+#contenido
+  .izquierda
+    .subizq
+      %strong Instruccion:
+    .subder
+      = @instruccion_detalle.instruccion_id
+    .clear
+    .subizq
+      %strong Usuario:
+    .subder
+      = @instruccion_detalle.usuario_id
+    .clear
+    .subizq
+      %strong Tarea:
+    .subder
+      = @instruccion_detalle.tarea
+    .clear
+    .subizq
+      %strong Fecha Limite:
+    .subder
+      = @instruccion_detalle.fecha_limite
+    .clear
+    .subizq
+      %strong Estado:
+    .subder
+      = @instruccion_detalle.estado_tarea
+  .derecha
+    -if current_usuario.user_asignado(@instruccion_detalle.usuario_id)
+      = link_to "Entregar", entrega_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, @instruccion, @instruccion_detalle), :class => 'terminada'
