@@ -1,0 +1,8 @@
+= form_for [:proyecto, @tipo_instruccion] do |f|
+  = f.error_messages
+  %p
+    = f.label :nombre
+    %br
+    = f.text_field :nombre
+  %p
+    = f.submit

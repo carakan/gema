@@ -121,6 +121,7 @@ ActiveRecord::Schema.define(:version => 201104258152130) do
     t.string   "prioridad"
     t.string   "tipo_estado"
     t.integer  "contador"
+    t.integer  "tipo_instruccion_id"
   end
 
   add_index "instruccion_detalles", ["ancestry"], :name => "index_instruccion_detalles_on_ancestry"
@@ -394,6 +395,12 @@ ActiveRecord::Schema.define(:version => 201104258152130) do
   create_table "roles", :force => true do |t|
     t.string   "name",        :limit => 100
     t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tipo_instrucciones", :force => true do |t|
+    t.string   "nombre"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -7,7 +7,7 @@ class Proyecto::InstruccionDetalle < ActiveRecord::Base
   belongs_to :usuario
   has_many :adjuntos, :as => :adjuntable, :dependent => :destroy
   accepts_nested_attributes_for :adjuntos
-
+  belongs_to :tipo_instruccion
   has_ancestry
 
   include AASM
@@ -60,3 +60,4 @@ class Proyecto::InstruccionDetalle < ActiveRecord::Base
     end
   end
 end
+
