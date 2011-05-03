@@ -15,7 +15,7 @@
     %tr
       %td= proyecto.id
       %td= proyecto.representante
-      %td= proyecto.area.sigla
+      %td= proyecto.area.try(:sigla)
       %td= proyecto.titulo
       %td= proyecto.referencia_cliente
       %td= proyecto.prioridad
