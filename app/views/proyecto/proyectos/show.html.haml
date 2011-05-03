@@ -1,14 +1,18 @@
 .proyecto
   %h1 Datos del proyecto
   = show_for @proyecto do |p|
+    #contenido
+      .izquierda{:style => "width:100%;"}
+        .subizq{:style => "width:10%; text-align: left;"}
+          .percent_40= p.attribute :id, :label => 'Nº'
+        .subder{:style => "width:80%; text-align: left;"}
+          .percent_40= p.association :representante, :label => 'Agente'
     .percent_40= p.attribute :titulo
-    .percent_40= p.attribute :id, :label => 'Nº Proyecto'
     .percent_40= p.association :area
     .percent_40= p.attribute :referencia_cliente
-    .percent_40= p.association :representante
+    .percent_40= p.attribute :prioridad
     .percent_40= p.association :contactos
     .percent_40= p.attribute :created_at, :label => 'Fecha creación'
-    .percent_40= p.attribute :prioridad
 
   = render :partial => "/proyecto/correspondencias/listado", :locals => {:correspondencias => @proyecto.correspondencias.paginate(:per_page=>5, :page=>params[:page])}
   %br

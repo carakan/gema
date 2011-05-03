@@ -120,6 +120,7 @@ ActiveRecord::Schema.define(:version => 201104258152130) do
     t.integer  "temporal_parent_id",    :limit => 8
     t.string   "prioridad"
     t.string   "tipo_estado"
+    t.integer  "contador"
   end
 
   add_index "instruccion_detalles", ["ancestry"], :name => "index_instruccion_detalles_on_ancestry"
@@ -143,6 +144,7 @@ ActiveRecord::Schema.define(:version => 201104258152130) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "temporal_correspondencia_id", :limit => 8
+    t.integer  "contador"
   end
 
   create_table "item_cobro_marcas", :force => true do |t|
@@ -305,6 +307,7 @@ ActiveRecord::Schema.define(:version => 201104258152130) do
     t.datetime "updated_at"
     t.boolean  "tipo"
     t.integer  "item_id"
+    t.integer  "contador"
   end
 
   create_table "proyectos", :force => true do |t|

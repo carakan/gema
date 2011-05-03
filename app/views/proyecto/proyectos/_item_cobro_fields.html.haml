@@ -6,7 +6,7 @@
   .percent_10= f.input :descripcion,:as=>:text , :input_html=>{:cols=>68, :rows=>2}, :style=>{:float=>'left'}
   .percent_20= f.input :honorarios, :input_html=>{:size=>15}
   .percent_20= f.input :gastos_adminitrativos, :input_html=>{:size=>15}
-  .percent_20= f.input :fecha_solicitud,:label => "Fecha límite", :input_html=>{:size=>4}
+  .percent_20= f.input :fecha_solicitud,:label => "Fecha fatal", :input_html=>{:size=>4}
   .marcas-related.percent_20{:"data-id" => "new_item_cobros"}
     = link_to("Anadir marca", busqueda_avanzada_busquedas_path(:select_marcas => true), :class => "ajax", :"data-id" => "new_item_cobros")
     = f.input :marca_ids, :label => false, :input_html=>{:type=>:hidden}
