@@ -16,9 +16,9 @@ class Proyecto::Proyecto < ActiveRecord::Base
   accepts_nested_attributes_for :item_cobros
 
   has_many :adjuntos, :as => :adjuntable, :dependent => :destroy
-  
+
   accepts_nested_attributes_for :adjuntos
-  accepts_nested_attributes_for :correspondencias, :reject_if => :all_blank, :allow_destroy => true  
+  accepts_nested_attributes_for :correspondencias, :reject_if => :all_blank, :allow_destroy => true
   accepts_nested_attributes_for :proyecto_items
   accepts_nested_attributes_for :instruccions
 
@@ -28,7 +28,7 @@ class Proyecto::Proyecto < ActiveRecord::Base
     id
   end
 
-  def fecha_minima  
+  def fecha_minima
     fechas = []
     self.instruccions.each do |instruccion|
       instruccion.tareas_pendientes.each do |tarea|
@@ -52,7 +52,7 @@ class Proyecto::Proyecto < ActiveRecord::Base
     estados =[]
     self.instruccions.each do |instruccion|
       instruccion.instruccion_detalles.each do |tarea|
-       estados << tarea.estado_tarea 
+       estados << tarea.estado_tarea
       end
     end
 
@@ -62,7 +62,7 @@ class Proyecto::Proyecto < ActiveRecord::Base
       if estados.empty?
         "Vacio"
       else
-        "terminado"    
+        "terminado"
       end
     end
   end

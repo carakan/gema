@@ -1,5 +1,6 @@
 <% if usuario_signed_in? %>
 <ul id="navigation">
+<li> <%= link_to 'Página Principal', home_index_path %>
   <li class="first">
     <%= link_to 'Signos', marcas_path%>
     <ul>
@@ -43,3 +44,4 @@
     </li>
 </ul>
 <% end %>
+

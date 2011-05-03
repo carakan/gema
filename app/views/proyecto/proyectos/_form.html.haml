@@ -43,13 +43,13 @@
       = f.simple_fields_for :item_cobros, Proyecto::ItemCobro.new(:tipo => 1) do |g|
         .container
           = add_child_link "Añadir", f, :item_cobros
-    
+
     #tabs-4
       %h2 Archivos Adjuntos
       %div#adjuntos
         %a#a_adjuntar_archivo{:href => "javascript:", :class => "new"} Adjuntar archivo
-
-  = f.button :submit, 'Guardar Proyecto', :input_html => {:style => "float: right;"}
+  %br
+  = f.button :submit, 'Guardar Proyecto', :style => "float: right;"
 
 :javascript
   $(document).ready(function() {
@@ -87,7 +87,7 @@
       newel: false,
       maxitems: 1
     });
-    
+
     $("#proyecto_proyecto_representante_id").change(function(){
       var valor = $("#proyecto_proyecto_representante_id option:selected.selected").val();
       $("#proyecto_proyecto_contacto_ids").load("/contactos/buscar?id=" + valor);
@@ -113,7 +113,7 @@
     return false;
   });
   $(".container.email a").live("click", function(){
-    
+
   })
   $(".correspondencia input[name*=asunto]").live("change", function(){
     var results = "";
@@ -123,3 +123,4 @@
     $(".instrucciones select").html(results);
     $(".instrucciones select option:empty").remove();
   })
+

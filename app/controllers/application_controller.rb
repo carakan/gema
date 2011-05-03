@@ -14,11 +14,11 @@ class ApplicationController < ActionController::Base
   before_filter :set_page
   before_filter :set_user_session, :if => :usuario_signed_in?
   before_filter :revisar_permiso!
-  
+
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
-  layout lambda{ |controller| controller.request.xhr? ? false : "application" } 
+  layout lambda{ |controller| controller.request.xhr? ? false : "application" }
 
   protected
 
@@ -48,7 +48,7 @@ class ApplicationController < ActionController::Base
     else
       redirect_to(klass, :notice => notice)
     end
-  end  
+  end
 
 private
   def set_page
@@ -88,6 +88,7 @@ private
       if params[:controller] != "devise/sessions"
         redirect_to '/login'
       end
-    end 
+    end
   end
 end
+

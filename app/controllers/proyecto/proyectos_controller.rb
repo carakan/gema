@@ -12,7 +12,7 @@ class Proyecto::ProyectosController < ApplicationController
     @proyecto = Proyecto::Proyecto.new
     #@proyecto.proyecto_items << @proyecto.proyecto_items.build
     #@proyecto.correspondencias << @proyecto.correspondencias.build
-    #@proyecto.instruccions << @proyecto.instruccions.build 
+    #@proyecto.instruccions << @proyecto.instruccions.build
   end
 
   def create
@@ -43,3 +43,4 @@ class Proyecto::ProyectosController < ApplicationController
     redirect_to proyecto_proyectos_url, :notice => "Successfully destroyed proyecto."
   end
 end
+

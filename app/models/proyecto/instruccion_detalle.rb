@@ -23,7 +23,7 @@ class Proyecto::InstruccionDetalle < ActiveRecord::Base
   aasm_event :terminar do
     transitions :to => :revision, :from => [:pendiente]
   end
-  
+
   aasm_event :aprobar do
     transitions :to => :aprobado, :from => [:revision]
   end
