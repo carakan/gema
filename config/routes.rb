@@ -3,8 +3,6 @@
 # email: boriscyber@gmail.com
 Rails.application.routes.draw do 
   
-  namespace(:proyecto){ resources :tipo_instrucciones }
-
   get "home/index"
 
   namespace(:proyecto) do
@@ -27,6 +25,7 @@ Rails.application.routes.draw do
     resources :areas 
     resources :instruccion_item_cobros 
     resources :items
+    resources :tipo_instrucciones
   end
 
   resources :marca_estados
