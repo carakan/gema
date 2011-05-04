@@ -28,12 +28,12 @@
       = f.input :referencia_cliente, :hint => "Introduza una referencia de cliente, por ejemplo : AC-5454-BOL"
       = f.input :prioridad, :collection =>['A', 'B', 'C'], :as=> :radio, :hint=> 'Asigne una prioridad para este proyecto, de tipo A = Mayor Prioridad, B = Mediana Prioridad, C = Menor Prioridad '
     #tabs-2
-      %div{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all",:style=>'font-size:11px;'}
+      %div{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all form-correspondencia",:style=>'font-size:11px;'}
         %h2 Nuevo Email
         .container.email
           = f.simple_fields_for :correspondencias, Proyecto::Correspondencia.new  do |form|
             = add_child_link "Añadir email", f, :correspondencias
-      %div{:style=>'font-size:11px; height: auto;'}
+      .form-instruccion{:style=>'font-size:11px; height: auto;'}
         %h2 Instrucciones
         = f.simple_fields_for :instruccions, Proyecto::Instruccion.new do |i|
           = render 'instruccion_fields', :f => i
@@ -54,6 +54,14 @@
   = f.button :submit, 'Guardar Proyecto', :style => "float: right;"
 
 :javascript
+  function when_change_content_on_asunto(){
+    var results = "";
+    $(".correspondencia:not(:hidden) input[name*=asunto]").each(function(cont){
+      results += "<option value='" + $(this).attr("data-id") + "'>" + (cont + 1) + ". " + $(this).val() + "<option/>";
+    })
+    $(".instrucciones select").html(results);
+    $(".instrucciones select option:empty").remove();
+  }
   $(document).ready(function() {
     $('#a_adjuntar_archivo').click(function() {
       tiempo = ( new Date() ).getTime().toString();
@@ -97,6 +105,9 @@
     });
   });
 
+  $(".form-correspondencia .fieldset a").live("click", when_change_content_on_asunto);
+  $(".form-instruccion .container a").live("click", when_change_content_on_asunto);
+
   $("form").submit(function(){
     $("#proyecto_proyecto_representante_id").attr("name", "proyecto_proyecto[representante_id]");
     $("input[name*=marca_ids]").each(function(){
@@ -120,12 +131,5 @@
 
   $(".correspondencia input[name*=asunto]").live("change", when_change_content_on_asunto);
 
-  function when_change_content_on_asunto(){
-    var results = "";
-    $(".correspondencia input[name*=asunto]").each(function(elem){
-      results += "<option value='" + $(this).attr("data-id") + "'>" + $(this).val() + "<option/>";
-    })
-    $(".instrucciones select").html(results);
-    $(".instrucciones select option:empty").remove();
-  }
+
 
