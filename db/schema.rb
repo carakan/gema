@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(:version => 201104258152130) do
     t.datetime "updated_at"
     t.string   "asunto"
     t.integer  "temporal_id", :limit => 8
+    t.datetime "orden"
   end
 
   create_table "importaciones", :force => true do |t|
