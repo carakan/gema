@@ -6,8 +6,8 @@
   - for tipo_instruccion in @tipo_instrucciones
     %tr
       %td= tipo_instruccion.nombre
-      %td= link_to 'Show', [:proyecto, tipo_instruccion]
+      %td= link_to 'Show', tipo_instruccion
       %td= link_to 'Edit', edit_proyecto_tipo_instruccion_path(tipo_instruccion)
-      %td= link_to 'Destroy', [:proyecto, tipo_instruccion], :confirm => 'Are you sure?', :method => :delete
+      %td= link_to 'Destroy', tipo_instruccion, :confirm => 'Are you sure?', :method => :delete
 
 %p= link_to "New Proyecto/Tipo Instruccion", new_proyecto_tipo_instruccion_path
