@@ -1,6 +1,8 @@
 = stylesheet_link_tag 'facebook'
 = javascript_include_tag 'jquery.fcbkcomplete.min'
 
+%h2= "Proyecto Nro: #{@proyecto.obtener_codigo}"
+
 = simple_form_for @proyecto, :html => {:multipart => true} do |f|
   = f.error_messages
   #tabs{:style=>'font-size:11px;'}
