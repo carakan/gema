@@ -2,12 +2,14 @@
 
 %table
   %tr
+    %th Sigla
     %th Nombre
   - for tipo_instruccion in @tipo_instrucciones
     %tr
+      %td= tipo_instruccion.sigla
       %td= tipo_instruccion.nombre
-      %td= link_to 'Show', tipo_instruccion
-      %td= link_to 'Edit', edit_proyecto_tipo_instruccion_path(tipo_instruccion)
-      %td= link_to 'Destroy', tipo_instruccion, :confirm => 'Are you sure?', :method => :delete
+      %td= link_to 'Mostrar', tipo_instruccion
+      %td= link_to 'Editar', edit_proyecto_tipo_instruccion_path(tipo_instruccion), :class=>'edit'
+      %td= link_to 'Eliminar', tipo_instruccion, :confirm => 'Are you sure?', :method => :delete,:class=>'delete'
 
-%p= link_to "New Proyecto/Tipo Instruccion", new_proyecto_tipo_instruccion_path
+%p= link_to "Nuevo Tipo Instruccion",   new_proyecto_tipo_instruccion_path,  :class=>'new'
