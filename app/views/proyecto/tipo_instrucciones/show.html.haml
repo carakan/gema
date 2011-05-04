@@ -7,6 +7,6 @@
 %p
   = link_to "Edit", edit_proyecto_tipo_instruccion_path(@tipo_instruccion)
   |
-  = link_to "Destroy", [:proyecto, @tipo_instruccion], :confirm => 'Are you sure?', :method => :delete
+  = link_to "Destroy", @tipo_instruccion, :confirm => 'Are you sure?', :method => :delete
   |
   = link_to "View All", proyecto_tipo_instrucciones_path

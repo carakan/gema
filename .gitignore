@@ -26,3 +26,4 @@ spec/archivos/pdftest/*.png
 Gemfile.lock
 tmp/*
 .rvmrc
+/.bundle/
