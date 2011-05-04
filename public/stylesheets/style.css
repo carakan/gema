@@ -929,3 +929,7 @@ td.marcas, td.marcas a{
     line-height: 15px;
     margin: 5px 0;
 }
+.contar{
+  float: right;
+  font-size: 18px;
+}
