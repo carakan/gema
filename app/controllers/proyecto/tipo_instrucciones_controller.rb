@@ -38,4 +38,6 @@ class Proyecto::TipoInstruccionesController < ApplicationController
     @tipo_instruccion.destroy
     redirect_to proyecto_tipo_instrucciones_url, :notice => "Successfully destroyed tipo instruccion."
   end
+ 
+
 end
