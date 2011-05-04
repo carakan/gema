@@ -118,9 +118,9 @@ ActiveRecord::Schema.define(:version => 201104258152130) do
     t.integer  "asignado_por"
     t.integer  "temporal_id",           :limit => 8
     t.integer  "temporal_parent_id",    :limit => 8
-    t.integer  "contador"
     t.string   "prioridad"
     t.string   "tipo_estado"
+    t.integer  "contador"
     t.integer  "tipo_instruccion_id"
   end
 
@@ -403,6 +403,7 @@ ActiveRecord::Schema.define(:version => 201104258152130) do
     t.string   "nombre"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "sigla"
   end
 
   create_table "tipo_marcas", :force => true do |t|

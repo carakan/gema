@@ -3,10 +3,12 @@
 %p
   %strong Nombre:
   = @tipo_instruccion.nombre
+  %strong Sigla:
+  = @tipo_instruccion.sigla
 
 %p
-  = link_to "Edit", edit_proyecto_tipo_instruccion_path(@tipo_instruccion)
+  = link_to "Editar", edit_proyecto_tipo_instruccion_path(@tipo_instruccion), :class=>'edit'
   |
-  = link_to "Destroy", @tipo_instruccion, :confirm => 'Are you sure?', :method => :delete
+  = link_to "Eliminar", @tipo_instruccion, :confirm => 'Are you sure?', :method => :delete, :class=>'delete'
   |
-  = link_to "View All", proyecto_tipo_instrucciones_path
+  = link_to "Listado", proyecto_tipo_instrucciones_path

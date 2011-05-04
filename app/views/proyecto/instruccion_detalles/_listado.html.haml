@@ -6,7 +6,7 @@
     %th Tarea
     %th Fecha Limite
     %th Prioridad
-    %th Tipo Tarea
+  
   - for instruccion_detall in instruccion_detalles
     %tr
       %td
@@ -16,8 +16,7 @@
       %td= instruccion_detall.usuario
       %td= instruccion_detall.tarea
       %td= l(instruccion_detall.fecha_limite, :format => "%d, %B %Y") if instruccion_detall.fecha_limite
-      %td= instruccion_detall.prioridad
-      %td= instruccion_detall.tipo_estado
+      %td= instruccion_detall.prioridad      
       %td
         - if instruccion_detall.estado_tarea == 'pendiente'
           = link_to "Entregar", entrega_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion, instruccion_detall), :class => 'terminada'

@@ -1,8 +1,8 @@
-= form_for @tipo_instruccion do |f|
+= simple_form_for @tipo_instruccion do |f|
   = f.error_messages
   %p
-    = f.label :nombre
-    %br
-    = f.text_field :nombre
+    = f.input :nombre
   %p
+    = f.text_field :sigla
+  %p 
     = f.submit
