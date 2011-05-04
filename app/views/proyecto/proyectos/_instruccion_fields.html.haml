@@ -1,4 +1,6 @@
-.fieldset.ui-corner-all.ui-widget-content.ui-tabs
+.fieldset.ui-corner-all.ui-widget-content.ui-tabs{:"data-group" => "instruccion"}
+  .contar
+  = f.input :contador, :as => :hidden
   .instrucciones
     = f.select :temporal_correspondencia_id, ["Cree una correspondencia para actualizar"], :input_html =>  {:class => "select_correspondencias"}
   = f.simple_fields_for :instruccion_detalles, Proyecto::InstruccionDetalle.new do |m|

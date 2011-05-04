@@ -44,7 +44,7 @@
           %td= link_to 'Editar', edit_proyecto_proyecto_proyecto_item_path(@proyecto, proyecto_item), :class => "edit"
     .pagination= will_paginate(proyecto_items, :params => {:controller => "proyecto/proyecto_items", :proyecto_id => @proyecto.id, :action => "index", :id => nil})
     %p
-      = link_to "Añadir servicio", new_proyecto_proyecto_proyecto_item_path(@proyecto, :tipo => "cobro"), :style => "float: right;"
+      = link_to "Añadir servicio", new_proyecto_proyecto_proyecto_item_path(@proyecto, :tipo => "cobro"), :style => "float: right;", :class => "new"
       %br.clear
   #tabs-items-2
     %h2 Solicitud de fondos

@@ -1,6 +1,8 @@
 = stylesheet_link_tag 'facebook'
 = javascript_include_tag 'jquery.fcbkcomplete.min'
 
+%h2= "Proyecto Nro: #{@proyecto.obtener_codigo}"
+
 = simple_form_for @proyecto, :html => {:multipart => true} do |f|
   = f.error_messages
   #tabs{:style=>'font-size:11px;'}
@@ -115,12 +117,15 @@
   $(".container.email a").live("click", function(){
 
   })
-  $(".correspondencia input[name*=asunto]").live("change", function(){
+
+  $(".correspondencia input[name*=asunto]").live("change", when_change_content_on_asunto);
+
+  function when_change_content_on_asunto(){
     var results = "";
     $(".correspondencia input[name*=asunto]").each(function(elem){
       results += "<option value='" + $(this).attr("data-id") + "'>" + $(this).val() + "<option/>";
     })
     $(".instrucciones select").html(results);
     $(".instrucciones select option:empty").remove();
-  })
+  }
 
