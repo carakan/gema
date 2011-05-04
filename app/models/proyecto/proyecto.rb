@@ -52,7 +52,7 @@ class Proyecto::Proyecto < ActiveRecord::Base
     estados =[]
     self.instruccions.each do |instruccion|
       instruccion.instruccion_detalles.each do |tarea|
-       estados << tarea.estado_tarea
+        estados << tarea.estado_tarea
       end
     end
 
@@ -65,6 +65,11 @@ class Proyecto::Proyecto < ActiveRecord::Base
         "terminado"
       end
     end
+  end
+  
+  def obtener_codigo
+    codigo = Proyecto::Proyecto.select("max(id) as conteo").first
+    return(codigo.conteo + 1)
   end
 
   protected

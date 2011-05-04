@@ -925,3 +925,11 @@ div#busqueda .contenido .derecha {
 td.marcas, td.marcas a{
   font-size: 8px;
 }
+.show_for p{
+    line-height: 15px;
+    margin: 5px 0;
+}
+.contar{
+  float: right;
+  font-size: 18px;
+}

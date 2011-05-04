@@ -81,10 +81,10 @@ ActiveRecord::Schema.define(:version => 201104258152130) do
     t.integer  "proyecto_id"
     t.boolean  "tipo"
     t.text     "contenido"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "asunto"
     t.integer  "temporal_id", :limit => 8
+    t.datetime "orden"
+    t.integer  "contador",                 :default => 0
   end
 
   create_table "importaciones", :force => true do |t|
@@ -119,7 +119,6 @@ ActiveRecord::Schema.define(:version => 201104258152130) do
     t.integer  "temporal_id",           :limit => 8
     t.integer  "temporal_parent_id",    :limit => 8
     t.string   "prioridad"
-    t.string   "tipo_estado"
     t.integer  "contador"
     t.integer  "tipo_instruccion_id"
   end

@@ -11,12 +11,14 @@
     #remote
       %table.decorated
         %tr
+          %th 
           %th Tipo
           %th Correo
           %th Fecha
           %th Asunto
         - for correspondencia in correspondencias
           %tr
+            %td= correspondencia
             - if correspondencia.tipo == true
               %td= image_tag("icons/received.png", :size => "16x16", :title => "Recibido")  
             - else
@@ -25,7 +27,7 @@
               %td= correspondencia.tipo="Recibido"
             -else
               %td= correspondencia.tipo="Enviado"
-            %td= l(correspondencia.created_at, :format => "%d, %B %Y %H:%M") if correspondencia.created_at
+            %td= l(correspondencia.orden, :format => "%d, %B %Y %H:%M") if correspondencia.orden
             %td= link_to(truncate(correspondencia.asunto, :length=>50), proyecto_proyecto_correspondencia_path(@proyecto, correspondencia), :class => "correspondencia", :"data-selector" => "#tabs-correspondencia-1")
             %td= link_to 'Editar', edit_proyecto_proyecto_correspondencia_path(@proyecto, correspondencia), :class => 'edit'
             %td= link_to 'Eliminar', proyecto_proyecto_correspondencia_path(@proyecto, correspondencia), :confirm => 'Are you sure?', :method => :delete, :class => 'delete'

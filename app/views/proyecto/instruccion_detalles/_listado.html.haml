@@ -10,7 +10,7 @@
   - for instruccion_detall in instruccion_detalles
     %tr
       %td
-        = instruccion_detall.id
+        = instruccion_detall
         = instruccion_detall.parent.id if instruccion_detall.parent
       %td= instruccion_detall.instruccion.referencia_email
       %td= instruccion_detall.usuario

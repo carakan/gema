@@ -371,6 +371,10 @@ function insert_fields(link, method, content) {
   } else {
     $(link).parent().before(content.replace(regexp, new_id));
   }
+  var selector = $(content);
+  if(selector.hasClass("fieldset")){
+    update_counters(selector)
+  }
   transformarDateSelect();
 }
 function remove_fields(link) {
@@ -378,6 +382,16 @@ function remove_fields(link) {
   if (hidden_field) {
     hidden_field.attr("value", '1');
   }
-  $(link).parents(".fieldset:first").hide();
+  var selector = $(link).parents(".fieldset:first");
+  if(selector.size() > 0){
+    selector.hide();
+    update_counters(selector)
+  }
 }
-					
+function update_counters(selector){
+  var group = selector.attr("data-group");
+  $(".fieldset[data-group="+ group +"]:not(:hidden)").each(function(cont){
+    $(this).find("input[name*=contador]").val(cont + 1);
+    $(this).find(".contar").html(cont + 1)
+  });
+}
