@@ -4,5 +4,11 @@ class Proyecto::ProyectoItem < ActiveRecord::Base
   belongs_to :item
 
   set_table_name 'proyecto_items'
+
+  def obtener_codigo
+    codigo = Proyecto::ProyectoItem.select("max(contador) as conteo").where("tipo = 1", ["proyecto_id = ?", proyecto_id]).first
+    return(codigo.conteo + 1) 
+  end
+
 end
 

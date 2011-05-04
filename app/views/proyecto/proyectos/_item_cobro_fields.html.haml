@@ -1,5 +1,6 @@
 .fieldset
   = f.input :tipo, :as => :hidden, :input_html=>{:value=>1}
+  /= f.input :contador, :label => "Codigo", :enabled => false
   .percent_20= f.input :referencia_cliente, :input_html=>{:size=>10}
   .percent_20= f.input :referencia_cliente_cobranza, :input_html=>{:size=>10}, :label => "Codigo cliente cobranza"
   .percent_20= f.association :item, :prompt => 'Seleccione un item', :label => 'Servicio'
