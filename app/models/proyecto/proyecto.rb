@@ -35,7 +35,7 @@ class Proyecto::Proyecto < ActiveRecord::Base
         fechas << tarea.fecha_limite
       end
     end
-  fechas.min
+    fechas.min
   end
 
   def fecha_maxima
@@ -45,7 +45,7 @@ class Proyecto::Proyecto < ActiveRecord::Base
         fechas << tarea.fecha_limite
       end
     end
-  fechas.max
+    fechas.max
   end
 
   def estado_proyecto
