@@ -10,8 +10,9 @@
   #tabs-instruccion-1
     %table
       %th Referencia email
-      - for instruccion in instrucciones
+      - instrucciones.each do |instruccion|
         %tr
+          %td= instruccion
           %td= link_to(instruccion.email.asunto, proyecto_proyecto_correspondencia_path(@proyecto, instruccion.email), :class => "ajax") if instruccion.email
           %td= link_to('Editar',  edit_proyecto_proyecto_instruccion_path(@proyecto, instruccion), :class => 'edit')
         = link_to "Añadir Instruccion", new_proyecto_proyecto_instruccion_path(@proyecto), :class=>'new', :style => "float: right;"

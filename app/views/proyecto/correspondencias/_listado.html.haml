@@ -11,12 +11,14 @@
     #remote
       %table.decorated
         %tr
+          %th 
           %th Tipo
           %th Correo
           %th Fecha
           %th Asunto
         - for correspondencia in correspondencias
           %tr
+            %td= correspondencia
             - if correspondencia.tipo == true
               %td= image_tag("icons/received.png", :size => "16x16", :title => "Recibido")  
             - else

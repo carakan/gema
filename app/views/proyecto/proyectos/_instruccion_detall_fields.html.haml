@@ -1,4 +1,6 @@
-.fieldset
+.fieldset{:"data-group" => "tarea"}
+  .contar{:class => "hidden"}
+  = f.input :contador, :as => :hidden
   .percent_20{:style => "width: 17%;"}
     .input
       = f.label :usuario_id, "Usuario"

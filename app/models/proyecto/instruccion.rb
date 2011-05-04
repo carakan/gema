@@ -11,8 +11,6 @@ class Proyecto::Instruccion < ActiveRecord::Base
   has_many :tareas_pendientes, :conditions => {:estado_tarea => 'pendiente'}, :order => 'fecha_limite ASC', :class_name => 'Proyecto::InstruccionDetalle'
 
   def to_s
-    id
-    proyecto_id
+    "P#{self.proyecto.id} I#{self.contador}"
   end
-
 end
