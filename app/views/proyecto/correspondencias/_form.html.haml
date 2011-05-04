@@ -4,6 +4,8 @@
     %b Proyecto:
     %h3== Proyecto > #{link_to(@proyecto.titulo, proyecto_proyecto_path(@proyecto))} > Nuevo servicio
   %p
+    = f.input :orden, :label=>'fecha'
+  %p
     = f.collection_radio :tipo, [[true, 'Recibido'] ,[false, 'Enviado']], :first, :last
   %p
     = f.input :asunto
