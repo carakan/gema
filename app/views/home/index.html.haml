@@ -5,70 +5,77 @@
         %ul
           %li
             %a{:href=>'#tabshome-1'}
-              Tareas asignadas pendientes revisión
+              Mis tareas pendientes
           %li
             %a{:href=>'#tabshome-2'}
-              Tareas asignadas Pendientes
+              Tareas asignadas pendientes revisión
           %li
             %a{:href=>'#tabshome-3'}
-              Tareas mias pendientes
+              Tareas asignadas Pendientes
         #tabshome-1
           %p
             %table
               %tr
-                %th Fecha Limite
+                %th Nº
                 %th Tarea
-              - @revisiones.each do |instarea|
+                %th Tipo tarea
+                %th Prioridad
+                %th Fecha Limite
+                %th Estado
+                %th Nº proyecto
+              - @mistareas.each do |mitarea|
                 %tr
-                  %td= l(instarea.fecha_limite, :format => "%d %B %Y") if instarea.fecha_limite
-                  %td= link_to instarea.tarea, ver_entrega_proyecto_proyecto_instruccion_instruccion_detall_path(instarea.instruccion.proyecto,instarea.instruccion, instarea)
-          /=will_paginate @revisiones
+                  %td= mitarea.id
+                  %td= mitarea.tipo_instruccion
+                  %td= mitarea.prioridad
+                  %td= link_to mitarea.tarea, proyecto_proyecto_instruccion_instruccion_detall_path(mitarea.instruccion.proyecto, mitarea.instruccion, mitarea)
+                  %td= l(mitarea.fecha_limite, :format => "%d %B %Y") if mitarea.fecha_limite
+                  %td= mitarea.estado_tarea
+                  %td= link_to mitarea.instruccion.proyecto.id, mitarea.instruccion.proyecto
+            /.pagination=will_paginate @mistareas
         #tabshome-2
+          %p
+            %table
+              %tr
+                %th Nº
+                %th Tarea
+                %th Tipo tarea
+                %th Prioridad
+                %th Fecha Limite
+                %th Estado
+                %th Nº proyecto
+              - @revisiones.each do |instarea|
+                %tr                  
+                  %td= instarea.id
+                  %td= instarea.tipo_instruccion
+                  %td= instarea.prioridad
+                  %td= link_to instarea.tarea, ver_entrega_proyecto_proyecto_instruccion_instruccion_detall_path(instarea.instruccion.proyecto,instarea.instruccion, instarea)
+                  %td= l(instarea.fecha_limite, :format => "%d %B %Y") if instarea.fecha_limite
+                  %td= instarea.estado_tarea
+                  %td= link_to instarea.instruccion.proyecto.id, instarea.instruccion.proyecto
+            /.pagination=will_paginate @revisiones
+        #tabshome-3
           /#remote
           %p
             %table
               %tr
-                %th Fecha Limite
+                %th Nº
                 %th Tarea
+                %th Tipo tarea
+                %th Prioridad
+                %th Fecha Limite
+                %th Estado
+                %th Nº proyecto
               - @pendientes.each do |tarea|
                 %tr
-                  %td= l(tarea.fecha_limite, :format => "%d %B %Y") if tarea.fecha_limite
+                  %td= tarea.id
+                  %td= tarea.tipo_instruccion
+                  %td= tarea.prioridad
                   %td= link_to tarea.tarea, proyecto_proyecto_instruccion_instruccion_detall_path(tarea.instruccion.proyecto, tarea.instruccion, tarea)
+                  %td= l(tarea.fecha_limite, :format => "%d %B %Y") if tarea.fecha_limite
+                  %td= tarea.estado_tarea
+                  %td= link_to tarea.instruccion.proyecto.id, tarea.instruccion.proyecto
             .pagination=will_paginate @pendientes
-
-        #tabshome-3
-          %p
-            %table
-              %tr
-                %th Fecha Limite
-                %th Descripción
-              - @mistareas.each do |mitarea|
-                %tr
-                  %td= l(mitarea.fecha_limite, :format => "%d %B %Y") if mitarea.fecha_limite
-                  %td= link_to mitarea.tarea, proyecto_proyecto_instruccion_instruccion_detall_path(mitarea.instruccion.proyecto, mitarea.instruccion, mitarea)
-          /=will_paginate @mistareas
-
-  %tr
-    %td{:colspan=>2}
-      %h3
-        Proyectos Pendientes
-      %table{:border=>0}
-        %tr
-          %th Proyecto
-          %th Agente
-          %th Descripción
-          %th Iniciado en
-          %th Terminado en
-          %th Estado
-        - @proyectos.each do |proyecto|
-          %tr
-            %td= proyecto.id
-            %td= link_to proyecto.representante, proyecto
-            %td= proyecto.titulo
-            %td= l(proyecto.fecha_minima, :format=>"%d %B %Y") if proyecto.fecha_minima
-            %td= l(proyecto.fecha_maxima, :format =>"%d %b %y") if proyecto.fecha_maxima
-            %td= proyecto.estado_proyecto
-      =will_paginate @proyectos
 
 :javascript
   //window.selectorAjax = "tabshome";
