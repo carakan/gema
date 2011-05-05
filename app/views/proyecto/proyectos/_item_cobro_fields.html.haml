@@ -5,6 +5,7 @@
   .percent_20= f.input :referencia_cliente, :input_html=>{:size=>10}
   .percent_20= f.input :referencia_cliente_cobranza, :input_html=>{:size=>10}, :label => "Codigo cliente cobranza"
   .percent_20= f.association :item, :prompt => 'Seleccione un item', :label => 'Servicio'
+  .percent_20= f.input :nro_tramite, :label=> 'Número de Trámite', :input_html=>{:size=>15}
   .percent_10= f.input :descripcion,:as=>:text , :input_html=>{:cols=>68, :rows=>2}, :style=>{:float=>'left'}
   .percent_20= f.input :honorarios, :input_html=>{:size=>15}
   .percent_20= f.input :gastos_adminitrativos, :input_html=>{:size=>15}

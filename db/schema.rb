@@ -308,6 +308,7 @@ ActiveRecord::Schema.define(:version => 201104258152130) do
     t.boolean  "tipo"
     t.integer  "item_id"
     t.integer  "contador"
+    t.string   "nro_tramite"
   end
 
   create_table "proyectos", :force => true do |t|
