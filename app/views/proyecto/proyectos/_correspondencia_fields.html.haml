@@ -5,11 +5,33 @@
     = f.input(:contador, :as => :hidden, :input_html => {:value => contador})
   - else
     .contar
-    = f.input(:contador, :as => :hidden)  
+    = f.input(:contador, :as => :hidden)
   = f.input :orden,:label =>'Fecha: ', :hint=>'Incluya la fecha de esta correspondencia'
+  
   = f.input :temporal_id, :as => :hidden, :input_html => {:value => "new_correspondencias"}
   = f.collection_radio :tipo, [[true, 'Recibido'] ,[false, 'Enviado']], :first, :last, :checked  => true
   = f.input :asunto, :label =>'Asunto:', :hint =>'Indique el asunto o cabecera del email', :input_html => {:"data-id" => "new_correspondencias"}
   = f.input :contenido, :input_html => {:cols=>100, :rows=>5}, :hint => "Escriba el contenido de la correspondencia", :label=>'Contenido:'
   - if !defined?(contador)
     = remove_child_link "Quitar", f
+:javascript
+  $('#a_adjuntar_archivo_correspondencia').click(function() {
+    tiempo = ( new Date() ).getTime().toString();
+    input = $('<input/>').attr({
+    'name': 'proyecto_proyecto[correspondencia_attributes][][adjuntos_attributes][' + tiempo + '][archivo]',
+    'type': 'file',
+    'size': 20
+    });
+    input2 = $('<input/>').attr({
+    'name': 'proyecto_proyecto[correspondencia_attributes]['+ tiempo +'][adjuntos_attributes][' + tiempo + '][nombre]',
+    'type': 'text',
+    'size': 60
+    });
+    del = '<a href="javascript:" class="adjunto_delete">borrar</a>';
+    var uno = $("<div class='percent_50'/>").append('<label>descripcion</label>').append(input2);
+    var dos = $("<div class='percent_50'/>").append('<label>archivo</label>').append(input);
+    li = $('<li/>').append(uno).append(dos).append(del)
+    $('#adjuntos_correspondencia').append( li );
+    $.mark(li, 7);
+  });
+
