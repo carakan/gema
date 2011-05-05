@@ -1,17 +1,19 @@
 .fieldset{:"data-group" => "tarea"}
   .contar{:class => "hidden"}
   = f.input :contador, :as => :hidden
-  .percent_20{:style => "width: 17%;"}
+  .percent_20{:style => "width: 17%;vertical-align:top;"}
     .input
       = f.label :usuario_id, "Usuario"
       = f.select :usuario_id, grouped_options_for_select(Usuario.all_for_areas)
     = f.input :temporal_parent_id, :as => :hidden, :input_html => { :value => "parent_id_regex"}
     = f.input :temporal_id, :as => :hidden, :input_html => { :value => "new_instruccion_detalles"}
-  .percent_40
-    = f.input :tarea,:as => :text, :input_html => {:cols => 40, :rows => 1}
-  .percent_20
-    = f.input :fecha_limite, :as => :date
-  .percent_20
+  .percent_40{:style=>'vertical-align:top;'}
+    = f.input :tarea,:as => :text, :input_html => {:cols => 40, :rows => 1, :style=>'top:20px;'},:hint=>'Escriba la tarea'
+  .percent_20{:style=>'vertical-align:top;'}
+    = f.input :fecha_limite, :as => :date, :hint=>'Introduzca una fecha'
+  .percent_20{:style=>'vertical-align:top;'}
+    = f.input :prioridad, :collection =>['A', 'B', 'C'], :as=> :radio, :hint=>'Escoga la prioridad de la tarea'
+  .percent_5{:style=>'float:right;vertical-align:top;'}
     = link_to 'Subordinada', "#", :class => "subordinada", :"data-id" => "new_instruccion_detalles"
     = link_to 'Coordinada', "#", :class => "coordinada", :"data-id" => "new_instruccion_detalles"
     = remove_child_link "Quitar", f
