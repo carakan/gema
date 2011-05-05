@@ -5,6 +5,6 @@
     = f.select :temporal_correspondencia_id, ["Cree una correspondencia para actualizar"], :input_html =>  {:class => "select_correspondencias"}
   = f.simple_fields_for :instruccion_detalles, Proyecto::InstruccionDetalle.new do |m|
     .container.tarea{:"data-id" => "new_instruccions"}
-      = add_child_link "Añadir tarea", f, :instruccion_detalles
+      = add_child_link "Añadir tarea", f, :instruccion_detalles, {:partial => "/proyecto/proyectos/instruccion_detall_fields"}
   = remove_child_link "Quitar Instruccion", f
 
