@@ -18,7 +18,7 @@
   %br
   = render :partial => "/proyecto/proyecto_items/listado", :locals => {:proyecto_items => @proyecto.item_cobros.paginate(:per_page=>5, :page=>params[:page])}
   %br
-  = render :partial => "/proyecto/instrucciones/listado", :locals =>{:instrucciones => @proyecto.instruccions}
+  = render :partial => "/proyecto/instruccion_detalles/listado", :locals =>{:instruccion_detalles => @proyecto.todas_las_tareas, :instruccion => Proyecto::Instruccion.first}
 
   %p
     =# link_to "Editar Proyecto", edit_proyecto_proyecto_path(@proyecto),:class => "edit"

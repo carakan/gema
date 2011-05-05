@@ -71,6 +71,10 @@ class Proyecto::Proyecto < ActiveRecord::Base
     codigo = Proyecto::Proyecto.select("max(id) as conteo").first
     return(codigo.conteo + 1)
   end
+  
+  def todas_las_tareas(page = 1)
+    Proyecto::InstruccionDetalle.find(:all, :conditions => {:instruccion_id => self.instruccions.collect{|i| i.id }}).paginate(:page => page, :per_page => 20)
+  end
 
   protected
 
