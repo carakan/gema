@@ -18,7 +18,7 @@
 <%end%>
 <br />
 <% if @proyecto %>
-<%= link_to 'Nuevo adjunto', new_proyecto_proyecto_adjunto_path(@proyecto), :class => 'new' %>
+  <%= link_to 'Nuevo adjunto', new_proyecto_proyecto_adjunto_path(@proyecto), :class => 'new ajax' %>
 <% else %>
-<%= link_to 'Nuevo adjunto', new_adjunto_path, :class => 'new' %>
+  <%= link_to 'Nuevo adjunto', new_adjunto_path, :class => 'new' %>
 <% end %>

@@ -1,7 +1,11 @@
 .fieldset{:"data-group" => "cobros"}
-  .contar
-  = f.input :tipo, :as => :hidden, :input_html=>{:value=>1}
-  = f.input :contador, :as => "hidden"
+  - if defined?(contador)
+    .contar
+      = contador
+    = f.input(:contador, :as => :hidden, :input_html => {:value => contador})
+  - else
+    .contar
+    = f.input(:contador, :as => :hidden)  
   .percent_20= f.input :referencia_cliente, :input_html=>{:size=>10}
   .percent_20= f.input :referencia_cliente_cobranza, :input_html=>{:size=>10}, :label => "Codigo cliente cobranza"
   .percent_20= f.association :item, :prompt => 'Seleccione un item', :label => 'Servicio'
@@ -13,7 +17,11 @@
   .marcas-related.percent_20{:"data-id" => "new_item_cobros"}
     = link_to("Anadir marca", busqueda_avanzada_busquedas_path(:select_marcas => true), :class => "ajax", :"data-id" => "new_item_cobros")
     = f.input :marca_ids, :label => false, :input_html=>{:type=>:hidden}
-  = remove_child_link "Remover Servicio", f
+  - unless defined?(contador)
+    = remove_child_link "Remover Servicio", f
   %hr
 :javascript
-  transformarDateSelect();
+  $(document).ready(function(){
+    transformarDateSelect();
+  });
+  

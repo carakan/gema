@@ -6,12 +6,14 @@ class Proyecto::ProyectoItem < ActiveRecord::Base
 
   set_table_name 'proyecto_items'
 
-  def obtener_codigo
-    codigo = Proyecto::ProyectoItem.select("max(contador) as conteo").where("tipo = 1", ["proyecto_id = ?", proyecto_id]).first
+  def siguiente_id
+    codigo = Proyecto::ProyectoItem.select("max(contador) as conteo").where(["proyecto_id = ?", proyecto_id]).first
     return(codigo.conteo + 1) 
+  rescue
+    return 1
   end
   
   def to_s
-    "P#{self.proyecto.id} S#{self.contador}"
+    "P#{self.proyecto.id} ITEM#{self.contador}"
   end
 end

@@ -8,6 +8,8 @@ class Proyecto::Correspondencia < ActiveRecord::Base
   def siguiente_id
     codigo = Proyecto::Correspondencia.select("max(contador) as conteo").where(["proyecto_id = ?", proyecto_id]).first
     return(codigo.conteo + 1) 
+  rescue
+    return 1
   end
   
   def to_s
