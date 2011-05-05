@@ -20,7 +20,7 @@
   $('#a_adjuntar_archivo_correspondencia').click(function() {
     tiempo = ( new Date() ).getTime().toString();
     input = $('<input/>').attr({
-    'name': 'proyecto_proyecto[correspondencia_attributes][][adjuntos_attributes][' + tiempo + '][archivo]',
+    'name': 'proyecto_proyecto[correspondencia_attributes]['+ tiempo +'][adjuntos_attributes][' + tiempo + '][archivo]',
     'type': 'file',
     'size': 20
     });
