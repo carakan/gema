@@ -1,10 +1,16 @@
 .fieldset.ui-corner-all.ui-widget-content.ui-tabs{:"data-group" => "instruccion"}
-  .contar
-  = f.input :contador, :as => :hidden
+  - if defined?(contador)
+    .contar
+      = contador
+    = f.input(:contador, :as => :hidden, :input_html => {:value => contador})
+  - else
+    .contar
+    = f.input(:contador, :as => :hidden)  
   .instrucciones
     = f.select :temporal_correspondencia_id, ["Cree una correspondencia para actualizar"], :input_html =>  {:class => "select_correspondencias"}
   = f.simple_fields_for :instruccion_detalles, Proyecto::InstruccionDetalle.new do |m|
     .container.tarea{:"data-id" => "new_instruccions"}
       = add_child_link "Añadir tarea", f, :instruccion_detalles, {:partial => "/proyecto/proyectos/instruccion_detall_fields"}
-  = remove_child_link "Quitar Instruccion", f
+  - unless defined?(contador)
+    = remove_child_link "Quitar Instruccion", f
 
