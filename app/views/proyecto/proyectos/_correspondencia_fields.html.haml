@@ -12,6 +12,8 @@
   = f.collection_radio :tipo, [[true, 'Recibido'] ,[false, 'Enviado']], :first, :last, :checked  => true
   = f.input :asunto, :label =>'Asunto:', :hint =>'Indique el asunto o cabecera del email', :input_html => {:"data-id" => "new_correspondencias"}
   = f.input :contenido, :input_html => {:cols=>100, :rows=>5}, :hint => "Escriba el contenido de la correspondencia", :label=>'Contenido:'
+  %div#adjuntos_correspondencia
+    %a#a_adjuntar_archivo_correspondencia{:href => "javascript:", :class => "new"} Adjuntar archivo
   - if !defined?(contador)
     = remove_child_link "Quitar", f
 :javascript
