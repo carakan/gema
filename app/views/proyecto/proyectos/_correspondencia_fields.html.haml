@@ -1,9 +1,15 @@
 .fieldset.correspondencia{:"data-group" => "correspondencia"}
-  .contar
-  = f.input :contador, :as => :hidden
+  - if defined?(contador)
+    .contar
+      = contador
+    = f.input(:contador, :as => :hidden, :input_html => {:value => contador})
+  - else
+    .contar
+    = f.input(:contador, :as => :hidden)  
   = f.input :orden,:label =>'Fecha: ', :hint=>'Incluya la fecha de esta correspondencia'
   = f.input :temporal_id, :as => :hidden, :input_html => {:value => "new_correspondencias"}
   = f.collection_radio :tipo, [[true, 'Recibido'] ,[false, 'Enviado']], :first, :last, :checked  => true
   = f.input :asunto, :label =>'Asunto:', :hint =>'Indique el asunto o cabecera del email', :input_html => {:"data-id" => "new_correspondencias"}
-  = f.input :contenido, :input_html => {:cols=>120, :rows=>5}, :hint => "Escriba el contenido de la correspondencia", :label=>'Contenido:'
-  = remove_child_link "Quitar", f
+  = f.input :contenido, :input_html => {:cols=>100, :rows=>5}, :hint => "Escriba el contenido de la correspondencia", :label=>'Contenido:'
+  - if !defined?(contador)
+    = remove_child_link "Quitar", f

@@ -17,10 +17,10 @@ class Proyecto::Proyecto < ActiveRecord::Base
 
   has_many :adjuntos, :as => :adjuntable, :dependent => :destroy
 
-  accepts_nested_attributes_for :adjuntos
+  accepts_nested_attributes_for :adjuntos, :allow_destroy => true
   accepts_nested_attributes_for :correspondencias, :reject_if => :all_blank, :allow_destroy => true
-  accepts_nested_attributes_for :proyecto_items
-  accepts_nested_attributes_for :instruccions
+  accepts_nested_attributes_for :proyecto_items, :allow_destroy => true
+  accepts_nested_attributes_for :instruccions, :allow_destroy => true
 
   after_save :update_position_on_tree
 
