@@ -21,7 +21,7 @@ gem 'spreadsheet', "0.6.5.3"
 gem 'google-spreadsheet-ruby', "0.1.2"
 gem 'roo', "1.9.3"
 gem 'paperclip', "2.3.11"
-gem 'prawn', "0.11.1"
+gem 'prawn', "0.10.2"
 gem 'less', "1.2.21"
 gem 'devise', '1.2.1'
 gem 'simple_form', '1.3.1'
