@@ -10,9 +10,9 @@
       %li
         %a{:href=>'#tabs-1'} Proyecto
       %li
-        %a{:href=>'#tabs-2'} Correspondencia e Instrucciones
+        %a{:href=>'#tabs-2'} Servicios
       %li
-        %a{:href=>'#tabs-3'} Servicios
+        %a{:href=>'#tabs-3'} Correspondencia e Instrucciones
       %li
         %a{:href=>'#tabs-4'} Archivos adjuntos
 
@@ -28,6 +28,11 @@
       = f.input :referencia_cliente, :hint => "Introduza una referencia de cliente, por ejemplo : AC-5454-BOL"
       = f.input :prioridad, :collection =>['A', 'B', 'C'], :as=> :radio, :hint=> 'Asigne una prioridad para este proyecto, de tipo A = Mayor Prioridad, B = Mediana Prioridad, C = Menor Prioridad '
     #tabs-2
+      %h2 Servicios
+      = f.simple_fields_for :item_cobros, Proyecto::ItemCobro.new(:tipo => 1) do |g|
+        .container
+          = add_child_link "Añadir", f, :item_cobros
+    #tabs-3
       %div{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all form-correspondencia",:style=>'font-size:11px;'}
         %h2 Nuevo Email
         .container.email
@@ -39,12 +44,6 @@
           = render 'instruccion_fields', :f => i
           .container
             = add_child_link "Añadir Instruccion", f, :instruccions, {:object => Proyecto::Instruccion.new}
-
-    #tabs-3
-      %h2 Servicios
-      = f.simple_fields_for :item_cobros, Proyecto::ItemCobro.new(:tipo => 1) do |g|
-        .container
-          = add_child_link "Añadir", f, :item_cobros
 
     #tabs-4
       %h2 Archivos Adjuntos

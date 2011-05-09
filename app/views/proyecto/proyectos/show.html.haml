@@ -1,12 +1,13 @@
 .proyecto
   %h1 Datos del proyecto
   = show_for @proyecto do |p|
-    #contenido
+    #contenidoy
       .izquierda{:style => "width:100%;"}
-        .subizq{:style => "width:10%; text-align: left;"}
-          .percent_40= p.attribute :id, :label => 'Nº'
+        .subizq{:style => "width:10%; text-align: left; padding-left:20px;"}
+          = p.attribute :id, :label => 'Nº'
         .subder{:style => "width:80%; text-align: left;"}
-          .percent_40= p.association :representante, :label => 'Agente'
+          = p.association :representante, :label => 'Agente'
+    .clear
     .percent_40= p.attribute :titulo
     .percent_40= p.association :area
     .percent_40= p.attribute :referencia_cliente

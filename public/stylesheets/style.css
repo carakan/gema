@@ -935,3 +935,10 @@ td.marcas, td.marcas a{
   color: #969696;
   font-weight: bold;
 }
+div#contenidoy{
+  font-family: arial, helvetica, freesans, clean, sans-serif;
+  font-size: 20px;
+  line-height: 18px;
+  font-weight: bold;
+}
+

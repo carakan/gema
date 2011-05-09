@@ -16,22 +16,24 @@
           %p
             %table
               %tr
+                %th Nº proyecto
+                %th Descripcion
                 %th Nº
                 %th Tarea
                 %th Tipo tarea
                 %th Prioridad
                 %th Fecha Limite
                 %th Estado
-                %th Nº proyecto
               - @mistareas.each do |mitarea|
                 %tr
+                  %td= link_to mitarea.instruccion.proyecto.id, mitarea.instruccion.proyecto
+                  %td= mitarea.instruccion.proyecto.titulo
                   %td= mitarea.id
+                  %td= link_to mitarea.tarea, proyecto_proyecto_instruccion_instruccion_detall_path(mitarea.instruccion.proyecto, mitarea.instruccion, mitarea)
                   %td= mitarea.tipo_instruccion
                   %td= mitarea.prioridad
-                  %td= link_to mitarea.tarea, proyecto_proyecto_instruccion_instruccion_detall_path(mitarea.instruccion.proyecto, mitarea.instruccion, mitarea)
                   %td= l(mitarea.fecha_limite, :format => "%d %B %Y") if mitarea.fecha_limite
                   %td= mitarea.estado_tarea
-                  %td= link_to mitarea.instruccion.proyecto.id, mitarea.instruccion.proyecto
             /.pagination=will_paginate @mistareas
         #tabshome-2
           %p
