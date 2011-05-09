@@ -1,36 +1,61 @@
 - title "Servicio"
-
-%p
-  %strong Proyecto:
-  = @proyecto_item.proyecto_id
-%p
-  %strong Descripcion:
-  = @proyecto_item.descripcion
-%p
-  %strong Estado:
-  = @proyecto_item.estado
-%p
-  %strong Referencia Cliente:
-  = @proyecto_item.referencia_cliente
-%p
-  %strong Referencia Cliente Cobranza:
-  = @proyecto_item.referencia_cliente_cobranza
-%p
-  %strong Fecha Limite:
-  = @proyecto_item.fecha_limite
-%p
-  %strong Honorarios:
-  = @proyecto_item.honorarios
-%p
-  %strong Gastos Adminitrativos:
-  = @proyecto_item.gastos_adminitrativos
-%p
-  %strong Monto:
-  = @proyecto_item.monto
-%p
-  %strong Fecha Solicitud:
-  = @proyecto_item.fecha_solicitud
-
+%h2 Datos del servicio
+#contenido
+  .izquierda{:style => "width:40%; text-align: left; padding-left:20px;"}
+    .subizq
+      %strong Proyecto:
+    .subder
+      = @proyecto_item.proyecto_id
+  .derecha{:style => "width:50%; text-align: left; padding-left:20px;"}
+    .subizq
+      %strong Descripcion:
+    .subder
+      = @proyecto_item.descripcion
+  .clear
+  .izquierda{:style => "width:40%; text-align: left; padding-left:20px;"}
+    .subizq
+      %strong Estado:
+    .subder
+      = @proyecto_item.estado
+  .derecha{:style => "width:50%; text-align: left; padding-left:20px;"}
+    .subizq
+      %strong Referencia Cliente:
+    .subder
+      = @proyecto_item.referencia_cliente
+  .clear
+  .izquierda{:style => "width:40%; text-align: left; padding-left:20px;"}
+    .subizq
+      %strong Referencia Cliente Cobranza:
+    .subder
+      = @proyecto_item.referencia_cliente_cobranza
+  .derecha{:style => "width:50%; text-align: left; padding-left:20px;"}
+    .subizq
+      %strong Fecha Limite:
+    .subder
+      = @proyecto_item.fecha_limite
+  .clear
+  .izquierda{:style => "width:40%; text-align: left; padding-left:20px;"}
+    .subizq
+      %strong Honorarios:
+    .subder
+      = @proyecto_item.honorarios
+  .derecha{:style => "width:50%; text-align: left; padding-left:20px;"}
+    .subizq
+      %strong Gastos Adminitrativos:
+    .subder
+      = @proyecto_item.gastos_adminitrativos
+  .clear
+  .izquierda{:style => "width:40%; text-align: left; padding-left:20px;"}
+    .subizq
+      %strong Monto:
+    .subder
+      = @proyecto_item.monto
+  .derecha{:style => "width:50%; text-align: left; padding-left:20px;"}
+    .subizq
+      %strong Fecha Solicitud:
+    .subder
+      = @proyecto_item.fecha_solicitud
+  .clear
 %p
   = link_to "Editar", edit_proyecto_item_path(@proyecto_item)
   |
