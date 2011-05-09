@@ -37,7 +37,7 @@
         = link_to "Ver todos los email", proyecto_proyecto_correspondencias_path(@proyecto), :class => "correspondencia new", :"data-selector" => "#tabs-correspondencia-1", :style => "float: right;"
         %br.clear
   #tabs-correspondencia-2
-    = render :partial => "/adjuntos/index", :locals => {:adjuntos => @proyecto.adjuntos.paginate(:per_page => 10, :page => params[:page])}
+    = render :partial => "/adjuntos/index", :locals => {:adjuntos => @proyecto.todos_los_adjuntos}
 
 :javascript
   window.selectorAjax = "tabs-correspondencia";
