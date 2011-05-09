@@ -63,5 +63,6 @@ class Proyecto::InstruccionDetalle < ActiveRecord::Base
   def to_s
     "P#{self.instruccion.proyecto.id} T#{self.contador}"
   end
+
 end
 

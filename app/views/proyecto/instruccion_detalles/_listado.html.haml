@@ -4,17 +4,20 @@
     %th Referencia Email
     %th Asignado a
     %th Tarea
-    %th Fecha Limite
+    %th Tipo tarea
     %th Prioridad
+    %th Fecha Limite
   
   - for instruccion_detall in instruccion_detalles
     %tr
-      %td= link_to(instruccion_detall, proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion_detall.instruccion,instruccion_detall))
-      %td= instruccion_detall.instruccion.referencia_email
+      %td= link_to instruccion_detall, proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion_detall.instruccion,instruccion_detall), :class => 'ajax'
+      /-debugger
+      %td= link_to instruccion_detall.instruccion.referencia_email, proyecto_proyecto_correspondencia_path(@proyecto, instruccion_detall.instruccion.referencia_email), :class => 'ajax'
       %td= instruccion_detall.usuario
       %td= instruccion_detall.tarea
-      %td= l(instruccion_detall.fecha_limite, :format => "%d, %B %Y") if instruccion_detall.fecha_limite
+      %td= instruccion_detall.tipo_instruccion      
       %td= instruccion_detall.prioridad      
+      %td= l(instruccion_detall.fecha_limite, :format => "%d, %B %Y") if instruccion_detall.fecha_limite
       %td
         - if instruccion_detall.estado_tarea == 'pendiente'
           = link_to "Entregar", entrega_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion_detall.instruccion, instruccion_detall), :class => 'terminada'

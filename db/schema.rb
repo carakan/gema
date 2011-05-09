@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(:version => 201104258152130) do
     t.string   "sigla"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "mostrar",    :default => false
   end
 
   create_table "clases", :force => true do |t|
@@ -321,6 +322,7 @@ ActiveRecord::Schema.define(:version => 201104258152130) do
     t.string   "prioridad"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "titulo_en",          :default => ""
   end
 
   create_table "proyectos_contactos", :id => false, :force => true do |t|
