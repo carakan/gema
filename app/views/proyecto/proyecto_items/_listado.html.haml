@@ -13,10 +13,10 @@
   #tabs-items-1
     %table.decorated
       %tr
-        %th= sort_order "Codigo", "proyecto_item.id"
-        %th Codigo Orpan
+        %th= sort_order "__Codigo__", "proyecto_item.id"
         %th Descripcion
         %th Estado
+        %th Número de Trámite
         %th Referencia cliente
         %th Referencia cliente cobranza
         %th Fecha limite
@@ -28,10 +28,10 @@
         %th Fecha solicitud
       - @proyecto.item_cobros.each do |proyecto_item|
         %tr
-          %td= link_to proyecto_item.proyecto_id, proyecto_proyecto_proyecto_item_path(@proyecto, proyecto_item)
-          %td= proyecto_item.contador
+          %td= link_to proyecto_item, proyecto_proyecto_proyecto_item_path(@proyecto, proyecto_item)
           %td= proyecto_item.descripcion
           %td= proyecto_item.estado
+          %td= proyecto_item.nro_tramite
           %td= proyecto_item.referencia_cliente
           %td= proyecto_item.referencia_cliente_cobranza
           %td= proyecto_item.fecha_limite

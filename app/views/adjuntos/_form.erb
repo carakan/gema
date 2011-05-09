@@ -1,7 +1,7 @@
 <% form_for(@adjunto, :url => url, :html => {:multipart => true}) do |f| %>
   <%= f.error_messages %>
   <% if @proyecto %>
-    <b><%= @proyecto.titulo %></b>
+    <b>Proyecto << <%= link_to(@proyecto.titulo, proyecto_proyecto_path(@proyecto)) %></b>
   <% end %>
   <p>
     <%= f.label :nombre %><br />

@@ -1,7 +1,9 @@
-- title "Nuevo servicio"
+
 - if params[:tipo] && params[:tipo] == "gasto"
-  = render :partial => "gasto_form"
+  %h3 Nueva peticion de Gasto
+  = render :partial => "gasto_form", :locals => {:contador => (@proyecto_item.new_record?)? @proyecto_item.siguiente_id : @proyecto_item.contador }
 - else
+  %h3 Nuevo servicio
   = render :partial => 'form', :locals => {:url => proyecto_proyecto_proyecto_items_path(@proyecto)}
 
 %p= link_to "listado", proyecto_proyecto_proyecto_items_path(@proyecto)

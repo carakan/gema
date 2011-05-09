@@ -1,15 +1,11 @@
+%h3= "Proyecto << #{link_to(@proyecto.titulo, proyecto_proyecto_path(@proyecto))}".html_safe
+
 = simple_form_for @correspondencia, :url => url do |f|
   = f.error_messages
-  %p
-    %b Proyecto:
-    %h3== Proyecto > #{link_to(@proyecto.titulo, proyecto_proyecto_path(@proyecto))} > Nuevo servicio
-  %p
-    = f.input :orden, :label=>'fecha'
-  %p
-    = f.collection_radio :tipo, [[true, 'Recibido'] ,[false, 'Enviado']], :first, :last
-  %p
-    = f.input :asunto
-  %p
-    = f.input :contenido
-  %p
-    = f.button :submit, 'Guardar'
+  = render :partial => "/proyecto/proyectos/correspondencia_fields", :locals => {:f => f, :contador => (@correspondencia.new_record?)? @correspondencia.siguiente_id : @correspondencia.contador}
+  = f.submit "Guardar"
+
+:javascript
+  $(document).ready(function(){
+    transformarDateSelect();
+  });

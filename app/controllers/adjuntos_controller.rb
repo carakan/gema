@@ -50,7 +50,7 @@ class AdjuntosController < ApplicationController
     end
     respond_to do |format|
       if @adjunto.save
-        format.html { redirect_to(value, :notice => 'Adjunto was successfully created.') }
+        format.html { redirect_to(value, :notice => 'Se añadio un archivo satisfactoriamente') }
         format.xml  { render :xml => @adjunto, :status => :created, :location => @adjunto }
       else
         format.html { render :action => "new" }

@@ -7,7 +7,7 @@
     %th Fecha solicitud
   - @proyecto.item_gastos.each do |proyecto_item|
     %tr
-      %td= link_to proyecto_item.proyecto_id, proyecto_proyecto_proyecto_item_path(@proyecto, proyecto_item)
+      %td= link_to proyecto_item, proyecto_proyecto_proyecto_item_path(@proyecto, proyecto_item)
       %td= proyecto_item.descripcion
       - if current_usuario.is?(:admin)
         %td= proyecto_item.monto

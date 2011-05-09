@@ -4,15 +4,12 @@
   = previus_email(@proyecto, @correspondencia, "#tabs-correspondencia-1")
   #correspondencia
     %p
-      = @correspondencia.created_at
+      %b= l(@correspondencia.orden, :format => "%d, %B %Y %H:%M") if @correspondencia.orden
       - if @correspondencia.tipo == true
         %td= image_tag("icons/received.png", :size => "16x16", :title => "Recibido")
       - else
         %td= image_tag("icons/sent.png", :size => "16x16", :title => "Enviado")
-    %p
-      = @correspondencia.orden
-    %p
-      = @correspondencia.asunto
+    %h4= @correspondencia.asunto
     %p
       = @correspondencia.contenido.html_safe
 

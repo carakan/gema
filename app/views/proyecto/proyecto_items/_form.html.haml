@@ -1,8 +1,16 @@
 = simple_form_for @proyecto_item, :url => url do |f|
   =f.input :tipo, :input_html => { :value => 1}, :as => :hidden
   = f.error_messages
-  %h3= link_to(@proyecto.titulo, proyecto_proyecto_path(@proyecto))
-  = render :partial => "/proyecto/proyectos/item_cobro_fields", :locals => {:f => f}
+  %h3= "Proyecto << #{link_to(@proyecto.titulo, proyecto_proyecto_path(@proyecto))}".html_safe
+  = render :partial => "/proyecto/proyectos/item_cobro_fields", :locals => {:f => f, :contador => (@proyecto_item.new_record?)? @proyecto_item.siguiente_id : @proyecto_item.contador }
   %p
     = f.button :submit, 'Guardar'
+:javascript
+  $("form").submit(function(){
+    $("input[name*=marca_ids]").each(function(){
+      if($(this).val() == "[]"){
+        $(this).remove();
+      }
+    });
+  });
 

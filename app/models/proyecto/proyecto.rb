@@ -17,10 +17,10 @@ class Proyecto::Proyecto < ActiveRecord::Base
 
   has_many :adjuntos, :as => :adjuntable, :dependent => :destroy
 
-  accepts_nested_attributes_for :adjuntos
+  accepts_nested_attributes_for :adjuntos, :allow_destroy => true
   accepts_nested_attributes_for :correspondencias, :reject_if => :all_blank, :allow_destroy => true
-  accepts_nested_attributes_for :proyecto_items
-  accepts_nested_attributes_for :instruccions
+  accepts_nested_attributes_for :proyecto_items, :allow_destroy => true
+  accepts_nested_attributes_for :instruccions, :allow_destroy => true
 
   after_save :update_position_on_tree
 
@@ -70,6 +70,10 @@ class Proyecto::Proyecto < ActiveRecord::Base
   def obtener_codigo
     codigo = Proyecto::Proyecto.select("max(id) as conteo").first
     return(codigo.conteo + 1)
+  end
+  
+  def todas_las_tareas(page = 1)
+    Proyecto::InstruccionDetalle.find(:all, :conditions => {:instruccion_id => self.instruccions.collect{|i| i.id }}).paginate(:page => page, :per_page => 20)
   end
 
   protected

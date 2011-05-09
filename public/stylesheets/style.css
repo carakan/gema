@@ -931,5 +931,7 @@ td.marcas, td.marcas a{
 }
 .contar{
   float: right;
-  font-size: 18px;
+  font-size: 25px;
+  color: #969696;
+  font-weight: bold;
 }

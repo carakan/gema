@@ -1,8 +1,4 @@
 - simple_form_for @instruccion,  :url => url do |f|
   = f.error_messages
-  %p
-    %b Proyecto:
-    %h3 Proyecto > #{@proyecto.titulo} > Nueva Instrucción
-    = f.input :referencia_email , :disabled => false
-  %p
-    = f.button :submit
+  = render :partial => "/proyecto/proyectos/instruccion_fields", :locals => {:f => f, :contador => (@instruccion.new_record?)? @instruccion.siguiente_id : @instruccion.contador}
+  = f.button :submit

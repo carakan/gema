@@ -30,7 +30,7 @@ class Proyecto::InstruccionDetallesController < ApplicationController
     @instruccion_detalle = Proyecto::InstruccionDetalle.find(params[:id])
     if @instruccion_detalle.update_attributes(params[:proyecto_instruccion_detalle])
       flash[:notice] = "Successfully updated proyecto/instruccion detalle."
-      redirect_to @instruccion_detalle
+      redirect_to proyecto_proyecto_url(@proyecto)
     else
       render :action => 'edit'
     end

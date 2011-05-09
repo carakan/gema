@@ -10,16 +10,23 @@ class Proyecto::ProyectoItemsController < ApplicationController
   
   def new
     if params[:tipo] && params[:tipo] == "cobro"
-      @proyecto_item = Proyecto::ItemCobro.new
+      @proyecto_item = @proyecto.item_cobros.new
     elsif params[:tipo] && params[:tipo] == "gasto"
-      @proyecto_item = Proyecto::ItemGasto.new
+      @proyecto_item = @proyecto.item_gastos.new
     else
-      @proyecto_item = Proyecto::ProyectoItem.new
+      @proyecto_item = @proyecto.proyecto_items.new
     end
   end
   
   def create
-    @proyecto_item = @proyecto.proyecto_items.new(params[:proyecto_proyecto_item])
+    if params[:proyecto_proyecto_item]
+      parametros = params[:proyecto_proyecto_item]
+    elsif params[:proyecto_item_cobro]
+      parametros = params[:proyecto_item_cobro]
+    elsif params[:proyecto_item_gasto]
+      parametros = params[:proyecto_item_gasto]
+    end
+    @proyecto_item = @proyecto.proyecto_items.new(parametros)
     if @proyecto_item.save
       flash[:notice] = "Se creo con exito el servicio."
       redirect_to proyecto_proyecto_url(@proyecto)
