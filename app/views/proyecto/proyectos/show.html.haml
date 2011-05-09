@@ -9,7 +9,7 @@
           = p.association :representante, :label => 'Agente'
     .clear
     .percent_40= p.attribute :titulo
-    .percent_40= p.association :area
+    .percent_40= p.association :area, :using=> :sigla
     .percent_40= p.attribute :referencia_cliente
     .percent_40= p.attribute :prioridad
     .percent_40= p.association :contactos
