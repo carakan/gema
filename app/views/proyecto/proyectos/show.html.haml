@@ -14,7 +14,7 @@
     .percent_40= p.association :contactos
     .percent_40= p.attribute :created_at, :label => 'Fecha creación'
 
-  = render :partial => "/proyecto/correspondencias/listado", :locals => {:correspondencias => @proyecto.correspondencias.paginate(:per_page=>5, :page=>params[:page])}
+  = render :partial => "/proyecto/correspondencias/listado", :locals => {:correspondencias => @proyecto.correspondencias.paginate(:per_page=>5, :page=>params[:page], :order=>'orden DESC')}
   %br
   = render :partial => "/proyecto/proyecto_items/listado", :locals => {:proyecto_items => @proyecto.item_cobros.paginate(:per_page=>5, :page=>params[:page])}
   %br
