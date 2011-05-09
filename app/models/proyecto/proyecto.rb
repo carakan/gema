@@ -75,6 +75,10 @@ class Proyecto::Proyecto < ActiveRecord::Base
   def todas_las_tareas(page = 1)
     Proyecto::InstruccionDetalle.find(:all, :conditions => {:instruccion_id => self.instruccions.collect{|i| i.id }}).paginate(:page => page, :per_page => 20)
   end
+  
+  def todos_los_adjuntos
+    Adjunto.find(:all, :conditions => ["(adjuntable_type = 'Proyecto::Proyecto' AND adjuntable_id = ?) OR (adjuntable_type = 'Proyecto::Correspondencia' AND adjuntable_id in (?))", self.id, self.correspondencia_ids])
+  end
 
   protected
 
