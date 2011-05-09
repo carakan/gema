@@ -83,8 +83,8 @@ ActiveRecord::Schema.define(:version => 201104258152130) do
     t.text     "contenido"
     t.string   "asunto"
     t.integer  "temporal_id", :limit => 8
-    t.datetime "orden"
     t.integer  "contador",                 :default => 0
+    t.datetime "orden"
   end
 
   create_table "importaciones", :force => true do |t|
@@ -118,8 +118,8 @@ ActiveRecord::Schema.define(:version => 201104258152130) do
     t.integer  "asignado_por"
     t.integer  "temporal_id",           :limit => 8
     t.integer  "temporal_parent_id",    :limit => 8
-    t.string   "prioridad"
     t.integer  "contador"
+    t.string   "prioridad"
     t.integer  "tipo_instruccion_id"
     t.string   "tipo_tarea"
   end
