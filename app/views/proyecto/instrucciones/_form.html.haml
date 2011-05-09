@@ -1,4 +1,4 @@
 - simple_form_for @instruccion,  :url => url do |f|
   = f.error_messages
-  = render :partial => "/proyecto/proyectos/instruccion_fields", :locals => {:f => f, :contador => (@instruccion.new_record?)? @instruccion.siguiente_id : @instruccion.contador}
-  = f.button :submit
+  = render :partial => "/proyecto/proyectos/instruccion_fields", :locals => {:f => f, :contador => (@instruccion.new_record?)? @instruccion.siguiente_id : @instruccion.contador, :correos => @proyecto.correspondencias.collect{|c| ["#{c.contador}. #{c.asunto}", c.id]}}
+  = f.submit "Enviar"

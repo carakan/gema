@@ -7,7 +7,10 @@
     .contar
     = f.input(:contador, :as => :hidden)  
   .instrucciones
-    = f.select :temporal_correspondencia_id, ["Cree una correspondencia para actualizar"], :input_html =>  {:class => "select_correspondencias"}
+    - if defined?(correos)
+      = f.select :referencia_email, correos, :input_html =>  {:class => "select_correspondencias"}
+    - else
+      = f.select :temporal_correspondencia_id, ["Cree una correspondencia para actualizar"], :input_html =>  {:class => "select_correspondencias"}
   = f.simple_fields_for :instruccion_detalles, Proyecto::InstruccionDetalle.new do |m|
     .container.tarea{:"data-id" => "new_instruccions"}
       = add_child_link "Añadir tarea", f, :instruccion_detalles, {:partial => "/proyecto/proyectos/instruccion_detall_fields"}
