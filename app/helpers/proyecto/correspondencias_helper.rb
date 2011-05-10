@@ -1,7 +1,7 @@
 module Proyecto::CorrespondenciasHelper
   def next_email(proyecto, email, tab_selector = "tab_selector")
     if email.nil?
-      email = proyecto.correspondencias.last
+      email = proyecto.correspondencias.first
     end
     correspondencias = proyecto.correspondencias.where(["orden > ?", email.orden]).order("orden")
     if !correspondencias.empty?
