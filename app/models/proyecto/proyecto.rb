@@ -25,7 +25,7 @@ class Proyecto::Proyecto < ActiveRecord::Base
   after_save :update_position_on_tree
 
   def to_s
-    id
+    "P#{"%04d" % self.proyecto.id}"
   end
 
   def fecha_minima

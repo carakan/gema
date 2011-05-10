@@ -18,6 +18,6 @@ class Proyecto::Instruccion < ActiveRecord::Base
   end
 
   def to_s
-    "P#{self.proyecto.id} I#{self.contador}"
+    "P#{"%04d" % self.proyecto.id} I#{"%02d" % self.contador}"
   end
 end

@@ -14,6 +14,6 @@ class Proyecto::Correspondencia < ActiveRecord::Base
   end
   
   def to_s
-    "P#{self.proyecto.id} C#{self.contador}"
+    "P#{"%04d" % self.proyecto.id} C#{"%02d" % self.contador}"
   end
 end
