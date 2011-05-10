@@ -167,7 +167,10 @@ ActiveRecord::Schema.define(:version => 201104258152130) do
     t.string   "nombre"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "ancestry"
   end
+
+  add_index "items", ["ancestry"], :name => "index_items_on_ancestry"
 
   create_table "marca_estados", :force => true do |t|
     t.string   "nombre"

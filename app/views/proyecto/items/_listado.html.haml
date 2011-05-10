@@ -12,7 +12,7 @@
       %td= item.nombre
       %td= link_to 'Show', item
       %td= link_to 'Edit', edit_proyecto_item_path(item)
-      %td= link_to 'Destroy', item, :confirm => 'Are you sure?', :method => :delete
-
+      %td= link_to 'Destroy', item, :confirm => 'Are you sure?', :method => :delete, :class=> 'delete'
+      %td= link_to "Añadir", new_proyecto_item_path(:parent_id => item), :class => 'new'
 %p= link_to "Nuevo Item", new_proyecto_item_path, :class => 'new'
 
