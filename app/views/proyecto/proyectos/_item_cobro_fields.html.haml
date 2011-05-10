@@ -16,6 +16,8 @@
   .percent_20= f.input :fecha_solicitud,:label => "Fecha fatal", :input_html=>{:size=>4}
   .marcas-related.percent_20{:"data-id" => "new_item_cobros"}
     = link_to("Anadir marca", busqueda_avanzada_busquedas_path(:select_marcas => true), :class => "ajax", :"data-id" => "new_item_cobros")
+  .marcas-related.percent_20{:"data-id" => "new_item_cobros"}
+    = link_to("Anadir alerta", busqueda_avanzada_busquedas_path(:select_marcas => true), :class => "ajax", :"data-id" => "new_item_cobros")
     = f.input :marca_ids, :label => false, :input_html=>{:type=>:hidden}
   - unless defined?(contador)
     = remove_child_link "Remover Servicio", f
