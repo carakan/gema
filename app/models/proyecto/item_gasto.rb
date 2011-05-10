@@ -13,6 +13,6 @@ class Proyecto::ItemGasto < Proyecto::ProyectoItem
 
   
   def to_s
-    "P#{self.proyecto.id} G#{self.contador}"
+    "P#{"%04d" % self.proyecto.id} G#{"%02d" % self.contador}"
   end
 end

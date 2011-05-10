@@ -24,7 +24,7 @@
       = f.association :area, :collection => Proyecto::Area.all(:conditions => {:mostrar => 1}), :prompt => 'Seleccione un Area', :hint=>'A que área corresponde'
       = f.association :contactos, :collection => [], :input_html=> {:multiple => true}
       = link_to 'Agregar nuevo contacto', new_contacto_path, :class => 'new ajax new_contacto', :"data-path" => new_contacto_path
-      = f.input :titulo, :hint=> "Escriba una breve descripción de este proyecto"
+      = f.input :titulo, :hint=> "Escriba una breve descripción de este proyecto", :input_html=>{:style=>'width:600px; height:30px;' }
       = f.input :referencia_cliente, :hint => "Introduza una referencia de cliente, por ejemplo : AC-5454-BOL"
       = f.input :prioridad, :collection =>['A', 'B', 'C'], :as=> :radio, :hint=> 'Asigne una prioridad para este proyecto, de tipo A = Mayor Prioridad, B = Mediana Prioridad, C = Menor Prioridad '
     #tabs-2

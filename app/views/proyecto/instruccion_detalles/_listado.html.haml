@@ -10,9 +10,8 @@
   
   - for instruccion_detall in instruccion_detalles
     %tr
-      %td= link_to instruccion_detall.instruccion, proyecto_proyecto_instruccion_path(@proyecto, instruccion), :class => 'ajax'
-      /-debugger
-      %td= link_to instruccion_detall.instruccion.referencia_email, proyecto_proyecto_correspondencia_path(@proyecto, instruccion_detall.instruccion.referencia_email), :class => 'ajax'
+      %td= link_to instruccion_detall, proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion_detall.instruccion,instruccion_detall), :class => 'ajax'
+      %td= link_to instruccion_detall.instruccion.email, proyecto_proyecto_correspondencia_path(@proyecto, instruccion_detall.instruccion.email), :class => 'ajax' if instruccion_detall.instruccion.email
       %td= instruccion_detall.usuario
       %td= instruccion_detall.tarea
       %td= instruccion_detall.tipo_instruccion      

@@ -40,8 +40,9 @@
     = render :partial => "/adjuntos/index", :locals => {:adjuntos => @proyecto.todos_los_adjuntos}
 
 :javascript
-  window.selectorAjax = "tabs-correspondencia";
-  $(function() {
+  window.selectorAjax = "#tabs-correspondencia";
+  $(document).ready(function() {
     $("#tabs-correspondencia").tabs();
     $(".correspondencia, .next-email, .previus-email, .pagination a").live("click", ajaxeable);
+    $("#tabs-correspondencia-1 table tr td a:first").click();
   });

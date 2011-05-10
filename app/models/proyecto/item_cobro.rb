@@ -12,6 +12,6 @@ class Proyecto::ItemCobro < Proyecto::ProyectoItem
   end
   
   def to_s
-    "P#{self.proyecto.id} S#{self.contador}"
+    "P#{"%04d" % self.proyecto.id} S#{"%02d" % self.contador}"
   end
 end
