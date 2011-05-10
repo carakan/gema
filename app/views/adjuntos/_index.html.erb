@@ -1,24 +1,29 @@
-<table class="decorated">
-  <tr>
-    <th>Descripcion</th>
-    <th>Archivo</th>
-    <th colspan="2"></th>
-  </tr>
-  <% adjuntos.each do |adjunto| %>
+<% if adjuntos && !adjuntos.empty? %>
+  <table class="decorated">
     <tr>
-      <td><%=h adjunto.nombre %></td>
-      <td><%= link_to adjunto.archivo.url, adjunto %></td>
-      <td><%= link_to 'Edit', edit_adjunto_path(adjunto), :class => "edit" %></td>
-      <td><%= link_to 'Destroy', adjunto, :confirm => 'Are you sure?', :method => :delete, :class => "delete" %></td>
+      <th>Descripcion</th>
+      <th>Archivo</th>
+      <th colspan="2"></th>
     </tr>
+    <% adjuntos.each do |adjunto| %>
+      <tr>
+        <td><%=h adjunto.nombre %></td>
+        <td><%= link_to adjunto.archivo.url, adjunto %></td>
+        <td><%= link_to 'Edit', edit_adjunto_path(adjunto), :class => "edit" %></td>
+        <td><%= link_to 'Destroy', adjunto, :confirm => 'Are you sure?', :method => :delete, :class => "delete" %></td>
+      </tr>
+    <% end %>
+  </table>
+  <% if @adjuntos %>
+    <%= will_paginate(@adjuntos) %>
   <% end %>
-</table>
-<% if @adjuntos %>
-  <%= will_paginate(@adjuntos) %>
-<%end%>
-<br />
-<% if @proyecto %>
-  <%= link_to 'Nuevo adjunto', new_proyecto_proyecto_adjunto_path(@proyecto), :class => 'new ajax' %>
 <% else %>
-  <%= link_to 'Nuevo adjunto', new_adjunto_path, :class => 'new' %>
+<h5>Sin adjuntos</h5>
+<% end %>
+<% if !defined?(not_show) %>
+  <% if @proyecto %>
+    <%= link_to 'Nuevo adjunto', new_proyecto_proyecto_adjunto_path(@proyecto), :class => 'new ajax' %>
+  <% else %>
+    <%= link_to 'Nuevo adjunto', new_adjunto_path, :class => 'new' %>
+  <% end %>
 <% end %>
