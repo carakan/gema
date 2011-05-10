@@ -18,19 +18,25 @@
     = remove_child_link "Quitar", f
 :javascript
   $('a.a_adjuntar_archivo_correspondencia').click(function() {
-    tiempo_email = $(this).attr("data-id");
-    tiempo = ( new Date() ).getTime().toString();
-    input = $('<input/>').attr({
-    'name': 'proyecto_proyecto[correspondencias_attributes]['+ tiempo_email +'][adjuntos_attributes][' + tiempo + '][archivo]',
+    var tiempo = ( new Date() ).getTime().toString();
+    var tiempo_email = $(this).attr("data-id");
+    var name_field = "";
+    if(tiempo_email > 0){
+      name_field = 'proyecto_proyecto[correspondencias_attributes]['+ tiempo_email +'][adjuntos_attributes][' + tiempo + ']';
+    } else {
+      name_field = "proyecto_correspondencia[adjuntos_attributes][" + tiempo + ']';
+    }
+    console.debug(tiempo_email, name_field, $(this).attr("data-id") == "new_correspondencias");
+    var input = $('<input/>').attr({
+    'name': name_field + "[archivo]",
     'type': 'file',
     'size': 20
     });
-    input2 = $('<input/>').attr({
-    'name': 'proyecto_proyecto[correspondencias_attributes]['+ tiempo_email +'][adjuntos_attributes][' + tiempo + '][nombre]',
-    'type': 'text',
-    'size': 50
+    var input2 = $('<input/>').attr({
+    'name': name_field + "[nombre]",
+    'type': 'text'
     });
-    del = '<a href="javascript:" class="adjunto_delete">borrar</a>';
+    var del = '<a href="javascript:" class="adjunto_delete">borrar</a>';
     var uno = $("<div class='percent_50'/>").append('<label>descripcion</label>').append(input2);
     var dos = $("<div class='percent_50'/>").append('<label>archivo</label>').append(input);
     li = $('<li/>').append(uno).append(dos).append(del)

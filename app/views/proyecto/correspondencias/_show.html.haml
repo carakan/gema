@@ -12,6 +12,8 @@
     %h4= @correspondencia.asunto
     %p
       = @correspondencia.contenido.html_safe
+    %p
+      = render :partial => "/adjuntos/index", :locals => {:adjuntos => @correspondencia.adjuntos, :not_show => true}
 
     %p
       = link_to "Editar", edit_proyecto_proyecto_correspondencia_path(@proyecto, @correspondencia)

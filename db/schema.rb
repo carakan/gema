@@ -122,7 +122,6 @@ ActiveRecord::Schema.define(:version => 201104258152130) do
     t.integer  "contador"
     t.string   "prioridad"
     t.integer  "tipo_instruccion_id"
-    t.string   "tipo_tarea"
     t.boolean  "tipo"
   end
 

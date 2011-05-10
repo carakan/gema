@@ -1,6 +1,6 @@
 %h3= "Proyecto << #{link_to(@proyecto.titulo, proyecto_proyecto_path(@proyecto))}".html_safe
 
-= simple_form_for @correspondencia, :url => url do |f|
+= simple_form_for @correspondencia, :url => url, :html => {:multipart => true} do |f|
   = f.error_messages
   = render :partial => "/proyecto/proyectos/correspondencia_fields", :locals => {:f => f, :contador => (@correspondencia.new_record?)? @correspondencia.siguiente_id : @correspondencia.contador}
   = f.submit "Guardar"
