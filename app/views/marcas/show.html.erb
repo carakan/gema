@@ -134,7 +134,7 @@
   </div>
 
   <div class="subder">
-    <label class="remarcado"><%= cambio @marca, :pais_prioridad_id, Pais.find(@marca.pais_prioridad_id) %></label>
+    <label class="remarcado"><%= cambio(@marca, :pais_prioridad_id, Pais.find(@marca.pais_prioridad_id)) if @marca.pais_prioridad_id && @marca.pais_prioridad_id > 0 %></label>
   </div>
   <div style="clear:both"></div>
 

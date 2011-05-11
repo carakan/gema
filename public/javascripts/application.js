@@ -16,17 +16,32 @@
         }
       }
     };
-    setFechaDateSelect = function(el) {
+    setFechaDateSelect = function(el, source) {
       var fecha;
-      fecha = parsearFecha($(el).val());
-      if(fecha){
-        $(el).siblings('select[name*=1i]').val(fecha[0]);
-        $(el).siblings('select[name*=2i]').val(fecha[1]);
-        return $(el).siblings('select[name*=3i]').val(fecha[2]);
+      var $only_var = $(el).siblings("input");
+      
+      if($only_var.size() == 1){
+        $(el).val($(source).val());
       } else {
-        $(el).siblings('select[name*=1i]').val(null);
-        $(el).siblings('select[name*=2i]').val(null);
-        return $(el).siblings('select[name*=3i]').val(null);
+        fecha = parsearFecha($(el).val());
+        if(fecha){
+          $(el).siblings('select[name*=1i]').find("option[data-temp]").remove();
+          $(el).siblings('select[name*=2i]').find("option[data-temp]").remove();
+          $(el).siblings('select[name*=3i]').find("option[data-temp]").remove();
+          if ($(el).siblings('select[name*=1i]').find("option[value=" + fecha[0] + "]").size() == 0){
+            $(el).siblings('select[name*=1i]').append("<option value='"+ fecha[0] +"'>"+ fecha[0] +"</option>")
+          }
+          $(el).siblings('select[name*=1i]').val(fecha[0]);
+          $(el).siblings('select[name*=2i]').val(fecha[1]);
+          $(el).siblings('select[name*=3i]').val(fecha[2]);
+        } else {
+          $(el).siblings('select[name*=1i]').find("option").removeAttr("selected");
+          $(el).siblings('select[name*=2i]').find("option").removeAttr("selected");
+          $(el).siblings('select[name*=3i]').find("option").removeAttr("selected");
+          $(el).siblings('select[name*=1i]').append("<option value='1' selected='selected' data-temp=''></option>");
+          $(el).siblings('select[name*=2i]').append("<option value='1' selected='selected' data-temp=''></option>");
+          $(el).siblings('select[name*=3i]').append("<option value='1' selected='selected' data-temp=''></option>");
+        } 
       }
     };
     transformarDateSelect = function() {
@@ -45,7 +60,7 @@
           'buttonImage': '/images/icons/calendar.gif',
           'buttonImageOnly': true
         }).change(function(e) {
-          return setFechaDateSelect(this);
+          return setFechaDateSelect(this, input);
         });
         return $(input).datepicker("setDate", new Date(year, month, day));
       });
@@ -295,6 +310,8 @@
             'buttonImage': '/images/icons/calendar.gif',
             'showOn': 'button',
             'buttonImageOnly': true
+          }).change(function(e) {
+            return setFechaDateSelect(el, input);
           });
           try {
             d = $.datepicker.parseDate('yy-mm-dd', $(el).val());
