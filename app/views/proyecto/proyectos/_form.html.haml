@@ -41,7 +41,7 @@
       .form-instruccion{:style=>'font-size:11px; height: auto;'}
         %h2 Instrucciones
         = f.simple_fields_for :instruccions, Proyecto::Instruccion.new do |i|
-          = render 'instruccion_fields', :f => i
+          /= render 'instruccion_fields', :f => i
           .container
             = add_child_link "Añadir Instruccion", f, :instruccions, {:object => Proyecto::Instruccion.new}
 
