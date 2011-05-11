@@ -4,8 +4,10 @@ class Proyecto::Item < ActiveRecord::Base
   set_table_name "items"
   has_many :proyecto_items
   has_ancestry
+  
   def to_s
     sigla
   end
+
 end
 
