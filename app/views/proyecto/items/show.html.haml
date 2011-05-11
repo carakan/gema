@@ -10,6 +10,10 @@
   %strong Nombre:
   = @item.nombre
 
+%p#remote
+  - if @item.has_children?
+    = select :test, :test, @item.children.collect{|c| [c.nombre, c.id]}
+
 %p
   = link_to "Edit", edit_proyecto_item_path(@item)
   |
