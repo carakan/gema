@@ -11,6 +11,7 @@
     = f.input :tarea,:as => :text, :input_html => {:cols => 40, :rows => 1, :style=>'top:20px;'},:hint=>'Escriba la tarea'
   .percent_20{:style=>'vertical-align:top;'}
     = f.input :fecha_limite, :as => :date, :hint=>'Introduzca una fecha'
+    = f.association :tipo_instruccion, :hint=>'Elija de la lista'
   .percent_20{:style=>'vertical-align:top;'}
     = f.input :prioridad, :collection =>['A', 'B', 'C'], :as=> :radio, :hint=>'Escoga la prioridad de la tarea'
   .percent_5{:style=>'float:right;vertical-align:top;'}

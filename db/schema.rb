@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110509175713) do
+ActiveRecord::Schema.define(:version => 201104258152130) do
 
   create_table "adjuntos", :force => true do |t|
     t.string   "nombre"
@@ -82,8 +82,6 @@ ActiveRecord::Schema.define(:version => 20110509175713) do
     t.integer  "proyecto_id"
     t.boolean  "tipo"
     t.text     "contenido"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "asunto"
     t.integer  "temporal_id", :limit => 8
     t.integer  "contador",                 :default => 0
@@ -113,18 +111,18 @@ ActiveRecord::Schema.define(:version => 20110509175713) do
     t.datetime "fecha_limite"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "ancestry"
     t.string   "estado_tarea"
     t.text     "descripcion_entrega"
     t.string   "comentario_evaluacion"
     t.integer  "calificacion"
+    t.string   "ancestry"
     t.integer  "asignado_por"
     t.integer  "temporal_id",           :limit => 8
     t.integer  "temporal_parent_id",    :limit => 8
-    t.integer  "contador",                           :default => 0
-    t.string   "prioridad",             :limit => 1
+    t.integer  "contador"
+    t.string   "prioridad"
     t.integer  "tipo_instruccion_id"
-    t.string   "tipo_tarea"
+    t.boolean  "tipo"
   end
 
   add_index "instruccion_detalles", ["ancestry"], :name => "index_instruccion_detalles_on_ancestry"
@@ -134,6 +132,13 @@ ActiveRecord::Schema.define(:version => 20110509175713) do
     t.integer "proyecto_item_id"
   end
 
+  create_table "instruccion_item_cobro", :force => true do |t|
+    t.integer  "instruccion_detalle_id"
+    t.integer  "proyecto_item_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "instruccions", :force => true do |t|
     t.integer  "area_id"
     t.integer  "proyecto_id"
@@ -141,7 +146,14 @@ ActiveRecord::Schema.define(:version => 20110509175713) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "temporal_correspondencia_id", :limit => 8
-    t.integer  "contador",                                 :default => 0
+    t.integer  "contador"
+  end
+
+  create_table "item_cobro_marcas", :force => true do |t|
+    t.integer  "proyecto_item_id"
+    t.integer  "marca_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "item_cobros_marcas", :id => false, :force => true do |t|
@@ -155,7 +167,10 @@ ActiveRecord::Schema.define(:version => 20110509175713) do
     t.string   "nombre"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "ancestry"
   end
+
+  add_index "items", ["ancestry"], :name => "index_items_on_ancestry"
 
   create_table "marca_estados", :force => true do |t|
     t.string   "nombre"
@@ -297,7 +312,7 @@ ActiveRecord::Schema.define(:version => 20110509175713) do
     t.datetime "updated_at"
     t.boolean  "tipo"
     t.integer  "item_id"
-    t.integer  "contador",                    :default => 0
+    t.integer  "contador"
     t.string   "nro_tramite"
   end
 

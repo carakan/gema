@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  item_id: 1
+  proyecto_item_id: 1
+  monto: 1.5
+
+two:
+  item_id: 1
+  proyecto_item_id: 1
+  monto: 1.5

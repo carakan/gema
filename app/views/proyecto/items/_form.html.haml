@@ -1,9 +1,10 @@
 = simple_form_for @item do |f|
   = f.error_messages
-
+  = f.input :parent_id, :as => :hidden
   %p
     = f.input :sigla , :required=> false
   %p
     = f.input :nombre
   %p
     = f.button :submit, 'Guardar'
+
