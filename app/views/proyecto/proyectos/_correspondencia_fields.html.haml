@@ -15,7 +15,7 @@
   %div
     %a.a_adjuntar_archivo_correspondencia{:href => "javascript:", :class => "new", :"data-id" => "new_correspondencias"} Adjuntar archivo
   - if !defined?(contador)
-    = remove_child_link "Quitar", f
+    = remove_child_link "Quitar correspondencia", f
 :javascript
   $('a.a_adjuntar_archivo_correspondencia').click(function() {
     var tiempo = ( new Date() ).getTime().toString();
