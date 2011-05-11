@@ -172,6 +172,14 @@ ActiveRecord::Schema.define(:version => 201104258152130) do
 
   add_index "items", ["ancestry"], :name => "index_items_on_ancestry"
 
+  create_table "items_relaciones", :force => true do |t|
+    t.integer  "item_id"
+    t.integer  "proyecto_item_id"
+    t.float    "monto"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "marca_estados", :force => true do |t|
     t.string   "nombre"
     t.string   "abreviacion", :limit => 15
@@ -311,7 +319,6 @@ ActiveRecord::Schema.define(:version => 201104258152130) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "tipo"
-    t.integer  "item_id"
     t.integer  "contador"
     t.string   "nro_tramite"
   end

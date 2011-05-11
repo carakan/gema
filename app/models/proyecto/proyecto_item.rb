@@ -2,8 +2,8 @@ class Proyecto::ProyectoItem < ActiveRecord::Base
   # TODO research about attr_accesible
   #attr_accessible :codigo, :proyecto_id, :descripcion, :estado, :referencia_cliente, :referencia_cliente_cobranza, :fecha_limite, :honorarios, :gastos_adminitrativos, :monto, :fecha_solicitud
   belongs_to :proyecto
-  has_many :items_relaciones
-  has_many :items, :trougth => :items_relaciones, :source => :item
+  has_many :items_relaciones, :class_name => 'Proyecto::ItemsRelacion'
+  has_many :items, :through => :items_relaciones, :source => :item
 
   set_table_name 'proyecto_items'
 
