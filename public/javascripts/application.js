@@ -7,19 +7,27 @@
     parsearFecha = function(fecha, tipo) {
       var d;
       fecha = $.datepicker.parseDate($.datepicker._defaults.dateFormat, fecha);
-      d = [fecha.getFullYear(), fecha.getMonth() + 1, fecha.getDate()];
-      if ('string' === tipo) {
-        return d.join("-");
-      } else {
-        return d;
+      if(fecha){
+        d = [fecha.getFullYear(), fecha.getMonth() + 1, fecha.getDate()];
+        if ('string' === tipo) {
+          return d.join("-");
+        } else {
+          return d;
+        }
       }
     };
     setFechaDateSelect = function(el) {
       var fecha;
       fecha = parsearFecha($(el).val());
-      $(el).siblings('select[name*=1i]').val(fecha[0]);
-      $(el).siblings('select[name*=2i]').val(fecha[1]);
-      return $(el).siblings('select[name*=3i]').val(fecha[2]);
+      if(fecha){
+        $(el).siblings('select[name*=1i]').val(fecha[0]);
+        $(el).siblings('select[name*=2i]').val(fecha[1]);
+        return $(el).siblings('select[name*=3i]').val(fecha[2]);
+      } else {
+        $(el).siblings('select[name*=1i]').val(null);
+        $(el).siblings('select[name*=2i]').val(null);
+        return $(el).siblings('select[name*=3i]').val(null);
+      }
     };
     transformarDateSelect = function() {
       return $('li.date, div.date, li.datetime, div.datetime').each(function(i, el) {
