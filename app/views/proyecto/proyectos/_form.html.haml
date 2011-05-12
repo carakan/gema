@@ -31,7 +31,7 @@
       %h2 Servicios
       = f.simple_fields_for :item_cobros, Proyecto::ItemCobro.new(:tipo => 1) do |g|
         .container
-          = add_child_link "Añadir", f, :item_cobros
+          = add_child_link "Añadir servicio", f, :item_cobros
     #tabs-3
       %div{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all form-correspondencia",:style=>'font-size:11px;'}
         %h2 Nuevo Email

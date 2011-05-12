@@ -44,7 +44,6 @@
             %td.marcas= proyecto_item.marcas.collect{|marca| link_to(marca, marca, :class => "ajax")}.join(", ").html_safe
             %td= proyecto_item.fecha_solicitud
             %td= link_to 'Editar', edit_proyecto_proyecto_proyecto_item_path(@proyecto, proyecto_item), :class => "edit"
-    .pagination= will_paginate(proyecto_items, :params => {:controller => "proyecto/proyecto_items", :proyecto_id => @proyecto.id, :action => "index", :id => nil})
     %p
       = link_to "Añadir servicio", new_proyecto_proyecto_proyecto_item_path(@proyecto, :tipo => "cobro"), :style => "float: right;", :class => "new"
       %br.clear
@@ -56,7 +55,7 @@
       %br.clear
   #tabs-items-3
     %p
-      = link_to "Nueva nota debito", :style => "float: right;"
+      = link_to "Nueva nota debito", "#", :style => "float: right;", :class => "new"
       %br.clear
 
 
