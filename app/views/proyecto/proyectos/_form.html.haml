@@ -102,6 +102,7 @@
       $("#proyecto_proyecto_contacto_ids").load("/contactos/buscar?id=" + valor);
       $(".new_contacto").attr("href", $(".new_contacto").attr("data-path") + "?representante_id=" + valor)
     });
+    register_items_and_autocomplete();
   });
 
   $(".form-correspondencia .fieldset a").live("click", when_change_content_on_asunto);

@@ -21,10 +21,7 @@
           %th Referencia cliente
           %th Referencia cliente cobranza
           %th Fecha limite
-          - if current_usuario.is?(:admin)
-            %th Honorarios
-            %th Gastos adminitrativos
-            %th Monto
+          %th Items
           %th Marcas
           %th Fecha solicitud
       %tbody
@@ -37,10 +34,7 @@
             %td= proyecto_item.referencia_cliente
             %td= proyecto_item.referencia_cliente_cobranza
             %td= proyecto_item.fecha_limite
-            - if current_usuario.is?(:admin)
-              %td= proyecto_item.honorarios
-              %td= proyecto_item.gastos_adminitrativos
-              %td= proyecto_item.monto
+            %td= proyecto_item.items.collect{|item| item.nombre}.join(", ")
             %td.marcas= proyecto_item.marcas.collect{|marca| link_to(marca, marca, :class => "ajax")}.join(", ").html_safe
             %td= proyecto_item.fecha_solicitud
             %td= link_to 'Editar', edit_proyecto_proyecto_proyecto_item_path(@proyecto, proyecto_item), :class => "edit"
