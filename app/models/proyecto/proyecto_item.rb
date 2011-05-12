@@ -4,6 +4,8 @@ class Proyecto::ProyectoItem < ActiveRecord::Base
   belongs_to :proyecto
   has_many :items_relaciones, :class_name => 'Proyecto::ItemsRelacion'
   has_many :items, :through => :items_relaciones, :source => :item
+  
+  accepts_nested_attributes_for :items_relaciones, :allow_destroy => true
 
   set_table_name 'proyecto_items'
 

@@ -6,6 +6,7 @@
       - if current_usuario.is?(:admin)
         %th Monto
       %th Fecha solicitud
+      %th
   %tbody
     - @proyecto.item_gastos.each do |proyecto_item|
       %tr
@@ -15,5 +16,3 @@
           %td= proyecto_item.monto
         %td= proyecto_item.fecha_solicitud
         %td= link_to 'Editar', edit_proyecto_proyecto_proyecto_item_path(@proyecto, proyecto_item), :class => "edit"
-
-/.pagination= will_paginate(proyecto_items, :params => {:controller => "proyecto/proyecto_items", :proyecto_id => @proyecto.id, :action => "index", :id => nil})

@@ -1,3 +1,7 @@
+= stylesheet_link_tag 'facebook'
+= javascript_include_tag 'jquery.fcbkcomplete.min'
+
+
 = simple_form_for @proyecto_item, :url => url do |f|
   =f.input :tipo, :input_html => { :value => 1}, :as => :hidden
   = f.error_messages
@@ -13,4 +17,6 @@
       }
     });
   });
-
+  $(document).ready(function(){
+    register_items_and_autocomplete();
+  });

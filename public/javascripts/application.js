@@ -377,6 +377,7 @@ function insert_fields(link, method, content) {
     update_counters(selector)
   }
   transformarDateSelect();
+  reset_attrs();
 }
 function remove_fields(link) {
   var hidden_field = $(link).prev("input[type=hidden]");
@@ -396,3 +397,29 @@ function update_counters(selector){
     $(this).find(".contar").html(cont + 1)
   });
 }
+
+  function reset_attrs(){
+    $(".select_items").each(function(){
+      if(!$(this).attr("data-name")){
+        $(this).attr("data-name", $(this).attr("name"));
+        $(this).attr("name", "");
+      }
+    });
+  }
+  function register_items_and_autocomplete(){
+    transformarDateSelect();
+    reset_attrs();
+    $(".select_items").live("change", function(){
+      var $combo_box = $(this).parents(".fieldset:first").find(".items_listado");
+      var $select_box = $(this);
+      $combo_box.load("/proyecto/items/" + $(this).val() + " #remote", function(data){
+        console.log($combo_box, $combo_box.find("select"));
+        $combo_box.find("select").attr("name", $select_box.attr("data-name"));
+        $combo_box.find("select").fcbkcomplete({
+          filter_hide: true,
+          filter_selected: true,
+          newel: false
+        });
+      });
+    });
+  };

@@ -15,7 +15,7 @@ class Proyecto::ItemsController < ApplicationController
     @item = Proyecto::Item.new(params[:proyecto_item])
     if @item.save
       flash[:notice] = "Se creo exitosamente el item"
-      redirect_to @item
+      redirect_to proyecto_items_url()
    else
       render :action => 'new'
     end
@@ -29,7 +29,7 @@ class Proyecto::ItemsController < ApplicationController
     @item = Proyecto::Item.find(params[:id])
     if @item.update_attributes(params[:proyecto_item])
       flash[:notice] = "Successfully updated proyecto/item."
-      redirect_to @item
+      redirect_to proyecto_items_url()
     else
       render :action => 'edit'
     end
@@ -39,7 +39,7 @@ class Proyecto::ItemsController < ApplicationController
     @item = Proyecto::Item.find(params[:id])
     @item.destroy
     flash[:notice] = "Successfully destroyed proyecto/item."
-    redirect_to  @item
+    redirect_to proyecto_items_url()
   end
 end
 
