@@ -18,6 +18,9 @@ Rails.application.routes.draw do
             post :revisada
             get :ver_calificacion
             post :alerta
+            get :repeticion
+            post :datos_repeticion
+            get :ver_repeticion
           end
         end
       end

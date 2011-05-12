@@ -9,11 +9,11 @@
       %thead
         %tr
           /%th Nro Instruccion
-          %th Referencia Email
-          %th Nro Tarea
-          %th Asignado a
+          %th Ref. Email
+          %th Nº Tarea
+          %th Responsable
           %th Tarea
-          %th Tipo tarea
+          %th Tipo
           %th Prioridad
           %th Fecha Limite
       %tbody
@@ -27,6 +27,7 @@
             %td= instruccion_detall.tipo_instruccion
             %td= instruccion_detall.prioridad
             %td= l(instruccion_detall.fecha_limite, :format => "%d, %B %Y") if instruccion_detall.fecha_limite
+            %td= link_to 'Reiniciar', repeticion_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion_detall.instruccion,instruccion_detall)
             %td
               - if instruccion_detall.estado_tarea == 'pendiente'
                 = link_to "Entregar", entrega_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion_detall.instruccion, instruccion_detall), :class => 'terminada'
