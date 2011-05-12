@@ -3,11 +3,11 @@ class Proyecto::ProyectoItemsController < ApplicationController
   def index
     @proyecto_items = Proyecto::ProyectoItem.paginate(:per_page => 5, :page => params[:page])
   end
-  
+
   def show
     @proyecto_item = Proyecto::ProyectoItem.find(params[:id])
   end
-  
+
   def new
     if params[:tipo] && params[:tipo] == "cobro"
       @proyecto_item = @proyecto.item_cobros.new
@@ -17,7 +17,7 @@ class Proyecto::ProyectoItemsController < ApplicationController
       @proyecto_item = @proyecto.proyecto_items.new
     end
   end
-  
+
   def create
     if params[:proyecto_proyecto_item]
       parametros = params[:proyecto_proyecto_item]
@@ -34,11 +34,11 @@ class Proyecto::ProyectoItemsController < ApplicationController
       render :action => 'new'
     end
   end
-  
+
   def edit
     @proyecto_item = Proyecto::ProyectoItem.find(params[:id])
   end
-  
+
   def update
     @proyecto_item = Proyecto::ProyectoItem.find(params[:id])
     if @pproyecto_item.update_attributes(params[:proyecto_proyecto_item])
@@ -48,7 +48,7 @@ class Proyecto::ProyectoItemsController < ApplicationController
       render :action => 'edit'
     end
   end
-  
+
   def destroy
     @proyecto_item = Proyecto::ProyectoItem.find(params[:id])
     @proyecto_item.destroy
@@ -61,3 +61,4 @@ class Proyecto::ProyectoItemsController < ApplicationController
     @proyecto = Proyecto::Proyecto.find(params[:proyecto_id])
   end
 end
+

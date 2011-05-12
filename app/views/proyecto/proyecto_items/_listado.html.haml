@@ -5,11 +5,11 @@
         Servicios
     %li
       %a{:href=>'#tabs-items-2'}
-        Solicitud de fondos 
+        Solicitud de fondos
     %li
       %a{:href=>'#tabs-items-3'}
         Notas de debito
-        
+
   #tabs-items-1
     %table.decorated
       %thead
@@ -47,6 +47,7 @@
     .pagination= will_paginate(proyecto_items, :params => {:controller => "proyecto/proyecto_items", :proyecto_id => @proyecto.id, :action => "index", :id => nil})
     %p
       = link_to "Añadir servicio", new_proyecto_proyecto_proyecto_item_path(@proyecto, :tipo => "cobro"), :style => "float: right;", :class => "new"
+      /= link_to("Anadir alerta", alerta_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, @instruccion, @instruccion_detalle), :class => "ajax", :"data-id" => "new_item_cobros",:locals=>{:tipo=>'alerta'})
       %br.clear
   #tabs-items-2
     %h2 Solicitud de fondos
@@ -64,3 +65,4 @@
   $(function() {
     $("#tabs-items").tabs();
   });
+

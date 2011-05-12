@@ -1,8 +1,8 @@
 # encoding: utf-8
 # author: Boris Barroso
 # email: boriscyber@gmail.com
-Rails.application.routes.draw do 
-  
+Rails.application.routes.draw do
+
   get "home/index"
 
   namespace(:proyecto) do
@@ -17,13 +17,14 @@ Rails.application.routes.draw do
             get :ver_entrega
             post :revisada
             get :ver_calificacion
+            post :alerta
           end
         end
       end
       resources :proyecto_items
     end
-    resources :areas 
-    resources :instruccion_item_cobros 
+    resources :areas
+    resources :instruccion_item_cobros
     resources :items
     resources :tipo_instrucciones
   end
@@ -31,7 +32,7 @@ Rails.application.routes.draw do
   resources :marca_estados
 
   resources :reportes
-  
+
   devise_for :usuarios do
     get "/login" => "devise/sessions#new"
     get "/logout" => "devise/sessions#destroy"
@@ -41,7 +42,7 @@ Rails.application.routes.draw do
     collection do
       get :cruces
       post :cruce
-      
+
     end
 
     member do
@@ -58,7 +59,7 @@ Rails.application.routes.draw do
 
   resources :consultas do
     collection do
-      post :cruce 
+      post :cruce
     end
   end
 
@@ -110,7 +111,7 @@ Rails.application.routes.draw do
     end
     collection do
       get :lemas_comerciales
-      
+
     end
   end
 
@@ -124,7 +125,7 @@ Rails.application.routes.draw do
 
   resources :busquedas do
     collection do
-      get :cruce 
+      get :cruce
       get :verificar_cruce
       get :busqueda_avanzada
       post :busqueda_avanzada
@@ -136,7 +137,8 @@ Rails.application.routes.draw do
   resources :solicitudes do
     member { get :importado }
   end
-  
+
   resources :roles
   root :to => 'home#index'
 end
+
