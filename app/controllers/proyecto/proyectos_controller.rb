@@ -1,13 +1,8 @@
 class Proyecto::ProyectosController < ApplicationController
   def index
-    @proyectos = Proyecto::Proyecto.paginate(:per_page => 10, :page => params[:page], :order => "created_at DESC")
+    @proyectos = Proyecto::Proyecto.all
     respond_to do |format|
-    format.html
-    format.json do
-      render(:json => Proyecto::Proyecto.for_data_table(self, %w(id representante_id area_id titulo referencia_cliente prioridad), %w(id representante)) do |proyecto|
-        ["<%= link_to(proyecto, proyecto) %>", proyecto.id, proyecto.representante_id, proyecto.area_id, proyecto.titulo, proyecto.referencia_cliente, proyecto.prioridad]
-      end)
-    end
+      format.html
     end
   end
 

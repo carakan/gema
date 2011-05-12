@@ -334,6 +334,7 @@
     };
     return iniciar();
 
+
   });
 }).call(this);
 
@@ -395,3 +396,12 @@ function update_counters(selector){
     $(this).find(".contar").html(cont + 1)
   });
 }
+
+  $(document).ready(function() {
+    $(".providers-data-table").dataTable({"bJQueryUI"       : true,
+                                        "sPaginationType" : "full_numbers",
+                                        "aoColumns"       : [{"sType" : "html"}, null, null, null, null, null],
+                                        "aaSorting"       : [[0, 'asc'], [1, 'asc']]
+
+    });
+  });

@@ -13,17 +13,14 @@
       %th
       %th
   %tbody
-
-= will_paginate(@proyectos)
-
-:javascript
-  $(document).ready(function(){
-    $(".providers-data-table").dataTable({"bJQueryUI"       : true,
-                                        "bProcessing"     : true,
-                                        "bAutoWidth"      : false,
-                                        "sPaginationType" : "full_numbers",
-                                        "aoColumns"       : [{"sType" : "html"}, null, null, null, null],
-                                        "aaSorting"       : [[0, 'asc'], [1, 'asc']],
-                                        "bServerSide"     : true,
-                                        "sAjaxSource"     : "/proyecto/proyectos.json"    });
-  });
+    - for proyecto in @proyectos 
+      %tr
+        %td= proyecto.id
+        %td= proyecto.representante
+        %td= proyecto.area.try(:sigla)
+        %td= proyecto.titulo
+        %td= proyecto.referencia_cliente
+        %td= proyecto.prioridad
+        %td= link_to 'Mostrar', proyecto
+        %td= link_to 'Eliminar',proyecto, :confirm => 'Are you sure?', :method => :delete, :class => "delete"
+/= will_paginate(@proyectos)
