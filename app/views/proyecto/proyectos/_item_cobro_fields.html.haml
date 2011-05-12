@@ -8,13 +8,12 @@
     = f.input(:contador, :as => :hidden)  
   .percent_20= f.input :referencia_cliente, :input_html=>{:size=>10}
   .percent_20= f.input :referencia_cliente_cobranza, :input_html=>{:size=>10}, :label => "Codigo cliente cobranza"
+  
   .percent_20= f.input :items, :collection => Proyecto::Item.all(:conditions => {:ancestry => nil}), :prompt => 'Seleccione un item', :label => 'Servicio', :input_html => {:id => 'select_items'}
   .percent_20= f.input :nro_tramite, :label=> 'Número de Trámite', :input_html=>{:size=>15}
   .percent_10= f.input :descripcion,:as=>:text , :input_html=>{:cols=>68, :rows=>2}, :style=>{:float=>'left'}
   .percent_20#items_listado
     actualizar
-  /.percent_20= f.input :items, :collection => Proyecto::Item.all(:conditions => {:ancestry => :parent_id}), :prompt => 'Seleccione un item', :label => 'Servicio', :input_html => {:id => 'select_item_hijos'}
-  /.percent_20= f.input :gastos_adminitrativos, :input_html=>{:size=>15}
   .percent_20= f.input :fecha_solicitud,:label => "Fecha fatal", :input_html=>{:size=>4}
   .marcas-related.percent_20{:"data-id" => "new_item_cobros"}
     = link_to("Anadir marca", busqueda_avanzada_busquedas_path(:select_marcas => true), :class => "ajax", :"data-id" => "new_item_cobros")
@@ -28,6 +27,7 @@
   $(document).ready(function(){
     transformarDateSelect();
     $("#select_items").attr("data-name", $("#select_items").attr("name"));
+    $("#select_items").attr("name", "");
     $("#select_items").change(function(){
       $("#items_listado").load("/proyecto/items/" + $(this).val() + " #remote", function(data){
       

@@ -6,6 +6,7 @@
       - if current_usuario.is?(:admin)
         %th Monto
       %th Fecha solicitud
+      %th
   %tbody
     - @proyecto.item_gastos.each do |proyecto_item|
       %tr
