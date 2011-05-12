@@ -23,3 +23,12 @@
   %p
     = link_to "Ver proyectos", proyecto_proyectos_path, :class => 'new'
 
+:javascript
+  $(document).ready(function() {
+    $("table.decorated").each(function(){
+      $(this).dataTable({"bJQueryUI" : true,
+        "sPaginationType" : "full_numbers",
+        "aaSorting"       : [[0, 'asc'], [1, 'asc']]
+      });
+    });
+  });

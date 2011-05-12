@@ -12,36 +12,38 @@
         
   #tabs-items-1
     %table.decorated
-      %tr
-        %th= sort_order "Codigo", "proyecto_item.id"
-        %th Descripcion
-        %th Estado
-        %th Número de Trámite
-        %th Referencia cliente
-        %th Referencia cliente cobranza
-        %th Fecha limite
-        - if current_usuario.is?(:admin)
-          %th Honorarios
-          %th Gastos adminitrativos
-          %th Monto
-        %th Marcas
-        %th Fecha solicitud
-      - @proyecto.item_cobros.each do |proyecto_item|
+      %thead
         %tr
-          %td= link_to proyecto_item, proyecto_proyecto_proyecto_item_path(@proyecto, proyecto_item)
-          %td= proyecto_item.descripcion
-          %td= proyecto_item.estado
-          %td= proyecto_item.nro_tramite
-          %td= proyecto_item.referencia_cliente
-          %td= proyecto_item.referencia_cliente_cobranza
-          %td= proyecto_item.fecha_limite
+          %th= sort_order "Codigo", "proyecto_item.id"
+          %th Descripcion
+          %th Estado
+          %th Número de Trámite
+          %th Referencia cliente
+          %th Referencia cliente cobranza
+          %th Fecha limite
           - if current_usuario.is?(:admin)
-            %td= proyecto_item.honorarios
-            %td= proyecto_item.gastos_adminitrativos
-            %td= proyecto_item.monto
-          %td.marcas= proyecto_item.marcas.collect{|marca| link_to(marca, marca, :class => "ajax")}.join(", ").html_safe
-          %td= proyecto_item.fecha_solicitud
-          %td= link_to 'Editar', edit_proyecto_proyecto_proyecto_item_path(@proyecto, proyecto_item), :class => "edit"
+            %th Honorarios
+            %th Gastos adminitrativos
+            %th Monto
+          %th Marcas
+          %th Fecha solicitud
+      %tbody
+        - @proyecto.item_cobros.each do |proyecto_item|
+          %tr
+            %td= link_to proyecto_item, proyecto_proyecto_proyecto_item_path(@proyecto, proyecto_item)
+            %td= proyecto_item.descripcion
+            %td= proyecto_item.estado
+            %td= proyecto_item.nro_tramite
+            %td= proyecto_item.referencia_cliente
+            %td= proyecto_item.referencia_cliente_cobranza
+            %td= proyecto_item.fecha_limite
+            - if current_usuario.is?(:admin)
+              %td= proyecto_item.honorarios
+              %td= proyecto_item.gastos_adminitrativos
+              %td= proyecto_item.monto
+            %td.marcas= proyecto_item.marcas.collect{|marca| link_to(marca, marca, :class => "ajax")}.join(", ").html_safe
+            %td= proyecto_item.fecha_solicitud
+            %td= link_to 'Editar', edit_proyecto_proyecto_proyecto_item_path(@proyecto, proyecto_item), :class => "edit"
     .pagination= will_paginate(proyecto_items, :params => {:controller => "proyecto/proyecto_items", :proyecto_id => @proyecto.id, :action => "index", :id => nil})
     %p
       = link_to "Añadir servicio", new_proyecto_proyecto_proyecto_item_path(@proyecto, :tipo => "cobro"), :style => "float: right;", :class => "new"

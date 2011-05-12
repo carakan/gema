@@ -1,19 +1,19 @@
 %table.decorated
-  %tr
-    %th= sort_order "Codigo ORPAN", "proyecto_item.id"
-    %th Descripcion
-    - if current_usuario.is?(:admin)
-      %th Monto
-    %th Fecha solicitud
-  - @proyecto.item_gastos.each do |proyecto_item|
+  %thead
     %tr
-      %td= link_to proyecto_item, proyecto_proyecto_proyecto_item_path(@proyecto, proyecto_item)
-      %td= proyecto_item.descripcion
+      %th= sort_order "Codigo ORPAN", "proyecto_item.id"
+      %th Descripcion
       - if current_usuario.is?(:admin)
-        %td= proyecto_item.monto
-      %td= proyecto_item.fecha_solicitud
-      %td= link_to 'Editar', edit_proyecto_proyecto_proyecto_item_path(@proyecto, proyecto_item), :class => "edit"
+        %th Monto
+      %th Fecha solicitud
+  %tbody
+    - @proyecto.item_gastos.each do |proyecto_item|
+      %tr
+        %td= link_to proyecto_item, proyecto_proyecto_proyecto_item_path(@proyecto, proyecto_item)
+        %td= proyecto_item.descripcion
+        - if current_usuario.is?(:admin)
+          %td= proyecto_item.monto
+        %td= proyecto_item.fecha_solicitud
+        %td= link_to 'Editar', edit_proyecto_proyecto_proyecto_item_path(@proyecto, proyecto_item), :class => "edit"
 
 /.pagination= will_paginate(proyecto_items, :params => {:controller => "proyecto/proyecto_items", :proyecto_id => @proyecto.id, :action => "index", :id => nil})
-
-
