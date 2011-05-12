@@ -1,4 +1,5 @@
 .fieldset{:"data-group" => "tarea"}
+  = f.input :tipo, :as => :hidden, :input_html => {:value => 1}
   .contar{:class => "hidden"}
   = f.input :contador, :as => :hidden
   .percent_20{:style => "width: 17%;vertical-align:top;"}
@@ -19,3 +20,4 @@
     = link_to 'Coordinada', "#", :class => "coordinada", :"data-id" => "new_instruccion_detalles"
     = remove_child_link "Quitar", f
   .tab.container{:"data-id" => "new_instruccion_detalles"}
+

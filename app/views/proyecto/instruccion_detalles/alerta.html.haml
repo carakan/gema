@@ -1,18 +1,17 @@
 = simple_form_for @instruccion_detalle, :url => proyecto_proyecto_instruccion_detall_path(@proyecto) do |f|
+  = f.input :tipo, :as => :hidden, :input_html => {:value => 0}
   - if defined?(contador)
     .contar
       = contador
     = f.input(:contador, :as => :hidden, :input_html => {:value => contador})
   - else
     .contar
-    = f.input(:contador, :as => :hidden)  
+    = f.input(:contador, :as => :hidden)
   = f.input :fecha_solicitud
-  =f.input :tipo, :input_html => { :value => 0}, :as => :hidden
-  =f.input :descripcion
-  =f.input :monto
-  =f.button :submit
+  = f.input :descripcion
 
 :javascript
   $(document).ready(function(){
     transformarDateSelect();
   });
+

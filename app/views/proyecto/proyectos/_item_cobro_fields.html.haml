@@ -5,7 +5,7 @@
     = f.input(:contador, :as => :hidden, :input_html => {:value => contador})
   - else
     .contar
-    = f.input(:contador, :as => :hidden)  
+    = f.input(:contador, :as => :hidden)
   .percent_20= f.input :referencia_cliente, :input_html=>{:size=>10}
   .percent_20= f.input :referencia_cliente_cobranza, :input_html=>{:size=>10}, :label => "Codigo cliente cobranza"
   
@@ -18,7 +18,6 @@
   .marcas-related.percent_20{:"data-id" => "new_item_cobros"}
     = link_to("Anadir marca", busqueda_avanzada_busquedas_path(:select_marcas => true), :class => "ajax", :"data-id" => "new_item_cobros")
   .marcas-related.percent_20{:"data-id" => "new_item_cobros"}
-    = link_to("Anadir alerta", busqueda_avanzada_busquedas_path(:select_marcas => true), :class => "ajax", :"data-id" => "new_item_cobros")
     = f.input :marca_ids, :label => false, :input_html=>{:type=>:hidden}
   - unless defined?(contador)
     = remove_child_link "Remover Servicio", f
@@ -30,9 +29,9 @@
     $("#select_items").attr("name", "");
     $("#select_items").change(function(){
       $("#items_listado").load("/proyecto/items/" + $(this).val() + " #remote", function(data){
-      
+
         $("#items_listado select").attr("name", $("#select_items").attr("data-name"))
       });
     });
   });
-  
+
