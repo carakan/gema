@@ -1,26 +1,29 @@
 - title "Proyecto"
 
 %p= link_to "Nuevo Proyecto", new_proyecto_proyecto_path, :class => 'new'
-%table.decorated
-  %tr
-    %th Id
-    %th Cliente
-    %th Area
-    %th Titulo
-    %th Referencia cliente
-    %th Prioridad
-    %th
-    %th
-  - for proyecto in @proyectos
+%table.providers-data-table
+  %thead
     %tr
-      %td= proyecto.id
-      %td= proyecto.representante
-      %td= proyecto.area.try(:sigla)
-      %td= proyecto.titulo
-      %td= proyecto.referencia_cliente
-      %td= proyecto.prioridad
-      %td= link_to 'Mostrar', proyecto
-      %td= link_to 'Eliminar',proyecto, :confirm => 'Are you sure?', :method => :delete, :class => "delete"
+      %th Id
+      %th Cliente
+      %th Area
+      %th Titulo
+      %th Referencia cliente
+      %th Prioridad
+      %th
+      %th
+  %tbody
 
 = will_paginate(@proyectos)
 
+:javascript
+  $(document).ready(function(){
+    $(".providers-data-table").dataTable({"bJQueryUI"       : true,
+                                        "bProcessing"     : true,
+                                        "bAutoWidth"      : false,
+                                        "sPaginationType" : "full_numbers",
+                                        "aoColumns"       : [{"sType" : "html"}, null, null, null, null],
+                                        "aaSorting"       : [[0, 'asc'], [1, 'asc']],
+                                        "bServerSide"     : true,
+                                        "sAjaxSource"     : "/proyecto/proyectos.json"    });
+  });
