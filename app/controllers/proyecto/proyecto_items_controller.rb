@@ -36,14 +36,28 @@ class Proyecto::ProyectoItemsController < ApplicationController
   end
 
   def edit
-    @proyecto_item = Proyecto::ProyectoItem.find(params[:id])
+    if params[:tipo] && params[:tipo] == "cobro"
+      @proyecto_item = @proyecto.item_cobros.find(params[:id])
+    elsif params[:tipo] && params[:tipo] == "gasto"
+      @proyecto_item = @proyecto.item_gastos.find(params[:id])
+    else
+      @proyecto_item = @proyecto.proyecto_items.find(params[:id])
+    end
   end
 
   def update
-    @proyecto_item = Proyecto::ProyectoItem.find(params[:id])
-    if @pproyecto_item.update_attributes(params[:proyecto_proyecto_item])
+    if params[:proyecto_proyecto_item]
+      parametros = params[:proyecto_proyecto_item]
+    elsif params[:proyecto_item_cobro]
+      parametros = params[:proyecto_item_cobro]
+    elsif params[:proyecto_item_gasto]
+      parametros = params[:proyecto_item_gasto]
+    end
+    
+    @proyecto_item = @proyecto.proyecto_items.find(params[:id])
+    if @proyecto_item.update_attributes(parametros)
       flash[:notice] = "Se actualizo correctamente los datos del servicio."
-      redirect_to @proyecto_item
+      redirect_to proyecto_proyecto_path(@proyecto)
     else
       render :action => 'edit'
     end

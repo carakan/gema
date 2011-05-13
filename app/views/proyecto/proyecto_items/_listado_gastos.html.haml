@@ -15,4 +15,4 @@
         - if current_usuario.is?(:admin)
           %td= proyecto_item.monto
         %td= proyecto_item.fecha_solicitud
-        %td= link_to 'Editar', edit_proyecto_proyecto_proyecto_item_path(@proyecto, proyecto_item), :class => "edit"
+        %td= link_to 'Editar', edit_proyecto_proyecto_proyecto_item_path(@proyecto, proyecto_item, :tipo => "gasto"), :class => "edit"
