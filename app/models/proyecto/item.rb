@@ -6,6 +6,10 @@ class Proyecto::Item < ActiveRecord::Base
   has_many :proyecto_items, :through => :items_relaciones, :source => :proyecto_item
   has_ancestry
   
+  def show_children
+    (self.children + Proyecto::Item.where(:sigla => "GA")).collect{|c| [c.nombre, c.id]}
+  end
+  
   def to_s
     sigla
   end

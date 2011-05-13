@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110510204531) do
+ActiveRecord::Schema.define(:version => 20110512210858) do
 
   create_table "adjuntos", :force => true do |t|
     t.string   "nombre"
@@ -310,12 +310,7 @@ ActiveRecord::Schema.define(:version => 20110510204531) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "tipo"
-<<<<<<< HEAD
-    t.integer  "item_id"
     t.integer  "contador",                    :default => 0
-=======
-    t.integer  "contador"
->>>>>>> 7669ca89dfe3b691bf8052faaa7e7155f6bb001f
     t.string   "nro_tramite"
   end
 

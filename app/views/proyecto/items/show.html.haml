@@ -12,7 +12,7 @@
 
 %p#remote
   - if @item.has_children?
-    = select :test, :test, @item.children.collect{|c| [c.nombre, c.id]}, :multiple => true
+    = select :test, :test, @item.show_children, :multiple => true
 
 %p
   = link_to "Edit", edit_proyecto_item_path(@item)
