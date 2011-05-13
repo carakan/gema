@@ -75,27 +75,43 @@ class Proyecto::InstruccionDetalle < ActiveRecord::Base
       when "dia"
         while fecha_next < fecha_fin do
           fecha_next = 1.day.since(fecha_next)
-          instruccion_detalle = self.clone
-          instruccion_detalle.parent = self
-          instruccion_detalle.fecha_inicio = fecha_next
-          instruccion_detalle.save
+          if fecha_next.wday != 0 or fecha_next.wday != 6
+            instruccion_detalle = self.clone
+            instruccion_detalle.parent = self
+            instruccion_detalle.fecha_inicio = fecha_next
+            instruccion_detalle.save
+          end
         end
       when "mes"
 
         while fecha_next < fecha_fin do
           fecha_next = 1.months.since(fecha_next)
-          instruccion_detalle = self.clone
-          instruccion_detalle.parent = self
-          instruccion_detalle.fecha_inicio = fecha_next
-          instruccion_detalle.save
+          if fecha_next <= fecha_fin
+            if fecha_next.wday == 0
+              fecha_next = 1.day.since(fecha_next)
+            elsif fecha_next.wday == 6
+              fecha_next = 1.day.ago(fecha_next)
+            end
+            instruccion_detalle = self.clone
+            instruccion_detalle.parent = self
+            instruccion_detalle.fecha_inicio = fecha_next
+            instruccion_detalle.save
+          end
         end
       when "anio"
         while fecha_next < fecha_fin do
           fecha_next = 1.years.since(fecha_next)
-          instruccion_detalle = self.clone
-          instruccion_detalle.parent = self
-          instruccion_detalle.fecha_inicio = fecha_next
-          instruccion_detalle.save
+          if fecha_next <= fecha_fin
+            if fecha_next.wday == 0
+              fecha_next = 1.day.since(fecha_next)
+            elsif fecha_next.wday == 6
+              fecha_next = 1.day.ago(fecha_next)
+            end
+            instruccion_detalle = self.clone
+            instruccion_detalle.parent = self
+            instruccion_detalle.fecha_inicio = fecha_next
+            instruccion_detalle.save
+          end
         end
 
     end
