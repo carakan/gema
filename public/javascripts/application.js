@@ -413,7 +413,7 @@ function update_counters(selector){
       var $combo_box = $(this).parents(".fieldset:first").find(".items_listado");
       var $select_box = $(this);
       $combo_box.load("/proyecto/items/" + $(this).val() + " #remote", function(data){
-        console.log($combo_box, $combo_box.find("select"));
+        /*console.log($combo_box, $combo_box.find("select"));*/
         $combo_box.find("select").attr("name", $select_box.attr("data-name"));
         $combo_box.find("select").fcbkcomplete({
           filter_hide: true,
