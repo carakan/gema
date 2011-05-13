@@ -78,11 +78,12 @@ class Proyecto::InstruccionDetallesController < ApplicationController
   end
 
   def datos_repeticion
-    @instruccion_detalle = Proyecto::InstruccionDetalle.find(params[:id])
-    if Proyecto::InstruccionDetalle.update(params[:id], params[:proyecto_instruccion_detalle])
+    instruccion_detalle = Proyecto::InstruccionDetalle.find(params[:id])
+    if instruccion_detalle.update_attributes(params[:proyecto_instruccion_detalle])
       flash[:notice] = "Datos guardados de manera correcta"
-      redirect_to @proyecto
     end
+    instruccion_detalle.crear_hijas
+    redirect_to @proyecto
   end
 
   def ver_repeticion
