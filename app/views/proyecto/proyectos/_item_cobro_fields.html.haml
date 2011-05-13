@@ -5,25 +5,37 @@
     = f.input(:contador, :as => :hidden, :input_html => {:value => contador})
   - else
     .contar
-    = f.input(:contador, :as => :hidden)  
+    = f.input(:contador, :as => :hidden)
   .percent_20= f.input :referencia_cliente, :input_html=>{:size=>10}
   .percent_20= f.input :referencia_cliente_cobranza, :input_html=>{:size=>10}, :label => "Codigo cliente cobranza"
-  .percent_20= f.association :item, :collection => Proyecto::Item.all(:conditions => {:ancestry => nil}), :prompt => 'Seleccione un item', :label => 'Servicio'
+  .percent_20= f.input :item_ids, :collection => Proyecto::Item.all(:conditions => {:ancestry => nil}), :prompt => 'Seleccione un item', :label => 'Servicio', :input_html => {:class => 'select_items'}
   .percent_20= f.input :nro_tramite, :label=> 'Número de Trámite', :input_html=>{:size=>15}
   .percent_10= f.input :descripcion,:as=>:text , :input_html=>{:cols=>68, :rows=>2}, :style=>{:float=>'left'}
-  .percent_20= f.association :item, :input_html=>{:size=>15}
-  .percent_20= f.input :gastos_adminitrativos, :input_html=>{:size=>15}
+  .percent_40.items_listado &nbsp;
   .percent_20= f.input :fecha_solicitud,:label => "Fecha fatal", :input_html=>{:size=>4}
   .marcas-related.percent_20{:"data-id" => "new_item_cobros"}
     = link_to("Anadir marca", busqueda_avanzada_busquedas_path(:select_marcas => true), :class => "ajax", :"data-id" => "new_item_cobros")
   .marcas-related.percent_20{:"data-id" => "new_item_cobros"}
-    = link_to("Anadir alerta", busqueda_avanzada_busquedas_path(:select_marcas => true), :class => "ajax", :"data-id" => "new_item_cobros")
     = f.input :marca_ids, :label => false, :input_html=>{:type=>:hidden}
   - unless defined?(contador)
     = remove_child_link "Remover Servicio", f
   %hr
-:javascript
-  $(document).ready(function(){
-    transformarDateSelect();
-  });
-  
+
+:css
+  .items_listado{
+    border: 1px #D3D3D3 solid;
+  }
+  .items_listado ul.holder{
+    border: none;
+  }
+  .items_listado ul.holder li.bit-box{
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #D3D3D3;
+    font-size: 14px;
+    padding: 5px 19px 5px 5px;
+  }
+  p#remote{
+    padding; 0px;
+    margin: 0px;
+  }
+

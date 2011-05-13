@@ -31,7 +31,7 @@
       %h2 Servicios
       = f.simple_fields_for :item_cobros, Proyecto::ItemCobro.new(:tipo => 1) do |g|
         .container
-          = add_child_link "Añadir", f, :item_cobros
+          = add_child_link "Añadir servicio", f, :item_cobros
     #tabs-3
       %div{:class => "ui-tabs ui-widget ui-widget-content ui-corner-all form-correspondencia",:style=>'font-size:11px;'}
         %h2 Nuevo Email
@@ -102,6 +102,7 @@
       $("#proyecto_proyecto_contacto_ids").load("/contactos/buscar?id=" + valor);
       $(".new_contacto").attr("href", $(".new_contacto").attr("data-path") + "?representante_id=" + valor)
     });
+    register_items_and_autocomplete();
   });
 
   $(".form-correspondencia .fieldset a").live("click", when_change_content_on_asunto);

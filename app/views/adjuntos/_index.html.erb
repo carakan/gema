@@ -1,17 +1,21 @@
 <% if adjuntos && !adjuntos.empty? %>
   <table class="decorated">
-    <tr>
-      <th>Descripcion</th>
-      <th>Archivo</th>
-      <th colspan="2"></th>
-    </tr>
-    <% adjuntos.each do |adjunto| %>
+    <thead>
       <tr>
-        <td><%=h adjunto.nombre %></td>
-        <td><%= link_to adjunto.archivo.url.split("/").last, adjunto %></td>
-        <td><%= link_to 'Destroy', adjunto, :confirm => 'Are you sure?', :method => :delete, :class => "delete" %></td>
+        <th>Descripcion</th>
+        <th>Archivo</th>
+        <th>Actions</th>
       </tr>
-    <% end %>
+    </thead>
+    <tbody>
+      <% adjuntos.each do |adjunto| %>
+        <tr>
+          <td><%=h adjunto.nombre %></td>
+          <td><%= link_to adjunto.archivo.url.split("/").last, adjunto %></td>
+          <td><%= link_to 'Destroy', adjunto, :confirm => 'Are you sure?', :method => :delete, :class => "delete" %></td>
+        </tr>
+      <% end %>
+    </tbody>
   </table>
   <% if @adjuntos %>
     <%= will_paginate(@adjuntos) %>

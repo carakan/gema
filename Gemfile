@@ -34,6 +34,7 @@ gem "ancestry", '1.2.3'
 group :development do
   gem "nifty-generators", "0.4.6"
 end
+gem "data_table",'0.1.9'
 
 group :test do
   gem 'rspec-rails', "2.5.0"

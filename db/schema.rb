@@ -125,6 +125,9 @@ ActiveRecord::Schema.define(:version => 20110510204531) do
     t.string   "prioridad",             :limit => 1
     t.integer  "tipo_instruccion_id"
     t.boolean  "tipo"
+    t.date     "fecha_inicio"
+    t.date     "fecha_fin"
+    t.string   "periodo"
   end
 
   add_index "instruccion_detalles", ["ancestry"], :name => "index_instruccion_detalles_on_ancestry"
@@ -159,6 +162,14 @@ ActiveRecord::Schema.define(:version => 20110510204531) do
   end
 
   add_index "items", ["ancestry"], :name => "index_items_on_ancestry"
+
+  create_table "items_relaciones", :force => true do |t|
+    t.integer  "item_id"
+    t.integer  "proyecto_item_id"
+    t.float    "monto"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "marca_estados", :force => true do |t|
     t.string   "nombre"
@@ -299,8 +310,12 @@ ActiveRecord::Schema.define(:version => 20110510204531) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "tipo"
+<<<<<<< HEAD
     t.integer  "item_id"
     t.integer  "contador",                    :default => 0
+=======
+    t.integer  "contador"
+>>>>>>> 7669ca89dfe3b691bf8052faaa7e7155f6bb001f
     t.string   "nro_tramite"
   end
 

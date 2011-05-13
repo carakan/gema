@@ -7,7 +7,7 @@
     .contar
     = f.input(:contador, :as => :hidden)
   = f.input :orden,:label =>'Fecha: ', :hint=>'Incluya la fecha de esta correspondencia'
-  
+
   = f.input :temporal_id, :as => :hidden, :input_html => {:value => "new_correspondencias"}
   = f.collection_radio :tipo, [[true, 'Recibido'] ,[false, 'Enviado']], :first, :last, :checked  => true
   = f.input :asunto, :label =>'Asunto:', :hint =>'Indique el asunto o cabecera del email', :input_html => {:"data-id" => "new_correspondencias"}
@@ -26,7 +26,7 @@
     } else {
       name_field = "proyecto_correspondencia[adjuntos_attributes][" + tiempo + ']';
     }
-    console.debug(tiempo_email, name_field, $(this).attr("data-id") == "new_correspondencias");
+
     var input = $('<input/>').attr({
     'name': name_field + "[archivo]",
     'type': 'file',
