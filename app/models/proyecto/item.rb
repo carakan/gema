@@ -7,12 +7,12 @@ class Proyecto::Item < ActiveRecord::Base
   has_ancestry
   
   def show_children
-    (self.children + Proyecto::Item.where(:sigla => "GA")).collect{|c| [c.nombre, c.id]}
+    (self.children + Proyecto::Item.where(:sigla => "GA").children).collect{|c| [c.nombre, c.id]}
+  rescue
+    self.children.collect{|c| [c.nombre, c.id]}
   end
   
   def to_s
     sigla
   end
-
 end
-

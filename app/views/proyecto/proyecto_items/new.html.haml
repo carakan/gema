@@ -1,7 +1,7 @@
 
 - if params[:tipo] && params[:tipo] == "gasto"
   %h3 Nueva peticion de Gasto
-  = render :partial => "gasto_form", :locals => {:contador => (@proyecto_item.new_record?)? @proyecto_item.siguiente_id : @proyecto_item.contador }
+  = render :partial => "gasto_form", :locals => {:contador => (@proyecto_item.new_record?)? @proyecto_item.siguiente_id : @proyecto_item.contador, :url => proyecto_proyecto_proyecto_items_path(@proyecto) }
 - else
   %h3 Nuevo servicio
   = render :partial => 'form', :locals => {:url => proyecto_proyecto_proyecto_items_path(@proyecto)}

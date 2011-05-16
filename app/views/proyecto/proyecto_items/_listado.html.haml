@@ -37,7 +37,7 @@
             %td= proyecto_item.items.collect{|item| item.nombre}.join(", ")
             %td.marcas= proyecto_item.marcas.collect{|marca| link_to(marca, marca, :class => "ajax")}.join(", ").html_safe
             %td= proyecto_item.fecha_solicitud
-            %td= link_to 'Editar', edit_proyecto_proyecto_proyecto_item_path(@proyecto, proyecto_item), :class => "edit"
+            %td= link_to 'Editar', edit_proyecto_proyecto_proyecto_item_path(@proyecto, proyecto_item, :tipo => "cobro"), :class => "edit"
     %p
       = link_to "Añadir servicio", new_proyecto_proyecto_proyecto_item_path(@proyecto, :tipo => "cobro"), :style => "float: right;", :class => "new"
       /= link_to("Anadir alerta", alerta_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, @instruccion, @instruccion_detalle), :class => "ajax", :"data-id" => "new_item_cobros",:locals=>{:tipo=>'alerta'})
