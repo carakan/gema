@@ -389,7 +389,7 @@ class Marca < ActiveRecord::Base
   # Aumenta los numeros necesarios para buscar el numero de solicitud
   def self.digitos_numero_solicitud(numero)
     num, anio = numero.split("-")
-    "#{ "0" * (5 - num.size) }#{num}-#{anio}"
+    "#{"%05d" % num.to_i}-#{anio}"
   end
 
   # Realiza una comparación de los datos que se importan Vs. los que se encuentran
@@ -413,8 +413,8 @@ class Marca < ActiveRecord::Base
       marca.attributes = params
       return marca
     end
-    marca.importacion_id = params[:importacion_id]
-    marca.fecha_publicacion = params[:publicacion_fecha]
+    marca.importacion_id = params[:importacion_id] if params[:importacion_id]
+    marca.fecha_publicacion = params[:publicacion_fecha] if params[:publicacion_fecha]
     marca.errores_manual = {}
     comp.each do |m|
       if m.to_s =~ /^.*_ids$/
