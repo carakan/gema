@@ -79,6 +79,8 @@ class Proyecto::InstruccionDetalle < ActiveRecord::Base
             instruccion_detalle = self.clone
             instruccion_detalle.parent = self
             instruccion_detalle.fecha_inicio = fecha_next
+            instruccion_detalle.fecha_fin = fecha_next
+            instruccion_detalle.fecha_limite = fecha_next
             instruccion_detalle.save
           end
         end
@@ -88,6 +90,8 @@ class Proyecto::InstruccionDetalle < ActiveRecord::Base
             instruccion_detalle = self.clone
             instruccion_detalle.parent = self
             instruccion_detalle.fecha_inicio = fecha_next
+            instruccion_detalle.fecha_fin = fecha_next
+            instruccion_detalle.fecha_limite = fecha_next
             instruccion_detalle.save
         end
       when "mes"
@@ -102,6 +106,8 @@ class Proyecto::InstruccionDetalle < ActiveRecord::Base
             instruccion_detalle = self.clone
             instruccion_detalle.parent = self
             instruccion_detalle.fecha_inicio = fecha_next
+            instruccion_detalle.fecha_fin = fecha_next
+            instruccion_detalle.fecha_limite = fecha_next
             instruccion_detalle.save
           end
         end
@@ -117,6 +123,8 @@ class Proyecto::InstruccionDetalle < ActiveRecord::Base
             instruccion_detalle = self.clone
             instruccion_detalle.parent = self
             instruccion_detalle.fecha_inicio = fecha_next
+            instruccion_detalle.fecha_fin = fecha_next
+            instruccion_detalle.fecha_limite = fecha_next
             instruccion_detalle.save
           end
         end
