@@ -1,5 +1,5 @@
 = simple_form_for @instruccion_detalle,:html => {:method => :post}, :url => datos_repeticion_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, @instruccion, @instruccion_detalle) do |f|
   =f.input :fecha_inicio
   =f.input :fecha_fin
-  =f.collection_radio :periodo, [['dia', "Día"], ['mes',"Mes"],['anio',"Año"]], :first, :last
+  =f.collection_radio :periodo, [['dia', "Día"],['semana', "Semana"],  ['mes',"Mes"],['anio',"Año"]], :first, :last
   =f.button :submit, 'Aplicar regla'  

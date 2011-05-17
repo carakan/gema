@@ -8,6 +8,7 @@ module Proyecto::InstruccionDetallesHelper
   def links_tareas(klass, estado_tarea)
     case (estado_tarea)
       when "pendiente" then link_to "Entregar", entrega_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion_detall.instruccion, instruccion_detall), :class => 'terminada'
+      when "pendiente" then link_to "Entregar", entrega_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion_detall.instruccion, instruccion_detall), :class => 'terminada'
     end
   end
 end

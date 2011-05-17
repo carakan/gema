@@ -82,8 +82,15 @@ class Proyecto::InstruccionDetalle < ActiveRecord::Base
             instruccion_detalle.save
           end
         end
+      when "semana"
+        while fecha_next < fecha_fin do
+          fecha_next = 1.week.since(fecha_next)
+            instruccion_detalle = self.clone
+            instruccion_detalle.parent = self
+            instruccion_detalle.fecha_inicio = fecha_next
+            instruccion_detalle.save
+        end
       when "mes"
-
         while fecha_next < fecha_fin do
           fecha_next = 1.months.since(fecha_next)
           if fecha_next <= fecha_fin
@@ -113,7 +120,6 @@ class Proyecto::InstruccionDetalle < ActiveRecord::Base
             instruccion_detalle.save
           end
         end
-
     end
   end
 end
