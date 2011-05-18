@@ -91,6 +91,7 @@ Rails.application.routes.draw do
     end
     collection do
       get :lemas_comerciales
+      get :errores_sm
       
     end
   end

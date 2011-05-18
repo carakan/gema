@@ -1,0 +1,26 @@
+<h1>Lista sin SM</h1>
+
+<table class ="decorated">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Marca</th>
+    <th>Tipo</th>
+    <th>Clase</th>
+    <th>Titulares</th>
+  </tr>
+</thead>
+<tbody>
+  <% @marcas.each do |marca|%>
+    <tr>
+      <td><%= marca.id%> </td>
+      <td><%= link_to  marca.nombre, marca, :class => "ajax"%></td>
+      <td><%= marca.tipo_signo%></td>
+      <td><%= marca.clase%></td>
+      <td><% marca%></td>
+      <td><%= link_to "Editar", edit_marca_path(marca) %></td>
+    </tr>
+  <%end%>
+<tbody>
+</table>
+<%= will_paginate(@marcas) %>

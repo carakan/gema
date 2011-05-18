@@ -93,6 +93,11 @@ class MarcasController < ApplicationController
     redirect_to @marca
   end
 
+  def errores_sm 
+   @marcas = Marca.find(:all, :conditions => ["LENGTH(numero_solicitud) <> 10 "] ).paginate(:page =>params[:page], :per_page => 50)
+   
+  end
+
   private
 
   def redireccionar_udpate(marca)
@@ -102,5 +107,6 @@ class MarcasController < ApplicationController
       redirect_to marca
     end
   end
+
 
 end
