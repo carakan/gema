@@ -75,7 +75,7 @@ class Proyecto::Proyecto < ActiveRecord::Base
   end
   
   def todas_las_tareas(page = 1)
-    Proyecto::InstruccionDetalle.find(:all, :conditions => {:instruccion_id => self.instruccions.collect{|i| i.id }}).paginate(:page => page, :per_page => 20)
+    Proyecto::InstruccionDetalle.find(:all, :conditions => {:ancestry => nil, :instruccion_id => self.instruccions.collect{|i| i.id }})
   end
   
   def todos_los_adjuntos

@@ -8,7 +8,7 @@
     %table.decorated
       %thead
         %tr
-          /%th Nro Instruccion
+          %th Nro Instruccion
           %th Ref. Email
           %th Nº Tarea
           %th Responsable
@@ -19,36 +19,34 @@
       %tbody
         - fecha_hoy = (Time.now).to_date
         - for instruccion_detall in instruccion_detalles
-          -if instruccion_detall.fecha_limite >= fecha_hoy and instruccion_detall.is_childless?
-            %tr
-              /%td= link_to (instruccion_detall.instruccion, proyecto_proyecto_instruccion_path(@proyecto, instruccion)) if instruccion_detall.instruccion
-              %td= link_to instruccion_detall.instruccion.email, proyecto_proyecto_correspondencia_path(@proyecto, instruccion_detall.instruccion.email), :class => 'ajax' if instruccion_detall.instruccion.email
-              %td= link_to instruccion_detall, proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion_detall.instruccion,instruccion_detall), :class => 'ajax' if instruccion_detall.instruccion
-              %td= instruccion_detall.usuario
-              %td= instruccion_detall.tarea
-              %td= instruccion_detall.tipo_instruccion
-              %td= instruccion_detall.prioridad
-              %td= l(instruccion_detall.fecha_limite, :format => "%d, %B %Y") if instruccion_detall.fecha_limite
-              -if instruccion_detall.has_children?
-                %td= link_to 'Ver repeticiones', repeticion_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion_detall.instruccion,instruccion_detall)
-              -else
-                %td= link_to 'Reiniciar', repeticion_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion_detall.instruccion,instruccion_detall)
-              %td
-                - if instruccion_detall.estado_tarea == 'pendiente'
-                  = link_to "Entregar", entrega_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion_detall.instruccion, instruccion_detall), :class => 'terminada'
-                - if instruccion_detall.estado_tarea == "aprobado"
-                  = link_to "Calificada", ver_calificacion_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion_detall.instruccion, instruccion_detall), :class => "aprobado"
-                - if instruccion_detall.estado_tarea == "reprobado"
-                  = link_to "Calificada", ver_calificacion_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion_detall.instruccion, instruccion_detall), :class => "reprobado"
-                - if instruccion_detall.estado_tarea == 'revision'
-                  = link_to "Revision", ver_entrega_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion_detall.instruccion, instruccion_detall), :class => 'revision'
-              %td= link_to 'Editar', edit_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion_detall.instruccion,instruccion_detall), :class => "edit"
-              %td= link_to 'Eliminar', proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion_detall.instruccion,instruccion_detall), :confirm => 'Are you sure?', :method => :delete, :class => 'delete'
+          - instruccion_detall = instruccion_detall.primera_hija
+          %tr
+          %td= link_to instruccion_detall.instruccion, proyecto_proyecto_instruccion_path(@proyecto, instruccion_detall.instruccion), :class => 'ajax' if instruccion_detall.instruccion
+          %td= link_to instruccion_detall.instruccion.email, proyecto_proyecto_correspondencia_path(@proyecto, instruccion_detall.instruccion.email), :class => 'ajax' if instruccion_detall.instruccion.email
+          %td= link_to instruccion_detall, proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion_detall.instruccion,instruccion_detall), :class => 'ajax' if instruccion_detall.instruccion
+          %td= instruccion_detall.usuario
+          %td= instruccion_detall.tarea
+          %td= instruccion_detall.tipo_instruccion
+          %td= instruccion_detall.prioridad
+          %td= l(instruccion_detall.fecha_limite, :format => "%d, %B %Y") if instruccion_detall.fecha_limite
+          -if instruccion_detall.has_children?
+            %td= link_to 'Ver repeticiones', repeticion_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion_detall.instruccion,instruccion_detall)
+          -else
+            %td= link_to 'Reiniciar', repeticion_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion_detall.instruccion,instruccion_detall)
+          %td
+            - if instruccion_detall.estado_tarea == 'pendiente'
+              = link_to "Entregar", entrega_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion_detall.instruccion, instruccion_detall), :class => 'terminada'
+            - if instruccion_detall.estado_tarea == "aprobado"
+              = link_to "Calificada", ver_calificacion_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion_detall.instruccion, instruccion_detall), :class => "aprobado"
+            - if instruccion_detall.estado_tarea == "reprobado"
+              = link_to "Calificada", ver_calificacion_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion_detall.instruccion, instruccion_detall), :class => "reprobado"
+            - if instruccion_detall.estado_tarea == 'revision'
+              = link_to "Revision", ver_entrega_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion_detall.instruccion, instruccion_detall), :class => 'revision'
+          %td= link_to 'Editar', edit_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion_detall.instruccion,instruccion_detall), :class => "edit"
+          %td= link_to 'Eliminar', proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion_detall.instruccion,instruccion_detall), :confirm => 'Are you sure?', :method => :delete, :class => 'delete'
 
     %p= link_to "Añadir Instruccion", new_proyecto_proyecto_instruccion_path(@proyecto), :class => 'new', :style => "float: right;"
     %br.clear
-
-    .pagination= will_paginate(instruccion_detalles)
 
 :javascript
   $(document).ready(function(){

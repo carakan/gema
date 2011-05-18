@@ -130,5 +130,18 @@ class Proyecto::InstruccionDetalle < ActiveRecord::Base
         end
     end
   end
+
+  def primera_hija
+    if self.has_children?
+      self.children.each do |hija|
+        if hija.fecha_inicio >= Time.now.to_date && hija.estado_tarea == "pendiente"
+          return hija
+        end
+      end 
+    else
+      return self
+    end
+  end
+
 end
 
