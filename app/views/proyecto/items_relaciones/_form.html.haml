@@ -1,0 +1,18 @@
+%h1
+  Nota de Debito
+%br
+  - simple_form_for @item_relaciones do |nota|
+    %table.decorated
+      %tr
+        %th
+        %th Servicio
+        %th items
+
+        %th estado
+      - @proyecto.items_relaciones.each do |item|
+        %tr
+          %td= check_box_tag '#'
+          %td= item.proyecto_item
+          %td= item.item.nombre
+          
+    = nota.button :submit, 'Crear Nota Debito'
