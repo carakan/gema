@@ -73,6 +73,23 @@ class Proyecto::InstruccionDetallesController < ApplicationController
     @instruccion_detalle = @instruccion.instruccion_detalles.find(params[:id])
   end
 
+  def repeticion
+    @instruccion_detalle = @instruccion.instruccion_detalles.find(params[:id])
+  end
+
+  def datos_repeticion
+    instruccion_detalle = Proyecto::InstruccionDetalle.find(params[:id])
+    if instruccion_detalle.update_attributes(params[:proyecto_instruccion_detalle])
+      flash[:notice] = "Datos guardados de manera correcta"
+    end
+    instruccion_detalle.crear_hijas
+    redirect_to @proyecto
+  end
+
+  def ver_repeticion
+    @instruccion_detalle = @instruccion.instruccion_detalles.find(params[:id])
+  end
+
   protected
   def set_instruccion
     @proyecto = Proyecto::Proyecto.find(params[:proyecto_id])

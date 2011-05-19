@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110511151849) do
+ActiveRecord::Schema.define(:version => 20110512210858) do
 
   create_table "adjuntos", :force => true do |t|
     t.string   "nombre"
@@ -125,6 +125,9 @@ ActiveRecord::Schema.define(:version => 20110511151849) do
     t.string   "prioridad",             :limit => 1
     t.integer  "tipo_instruccion_id"
     t.boolean  "tipo"
+    t.date     "fecha_inicio"
+    t.date     "fecha_fin"
+    t.string   "periodo"
   end
 
   add_index "instruccion_detalles", ["ancestry"], :name => "index_instruccion_detalles_on_ancestry"

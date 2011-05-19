@@ -70,6 +70,8 @@ class Proyecto::Proyecto < ActiveRecord::Base
   def obtener_codigo
     codigo = Proyecto::Proyecto.select("max(id) as conteo").first
     return(codigo.conteo + 1)
+  rescue
+    1
   end
   
   def todas_las_tareas(page = 1)

@@ -1,0 +1,8 @@
+%h2 Datos de la tarea
+= show_for  @instruccion_detalle do |instruccion|
+  = instruccion.association :instruccion, :using =>:id
+  = instruccion.association :usuario, :using => :nombre
+  = instruccion.attribute :tarea
+  = instruccion.attribute :fecha_limite
+%h2 Datos Repetición 
+= render :partial => "/proyecto/instruccion_detalles/repeticion_data", :locals => {:instruccion_detalle => @instruccion_detalle}
