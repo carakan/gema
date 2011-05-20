@@ -14,7 +14,6 @@ class Marca < ActiveRecord::Base
   # Numero de palabras
   #before_save lambda { |m| m.numero_palabras = m.nombre_minusculas.strip.split(/\s/).size } 
 
-  before_update :crear_historico, :if => :con_historico?
   before_update :set_cambios
   before_save :actualizar_validez
 
@@ -51,6 +50,14 @@ class Marca < ActiveRecord::Base
   has_and_belongs_to_many :titulares, :class_name => 'Representante',
     :association_foreign_key => :titular_id,
     :join_table => 'marcas_titulares'
+  
+  
+  ##########################################
+  # Tracking updates
+  ##########################################
+  
+  has_paper_trail
+  
 
   #def self.after_initialize
   #  @con_historico = true
@@ -209,19 +216,6 @@ class Marca < ActiveRecord::Base
     end
     include mod
   end
-
-  # Realiza la inclusion de modulos de acuerdo al tipo_signo
-  #def self.set_include_tipo_signo(signo)
-  #  case signo
-  #  when 1
-  #    include ModMarca::Denominacion
-  #  when 2
-  #    include ModMarca::Etiqueta
-  #  when 3
-  #    include ModMarca::Figurativa
-  #  end
-  #end
-
 
   def self.ver_estado(est)
     TIPOS[est]
@@ -558,7 +552,7 @@ class Marca < ActiveRecord::Base
   end
 
   def set_cambios
-    self.cambios =  self.changes.keys.select{ |v| not [:valido, :fila, :type, :nombre_minusculas].include?(v) }
+    self.cambios =  self.changes.keys.select{ |v| ![:valido, :fila, :type, :nombre_minusculas].include?(v) }
   end
 
   # En caso de importación todas las marcas indica que no son propias a la empresa

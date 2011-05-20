@@ -29,6 +29,7 @@ gem 'devise'
 gem 'simple_form'
 gem "meta_search"
 gem 'warden'
+gem "paper_trail"
 gem 'bcrypt-ruby'
 
 group :development do
