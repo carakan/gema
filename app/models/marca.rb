@@ -56,7 +56,7 @@ class Marca < ActiveRecord::Base
   # Tracking updates
   ##########################################
   
-  has_paper_trail :ignore => [:valido, :fila, :type, :nombre_minusculas, :errores, :errores_manual]
+  has_paper_trail :ignore => [:valido, :fila, :type, :nombre_minusculas, :errores, :errores_manual, :cambios, :anterior]
   
   # ---- BORRAR 
   # Indica si se debe crear historico
