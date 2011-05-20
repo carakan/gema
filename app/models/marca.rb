@@ -56,13 +56,9 @@ class Marca < ActiveRecord::Base
   # Tracking updates
   ##########################################
   
-  has_paper_trail
+  has_paper_trail :ignore => [:valido, :fila, :type, :nombre_minusculas, :errores, :errores_manual]
   
-
-  #def self.after_initialize
-  #  @con_historico = true
-  #end
-
+  # ---- BORRAR 
   # Indica si se debe crear historico
   def con_historico?
     @con_historico = true if @con_historico.nil?
@@ -72,23 +68,24 @@ class Marca < ActiveRecord::Base
   def con_historico=(val)
     @con_historico = val
   end
+  # ---- 
 
   # Las validaciones se guardan en los modulos 
 
   # Serializaciones, Denormalizacion de datos
-  serialize :cambios
   serialize :agente_ids_serial
   serialize :titular_ids_serial
   serialize :errores
   # Errores especiales que deben ser eliminados manualmente debido a que el error
   # es validado por un criterio que no puede identificarse en el sistema
   serialize :errores_manual
+  serialize :cambios
 
 
   validates_presence_of :marca_estado_id, :nombre, :tipo_signo_id, :clase_id
   validate :validar_errores_manual
 
-  default_scope where("marcas.parent_id = 0")
+  # default_scope where("marcas.parent_id = 0")
 
   #named_scope :importados, lambda{ |fecha| 
   #  { :conditions => { :fecha_importacion => fecha} } 
@@ -275,8 +272,13 @@ class Marca < ActiveRecord::Base
     end
   end
 
+  
+  ###############################################
+  # Don't' touch this!
+  ###############################################
+  
   def self.historial(id, params = {})
-    params = { :order => "updated_at DESC" }.merge(params)
+    params = { :order => "updated_at ASC" }.merge(params)
     params[:conditions] = ["marcas.parent_id = ?", id]
     Marca.send(:with_exclusive_scope) { Marca.all(params) }
   end
@@ -285,6 +287,8 @@ class Marca < ActiveRecord::Base
   def historial
     self.class.historial(self.id)
   end
+  
+  ################################################
 
   # Crea una instancia de acuerdo al estado
   # @param Hash parmas
@@ -551,9 +555,11 @@ class Marca < ActiveRecord::Base
     dup.save(:validate => false)
   end
 
+  ###################################
   def set_cambios
     self.cambios =  self.changes.keys.select{ |v| ![:valido, :fila, :type, :nombre_minusculas].include?(v) }
   end
+  ##################################
 
   # En caso de importación todas las marcas indica que no son propias a la empresa
   def set_propia
