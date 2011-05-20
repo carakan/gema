@@ -7,7 +7,7 @@ class Proyecto::Proyecto < ActiveRecord::Base
   has_many :correspondencias
   has_many :instruccions, :include => :instruccion_detalles
   has_many :proyecto_items
-
+  has_many :items_relaciones, :through=> :proyecto_items ,:order=>'proyecto_item_id ASC'
   # TODO use a condition for select correct values
   has_many :item_cobros, :class_name => "Proyecto::ItemCobro", :conditions => {:tipo=> 1 }
   has_many :item_gastos, :class_name => "Proyecto::ItemGasto" , :conditions => {:tipo=> 0 }

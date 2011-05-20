@@ -20,7 +20,4 @@
       |
       = link_to "Borrar", proyecto_proyecto_correspondencia_path(@proyecto, @correspondencia), :confirm => 'Are you sure?', :method => :delete
       |
-
-
-      = link_to "Listado", proyecto_proyecto_correspondencias_path(@proyecto), :class => "correspondencia", :"data-selector" => "#tabs-correspondencia-1"
-
+      = link_to "Listado", proyecto_proyecto_correspondencias_path(@proyecto), :class => "correspondencia", :"data-selector" => "#tabs-correspondencia-1", :"data-callback" => "refresh_table_correspondencia()"

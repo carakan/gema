@@ -15,7 +15,7 @@
     .percent_40= p.association :contactos
     .percent_40= p.attribute :created_at, :label => 'Fecha creación'
 
-  = render :partial => "/proyecto/correspondencias/listado", :locals => {:correspondencias => @proyecto.correspondencias}
+  = render :partial => "/proyecto/correspondencias/tabs"
   %br
   = render :partial => "/proyecto/proyecto_items/listado", :locals => {:proyecto_items => @proyecto.item_cobros}
   %br
@@ -26,9 +26,11 @@
 :javascript
   $(document).ready(function() {
     $("table.decorated").each(function(){
-      $(this).dataTable({"bJQueryUI" : true,
-        "sPaginationType" : "full_numbers",
-        "aaSorting"       : [[0, 'asc'], [1, 'asc']]
+      $(this).dataTable({
+        "bJQueryUI" : true,
+        "sPaginationType": "full_numbers",
+        "aaSorting"       : [[0, 'asc'], [1, 'asc']],
+        "oLanguage": { "sUrl": "/javascripts/datatable-es.js" }
       });
     });
   });
