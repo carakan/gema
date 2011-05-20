@@ -15,7 +15,7 @@ end
 gem "nifty-generators"
 gem "haml"
 gem 'formtastic'
-gem 'will_paginate'
+gem 'will_paginate','3.0.pre2'
 gem 'nokogiri'
 gem 'forgery'
 gem 'zip'
@@ -23,7 +23,7 @@ gem 'spreadsheet'
 gem 'google-spreadsheet-ruby'
 gem 'roo'
 gem 'paperclip'
-gem 'prawn'
+gem 'prawn', "0.10.2"
 gem 'less'
 gem 'devise'
 gem 'simple_form'
