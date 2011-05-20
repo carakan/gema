@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110512210858) do
+ActiveRecord::Schema.define(:version => 20110519143748) do
 
   create_table "adjuntos", :force => true do |t|
     t.string   "nombre"
@@ -169,6 +169,8 @@ ActiveRecord::Schema.define(:version => 20110512210858) do
     t.float    "monto"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "estado",           :limit => 20
+    t.integer  "transaction_id"
   end
 
   create_table "marca_estados", :force => true do |t|
@@ -348,7 +350,7 @@ ActiveRecord::Schema.define(:version => 20110512210858) do
     t.integer  "representante_id"
     t.string   "representante_type"
     t.integer  "importacion_id"
-    t.string   "carta",              :limit => 500
+    t.string   "carta",              :limit => 1024
     t.string   "reporte_pdf"
     t.string   "idioma",             :limit => 4
     t.datetime "created_at"

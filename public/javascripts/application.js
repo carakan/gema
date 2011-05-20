@@ -256,7 +256,10 @@
         $.ajax({
           'url': url,
           'type': 'POST',
-          'data': {'authenticity_token' : $("meta[name=csrf-token]").attr("content"), '_method':'delete'},
+          'data': {
+            'authenticity_token' : $("meta[name=csrf-token]").attr("content"), 
+            '_method':'delete'
+          },
           'context': el,
           'success': function() {
             $(el).parents("tr:first, li:first").remove();
@@ -348,9 +351,23 @@ function ajaxeable(e){
   if(reference.attr("data-url")){
     url = reference.attr("data-url");
   }
-  $(selector).load(url + " #remote");
+  $(selector).load(url + " #remote", function(){
+    if(reference.attr("data-callback")){
+      eval(reference.attr("data-callback"));
+    }
+  });
   e.stopPropagation();
   return false;
+}
+
+function refresh_table_correspondencia(){
+  $("table.correspondencias").dataTable({
+    "bJQueryUI" : true,
+    "sPaginationType": "input",
+    "aaSorting"       : [[0, 'asc'], [1, 'asc']],
+    "oLanguage": { "sUrl": "/javascripts/datatable-es.js" }
+  });
+
 }
 
 function verificarErrorresManuales(){
@@ -398,6 +415,7 @@ function update_counters(selector){
   });
 }
 
+
   function reset_attrs(){
     $(".select_items").each(function(){
       if(!$(this).attr("data-name")){
@@ -413,7 +431,6 @@ function update_counters(selector){
       var $combo_box = $(this).parents(".fieldset:first").find(".items_listado");
       var $select_box = $(this);
       $combo_box.load("/proyecto/items/" + $(this).val() + " #remote", function(data){
-        /*console.log($combo_box, $combo_box.find("select"));*/
         $combo_box.find("select").attr("name", $select_box.attr("data-name"));
         $combo_box.find("select").fcbkcomplete({
           filter_hide: true,
@@ -423,3 +440,4 @@ function update_counters(selector){
       });
     });
   };
+

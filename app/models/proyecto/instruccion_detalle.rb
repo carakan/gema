@@ -75,7 +75,7 @@ class Proyecto::InstruccionDetalle < ActiveRecord::Base
       when "dia"
         while fecha_next < fecha_fin do
           fecha_next = 1.day.since(fecha_next)
-          if fecha_next.wday != 0 or fecha_next.wday != 6
+          if fecha_next.wday != 0 && fecha_next.wday != 6
             instruccion_detalle = self.clone
             instruccion_detalle.parent = self
             instruccion_detalle.fecha_inicio = fecha_next

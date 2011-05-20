@@ -1,0 +1,21 @@
+#tabs-correspondencia{:style=>'font-size:11px;'}
+  %ul
+    %li
+      %a{:href=>'#tabs-correspondencia-1'}
+        Correspondencia
+    %li
+      %a{:href=>'#tabs-correspondencia-2'}
+        Adjuntos
+
+  #tabs-correspondencia-1
+    = render :partial => "/proyecto/correspondencias/listado", :locals => {:correspondencias => @proyecto.correspondencias}
+  #tabs-correspondencia-2
+    = render :partial => "/adjuntos/index", :locals => {:adjuntos => @proyecto.todos_los_adjuntos}
+
+:javascript
+  window.selectorAjax = "#tabs-correspondencia";
+  $(document).ready(function() {
+    $("#tabs-correspondencia").tabs();
+    $(".correspondencia, .next-email, .previus-email, .pagination a").live("click", ajaxeable);
+    $("#tabs-correspondencia-1 table tr td a:first").click();
+  });
