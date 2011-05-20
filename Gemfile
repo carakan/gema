@@ -35,6 +35,7 @@ group :development do
   gem "nifty-generators", "0.4.6"
 end
 gem "data_table",'0.1.9'
+gem "faker",'0.9.5'
 
 group :test do
   gem 'rspec-rails', "2.5.0"

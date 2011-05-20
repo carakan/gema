@@ -329,10 +329,10 @@
       <tr>
         <th style="width:250px">Nombre del proyecto</th>
       </tr>
-        <% @marca.item_cobros.each do |item_cobro| %>
+      <% @marca.item_cobros.each do |item_cobro| %>
           <tr>
             <td>
-              <%= link_to item_cobro.proyecto, proyecto_proyecto_path(item_cobro.proyecto) %><br/><br/>
+              <%= item_cobro.proyecto if item_cobro %><br/><br/>
             </td>
           </tr>
         <% end %>

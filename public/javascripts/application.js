@@ -364,7 +364,7 @@ function refresh_table_correspondencia(){
   $("table.correspondencias").dataTable({
     "bJQueryUI" : true,
     "sPaginationType": "input",
-    "aaSorting"       : [[0, 'asc'], [1, 'asc']],
+    "aaSorting"       : [[0, 'desc'], [1, 'desc']],
     "oLanguage": { "sUrl": "/javascripts/datatable-es.js" }
   });
 

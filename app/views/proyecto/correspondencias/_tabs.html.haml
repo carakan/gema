@@ -17,5 +17,5 @@
   $(document).ready(function() {
     $("#tabs-correspondencia").tabs();
     $(".correspondencia, .next-email, .previus-email, .pagination a").live("click", ajaxeable);
-    $("#tabs-correspondencia-1 table tr td a:first").click();
+    $("#tabs-correspondencia-1 table tr td a.correspondencia:last").click();
   });

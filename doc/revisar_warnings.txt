@@ -1,0 +1,489 @@
+./app/views/busquedas/_generic_select.erb:108 - replace instance variable with local variable
+./app/views/busquedas/_generic_select.erb:108 - replace instance variable with local variable
+./app/views/busquedas/_paises_select.erb:55 - replace instance variable with local variable
+./app/views/busquedas/_paises_select.erb:55 - replace instance variable with local variable
+./app/views/busquedas/_paises_titular_select.erb:1 - replace instance variable with local variable
+./app/views/busquedas/_paises_titular_select.erb:92 - replace instance variable with local variable
+./app/views/contactos/_form.html.erb:1 - replace instance variable with local variable
+./app/views/importaciones/_all.html.erb:1 - replace instance variable with local variable
+./app/views/importaciones/_all.html.erb:2 - replace instance variable with local variable
+./app/views/importaciones/_all.html.erb:2 - replace instance variable with local variable
+./app/views/importaciones/_all.html.erb:13 - replace instance variable with local variable
+./app/views/importaciones/_all.html.erb:24 - replace instance variable with local variable
+./app/views/importaciones/_errores.html.erb:1 - replace instance variable with local variable
+./app/views/importaciones/_errores.html.erb:1 - replace instance variable with local variable
+./app/views/importaciones/_errores.html.erb:4 - replace instance variable with local variable
+./app/views/importaciones/_errores.html.erb:4 - replace instance variable with local variable
+./app/views/importaciones/_errores.html.erb:15 - replace instance variable with local variable
+./app/views/marcas/_create_post.html.erb:1 - replace instance variable with local variable
+./app/views/marcas/_denominacion.html.erb:1 - replace instance variable with local variable
+./app/views/marcas/_denominacion.html.erb:4 - replace instance variable with local variable
+./app/views/marcas/_denominacion.html.erb:25 - replace instance variable with local variable
+./app/views/marcas/_listar.html.erb:16 - replace instance variable with local variable
+./app/views/marcas/_mostrar.html.erb:1 - replace instance variable with local variable
+./app/views/marcas/_mostrar.html.erb:1 - replace instance variable with local variable
+./app/views/marcas/_mostrar.html.erb:9 - replace instance variable with local variable
+./app/views/marcas/_mostrar.html.erb:9 - replace instance variable with local variable
+./app/views/marcas/_mostrar.html.erb:9 - replace instance variable with local variable
+./app/views/marcas/_mostrar.html.erb:12 - replace instance variable with local variable
+./app/views/marcas/_mostrar.html.erb:12 - replace instance variable with local variable
+./app/views/marcas/_mostrar.html.erb:12 - replace instance variable with local variable
+./app/views/marcas/_mostrar.html.erb:12 - replace instance variable with local variable
+./app/views/marcas/_mostrar.html.erb:12 - replace instance variable with local variable
+./app/views/marcas/_mostrar.html.erb:12 - replace instance variable with local variable
+./app/views/marcas/_mostrar.html.erb:12 - replace instance variable with local variable
+./app/views/marcas/_mostrar.html.erb:12 - replace instance variable with local variable
+./app/views/marcas/_mostrar.html.erb:12 - replace instance variable with local variable
+./app/views/marcas/_mostrar.html.erb:12 - replace instance variable with local variable
+./app/views/marcas/_mostrar.html.erb:12 - replace instance variable with local variable
+./app/views/marcas/_mostrar.html.erb:12 - replace instance variable with local variable
+./app/views/marcas/_mostrar.html.erb:12 - replace instance variable with local variable
+./app/views/marcas/_mostrar.html.erb:12 - replace instance variable with local variable
+./app/views/marcas/_mostrar.html.erb:12 - replace instance variable with local variable
+./app/views/marcas/_mostrar.html.erb:12 - replace instance variable with local variable
+./app/views/marcas/_mostrar.html.erb:128 - replace instance variable with local variable
+./app/views/marcas/_mostrar.html.erb:134 - replace instance variable with local variable
+./app/views/marcas/_mostrar.html.erb:134 - replace instance variable with local variable
+./app/views/marcas/_mostrar.html.erb:134 - replace instance variable with local variable
+./app/views/marcas/_mostrar.html.erb:134 - replace instance variable with local variable
+./app/views/marcas/_mostrar.html.erb:134 - replace instance variable with local variable
+./app/views/marcas/_mostrar.html.erb:134 - replace instance variable with local variable
+./app/views/marcas/_mostrar.html.erb:134 - replace instance variable with local variable
+./app/views/marcas/_mostrar.html.erb:134 - replace instance variable with local variable
+./app/views/marcas/_mostrar.html.erb:134 - replace instance variable with local variable
+./app/views/marcas/_mostrar.html.erb:134 - replace instance variable with local variable
+./app/views/marcas/_mostrar.html.erb:134 - replace instance variable with local variable
+./app/views/marcas/_mostrar.html.erb:134 - replace instance variable with local variable
+./app/views/marcas/_mostrar.html.erb:134 - replace instance variable with local variable
+./app/views/marcas/_mostrar.html.erb:134 - replace instance variable with local variable
+./app/views/marcas/_mostrar.html.erb:134 - replace instance variable with local variable
+./app/views/marcas/_mostrar.html.erb:134 - replace instance variable with local variable
+./app/views/marcas/_mostrar.html.erb:134 - replace instance variable with local variable
+./app/views/marcas/_posts.html.erb:1 - replace instance variable with local variable
+./app/views/marcas/_posts.html.erb:21 - replace instance variable with local variable
+./app/views/posts/_edit.html.erb:1 - replace instance variable with local variable
+./app/views/proyecto/areas/_form.html.haml:1 - replace instance variable with local variable
+./app/views/proyecto/areas/_listado.html.haml:5 - replace instance variable with local variable
+./app/views/proyecto/correspondencias/_form.html.haml:1 - replace instance variable with local variable
+./app/views/proyecto/correspondencias/_form.html.haml:1 - replace instance variable with local variable
+./app/views/proyecto/correspondencias/_form.html.haml:3 - replace instance variable with local variable
+./app/views/proyecto/correspondencias/_form.html.haml:5 - replace instance variable with local variable
+./app/views/proyecto/correspondencias/_form.html.haml:5 - replace instance variable with local variable
+./app/views/proyecto/correspondencias/_form.html.haml:5 - replace instance variable with local variable
+./app/views/proyecto/correspondencias/_listado.html.haml:23 - replace instance variable with local variable
+./app/views/proyecto/correspondencias/_listado.html.haml:24 - replace instance variable with local variable
+./app/views/proyecto/correspondencias/_listado.html.haml:25 - replace instance variable with local variable
+./app/views/proyecto/correspondencias/_listado.html.haml:27 - replace instance variable with local variable
+./app/views/proyecto/correspondencias/_listado.html.haml:28 - replace instance variable with local variable
+./app/views/proyecto/correspondencias/_show.html.haml:2 - replace instance variable with local variable
+./app/views/proyecto/correspondencias/_show.html.haml:3 - replace instance variable with local variable
+./app/views/proyecto/correspondencias/_show.html.haml:3 - replace instance variable with local variable
+./app/views/proyecto/correspondencias/_show.html.haml:4 - replace instance variable with local variable
+./app/views/proyecto/correspondencias/_show.html.haml:4 - replace instance variable with local variable
+./app/views/proyecto/correspondencias/_show.html.haml:7 - replace instance variable with local variable
+./app/views/proyecto/correspondencias/_show.html.haml:7 - replace instance variable with local variable
+./app/views/proyecto/correspondencias/_show.html.haml:8 - replace instance variable with local variable
+./app/views/proyecto/correspondencias/_show.html.haml:12 - replace instance variable with local variable
+./app/views/proyecto/correspondencias/_show.html.haml:14 - replace instance variable with local variable
+./app/views/proyecto/correspondencias/_show.html.haml:16 - replace instance variable with local variable
+./app/views/proyecto/correspondencias/_show.html.haml:19 - replace instance variable with local variable
+./app/views/proyecto/correspondencias/_show.html.haml:19 - replace instance variable with local variable
+./app/views/proyecto/correspondencias/_show.html.haml:21 - replace instance variable with local variable
+./app/views/proyecto/correspondencias/_show.html.haml:21 - replace instance variable with local variable
+./app/views/proyecto/correspondencias/_show.html.haml:23 - replace instance variable with local variable
+./app/views/proyecto/correspondencias/_tabs.html.haml:11 - replace instance variable with local variable
+./app/views/proyecto/correspondencias/_tabs.html.haml:13 - replace instance variable with local variable
+./app/views/proyecto/instruccion_detalles/_datosentrega.html.haml:2 - replace instance variable with local variable
+./app/views/proyecto/instruccion_detalles/_datosentrega.html.haml:2 - replace instance variable with local variable
+./app/views/proyecto/instruccion_detalles/_datosentrega.html.haml:2 - replace instance variable with local variable
+./app/views/proyecto/instruccion_detalles/_datosentrega.html.haml:2 - replace instance variable with local variable
+./app/views/proyecto/instruccion_detalles/_evaluacion.html.haml:1 - replace instance variable with local variable
+./app/views/proyecto/instruccion_detalles/_evaluacion.html.haml:1 - replace instance variable with local variable
+./app/views/proyecto/instruccion_detalles/_evaluacion.html.haml:1 - replace instance variable with local variable
+./app/views/proyecto/instruccion_detalles/_evaluacion.html.haml:1 - replace instance variable with local variable
+./app/views/proyecto/instruccion_detalles/_form.html.haml:1 - replace instance variable with local variable
+./app/views/proyecto/instruccion_detalles/_listado.html.haml:24 - replace instance variable with local variable
+./app/views/proyecto/instruccion_detalles/_listado.html.haml:25 - replace instance variable with local variable
+./app/views/proyecto/instruccion_detalles/_listado.html.haml:26 - replace instance variable with local variable
+./app/views/proyecto/instruccion_detalles/_listado.html.haml:33 - replace instance variable with local variable
+./app/views/proyecto/instruccion_detalles/_listado.html.haml:35 - replace instance variable with local variable
+./app/views/proyecto/instruccion_detalles/_listado.html.haml:38 - replace instance variable with local variable
+./app/views/proyecto/instruccion_detalles/_listado.html.haml:40 - replace instance variable with local variable
+./app/views/proyecto/instruccion_detalles/_listado.html.haml:42 - replace instance variable with local variable
+./app/views/proyecto/instruccion_detalles/_listado.html.haml:44 - replace instance variable with local variable
+./app/views/proyecto/instruccion_detalles/_listado.html.haml:45 - replace instance variable with local variable
+./app/views/proyecto/instruccion_detalles/_listado.html.haml:46 - replace instance variable with local variable
+./app/views/proyecto/instruccion_detalles/_listado.html.haml:48 - replace instance variable with local variable
+./app/views/proyecto/instruccion_detalles/_repeticion_data.html.haml:1 - replace instance variable with local variable
+./app/views/proyecto/instruccion_detalles/_repeticion_data.html.haml:1 - replace instance variable with local variable
+./app/views/proyecto/instruccion_detalles/_repeticion_data.html.haml:1 - replace instance variable with local variable
+./app/views/proyecto/instruccion_detalles/_repeticion_data.html.haml:1 - replace instance variable with local variable
+./app/views/proyecto/instrucciones/_form.html.haml:1 - replace instance variable with local variable
+./app/views/proyecto/instrucciones/_form.html.haml:3 - replace instance variable with local variable
+./app/views/proyecto/instrucciones/_form.html.haml:3 - replace instance variable with local variable
+./app/views/proyecto/instrucciones/_form.html.haml:3 - replace instance variable with local variable
+./app/views/proyecto/instrucciones/_form.html.haml:3 - replace instance variable with local variable
+./app/views/proyecto/instrucciones/_listado.html.haml:16 - replace instance variable with local variable
+./app/views/proyecto/instrucciones/_listado.html.haml:17 - replace instance variable with local variable
+./app/views/proyecto/instrucciones/_listado.html.haml:18 - replace instance variable with local variable
+./app/views/proyecto/instrucciones/_listado.html.haml:29 - replace instance variable with local variable
+./app/views/proyecto/instrucciones/_listado.html.haml:35 - replace instance variable with local variable
+./app/views/proyecto/items/_form.html.haml:1 - replace instance variable with local variable
+./app/views/proyecto/items/_listado.html.haml:8 - replace instance variable with local variable
+./app/views/proyecto/items_relaciones/_form.html.haml:4 - replace instance variable with local variable
+./app/views/proyecto/items_relaciones/_form.html.haml:12 - replace instance variable with local variable
+./app/views/proyecto/proyecto_items/_form.html.haml:4 - replace instance variable with local variable
+./app/views/proyecto/proyecto_items/_form.html.haml:7 - replace instance variable with local variable
+./app/views/proyecto/proyecto_items/_form.html.haml:7 - replace instance variable with local variable
+./app/views/proyecto/proyecto_items/_form.html.haml:8 - replace instance variable with local variable
+./app/views/proyecto/proyecto_items/_form.html.haml:8 - replace instance variable with local variable
+./app/views/proyecto/proyecto_items/_form.html.haml:8 - replace instance variable with local variable
+./app/views/proyecto/proyecto_items/_gasto_form.html.haml:1 - replace instance variable with local variable
+./app/views/proyecto/proyecto_items/_listado.html.haml:28 - replace instance variable with local variable
+./app/views/proyecto/proyecto_items/_listado.html.haml:30 - replace instance variable with local variable
+./app/views/proyecto/proyecto_items/_listado.html.haml:40 - replace instance variable with local variable
+./app/views/proyecto/proyecto_items/_listado.html.haml:42 - replace instance variable with local variable
+./app/views/proyecto/proyecto_items/_listado.html.haml:49 - replace instance variable with local variable
+./app/views/proyecto/proyecto_items/_listado.html.haml:53 - replace instance variable with local variable
+./app/views/proyecto/proyecto_items/_listado_gastos.html.haml:11 - replace instance variable with local variable
+./app/views/proyecto/proyecto_items/_listado_gastos.html.haml:13 - replace instance variable with local variable
+./app/views/proyecto/proyecto_items/_listado_gastos.html.haml:18 - replace instance variable with local variable
+./app/views/proyecto/proyectos/_form.html.haml:4 - replace instance variable with local variable
+./app/views/proyecto/proyectos/_form.html.haml:6 - replace instance variable with local variable
+./app/views/proyecto/tipo_instrucciones/_form.html.haml:1 - replace instance variable with local variable
+./app/views/reporte_marcas/_cruce.haml:5 - replace instance variable with local variable
+./app/views/reporte_marcas/_cruce.haml:5 - replace instance variable with local variable
+./app/views/reporte_marcas/_cruce.haml:8 - replace instance variable with local variable
+./app/views/reporte_marcas/_cruce.haml:8 - replace instance variable with local variable
+./app/views/reporte_marcas/_cruce.haml:11 - replace instance variable with local variable
+./app/views/reporte_marcas/_cruce.haml:11 - replace instance variable with local variable
+./app/views/reporte_marcas/_cruce.haml:27 - replace instance variable with local variable
+./app/views/reporte_marcas/_cruce.haml:28 - replace instance variable with local variable
+./app/views/reporte_marcas/_cruce.haml:29 - replace instance variable with local variable
+./app/views/reporte_marcas/_cruce.haml:30 - replace instance variable with local variable
+./app/views/reporte_marcas/_cruce.haml:31 - replace instance variable with local variable
+./app/views/reporte_marcas/_cruce.haml:32 - replace instance variable with local variable
+./app/views/reporte_marcas/_cruce.haml:36 - replace instance variable with local variable
+./app/views/reporte_marcas/_representantes.html.erb:7 - replace instance variable with local variable
+./app/views/reporte_marcas/_representantes.html.erb:12 - replace instance variable with local variable
+./app/views/reporte_marcas/_tabla_busqueda.erb:3 - replace instance variable with local variable
+./app/views/reporte_marcas/_tabla_busqueda.erb:3 - replace instance variable with local variable
+./app/views/reporte_marcas/_tabla_busqueda.erb:29 - replace instance variable with local variable
+./app/views/reporte_marcas/_tabla_busqueda.erb:51 - replace instance variable with local variable
+./app/views/reporte_marcas/_tabla_cruce.erb:1 - replace instance variable with local variable
+./app/views/reportes/_form.html.haml:1 - replace instance variable with local variable
+./app/views/representantes/_create_post.html.erb:1 - replace instance variable with local variable
+./app/views/representantes/_form.html.erb:1 - replace instance variable with local variable
+./app/views/representantes/_posts.html.erb:1 - replace instance variable with local variable
+./app/views/solicitud_marcas/_form.html.erb:1 - replace instance variable with local variable
+./app/views/solicitud_marcas/_form.html.erb:4 - replace instance variable with local variable
+./app/views/solicitud_marcas/_form.html.erb:4 - replace instance variable with local variable
+./app/views/solicitud_marcas/_form.html.erb:23 - replace instance variable with local variable
+./app/views/solicitudes/_all.html.erb:1 - replace instance variable with local variable
+./app/views/solicitudes/_all.html.erb:2 - replace instance variable with local variable
+./app/views/solicitudes/_all.html.erb:2 - replace instance variable with local variable
+./app/views/solicitudes/_all.html.erb:13 - replace instance variable with local variable
+./app/views/solicitudes/_all.html.erb:24 - replace instance variable with local variable
+./app/views/solicitudes/_errores.html.erb:1 - replace instance variable with local variable
+./app/views/solicitudes/_errores.html.erb:1 - replace instance variable with local variable
+./app/views/solicitudes/_errores.html.erb:4 - replace instance variable with local variable
+./app/views/solicitudes/_errores.html.erb:4 - replace instance variable with local variable
+./app/views/solicitudes/_errores.html.erb:15 - replace instance variable with local variable
+./app/views/titulares/_form.html.erb:1 - replace instance variable with local variable
+./app/views/titulares/agentes/_form.html.erb:1 - replace instance variable with local variable
+./app/views/titulares/agentes/representantes/_form.html.erb:1 - replace instance variable with local variable
+./app/views/marcas/_mostrar.html.erb:1 - use query attribute (@marca.archivo_adjunto?)
+./app/views/marcas/_mostrar.html.erb:9 - use query attribute (@marca.archivo_adjunto?)
+./app/views/marcas/_mostrar.html.erb:12 - use query attribute (@marca.archivo_adjunto?)
+./app/views/marcas/show.html.erb:1 - use query attribute (@marca.archivo_adjunto?)
+./app/views/marcas/show.html.erb:34 - use query attribute (@marca.archivo_adjunto?)
+./app/views/marcas/show.html.erb:37 - use query attribute (@marca.archivo_adjunto?)
+./app/views/adjuntos/edit.html.erb:4 - simplify render in views
+./app/views/adjuntos/index.html.erb:1 - simplify render in views
+./app/views/adjuntos/new.html.erb:4 - simplify render in views
+./app/views/agentes/edit.html.erb:7 - simplify render in views
+./app/views/agentes/new.html.erb:5 - simplify render in views
+./app/views/agentes/representantes/new.html.erb:1 - simplify render in views
+./app/views/busquedas/_buscar.html.erb:12 - simplify render in views
+./app/views/busquedas/busqueda_avanzada.html.haml:48 - simplify render in views
+./app/views/busquedas/busqueda_avanzada.html.haml:71 - simplify render in views
+./app/views/busquedas/busqueda_avanzada.html.haml:83 - simplify render in views
+./app/views/busquedas/busqueda_avanzada.html.haml:243 - simplify render in views
+./app/views/busquedas/index.html.erb:1 - simplify render in views
+./app/views/busquedas/index.html.erb:19 - simplify render in views
+./app/views/busquedas/titulares.erb:1 - simplify render in views
+./app/views/busquedas/titulares.erb:11 - simplify render in views
+./app/views/clases/edit.html.erb:1 - simplify render in views
+./app/views/clases/new.html.erb:1 - simplify render in views
+./app/views/consultas/new.html.erb:1 - simplify render in views
+./app/views/importaciones/create.html.erb:7 - simplify render in views
+./app/views/importaciones/importado.html.erb:5 - simplify render in views
+./app/views/importaciones/importado.html.erb:7 - simplify render in views
+./app/views/importaciones/importador.html.erb:18 - simplify render in views
+./app/views/layouts/application.html.erb:1 - simplify render in views
+./app/views/layouts/application.html.erb:1 - simplify render in views
+./app/views/layouts/application.html.erb:1 - simplify render in views
+./app/views/marcas/edit.html.erb:1 - simplify render in views
+./app/views/marcas/show.html.erb:412 - simplify render in views
+./app/views/paises/edit.html.erb:1 - simplify render in views
+./app/views/paises/new.html.erb:1 - simplify render in views
+./app/views/posts/_edit.html.erb:1 - simplify render in views
+./app/views/posts/_new.html.erb:1 - simplify render in views
+./app/views/posts/edit.html.erb:1 - simplify render in views
+./app/views/posts/index.html.erb:1 - simplify render in views
+./app/views/posts/new.html.erb:1 - simplify render in views
+./app/views/proyecto/areas/index.html.haml:4 - simplify render in views
+./app/views/proyecto/correspondencias/_form.html.haml:6 - simplify render in views
+./app/views/proyecto/correspondencias/_show.html.haml:17 - simplify render in views
+./app/views/proyecto/correspondencias/_tabs.html.haml:12 - simplify render in views
+./app/views/proyecto/correspondencias/_tabs.html.haml:14 - simplify render in views
+./app/views/proyecto/correspondencias/edit.html.haml:4 - simplify render in views
+./app/views/proyecto/correspondencias/index.html.haml:3 - simplify render in views
+./app/views/proyecto/correspondencias/new.html.haml:4 - simplify render in views
+./app/views/proyecto/correspondencias/show.html.haml:4 - simplify render in views
+./app/views/proyecto/instruccion_detalles/edit.html.haml:3 - simplify render in views
+./app/views/proyecto/instruccion_detalles/entrega.html.haml:37 - simplify render in views
+./app/views/proyecto/instruccion_detalles/index.html.haml:2 - simplify render in views
+./app/views/proyecto/instruccion_detalles/new.html.haml:3 - simplify render in views
+./app/views/proyecto/instruccion_detalles/repeticion.html.haml:9 - simplify render in views
+./app/views/proyecto/instruccion_detalles/ver_calificacion.html.haml:40 - simplify render in views
+./app/views/proyecto/instruccion_detalles/ver_entrega.html.haml:39 - simplify render in views
+./app/views/proyecto/instruccion_detalles/ver_entrega.html.haml:42 - simplify render in views
+./app/views/proyecto/instrucciones/_form.html.haml:4 - simplify render in views
+./app/views/proyecto/instrucciones/_listado.html.haml:20 - simplify render in views
+./app/views/proyecto/instrucciones/edit.html.haml:4 - simplify render in views
+./app/views/proyecto/instrucciones/index.html.haml:2 - simplify render in views
+./app/views/proyecto/instrucciones/new.html.haml:4 - simplify render in views
+./app/views/proyecto/items/index.html.haml:2 - simplify render in views
+./app/views/proyecto/proyecto_items/_form.html.haml:9 - simplify render in views
+./app/views/proyecto/proyecto_items/_listado.html.haml:48 - simplify render in views
+./app/views/proyecto/proyecto_items/edit.html.haml:6 - simplify render in views
+./app/views/proyecto/proyecto_items/edit.html.haml:8 - simplify render in views
+./app/views/proyecto/proyecto_items/index.html.haml:3 - simplify render in views
+./app/views/proyecto/proyecto_items/new.html.haml:5 - simplify render in views
+./app/views/proyecto/proyecto_items/new.html.haml:8 - simplify render in views
+./app/views/proyecto/proyectos/show.html.haml:19 - simplify render in views
+./app/views/proyecto/proyectos/show.html.haml:21 - simplify render in views
+./app/views/proyecto/proyectos/show.html.haml:23 - simplify render in views
+./app/views/reporte_marcas/_tabla_busqueda.erb:59 - simplify render in views
+./app/views/reporte_marcas/_tabla_cruce.erb:1 - simplify render in views
+./app/views/reporte_marcas/_tabla_cruce.erb:15 - simplify render in views
+./app/views/reporte_marcas/_tabla_cruce.erb:19 - simplify render in views
+./app/views/reporte_marcas/show.html.erb:70 - simplify render in views
+./app/views/representantes/edit.html.erb:1 - simplify render in views
+./app/views/representantes/new.html.erb:1 - simplify render in views
+./app/views/representantes/show.html.erb:1 - simplify render in views
+./app/views/representantes/show.html.erb:1 - simplify render in views
+./app/views/solicitud_marcas/edit.html.erb:1 - simplify render in views
+./app/views/solicitudes/create.html.erb:7 - simplify render in views
+./app/views/solicitudes/importado.html.erb:5 - simplify render in views
+./app/views/solicitudes/importado.html.erb:7 - simplify render in views
+./app/views/solicitudes/importador.html.erb:18 - simplify render in views
+./app/views/tipo_marcas/edit.html.erb:1 - simplify render in views
+./app/views/tipo_marcas/new.html.erb:1 - simplify render in views
+./app/views/tipo_signos/edit.html.erb:1 - simplify render in views
+./app/views/tipo_signos/new.html.erb:1 - simplify render in views
+./app/views/titulares/agentes/edit.html.erb:4 - simplify render in views
+./app/views/titulares/agentes/new.html.erb:5 - simplify render in views
+./app/views/titulares/agentes/representantes/new.html.erb:1 - simplify render in views
+./app/views/titulares/edit.html.erb:6 - simplify render in views
+./app/views/titulares/new.html.erb:1 - simplify render in views
+./app/views/usuarios/edit.html.erb:1 - simplify render in views
+./app/views/usuarios/new.html.erb:1 - simplify render in views
+./app/controllers/adjuntos_controller.rb:56 - simplify render in controllers
+./app/controllers/adjuntos_controller.rb:72 - simplify render in controllers
+./app/controllers/agentes_controller.rb:54 - simplify render in controllers
+./app/controllers/agentes_controller.rb:68 - simplify render in controllers
+./app/controllers/busquedas_controller.rb:99 - simplify render in controllers
+./app/controllers/busquedas_controller.rb:103 - simplify render in controllers
+./app/controllers/clases_controller.rb:55 - simplify render in controllers
+./app/controllers/clases_controller.rb:71 - simplify render in controllers
+./app/controllers/consultas_controller.rb:85 - simplify render in controllers
+./app/controllers/contactos_controller.rb:57 - simplify render in controllers
+./app/controllers/contactos_controller.rb:73 - simplify render in controllers
+./app/controllers/importaciones_controller.rb:33 - simplify render in controllers
+./app/controllers/marca_estados_controller.rb:50 - simplify render in controllers
+./app/controllers/marca_estados_controller.rb:66 - simplify render in controllers
+./app/controllers/marcas_controller.rb:35 - simplify render in controllers
+./app/controllers/marcas_controller.rb:45 - simplify render in controllers
+./app/controllers/marcas_controller.rb:64 - simplify render in controllers
+./app/controllers/paises_controller.rb:53 - simplify render in controllers
+./app/controllers/paises_controller.rb:69 - simplify render in controllers
+./app/controllers/posts_controller.rb:51 - simplify render in controllers
+./app/controllers/posts_controller.rb:64 - simplify render in controllers
+./app/controllers/proyecto/areas_controller.rb:21 - simplify render in controllers
+./app/controllers/proyecto/areas_controller.rb:34 - simplify render in controllers
+./app/controllers/proyecto/correspondencias_controller.rb:21 - simplify render in controllers
+./app/controllers/proyecto/correspondencias_controller.rb:34 - simplify render in controllers
+./app/controllers/proyecto/instruccion_detalles_controller.rb:22 - simplify render in controllers
+./app/controllers/proyecto/instruccion_detalles_controller.rb:36 - simplify render in controllers
+./app/controllers/proyecto/instrucciones_controller.rb:23 - simplify render in controllers
+./app/controllers/proyecto/instrucciones_controller.rb:36 - simplify render in controllers
+./app/controllers/proyecto/items_controller.rb:21 - simplify render in controllers
+./app/controllers/proyecto/items_controller.rb:35 - simplify render in controllers
+./app/controllers/proyecto/proyecto_items_controller.rb:35 - simplify render in controllers
+./app/controllers/proyecto/proyecto_items_controller.rb:63 - simplify render in controllers
+./app/controllers/proyecto/proyectos_controller.rb:29 - simplify render in controllers
+./app/controllers/proyecto/proyectos_controller.rb:42 - simplify render in controllers
+./app/controllers/proyecto/tipo_instrucciones_controller.rb:20 - simplify render in controllers
+./app/controllers/proyecto/tipo_instrucciones_controller.rb:33 - simplify render in controllers
+./app/controllers/reporte_marcas_controller.rb:26 - simplify render in controllers
+./app/controllers/reporte_marcas_controller.rb:120 - simplify render in controllers
+./app/controllers/reporte_marcas_controller.rb:133 - simplify render in controllers
+./app/controllers/reportes_controller.rb:21 - simplify render in controllers
+./app/controllers/reportes_controller.rb:35 - simplify render in controllers
+./app/controllers/representantes_controller.rb:37 - simplify render in controllers
+./app/controllers/representantes_controller.rb:67 - simplify render in controllers
+./app/controllers/representantes_controller.rb:83 - simplify render in controllers
+./app/controllers/tipo_marcas_controller.rb:55 - simplify render in controllers
+./app/controllers/tipo_marcas_controller.rb:71 - simplify render in controllers
+./app/controllers/tipo_signos_controller.rb:55 - simplify render in controllers
+./app/controllers/tipo_signos_controller.rb:71 - simplify render in controllers
+./app/controllers/titulares_controller.rb:55 - simplify render in controllers
+./app/controllers/titulares_controller.rb:69 - simplify render in controllers
+./app/controllers/usuarios_controller.rb:56 - simplify render in controllers
+./app/controllers/usuarios_controller.rb:75 - simplify render in controllers
+./app/helpers/agentes_helper.rb:1 - remove empty helpers
+./app/helpers/clases_helper.rb:1 - remove empty helpers
+./app/helpers/contactos_helper.rb:1 - remove empty helpers
+./app/helpers/home_helper.rb:1 - remove empty helpers
+./app/helpers/lista_publicaciones_helper.rb:1 - remove empty helpers
+./app/helpers/marca_estados_helper.rb:1 - remove empty helpers
+./app/helpers/paises_helper.rb:1 - remove empty helpers
+./app/helpers/proyecto/areas_helper.rb:1 - remove empty helpers
+./app/helpers/proyecto/instruccions_helper.rb:1 - remove empty helpers
+./app/helpers/proyecto/item_cobros_helper.rb:1 - remove empty helpers
+./app/helpers/proyecto/item_gastos_helper.rb:1 - remove empty helpers
+./app/helpers/proyecto/items_helper.rb:1 - remove empty helpers
+./app/helpers/proyecto/items_relaciones_helper.rb:1 - remove empty helpers
+./app/helpers/proyecto/proyecto_items_helper.rb:1 - remove empty helpers
+./app/helpers/proyecto/proyectos_helper.rb:1 - remove empty helpers
+./app/helpers/proyecto/tipo_instrucciones_helper.rb:1 - remove empty helpers
+./app/helpers/representantes_helper.rb:1 - remove empty helpers
+./app/helpers/solicitud_marcas_helper.rb:1 - remove empty helpers
+./app/helpers/tipo_marcas_helper.rb:1 - remove empty helpers
+./app/models/marca_estado.rb:35 - remove trailing whitespace
+./app/models/consulta_detalle.rb:9 - remove trailing whitespace
+./app/models/reporte.rb:14 - remove trailing whitespace
+./app/models/agente.rb:7 - remove trailing whitespace
+./app/models/proyecto/proyecto_item.rb:7 - remove trailing whitespace
+./app/models/consulta.rb:50 - remove trailing whitespace
+./app/models/post.rb:20 - remove trailing whitespace
+./app/models/proyecto/correspondencia.rb:5 - remove trailing whitespace
+./app/models/proyecto/item_cobro.rb:1 - remove trailing whitespace
+./app/models/marca.rb:15 - remove trailing whitespace
+./app/models/titular.rb:6 - remove trailing whitespace
+./app/models/importacion.rb:40 - remove trailing whitespace
+./app/models/proyecto/item.rb:4 - remove trailing whitespace
+./app/models/proyecto/item_gasto.rb:1 - remove trailing whitespace
+./app/models/importacion_vacia.rb:47 - remove trailing whitespace
+./app/models/reporte_marca.rb:20 - remove trailing whitespace
+./app/models/proyecto/proyecto.rb:69 - remove trailing whitespace
+./app/models/proyecto/instruccion.rb:12 - remove trailing whitespace
+./app/models/proyecto/instruccion_detalle.rb:62 - remove trailing whitespace
+./app/models/contacto.rb:6 - remove trailing whitespace
+./app/models/busqueda.rb:26 - remove trailing whitespace
+./app/models/busqueda_vacia.rb:22 - remove trailing whitespace
+./app/controllers/adjuntos_controller.rb:43 - remove trailing whitespace
+./app/controllers/agentes_controller.rb:12 - remove trailing whitespace
+./app/controllers/busquedas_controller.rb:48 - remove trailing whitespace
+./app/controllers/consultas_controller.rb:10 - remove trailing whitespace
+./app/controllers/listas_controller.rb:18 - remove trailing whitespace
+./app/controllers/proyecto/areas_controller.rb:5 - remove trailing whitespace
+./app/controllers/proyecto/instruccion_detalles_controller.rb:6 - remove trailing whitespace
+./app/controllers/proyecto/instrucciones_controller.rb:3 - remove trailing whitespace
+./app/controllers/proyecto/proyecto_items_controller.rb:56 - remove trailing whitespace
+./app/controllers/proyecto/proyectos_controller.rb:2 - remove trailing whitespace
+./app/controllers/proyecto/tipo_instrucciones_controller.rb:41 - remove trailing whitespace
+./app/controllers/reporte_marcas_controller.rb:18 - remove trailing whitespace
+./app/controllers/reportes_controller.rb:5 - remove trailing whitespace
+./app/controllers/representantes_controller.rb:114 - remove trailing whitespace
+./app/controllers/tipo_signos_controller.rb:48 - remove trailing whitespace
+./app/controllers/titulares_controller.rb:12 - remove trailing whitespace
+./app/helpers/busquedas_helper.rb:24 - remove trailing whitespace
+./app/helpers/consultas_helper.rb:7 - remove trailing whitespace
+./app/helpers/importaciones_helper.rb:44 - remove trailing whitespace
+./app/helpers/marcas_helper.rb:70 - remove trailing whitespace
+./app/helpers/posts_helper.rb:8 - remove trailing whitespace
+./app/helpers/reporte_marcas_helper.rb:7 - remove trailing whitespace
+./app/helpers/solicitudes_helper.rb:5 - remove trailing whitespace
+./app/reports/cruce_report.rb:8 - remove trailing whitespace
+./app/reports/reporte_marca_base.rb:10 - remove trailing whitespace
+./app/views/agentes/_form.html.erb:14 - remove trailing whitespace
+./app/views/agentes/show.html.erb:25 - remove trailing whitespace
+./app/views/busquedas/_buscar.html.erb:9 - remove trailing whitespace
+./app/views/busquedas/_generic_select.erb:9 - remove trailing whitespace
+./app/views/busquedas/_paises_select.erb:9 - remove trailing whitespace
+./app/views/busquedas/_paises_titular_select.erb:9 - remove trailing whitespace
+./app/views/busquedas/avanzada.html.erb:8 - remove trailing whitespace
+./app/views/busquedas/busqueda_avanzada.html.haml:22 - remove trailing whitespace
+./app/views/busquedas/cruce.html.erb:14 - remove trailing whitespace
+./app/views/consultas/index.html.erb:25 - remove trailing whitespace
+./app/views/consultas/show.html.erb:35 - remove trailing whitespace
+./app/views/contactos/_contacto.html.erb:4 - remove trailing whitespace
+./app/views/contactos/show.html.erb:2 - remove trailing whitespace
+./app/views/home/index.html.haml:51 - remove trailing whitespace
+./app/views/importaciones/_marca.html.erb:2 - remove trailing whitespace
+./app/views/importaciones/new.html.erb:42 - remove trailing whitespace
+./app/views/login/new.html.erb:2 - remove trailing whitespace
+./app/views/marca_estados/edit.html.erb:4 - remove trailing whitespace
+./app/views/marcas/_create_post.html.erb:7 - remove trailing whitespace
+./app/views/marcas/_denominacion.html.erb:18 - remove trailing whitespace
+./app/views/marcas/_form.html.erb:183 - remove trailing whitespace
+./app/views/marcas/_mostrar.html.erb:6 - remove trailing whitespace
+./app/views/marcas/_posts.html.erb:6 - remove trailing whitespace
+./app/views/marcas/new.html.erb:4 - remove trailing whitespace
+./app/views/marcas/show.html.erb:12 - remove trailing whitespace
+./app/views/marcas/ver.html.erb:11 - remove trailing whitespace
+./app/views/posts/_form.html.erb:7 - remove trailing whitespace
+./app/views/posts/_posts.html.erb:31 - remove trailing whitespace
+./app/views/posts/show.html.erb:7 - remove trailing whitespace
+./app/views/proyecto/correspondencias/_listado.html.haml:5 - remove trailing whitespace
+./app/views/proyecto/instruccion_detalles/_repeticion_data.html.haml:5 - remove trailing whitespace
+./app/views/proyecto/instruccion_detalles/repeticion.html.haml:7 - remove trailing whitespace
+./app/views/proyecto/instruccion_detalles/ver_entrega.html.haml:40 - remove trailing whitespace
+./app/views/proyecto/instruccion_detalles/ver_repeticion.html.haml:6 - remove trailing whitespace
+./app/views/proyecto/instrucciones/_listado.html.haml:32 - remove trailing whitespace
+./app/views/proyecto/items_relaciones/_form.html.haml:17 - remove trailing whitespace
+./app/views/proyecto/proyecto_items/_gasto_form.html.haml:8 - remove trailing whitespace
+./app/views/proyecto/proyecto_items/edit.html.haml:3 - remove trailing whitespace
+./app/views/proyecto/proyectos/index.html.haml:16 - remove trailing whitespace
+./app/views/proyecto/tipo_instrucciones/_form.html.haml:7 - remove trailing whitespace
+./app/views/reporte_marcas/_representantes.html.erb:9 - remove trailing whitespace
+./app/views/reporte_marcas/cruce.html.erb:33 - remove trailing whitespace
+./app/views/representantes/_create_post.html.erb:7 - remove trailing whitespace
+./app/views/representantes/_form.html.erb:20 - remove trailing whitespace
+./app/views/representantes/_posts.html.erb:7 - remove trailing whitespace
+./app/views/representantes/edit.html.erb:5 - remove trailing whitespace
+./app/views/representantes/representante_contactos.html.erb:11 - remove trailing whitespace
+./app/views/representantes/show.html.erb:9 - remove trailing whitespace
+./app/views/solicitud_marcas/_form.html.erb:4 - remove trailing whitespace
+./app/views/solicitud_marcas/show.html.erb:3 - remove trailing whitespace
+./app/views/solicitudes/_marca.html.erb:2 - remove trailing whitespace
+./app/views/solicitudes/new.html.erb:7 - remove trailing whitespace
+./app/views/titulares/_form.html.erb:2 - remove trailing whitespace
+./app/views/titulares/agentes/_form.html.erb:2 - remove trailing whitespace
+./app/views/titulares/show.html.erb:24 - remove trailing whitespace
+./app/views/usuarios/edit.html.erb:3 - remove trailing whitespace
+./app/views/usuarios/index.html.erb:17 - remove trailing whitespace
+./config/initializers/devise.rb:54 - remove trailing whitespace
+./config/routes.rb:34 - remove trailing whitespace
+./db/migrate/20100615170142_create_view_importaciones.rb:5 - remove trailing whitespace
+./db/migrate/20101020162325_create_reportes.rb:62 - remove trailing whitespace
+./db/migrate/20101208160450_add_template_for_lista_publication_report.rb:41 - remove trailing whitespace
+./lib/boot/1.8.7/string187.rb:8 - remove trailing whitespace
+./lib/boot/string_extensions.rb:19 - remove trailing whitespace
+./lib/buscar_por_grupo.rb:21 - remove trailing whitespace
+./lib/busqueda_cambio.rb:41 - remove trailing whitespace
+./lib/cinco_letras.rb:7 - remove trailing whitespace
+./lib/cuatro_letras.rb:5 - remove trailing whitespace
+./lib/errors.rb:1 - remove trailing whitespace
+./lib/has_many_right.rb:31 - remove trailing whitespace
+./lib/mod_marca/excel.rb:50 - remove trailing whitespace
+./lib/mod_marca/lista_publicacion.rb:73 - remove trailing whitespace
+./lib/mod_marca/lista_registro.rb:96 - remove trailing whitespace
+./lib/mod_marca/pdf.rb:56 - remove trailing whitespace
+./lib/mod_marca/renovacion_concedida.rb:96 - remove trailing whitespace
+./lib/mod_marca/solicitud.rb:19 - remove trailing whitespace
+./lib/mod_marca/solicitud_renovacion.rb:19 - remove trailing whitespace
+

@@ -5,7 +5,7 @@
     .subizq
       %strong Proyecto:
     .subder
-      = @proyecto_item.proyecto_id
+      = link_to(@proyecto_item.proyecto_id, proyecto_proyecto_path)
   .derecha{:style => "width:50%; text-align: left; padding-left:20px;"}
     .subizq
       %strong Descripcion:
@@ -56,9 +56,3 @@
     .subder
       = @proyecto_item.fecha_solicitud
   .clear
-%p
-  = link_to "Editar", edit_proyecto_item_path(@proyecto_item)
-  |
-  = link_to "Eliminar", proyecto_proyecto_proyecto_item_path(@proyecto_item), :confirm => 'Esta seguro de eliminar el item seleccionado?', :method => :delete
-  |
-  = link_to "Listado", proyecto_proyecto_proyecto_items_path

@@ -1,7 +1,7 @@
 class Proyecto::CorrespondenciasController < ApplicationController
   before_filter :set_proyecto
   def index
-    @correspondencias = @proyecto.correspondencias.paginate(:per_page => 5, :page => params[:page], :order=>'orden DESC')
+    @correspondencias = @proyecto.correspondencias
   end
 
   def show
