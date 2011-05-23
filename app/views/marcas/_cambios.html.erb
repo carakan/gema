@@ -6,7 +6,7 @@
     <% diff = marca.diff(siguiente) %>
     <% if !diff.empty?  %>
       <p>
-        Modificado por <strong><%= marca.usuario %></strong> en fecha: <em><%= l marca.updated_at, :format => "%d, %B %Y %H:%M" %></em>
+        Modificado por <strong><%= siguiente.usuario %></strong> en fecha: <em><%= l siguiente.updated_at, :format => "%d, %B %Y %H:%M" %></em>
       </p>
       <p>
         <%= show_changes(diff) %>
