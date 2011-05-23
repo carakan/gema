@@ -1,9 +1,9 @@
 %h3 Editar Item
 - if params[:tipo] && params[:tipo] == "gasto"
   = render :partial => "gasto_form", :locals => {:contador => (@proyecto_item.new_record?)? @proyecto_item.siguiente_id : @proyecto_item.contador, 
-                                                  :url => proyecto_proyecto_proyecto_item_path(@proyecto, @proyecto_item) }
+                                                  :url => proyecto_proyecto_proyecto_item_path(@proyecto, @proyecto_item, :tipo=>'gasto') }
 - else
-  = render :partial => 'form', :locals => {:url => proyecto_proyecto_proyecto_item_path(@proyecto, @proyecto_item)}
+  = render :partial => 'form', :locals => {:url => proyecto_proyecto_proyecto_item_path(@proyecto, @proyecto_item, :tipo=>'cobro')}
 
 %p
   = link_to "Ver", proyecto_proyecto_proyecto_item_path(@proyecto,@proyecto_item)
