@@ -37,7 +37,7 @@
             %td= proyecto_item.items.collect{|item| item.nombre}.join(", ")
             %td.marcas= proyecto_item.marcas.collect{|marca| link_to(marca, marca, :class => "ajax")}.join(", ").html_safe
             %td= proyecto_item.fecha_solicitud
-            %td= link_to 'Editar', edit_proyecto_proyecto_proyecto_item_path(@proyecto, proyecto_item, :tipo => "cobro"), :class => "edit ajax"
+            %td= link_to 'Editar', edit_proyecto_proyecto_proyecto_item_path(@proyecto, proyecto_item, :tipo => "cobro"), :class => "edit"
             %td= link_to "Eliminar", proyecto_proyecto_proyecto_item_path(@proyecto, proyecto_item, :tipo => "cobro"), :confirm => 'Esta seguro de eliminar el item seleccionado?', :method => :delete, :class => 'delete'
     %p
       = link_to "Añadir servicio", new_proyecto_proyecto_proyecto_item_path(@proyecto, :tipo => "cobro"), :style => "float: right;", :class => "new"
