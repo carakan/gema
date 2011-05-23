@@ -1,0 +1,17 @@
+<div id="marca-log"> 
+  <h1 class="dark">Historial de modificaciones</h1>    
+  <% siguiente = @marca  %>
+  <% @marca.versions.each do |m| %>
+    <% marca = m.reify %>
+    <% diff = marca.diff(siguiente) %>
+    <% if !diff.empty?  %>
+      <p>
+        Modificado por <strong><%= marca.usuario %></strong> en fecha: <em><%= l marca.updated_at, :format => "%d, %B %Y %H:%M" %></em>
+      </p>
+      <p>
+        <%= show_changes(diff) %>
+      </p>
+      <% siguiente = marca %>
+    <% end %>
+  <% end %>
+</div>

@@ -1,451 +1,425 @@
 <style type="text/css">
-#marca{ width: 90%; float: left; margin: 15px;}
-#posts{ width: 90%; float: left; background-color: #EFEFEF; margin: 15px;}
-#posts p {font-weight: normal !important;}
+  #marca{ width: 90%; float: left; margin: 15px;}
+  #posts{ width: 90%; float: left; background-color: #EFEFEF; margin: 15px;}
+  #posts p {font-weight: normal !important;}
 </style>
 
 <div class="breadcrumps">
-<%= link_to 'Lista de marcas', marcas_path, :class =>'list' %> > Marca
+  <%= link_to 'Lista de marcas', marcas_path, :class =>'list' %> > Marca
 </div>
 
 <div id="abm">
-<%= link_to 'Editar', edit_marca_path(@marca), :class =>'edit'%> 
+  <%= link_to 'Editar', edit_marca_path(@marca), :class =>'edit'%> 
 </div>
 
 <div id="contenido">
   <div class="izquierda">
-  	<div class="subizq">
-    	<label for="">Id Marca:</label>
-  	</div>
+    <div class="subizq">
+      <label for="">Id Marca:</label>
+    </div>
 
-  	<div class="subder">
-    	<label class="remarcado"><%= cambio @marca ,:id %></label>
-  	</div>
+    <div class="subder">
+      <label class="remarcado"><%= cambio @marca ,:id %></label>
+    </div>
   </div>
- <div style="clear:both"></div> 
+  <div style="clear:both"></div> 
 
-<div class="izquierda">
+  <div class="izquierda">
     <label for="">Signo</label><br/><br/>
     <label class="remarcado"><h1><%= cambio @marca ,:nombre %></h1></label>
-</div>
-
-<div class="derecha_img">
-  <% unless @marca.archivo_adjunto.blank? %>
-  <label for="">Imagen</label>
-    <%= cambio @marca, :archivo_adjunto, image_tag( @marca.adjuntos.last.archivo.url(:mini), :class => 'mini' ) unless @marca.archivo_adjunto.blank? %>
-  <% end %>
-</div>
-<div style="clear:both"></div>
-
-<div class="izquierda">
-
-  <div class="subizq">
-    <label for="">Propia:</label>
   </div>
 
-  <div class="subder">
-    <label class="remarcado"><%= cambio @marca ,:propia, valido_img(@marca.propia) %><br/></label>
-  </div>
-  <div style="clear:both"></div>
-
-  <div class="subizq">
-    <label for="">Activa:</label>
-  </div>
-
-  <div class="subder">
-    <label class="remarcado"><%= cambio @marca ,:activa, valido_img(@marca.activa) %><br/></label>
-  </div>
-  <div style="clear:both"></div>
-
-  <div class="subizq">
-    <label for="">Clase:</label>
-  </div>
-
-  <div class="subder">
-    <label class="remarcado"><%= cambio @marca ,:clase , @marca.clase_id%></label>
-  </div>
-  <div style="clear:both"></div>
-
-  <div class="subizq">
-    <label for="">Descripción de productos/servicios:</label>
-  </div>
-
-  <div class="subder">
-    <label class="remarcado"><%= cambio @marca ,:productos %></label>
-  </div>
-  <div style="clear:both"></div>
-
-  <div class="subizq">
-    <label for="">Tipo signo:</label>
-  </div>
-
-  <div class="subder">
-    <label class="remarcado"><%= cambio @marca ,:tipo_signo_id , @marca.tipo_signo%></label>
-  </div>
-  <div style="clear:both"></div>
-
-  <div class="subizq">
-    <label for="">Tipo Marca:</label>
-  </div>
-
-  <div class="subder">
-    <label class="remarcado"><%= cambio @marca, :tipo_marca_id, @marca.tipo_marca %></label>
-  </div>
-  <div style="clear:both"></div>
-
-  <div class="subizq">
-    <label for="">Tipo de instrucción:</label>
-  </div>
-
-  <div class="subder">
-    <label class="remarcado"><%= cambio @marca, :instruccion %></label>
-  </div>
-  <div style="clear:both"></div>
-
-  <div class="subizq">
-    <label for="">Fecha de instrucción:</label>
-  </div>
-
-  <div class="subder">
-    <label class="remarcado"><%= cambio @marca, :fecha_instruccion %></label>
-  </div>
-  <div style="clear:both"></div>
-
-  <div class="subizq">
-    <label for="">Fecha prioridad:</label>
-  </div>
-
-  <div class="subder">
-    <label class="remarcado"><%= cambio @marca, :fecha_prioridad %></label>
-  </div>
-  <div style="clear:both"></div>
-
-  <div class="subizq">
-    <label for="">Nº prioridad:</label>
-  </div>
-
-  <div class="subder">
-    <label class="remarcado"><%= cambio @marca, :numero_prioridad %></label>
-  </div>
-  <div style="clear:both"></div>
-
-  <div class="subizq">
-    <label for="">Pais prioridad:</label>
-  </div>
-
-  <div class="subder">
-    <label class="remarcado"><%= cambio(@marca, :pais_prioridad_id, Pais.find(@marca.pais_prioridad_id)) if @marca.pais_prioridad_id && @marca.pais_prioridad_id > 0 %></label>
-  </div>
-  <div style="clear:both"></div>
-
-  <div class="subizq">
-    <label for="">Fecha solicitud:</label>
-  </div>
-
-  <div class="subder">
-    <label class="remarcado"><%= cambio @marca ,:fecha_solicitud %></label>
-  </div>
-  <div style="clear:both"></div>
-
-  <div class="subizq">
-    <label for="">Numero Solicitud:</label>
-  </div>
-
-  <div class="subder">
-    <label class="remarcado"><%= cambio @marca ,:numero_solicitud %></label>
-  </div>
-  <div style="clear:both"></div>
-
-  <div class="subizq">
-    <label for="">Fecha de modificación:</label>
-  </div>
-
-  <div class="subder">
-    <label class="remarcado"><%= l @marca.updated_at %></label>
-  </div>
-  <div style="clear:both"></div>
-
-  <div class="subizq">
-    <label for="">Usuario:</label>
-  </div>
-
-  <div class="subder">
-    <label class="remarcado"><%= cambio @marca, :usuario_id %></label>
-  </div>
-</div>
-
-<div class="derecha">
-  <div class="subizq">
+  <div class="derecha_img">
     <% unless @marca.archivo_adjunto.blank? %>
-      <label for="">Descripcion de la imagen:</label>
-  </div>
-
-  <div class="subder">
-    <label class="remarcado"><%= cambio @marca ,:descripcion_imagen %></label>
+      <label for="">Imagen</label>
+      <%= cambio @marca, :archivo_adjunto, image_tag( @marca.adjuntos.last.archivo.url(:mini), :class => 'mini' ) unless @marca.archivo_adjunto.blank? %>
     <% end %>
   </div>
   <div style="clear:both"></div>
 
+  <div class="izquierda">
+
+    <div class="subizq">
+      <label for="">Propia:</label>
+    </div>
+
+    <div class="subder">
+      <label class="remarcado"><%= cambio @marca ,:propia, valido_img(@marca.propia) %><br/></label>
+    </div>
+    <div style="clear:both"></div>
+
+    <div class="subizq">
+      <label for="">Activa:</label>
+    </div>
+
+    <div class="subder">
+      <label class="remarcado"><%= cambio @marca ,:activa, valido_img(@marca.activa) %><br/></label>
+    </div>
+    <div style="clear:both"></div>
+
+    <div class="subizq">
+      <label for="">Clase:</label>
+    </div>
+
+    <div class="subder">
+      <label class="remarcado"><%= cambio @marca ,:clase , @marca.clase_id%></label>
+    </div>
+    <div style="clear:both"></div>
+
+    <div class="subizq">
+      <label for="">Descripción de productos/servicios:</label>
+    </div>
+
+    <div class="subder">
+      <label class="remarcado"><%= cambio @marca ,:productos %></label>
+    </div>
+    <div style="clear:both"></div>
+
+    <div class="subizq">
+      <label for="">Tipo signo:</label>
+    </div>
+
+    <div class="subder">
+      <label class="remarcado"><%= cambio @marca ,:tipo_signo_id , @marca.tipo_signo%></label>
+    </div>
+    <div style="clear:both"></div>
+
+    <div class="subizq">
+      <label for="">Tipo Marca:</label>
+    </div>
+
+    <div class="subder">
+      <label class="remarcado"><%= cambio @marca, :tipo_marca_id, @marca.tipo_marca %></label>
+    </div>
+    <div style="clear:both"></div>
+
+    <div class="subizq">
+      <label for="">Tipo de instrucción:</label>
+    </div>
+
+    <div class="subder">
+      <label class="remarcado"><%= cambio @marca, :instruccion %></label>
+    </div>
+    <div style="clear:both"></div>
+
+    <div class="subizq">
+      <label for="">Fecha de instrucción:</label>
+    </div>
+
+    <div class="subder">
+      <label class="remarcado"><%= cambio @marca, :fecha_instruccion %></label>
+    </div>
+    <div style="clear:both"></div>
+
+    <div class="subizq">
+      <label for="">Fecha prioridad:</label>
+    </div>
+
+    <div class="subder">
+      <label class="remarcado"><%= cambio @marca, :fecha_prioridad %></label>
+    </div>
+    <div style="clear:both"></div>
+
+    <div class="subizq">
+      <label for="">Nº prioridad:</label>
+    </div>
+
+    <div class="subder">
+      <label class="remarcado"><%= cambio @marca, :numero_prioridad %></label>
+    </div>
+    <div style="clear:both"></div>
+
+    <div class="subizq">
+      <label for="">Pais prioridad:</label>
+    </div>
+
+    <div class="subder">
+      <label class="remarcado"><%= cambio(@marca, :pais_prioridad_id, Pais.find(@marca.pais_prioridad_id)) if @marca.pais_prioridad_id && @marca.pais_prioridad_id > 0 %></label>
+    </div>
+    <div style="clear:both"></div>
+
+    <div class="subizq">
+      <label for="">Fecha solicitud:</label>
+    </div>
+
+    <div class="subder">
+      <label class="remarcado"><%= cambio @marca ,:fecha_solicitud %></label>
+    </div>
+    <div style="clear:both"></div>
+
+    <div class="subizq">
+      <label for="">Numero Solicitud:</label>
+    </div>
+
+    <div class="subder">
+      <label class="remarcado"><%= cambio @marca ,:numero_solicitud %></label>
+    </div>
+    <div style="clear:both"></div>
+
+    <div class="subizq">
+      <label for="">Fecha de modificación:</label>
+    </div>
+
+    <div class="subder">
+      <label class="remarcado"><%= l @marca.updated_at %></label>
+    </div>
+    <div style="clear:both"></div>
+
+    <div class="subizq">
+      <label for="">Usuario:</label>
+    </div>
+
+    <div class="subder">
+      <label class="remarcado"><%= cambio @marca, :usuario_id %></label>
+    </div>
+  </div>
+
+  <div class="derecha">
+    <div class="subizq">
+      <% unless @marca.archivo_adjunto.blank? %>
+        <label for="">Descripcion de la imagen:</label>
+      </div>
+
+      <div class="subder">
+        <label class="remarcado"><%= cambio @marca ,:descripcion_imagen %></label>
+      <% end %>
+    </div>
+    <div style="clear:both"></div>
+
+    <div class="subizq">
+      <label for="">Estado:</label>
+    </div>
+
+    <div class="subder">
+      <label class="atencion"><%= cambio @marca ,:marca_estado_id %></label>
+    </div>
+    <div style="clear:both"></div>
+
+    <div class="subizq">
+      <label for="">Titulares:</label>
+    </div>
+
+    <div class="subder">
+      <label class="remarcado"><%= cambio @marca, :titular_ids_serial, @marca.titulares.join(", ") %></label>
+    </div>
+    <div style="clear:both"></div>
+
+    <div class="subizq">
+      <label>Domicilio Titular:</label>
+    </div>
+
+    <div class="subder">
+      <label class="remarcado"><%= cambio @marca, :domicilio_titular %></label>
+    </div>
+    <div style="clear:both"></div>
+
+    <div class="subizq">
+      <label>Apoderado:</label>
+    </div>
+
+    <div class="subder">
+      <label class="remarcado"><%= cambio @marca, :apoderado %></label>
+    </div>
+    <div style="clear:both"></div>
+
+    <div class="subizq">
+      <label for="">Agentes:</label>
+    </div>
+
+    <div class="subder">
+      <label class="remarcado"><%= cambio @marca, :agente_ids_serial, @marca.agentes.join(", ") %></label>
+    </div>
+    <div style="clear:both"></div>
+
+    <div class="subizq">
+      <label for="">Fecha de publicación:</label>
+    </div>
+
+    <div class="subder">
+      <label class="remarcado"><%= cambio @marca ,:fecha_publicacion %></label>
+    </div>
+    <div style="clear:both"></div>
+
+    <div class="subizq">
+      <label for="">Número de gaceta:</label>
+    </div>
+
+    <div class="subder">
+      <label class="remarcado"><%= cambio @marca ,:numero_gaceta %></label>
+    </div>
+    <div style="clear:both"></div>
+
+    <div class="subizq">
+      <label for="">Número de publicación:</label>
+    </div>
+
+    <div class="subder">
+      <label class="remarcado"><%= cambio @marca ,:numero_publicacion %></label>
+    </div>
+    <div style="clear:both"></div>
+
+    <div class="subizq">
+      <label for="">Fecha registro:</label>
+    </div>
+
+    <div class="subder">
+      <label class="remarcado"><%= cambio @marca ,:fecha_registro %></label>
+    </div>
+    <div style="clear:both"></div>
+
+    <div class="subizq">
+      <label for="">Número de registro:</label>
+    </div>
+
+    <div class="subder">
+      <label class="remarcado"><%= cambio @marca ,:numero_registro %></label>
+    </div>
+    <div style="clear:both"></div>
+
+    <div class="subizq">
+      <label for="">Fecha solicitud renovación:</label>
+    </div>
+
+    <div class="subder">
+      <label class="remarcado"><%= cambio @marca ,:fecha_solicitud_renovacion %></label>
+    </div>
+    <div style="clear:both"></div>
+
+    <div class="subizq">
+      <label for="">Número solicitud renovación:</label>
+    </div>
+
+    <div class="subder">
+      <label class="remarcado"><%= cambio @marca ,:numero_solicitud_renovacion %></label>
+    </div>
+    <div style="clear:both"></div>
+
+    <div class="subizq">
+      <label for="">Número renovación:</label>
+    </div>
+
+    <div class="subder">
+      <label class="remarcado"><%= cambio @marca ,:numero_renovacion %></label>
+    </div>
+    <div style="clear:both"></div>
+    <div class="subizq">
+
+      <label for="">Vigente hasta:</label>
+    </div>
+
+    <div class="subder">
+      <label class="remarcado"><%= cambio @marca ,:fecha_renovacion %></label>
+    </div>
+    <div style="clear:both"></div>
+
+
+  </div>
+
+  <div class="clear"></div>
   <div class="subizq">
-    <label for="">Estado:</label>
+    <label for="">Observaciones:</label>
   </div>
-
   <div class="subder">
-    <label class="atencion"><%= cambio @marca ,:marca_estado_id %></label>
-  </div>
-  <div style="clear:both"></div>
-
-  <div class="subizq">
-    <label for="">Titulares:</label>
+    <label class="remarcado"><%= cambio @marca ,:observaciones %></label>
   </div>
 
-  <div class="subder">
-    <label class="remarcado"><%= cambio @marca, :titular_ids_serial, @marca.titulares.join(", ") %></label>
-  </div>
-  <div style="clear:both"></div>
-
-  <div class="subizq">
-    <label>Domicilio Titular:</label>
-  </div>
-
-  <div class="subder">
-    <label class="remarcado"><%= cambio @marca, :domicilio_titular %></label>
-  </div>
-  <div style="clear:both"></div>
-
-  <div class="subizq">
-    <label>Apoderado:</label>
-  </div>
-
-  <div class="subder">
-    <label class="remarcado"><%= cambio @marca, :apoderado %></label>
-  </div>
-  <div style="clear:both"></div>
-
-  <div class="subizq">
-    <label for="">Agentes:</label>
-  </div>
-
-  <div class="subder">
-    <label class="remarcado"><%= cambio @marca, :agente_ids_serial, @marca.agentes.join(", ") %></label>
-  </div>
-  <div style="clear:both"></div>
-
-  <div class="subizq">
-    <label for="">Fecha de publicación:</label>
-  </div>
-
-  <div class="subder">
-    <label class="remarcado"><%= cambio @marca ,:fecha_publicacion %></label>
-  </div>
-  <div style="clear:both"></div>
-
-  <div class="subizq">
-    <label for="">Número de gaceta:</label>
-  </div>
-
-  <div class="subder">
-    <label class="remarcado"><%= cambio @marca ,:numero_gaceta %></label>
-  </div>
-  <div style="clear:both"></div>
-
-  <div class="subizq">
-    <label for="">Número de publicación:</label>
-  </div>
-
-  <div class="subder">
-    <label class="remarcado"><%= cambio @marca ,:numero_publicacion %></label>
-  </div>
-  <div style="clear:both"></div>
-
-  <div class="subizq">
-    <label for="">Fecha registro:</label>
-  </div>
-
-  <div class="subder">
-    <label class="remarcado"><%= cambio @marca ,:fecha_registro %></label>
-  </div>
-  <div style="clear:both"></div>
-
-  <div class="subizq">
-    <label for="">Número de registro:</label>
-  </div>
-
-  <div class="subder">
-    <label class="remarcado"><%= cambio @marca ,:numero_registro %></label>
-  </div>
-  <div style="clear:both"></div>
-
-  <div class="subizq">
-    <label for="">Fecha solicitud renovación:</label>
-  </div>
-
-  <div class="subder">
-    <label class="remarcado"><%= cambio @marca ,:fecha_solicitud_renovacion %></label>
-  </div>
-  <div style="clear:both"></div>
-
-  <div class="subizq">
-    <label for="">Número solicitud renovación:</label>
-  </div>
-
-  <div class="subder">
-    <label class="remarcado"><%= cambio @marca ,:numero_solicitud_renovacion %></label>
-  </div>
-  <div style="clear:both"></div>
-
-  <div class="subizq">
-    <label for="">Número renovación:</label>
-  </div>
-
-  <div class="subder">
-    <label class="remarcado"><%= cambio @marca ,:numero_renovacion %></label>
-  </div>
-  <div style="clear:both"></div>
-  <div class="subizq">
-  
-  <label for="">Vigente hasta:</label>
-  </div>
-
-  <div class="subder">
-    <label class="remarcado"><%= cambio @marca ,:fecha_renovacion %></label>
-  </div>
-  <div style="clear:both"></div>
-
-
-</div>
-
-<div class="clear"></div>
-<div class="subizq">
-  <label for="">Observaciones:</label>
-</div>
-<div class="subder">
-   <label class="remarcado"><%= cambio @marca ,:observaciones %></label>
-</div>
-
-<% if @marca.tipo_signo_id != 7 %>
-  <div id="posts">
-    <h2 class="title">Lemas comerciales asociados a la marca</h2>
-    <% lemas_comerciales = @marca.lemas_comerciales %>
-    <table class="decorated nwl">
-      <tr>
-        <th style="width:250px">Nombre</th>
-        <th>Estado</th>
-        <th>Tipo</th>
-        <th>Cl</th>
-        <th>Numero</th>
-        <th>Fecha</th>
-        <th>Titulares</th>
-      </tr>
-      <% if lemas_comerciales %>
-        <% lemas_comerciales.each do |lemas_comerciales| %>
+  <% if @marca.tipo_signo_id != 7 %>
+    <div id="posts">
+      <h2 class="title">Lemas comerciales asociados a la marca</h2>
+      <% lemas_comerciales = @marca.lemas_comerciales %>
+      <table class="decorated nwl">
         <tr>
-          <td>
-            <%= link_to lemas_comerciales.nombre.upcase, marca_path(lemas_comerciales), :class => "#{ lemas_comerciales.propia!} #{ lemas_comerciales.valido!} propia_margin" %><br/><br/>
-          </td>
-          <td><!--<span title="<%#= lemas_comerciales.ver_estado %>">--><%= MarcaEstado.sigla_estado(lemas_comerciales.marca_estado_id) %><!--</span>--></td>
-          <td><% unless lemas_comerciales.tipo_signo.nil?%><%= lemas_comerciales.tipo_signo.sigla %><%end%></td>
-          <td><%= lemas_comerciales.clase_id %></td>
-          <td><%= lemas_comerciales.numero_marca %></td>
-          <td><%= lo(lemas_comerciales.fecha_marca, :format => "%d %b, %Y") if lemas_comerciales.fecha_marca %></td>
-          <td><%= lemas_comerciales.titulares.map(&:nombre).join(", ") %></td>
-          <td><%= link_to("Quitar", quitar_lema_marca_path(@marca, :lema_id => lemas_comerciales))%></td>
+          <th style="width:250px">Nombre</th>
+          <th>Estado</th>
+          <th>Tipo</th>
+          <th>Cl</th>
+          <th>Numero</th>
+          <th>Fecha</th>
+          <th>Titulares</th>
         </tr>
+        <% if lemas_comerciales %>
+          <% lemas_comerciales.each do |lemas_comerciales| %>
+            <tr>
+              <td>
+                <%= link_to lemas_comerciales.nombre.upcase, marca_path(lemas_comerciales), :class => "#{ lemas_comerciales.propia!} #{ lemas_comerciales.valido!} propia_margin" %><br/><br/>
+              </td>
+              <td><!--<span title="<%#= lemas_comerciales.ver_estado %>">--><%= MarcaEstado.sigla_estado(lemas_comerciales.marca_estado_id) %><!--</span>--></td>
+              <td><% unless lemas_comerciales.tipo_signo.nil?%><%= lemas_comerciales.tipo_signo.sigla %><%end%></td>
+              <td><%= lemas_comerciales.clase_id %></td>
+              <td><%= lemas_comerciales.numero_marca %></td>
+              <td><%= lo(lemas_comerciales.fecha_marca, :format => "%d %b, %Y") if lemas_comerciales.fecha_marca %></td>
+              <td><%= lemas_comerciales.titulares.map(&:nombre).join(", ") %></td>
+              <td><%= link_to("Quitar", quitar_lema_marca_path(@marca, :lema_id => lemas_comerciales))%></td>
+            </tr>
+          <% end %>
         <% end %>
-      <% end %>
-    </table>
-    <table>
-      <tr>
-        <td><%= link_to "Nuevo Lema Comercial", new_marca_path(:tipo => 'LC', :tipo_signo =>'Lema Comercial', :lema_marca_id => @marca.id, :tipo_marca_id => 5, :clase_id => @marca.clase_id, :productos => @marca.productos), :class => 'new ajax' %></td>
-        <td><%= link_to 'Seleccionar Lema Comerciales Existente', "#", :id=>'ajax_lemas_comerciales', :class => 'new ajax' %></td>
-      </tr>
-    </table>
-  </div>
-<% else %>
-  <div id="posts">
-    <h2 class="title">Marcas asociadas</h2>
-    <% marcas = @marca.marca_asociada_lema %>
-    <table class="decorated nwl">
-      <tr>
-        <th style="width:250px">Nombre</th>
-        <th>Estado</th>
-        <th>Tipo</th>
-        <th>Cl</th>
-        <th>Numero</th>
-        <th>Fecha</th>
-        <th>Titulares</th>
-      </tr>
-      <% if marcas %>
+      </table>
+      <table>
         <tr>
-          <td>
-            <%= link_to marcas.nombre.upcase, marca_path(marcas), :class => "#{ marcas.propia!} #{ marcas.valido!} propia_margin" %><br/><br/>
-          </td>
-          <td><!--<span title="<%#= lemas_comerciales.ver_estado %>">--><%= MarcaEstado.sigla_estado(marcas.marca_estado_id) %><!--</span>--></td>
-          <td><% unless marcas.tipo_signo.nil?%><%= marcas.tipo_signo.sigla %><%end%></td>
-          <td><%= marcas.clase_id %></td>
-          <td><%= marcas.numero_marca %></td>
-          <td><%= lo(marcas.fecha_marca, :format => "%d %b, %Y") if marcas.fecha_marca %></td>
-          <td><%= marcas.titulares.map(&:nombre).join(", ") %></td>
-          <td><%#= link_to("Quitar", quitar_lema_marca_path(@marca, :lema_id => marcas))%></td>
+          <td><%= link_to "Nuevo Lema Comercial", new_marca_path(:tipo => 'LC', :tipo_signo =>'Lema Comercial', :lema_marca_id => @marca.id, :tipo_marca_id => 5, :clase_id => @marca.clase_id, :productos => @marca.productos), :class => 'new ajax' %></td>
+          <td><%= link_to 'Seleccionar Lema Comerciales Existente', "#", :id=>'ajax_lemas_comerciales', :class => 'new ajax' %></td>
         </tr>
-      <% end %>
-    </table>
-  </div>
-<% end %>
+      </table>
+    </div>
+  <% else %>
+    <div id="posts">
+      <h2 class="title">Marcas asociadas</h2>
+      <% marcas = @marca.marca_asociada_lema %>
+      <table class="decorated nwl">
+        <tr>
+          <th style="width:250px">Nombre</th>
+          <th>Estado</th>
+          <th>Tipo</th>
+          <th>Cl</th>
+          <th>Numero</th>
+          <th>Fecha</th>
+          <th>Titulares</th>
+        </tr>
+        <% if marcas %>
+          <tr>
+            <td>
+              <%= link_to marcas.nombre.upcase, marca_path(marcas), :class => "#{ marcas.propia!} #{ marcas.valido!} propia_margin" %><br/><br/>
+            </td>
+            <td><!--<span title="<%#= lemas_comerciales.ver_estado %>">--><%= MarcaEstado.sigla_estado(marcas.marca_estado_id) %><!--</span>--></td>
+            <td><% unless marcas.tipo_signo.nil?%><%= marcas.tipo_signo.sigla %><%end%></td>
+            <td><%= marcas.clase_id %></td>
+            <td><%= marcas.numero_marca %></td>
+            <td><%= lo(marcas.fecha_marca, :format => "%d %b, %Y") if marcas.fecha_marca %></td>
+            <td><%= marcas.titulares.map(&:nombre).join(", ") %></td>
+            <td><%#= link_to("Quitar", quitar_lema_marca_path(@marca, :lema_id => marcas))%></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  <% end %>
 
-<div id="posts" data-posts_size="<%= Marca::POSTS_SIZE %>">
-  <h2 class="title">Ultimos comentarios</h2>
+  <div id="posts" data-posts_size="<%= Marca::POSTS_SIZE %>">
+    <h2 class="title">Ultimos comentarios</h2>
     <%= render :partial => "posts/posts", :locals => { :posts => @marca.posts } %>
     <%= link_post @marca, 'index' %>
     <%= link_post @marca, 'new' %>
-</div>
-
-<div id="marca"> 
-  <h1 class="dark">Historial de modificaciones</h1>
-
-  <% @cambios = @marca.cambios %>
-  <% @marca.historial.each do |marca| %>
-
-  <% @cambios.delete('usuario_id') %>
-  <% @cambios.delete('errores_manual') %>
-  <p>
-    Modificado por <strong><%= marca.usuario %></strong> en fecha: <em><%= l marca.updated_at, :format => "%d, %B %Y %H:%M" %></em>
-  </p>
-
-  <% @cambios.each do |campo| %>
-      <p>
-        <%= presentar_campo_historial( marca, campo ) %>
-      </p>
-    <% end %>
-
-    <hr />
-    <% @cambios = marca.cambios %>
-  <% end %>
   </div>
 
+  <%= render :partial => "/marcas/cambios" %>
 </div>
-
-
-
-
 <script languages="Javascript">
-$(document).ready(function()
-{
-  $("#ajax_lemas_comerciales").click(function(){
-    div = document.createElement('div');
+  $(document).ready(function()
+  {
+    $("#ajax_lemas_comerciales").click(function(){
+      div = document.createElement('div');
 
-    $.get('/marcas/lemas_comerciales/?id=<%=@marca.id%>',function(data){
-      $(div).html(data);
-    });
-    $(div).dialog({
-      'width': 1100,
-      'height': 700,
-      'close': function(e, ui) {
-        return $(div).dialog('destroy');
-      }
-    });
-    return false;
-  })
+      $.get('/marcas/lemas_comerciales/?id=<%=@marca.id%>',function(data){
+        $(div).html(data);
+      });
+      $(div).dialog({
+        'width': 1100,
+        'height': 700,
+        'close': function(e, ui) {
+          return $(div).dialog('destroy');
+        }
+      });
+      return false;
+    })
 
-});
+  });
 </script>

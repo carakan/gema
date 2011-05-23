@@ -2,6 +2,9 @@
 # author: Boris Barroso
 # email: boriscyber@gmail.com
 class Marca < ActiveRecord::Base
+  
+  include ActiveRecord::Diff
+  diff :exclude => [:cambios, :errores, :errores_manual, :updated_at, :created_at]
 
   #before_save :set_propia
   before_save :quitar_comillas

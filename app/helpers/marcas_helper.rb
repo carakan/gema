@@ -126,6 +126,15 @@ module MarcasHelper
   rescue
     ""
   end
+  
+  
+  def show_changes(hash)
+    result = ""
+    hash.each do |elem|
+      result << "<p><label>#{elem.first}:</label> #{elem.second[0]} => <b>#{elem.second[1]}</b></p>"
+    end
+    result.html_safe
+  end
 
 private
   # Relacion entre campos y el historico

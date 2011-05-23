@@ -873,3 +873,7 @@ div#busqueda .contenido .derecha {
   margin-right: 5px;
   width: 120px;
 }
+#contenido #marca-log label {
+  width: 200px;
+  display: inline-block;
+}
