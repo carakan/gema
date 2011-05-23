@@ -29,7 +29,8 @@ class Proyecto::ProyectoItemsController < ApplicationController
     @proyecto_item = @proyecto.proyecto_items.new(parametros)
     if @proyecto_item.save
       flash[:notice] = "Se creo con exito el servicio."
-      redirect_to proyecto_proyecto_url(@proyecto)
+      redirect_to @proyecto
+      #redirect_to proyecto_proyecto_url(@proyecto)
     else
       render :action => 'new'
     end

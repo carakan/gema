@@ -1,4 +1,4 @@
-= simple_form_for @instruccion_detalle,:url=>url do |f|
+= simple_form_for @instruccion_detalle,:url => url do |f|
   = f.error_messages
   %p
     = f.input :tarea, :as => :text
@@ -7,5 +7,5 @@
   %p
     = f.association :usuario
   %p
-    = f.button :submit, "Crear nueva Tarea"
+    = f.button :submit, "Guardar"
 

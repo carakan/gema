@@ -46,6 +46,7 @@
           %td= link_to 'Eliminar', proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion_detall.instruccion,instruccion_detall), :confirm => 'Are you sure?', :method => :delete, :class => 'delete'
 
     %p= link_to "Añadir Instruccion", new_proyecto_proyecto_instruccion_path(@proyecto), :class => 'new', :style => "float: right;"
+    %p= link_to "Añadir tarea", new_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion_detalles), :class => 'new', :style => "float: right;"
     %br.clear
 
 :javascript
