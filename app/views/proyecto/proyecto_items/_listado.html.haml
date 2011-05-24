@@ -47,7 +47,7 @@
     %h2 Solicitud de fondos
     =render :partial =>'/proyecto/proyecto_items/listado_gastos'
     %p
-      = link_to "Nueva solicitud", new_proyecto_proyecto_proyecto_item_path(@proyecto, :tipo => "gasto"), :class => 'new ajax', :style => "float: right;"
+      = link_to "Nueva solicitud", new_proyecto_proyecto_proyecto_item_path(@proyecto, :tipo => "gasto"), :class => 'new', :style => "float: right;"
       %br.clear
   #tabs-items-3
     %p
