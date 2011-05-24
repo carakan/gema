@@ -3,7 +3,7 @@
   <% siguiente = @marca  %>
   <% @marca.versions.each do |m| %>
     <% marca = m.reify %>
-    <% diff = marca.diff(siguiente) %>
+    <%= diff = marca.diff(siguiente) %>
     <% if !diff.empty?  %>
       <p>
         Modificado por <strong><%= siguiente.usuario %></strong> en fecha: <em><%= l siguiente.updated_at, :format => "%d, %B %Y %H:%M" %></em>
@@ -11,7 +11,7 @@
       <p>
         <%= show_changes(diff) %>
       </p>
-      <% siguiente = marca %>
     <% end %>
+    <% siguiente = marca %>
   <% end %>
 </div>
