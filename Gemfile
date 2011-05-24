@@ -14,7 +14,7 @@ end
 gem "haml", "3.0.25"
 gem 'formtastic', "1.2.3"
 gem 'will_paginate','3.0.pre2'
-gem 'nokogiri', "1.4.4"
+gem 'nokogiri'
 gem 'forgery', "0.3.7"
 gem 'zip', "2.0.2"
 gem 'spreadsheet', "0.6.5.3"
