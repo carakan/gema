@@ -29,7 +29,7 @@ class Proyecto::InstruccionDetallesController < ApplicationController
   def update
     @instruccion_detalle = Proyecto::InstruccionDetalle.find(params[:id])
     if @instruccion_detalle.update_attributes(params[:proyecto_instruccion_detalle])
-      redirect_to proyecto_proyecto_instrucciones_url(@proyecto), :notice => "Instruccion Actualizada"
+      redirect_to proyecto_proyecto_url(@proyecto), :notice => "Tarea Actualizada"
     else
       render :action => 'edit'
     end

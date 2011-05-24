@@ -19,7 +19,6 @@ class Proyecto::ProyectoItemsController < ApplicationController
   end
 
   def create
-    debugger
     if params[:proyecto_proyecto_item]
       parametros = params[:proyecto_proyecto_item]
     elsif params[:proyecto_item_cobro]
@@ -28,13 +27,13 @@ class Proyecto::ProyectoItemsController < ApplicationController
       parametros = params[:proyecto_item_gasto]
     end
 
-    if params[:referencia_cliente_cobranza].nil?
-      if params[:referencia_cliente].nil?
-        params[:referencia_cliente] << @proyecto.referencia_cliente
-      else
-        params[:referencia_cliente_cobranza] << params[:referencia_cliente]
-      end
-    end
+ #   if params[:referencia_cliente_cobranza].nil?
+ #     if params[:referencia_cliente].nil?
+ #       params[:referencia_cliente] << @proyecto.referencia_cliente
+ #     else
+ #       params[:referencia_cliente_cobranza] << params[:referencia_cliente]
+ #     end
+ #   end
 
     @proyecto_item = @proyecto.proyecto_items.new(parametros)
     if @proyecto_item.save
