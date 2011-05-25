@@ -2,13 +2,16 @@
   %tr
     %th Nombre
     %th Sigla
+    %td
+    %td
+    %td
   -for area in @areas
     %tr
       %td= area.nombre
       %td= area.sigla
-      %td= link_to 'Show', area
-      %td= link_to 'Edit', edit_proyecto_area_path(area)
-      %td= link_to 'Destroy', area, :confirm => 'Are you sure?', :method => :delete
+      %td= link_to 'Mostrar', area
+      %td= link_to 'Editar', edit_proyecto_area_path(area), :class=>"edit"
+      %td= link_to 'Destruir', area, :confirm => 'Are you sure?', :method => :delete, :class=>"delete"
 
-%p= link_to "Nueva Area", new_proyecto_area_path
+%p= link_to "Nueva Area", new_proyecto_area_path, :class=>"new"
 
