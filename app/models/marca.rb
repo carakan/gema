@@ -4,7 +4,7 @@
 class Marca < ActiveRecord::Base
   
   include ActiveRecord::Diff
-  diff :exclude => [:cambios, :errores, :errores_manual, :updated_at, :created_at]
+  diff :include => [:clase_id, :tipo_signo_id, :tipo_marca_id, :agente_ids_serial,:titular_ids_serial], :exclude=>[:created_at, :updated_at, :cambios]
 
   #before_save :set_propia
   before_save :quitar_comillas
@@ -61,6 +61,7 @@ class Marca < ActiveRecord::Base
   
   has_paper_trail :ignore => [:valido, :fila, :type, :nombre_minusculas, :errores, :errores_manual, :cambios, :anterior]
   
+  has_many :versiones, :foreign_key => :item_id, :order => 'created_at DESC', :class_name => 'Version' 
   # ---- BORRAR 
   # Indica si se debe crear historico
   def con_historico?
