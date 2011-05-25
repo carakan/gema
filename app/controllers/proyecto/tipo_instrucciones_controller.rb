@@ -1,6 +1,6 @@
 class Proyecto::TipoInstruccionesController < ApplicationController
   def index
-    @tipo_instrucciones = Proyecto::TipoInstruccion.all
+    @tipo_instrucciones = Proyecto::TipoInstruccion.find(:all)
   end
 
   def show
@@ -8,7 +8,7 @@ class Proyecto::TipoInstruccionesController < ApplicationController
   end
 
   def new
-    @tipo_instruccion = @proyecto.tipo_instrucciones.new
+    @tipo_instruccion = Proyecto::TipoInstruccion.new
   end
 
   def create

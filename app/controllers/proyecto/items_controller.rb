@@ -1,6 +1,6 @@
 class Proyecto::ItemsController < ApplicationController
   def index
-    @items = Proyecto::Item.all
+    @items = Proyecto::Item.find(:all)
   end
 
   def show
@@ -14,7 +14,7 @@ class Proyecto::ItemsController < ApplicationController
   def create
     @item = @proyecto.items.new(params[:proyecto_item])
     if @item.save
-      flash[:notice] = "Se creo exitosamente el item"
+      flash[:notice] = "Se creo exitosamente Item"
       redirect_to proyecto_items_url()
    else
       render :action => 'new'
@@ -28,7 +28,7 @@ class Proyecto::ItemsController < ApplicationController
   def update
     @item = Proyecto::Item.find(params[:id])
     if @item.update_attributes(params[:proyecto_item])
-      flash[:notice] = "Successfully updated proyecto/item."
+      flash[:notice] = "Se actualizo exitosamente Item"
       redirect_to proyecto_items_url()
     else
       render :action => 'edit'
@@ -38,7 +38,7 @@ class Proyecto::ItemsController < ApplicationController
   def destroy
     @item = Proyecto::Item.find(params[:id])
     @item.destroy
-    flash[:notice] = "Successfully destroyed proyecto/item."
+    flash[:notice] = "Se elimino exitosamente Item"
     redirect_to proyecto_items_url()
   end
 end

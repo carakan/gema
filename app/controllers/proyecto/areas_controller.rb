@@ -1,6 +1,6 @@
 class Proyecto::AreasController < ApplicationController
   def index
-    @areas = Proyecto::Area.all
+    @areas = Proyecto::Area.find(:all)
   end
  
   def show
@@ -8,13 +8,13 @@ class Proyecto::AreasController < ApplicationController
   end
 
   def new
-    @area = @proyecto.area.new
+    @area = Proyecto::Area.new
   end
 
   def create
-    @area = @proyecto.areas.new(params[:proyecto_area])
+    @area = Proyecto::Area.new(params[:proyecto_area])
     if @area.save
-     redirect_to @area ,:notice => "Successfully created area."
+     redirect_to @area ,:notice => 'Se ha creado con exito Area.'
 
     else
       render :action => 'new'
@@ -28,7 +28,7 @@ class Proyecto::AreasController < ApplicationController
   def update
     @area = Proyecto::Area.find(params[:id])
     if @area.update_attributes(params[:proyecto_area])
-      redirect_to @area, :notice => "Successfully updated proyecto/area."
+      redirect_to @area, :notice => "Se ha actualizado con exito Area."
     else
       render :action => 'edit'
     end
@@ -37,7 +37,7 @@ class Proyecto::AreasController < ApplicationController
   def destroy
     @area = Proyecto::Area.find(params[:id])
     @area.destroy
-    redirect_to proyecto_areas_url,:notice => "Successfully destroyed proyecto/area."
+    redirect_to proyecto_areas_url,:notice => "Se ha eliminado con exito Area"
   end
 end
 
