@@ -20,6 +20,7 @@ class Proyecto::ProyectoItemsController < ApplicationController
 
   def create
     if parametros = params[:proyecto_proyecto_item]
+      parametros = params[:proyecto_proyecto_item]
     elsif params[:proyecto_item_cobro]
       parametros = params[:proyecto_item_cobro]
     elsif params[:proyecto_item_gasto]

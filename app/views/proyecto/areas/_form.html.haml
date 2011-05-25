@@ -5,5 +5,7 @@
   %p
     = f.input :sigla
   %p
+    = f.input :mostrar, :collection => [['Mostrar',true], ['No mostrar',false]], :as => :radio, :label => false 
+  %p
     = f.button :submit, "Guardar"
 

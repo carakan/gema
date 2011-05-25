@@ -6,7 +6,6 @@ class Proyecto::InstruccionesController < ApplicationController
   end
   
   def show
-    debugger
     @instruccion = Proyecto::Instruccion.find(params[:id])
   end
   
