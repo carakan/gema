@@ -8,11 +8,11 @@ class Proyecto::AreasController < ApplicationController
   end
 
   def new
-    @area = Proyecto::Area.new
+    @area = @proyecto.areas.new
   end
 
   def create
-    @area = Proyecto::Area.new(params[:proyecto_area])
+    @area = @proyecto.areas.new(params[:proyecto_area])
     if @area.save
      redirect_to @area ,:notice => "Successfully created area."
 

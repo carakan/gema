@@ -8,11 +8,11 @@ class Proyecto::TipoInstruccionesController < ApplicationController
   end
 
   def new
-    @tipo_instruccion = Proyecto::TipoInstruccion.new
+    @tipo_instruccion = @proyecto.tipo_instrucciones.new
   end
 
   def create
-    @tipo_instruccion = Proyecto::TipoInstruccion.new(params[:proyecto_tipo_instruccion])
+    @tipo_instruccion = @proyecto.tipo_instrucciones.new(params[:proyecto_tipo_instruccion])
     if @tipo_instruccion.save
       redirect_to @tipo_instruccion, :notice => "Successfully created tipo instruccion."
     else

@@ -1,5 +1,6 @@
 .fieldset{:"data-group" => "tarea"}
   = f.input :tipo, :as => :hidden, :input_html => {:value => 1}
+  = f.input :asignado_por, :as => :hidden, :input_html => {:value => @proyecto.usuario_id}
   .contar{:class => "hidden"}
   = f.input :contador, :as => :hidden
   .percent_20{:style => "width: 17%;vertical-align:top;"}

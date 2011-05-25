@@ -447,10 +447,11 @@ ul.inline li a {
 }
 a.l-add {
   background: url(../images/icons/add.png);
-  background-position: top right;
-  padding-right: 18px;
+  background-position: top left;
+  padding-left: 18px;
   background-repeat: no-repeat;
 }
+
 a.new {
   text-decoration: none;
   background: url(../images/icons/add.png) no-repeat scroll 6px 50%;
@@ -463,6 +464,13 @@ a.new {
 a.terminada{
   text-decoration: none;
   background: url(../images/icons/finish.png) no-repeat 6px 50%;
+  padding: 5px 8px 5px 26px;
+  margin: 10px 5px;
+  display: table;
+}
+a.repeat {
+  text-decoration: none;
+  background: url(../images/icons/repeat.png) no-repeat 6px 50%;
   padding: 5px 8px 5px 26px;
   margin: 10px 5px;
   display: table;

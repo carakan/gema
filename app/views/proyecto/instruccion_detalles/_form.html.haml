@@ -5,6 +5,10 @@
   %p
     = f.input :fecha_limite, :as => :date
   %p
+    = f.input :prioridad, :collection =>['A', 'B', 'C'], :as=> :radio, :hint=>'Escoga la prioridad de la tarea'
+  %p
+    = f.association :tipo_instruccion, :hint=>'Elija de la lista'
+  %p
     = f.association :usuario
   %p
     = f.button :submit, "Guardar"

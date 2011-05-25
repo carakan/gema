@@ -8,11 +8,11 @@ class Proyecto::ItemsController < ApplicationController
   end
 
   def new
-    @item = Proyecto::Item.new(:parent_id => params[:parent_id])
+    @item = @proyecto.items.new(:parent_id => params[:parent_id])
   end
 
   def create
-    @item = Proyecto::Item.new(params[:proyecto_item])
+    @item = @proyecto.items.new(params[:proyecto_item])
     if @item.save
       flash[:notice] = "Se creo exitosamente el item"
       redirect_to proyecto_items_url()

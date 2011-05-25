@@ -32,7 +32,7 @@
             -if instruccion_detall.has_children?
               %td= link_to 'Ver repeticiones', repeticion_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion_detall.instruccion,instruccion_detall)
             -else
-              %td= link_to 'Repetir', repeticion_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion_detall.instruccion,instruccion_detall)
+              %td= link_to 'Reiniciar', repeticion_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion_detall.instruccion,instruccion_detall), :class => 'repeat'
             %td
               - if instruccion_detall.estado_tarea == 'pendiente'
                 = link_to "Entregar", entrega_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion_detall.instruccion, instruccion_detall), :class => 'terminada'
@@ -44,9 +44,9 @@
                 = link_to "Revision", ver_entrega_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion_detall.instruccion, instruccion_detall), :class => 'revision'
             %td= link_to 'Editar', edit_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion_detall.instruccion,instruccion_detall), :class => "edit"
             %td= link_to 'Eliminar', proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion_detall.instruccion,instruccion_detall), :confirm => 'Are you sure?', :method => :delete, :class => 'delete'
+            %td= link_to "Tarea", new_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion_detall.instruccion), :class => 'l-add', :style => "float: right;" if instruccion_detall
 
     %p= link_to "Añadir Instruccion", new_proyecto_proyecto_instruccion_path(@proyecto), :class => 'new', :style => "float: right;"
-    %p= link_to "Añadir tarea", new_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion_detall.instruccion), :class => 'new', :style => "float: right;" if instruccion_detall
     %br.clear
 
 :javascript
