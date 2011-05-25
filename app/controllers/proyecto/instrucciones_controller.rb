@@ -15,6 +15,7 @@ class Proyecto::InstruccionesController < ApplicationController
   end
   
   def create
+    asignado = params[:usuario_id]
     @instruccion = @proyecto.instruccions.new(params[:proyecto_instruccion])
     if @instruccion.save
       redirect_to proyecto_proyecto_url(@proyecto), :notice => "Ha sido creado con exito esta instruccion"
