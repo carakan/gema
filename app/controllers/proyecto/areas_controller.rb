@@ -8,7 +8,7 @@ class Proyecto::AreasController < ApplicationController
   end
 
   def new
-    @area = @proyecto.areas.new
+    @area = @proyecto.area.new
   end
 
   def create
