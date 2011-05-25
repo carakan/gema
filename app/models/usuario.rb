@@ -15,6 +15,7 @@ class Usuario < ActiveRecord::Base
   has_many :posts
   has_many :consultas
   has_many :importaciones
+  has_many :proyectos
   belongs_to :area, :class_name => "Proyecto::Area"
   has_many :instruccion_detalles
   belongs_to :rol

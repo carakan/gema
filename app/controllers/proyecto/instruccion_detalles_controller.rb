@@ -16,7 +16,7 @@ class Proyecto::InstruccionDetallesController < ApplicationController
     @instruccion_detalle = @instruccion.instruccion_detalles.new(params[:proyecto_instruccion_detalle])
     @instruccion_detalle.asignado_por = current_usuario.id
     if @instruccion_detalle.save
-      redirect_to proyecto_proyecto_url(@proyecto), :notice => "Ha sido satisfactoriamente creada la Tarea."
+      redirect_to @proyecto, :notice => "Ha sido satisfactoriamente creada la Tarea."
     else
       render :action => 'new'
     end
