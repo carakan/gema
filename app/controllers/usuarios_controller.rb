@@ -2,7 +2,7 @@
 # author: Boris Barroso
 # email: boriscyber@gmail.com
 class UsuariosController < ApplicationController
-  #before_filter :revisar_permiso!
+  # skip_before_filter :revisar_permiso!
 
   # GET /usuarios
   # GET /usuarios.xml
