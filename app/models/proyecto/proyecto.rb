@@ -3,6 +3,7 @@ class Proyecto::Proyecto < ActiveRecord::Base
   set_table_name "proyectos"
   belongs_to :area
   belongs_to :representante
+  belongs_to :usuario
   has_and_belongs_to_many :contactos, :join_table => :proyectos_contactos
   has_many :correspondencias
   has_many :instruccions, :include => :instruccion_detalles
@@ -25,7 +26,7 @@ class Proyecto::Proyecto < ActiveRecord::Base
   after_save :update_position_on_tree
 
   def to_s
-    "P#{"%04d" % self.proyecto.id}"
+    "P#{"%04d" % self.id}"
   end
 
   def fecha_minima
@@ -95,14 +96,15 @@ class Proyecto::Proyecto < ActiveRecord::Base
         end
       end
       instruccion.instruccion_detalles.each do |tarea|
+        tarea.asignado_por = self.usuario
         if tarea.temporal_parent_id
           instruccion.instruccion_detalles.each do |parent|
             if parent.temporal_id == tarea.temporal_parent_id
               tarea.parent = parent
-              tarea.save
             end
           end
         end
+        tarea.save
       end
     end
   end
