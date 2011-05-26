@@ -333,3 +333,61 @@ ActiveRecord::Schema.define(:version => 20110525170553) do
   add_index "usuarios", ["login"], :name => "index_usuarios_on_login", :unique => true
   add_index "usuarios", ["reset_password_token"], :name => "index_usuarios_on_reset_password_token", :unique => true
 
+  create_table "v_marcas_atomizadas", :id => false, :force => true do |t|
+    t.integer  "id",                                            :default => 0,     :null => false
+    t.integer  "usuario_id",                    :limit => 2,    :default => 1
+    t.string   "nombre",                                        :default => ""
+    t.boolean  "propia",                                        :default => false
+    t.boolean  "activa",                                        :default => true
+    t.integer  "marca_estado_id",               :limit => 2,    :default => 104
+    t.integer  "tipo_signo_id",                 :limit => 2,    :default => 104
+    t.integer  "tipo_marca_id",                 :limit => 2,    :default => 104
+    t.integer  "clase_id",                      :limit => 2,    :default => 104
+    t.text     "productos"
+    t.integer  "numero_solicitud_n",            :limit => 8
+    t.integer  "numero_solicitud_a",            :limit => 8
+    t.date     "fecha_solicitud"
+    t.integer  "numero_publicacion",            :limit => 8
+    t.date     "fecha_publicacion"
+    t.integer  "numero_registro_n",             :limit => 8
+    t.date     "fecha_registro"
+    t.integer  "numero_solicitud_renovacion_n", :limit => 8
+    t.integer  "numero_solicitud_renovacion_a", :limit => 8
+    t.date     "fecha_solicitud_renovacion"
+    t.integer  "numero_renovacion_n",           :limit => 8
+    t.date     "fecha_renovacion"
+    t.string   "instruccion",                   :limit => 128,  :default => ""
+    t.string   "via_instruccion",               :limit => 128,  :default => ""
+    t.date     "fecha_instruccion"
+    t.string   "numero_gaceta",                 :limit => 10,   :default => ""
+    t.string   "representante_empresarial",     :limit => 512,  :default => ""
+    t.string   "apoderado",                     :limit => 512,  :default => ""
+    t.string   "observaciones",                 :limit => 2056, :default => ""
+    t.integer  "fila"
+    t.boolean  "importado",                                     :default => false
+    t.integer  "importacion_id"
+    t.date     "fecha_importacion"
+    t.boolean  "valido"
+    t.string   "archivo_adjunto",                               :default => ""
+    t.string   "descripcion_imagen",                            :default => ""
+    t.string   "nombre_minusculas",                             :default => ""
+    t.string   "agente_ids_serial"
+    t.string   "titular_ids_serial"
+    t.string   "errores",                       :limit => 700
+    t.string   "errores_manual",                :limit => 500
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "versions", :force => true do |t|
+    t.string   "item_type",  :null => false
+    t.integer  "item_id",    :null => false
+    t.string   "event",      :null => false
+    t.string   "whodunnit"
+    t.text     "object"
+    t.datetime "created_at"
+  end
+
+  add_index "versions", ["item_type", "item_id"], :name => "index_versions_on_item_type_and_item_id"
+
+end
