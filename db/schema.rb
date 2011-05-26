@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110415150348) do
+ActiveRecord::Schema.define(:version => 20110525170553) do
 
   create_table "adjuntos", :force => true do |t|
     t.string   "nombre"
@@ -110,7 +110,6 @@ ActiveRecord::Schema.define(:version => 20110415150348) do
   end
 
   create_table "marcas", :force => true do |t|
-    t.integer  "parent_id",                                   :default => 0
     t.integer  "usuario_id",                  :limit => 2,    :default => 1
     t.string   "nombre",                                      :default => ""
     t.boolean  "propia",                                      :default => false
@@ -142,10 +141,8 @@ ActiveRecord::Schema.define(:version => 20110415150348) do
     t.integer  "importacion_id"
     t.date     "fecha_importacion"
     t.boolean  "valido"
-    t.text     "cambios"
     t.string   "archivo_adjunto",                             :default => ""
     t.string   "descripcion_imagen",                          :default => ""
-    t.boolean  "anterior",                                    :default => false
     t.string   "nombre_minusculas",                           :default => ""
     t.string   "agente_ids_serial"
     t.string   "titular_ids_serial"
@@ -171,7 +168,6 @@ ActiveRecord::Schema.define(:version => 20110415150348) do
   add_index "marcas", ["numero_registro"], :name => "numero_registro"
   add_index "marcas", ["numero_renovacion"], :name => "numero_renovacion"
   add_index "marcas", ["numero_solicitud"], :name => "numero_solicitud"
-  add_index "marcas", ["parent_id"], :name => "index_marcas_on_parent_id"
   add_index "marcas", ["propia"], :name => "index_marcas_on_propia"
   add_index "marcas", ["tipo_marca_id"], :name => "index_marcas_on_tipo_marca_id"
   add_index "marcas", ["tipo_signo_id"], :name => "index_marcas_on_tipo_signo_id"
@@ -225,24 +221,6 @@ ActiveRecord::Schema.define(:version => 20110415150348) do
 
   add_index "posts", ["postable_id"], :name => "index_posts_on_postable_id"
   add_index "posts", ["postable_type"], :name => "index_posts_on_postable_type"
-
-  create_table "proyecto_contactos", :force => true do |t|
-    t.integer  "proyecto_id"
-    t.integer  "cliente_id"
-    t.integer  "contacto_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "proyectos", :force => true do |t|
-    t.integer  "cliente_id"
-    t.integer  "area_id"
-    t.string   "titulo"
-    t.string   "referencia_cliente"
-    t.string   "prioridad"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "reporte_marca_detalles", :force => true do |t|
     t.integer  "reporte_marca_id"
@@ -357,7 +335,6 @@ ActiveRecord::Schema.define(:version => 20110415150348) do
 
   create_table "v_marcas_atomizadas", :id => false, :force => true do |t|
     t.integer  "id",                                            :default => 0,     :null => false
-    t.integer  "parent_id",                                     :default => 0
     t.integer  "usuario_id",                    :limit => 2,    :default => 1
     t.string   "nombre",                                        :default => ""
     t.boolean  "propia",                                        :default => false
@@ -391,10 +368,8 @@ ActiveRecord::Schema.define(:version => 20110415150348) do
     t.integer  "importacion_id"
     t.date     "fecha_importacion"
     t.boolean  "valido"
-    t.text     "cambios"
     t.string   "archivo_adjunto",                               :default => ""
     t.string   "descripcion_imagen",                            :default => ""
-    t.boolean  "anterior",                                      :default => false
     t.string   "nombre_minusculas",                             :default => ""
     t.string   "agente_ids_serial"
     t.string   "titular_ids_serial"
@@ -403,5 +378,16 @@ ActiveRecord::Schema.define(:version => 20110415150348) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "versions", :force => true do |t|
+    t.string   "item_type",  :null => false
+    t.integer  "item_id",    :null => false
+    t.string   "event",      :null => false
+    t.string   "whodunnit"
+    t.text     "object"
+    t.datetime "created_at"
+  end
+
+  add_index "versions", ["item_type", "item_id"], :name => "index_versions_on_item_type_and_item_id"
 
 end

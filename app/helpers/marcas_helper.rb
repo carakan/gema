@@ -51,19 +51,11 @@ module MarcasHelper
       presentar = l(klass.send(attr))
     end
 
-    if !klass.cambios.nil? and klass.cambios.include?(attr.to_s)
-      if presentar.nil?
-        "<span class='cambio'>#{klass.send(attr)}</span>".html_safe
-      else
-        "<span class='cambio'>#{presentar}</span>".html_safe
-      end
-    else
       if presentar.nil?
         klass.send(attr)
       else
         presentar
       end
-    end
   end
 
   def buscar_clase(clase_id)

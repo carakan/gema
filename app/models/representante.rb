@@ -20,7 +20,6 @@ class Representante < ActiveRecord::Base
   has_many :reporte_marcas
   has_many :contactos
   has_many :consultas
-
   POSTS_SIZE = 2
 
   #validates_presence_of :nombre

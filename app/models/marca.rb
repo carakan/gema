@@ -4,20 +4,20 @@
 class Marca < ActiveRecord::Base
   
   include ActiveRecord::Diff
-  diff :exclude => [:cambios, :errores, :errores_manual, :updated_at, :created_at]
+  diff :include => [:clase_id, :tipo_signo_id, :tipo_marca_id, :agente_ids_serial,:titular_ids_serial], :exclude=>[:created_at, :updated_at]
 
   #before_save :set_propia
   before_save :quitar_comillas
   before_save :set_minusculas
   before_create :adicionar_usuario
-  before_save :set_agentes_titulares, :if => lambda { |m| m.parent_id == 0 }
+  before_save :set_agentes_titulares#, :if => lambda { |m| m.parent_id == 0 }
   before_save :llenar_productos, :if => lambda { |m| m.productos.blank? }
   # before_validation :set_marca_estado_id, :id => lambda { |m| m.marca_estado_id.nil? }
 
   # Numero de palabras
   #before_save lambda { |m| m.numero_palabras = m.nombre_minusculas.strip.split(/\s/).size } 
 
-  before_update :set_cambios
+  #before_update :set_cambios
   before_save :actualizar_validez
 
   belongs_to :clase
@@ -59,8 +59,9 @@ class Marca < ActiveRecord::Base
   # Tracking updates
   ##########################################
   
-  has_paper_trail :ignore => [:valido, :fila, :type, :nombre_minusculas, :errores, :errores_manual, :cambios, :anterior]
+  has_paper_trail :ignore => [:valido, :fila, :type, :nombre_minusculas, :errores, :errores_manual, :anterior]
   
+  has_many :versiones, :foreign_key => :item_id, :order => 'created_at DESC', :class_name => 'Version' 
   # ---- BORRAR 
   # Indica si se debe crear historico
   def con_historico?
@@ -82,7 +83,7 @@ class Marca < ActiveRecord::Base
   # Errores especiales que deben ser eliminados manualmente debido a que el error
   # es validado por un criterio que no puede identificarse en el sistema
   serialize :errores_manual
-  serialize :cambios
+  #serialize :cambios
 
 
   validates_presence_of :marca_estado_id, :nombre, :tipo_signo_id, :clase_id
@@ -282,7 +283,7 @@ class Marca < ActiveRecord::Base
   
   def self.historial(id, params = {})
     params = { :order => "updated_at ASC" }.merge(params)
-    params[:conditions] = ["marcas.parent_id = ?", id]
+    #params[:conditions] = ["marcas.parent_id = ?", id]
     Marca.send(:with_exclusive_scope) { Marca.all(params) }
   end
 
@@ -553,14 +554,14 @@ class Marca < ActiveRecord::Base
   # metodo para crear historico de una marca
   def crear_historico
     dup = self.dup
-    dup.parent_id = self.id
+    #dup.parent_id = self.id
     dup.id = nil
     dup.save(:validate => false)
   end
 
   ###################################
   def set_cambios
-    self.cambios =  self.changes.keys.select{ |v| ![:valido, :fila, :type, :nombre_minusculas].include?(v) }
+    #self.cambios =  self.changes.keys.select{ |v| ![:valido, :fila, :type, :nombre_minusculas].include?(v) }
   end
   ##################################
 
