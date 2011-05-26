@@ -1,20 +1,45 @@
-- title "Proyecto Instruccion"
-= @instruccion.referencia_email
-%br
-= @instruccion.proyecto_id
-%br
+/= @instruccion.referencia_email
+/%br
+/= @instruccion.proyecto_id
+/%br
 = @instruccion.area_id
-%br
-  - for inst in @instruccion.instruccion_detalles
-    = inst.tarea
-    %br
-    = inst.usuario_id
-
-
-
-%p
-  = link_to "Edit", edit_proyecto_proyecto_instruccion_path(@instruccion)
+%div{:style=>'font-size:11px;'}
+  %table.decorated.tarea
+    %thead
+      %tr
+        %th Nro
+        %th Ref. Email
+        %th Nº Tarea
+        %th Responsable
+        %th Tarea
+        %th Tipo
+        %th Prioridad
+        %th Fecha Limite
+    %tbody
+      - for inst in @instruccion.instruccion_detalles
+        %tr
+          %td= inst.instruccion
+          %td= inst.instruccion.email
+          %td= inst.id
+          %td= inst.usuario
+          %td= inst.tarea
+          %td= inst.tipo_instruccion
+          %td= inst.prioridad
+          %td= inst.fecha_limite
+  = link_to "Editar", edit_proyecto_proyecto_instruccion_path(@instruccion), :class=>'edit'
   |
-  = link_to "Destroy", @proyecto_instruccion, :confirm => 'Are you sure?', :method => :delete
+  = link_to "Destruir", @proyecto_instruccion, :confirm => 'Are you sure?', :method => :delete, :class=>'delete'
   |
-  = link_to "View All", proyecto_proyecto_instrucciones_path
+  = link_to "Listado", proyecto_proyecto_instrucciones_path
+
+:javascript
+  $(document).ready(function() {
+    $("table.decorated.tarea").each(function(){
+      $(this).dataTable({
+        "bJQueryUI" : true,
+        "sPaginationType": "full_numbers",
+        "aaSorting"       : [[0, 'desc'], [1, 'desc']],
+        "oLanguage": { "sUrl": "/javascripts/datatable-es.js" }
+      });
+    });
+  });

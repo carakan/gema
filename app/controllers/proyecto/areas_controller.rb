@@ -12,7 +12,6 @@ class Proyecto::AreasController < ApplicationController
   end
 
   def create
-    debugger
     @area = Proyecto::Area.new(params[:proyecto_area])
     if @area.save
      redirect_to @area ,:notice => 'Se ha creado con exito Area.'
