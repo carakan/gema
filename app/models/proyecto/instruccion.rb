@@ -11,7 +11,7 @@ class Proyecto::Instruccion < ActiveRecord::Base
   has_many :tareas_pendientes, :conditions => {:estado_tarea => 'pendiente'}, :order => 'fecha_limite ASC', :class_name => 'Proyecto::InstruccionDetalle'
   
   def siguiente_id
-    codigo = Proyecto::ProyectoItem.select("max(contador) as conteo").where(["proyecto_id = ?", self.proyecto_id]).first
+    codigo = Proyecto::Instruccion.select("max(contador) as conteo").where(["proyecto_id = ?", self.proyecto_id]).first
     return(codigo.conteo + 1) 
   rescue
     return 1

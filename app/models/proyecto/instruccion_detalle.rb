@@ -61,7 +61,14 @@ class Proyecto::InstruccionDetalle < ActiveRecord::Base
   end
   
   def to_s
-    "P#{"%04d" % self.instruccion.proyecto.id} T#{"%02d" % self.contador}"
+    "P#{"%04d" % self.instruccion.proyecto_id} T#{"%02d" % self.contador}"
+  end
+
+  def siguiente_id
+    codigo = Proyecto::InstruccionDetalle.select("max(contador) as conteo").where(["instruccion_id = ?", self.instruccion_id]).first
+    return(codigo.conteo + 1) 
+  rescue
+    return 1
   end
 
   def crear_hijas
@@ -142,6 +149,4 @@ class Proyecto::InstruccionDetalle < ActiveRecord::Base
       return self
     end
   end
-
 end
-

@@ -1,4 +1,4 @@
 
-= render :partial => 'form', :locals =>{ :url => proyecto_proyecto_instruccion_instruccion_detalles_path(@proyecto, @instruccion)}
+= render :partial => 'form', :locals =>{ :url => proyecto_proyecto_instruccion_instruccion_detalles_path(@proyecto, @instruccion), :contador => (@instruccion_detalle.siguiente_id)}
 
 %p= link_to "Volver", proyecto_proyecto_instruccion_instruccion_detalles_path(@proyecto, @instruccion), :class => 'new'

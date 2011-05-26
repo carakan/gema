@@ -9,7 +9,7 @@ class Proyecto::InstruccionDetallesController < ApplicationController
   end
   
   def new
-    @instruccion_detalle = @instruccion.instruccion_detalles.new(:parent_id => params[:parent_id])
+    @instruccion_detalle = @instruccion.instruccion_detalles.new
   end
   
   def create

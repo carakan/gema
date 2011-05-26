@@ -1,4 +1,11 @@
 = simple_form_for @instruccion_detalle,:url => url do |f|
+  - if defined?(contador)
+    .contar
+      = contador
+    = f.input(:contador, :as => :hidden, :input_html => {:value => contador})
+  - else
+    .contar
+    = f.input(:contador, :as => :hidden)
   = f.error_messages
   %p
     = f.input :tarea, :as => :text
