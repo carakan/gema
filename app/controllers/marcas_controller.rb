@@ -14,7 +14,12 @@ class MarcasController < ApplicationController
     @clase_id = params[:clase_id]
     @tipo_marca = params[:tipo_marca_id]
     @productos = params[:productos]
-    @marca = Marca.new(:tipo_signo_id => TipoSigno.find_by_sigla(params[:tipo]).id, :propia => true, :activa => true, :marca_estado_id => 1, :lema_marca_id => @lema_id, :tipo_marca_id => @tipo_marca, :clase_id => @clase_id, :productos => @productos, :pais_prioridad_id => '999')
+    if params[:tipo]
+      tipo_id = TipoSigno.find_by_sigla(params[:tipo]).id
+    elsif params[:tipo_m_id]
+      tipo_id = params[:tipo_m_id]
+    end
+    @marca = Marca.new(:tipo_signo_id => tipo_id, :propia => true, :activa => true, :marca_estado_id => 1, :lema_marca_id => @lema_id, :tipo_marca_id => @tipo_marca, :clase_id => @clase_id, :productos => @productos, :pais_prioridad_id => '999')
   end
 
   def edit

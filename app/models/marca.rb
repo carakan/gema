@@ -162,7 +162,7 @@ class Marca < ActiveRecord::Base
   end
      
   def valido!
-    self.errores.empty? ? "" : "error"
+    (self.errores.empty? && self.errors.empty?) ? "" : "error"
   end
 
 
