@@ -19,7 +19,7 @@ module ModMarca::SolicitudRenovacion
       validates_length_of :numero_registro, :in => 6..12, :allow_nil => true, :allow_blank => true
       validates_format_of :numero_solicitud, :with => /^\d+-\d{4}/
       validates_format_of :numero_registro, :with => /^\d+-C$/
-      validates_uniqueness_of :numero_solicitud, :scope => :parent_id
+      validates_uniqueness_of :numero_solicitud#, :scope => :parent_id
     end
 
     def excel_cols

@@ -260,7 +260,6 @@ class Busqueda
   #   @param Integer
   #   @return String
   def sql_exacto(bus, pos)
-    condicion = "parent_id = 0 AND" if @nombre_modelo == Marca
     ActiveRecord::Base.send(:sanitize_sql_array,
       [ "(#{sql_select(pos, 0)} WHERE #{condicion} nombre_minusculas = '%s')", bus ]
     )
@@ -271,7 +270,6 @@ class Busqueda
   #   @param Integer
   #   @return String
   def sql_exp_reg(arr, pos)
-    condicion = "parent_id = 0 AND" if @nombre_modelo == Marca
     sql = "(#{sql_select(pos)} WHERE #{condicion} ("
     sql << arr.map{
       |v| ActiveRecord::Base.send(:sanitize_sql_array, [ "nombre_minusculas REGEXP '%s'", v ] )
@@ -284,7 +282,6 @@ class Busqueda
   #   @param Integer
   #   @return String
   def sql_variaciones(arr, pos)
-    condicion = "parent_id = 0 AND" if @nombre_modelo == Marca
     sql = "(#{sql_select(pos)} WHERE #{condicion} ("
     sql << arr.map{ |v|
       ActiveRecord::Base.send(:sanitize_sql_array, ["nombre_minusculas LIKE '%s'", "%#{v}%"] )

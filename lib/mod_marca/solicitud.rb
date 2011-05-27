@@ -18,7 +18,7 @@ module ModMarca::Solicitud
       # validaciones
       validates_presence_of :nombre, :fecha_solicitud, :tipo_signo_id, :clase_id
       validates_format_of :numero_solicitud, :with => /^\d+-\d{4}/
-      validates_uniqueness_of :numero_solicitud, :scope => :parent_id
+      validates_uniqueness_of :numero_solicitud#, :scope => :parent_id
     end
 
     def excel_cols

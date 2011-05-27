@@ -95,7 +95,7 @@ module MarcasHelper
   # Presenta un título con los errores de la marca
   # ademas de añadir la clase error
   def errores_marca(marca)
-    unless marca.valido?
+    if marca.errores && !marca.errores.empty?
       "class=\"error\" tooltip=\"#{ marca.presentar_errores }\"".html_safe
     end
   end

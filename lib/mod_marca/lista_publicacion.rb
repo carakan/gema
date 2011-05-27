@@ -20,7 +20,7 @@ module ModMarca::ListaPublicacion
       validates_length_of :numero_publicacion, :in => 6..12, :allow_nil => true, :allow_blank => true
       validates_presence_of :fecha_solicitud, :numero_gaceta
       validates_format_of :numero_solicitud, :with => /^\d+-\d{4}/
-      validates_uniqueness_of :numero_solicitud, :scope => :parent_id
+      validates_uniqueness_of :numero_solicitud#, :scope => :parent_id
       #validates_presence_of :numero_publicacion, :numero_gaceta
     end
 

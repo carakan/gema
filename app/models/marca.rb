@@ -4,7 +4,7 @@
 class Marca < ActiveRecord::Base
   
   include ActiveRecord::Diff
-  diff :include => [:clase_id, :tipo_signo_id, :tipo_marca_id, :agente_ids_serial,:titular_ids_serial], :exclude=>[:created_at, :updated_at]
+  diff :include => [:clase_id, :tipo_signo_id, :tipo_marca_id, :agente_ids_serial,:titular_ids_serial, :marca_estado_id], :exclude=>[:created_at, :updated_at, :errores, :errores_manual]
 
   #before_save :set_propia
   before_save :quitar_comillas
@@ -162,7 +162,7 @@ class Marca < ActiveRecord::Base
   end
      
   def valido!
-    valido? ? "" : "error"
+    self.errores.empty? ? "" : "error"
   end
 
 
