@@ -10,6 +10,10 @@ Rails.application.routes.draw do
       resources :adjuntos
       resources :correspondencias
       resources :instrucciones do
+        collection do
+            get "new_tarea" => 'instruccion_detalles#new'
+            post "add_tarea" => 'instruccion_detalles#create'
+          end
         resources :instruccion_detalles do
           member do
             get :entrega

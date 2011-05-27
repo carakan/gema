@@ -9,11 +9,20 @@ class Proyecto::InstruccionDetallesController < ApplicationController
   end
   
   def new
+    if @instruccion
     @instruccion_detalle = @instruccion.instruccion_detalles.new
+    else
+      @instruccion_detalle = Proyecto::InstruccionDetalle.new()
+    end
   end
   
   def create
+    debugger
+    if @instruccion
     @instruccion_detalle = @instruccion.instruccion_detalles.new(params[:proyecto_instruccion_detalle])
+    else
+      @instruccion_detalle = Proyecto::InstruccionDetalle.new(params[:proyecto_instruccion_detalle])
+    end
     @instruccion_detalle.asignado_por = current_usuario.id
     if @instruccion_detalle.save
       redirect_to @proyecto, :notice => "Ha sido satisfactoriamente creada la Tarea."
@@ -89,9 +98,13 @@ class Proyecto::InstruccionDetallesController < ApplicationController
     @instruccion_detalle = @instruccion.instruccion_detalles.find(params[:id])
   end
 
+
+
   protected
   def set_instruccion
     @proyecto = Proyecto::Proyecto.find(params[:proyecto_id])
-    @instruccion = @proyecto.instruccions.find(params[:instruccion_id])
+    if params[:instruccion_id]
+      @instruccion = @proyecto.instruccions.find(params[:instruccion_id])
+    end
   end
 end

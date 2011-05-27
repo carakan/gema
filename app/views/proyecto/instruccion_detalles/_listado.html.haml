@@ -44,7 +44,7 @@
                 = link_to "Revision", ver_entrega_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion_detall.instruccion, instruccion_detall), :class => 'revision'
             %td= link_to 'Editar', edit_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion_detall.instruccion,instruccion_detall), :class => "edit"
             %td= link_to 'Eliminar', proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion_detall.instruccion,instruccion_detall), :confirm => 'Are you sure?', :method => :delete, :class => 'delete'
-    %p= link_to "Tarea", new_proyecto_proyecto_instruccion_instruccion_detall_path(@proyecto, instruccion_detall.instruccion), :class => 'new', :style => "float: right;" if instruccion_detall
+    %p= link_to "Tarea",  new_tarea_proyecto_proyecto_instrucciones_path(@proyecto), :class => 'new', :style => "float: right;"
 
     %p= link_to "Añadir Instruccion", new_proyecto_proyecto_instruccion_path(@proyecto), :class => 'new', :style => "float: right;"
     %br.clear

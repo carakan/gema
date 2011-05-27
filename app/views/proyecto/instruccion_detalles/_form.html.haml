@@ -1,4 +1,6 @@
 = simple_form_for @instruccion_detalle,:url => url do |f|
+  -if !@instruccion
+    =f.input :instruccion_id, :collection => Proyecto::Instruccion.all
   - if defined?(contador)
     .contar
       = contador
